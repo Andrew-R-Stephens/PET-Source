@@ -32,5 +32,6 @@
     <string name="objective_info_uniqueaudio">Pořiďte 2 unikátní paranormální zvuky pomocí zvukového záznamníku</string>
     <string name="objective_info_uniquephotograph">Pořiďte 3 unikátní fotografie fotoaparátem</string>
     <string name="objective_info_uniquevideo">Natočte 3 unikátní videa videokamerou</string>
+    <string name="objectives_title_response_type">Typ odpovědi</string>
 
 </resources>

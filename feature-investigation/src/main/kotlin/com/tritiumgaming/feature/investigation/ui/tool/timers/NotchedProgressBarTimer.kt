@@ -20,6 +20,7 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
 import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
 
 @Composable
 internal fun NotchedProgressBarTimer(
@@ -57,7 +58,7 @@ internal fun NotchedProgressBarTimer(
 
                 DigitalTimer(
                     modifier = Modifier,
-                    state = TimerUiState(
+                    state = DigitalTimerUiState(
                         startTime = bundle.state.max,
                         remainingTime = bundle.state.remaining,
                         paused = !bundle.state.running

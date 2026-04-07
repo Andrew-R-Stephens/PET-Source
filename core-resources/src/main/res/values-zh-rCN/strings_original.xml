@@ -1117,5 +1117,6 @@
     <string name="difficulty_category_ghost">幽灵</string>
     <string name="map_setting_state_setup">设置</string>
     <string name="map_setting_state_action">动作</string>
+    <string name="objectives_title_response_type">响应类型</string>
 
 </resources>

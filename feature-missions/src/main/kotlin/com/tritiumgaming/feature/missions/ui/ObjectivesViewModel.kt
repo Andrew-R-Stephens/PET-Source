@@ -10,6 +10,8 @@ import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUi
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionStatus
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
 import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType.*
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
@@ -22,7 +24,9 @@ import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -34,7 +38,7 @@ class ObjectivesViewModel(
     private val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
     private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
     investigationStateUseCaseBundle: InvestigationUseCaseBundle,
-    private val getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationStateUseCaseBundle.getInvestigationStateUseCase
+    getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationStateUseCaseBundle.getInvestigationStateUseCase
 
 ): ViewModel() {
 
@@ -169,10 +173,31 @@ class ObjectivesViewModel(
     /*
      * Ghost details ---------------------
      */
-    private val _ghostDetailsUiState = MutableStateFlow(GhostDetailsUiState())
-    val ghostDetailsUiState = _ghostDetailsUiState.asStateFlow()
+    private val _ghostDetailsState = MutableStateFlow(GhostDetailsUiState())
+    val ghostDetailsState = _ghostDetailsState.asStateFlow()
+
+    private val _ghostDetailsUiState: StateFlow<GhostDetailsUiState> = combine(
+        ghostDetailsState,
+        difficultyState
+    ) { ghostDetailsState, difficultyState ->
+        val ghostResponse = if(difficultyState.responseType ==
+            DifficultyResources.DifficultyResponseType.UNKNOWN) { UNKNOWN }
+            else { ghostDetailsState.responseState }
+
+        GhostDetailsUiState(
+            firstName = ghostDetailsState.firstName,
+            surname = ghostDetailsState.surname,
+            responseState = ghostResponse
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = GhostDetailsUiState()
+    )
+    val ghostDetailsUiState = _ghostDetailsUiState
+
     fun setGhostFirstName(name: GhostName) {
-        _ghostDetailsUiState.update {
+        _ghostDetailsState.update {
             it.copy(
                 firstName = name
             )
@@ -182,7 +207,7 @@ class ObjectivesViewModel(
     }
 
     fun setGhostSurname(name: GhostName) {
-        _ghostDetailsUiState.update {
+        _ghostDetailsState.update {
             it.copy(
                 surname = name
             )
@@ -192,7 +217,7 @@ class ObjectivesViewModel(
     }
 
     fun setGhostResponse(response: Response) {
-        _ghostDetailsUiState.update {
+        _ghostDetailsState.update {
             it.copy(
                 responseState = response
             )

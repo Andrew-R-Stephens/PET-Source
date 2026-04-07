@@ -1,7 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import android.util.Log
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -108,7 +107,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -116,9 +114,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.math.max
 import kotlin.math.min
-import kotlin.time.Duration.Companion.minutes
 
 class InvestigationScreenViewModel private constructor(
     journalUseCaseBundle: JournalUseCaseBundle,
@@ -294,16 +290,40 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
 
-    private val _timerUiState = MutableStateFlow(TimerUiState())
-    internal val timerUiState = _timerUiState.asStateFlow()
+    internal data class SanityTimerData(
+        val startTime: Long = TIME_DEFAULT,
+        val remainingTime: Long = 0L,
+        val paused: Boolean = true
+    ) {
+        companion object {
+            const val TIME_DEFAULT = 0L
+            const val NEVER = 0L
+        }
+    }
+
+    private val _sanityTimerState = MutableStateFlow(SanityTimerData())
+    private val sanityTimerState = _sanityTimerState.asStateFlow()
+
+    private val _sanityTimerUiState: StateFlow<TimerUiState> = _sanityTimerState.map {
+        sanityTimerState ->
+        TimerUiState(
+            remainingTime = sanityTimerState.remainingTime,
+            paused = sanityTimerState.paused
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = TimerUiState()
+    )
+    internal val sanityTimerUiState = _sanityTimerUiState
 
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
-    private val _phaseState = MutableStateFlow<PhaseData>(PhaseData())
+    private val _phaseState = MutableStateFlow(PhaseData())
 
     private val _phaseUiState = combine(
-        _phaseState, timerUiState, playerSanityUiState, preferences
+        _phaseState, sanityTimerState, playerSanityUiState, preferences
     ) { phaseState, timerUiState, playerSanityUiState, preferences ->
         val type =
             when {
@@ -735,8 +755,8 @@ class InvestigationScreenViewModel private constructor(
      * Timer Ui Functions
      */
     private fun initTimerUiState() {
-        _timerUiState.update {
-            TimerUiState(
+        _sanityTimerState.update {
+            SanityTimerData(
                 startTime = TIME_DEFAULT,
                 remainingTime = difficultyState.value.settings.setupTime.toLong(),
                 paused = true
@@ -889,7 +909,7 @@ class InvestigationScreenViewModel private constructor(
     private fun launchPlayerSanityJob() {
         lastSanityTickTime = System.currentTimeMillis()
         sanityJob = viewModelScope.launch {
-            while(!timerUiState.value.paused) {
+            while(!sanityTimerState.value.paused) {
                 tickSanity()
                 delay(5000)
             }
@@ -960,7 +980,7 @@ class InvestigationScreenViewModel private constructor(
 
     private fun calculateElapsedTime(): Long {
         val currentTime = System.currentTimeMillis()
-        val startTime = timerUiState.value.startTime
+        val startTime = sanityTimerState.value.startTime
 
         val timeElapsed = currentTime - startTime
 
@@ -1039,61 +1059,6 @@ class InvestigationScreenViewModel private constructor(
      * Phase ---------------------------
      */
 
-    /** Allow the Warning indicator to flash either off or on if:
-     * The player's sanity is less than 70%
-     * either if the Flash Timeout is infinite
-     * or if there is no time remaining on the countdown timer.
-     * @return if the Warning indicator can flash */
-    /*private fun updateCanFlash() {
-
-        if (phaseUiState.value.maxFlashTime == DURATION_30_SECONDS) {
-            _phaseUiState.update {
-                it.copy(
-                    canFlash = playerSanityUiState.value.isInsane
-                )
-            }
-            return
-        }
-
-        if (phaseUiState.value.startFlashTime == DEFAULT) {
-            Log.d("Flash", "Start time is default.. now setting to current time")
-            _phaseUiState.update {
-                it.copy(
-                    startFlashTime = System.currentTimeMillis(),
-                    elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
-                )
-            }
-
-            updateCanFlash()
-
-            return
-        }
-
-        _phaseUiState.update {
-            it.copy(
-                canFlash = it.elapsedFlashTime <= it.maxFlashTime
-            )
-        }
-
-    }*/
-
-    /*private fun updatePhase() {
-        _phaseUiState.update {
-            it.copy(
-                type =
-                    if (timerUiState.value.remainingTime > TIME_MIN) {
-                        PhaseIdentifier.SETUP
-                    } else {
-                        if (playerSanityUiState.value.sanityLevel < SanityLevel.SAFE_MIN_BOUNDS) {
-                            PhaseIdentifier.HUNT
-                        } else {
-                            PhaseIdentifier.ACTION
-                        }
-                    }
-            )
-        }
-    }*/
-
     private fun resetPhase() {
         _phaseState.update {
             it.copy(
@@ -1110,7 +1075,7 @@ class InvestigationScreenViewModel private constructor(
     private fun launchTimerJob() {
         timerJob = viewModelScope.launch {
 
-            while (!timerUiState.value.paused) {
+            while (!sanityTimerState.value.paused) {
 
                 val delay = 100L
                 val preDelay = System.currentTimeMillis()
@@ -1118,14 +1083,14 @@ class InvestigationScreenViewModel private constructor(
                 val postDelay = System.currentTimeMillis()
                 val actualDelay = postDelay - preDelay
 
-                val remaining = timerUiState.value.remainingTime
+                val remaining = sanityTimerState.value.remainingTime
                 setTimeRemaining((remaining - actualDelay).coerceAtLeast(0L))
             }
         }
     }
 
     private fun stopTimerJob() {
-        _timerUiState.update {
+        _sanityTimerState.update {
             it.copy(
                 paused = true
             )
@@ -1144,7 +1109,7 @@ class InvestigationScreenViewModel private constructor(
         }*/
 
     private fun setTimeRemaining(value: Long) {
-        _timerUiState.update {
+        _sanityTimerState.update {
             it.copy(
                 remainingTime = value
             )
@@ -1152,7 +1117,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun initializeNewTimer() {
-        _timerUiState.update {
+        _sanityTimerState.update {
             val startTime =
                 if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
                 else System.currentTimeMillis() -
@@ -1187,7 +1152,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     internal fun toggleTimer() {
-        if (timerUiState.value.paused) {
+        if (sanityTimerState.value.paused) {
             playTimer()
         } else {
             pauseTimer()
@@ -1216,7 +1181,7 @@ class InvestigationScreenViewModel private constructor(
 
         playTimer()
         skipInsanity(newLevel)
-        _timerUiState.update {
+        _sanityTimerState.update {
             it.copy(
                 startTime = TIME_DEFAULT,
                 remainingTime = TIME_DEFAULT,

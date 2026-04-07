@@ -29,10 +29,16 @@ import com.tritiumgaming.core.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.ui.TimerUiState
 
+internal data class DigitalTimerUiState(
+    val startTime: Long = TimerUiState.TIME_DEFAULT,
+    val remainingTime: Long = 0L,
+    val paused: Boolean = true
+)
+
 @Composable
-fun DigitalTimer(
+internal fun DigitalTimer(
     modifier: Modifier = Modifier,
-    state: TimerUiState,
+    state: DigitalTimerUiState,
     color: Color = LocalPalette.current.onSurface,
     fontSize: TextUnit = 48.sp
 ) {

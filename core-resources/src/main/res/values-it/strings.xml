@@ -1244,5 +1244,6 @@
     <string name="difficulty_category_ghost">Fantasma</string>
     <string name="map_setting_state_setup">Impostazione</string>
     <string name="map_setting_state_action">Azione</string>
+    <string name="objectives_title_response_type">Tipo di Risposta</string>
 
 </resources>

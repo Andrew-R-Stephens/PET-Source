@@ -32,5 +32,6 @@
     <string name="objective_info_uniquevideo">Nimm 3 einzigartige Videos mit einer Videokamera auf</string>
     <string name="objective_info_emfphotograph">Nimm ein Foto von jeder erfolgreichen Messung mit einem EMF-Lesegerät auf</string>
     <string name="objective_info_ghostvideo">Nimm ein Video von einem Geist auf</string>
+    <string name="objectives_title_response_type">Antworttyp</string>
 
 </resources>

@@ -32,5 +32,6 @@
     <string name="objective_info_uniquevideo">Captura 3 videos únicos con una videocámara</string>
     <string name="objective_info_emfphotograph">Captura una foto de cualquier lectura exitosa en un lector EMF</string>
     <string name="objective_info_ghostvideo">Captura un video de un fantasma</string>
+    <string name="objectives_title_response_type">Tipo de Respuesta</string>
 
 </resources>

@@ -2612,5 +2612,6 @@
     <string name="difficulty_category_ghost">Призрак</string>
     <string name="map_setting_state_setup">Настройка</string>
     <string name="map_setting_state_action">Действие</string>
+    <string name="objectives_title_response_type">Тип ответа</string>
 
 </resources>

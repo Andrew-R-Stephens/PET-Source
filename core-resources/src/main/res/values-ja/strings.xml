@@ -1240,5 +1240,6 @@
     <string name="difficulty_category_ghost">ゴースト</string>
     <string name="map_setting_state_setup">設定</string>
     <string name="map_setting_state_action">アクション</string>
+    <string name="objectives_title_response_type">応答タイプ</string>
 
 </resources>

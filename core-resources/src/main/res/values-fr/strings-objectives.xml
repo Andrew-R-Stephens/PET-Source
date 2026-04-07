@@ -32,5 +32,6 @@
     <string name="objective_info_uniqueaudio">Capturez 2 sons paranormaux uniques avec un enregistreur de sons</string>
     <string name="objective_info_uniquephotograph">Capturez 3 photos uniques avec un appareil photo</string>
     <string name="objective_info_uniquevideo">Capturez 3 vidéos uniques avec une caméra vidéo</string>
+    <string name="objectives_title_response_type">Type de Réponse</string>
 
 </resources>

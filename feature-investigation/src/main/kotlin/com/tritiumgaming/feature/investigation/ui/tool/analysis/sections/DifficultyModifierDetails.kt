@@ -20,6 +20,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 import com.tritiumgaming.shared.data.codex.mappers.toEquipmentTitle
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
@@ -190,12 +191,22 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
+                        text = "${stringResource(R.string.objectives_title_response_type)}:"
+                    )
+                    TextSubTitle(
+                        color = LocalPalette.current.onSurfaceVariant,
+                        text = stringResource(difficultyState.responseType.toStringResource())
+                    )
+                }
+                SubRow {
+                    TextSubTitle(
+                        color = LocalPalette.current.onSurface,
                         text = "${stringResource(DifficultySettingResources.DifficultySetting
                             .GHOST_SPEED.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.ghostSpeed.toFloat() * 100f }%"
+                        text = "${difficultyState.settings.ghostSpeed.toFloat() * 100f }%"
                     )
                 }
                 SubRow {

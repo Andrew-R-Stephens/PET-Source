@@ -86,6 +86,7 @@ import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
@@ -128,7 +129,6 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
-import java.util.Locale
 import kotlin.time.Duration.Companion.minutes
 
 @Composable
@@ -153,7 +153,7 @@ private fun InvestigationContent(
 
     val toolbarUiState by investigationViewModel.primaryToolbarUiState.collectAsStateWithLifecycle()
 
-    val timerUiState by investigationViewModel.timerUiState.collectAsStateWithLifecycle()
+    val timerUiState by investigationViewModel.sanityTimerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
     val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
@@ -170,6 +170,11 @@ private fun InvestigationContent(
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
 
     // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
+
+    val digitalTimerUiState = DigitalTimerUiState(
+        startTime = timerUiState.startTime,
+        remainingTime = timerUiState.remainingTime
+    )
 
     val bpmToolUiState by investigationViewModel
         .bpmToolUiState.collectAsStateWithLifecycle()
@@ -479,7 +484,7 @@ private fun InvestigationContent(
                         StatusBarComponent(
                             modifier = modifier,
                             sanityUiState = sanityUiState,
-                            timerUiState = timerUiState,
+                            digitalTimerUiState = digitalTimerUiState,
                             phaseUiState = phaseUiState,
                         )
                     },
@@ -523,7 +528,7 @@ private fun InvestigationContent(
                         StatusBarComponent(
                             modifier = modifier,
                             sanityUiState = sanityUiState,
-                            timerUiState = timerUiState,
+                            digitalTimerUiState = digitalTimerUiState,
                             phaseUiState = phaseUiState,
                         )
                     },
@@ -1012,11 +1017,16 @@ private fun BloodMoonComponent(
     )
 }
 
+internal data class StatusBarComponentUiState(
+    val sanityUiState: PlayerSanityUiState,
+    val digitalTimerUiState: DigitalTimerUiState
+)
+
 @Composable
 private fun StatusBarComponent(
     modifier: Modifier = Modifier,
     sanityUiState: PlayerSanityUiState,
-    timerUiState: TimerUiState,
+    digitalTimerUiState: DigitalTimerUiState,
     phaseUiState: OperationDetailsUiState.PhaseDetails
 ) {
     val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
@@ -1060,10 +1070,10 @@ private fun StatusBarComponent(
                     )
                 )
 
-                if(timerUiState.remainingTime > 0L) {
+                if(digitalTimerUiState.remainingTime > 0L) {
                     DigitalTimer(
                         modifier = Modifier,
-                        state = timerUiState,
+                        state = digitalTimerUiState,
                         fontSize = 12.sp,
                         color = LocalPalette.current.onSurfaceVariant
                     )
@@ -1606,10 +1616,6 @@ internal fun SanitySeekbar(
 
     var rememberSliderPosition by remember { mutableFloatStateOf(state) }
 
-    LaunchedEffect(state) {
-        rememberSliderPosition = state
-    }
-
     val rememberSliderState =
         rememberSliderState(
             value = state,
@@ -1620,6 +1626,11 @@ internal fun SanitySeekbar(
                 Log.d("Slider", "Slider finished $rememberSliderPosition $state")
             }
         )
+
+    LaunchedEffect(state) {
+        rememberSliderPosition = state
+        rememberSliderState.value = state
+    }
 
     val interactionSource = remember { MutableInteractionSource() }
 

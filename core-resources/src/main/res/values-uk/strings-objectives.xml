@@ -31,4 +31,5 @@
     <string name="objective_info_uniqueaudio">Зробіть 2 унікальних паранормальних звуки за допомогою звукозаписувача</string>
     <string name="objective_info_uniquephotograph">Зробіть 3 унікальних фотографії за допомогою фотокамери</string>
     <string name="objective_info_uniquevideo">Зробіть 3 унікальних відео за допомогою відеокамери</string>
+    <string name="objectives_title_response_type">Тип відповіді</string>
 </resources>
