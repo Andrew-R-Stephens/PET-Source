@@ -69,7 +69,7 @@ object FormatterUtils {
 
     fun Float.toPercentageString() = String.format(
         Locale.ROOT,
-        "%d%%",
+        "%3d%%",
         (this * 100).toInt()
     )
 

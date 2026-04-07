@@ -218,6 +218,7 @@ class InvestigationScreenViewModel private constructor(
      */
     private var sanityJob: Job? = null
     private var timerJob: Job? = null
+    private var lastSanityTickTime: Long = 0L
 
     private val _investigationState = getInvestigationStateUseCase()
 
@@ -886,6 +887,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun launchPlayerSanityJob() {
+        lastSanityTickTime = System.currentTimeMillis()
         sanityJob = viewModelScope.launch {
             while(!timerUiState.value.paused) {
                 tickSanity()
@@ -978,29 +980,24 @@ class InvestigationScreenViewModel private constructor(
     internal fun setPlayerSanity(
         value: Float
     ) {
-        val maxSanity = operationSanityUiState.value.sanityMax
-
         _playerSanityUiState.update {
             it.copy(
-                insanityLevel = value.coerceIn(SanityLevel.MIN_SANITY, maxSanity),
-                sanityLevel = (maxSanity - value).coerceIn(SanityLevel.MIN_SANITY, maxSanity)
+                insanityLevel = value.coerceIn(SanityLevel.MIN_SANITY, SanityLevel.MAX_SANITY),
+                sanityLevel = (SanityLevel.MAX_SANITY - value)
+                    .coerceIn(SanityLevel.MIN_SANITY, SanityLevel.MAX_SANITY)
             )
         }
 
     }
 
     private fun skipInsanity(
-        newLevel: Float = SanityLevel.HALF_SANITY,
-        updateStartTime: Boolean = true,
+        newLevel: Float = SanityLevel.HALF_SANITY
     ) {
         val currentLevel = playerSanityUiState.value.insanityLevel
 
         val normalizedLevel = newLevel.coerceAtLeast(currentLevel)
 
         setPlayerSanity(normalizedLevel)
-
-        if(updateStartTime)
-            setStartTimeByProgress(normalizedLevel)
     }
 
     /**
@@ -1008,33 +1005,17 @@ class InvestigationScreenViewModel private constructor(
      * time remaining.
      */
     private fun tickSanity() {
-        val timeElapsed = calculateElapsedTime()
-        val drain = calculateSanityDrain(timeElapsed)
-        setPlayerSanity(drain)
-    }
+        val currentTime = System.currentTimeMillis()
+        val deltaTime = if (lastSanityTickTime > 0) currentTime - lastSanityTickTime else 0L
+        lastSanityTickTime = currentTime
 
-    /** @param progress specify the progress 0 - 100
-     * Resets the Warning Indicator to start flashing again, if necessary
-     * Sets the Start Time of the Sanity Drain, based on remaining time,
-     * sanity, difficulty and map size. */
-    private fun setStartTimeByProgress(progress: Float) {
+        if (deltaTime > 0) {
+            val drainModifier = operationSanityUiState.value.drainModifier
+            val multiplier = 0.00001f
+            val deltaDrain = deltaTime * drainModifier * multiplier
 
-        val maxSanity = operationSanityUiState.value.sanityMax
-
-        val upperBound = min(maxSanity, progress)
-        val normal = max(SanityLevel.MIN_SANITY, upperBound)
-
-        val progressOverride = maxSanity - normal
-        val drainModifier = operationSanityUiState.value.drainModifier
-        val multiplier = .0001f
-
-        val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
-        val newStartTime = (System.currentTimeMillis() + timeAddition)
-
-        _timerUiState.update {
-            it.copy(
-                startTime = newStartTime
-            )
+            val currentInsanity = playerSanityUiState.value.insanityLevel
+            setPlayerSanity(currentInsanity + deltaDrain)
         }
     }
 
@@ -1049,9 +1030,9 @@ class InvestigationScreenViewModel private constructor(
     /** Defaults all persistent data. */
     private fun resetSanity() {
         //TODO warnTriggered = false
-        setStartTimeByProgress(
-            SanityLevel.MAX_SANITY - difficultyState.value.settings.startingSanity.toFloat())
-        tickSanity()
+        val startingInsanity = SanityLevel.MAX_SANITY -
+                difficultyState.value.settings.startingSanity.toFloat()
+        setPlayerSanity(startingInsanity)
     }
 
     /*
@@ -1234,7 +1215,7 @@ class InvestigationScreenViewModel private constructor(
         Log.d("InvestigationViewModel", "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
 
         playTimer()
-        skipInsanity(newLevel, false)
+        skipInsanity(newLevel)
         _timerUiState.update {
             it.copy(
                 startTime = TIME_DEFAULT,
