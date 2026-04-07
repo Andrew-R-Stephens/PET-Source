@@ -6,6 +6,7 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorInt
 import java.text.DecimalFormat
+import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
 
@@ -65,5 +66,11 @@ object FormatterUtils {
 
         return emailObfuscated
     }
+
+    fun Float.toPercentageString() = String.format(
+        Locale.ROOT,
+        "%d%%",
+        (this * 100).toInt()
+    )
 
 }

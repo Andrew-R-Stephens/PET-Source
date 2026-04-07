@@ -66,6 +66,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.ColorUtils
+import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.BloodMoonIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
@@ -671,7 +672,7 @@ private fun DifficultyConfigComponent(
 }
 
 @Composable
-fun SanityMeterComponent(
+private fun SanityMeterComponent(
     modifier: Modifier = Modifier,
     sanityUiState: PlayerSanityUiState,
     onSanityChange: (Float) -> Unit = {}
@@ -688,8 +689,8 @@ fun SanityMeterComponent(
             sanityUiState = sanityUiState
         )
 
-        val sanityPercentString = String.format(Locale.ROOT, "%d%%",
-            (sanityUiState.sanityLevel * 100).toInt())
+        val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
+
         Text(
             modifier = Modifier
                 .wrapContentSize(),
@@ -930,7 +931,7 @@ private fun TimerComponentRow(
 }
 
 @Composable
-fun JournalComponent(
+private fun JournalComponent(
     modifier: Modifier = Modifier,
     evidenceListUiState: EvidenceListUiState,
     evidenceListUiActions: EvidenceListUiActions,
@@ -990,7 +991,7 @@ fun JournalComponent(
 }
 
 @Composable
-fun BloodMoonComponent(
+private fun BloodMoonComponent(
     modifier: Modifier = Modifier,
     state: Boolean,
     onClick: () -> Unit = {}
@@ -1018,10 +1019,7 @@ private fun StatusBarComponent(
     timerUiState: TimerUiState,
     phaseUiState: OperationDetailsUiState.PhaseDetails
 ) {
-
-    val sanityPercent = (sanityUiState.sanityLevel * 100).toInt()
-
-    val sanityPercentString = "${String.format(Locale.ROOT, "%d", sanityPercent)}%"
+    val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
 
     FlowRow(
         modifier = modifier

@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.ColorUtils
+import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -104,8 +105,7 @@ fun SanityMeter(
                 fontSize = fontSize,
             )
 
-            val sanityPercentString = String.format(Locale.ROOT, "%d%%",
-                (sanityUiState.sanityLevel * 100).toInt())
+            val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
 
             Text(
                 modifier = Modifier
