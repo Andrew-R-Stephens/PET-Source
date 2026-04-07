@@ -8,12 +8,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
@@ -31,6 +33,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -47,6 +51,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -69,6 +74,7 @@ import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.BloodMoonIcon
+import com.tritiumgaming.core.ui.icon.impl.base.SanityMedicationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
@@ -129,6 +135,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
+import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.minutes
 
 @Composable
@@ -147,8 +154,6 @@ fun InvestigationSoloScreen(
 private fun InvestigationContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
-    //var showCustomDifficultyBottomSheet by remember { mutableStateOf(false) }
-
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
 
     val toolbarUiState by investigationViewModel.primaryToolbarUiState.collectAsStateWithLifecycle()
@@ -463,6 +468,12 @@ private fun InvestigationContent(
         },
         onToggleBloodMoon = {
             investigationViewModel.toggleBloodMoon()
+        },
+        onUseSanityMedication = {
+            investigationViewModel.
+        },
+        onPlayerDeath = {
+
         }
     )
 
@@ -996,6 +1007,43 @@ private fun JournalComponent(
 }
 
 @Composable
+private fun SanityMedicationComponent(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val fillColor = LocalPalette.current.onSurfaceVariant
+    val strokeColor = LocalPalette.current.onSurface
+    var color = if(isPressed) { fillColor } else { strokeColor }
+
+    // This effect runs whenever isPressed changes
+    LaunchedEffect(isPressed) {
+        color = if(isPressed) { fillColor } else { strokeColor }
+    }
+
+    Button(
+        modifier = modifier,
+        interactionSource = interactionSource,
+        shape = CircleShape,
+        colors = ButtonDefaults.buttonColors().copy(
+            containerColor = Color.Transparent
+        ),
+        onClick = { onClick() },
+        contentPadding = PaddingValues(8.dp)
+    ) {
+        SanityMedicationIcon(
+            modifier = Modifier,
+            colors = IconVectorColors.defaults().copy(
+                fillColor = color,
+                strokeColor = color
+            )
+        )
+    }
+}
+
+@Composable
 private fun BloodMoonComponent(
     modifier: Modifier = Modifier,
     state: Boolean,
@@ -1141,7 +1189,9 @@ private data class ToolSheetActionsBundle(
     val bpmToolUiActions: BpmToolUiActions,
     val timerUiActions: TimerUiActions,
     val onSanityChange: (Float) -> Unit = {},
-    val onToggleBloodMoon: () -> Unit = {}
+    val onToggleBloodMoon: () -> Unit = {},
+    val onUseSanityMedication: () -> Unit = {},
+    val onPlayerDeath: () -> Unit = {}
 )
 
 @Composable
@@ -1402,6 +1452,13 @@ private fun ToolsSideSheetComponent(
                             state = operationConditionsData.isBloodMoon
                         ) {
                             actionsBundle.onToggleBloodMoon()
+                        }
+                    },
+                    sanityMedicationComponent = { modifier ->
+                        SanityMedicationComponent(
+                            modifier = modifier,
+                        ) {
+                            actionsBundle.onUseSanityMedication()
                         }
                     },
                     mapConfigComponent = { modifier ->
@@ -1948,6 +2005,7 @@ private fun ToolbarSideSheet(
 fun OperationConfigsBottomSheet(
     modifier: Modifier = Modifier,
     bloodMoonComponent: @Composable (Modifier) -> Unit = {},
+    sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
@@ -2094,7 +2152,7 @@ fun OperationConfigsBottomSheet(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    bloodMoonComponent(
+                    sanityMedicationComponent(
                         Modifier
                             .size(48.dp)
                     )
@@ -2126,6 +2184,7 @@ fun OperationConfigsBottomSheet(
 fun OperationConfigsSideSheet(
     modifier: Modifier = Modifier,
     bloodMoonComponent: @Composable (Modifier) -> Unit = {},
+    sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
@@ -2255,7 +2314,7 @@ fun OperationConfigsSideSheet(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                bloodMoonComponent(
+                sanityMedicationComponent(
                     Modifier
                         .size(48.dp)
                 )
