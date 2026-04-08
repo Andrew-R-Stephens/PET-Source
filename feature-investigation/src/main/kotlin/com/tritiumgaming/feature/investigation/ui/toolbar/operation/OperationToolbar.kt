@@ -140,12 +140,14 @@ fun OperationToolRail(
                 ConfigButton(
                     modifier,
                     toolbarUiActions,
-                    operationToolbarUiState)
+                    operationToolbarUiState
+                )
 
                 AnalyticsButton(
                     modifier,
                     toolbarUiActions,
-                    operationToolbarUiState)
+                    operationToolbarUiState
+                )
 
             }
 
@@ -162,17 +164,20 @@ fun OperationToolRail(
             TraitsButton(
                 modifier,
                 toolbarUiActions,
-                operationToolbarUiState)
+                operationToolbarUiState
+            )
 
             StopwatchButton(
                 modifier,
                 toolbarUiActions,
-                operationToolbarUiState)
+                operationToolbarUiState
+            )
 
             BpmButton(
                 modifier,
                 toolbarUiActions,
-                operationToolbarUiState)
+                operationToolbarUiState
+            )
 
         }
     )
@@ -384,65 +389,6 @@ private fun ResetIcon(
     )
 }
 
-@Preview
-@Composable
-fun PreviewResetIcon() {
-    SelectiveTheme {
-        ResetIcon()
-    }
-}
-
-/*
-@Composable
-private fun ResetButton(
-    modifier: Modifier = Modifier,
-    tintColor: Color = Color.Unspecified,
-    onClick: () -> Unit = {}
-) {
-    var isRunning by remember{ mutableStateOf(false) }
-
-    val rotation by animateFloatAsState(
-        targetValue = if(isRunning) 1f else 0f,
-        animationSpec = spring(
-            stiffness = StiffnessLow,
-            dampingRatio = DampingRatioLowBouncy
-        ),
-        finishedListener = {
-            isRunning = false
-        },
-        label = "",
-    )
-
-    Box(
-        modifier = modifier
-            .size(48.dp)
-            .clickable {
-                onClick()
-                isRunning = true
-            }
-    ) {
-        Image(
-            painterResource(id = R.drawable.ic_control_reset),
-            contentDescription = "Reset Drawable",
-            colorFilter = ColorFilter.tint(tintColor),
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center)
-                .clip(RectangleShape)
-                .rotate(
-                    if (isRunning) {
-                        rotation * -360f
-                    } else {
-                        0f
-                    }
-                )
-                .padding(6.dp)
-        )
-    }
-}
-*/
-
-
 @Composable
 fun SanityButton(
     modifier: Modifier = Modifier,
@@ -477,68 +423,4 @@ fun SanityButton(
                 .clip(RectangleShape)
         )
     }
-}
-
-@Composable
-fun ModifiersButton(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
-    isShownState: StateFlow<Boolean> = MutableStateFlow(false)
-) {
-
-    val foregroundColor = LocalPalette.current.onSurface
-
-    Box(
-        modifier = modifier
-            .size(48.dp)
-            //.border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
-            .clickable {
-                onClick()
-            }
-    ) {
-
-        when(LocalConfiguration.current.orientation) {
-            ORIENTATION_PORTRAIT -> 90
-            ORIENTATION_LANDSCAPE -> 180
-            else -> 0
-        }
-
-        Image(
-            painterResource(id = R.drawable.ic_eraser),
-            contentDescription = "Modifiers Drawable",
-            colorFilter = ColorFilter.tint(foregroundColor),
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center)
-                .clip(RectangleShape)
-        )
-    }
-}
-
-@Composable
-@Preview
-fun IconPreview() {
-
-    SelectiveTheme {
-
-        Column{
-
-            var isShownState by remember { mutableStateOf(false) }
-
-            SanityButton(
-                modifier = Modifier.size(48.dp),)
-            ResetIcon(
-                modifier = Modifier.size(48.dp),)
-            CollapseButton(
-                modifier = Modifier.size(48.dp),
-                isCollapsed = false,
-                icon = R.drawable.ic_arrow_chevron_right,
-                disabledRotationVertical = 90,
-                disabledRotationHorizontal = 90,
-                enabledRotationAddition = 180,
-                onClick = { isShownState = !isShownState }
-            )
-        }
-    }
-
 }
