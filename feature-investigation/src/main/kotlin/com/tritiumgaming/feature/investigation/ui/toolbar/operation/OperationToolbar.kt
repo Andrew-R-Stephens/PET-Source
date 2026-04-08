@@ -67,7 +67,7 @@ fun OperationToolbar(
             Row(
                 modifier = Modifier,
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.Center
             ) {
 
                 ConfigButton(
@@ -134,7 +134,7 @@ fun OperationToolRail(
             Column(
                 modifier = Modifier,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.Center
             ) {
 
                 ConfigButton(

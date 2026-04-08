@@ -67,6 +67,8 @@ class PETActivityViewModel(
                     isMobileAdsInitialized = googleAdsPermissionsUiState.isMobileAdsInitialized,
                     canRequestAds = googleAdsPermissionsUiState.canRequestAds,
                     isPrivacyOptionsRequired = googleAdsPermissionsUiState.isPrivacyOptionsRequired,
+                    disableScreenSaver = preferences.disableScreenSaver,
+                    allowCellularData = preferences.allowCellularData,
                     paletteUiState = PaletteUiState(
                         uuid = preferences.paletteUuid,
                         palette = getPaletteByUUID(preferences.paletteUuid)

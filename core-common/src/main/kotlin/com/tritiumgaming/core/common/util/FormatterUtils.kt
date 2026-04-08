@@ -67,10 +67,13 @@ object FormatterUtils {
         return emailObfuscated
     }
 
-    fun Float.toPercentageString() = String.format(
-        Locale.ROOT,
-        "%3d%%",
-        (this * 100).toInt()
-    )
+    fun Float.toPercentageString(placeholder: Boolean = true): String {
+        val format = if(placeholder) { "%3d%%" } else { "%d%%" }
+        return String.format(
+            Locale.ROOT,
+            format,
+            (this * 100).toInt()
+        )
+    }
 
 }

@@ -1,5 +1,8 @@
 package com.tritiumgaming.feature.settings.ui
 
+import android.app.Activity
+import android.view.WindowManager
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -74,8 +77,6 @@ fun SettingsScreen(
 ) {
     val settingsScreenUiState by
         settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
-
-    // TODO val privacyPolicyUiState by settingsViewModel.privacyPolicyUiState.collectAsStateWithLifecycle()
 
     val navigationHeader: @Composable (Modifier) -> Unit = @Composable { modifier ->
         NavigationHeaderComposable(
@@ -413,7 +414,7 @@ private fun ColumnScope.SettingsContentPortrait(
 
         screenPreferenceComponent(Modifier)
 
-        dataUsagePreferenceComponent(Modifier)
+        //dataUsagePreferenceComponent(Modifier)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -510,7 +511,7 @@ private fun SettingsContentLandscape(
 
             screenPreferenceComponent(Modifier)
 
-            dataUsagePreferenceComponent(Modifier)
+            //dataUsagePreferenceComponent(Modifier)
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -529,7 +530,7 @@ private fun SettingsContentLandscape(
 
             leftHandedPreferenceComponent(Modifier)
 
-            // uiDensityPreferenceComponent(Modifier)
+            uiDensityPreferenceComponent(Modifier)
 
             audioWarningPreferenceComponent(Modifier)
 
@@ -619,27 +620,6 @@ fun GDPRButton(
 
     }
 
-}
-
-@Composable
-private fun saveAllPreferences(
-    settingsViewModel: SettingsScreenViewModel
-) {
-
-    /*val activity = (context as PETActivity)
-
-    if (globalPreferencesViewModel.screensaverPreference.value) {
-        activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-    }*/
-
-    /*seekbar?.let{ seekbar ->
-        globalPreferencesViewModel.setHuntWarnTimeoutPreference(seekbar.progress.toLong())
-    }
-
-    activity.recreate()*/
-
-    "Changes Saved"
-    //Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
 
 @Composable

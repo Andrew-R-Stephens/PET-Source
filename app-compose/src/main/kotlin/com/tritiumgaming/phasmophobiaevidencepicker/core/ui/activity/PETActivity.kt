@@ -1,7 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.ui.activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
@@ -82,6 +85,13 @@ class PETActivity : AppCompatActivity(),
             val typography =  state.typographyUiState.typography
             val uiConfigurations = state.uiConfiguration
 
+            LocalActivity.current?.let { activity ->
+                setScreenSaverFlag(
+                    activity = activity,
+                    preference = state.disableScreenSaver
+                )
+            }
+
             ThemeConfigurationControl(
                 palette = palette,
                 typography = typography,
@@ -112,6 +122,17 @@ class PETActivity : AppCompatActivity(),
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         recreate()
+    }
+
+    private fun setScreenSaverFlag(
+        activity: Activity,
+        preference: Boolean
+    ) {
+        if (preference) {
+            activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        } else {
+            activity.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
     }
 
     override fun onResume() {

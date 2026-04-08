@@ -470,7 +470,7 @@ private fun InvestigationContent(
             investigationViewModel.toggleBloodMoon()
         },
         onUseSanityMedication = {
-            investigationViewModel.
+            investigationViewModel.useSanityMedication()
         },
         onPlayerDeath = {
 
@@ -1276,6 +1276,14 @@ private fun ToolsBottomSheetComponent(
                             modifier = modifier,
                             phaseUiState = operationDetailsUiState.phaseDetails
                         )
+                    },
+                    sanityMedicationComponent = { modifier ->
+                        SanityMedicationComponent(
+                            modifier = modifier,
+                            onClick = {
+                                actionsBundle.onUseSanityMedication()
+                            }
+                        )
                     }
                 )
             }
@@ -1457,9 +1465,10 @@ private fun ToolsSideSheetComponent(
                     sanityMedicationComponent = { modifier ->
                         SanityMedicationComponent(
                             modifier = modifier,
-                        ) {
-                            actionsBundle.onUseSanityMedication()
-                        }
+                            onClick = {
+                                actionsBundle.onUseSanityMedication()
+                            }
+                        )
                     },
                     mapConfigComponent = { modifier ->
                         MapConfigComponent(

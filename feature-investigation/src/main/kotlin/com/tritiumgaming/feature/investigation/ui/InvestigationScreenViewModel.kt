@@ -14,6 +14,7 @@ import com.tritiumgaming.feature.investigation.app.container.InvestigationContai
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.SanityTimerData.Companion.TIME_MIN
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
@@ -298,6 +299,8 @@ class InvestigationScreenViewModel private constructor(
         companion object {
             const val TIME_DEFAULT = 0L
             const val NEVER = 0L
+            const val TIME_MIN = 0L
+            const val TIME_MAX = 300000L
         }
     }
 
@@ -319,6 +322,10 @@ class InvestigationScreenViewModel private constructor(
 
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
+
+    fun useSanityMedication() {
+        addPlayerSanity(difficultyState.value.settings.sanityPillRestoration.toFloat())
+    }
 
     private val _phaseState = MutableStateFlow(PhaseData())
 
@@ -1009,6 +1016,16 @@ class InvestigationScreenViewModel private constructor(
         }
 
     }
+    private fun addPlayerSanity(
+        value: Float
+    ) {
+        setPlayerSanity(playerSanityUiState.value.insanityLevel - value)
+    }
+    private fun removePlayerSanity(
+        value: Float
+    ) {
+        setPlayerSanity(playerSanityUiState.value.insanityLevel + value)
+    }
 
     private fun skipInsanity(
         newLevel: Float = SanityLevel.HALF_SANITY
@@ -1406,9 +1423,6 @@ class InvestigationScreenViewModel private constructor(
                     )
                 }
             }
-
-        const val TIME_MIN = 0L
-        const val TIME_MAX = 300000L
 
     }
 

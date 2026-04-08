@@ -7,4 +7,5 @@ class SetDisableScreenSaverUseCase(
 ) {
     suspend operator fun invoke(disable: Boolean) =
         repository.setDisableScreenSaver(disable)
+
 }

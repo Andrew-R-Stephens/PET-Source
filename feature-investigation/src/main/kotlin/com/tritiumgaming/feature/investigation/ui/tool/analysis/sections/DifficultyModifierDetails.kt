@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
@@ -96,7 +97,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.startingSanity.toFloat() * 100f }%"
+                        text = difficultyState.settings.startingSanity.toFloat().toPercentageString(false)
                     )
                 }
                 SubRow {
@@ -107,7 +108,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.sanityDrainSpeed.toFloat() * 100f }%"
+                        text = difficultyState.settings.sanityPillRestoration.toFloat().toPercentageString(false)
                     )
                 }
                 SubRow {
@@ -118,7 +119,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.sanityDrainSpeed.toFloat() * 100f }%"
+                        text = difficultyState.settings.sanityDrainSpeed.toFloat().toPercentageString(false)
                     )
                 }
                 SubRow {
@@ -140,7 +141,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.playerSpeed.toFloat() * 100f }%"
+                        text = difficultyState.settings.playerSpeed.toFloat().toPercentageString(false)
                     )
                 }
                 SubRow {
@@ -206,7 +207,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${difficultyState.settings.ghostSpeed.toFloat() * 100f }%"
+                        text = difficultyState.settings.ghostSpeed.toFloat().toPercentageString(false)
                     )
                 }
                 SubRow {
@@ -318,7 +319,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.fingerprintChance.toFloat() * 100f }%"
+                        text = difficultyState.settings.fingerprintChance.toFloat().toPercentageString(false)
                     )
                 }
                 SubRow {
