@@ -14,7 +14,6 @@ import com.tritiumgaming.feature.investigation.app.container.InvestigationContai
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.SanityTimerData.Companion.TIME_MIN
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
@@ -27,17 +26,10 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.Visua
 import com.tritiumgaming.feature.investigation.ui.toolbar.config.ConfigToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
-import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
-import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
-import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyInitialSanityUseCase
-import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyModifierUseCase
-import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyNameUseCase
-import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyResponseTypeUseCase
-import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
@@ -52,19 +44,20 @@ import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
-import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
-import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
-import com.tritiumgaming.shared.data.ghosttrait.usecase.GetUniqueGhostTraitsUseCase
 import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 import com.tritiumgaming.shared.data.investigation.model.DifficultyData
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterOptions
 import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
+import com.tritiumgaming.shared.data.investigation.model.InvestigationScreenUserPreferences
 import com.tritiumgaming.shared.data.investigation.model.MapData
+import com.tritiumgaming.shared.data.investigation.model.OperationConditionsData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.shared.data.investigation.model.SanityTimerData
+import com.tritiumgaming.shared.data.investigation.model.SanityTimerData.Companion.TIME_MIN
 import com.tritiumgaming.shared.data.investigation.model.StateOption
 import com.tritiumgaming.shared.data.investigation.model.TagOption
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
@@ -77,25 +70,16 @@ import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDi
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
-import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase
-import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceTypeByIdUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostTypeByIdUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
-import com.tritiumgaming.shared.data.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
 import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
-import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
-import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapIdUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
@@ -121,24 +105,12 @@ class InvestigationScreenViewModel private constructor(
     journalUseCaseBundle: JournalUseCaseBundle,
     private val getEvidenceUseCase: GetEvidenceUseCase = journalUseCaseBundle.getEvidenceUseCase,
     private val fetchEvidenceTypesUseCase: FetchEvidenceTypesUseCase = journalUseCaseBundle.fetchEvidenceTypesUseCase,
-    private val getEvidenceTypeByIdUseCase: GetEvidenceTypeByIdUseCase = journalUseCaseBundle.getEvidenceTypeByIdUseCase,
     private val getGhostUseCase: GetGhostUseCase = journalUseCaseBundle.getGhostUseCase,
-    private val fetchGhostTypesUseCase: FetchGhostTypesUseCase = journalUseCaseBundle.fetchGhostTypesUseCase,
     private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
-    private val initEvidenceStateUseCase: InitRuledEvidenceUseCase = journalUseCaseBundle.initRuledEvidenceUseCase,
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase,
     private val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase = journalUseCaseBundle.getAllGhostTraitsUseCase,
-    private val getGhostByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
-    private val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase = journalUseCaseBundle.getGhostTraitsByCategoryUseCase,
-    private val getGhostTraitsByTagUseCase: GetGhostTraitsByTagUseCase = journalUseCaseBundle.getGhostTraitsByTagUseCase,
-    private val getUniqueGhostTraitsUseCase: GetUniqueGhostTraitsUseCase = journalUseCaseBundle.getUniqueGhostTraitsUseCase,
     difficultyUseCaseBundle: DifficultyUseCaseBundle,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase,
-    private val getDifficultyNameUseCase: GetDifficultyNameUseCase = difficultyUseCaseBundle.getDifficultyNameUseCase,
-    private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase = difficultyUseCaseBundle.getDifficultyModifierUseCase,
-    private val getDifficultyTimeUseCase: GetDifficultyTimeUseCase = difficultyUseCaseBundle.getDifficultyTimeUseCase,
-    private val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase = difficultyUseCaseBundle.getDifficultyResponseTypeUseCase,
-    private val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase = difficultyUseCaseBundle.getDifficultyInitialSanityUseCase,
     private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase = difficultyUseCaseBundle.incrementDifficultyIndexUseCase,
     private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase = difficultyUseCaseBundle.decrementDifficultyIndexUseCase,
     private val setDifficultyIndexUseCase: SetDifficultyIndexUseCase = difficultyUseCaseBundle.setDifficultyIndexUseCase,
@@ -146,19 +118,11 @@ class InvestigationScreenViewModel private constructor(
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase = simpleMapUseCaseBundle.fetchSimpleMapsUseCase,
     private val incrementSimpleMapIndexUseCase: IncrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.incrementSimpleMapIndexUseCase,
     private val decrementSimpleMapIndexUseCase: DecrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.decrementSimpleMapIndexUseCase,
-    private val getSimpleMapIdUseCase: GetSimpleMapIdUseCase = simpleMapUseCaseBundle.getSimpleMapIdUseCase,
     private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase = simpleMapUseCaseBundle.getSimpleMapNameUseCase,
     private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase = simpleMapUseCaseBundle.getSimpleMapSizeUseCase,
-    private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase = simpleMapUseCaseBundle.getSimpleMapSetupModifierUseCase,
-    private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase = simpleMapUseCaseBundle.getSimpleMapNormalModifierUseCase,
     private val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase = simpleMapUseCaseBundle.getSimpleMapModifierUseCase,
     private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase = simpleMapUseCaseBundle.fetchSimpleMapModifiersUseCase,
-    private val incrementSimpleMapFloorIndexUseCase: IncrementSimpleMapFloorIndexUseCase = simpleMapUseCaseBundle.incrementSimpleMapFloorIndexUseCase,
-    private val decrementSimpleMapFloorIndexUseCase: DecrementSimpleMapFloorIndexUseCase = simpleMapUseCaseBundle.decrementSimpleMapFloorIndexUseCase,
-    private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase = simpleMapUseCaseBundle.fetchMapThumbnailsUseCase,
     codexUseCaseBundle: CodexUseCaseBundle,
-    private val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase = codexUseCaseBundle.fetchCodexAchievementsUseCase,
-    private val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase = codexUseCaseBundle.fetchCodexPossessionsUseCase,
     private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase,
     private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase = codexUseCaseBundle.getEquipmentTypeByEvidenceTypeUseCase,
     investigationUseCaseBundle: InvestigationUseCaseBundle,
@@ -183,7 +147,7 @@ class InvestigationScreenViewModel private constructor(
             started = SharingStarted.Eagerly,
             initialValue = InvestigationScreenUserPreferences()
         )
-    internal val preferences = _preferences
+    private val preferences = _preferences
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
@@ -215,7 +179,6 @@ class InvestigationScreenViewModel private constructor(
      */
     private var sanityJob: Job? = null
     private var timerJob: Job? = null
-    private var lastSanityTickTime: Long = 0L
 
     private val _investigationState = getInvestigationStateUseCase()
 
@@ -258,10 +221,6 @@ class InvestigationScreenViewModel private constructor(
         )
     internal val mapConfigUiState = _mapConfigUiState
 
-    data class OperationConditionsData(
-        val isBloodMoon: Boolean = false
-    )
-
     private val _operationConditionsState = MutableStateFlow(OperationConditionsData())
     internal val operationConditionsState = _operationConditionsState.asStateFlow()
     internal fun toggleBloodMoon() {
@@ -290,19 +249,6 @@ class InvestigationScreenViewModel private constructor(
         )
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
-
-    internal data class SanityTimerData(
-        val startTime: Long = TIME_DEFAULT,
-        val remainingTime: Long = 0L,
-        val paused: Boolean = true
-    ) {
-        companion object {
-            const val TIME_DEFAULT = 0L
-            const val NEVER = 0L
-            const val TIME_MIN = 0L
-            const val TIME_MAX = 300000L
-        }
-    }
 
     private val _sanityTimerState = MutableStateFlow(SanityTimerData())
     private val sanityTimerState = _sanityTimerState.asStateFlow()
@@ -914,11 +860,15 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun launchPlayerSanityJob() {
-        lastSanityTickTime = System.currentTimeMillis()
+        _playerSanityUiState.update{
+            it.copy(
+                lastSanityTickTime = System.currentTimeMillis()
+            )
+        }
         sanityJob = viewModelScope.launch {
             while(!sanityTimerState.value.paused) {
                 tickSanity()
-                delay(5000)
+                delay(1000)
             }
         }
     }
@@ -985,24 +935,6 @@ class InvestigationScreenViewModel private constructor(
      * Player Sanity ---------------------------
      */
 
-    private fun calculateElapsedTime(): Long {
-        val currentTime = System.currentTimeMillis()
-        val startTime = sanityTimerState.value.startTime
-
-        val timeElapsed = currentTime - startTime
-
-        return timeElapsed
-    }
-
-    private fun calculateSanityDrain(timeElapsed: Long): Float {
-        val drainModifier = operationSanityUiState.value.drainModifier
-        val multiplier = 0.00001f
-
-        val calculatedDrain = timeElapsed * drainModifier * multiplier
-
-        return calculatedDrain
-    }
-
     /** The level can be between 0f and 1f. Levels outside those extremes are constrained. */
     internal fun setPlayerSanity(
         value: Float
@@ -1027,7 +959,7 @@ class InvestigationScreenViewModel private constructor(
         setPlayerSanity(playerSanityUiState.value.insanityLevel + value)
     }
 
-    private fun skipInsanity(
+    private fun skipPlayerInsanity(
         newLevel: Float = SanityLevel.HALF_SANITY
     ) {
         val currentLevel = playerSanityUiState.value.insanityLevel
@@ -1043,8 +975,13 @@ class InvestigationScreenViewModel private constructor(
      */
     private fun tickSanity() {
         val currentTime = System.currentTimeMillis()
-        val deltaTime = if (lastSanityTickTime > 0) currentTime - lastSanityTickTime else 0L
-        lastSanityTickTime = currentTime
+        val deltaTime = if (playerSanityUiState.value.lastSanityTickTime > 0) currentTime - playerSanityUiState.value.lastSanityTickTime else 0L
+        _playerSanityUiState.update {
+            it.copy(
+                lastSanityTickTime = currentTime
+            )
+        }
+        //lastSanityTickTime = currentTime
 
         if (deltaTime > 0) {
             val drainModifier = operationSanityUiState.value.drainModifier
@@ -1179,7 +1116,7 @@ class InvestigationScreenViewModel private constructor(
     internal fun fastForwardTimer(time: Long) {
         pauseTimer()
         setTimeRemaining(time)
-        skipInsanity(SanityLevel.HALF_SANITY)
+        skipPlayerInsanity(SanityLevel.HALF_SANITY)
         playTimer()
     }
 
@@ -1197,7 +1134,7 @@ class InvestigationScreenViewModel private constructor(
         Log.d("InvestigationViewModel", "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
 
         playTimer()
-        skipInsanity(newLevel)
+        skipPlayerInsanity(newLevel)
         _sanityTimerState.update {
             it.copy(
                 startTime = TIME_DEFAULT,
@@ -1408,7 +1345,7 @@ class InvestigationScreenViewModel private constructor(
                     val difficultyUseCaseBundle = container.difficultyUseCaseBundle
                     val simpleMapUseCaseBundle = container.simpleMapUseCaseBundle
                     val codexUseCaseBundle = container.codexUseCaseBundle
-                    val investigationuseCaseBundle = container.investigationUseCaseBundle
+                    val investigationUseCaseBundle = container.investigationUseCaseBundle
                     val preferencesUseCaseBundle = container.preferencesUseCaseBundle
                     val getCurrentChallengeUseCase = container.getCurrentChallengeUseCase
 
@@ -1417,7 +1354,7 @@ class InvestigationScreenViewModel private constructor(
                         difficultyUseCaseBundle = difficultyUseCaseBundle,
                         simpleMapUseCaseBundle = simpleMapUseCaseBundle,
                         codexUseCaseBundle = codexUseCaseBundle,
-                        investigationUseCaseBundle = investigationuseCaseBundle,
+                        investigationUseCaseBundle = investigationUseCaseBundle,
                         preferencesUseCaseBundle = preferencesUseCaseBundle,
                         getCurrentChallengeUseCase = getCurrentChallengeUseCase
                     )

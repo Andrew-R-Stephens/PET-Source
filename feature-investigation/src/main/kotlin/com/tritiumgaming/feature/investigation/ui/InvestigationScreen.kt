@@ -132,6 +132,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.shared.data.investigation.model.OperationConditionsData
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
@@ -1175,7 +1176,7 @@ private data class ToolSheetStateBundle(
     val toolbarUiState: OperationToolbarUiState,
     val traitListUiState: TraitListUiState,
     val operationDetailsUiState: OperationDetailsUiState,
-    val operationConditionsData: InvestigationScreenViewModel.OperationConditionsData,
+    val operationConditionsData: OperationConditionsData,
     val bpmToolUiState: BpmToolUiState,
     val sanityUiState: PlayerSanityUiState,
     val timerUiState: TimerUiState,
@@ -2333,9 +2334,3 @@ fun OperationConfigsSideSheet(
     }
 
 }
-
-internal data class InvestigationScreenUserPreferences(
-    val enableGhostReorder: Boolean = false,
-    val maxHuntWarnFlashTime: Long = 0L,
-    val allowHuntWarnAudio: Boolean = false
-)
