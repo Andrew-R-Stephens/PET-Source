@@ -223,10 +223,10 @@ class InvestigationScreenViewModel private constructor(
 
     private val _operationConditionsState = MutableStateFlow(OperationConditionsData())
     internal val operationConditionsState = _operationConditionsState.asStateFlow()
-    internal fun toggleBloodMoon() {
+    internal fun setWeatherOverride(weather: Weather) {
         _operationConditionsState.update {
             it.copy (
-                isBloodMoon = !it.isBloodMoon
+                weatherOverride = weather
             )
         }
     }
@@ -659,10 +659,10 @@ class InvestigationScreenViewModel private constructor(
     ) {
             mapState, difficultyState, ghostStates, operationConditionsState ->
 
-            val weather = if(operationConditionsState.isBloodMoon) Weather.BLOOD_MOON
-                else difficultyState.settings.weather
-
             OperationDetailsUiState(
+                weatherDetails = OperationDetailsUiState.WeatherDetails(
+                    weatherOverride = operationConditionsState.weatherOverride,
+                ),
                 mapDetails = OperationDetailsUiState.MapDetails(
                     name = mapState.name,
                     size = mapState.size,
@@ -676,9 +676,7 @@ class InvestigationScreenViewModel private constructor(
                     difficultyTitle = difficultyState.title,
                     responseType = difficultyState.responseType,
                     challengeTitle = difficultyState.challengeTitle,
-                    settings = difficultyState.settings.copy(
-                        weather = weather
-                    )
+                    settings = difficultyState.settings
                 ),
                 ghostDetails = OperationDetailsUiState.GhostDetails(
                     activeGhosts = ghostStates.let { ghostStates ->

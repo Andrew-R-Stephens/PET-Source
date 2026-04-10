@@ -34,7 +34,6 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -51,7 +50,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -131,12 +129,12 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.investigation.model.OperationConditionsData
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
-import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.minutes
 
 @Composable
@@ -467,8 +465,8 @@ private fun InvestigationContent(
         onSanityChange = {
             investigationViewModel.setPlayerSanity(it)
         },
-        onToggleBloodMoon = {
-            investigationViewModel.toggleBloodMoon()
+        onWeatherChange = {
+            investigationViewModel.setWeatherOverride(it)
         },
         onUseSanityMedication = {
             investigationViewModel.useSanityMedication()
@@ -1190,7 +1188,7 @@ private data class ToolSheetActionsBundle(
     val bpmToolUiActions: BpmToolUiActions,
     val timerUiActions: TimerUiActions,
     val onSanityChange: (Float) -> Unit = {},
-    val onToggleBloodMoon: () -> Unit = {},
+    val onWeatherChange: (DifficultySettingResources.Weather) -> Unit = {},
     val onUseSanityMedication: () -> Unit = {},
     val onPlayerDeath: () -> Unit = {}
 )
@@ -1216,6 +1214,7 @@ private fun ToolsBottomSheetComponent(
     val fingerprintTimerBundle = stateBundle.fingerprintTimerBundle
     val difficultyUiStateBundle = stateBundle.difficultyUiStateBundle
     val mapUiStateBundle = stateBundle.mapUiStateBundle
+
     val difficultyUiActions = actionsBundle.difficultyUiActions
     val mapUiActions = actionsBundle.mapUiActions
     val traitListUiActions = actionsBundle.traitListUiActions
@@ -1234,13 +1233,8 @@ private fun ToolsBottomSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
-                    bloodMoonComponent = { modifier ->
-                        BloodMoonComponent(
-                            modifier = modifier,
-                            state = operationConditionsState.isBloodMoon
-                        ) {
-                            actionsBundle.onToggleBloodMoon()
-                        }
+                    operationConditionsComponent = { modifier ->
+
                     },
                     mapConfigComponent = { modifier ->
                         MapConfigComponent(
@@ -1270,12 +1264,6 @@ private fun ToolsBottomSheetComponent(
                             timerUiState = timerUiState,
                             timerUiActions = timerUiActions,
                             phaseUiState = phaseUiState
-                        )
-                    },
-                    phaseComponent = { modifier ->
-                        PhaseComponent(
-                            modifier = modifier,
-                            phaseUiState = operationDetailsUiState.phaseDetails
                         )
                     },
                     sanityMedicationComponent = { modifier ->
@@ -1424,7 +1412,6 @@ private fun ToolsSideSheetComponent(
     val toolbarUiState = stateBundle.toolbarUiState
     val traitListUiState = stateBundle.traitListUiState
     val operationDetailsUiState = stateBundle.operationDetailsUiState
-    val operationConditionsState = stateBundle.operationConditionsData
     val bpmToolUiState = stateBundle.bpmToolUiState
     val sanityUiState = stateBundle.sanityUiState
     val timerUiState = stateBundle.timerUiState
@@ -1436,6 +1423,7 @@ private fun ToolsSideSheetComponent(
     val difficultyUiStateBundle = stateBundle.difficultyUiStateBundle
     val mapUiStateBundle = stateBundle.mapUiStateBundle
     val operationConditionsData = stateBundle.operationConditionsData
+
     val difficultyUiActions = actionsBundle.difficultyUiActions
     val mapUiActions = actionsBundle.mapUiActions
     val traitListUiActions = actionsBundle.traitListUiActions
@@ -1455,13 +1443,8 @@ private fun ToolsSideSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
-                    bloodMoonComponent = { modifier ->
-                        BloodMoonComponent(
-                            modifier = modifier,
-                            state = operationConditionsData.isBloodMoon
-                        ) {
-                            actionsBundle.onToggleBloodMoon()
-                        }
+                    operationConditionsComponent = { modifier ->
+
                     },
                     sanityMedicationComponent = { modifier ->
                         SanityMedicationComponent(
@@ -1499,12 +1482,6 @@ private fun ToolsSideSheetComponent(
                             timerUiState = timerUiState,
                             timerUiActions = timerUiActions,
                             phaseUiState = phaseUiState
-                        )
-                    },
-                    phaseComponent = { modifier ->
-                        PhaseComponent(
-                            modifier = modifier,
-                            phaseUiState = operationDetailsUiState.phaseDetails
                         )
                     }
                 )
@@ -2014,13 +1991,12 @@ private fun ToolbarSideSheet(
 @Composable
 fun OperationConfigsBottomSheet(
     modifier: Modifier = Modifier,
-    bloodMoonComponent: @Composable (Modifier) -> Unit = {},
+    operationConditionsComponent: @Composable (Modifier) -> Unit = {},
     sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
-    phaseComponent: @Composable (Modifier) -> Unit = {}
 ) {
     Column(
         modifier = modifier,
@@ -2193,13 +2169,12 @@ fun OperationConfigsBottomSheet(
 @Composable
 fun OperationConfigsSideSheet(
     modifier: Modifier = Modifier,
-    bloodMoonComponent: @Composable (Modifier) -> Unit = {},
+    operationConditionsComponent: @Composable (Modifier) -> Unit = {},
     sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
-    phaseComponent: @Composable (Modifier) -> Unit = {}
 ) {
     Column(
         modifier = modifier,

@@ -21,18 +21,23 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 import com.tritiumgaming.shared.data.codex.mappers.toEquipmentTitle
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
+import com.tritiumgaming.shared.data.weather.model.celsius
+import com.tritiumgaming.shared.data.weather.model.fahrenheit
 
 @Composable
 internal fun DifficultyModifierDetails(
-    difficultyState: OperationDetailsUiState.DifficultyDetails,
-    mapState: OperationDetailsUiState.MapDetails
+    operationDetails: OperationDetailsUiState
 ) {
+    val difficultyState = operationDetails.difficultyDetails
+    val mapState = operationDetails.mapDetails
+    val weatherDetails = operationDetails.weatherDetails
 
     ExpandableCategoryColumn(
         expanded = false,
@@ -367,16 +372,43 @@ internal fun DifficultyModifierDetails(
                         text = "${ (difficultyState.settings.setupTime.toLong() / 1000f).toLong() }s"
                     )
                 }
+
+                val difficultyWeather = difficultyState.settings.weather
+                val overrideWeather = weatherDetails.weatherOverride
+                val weatherActual = if(overrideWeather != Weather.RANDOM) overrideWeather
+                    else difficultyWeather
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
                         text = "${stringResource(DifficultySettingResources.DifficultySetting
                             .WEATHER.toStringResource())}:"
                     )
+
+                    val weatherActualText = stringResource(difficultyWeather.toStringResource())
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.weather.toStringResource())
+                        text = "$weatherActualText${
+                            if(difficultyWeather == Weather.RANDOM && overrideWeather != Weather.RANDOM) 
+                                " [${stringResource(overrideWeather.toStringResource())}]" 
+                            else ""
+                        }"
                     )
+                }
+                if(weatherActual != Weather.RANDOM) {
+                    SubRow {
+                        TextSubTitle(
+                            color = LocalPalette.current.onSurface,
+                            text = "${stringResource(R.string.difficulty_setting_title_weather_temperature_range)}:"
+                        )
+                        val range = weatherActual.toTemperatureRange()
+                        val celsius = range.celsius()
+                        val fahrenheit = range.fahrenheit()
+                        TextSubTitle(
+                            color = LocalPalette.current.onSurfaceVariant,
+                            text = "${celsius.low.toInt()}°C - ${celsius.high.toInt()}°C" +
+                                    " [${fahrenheit.low}°F - ${fahrenheit.high}°F]"
+                        )
+                    }
                 }
                 SubRow {
                     TextSubTitle(

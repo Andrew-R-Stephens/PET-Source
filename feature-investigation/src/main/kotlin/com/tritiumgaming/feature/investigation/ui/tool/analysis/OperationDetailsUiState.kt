@@ -5,6 +5,7 @@ import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
@@ -17,8 +18,14 @@ internal data class OperationDetailsUiState(
     internal val mapDetails: MapDetails = MapDetails(),
     internal val difficultyDetails: DifficultyDetails = DifficultyDetails(),
     internal val phaseDetails: PhaseDetails = PhaseDetails(),
-    internal val ghostDetails: GhostDetails = GhostDetails()
+    internal val ghostDetails: GhostDetails = GhostDetails(),
+    internal val weatherDetails: WeatherDetails = WeatherDetails()
 ) {
+
+    internal data class WeatherDetails(
+        internal val weatherOverride: Weather = Weather.RANDOM
+    )
+
     internal data class DifficultyDetails(
         internal val type: DifficultyType = DifficultyType.AMATEUR,
         internal val difficultyTitle: DifficultyTitle = DifficultyTitle.AMATEUR,
