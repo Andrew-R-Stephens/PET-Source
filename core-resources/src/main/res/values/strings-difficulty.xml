@@ -39,6 +39,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Fingerprint duration</string>
     <string name="difficulty_setting_title_setup_time">Setup time</string>
     <string name="difficulty_setting_title_weather">Weather</string>
+    <string name="difficulty_setting_title_weather_temperature_range" translatable="false">Temperature Range</string>
     <string name="difficulty_setting_title_doors_starting_open">Doors starting open</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Number of hiding places</string>
     <string name="difficulty_setting_title_sanity_monitor">Sanity monitor</string>
