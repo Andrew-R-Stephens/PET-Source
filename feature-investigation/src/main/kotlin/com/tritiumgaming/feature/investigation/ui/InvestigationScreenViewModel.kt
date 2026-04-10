@@ -23,7 +23,6 @@ import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigU
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
-import com.tritiumgaming.feature.investigation.ui.toolbar.config.ConfigToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
@@ -180,6 +179,10 @@ class InvestigationScreenViewModel private constructor(
     private var sanityJob: Job? = null
     private var timerJob: Job? = null
 
+    /**
+     * ViewModel States
+     */
+
     private val _investigationState = getInvestigationStateUseCase()
 
     private val _mapState = _investigationState.map { it.map }
@@ -198,28 +201,8 @@ class InvestigationScreenViewModel private constructor(
         )
     val difficultyState = _difficultyState
 
-    private val _mapConfigUiState: StateFlow<MapConfigUiState> =
-        combine(
-            mapState,
-            difficultyState
-        ) { mapState, difficultyState ->
-            val name = maps[mapState.index].mapName
-
-            MapConfigUiState(
-                name = name,
-                enabled = difficultyState.type != DifficultyType.CHALLENGE,
-                allMaps = maps.map { map -> map.mapName }
-            )
-        }
-        .distinctUntilChanged()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = MapConfigUiState(
-                allMaps = maps.map { it.mapName }
-            )
-        )
-    internal val mapConfigUiState = _mapConfigUiState
+    private val _sanityTimerState = MutableStateFlow(SanityTimerData())
+    private val sanityTimerState = _sanityTimerState.asStateFlow()
 
     private val _operationConditionsState = MutableStateFlow(OperationConditionsData())
     internal val operationConditionsState = _operationConditionsState.asStateFlow()
@@ -231,137 +214,9 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState
-        .map { state ->
-            val name = difficulties[state.index].difficultyTitle
-
-            DifficultyConfigUiState(
-                name = name,
-                allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
-            )
-        }
-        .distinctUntilChanged()
-        .stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = DifficultyConfigUiState(
-            allDifficulties = difficulties.map { it.difficultyTitle }
-        )
-    )
-    internal val difficultyConfigUiState = _difficultyConfigUiState
-
-    private val _sanityTimerState = MutableStateFlow(SanityTimerData())
-    private val sanityTimerState = _sanityTimerState.asStateFlow()
-
-    private val _sanityTimerUiState: StateFlow<TimerUiState> = _sanityTimerState.map {
-        sanityTimerState ->
-        TimerUiState(
-            remainingTime = sanityTimerState.remainingTime,
-            paused = sanityTimerState.paused
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = TimerUiState()
-    )
-    internal val sanityTimerUiState = _sanityTimerUiState
-
-    private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
-    internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
-
-    fun useSanityMedication() {
-        addPlayerSanity(difficultyState.value.settings.sanityPillRestoration.toFloat())
-    }
-
     private val _phaseState = MutableStateFlow(PhaseData())
 
-    private val _phaseUiState = combine(
-        _phaseState, sanityTimerState, playerSanityUiState, preferences
-    ) { phaseState, timerUiState, playerSanityUiState, preferences ->
-        val type =
-            when {
-                timerUiState.remainingTime > TIME_MIN -> PhaseIdentifier.SETUP
-                playerSanityUiState.sanityLevel < SanityLevel.SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
-                else -> PhaseIdentifier.ACTION
-            }
-
-        val canFlash = playerSanityUiState.isInsane &&
-                phaseState.elapsedFlashTime <= preferences.maxHuntWarnFlashTime
-
-        OperationDetailsUiState.PhaseDetails(
-            type = type,
-            canFlash = canFlash,
-            canAlertAudio = phaseState.canAlertAudio,
-            startFlashTime = phaseState.startFlashTime,
-            elapsedFlashTime = phaseState.elapsedFlashTime
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = OperationDetailsUiState.PhaseDetails(
-            elapsedFlashTime = 0L,
-            startFlashTime = DEFAULT,
-            maxFlashTime = DURATION_30_SECONDS,
-            type = PhaseIdentifier.SETUP,
-            canFlash = true,
-            canAlertAudio = false
-        )
-    )
-    internal val phaseUiState = _phaseUiState
-
-    private val _operationToolbarUiState = MutableStateFlow(
-        OperationToolbarUiState(
-            isCollapsed = false,
-            category = OperationToolbarUiState.Category.TOOL_CONFIG,
-            openWidth = 0.5f
-        )
-    )
-    internal val primaryToolbarUiState = _operationToolbarUiState.asStateFlow()
-
-    private val _configToolbarUiState = MutableStateFlow(
-        ConfigToolbarUiState(
-            isCollapsed = false,
-            category = ConfigToolbarUiState.Category.TOOL_CONFIG,
-            openWidth = 0.5f
-        )
-    )
-    internal val configToolbarUiState = _configToolbarUiState.asStateFlow()
-
-    private val _popupUiState = MutableStateFlow(JournalPopupUiState())
-    internal val popupUiState = _popupUiState.asStateFlow()
-
-    private val _bpmToolUiState = MutableStateFlow(BpmToolUiState())
-    internal val bpmToolUiState = _bpmToolUiState.asStateFlow()
-
-    private val _operationSanityUiState = combine(
-        mapState,
-        difficultyState,
-        phaseUiState
-    ) { mapState, difficultyState, phaseUiState ->
-        val mapModifier = try {
-            getSimpleMapModifierUseCase(
-                mapState.size.ordinal,
-                phaseUiState.type
-            ).getOrThrow().toFloat()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            1f
-        }
-
-        OperationSanityUiState(
-            sanityMax = difficultyState.settings.startingSanity.toFloat(),
-            drainModifier = mapModifier * difficultyState.settings.sanityDrainSpeed.toFloat()
-        )
-    }
-    .distinctUntilChanged()
-    .stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = OperationSanityUiState()
-    )
-    internal val operationSanityUiState = _operationSanityUiState
-
-    /* EvidenceStates */
+    /* Traits */
     private val _traitData: MutableStateFlow<List<GhostTrait>> =
         MutableStateFlow(
             try {
@@ -422,6 +277,162 @@ class InvestigationScreenViewModel private constructor(
         initialValue = GhostTraitFilterOptions()
     )
 
+    /**
+     * UI States
+     */
+
+    private val _mapConfigUiState: StateFlow<MapConfigUiState> =
+        combine(
+            mapState,
+            difficultyState
+        ) { mapState, difficultyState ->
+            val name = maps[mapState.index].mapName
+
+            MapConfigUiState(
+                name = name,
+                enabled = difficultyState.type != DifficultyType.CHALLENGE,
+                allMaps = maps.map { map -> map.mapName }
+            )
+        }
+        .distinctUntilChanged()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = MapConfigUiState(
+                allMaps = maps.map { it.mapName }
+            )
+        )
+    internal val mapConfigUiState = _mapConfigUiState
+
+    private val _operationConditionsUiState = _operationConditionsState.map {
+        OperationDetailsUiState.WeatherDetails(
+            weatherOverride = it.weatherOverride
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = OperationDetailsUiState.WeatherDetails()
+    )
+    internal val operationConditionsUiState = _operationConditionsUiState
+
+    private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState
+        .map { state ->
+            val name = difficulties[state.index].difficultyTitle
+
+            DifficultyConfigUiState(
+                name = name,
+                allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
+            )
+        }
+        .distinctUntilChanged()
+        .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = DifficultyConfigUiState(
+            allDifficulties = difficulties.map { it.difficultyTitle }
+        )
+    )
+    internal val difficultyConfigUiState = _difficultyConfigUiState
+
+    private val _sanityTimerUiState: StateFlow<TimerUiState> = _sanityTimerState.map {
+        sanityTimerState ->
+        TimerUiState(
+            remainingTime = sanityTimerState.remainingTime,
+            paused = sanityTimerState.paused
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = TimerUiState()
+    )
+    internal val sanityTimerUiState = _sanityTimerUiState
+
+    private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
+    internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
+
+    fun useSanityMedication() {
+        addPlayerSanity(difficultyState.value.settings.sanityPillRestoration.toFloat())
+    }
+
+    private val _phaseUiState = combine(
+        _phaseState, sanityTimerState, playerSanityUiState, preferences
+    ) { phaseState, timerUiState, playerSanityUiState, preferences ->
+        val type =
+            when {
+                timerUiState.remainingTime > TIME_MIN -> PhaseIdentifier.SETUP
+                playerSanityUiState.sanityLevel < SanityLevel.SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
+                else -> PhaseIdentifier.ACTION
+            }
+
+        val canFlash = playerSanityUiState.isInsane &&
+                phaseState.elapsedFlashTime <= preferences.maxHuntWarnFlashTime
+
+        OperationDetailsUiState.PhaseDetails(
+            type = type,
+            canFlash = canFlash,
+            canAlertAudio = phaseState.canAlertAudio,
+            startFlashTime = phaseState.startFlashTime,
+            elapsedFlashTime = phaseState.elapsedFlashTime
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = OperationDetailsUiState.PhaseDetails(
+            elapsedFlashTime = 0L,
+            startFlashTime = DEFAULT,
+            maxFlashTime = DURATION_30_SECONDS,
+            type = PhaseIdentifier.SETUP,
+            canFlash = true,
+            canAlertAudio = false
+        )
+    )
+    internal val phaseUiState = _phaseUiState
+
+    private val _operationToolbarUiState = MutableStateFlow(
+        OperationToolbarUiState(
+            isCollapsed = false,
+            category = OperationToolbarUiState.Category.TOOL_CONFIG,
+            openWidth = 0.5f
+        )
+    )
+    internal val primaryToolbarUiState = _operationToolbarUiState.asStateFlow()
+
+    private val _popupUiState = MutableStateFlow(JournalPopupUiState())
+    internal val popupUiState = _popupUiState.asStateFlow()
+
+    private val _bpmToolUiState = MutableStateFlow(BpmToolUiState())
+    internal val bpmToolUiState = _bpmToolUiState.asStateFlow()
+
+    private val _operationSanityUiState = combine(
+        mapState,
+        difficultyState,
+        phaseUiState
+    ) { mapState, difficultyState, phaseUiState ->
+        val mapModifier = try {
+            getSimpleMapModifierUseCase(
+                mapState.size.ordinal,
+                phaseUiState.type
+            ).getOrThrow().toFloat()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            1f
+        }
+
+        OperationSanityUiState(
+            sanityMax = difficultyState.settings.startingSanity.toFloat(),
+            drainModifier = mapModifier * difficultyState.settings.sanityDrainSpeed.toFloat()
+        )
+    }
+    .distinctUntilChanged()
+    .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = OperationSanityUiState()
+    )
+    internal val operationSanityUiState = _operationSanityUiState
+
+
+    /* Trait States */
     private val _traitFilterUiState: MutableStateFlow<TraitFilter> = MutableStateFlow(
         TraitFilter()
     )
@@ -444,7 +455,7 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private val _filterOptionsUiState: StateFlow<GhostTraitFilterUiOptions> = combine(
+    private val _traitFilterOptionsUiState: StateFlow<GhostTraitFilterUiOptions> = combine(
         traitFilterUiState,
         _traitFilterOptions
     ) { filter, options ->
@@ -464,7 +475,7 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = GhostTraitFilterUiOptions()
     )
-    val filterOptionsUiState = _filterOptionsUiState
+    val traitFilterOptionsUiState = _traitFilterOptionsUiState
 
     private val _traitListUiState: StateFlow<List<ValidatedGhostTrait>> =
         combine(selectedTraits, traitFilterUiState) { traits, filter ->
@@ -608,7 +619,47 @@ class InvestigationScreenViewModel private constructor(
     internal val ghostStates = _ghostStates
 
     /* Ghost Order **/
-    private val _sortedGhosts: StateFlow<List<GhostResources.GhostIdentifier>> =
+    private val _ghostsSortedUiState: StateFlow<List<GhostState>> =
+        combine(
+            _ghostStates, preferences
+        ) { ghostScores, preferences ->
+            if(!preferences.enableGhostReorder) {
+                ghostScores
+            } else {
+                ghostScores
+                    .sortedWith(
+                        compareByDescending<GhostState> { it.score }
+                            .thenByDescending { it.bpmIsValid }
+                            .thenByDescending {
+                                val traitScore = it.traitScore
+
+                                if(traitScore.reject > 0) {
+                                    -traitScore.reject
+                                } else {
+                                    traitScore.confirm
+                                }
+                            }
+                            .thenByDescending { it.traitScore.confirm }
+                            .thenByDescending {
+                                val traitScore = it.traitScore
+
+                                if(traitScore.probableReject > 0) {
+                                    -traitScore.probableReject
+                                } else traitScore.probableConfirm
+                            }
+                    )
+
+            }
+        }
+        .distinctUntilChanged()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = ghostEvidences.map { GhostState(ghostEvidence = it) }
+        )
+    internal val ghostsSortedUiState = _ghostsSortedUiState
+
+    /*private val _ghostsSortedUiState: StateFlow<List<GhostResources.GhostIdentifier>> =
         combine(
             _ghostStates, preferences
         ) { ghostScores, preferences ->
@@ -639,7 +690,6 @@ class InvestigationScreenViewModel private constructor(
                     )
 
             }
-
             scores.map { it.ghostEvidence.ghost.id }
         }
         .distinctUntilChanged()
@@ -648,7 +698,7 @@ class InvestigationScreenViewModel private constructor(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = ghostEvidences.map { it.ghost.id }
         )
-    internal val sortedGhosts = _sortedGhosts
+    internal val ghostsSortedUiState = _ghostsSortedUiState*/
 
     /* Operation Details */
     private val _operationDetailsUiState: StateFlow<OperationDetailsUiState> = combine(
@@ -829,10 +879,10 @@ class InvestigationScreenViewModel private constructor(
     }
 
     internal fun setPopup(
-        ghostType: GhostType
+        ghostIdentifier: GhostResources.GhostIdentifier
     ) {
         try {
-            val ghost = getGhostUseCase(ghostType).getOrThrow()
+            val ghost = getGhostUseCase(ghostIdentifier).getOrThrow()
 
             val popupRecord = GhostPopupRecord(
                 id = ghost.id,
@@ -973,18 +1023,23 @@ class InvestigationScreenViewModel private constructor(
      */
     private fun tickSanity() {
         val currentTime = System.currentTimeMillis()
-        val deltaTime = if (playerSanityUiState.value.lastSanityTickTime > 0) currentTime - playerSanityUiState.value.lastSanityTickTime else 0L
+        val deltaTime = if (playerSanityUiState.value.lastSanityTickTime > 0)
+            currentTime - playerSanityUiState.value.lastSanityTickTime else 0L
+
         _playerSanityUiState.update {
             it.copy(
                 lastSanityTickTime = currentTime
             )
         }
-        //lastSanityTickTime = currentTime
 
         if (deltaTime > 0) {
             val drainModifier = operationSanityUiState.value.drainModifier
             val multiplier = 0.00001f
-            val deltaDrain = deltaTime * drainModifier * multiplier
+            val bloodMoonMultiplier =
+                if(difficultyState.value.settings.weather == Weather.BLOOD_MOON ||
+                    operationConditionsState.value.weatherOverride == Weather.BLOOD_MOON) 2f else 1f
+
+            val deltaDrain = deltaTime * drainModifier * multiplier * bloodMoonMultiplier
 
             val currentInsanity = playerSanityUiState.value.insanityLevel
             setPlayerSanity(currentInsanity + deltaDrain)

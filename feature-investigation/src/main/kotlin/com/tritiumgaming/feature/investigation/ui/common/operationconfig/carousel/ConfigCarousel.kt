@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -41,6 +42,16 @@ private fun OperationCarouselPreview() {
                 label = R.string.map_name_short_prison,
                 true
             ),
+            leadingIcon = { modifier ->
+                Image(
+                    modifier = modifier,
+                    contentScale = ContentScale.Inside,
+                    alignment = Alignment.Center,
+                    painter = painterResource(R.drawable.icon_nav_mapmenu2),
+                    colorFilter = ColorFilter.tint(Color.Red),
+                    contentDescription = ""
+                )
+            },
             actions = CarouselUiActions()
         )
     }
@@ -62,10 +73,11 @@ fun OperationConfigCarousel(
         color = containerColor
     ) {
         Row(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
         ) {
 
             leadingIcon(

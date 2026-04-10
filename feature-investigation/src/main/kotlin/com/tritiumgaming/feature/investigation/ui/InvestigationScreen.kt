@@ -166,11 +166,9 @@ private fun InvestigationContent(
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
 
-    val traitFilterOptions by investigationViewModel.filterOptionsUiState.collectAsStateWithLifecycle()
+    val traitFilterOptions by investigationViewModel.traitFilterOptionsUiState.collectAsStateWithLifecycle()
     val traitListUiStates by investigationViewModel.traitListUiState.collectAsStateWithLifecycle()
-
-    val ghostStates by investigationViewModel.ghostStates.collectAsStateWithLifecycle()
-    val ghostOrder by investigationViewModel.sortedGhosts.collectAsStateWithLifecycle()
+    val ghostOrder by investigationViewModel.ghostsSortedUiState.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
 
     // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
@@ -184,7 +182,6 @@ private fun InvestigationContent(
         .bpmToolUiState.collectAsStateWithLifecycle()
 
     val ghostListUiState = GhostListUiState(
-        ghostStates = ghostStates,
         ghostOrder = ghostOrder,
         evidenceState = evidenceStates
     )
@@ -214,8 +211,7 @@ private fun InvestigationContent(
     )
 
     val ghostListUiActions = GhostListUiActions(
-        onFindGhostById = { ghostId -> investigationViewModel.getGhostById(ghostId) },
-        onNameClick = { ghostType -> investigationViewModel.setPopup(ghostType) }
+        onNameClick = { investigationViewModel.setPopup(it) }
     )
 
     val ghostListUiItemActions = GhostListUiItemActions(

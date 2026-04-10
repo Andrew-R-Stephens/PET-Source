@@ -33,7 +33,6 @@ fun GhostList(
     val listState = rememberLazyListState()
 
     val ghostOrder = ghostListUiState.ghostOrder
-    val ghostScores = ghostListUiState.ghostStates
     val ruledEvidence = ghostListUiState.evidenceState
 
     LaunchedEffect(ghostOrder) {
@@ -55,27 +54,19 @@ fun GhostList(
 
         items(
             items = ghostOrder,
-            key = { it }
-        ) {
-
-            ghostListUiActions.onFindGhostById(it)?.let { ghostType ->
-
-                GhostListItem(
-                    modifier = Modifier
-                        .padding(horizontal = 2.dp)
-                        .wrapContentWidth(Alignment.CenterHorizontally)
-                        .animateItem(),
-                    evidenceState = ruledEvidence,
-                    ghostState = ghostScores.find { score ->
-                        score.ghostEvidence.ghost.id == ghostType.id },
-                    ghostListUiItemActions = ghostListUiItemActions.copy (
-                        onNameClick = { ghostListUiActions.onNameClick(ghostType) }
-                    )
+            key = { it.ghostEvidence.ghost.id }
+        ) { state ->
+            GhostListItem(
+                modifier = Modifier
+                    .padding(horizontal = 2.dp)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .animateItem(),
+                evidenceState = ruledEvidence,
+                ghostState = state,
+                ghostListUiItemActions = ghostListUiItemActions.copy (
+                    onNameClick = { ghostListUiActions.onNameClick(state.ghostEvidence.ghost.id) }
                 )
-
-            } ?: Log.d("GhostList", "No ghost found for id: $it")
-
-
+            )
         }
 
     }
