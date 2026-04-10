@@ -13,7 +13,9 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityPillRestoration
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SetupTime
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
+import com.tritiumgaming.shared.data.weather.model.TemperatureRange
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -245,6 +247,19 @@ class DifficultySettingResources {
         MONKEY_PAW
     }
 }
+
+fun Weather.toTemperatureRange(): TemperatureRange =
+    when(this) {
+        Weather.SUNRISE -> TemperatureRange(low = 10f, high = 16f)
+        Weather.CLEAR -> TemperatureRange(low = 8f, high = 13f)
+        Weather.FOG -> TemperatureRange(low = 8f, high = 13f)
+        Weather.BLOOD_MOON -> TemperatureRange(low = 8f, high = 13f)
+        Weather.WINDY -> TemperatureRange(low = 5f, high = 8f)
+        Weather.LIGHT_RAIN -> TemperatureRange(low = 5f, high = 8f)
+        Weather.HEAVY_RAIN -> TemperatureRange(low = 5f, high = 8f)
+        Weather.SNOW -> TemperatureRange(low = 3f, high = 5f)
+        else -> TemperatureRange(low = 0f, high = 0f)
+    }
 
 fun StartingSanity.toFloat(): Float =
     when(this) {
