@@ -173,6 +173,14 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    /*private val weather = fetchWeatherUseCase().let {
+        it.exceptionOrNull()?.printStackTrace()
+        try { it.getOrThrow() }
+        catch (_: Exception) {
+            emptyList()
+        }
+    }*/
+
     /*
      * Routines
      */
@@ -201,11 +209,11 @@ class InvestigationScreenViewModel private constructor(
         )
     val difficultyState = _difficultyState
 
-    private val _sanityTimerState = MutableStateFlow(SanityTimerData())
-    private val sanityTimerState = _sanityTimerState.asStateFlow()
+    private val _operationTimerState = MutableStateFlow(SanityTimerData())
+    private val operationTimerState = _operationTimerState.asStateFlow()
 
     private val _operationConditionsState = MutableStateFlow(OperationConditionsData())
-    internal val operationConditionsState = _operationConditionsState.asStateFlow()
+    private val operationConditionsState = _operationConditionsState.asStateFlow()
     internal fun setWeatherOverride(weather: Weather) {
         _operationConditionsState.update {
             it.copy (
@@ -214,7 +222,32 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    data class WeatherUiState(
+        val weather: Weather = Weather.RANDOM
+    )
+
+    private val _weatherUiState = combine(
+        operationConditionsState,
+        difficultyState
+    ) { operationConditionsState, difficultyState ->
+        val difficultyWeather = difficultyState.settings.weather
+        val weatherOverride = operationConditionsState.weatherOverride
+
+        val weather = if(difficultyWeather == Weather.RANDOM) { weatherOverride }
+            else { difficultyWeather }
+
+        WeatherUiState(
+            weather = weather
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = WeatherUiState()
+    )
+    internal val weatherUiState = _weatherUiState
+
     private val _phaseState = MutableStateFlow(PhaseData())
+    private val phaseState = _phaseState.asStateFlow()
 
     /* Traits */
     private val _traitData: MutableStateFlow<List<GhostTrait>> =
@@ -334,7 +367,7 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
 
-    private val _sanityTimerUiState: StateFlow<TimerUiState> = _sanityTimerState.map {
+    private val _sanityTimerUiState: StateFlow<TimerUiState> = _operationTimerState.map {
         sanityTimerState ->
         TimerUiState(
             remainingTime = sanityTimerState.remainingTime,
@@ -355,7 +388,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private val _phaseUiState = combine(
-        _phaseState, sanityTimerState, playerSanityUiState, preferences
+        phaseState, operationTimerState, playerSanityUiState, preferences
     ) { phaseState, timerUiState, playerSanityUiState, preferences ->
         val type =
             when {
@@ -616,7 +649,7 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.Eagerly,
         initialValue = ghostEvidences.map { GhostState(it) }
     )
-    internal val ghostStates = _ghostStates
+    private val ghostStates = _ghostStates
 
     /* Ghost Order **/
     private val _ghostsSortedUiState: StateFlow<List<GhostState>> =
@@ -658,47 +691,6 @@ class InvestigationScreenViewModel private constructor(
             initialValue = ghostEvidences.map { GhostState(ghostEvidence = it) }
         )
     internal val ghostsSortedUiState = _ghostsSortedUiState
-
-    /*private val _ghostsSortedUiState: StateFlow<List<GhostResources.GhostIdentifier>> =
-        combine(
-            _ghostStates, preferences
-        ) { ghostScores, preferences ->
-            val scores = if(!preferences.enableGhostReorder) {
-                ghostScores
-            } else {
-                ghostScores
-                    .sortedWith(
-                        compareByDescending<GhostState> { it.score }
-                            .thenByDescending { it.bpmIsValid }
-                            .thenByDescending {
-                                val scores = it.traitScore
-
-                                if(scores.reject > 0) {
-                                    -scores.reject
-                                } else {
-                                    scores.confirm
-                                }
-                            }
-                            .thenByDescending { it.traitScore.confirm }
-                            .thenByDescending {
-                                val scores = it.traitScore
-
-                                if(scores.probableReject > 0) {
-                                    -scores.probableReject
-                                } else scores.probableConfirm
-                            }
-                    )
-
-            }
-            scores.map { it.ghostEvidence.ghost.id }
-        }
-        .distinctUntilChanged()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = ghostEvidences.map { it.ghost.id }
-        )
-    internal val ghostsSortedUiState = _ghostsSortedUiState*/
 
     /* Operation Details */
     private val _operationDetailsUiState: StateFlow<OperationDetailsUiState> = combine(
@@ -749,14 +741,10 @@ class InvestigationScreenViewModel private constructor(
     internal val operationDetailsUiState = _operationDetailsUiState
 
     /*
-     * COROUTINES
-     */
-
-    /*
      * Timer Ui Functions
      */
     private fun initTimerUiState() {
-        _sanityTimerState.update {
+        _operationTimerState.update {
             SanityTimerData(
                 startTime = TIME_DEFAULT,
                 remainingTime = difficultyState.value.settings.setupTime.toLong(),
@@ -764,22 +752,6 @@ class InvestigationScreenViewModel private constructor(
             )
         }
     }
-
-    /*
-     * Phase Ui Functions
-     */
-    /*private fun initPhaseUiState() {
-        _phaseUiState.update {
-            it.copy(
-                elapsedFlashTime = 0L,
-                startFlashTime = DEFAULT,
-                maxFlashTime = DURATION_30_SECONDS,
-                type = PhaseIdentifier.SETUP,
-                canFlash = true,
-                canAlertAudio = false
-            )
-        }
-    }*/
 
     /*
      * Player Sanity Ui Functions
@@ -914,7 +886,7 @@ class InvestigationScreenViewModel private constructor(
             )
         }
         sanityJob = viewModelScope.launch {
-            while(!sanityTimerState.value.paused) {
+            while(!operationTimerState.value.paused) {
                 tickSanity()
                 delay(1000)
             }
@@ -1082,7 +1054,7 @@ class InvestigationScreenViewModel private constructor(
     private fun launchTimerJob() {
         timerJob = viewModelScope.launch {
 
-            while (!sanityTimerState.value.paused) {
+            while (!operationTimerState.value.paused) {
 
                 val delay = 100L
                 val preDelay = System.currentTimeMillis()
@@ -1090,14 +1062,14 @@ class InvestigationScreenViewModel private constructor(
                 val postDelay = System.currentTimeMillis()
                 val actualDelay = postDelay - preDelay
 
-                val remaining = sanityTimerState.value.remainingTime
+                val remaining = operationTimerState.value.remainingTime
                 setTimeRemaining((remaining - actualDelay).coerceAtLeast(0L))
             }
         }
     }
 
     private fun stopTimerJob() {
-        _sanityTimerState.update {
+        _operationTimerState.update {
             it.copy(
                 paused = true
             )
@@ -1116,7 +1088,7 @@ class InvestigationScreenViewModel private constructor(
         }*/
 
     private fun setTimeRemaining(value: Long) {
-        _sanityTimerState.update {
+        _operationTimerState.update {
             it.copy(
                 remainingTime = value
             )
@@ -1124,7 +1096,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun initializeNewTimer() {
-        _sanityTimerState.update {
+        _operationTimerState.update {
             val startTime =
                 if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
                 else System.currentTimeMillis() -
@@ -1159,7 +1131,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     internal fun toggleTimer() {
-        if (sanityTimerState.value.paused) {
+        if (operationTimerState.value.paused) {
             playTimer()
         } else {
             pauseTimer()
@@ -1188,7 +1160,7 @@ class InvestigationScreenViewModel private constructor(
 
         playTimer()
         skipPlayerInsanity(newLevel)
-        _sanityTimerState.update {
+        _operationTimerState.update {
             it.copy(
                 startTime = TIME_DEFAULT,
                 remainingTime = TIME_DEFAULT,
@@ -1200,6 +1172,37 @@ class InvestigationScreenViewModel private constructor(
     private fun resetTimer() {
         stopTimerJob()
         initTimerUiState()
+    }
+
+    /*
+     * Weather ---------------------------
+     */
+    internal fun incrementWeatherIndex() {
+        /*incrementWeatherIndexUseCase(_difficultyState.value.index)
+            .getOrNull()?.let { index ->
+                setWeatherIndex(index)
+            }*/
+    }
+
+    internal fun decrementWeatherIndex() {
+        /*decrementWeatherIndexUseCase(_weatherState.value.index)
+            .getOrNull()?.let { index ->
+                setWeatherIndex(index)
+            }*/
+    }
+
+    internal fun setWeather(weather: Weather) {
+        _operationConditionsState.update {
+            it.copy(
+                weatherOverride = weather
+            )
+        }
+    }
+
+    private fun updateWeather(
+        index: Int = 0
+    ) {
+
     }
 
     /*

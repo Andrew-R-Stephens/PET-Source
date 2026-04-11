@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import android.util.Log
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -85,10 +86,12 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
+import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
+import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
@@ -129,7 +132,9 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.investigation.model.OperationConditionsData
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
@@ -162,7 +167,8 @@ private fun InvestigationContent(
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
     val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
-    val operationConditionsState by investigationViewModel.operationConditionsState.collectAsStateWithLifecycle()
+    //val operationConditionsState by investigationViewModel.operationConditionsState.collectAsStateWithLifecycle()
+    val weatherUiState by investigationViewModel.weatherUiState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
 
@@ -264,6 +270,20 @@ private fun InvestigationContent(
         ),
         dropdownUiActions = DropdownUiActions(
             onSelect = { investigationViewModel.setDifficultyIndex(it) }
+        )
+    )
+
+    val weatherUiActions = ConfigActionsBundle(
+        carouselUiActions = CarouselUiActions(
+            onLeftClick = { investigationViewModel.decrementWeatherIndex() },
+            onRightClick = { investigationViewModel.incrementWeatherIndex() }
+        ),
+        dropdownUiActions = DropdownUiActions(
+            onSelect = {
+                investigationViewModel.setWeather(
+                    Weather.entries[it]
+                )
+            }
         )
     )
 
@@ -385,6 +405,18 @@ private fun InvestigationContent(
         )
     )
 
+    val weatherUiStateBundle = ConfigStateBundle(
+        carouselUiState = ConfigCarouselUiState(
+            label = weatherUiState.weather.toStringResource(),
+            enabled = operationDetailsUiState.difficultyDetails.settings.weather == Weather.RANDOM
+        ),
+        dropdownUiState = ConfigDropdownUiState(
+            options = Weather.entries.map { it.toStringResource() },
+            enabled = operationDetailsUiState.difficultyDetails.settings.weather == Weather.RANDOM,
+            label = weatherUiState.weather.toStringResource()
+        )
+    )
+
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
         remaining = LocalPalette.current.primary,
         background = LocalPalette.current.surface,
@@ -440,7 +472,6 @@ private fun InvestigationContent(
         traitListUiState = traitListUiState,
         toolbarUiState = toolbarUiState,
         operationDetailsUiState = operationDetailsUiState,
-        operationConditionsData = operationConditionsState,
         sanityUiState = sanityUiState,
         timerUiState = timerUiState,
         phaseUiState = phaseUiState,
@@ -450,6 +481,8 @@ private fun InvestigationContent(
         fingerprintTimerBundle = fingerprintTimerBundle,
         difficultyUiStateBundle = difficultyUiStateBundle,
         mapUiStateBundle = mapUiStateBundle,
+        weatherUiStateBundle = weatherUiStateBundle,
+        weatherUiState = weatherUiState
     )
 
     val toolSheetActionsBundle = ToolSheetActionsBundle(
@@ -458,6 +491,7 @@ private fun InvestigationContent(
         timerUiActions = timerUiActions,
         difficultyUiActions = difficultyUiActions,
         mapUiActions = mapUiActions,
+        weatherUiActions = weatherUiActions,
         onSanityChange = {
             investigationViewModel.setPlayerSanity(it)
         },
@@ -469,7 +503,7 @@ private fun InvestigationContent(
         },
         onPlayerDeath = {
 
-        }
+        },
     )
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -587,10 +621,59 @@ private fun InvestigationContent(
 }
 
 @Composable
+private fun WeatherConfigComponent(
+    modifier: Modifier = Modifier,
+    @DrawableRes icon: Int,
+    bundle: ConfigStateBundle,
+    actions: ConfigActionsBundle
+) {
+    val uiDensityType = LocalUiConfiguration.current.densityType
+
+    val textStyle = LocalTypography.current.quaternary.regular
+    val color = LocalPalette.current.surfaceContainer
+    val onColor = LocalPalette.current.onSurface
+
+    val icon: @Composable (Modifier) -> Unit = { modifier ->
+        Image(
+            modifier = modifier,
+            contentScale = ContentScale.Inside,
+            alignment = Alignment.Center,
+            painter = painterResource(icon),
+            colorFilter = ColorFilter.tint(onColor),
+            contentDescription = ""
+        )
+    }
+
+    when(uiDensityType) {
+        DensityType.COMPACT -> {
+            OperationConfigDropdown(
+                modifier = modifier,
+                icon = { icon(it) },
+                state = bundle.dropdownUiState,
+                actions = actions.dropdownUiActions,
+                textStyle = textStyle,
+                onColor = onColor,
+                expandedColor = color,
+            )
+        }
+        else -> {
+            OperationConfigCarousel(
+                modifier = modifier,
+                state = bundle.carouselUiState,
+                actions = actions.carouselUiActions,
+                leadingIcon = { icon(it) },
+                textStyle = textStyle,
+                onColor = onColor,
+            )
+        }
+    }
+}
+
+@Composable
 private fun MapConfigComponent(
     modifier: Modifier = Modifier,
-    mapUiStateBundle: ConfigStateBundle,
-    mapUiActions: ConfigActionsBundle
+    bundle: ConfigStateBundle,
+    actions: ConfigActionsBundle
 ) {
     val uiDensityType = LocalUiConfiguration.current.densityType
 
@@ -614,8 +697,8 @@ private fun MapConfigComponent(
             OperationConfigDropdown(
                 modifier = modifier,
                 icon = { icon(it) },
-                state = mapUiStateBundle.dropdownUiState,
-                actions = mapUiActions.dropdownUiActions,
+                state = bundle.dropdownUiState,
+                actions = actions.dropdownUiActions,
                 textStyle = textStyle,
                 onColor = onColor,
                 expandedColor = color,
@@ -624,8 +707,8 @@ private fun MapConfigComponent(
         else -> {
             OperationConfigCarousel(
                 modifier = modifier,
-                state = mapUiStateBundle.carouselUiState,
-                actions = mapUiActions.carouselUiActions,
+                state = bundle.carouselUiState,
+                actions = actions.carouselUiActions,
                 leadingIcon = { icon(it) },
                 textStyle = textStyle,
                 onColor = onColor,
@@ -637,8 +720,8 @@ private fun MapConfigComponent(
 @Composable
 private fun DifficultyConfigComponent(
     modifier: Modifier = Modifier,
-    difficultyUiStateBundle: ConfigStateBundle,
-    difficultyUiActions: ConfigActionsBundle
+    bundle: ConfigStateBundle,
+    actions: ConfigActionsBundle
 ) {
     val uiDensityType = LocalUiConfiguration.current.densityType
 
@@ -661,8 +744,8 @@ private fun DifficultyConfigComponent(
         DensityType.COMPACT -> {
             OperationConfigDropdown(
                 modifier = modifier,
-                state = difficultyUiStateBundle.dropdownUiState,
-                actions = difficultyUiActions.dropdownUiActions,
+                state = bundle.dropdownUiState,
+                actions = actions.dropdownUiActions,
                 icon = { icon(it) },
                 textStyle = textStyle,
                 expandedColor = color,
@@ -672,8 +755,8 @@ private fun DifficultyConfigComponent(
         else -> {
             OperationConfigCarousel(
                 modifier = modifier,
-                state = difficultyUiStateBundle.carouselUiState,
-                actions = difficultyUiActions.carouselUiActions,
+                state = bundle.carouselUiState,
+                actions = actions.carouselUiActions,
                 leadingIcon = { icon(it) },
                 textStyle = textStyle,
                 onColor = onColor,
@@ -1167,10 +1250,11 @@ private data class ToolSheetStateBundle(
     val fingerprintTimerBundle: NotchedProgressBarBundle,
     val difficultyUiStateBundle: ConfigStateBundle,
     val mapUiStateBundle: ConfigStateBundle,
+    val weatherUiStateBundle: ConfigStateBundle,
+    val weatherUiState: InvestigationScreenViewModel.WeatherUiState,
     val toolbarUiState: OperationToolbarUiState,
     val traitListUiState: TraitListUiState,
     val operationDetailsUiState: OperationDetailsUiState,
-    val operationConditionsData: OperationConditionsData,
     val bpmToolUiState: BpmToolUiState,
     val sanityUiState: PlayerSanityUiState,
     val timerUiState: TimerUiState,
@@ -1180,11 +1264,12 @@ private data class ToolSheetStateBundle(
 private data class ToolSheetActionsBundle(
     val difficultyUiActions: ConfigActionsBundle,
     val mapUiActions: ConfigActionsBundle,
+    val weatherUiActions: ConfigActionsBundle,
     val traitListUiActions: TraitListUiActions,
     val bpmToolUiActions: BpmToolUiActions,
     val timerUiActions: TimerUiActions,
     val onSanityChange: (Float) -> Unit = {},
-    val onWeatherChange: (DifficultySettingResources.Weather) -> Unit = {},
+    val onWeatherChange: (Weather) -> Unit = {},
     val onUseSanityMedication: () -> Unit = {},
     val onPlayerDeath: () -> Unit = {}
 )
@@ -1196,10 +1281,10 @@ private fun ToolsBottomSheetComponent(
     actionsBundle: ToolSheetActionsBundle
 ) {
 
+    val weatherUiState = stateBundle.weatherUiState
     val toolbarUiState = stateBundle.toolbarUiState
     val traitListUiState = stateBundle.traitListUiState
     val operationDetailsUiState = stateBundle.operationDetailsUiState
-    val operationConditionsState = stateBundle.operationConditionsData
     val bpmToolUiState = stateBundle.bpmToolUiState
     val sanityUiState = stateBundle.sanityUiState
     val timerUiState = stateBundle.timerUiState
@@ -1210,9 +1295,11 @@ private fun ToolsBottomSheetComponent(
     val fingerprintTimerBundle = stateBundle.fingerprintTimerBundle
     val difficultyUiStateBundle = stateBundle.difficultyUiStateBundle
     val mapUiStateBundle = stateBundle.mapUiStateBundle
+    val weatherUiStateBundle = stateBundle.weatherUiStateBundle
 
     val difficultyUiActions = actionsBundle.difficultyUiActions
     val mapUiActions = actionsBundle.mapUiActions
+    val weatherUiActions = actionsBundle.weatherUiActions
     val traitListUiActions = actionsBundle.traitListUiActions
     val bpmToolUiActions = actionsBundle.bpmToolUiActions
     val timerUiActions = actionsBundle.timerUiActions
@@ -1235,15 +1322,23 @@ private fun ToolsBottomSheetComponent(
                     mapConfigComponent = { modifier ->
                         MapConfigComponent(
                             modifier = modifier,
-                            mapUiStateBundle = mapUiStateBundle,
-                            mapUiActions = mapUiActions
+                            bundle = mapUiStateBundle,
+                            actions = mapUiActions
                         )
                     },
                     difficultyConfigComponent = { modifier ->
                         DifficultyConfigComponent(
                             modifier = modifier,
-                            difficultyUiStateBundle = difficultyUiStateBundle,
-                            difficultyUiActions = difficultyUiActions
+                            bundle = difficultyUiStateBundle,
+                            actions = difficultyUiActions
+                        )
+                    },
+                    weatherConfigComponent = { modifier ->
+                        WeatherConfigComponent(
+                            modifier = modifier,
+                            icon = weatherUiState.weather.toDrawable(),
+                            bundle = weatherUiStateBundle,
+                            actions = weatherUiActions
                         )
                     },
                     sanityMeterComponent = { modifier ->
@@ -1418,10 +1513,11 @@ private fun ToolsSideSheetComponent(
     val fingerprintTimerBundle = stateBundle.fingerprintTimerBundle
     val difficultyUiStateBundle = stateBundle.difficultyUiStateBundle
     val mapUiStateBundle = stateBundle.mapUiStateBundle
-    val operationConditionsData = stateBundle.operationConditionsData
+    val weatherUiStateBundle = stateBundle.weatherUiStateBundle
 
     val difficultyUiActions = actionsBundle.difficultyUiActions
     val mapUiActions = actionsBundle.mapUiActions
+    val weatherUiActions = actionsBundle.weatherUiActions
     val traitListUiActions = actionsBundle.traitListUiActions
     val bpmToolUiActions = actionsBundle.bpmToolUiActions
     val timerUiActions = actionsBundle.timerUiActions
@@ -1453,15 +1549,23 @@ private fun ToolsSideSheetComponent(
                     mapConfigComponent = { modifier ->
                         MapConfigComponent(
                             modifier = modifier,
-                            mapUiStateBundle = mapUiStateBundle,
-                            mapUiActions = mapUiActions
+                            bundle = mapUiStateBundle,
+                            actions = mapUiActions
                         )
                     },
                     difficultyConfigComponent = { modifier ->
                         DifficultyConfigComponent(
                             modifier = modifier,
-                            difficultyUiStateBundle = difficultyUiStateBundle,
-                            difficultyUiActions = difficultyUiActions
+                            bundle = difficultyUiStateBundle,
+                            actions = difficultyUiActions
+                        )
+                    },
+                    weatherConfigComponent = { modifier ->
+                        WeatherConfigComponent(
+                            modifier = modifier,
+                            icon = R.drawable.icon_cp_tarot_moon,
+                            bundle = weatherUiStateBundle,
+                            actions = weatherUiActions
                         )
                     },
                     sanityMeterComponent = { modifier ->
@@ -1992,6 +2096,7 @@ fun OperationConfigsBottomSheet(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
 ) {
     Column(
@@ -2141,8 +2246,19 @@ fun OperationConfigsBottomSheet(
                 }
             }
 
-            /*Surface(
-                modifier = Modifier,
+        }
+
+        Row(
+            modifier = Modifier
+                .height(IntrinsicSize.Min)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+        ) {
+            Surface(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
@@ -2150,12 +2266,44 @@ fun OperationConfigsBottomSheet(
                     color = LocalPalette.current.surfaceContainerLow
                 )
             ) {
-                phaseComponent(
-                    Modifier
-                        .height(48.dp)
-                        .padding(8.dp)
+                Column(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.SpaceAround,
+                    horizontalAlignment = Alignment.Start
+                ) {
+
+                    weatherConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
+
+                }
+            }
+
+            //TODO Temperature Meter
+            /*Surface(
+                modifier = Modifier
+                    .fillMaxHeight(),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
                 )
+            ) {
+                Box(
+                    Modifier
+                        .padding(8.dp),
+                    contentAlignment = Alignment.BottomCenter
+                ) {
+                    timerComponent(
+                        Modifier
+                            .width(IntrinsicSize.Min)
+                    )
+                }
             }*/
+
         }
 
     }
@@ -2170,6 +2318,7 @@ fun OperationConfigsSideSheet(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
 ) {
     Column(
