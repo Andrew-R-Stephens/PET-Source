@@ -374,7 +374,7 @@ internal fun DifficultyModifierDetails(
                 }
 
                 val difficultyWeather = difficultyState.settings.weather
-                val overrideWeather = weatherDetails.weatherOverride
+                val overrideWeather = weatherDetails.weather
                 val weatherActual = if(overrideWeather != Weather.RANDOM) overrideWeather
                     else difficultyWeather
                 SubRow {

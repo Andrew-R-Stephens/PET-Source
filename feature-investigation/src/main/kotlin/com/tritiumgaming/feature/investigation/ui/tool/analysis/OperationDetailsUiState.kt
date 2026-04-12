@@ -23,7 +23,7 @@ internal data class OperationDetailsUiState(
 ) {
 
     internal data class WeatherDetails(
-        internal val weatherOverride: Weather = Weather.RANDOM
+        internal val weather: Weather = Weather.RANDOM
     )
 
     internal data class DifficultyDetails(

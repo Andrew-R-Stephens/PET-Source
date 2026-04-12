@@ -33,9 +33,11 @@ import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndex
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
@@ -51,7 +53,7 @@ import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterOptions
 import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
 import com.tritiumgaming.shared.data.investigation.model.InvestigationScreenUserPreferences
 import com.tritiumgaming.shared.data.investigation.model.MapData
-import com.tritiumgaming.shared.data.investigation.model.OperationConditionsData
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
@@ -59,9 +61,11 @@ import com.tritiumgaming.shared.data.investigation.model.SanityTimerData
 import com.tritiumgaming.shared.data.investigation.model.SanityTimerData.Companion.TIME_MIN
 import com.tritiumgaming.shared.data.investigation.model.StateOption
 import com.tritiumgaming.shared.data.investigation.model.TagOption
+import com.tritiumgaming.shared.data.investigation.model.TemperatureData
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
+import com.tritiumgaming.shared.data.investigation.model.WeatherData
 import com.tritiumgaming.shared.data.investigation.model.WeightOption
 import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
@@ -212,32 +216,53 @@ class InvestigationScreenViewModel private constructor(
     private val _operationTimerState = MutableStateFlow(SanityTimerData())
     private val operationTimerState = _operationTimerState.asStateFlow()
 
-    private val _operationConditionsState = MutableStateFlow(OperationConditionsData())
-    private val operationConditionsState = _operationConditionsState.asStateFlow()
+    /**/
+    private val _difficultyOverridesState = MutableStateFlow(DifficultyOverridesData())
+    private val difficultyOverridesState = _difficultyOverridesState.asStateFlow()
     internal fun setWeatherOverride(weather: Weather) {
-        _operationConditionsState.update {
+        _difficultyOverridesState.update {
             it.copy (
-                weatherOverride = weather
+                weather = weather
+            )
+        }
+    }
+    internal fun setFuseBoxOverride(state: FuseBoxAtStartOfContract) {
+        _difficultyOverridesState.update {
+            it.copy(
+                fuseBox = if(difficultyState.value.settings.fuseBoxAtStartOfContract !=
+                        FuseBoxAtStartOfContract.BROKEN) { state }
+                    else FuseBoxAtStartOfContract.BROKEN
             )
         }
     }
 
-    data class WeatherUiState(
-        val weather: Weather = Weather.RANDOM
-    )
-
-    private val _weatherUiState = combine(
-        operationConditionsState,
+    /* Weather */
+    private val _weatherState = combine(
+        difficultyOverridesState,
         difficultyState
     ) { operationConditionsState, difficultyState ->
         val difficultyWeather = difficultyState.settings.weather
-        val weatherOverride = operationConditionsState.weatherOverride
+        val weatherOverride = operationConditionsState.weather
 
         val weather = if(difficultyWeather == Weather.RANDOM) { weatherOverride }
-            else { difficultyWeather }
+        else { difficultyWeather }
 
-        WeatherUiState(
+        WeatherData(
             weather = weather
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = WeatherData()
+    )
+
+    private val _weatherUiState = combine(
+        _weatherState,
+        difficultyState,
+    ) { weatherState, difficultyState ->
+        WeatherUiState(
+            weather = weatherState.weather,
+            enabled = difficultyState.settings.weather == Weather.RANDOM
         )
     }.stateIn(
         scope = viewModelScope,
@@ -246,6 +271,26 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val weatherUiState = _weatherUiState
 
+    /* Temperature */
+    private val _temperatureState = MutableStateFlow(TemperatureData())
+
+    private val _temperatureUiState = combine(
+        _weatherState,
+        _temperatureState
+    ) { weatherState, temperatureState ->
+        TemperatureUiState(
+            range = weatherState.weather.toTemperatureRange(),
+            temporalGradient = temperatureState.current - temperatureState.previous,
+            current = temperatureState.current,
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = TemperatureUiState()
+    )
+    internal val temperatureUiState = _temperatureUiState
+
+    /* Phase */
     private val _phaseState = MutableStateFlow(PhaseData())
     private val phaseState = _phaseState.asStateFlow()
 
@@ -337,17 +382,6 @@ class InvestigationScreenViewModel private constructor(
         )
     internal val mapConfigUiState = _mapConfigUiState
 
-    private val _operationConditionsUiState = _operationConditionsState.map {
-        OperationDetailsUiState.WeatherDetails(
-            weatherOverride = it.weatherOverride
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = OperationDetailsUiState.WeatherDetails()
-    )
-    internal val operationConditionsUiState = _operationConditionsUiState
-
     private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState
         .map { state ->
             val name = difficulties[state.index].difficultyTitle
@@ -367,7 +401,7 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
 
-    private val _sanityTimerUiState: StateFlow<TimerUiState> = _operationTimerState.map {
+    private val _operationTimerUiState: StateFlow<TimerUiState> = _operationTimerState.map {
         sanityTimerState ->
         TimerUiState(
             remainingTime = sanityTimerState.remainingTime,
@@ -378,7 +412,7 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = TimerUiState()
     )
-    internal val sanityTimerUiState = _sanityTimerUiState
+    internal val sanityTimerUiState = _operationTimerUiState
 
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
@@ -697,13 +731,13 @@ class InvestigationScreenViewModel private constructor(
         mapState,
         difficultyState,
         ghostStates,
-        operationConditionsState
+        difficultyOverridesState
     ) {
-            mapState, difficultyState, ghostStates, operationConditionsState ->
+            mapState, difficultyState, ghostStates, difficultyOverrideState ->
 
             OperationDetailsUiState(
                 weatherDetails = OperationDetailsUiState.WeatherDetails(
-                    weatherOverride = operationConditionsState.weatherOverride,
+                    weather = difficultyOverrideState.weather,
                 ),
                 mapDetails = OperationDetailsUiState.MapDetails(
                     name = mapState.name,
@@ -1009,7 +1043,7 @@ class InvestigationScreenViewModel private constructor(
             val multiplier = 0.00001f
             val bloodMoonMultiplier =
                 if(difficultyState.value.settings.weather == Weather.BLOOD_MOON ||
-                    operationConditionsState.value.weatherOverride == Weather.BLOOD_MOON) 2f else 1f
+                    difficultyOverridesState.value.weather == Weather.BLOOD_MOON) 2f else 1f
 
             val deltaDrain = deltaTime * drainModifier * multiplier * bloodMoonMultiplier
 
@@ -1192,9 +1226,9 @@ class InvestigationScreenViewModel private constructor(
     }
 
     internal fun setWeather(weather: Weather) {
-        _operationConditionsState.update {
+        _difficultyOverridesState.update {
             it.copy(
-                weatherOverride = weather
+                weather = weather
             )
         }
     }
@@ -1278,6 +1312,8 @@ class InvestigationScreenViewModel private constructor(
                     canAlertAudio = false
                 )
             }
+
+            setFuseBoxOverride(_difficultyState.value.settings.fuseBoxAtStartOfContract)
 
             setTimeRemaining(_difficultyState.value.settings.setupTime.toLong())
             resetTimer()

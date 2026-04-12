@@ -132,11 +132,8 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
-import com.tritiumgaming.shared.data.investigation.model.OperationConditionsData
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
@@ -169,6 +166,7 @@ private fun InvestigationContent(
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
     //val operationConditionsState by investigationViewModel.operationConditionsState.collectAsStateWithLifecycle()
     val weatherUiState by investigationViewModel.weatherUiState.collectAsStateWithLifecycle()
+    val temperatureUiState by investigationViewModel.temperatureUiState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
 
@@ -407,13 +405,21 @@ private fun InvestigationContent(
 
     val weatherUiStateBundle = ConfigStateBundle(
         carouselUiState = ConfigCarouselUiState(
-            label = weatherUiState.weather.toStringResource(),
-            enabled = operationDetailsUiState.difficultyDetails.settings.weather == Weather.RANDOM
+            label =
+                if(weatherUiState.weather == Weather.RANDOM) {
+                    R.string.difficulty_setting_response_unknown }
+                else weatherUiState.weather.toStringResource(),
+            enabled = weatherUiState.enabled
         ),
         dropdownUiState = ConfigDropdownUiState(
-            options = Weather.entries.map { it.toStringResource() },
-            enabled = operationDetailsUiState.difficultyDetails.settings.weather == Weather.RANDOM,
-            label = weatherUiState.weather.toStringResource()
+            options = Weather.entries.map {
+                if(it == Weather.RANDOM) R.string.difficulty_setting_response_unknown
+                else it.toStringResource() },
+            enabled = weatherUiState.enabled,
+            label =
+                if(weatherUiState.weather == Weather.RANDOM) {
+                    R.string.difficulty_setting_response_unknown }
+                else weatherUiState.weather.toStringResource(),
         )
     )
 
@@ -482,7 +488,8 @@ private fun InvestigationContent(
         difficultyUiStateBundle = difficultyUiStateBundle,
         mapUiStateBundle = mapUiStateBundle,
         weatherUiStateBundle = weatherUiStateBundle,
-        weatherUiState = weatherUiState
+        weatherUiState = weatherUiState,
+        temperatureUiState = temperatureUiState
     )
 
     val toolSheetActionsBundle = ToolSheetActionsBundle(
@@ -1025,6 +1032,37 @@ private fun TimerComponentRow(
 }
 
 @Composable
+private fun TemperatureComponent(
+    modifier: Modifier = Modifier,
+    temperatureUiState: TemperatureUiState
+) {
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+
+        Column(
+            modifier = Modifier
+                .wrapContentSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+        }
+
+        Row (
+            modifier = Modifier
+                .wrapContentSize(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ){
+        }
+
+    }
+}
+
+@Composable
 private fun JournalComponent(
     modifier: Modifier = Modifier,
     evidenceListUiState: EvidenceListUiState,
@@ -1251,7 +1289,8 @@ private data class ToolSheetStateBundle(
     val difficultyUiStateBundle: ConfigStateBundle,
     val mapUiStateBundle: ConfigStateBundle,
     val weatherUiStateBundle: ConfigStateBundle,
-    val weatherUiState: InvestigationScreenViewModel.WeatherUiState,
+    val weatherUiState: WeatherUiState,
+    val temperatureUiState: TemperatureUiState,
     val toolbarUiState: OperationToolbarUiState,
     val traitListUiState: TraitListUiState,
     val operationDetailsUiState: OperationDetailsUiState,
@@ -1364,6 +1403,9 @@ private fun ToolsBottomSheetComponent(
                                 actionsBundle.onUseSanityMedication()
                             }
                         )
+                    },
+                    temperatureMeterComponent = { modifier ->
+
                     }
                 )
             }
@@ -2097,6 +2139,7 @@ fun OperationConfigsBottomSheet(
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
+    temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
 ) {
     Column(
@@ -2202,6 +2245,64 @@ fun OperationConfigsBottomSheet(
 
         Row(
             modifier = Modifier
+                .height(IntrinsicSize.Min)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+        ) {
+            Surface(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.SpaceAround,
+                    horizontalAlignment = Alignment.Start
+                ) {
+
+                    weatherConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
+
+                }
+            }
+
+            //TODO Temperature Meter
+            Surface(
+                modifier = Modifier
+                    .fillMaxHeight(),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                Box(
+                    Modifier
+                        .padding(8.dp),
+                    contentAlignment = Alignment.BottomCenter
+                ) {
+                    temperatureMeterComponent(
+                        Modifier
+                            .width(IntrinsicSize.Min)
+                    )
+                }
+            }
+
+        }
+
+        Row(
+            modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
@@ -2248,64 +2349,6 @@ fun OperationConfigsBottomSheet(
 
         }
 
-        Row(
-            modifier = Modifier
-                .height(IntrinsicSize.Min)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
-        ) {
-            Surface(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                Column(
-                    modifier = Modifier
-                        .padding(8.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
-                    horizontalAlignment = Alignment.Start
-                ) {
-
-                    weatherConfigComponent(
-                        Modifier
-                            .fillMaxWidth()
-                    )
-
-                }
-            }
-
-            //TODO Temperature Meter
-            /*Surface(
-                modifier = Modifier
-                    .fillMaxHeight(),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                Box(
-                    Modifier
-                        .padding(8.dp),
-                    contentAlignment = Alignment.BottomCenter
-                ) {
-                    timerComponent(
-                        Modifier
-                            .width(IntrinsicSize.Min)
-                    )
-                }
-            }*/
-
-        }
-
     }
 
 }
@@ -2319,6 +2362,7 @@ fun OperationConfigsSideSheet(
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
+    temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
 ) {
     Column(
@@ -2412,43 +2456,110 @@ fun OperationConfigsSideSheet(
         }
 
 
-        Surface(
+        Row(
             modifier = Modifier
-                .weight(1f),
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            sanityMeterComponent(
-                Modifier
-                    .height(48.dp)
-                    .weight(1f)
-                    .padding(8.dp)
-            )
-        }
 
-        Surface(
-            modifier = Modifier,
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
-        ) {
-            Row(
-                modifier = Modifier,
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+            Surface(
+                modifier = Modifier
+                    .weight(1f),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
             ) {
-                sanityMedicationComponent(
+                sanityMeterComponent(
                     Modifier
-                        .size(48.dp)
+                        .height(48.dp)
+                        .weight(1f)
+                        .padding(8.dp)
                 )
             }
+
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                Row(
+                    modifier = Modifier,
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    sanityMedicationComponent(
+                        Modifier
+                            .size(48.dp)
+                    )
+                }
+            }
+
+        }
+
+        Row(
+            modifier = Modifier
+                .height(IntrinsicSize.Min)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+        ) {
+            Surface(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.SpaceAround,
+                    horizontalAlignment = Alignment.Start
+                ) {
+
+                    weatherConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
+
+                }
+            }
+
+            //TODO Temperature Meter
+            Surface(
+                modifier = Modifier
+                    .fillMaxHeight(),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                Box(
+                    Modifier
+                        .padding(8.dp),
+                    contentAlignment = Alignment.BottomCenter
+                ) {
+                    temperatureMeterComponent(
+                        Modifier
+                            .width(IntrinsicSize.Min)
+                    )
+                }
+            }
+
         }
 
     }

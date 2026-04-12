@@ -1,8 +1,8 @@
 package com.tritiumgaming.shared.data.weather.model
 
 data class TemperatureRange(
-    val low: Float,
-    val high: Float
+    val low: Float = 0f,
+    val high: Float = 0f
 )
 
 fun TemperatureRange.fahrenheit(): TemperatureRange =
