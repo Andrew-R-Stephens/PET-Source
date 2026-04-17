@@ -83,11 +83,8 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
-import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
-import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
@@ -133,11 +130,9 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
-import kotlin.time.Duration.Companion.minutes
 
 @Composable
 fun InvestigationSoloScreen(
@@ -175,10 +170,10 @@ private fun InvestigationContent(
     val ghostOrder by investigationViewModel.ghostsSortedUiState.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
 
-    val smudgeHuntProtectionTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
-    val huntDurationTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
-    val huntGapTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
-    val fingerprintTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
+    val smudgeHuntProtectionTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
+    val huntDurationTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
+    val huntGapTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
+    val fingerprintTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
 
     // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
 

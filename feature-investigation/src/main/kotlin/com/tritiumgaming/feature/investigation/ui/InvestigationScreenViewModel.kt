@@ -225,8 +225,7 @@ class InvestigationScreenViewModel private constructor(
         val paused: Boolean = true
     )
 
-    //TODO replace with viewmodel state
-    val smudgeHuntProtectionTimerState = NotchedProgressBarUiState(
+    val smudgeHuntProtectionTimerUiState = NotchedProgressBarUiState(
         max = 3.minutes.inWholeMilliseconds,
         origin = 0,
         remaining = 50000,
@@ -247,8 +246,7 @@ class InvestigationScreenViewModel private constructor(
         running = false
     )
 
-    //TODO replace with viewmodel state
-    val huntDurationTimerState = NotchedProgressBarUiState(
+    val huntDurationTimerUiState = NotchedProgressBarUiState(
         max = 1.minutes.inWholeMilliseconds,
         origin = 0,
         remaining = (.87).minutes.inWholeMilliseconds,
@@ -265,8 +263,7 @@ class InvestigationScreenViewModel private constructor(
         running = false
     )
 
-    //TODO replace with viewmodel state
-    val huntGapTimerState = NotchedProgressBarUiState(
+    val huntGapTimerUiState = NotchedProgressBarUiState(
         max = 72000,
         origin = 0,
         remaining = 50000,
@@ -275,7 +272,6 @@ class InvestigationScreenViewModel private constructor(
         running = false
     )
 
-    //TODO replace with viewmodel state
     val maxTimeFromSetting = 120000L
     val fingerprintTimerState = NotchedProgressBarUiState(
         max = maxTimeFromSetting,

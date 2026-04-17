@@ -14,7 +14,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import com.tritiumgaming.core.ui.widgets.text.UiText
 
-
 @Composable
 fun NotchedProgressBar(
     modifier: Modifier = Modifier,
