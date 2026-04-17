@@ -12,6 +12,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
+import com.tritiumgaming.core.ui.widgets.text.UiText
 
 
 @Composable
@@ -23,6 +24,8 @@ fun NotchedProgressBar(
 
     val state = bundle.state
     val colors = bundle.colors
+
+    val labels = state.notches.map { notch -> notch.label.asString() }
 
     Canvas(
         modifier = modifier
@@ -87,7 +90,7 @@ fun NotchedProgressBar(
         )
 
         // --- Draw Labels ---
-        state.notches.forEach { notch ->
+        state.notches.forEachIndexed { index, notch ->
             val inverseNotch = (state.max.coerceAtLeast(1) - notch.xPos).toFloat()
             val progressAreaWidth = size.width - 24f * scale
             val notchX = 12f * scale +
@@ -95,7 +98,7 @@ fun NotchedProgressBar(
                     progressAreaWidth
 
             val textLayoutResult = textMeasurer.measure(
-                text = notch.label,
+                text = labels[index],
                 style = TextStyle(
                     color = colors.label,
                     fontSize = (labelsHeight * .9f).toSp(),
@@ -143,6 +146,6 @@ data class NotchedProgressBarUiState(
 )
 
 data class ProgressBarNotch(
-    val label: String,
+    val label: UiText,
     val xPos: Long
 )

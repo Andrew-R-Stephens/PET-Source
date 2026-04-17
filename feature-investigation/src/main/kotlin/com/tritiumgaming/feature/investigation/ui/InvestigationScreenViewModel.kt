@@ -8,12 +8,16 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
+import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
+import com.tritiumgaming.core.ui.widgets.text.UiText
 import com.tritiumgaming.feature.investigation.app.container.CodexUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.DifficultyUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
@@ -41,6 +45,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
@@ -103,6 +108,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.math.min
+import kotlin.time.Duration.Companion.minutes
 
 class InvestigationScreenViewModel private constructor(
     journalUseCaseBundle: JournalUseCaseBundle,
@@ -191,6 +197,8 @@ class InvestigationScreenViewModel private constructor(
     private var sanityJob: Job? = null
     private var timerJob: Job? = null
 
+    private var toolTimersJob: Job? = null
+
     /**
      * ViewModel States
      */
@@ -212,6 +220,76 @@ class InvestigationScreenViewModel private constructor(
             initialValue = DifficultyData()
         )
     val difficultyState = _difficultyState
+
+    internal data class ToolTimerData(
+        val paused: Boolean = true
+    )
+
+    //TODO replace with viewmodel state
+    val smudgeHuntProtectionTimerState = NotchedProgressBarUiState(
+        max = 3.minutes.inWholeMilliseconds,
+        origin = 0,
+        remaining = 50000,
+        notches = listOf(
+            ProgressBarNotch(
+                UiText.StringResource(GhostTitle.SPIRIT.toStringResource()),
+                (3).minutes.inWholeMilliseconds
+            ),
+            ProgressBarNotch(
+                UiText.DynamicString("Standard"),
+                (1.5).minutes.inWholeMilliseconds
+            ),
+            ProgressBarNotch(
+                UiText.StringResource(GhostTitle.DEMON.toStringResource()),
+                (1).minutes.inWholeMilliseconds
+            ),
+        ),
+        running = false
+    )
+
+    //TODO replace with viewmodel state
+    val huntDurationTimerState = NotchedProgressBarUiState(
+        max = 1.minutes.inWholeMilliseconds,
+        origin = 0,
+        remaining = (.87).minutes.inWholeMilliseconds,
+        notches = listOf(
+            ProgressBarNotch(
+                UiText.DynamicString("Standard"),
+                (1.5).minutes.inWholeMilliseconds
+            ),
+            ProgressBarNotch(
+                UiText.DynamicString("Cursed"),
+                (1.5).minutes.inWholeMilliseconds
+            ),
+        ),
+        running = false
+    )
+
+    //TODO replace with viewmodel state
+    val huntGapTimerState = NotchedProgressBarUiState(
+        max = 72000,
+        origin = 0,
+        remaining = 50000,
+        notches = listOf(
+        ),
+        running = false
+    )
+
+    //TODO replace with viewmodel state
+    val maxTimeFromSetting = 120000L
+    val fingerprintTimerState = NotchedProgressBarUiState(
+        max = maxTimeFromSetting,
+        origin = 0,
+        remaining = 50000L,
+        notches = listOf(
+            ProgressBarNotch(UiText.DynamicString("Obake"), (maxTimeFromSetting * .5f).toLong()),
+            ProgressBarNotch(UiText.DynamicString("Normal"), maxTimeFromSetting)
+        ),
+        running = false
+    )
+
+    private val _toolsTimerState = MutableStateFlow(ToolTimerData())
+    private val toolsTimerState = _toolsTimerState.asStateFlow()
 
     private val _operationTimerState = MutableStateFlow(SanityTimerData())
     private val operationTimerState = _operationTimerState.asStateFlow()
@@ -1079,6 +1157,36 @@ class InvestigationScreenViewModel private constructor(
                 elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
             )
         }
+    }
+
+    /*
+     * Tool Timers ---------------------------
+     */
+
+    private fun launchToolTimersJob() {
+        timerJob = viewModelScope.launch {
+
+            while (!operationTimerState.value.paused) {
+
+                val delay = 100L
+                val preDelay = System.currentTimeMillis()
+                delay(delay)
+                val postDelay = System.currentTimeMillis()
+                val actualDelay = postDelay - preDelay
+
+                val remaining = operationTimerState.value.remainingTime
+                setTimeRemaining((remaining - actualDelay).coerceAtLeast(0L))
+            }
+        }
+    }
+
+    private fun stopToolTimersJob() {
+        _operationTimerState.update {
+            it.copy(
+                paused = true
+            )
+        }
+        timerJob?.cancel("Timer Job Cancelled")
     }
 
     /*

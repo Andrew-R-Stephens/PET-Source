@@ -175,6 +175,11 @@ private fun InvestigationContent(
     val ghostOrder by investigationViewModel.ghostsSortedUiState.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
 
+    val smudgeHuntProtectionTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
+    val huntDurationTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
+    val huntGapTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
+    val fingerprintTimerState by investigationViewModel.smudgeHuntProtectionTimerState.collectAsStateWithLifecycle()
+
     // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
 
     val digitalTimerUiState = DigitalTimerUiState(
@@ -304,80 +309,6 @@ private fun InvestigationContent(
         }
     )
 
-    //TODO replace with viewmodel state
-    val smudgeHuntProtectionTimerState = NotchedProgressBarUiState(
-        max = 3.minutes.inWholeMilliseconds,
-        origin = 0,
-        remaining = 50000,
-        notches = listOf(
-            ProgressBarNotch(
-                stringResource(GhostTitle.SPIRIT.toStringResource()),
-                (3).minutes.inWholeMilliseconds
-            ),
-            ProgressBarNotch(
-                "Standard",
-                (1.5).minutes.inWholeMilliseconds
-            ),
-            ProgressBarNotch(
-                stringResource(GhostTitle.DEMON.toStringResource()),
-                (1).minutes.inWholeMilliseconds
-            ),
-        ),
-        running = false
-    )
-
-    //TODO replace with viewmodel state
-    /*val smudgeBlindingProtectionTimerState = NotchedProgressBarUiState(
-        max = 72000,
-        origin = 0,
-        remaining = 50000,
-        notches = listOf(
-
-        ),
-        running = false
-    )*/
-
-    //TODO replace with viewmodel state
-    val huntDurationTimerState = NotchedProgressBarUiState(
-        max = 1.minutes.inWholeMilliseconds,
-        origin = 0,
-        remaining = (.87).minutes.inWholeMilliseconds,
-        notches = listOf(
-            ProgressBarNotch(
-                "Standard",
-                (1.5).minutes.inWholeMilliseconds
-            ),
-            ProgressBarNotch(
-                "Cursed",
-                (1.5).minutes.inWholeMilliseconds
-            ),
-        ),
-        running = false
-    )
-
-    //TODO replace with viewmodel state
-    val huntGapTimerState = NotchedProgressBarUiState(
-        max = 72000,
-        origin = 0,
-        remaining = 50000,
-        notches = listOf(
-        ),
-        running = false
-    )
-
-    //TODO replace with viewmodel state
-    val maxTimeFromSetting = 120000L
-    val fingerprintTimerState = NotchedProgressBarUiState(
-        max = maxTimeFromSetting,
-        origin = 0,
-        remaining = 50000L,
-        notches = listOf(
-            ProgressBarNotch("Obake", (maxTimeFromSetting * .5f).toLong()),
-            ProgressBarNotch("Normal", maxTimeFromSetting)
-        ),
-        running = false
-    )
-
     val mapUiStateBundle = ConfigStateBundle(
         carouselUiState = ConfigCarouselUiState(
             label = mapConfigUiState.name.toStringResource(
@@ -436,12 +367,6 @@ private fun InvestigationContent(
         state = smudgeHuntProtectionTimerState,
         colors = notchedProgressBarUiColors
     )
-
-    /*val smudgeBlindingBundle = NotchedProgressBarBundle(
-        title = "Smudge Blinding Protection",
-        state = smudgeBlindingProtectionTimerState,
-        colors = notchedProgressBarUiColors
-    )*/
 
     val huntDurationBundle = NotchedProgressBarBundle(
         title = "Hunt Duration",
