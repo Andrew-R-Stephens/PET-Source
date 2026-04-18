@@ -9,4 +9,5 @@ object SanityLevel {
 
     const val SAFE_MIN_BOUNDS = 0.7f
 
+    const val SANITY_LOSS_ON_PLAYER_DEATH = .15f
 }

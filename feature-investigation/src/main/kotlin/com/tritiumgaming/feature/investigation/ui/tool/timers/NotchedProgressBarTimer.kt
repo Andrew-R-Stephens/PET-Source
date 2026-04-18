@@ -102,15 +102,17 @@ internal fun NotchedProgressBarTimer(
                 ),
                 primaryContent = { modifier ->
                     Icon(
-                        modifier = modifier,
+                        modifier = modifier
+                            .padding(2.dp),
                         painter = painterResource(R.drawable.ic_control_play),
                         contentDescription = null,
                         tint = LocalPalette.current.onSurface
                     )
                 },
-                alternativeContent = { modifier ->
+                alternateContent = { modifier ->
                     Icon(
-                        modifier = modifier,
+                        modifier = modifier
+                            .padding(2.dp),
                         painter = painterResource(R.drawable.ic_control_reset),
                         contentDescription = null,
                         tint = LocalPalette.current.onSurface

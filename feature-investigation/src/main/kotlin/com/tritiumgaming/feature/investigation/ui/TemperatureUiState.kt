@@ -1,26 +1,28 @@
 package com.tritiumgaming.feature.investigation.ui
 
+import com.tritiumgaming.shared.data.weather.model.Temperature
+import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_FREEZING_BREATH
+import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_FREEZING_POINT
 import com.tritiumgaming.shared.data.weather.model.TemperatureRange
 
 data class TemperatureUiState(
     val range: TemperatureRange = TemperatureRange(),
-    val temporalGradient: Float = 0f,
-    val current: Float = 0f
+    val temporalGradient: Float = TEMPERATURE_FREEZING_POINT,
+    val current: Float = Temperature.TEMPERATURE_START_FUSEBOX_DISABLED
 ) {
 
     val isFreezingBreath: Boolean
-        get() = current <= FREEZING_BREATH_TEMPERATURE
+        get() = current <= TEMPERATURE_FREEZING_BREATH
 
     val gradientDirection: TemporalGradientDirection =
         when {
-            temporalGradient > 0f -> TemporalGradientDirection.HEATING
-            temporalGradient < 0f -> TemporalGradientDirection.COOLING
+            temporalGradient > TEMPERATURE_FREEZING_POINT -> TemporalGradientDirection.HEATING
+            temporalGradient < TEMPERATURE_FREEZING_POINT -> TemporalGradientDirection.COOLING
             else -> TemporalGradientDirection.STABLE
         }
 
-    companion object {
-        const val FREEZING_BREATH_TEMPERATURE = 5f
-    }
+    fun formatTemperature(temperature: Float): String =
+        "%4.1f".format(current)
 
     enum class TemporalGradientDirection {
         HEATING,

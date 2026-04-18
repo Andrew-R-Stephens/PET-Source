@@ -258,7 +258,7 @@ fun Weather.toTemperatureRange(): TemperatureRange =
         Weather.LIGHT_RAIN -> TemperatureRange(low = 5f, high = 8f)
         Weather.HEAVY_RAIN -> TemperatureRange(low = 5f, high = 8f)
         Weather.SNOW -> TemperatureRange(low = 3f, high = 5f)
-        else -> TemperatureRange(low = 0f, high = 0f)
+        else -> TemperatureRange(low = -1f, high = -1f)
     }
 
 fun StartingSanity.toFloat(): Float =

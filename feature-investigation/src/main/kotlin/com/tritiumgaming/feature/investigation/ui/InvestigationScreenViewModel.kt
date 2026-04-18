@@ -96,6 +96,10 @@ import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel
+import com.tritiumgaming.shared.data.sanity.model.SanityLevel.SANITY_LOSS_ON_PLAYER_DEATH
+import com.tritiumgaming.shared.data.weather.model.Temperature
+import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_COOLING_RATE
+import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_HEATING_RATE
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -196,7 +200,7 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Routines
      */
-    private var sanityJob: Job? = null
+    private var operationControllerJob: Job? = null
     private var timerJob: Job? = null
 
     private var toolTimersJob: Job? = null
@@ -476,12 +480,9 @@ class InvestigationScreenViewModel private constructor(
     /* Temperature */
     private val _temperatureState = MutableStateFlow(TemperatureData())
 
-    private val _temperatureUiState = combine(
-        _weatherState,
-        _temperatureState
-    ) { weatherState, temperatureState ->
+    private val _temperatureUiState = _temperatureState.map { temperatureState ->
         TemperatureUiState(
-            range = weatherState.weather.toTemperatureRange(),
+            range = temperatureState.range,
             temporalGradient = temperatureState.current - temperatureState.previous,
             current = temperatureState.current,
         )
@@ -614,13 +615,16 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = TimerUiState()
     )
-    internal val sanityTimerUiState = _operationTimerUiState
+    internal val operationTimerUiState = _operationTimerUiState
 
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
-    fun useSanityMedication() {
+    fun onUseSanityMedication() {
         addPlayerSanity(difficultyState.value.settings.sanityPillRestoration.toFloat())
+    }
+    fun onPlayerDeath() {
+        removePlayerSanity(SANITY_LOSS_ON_PLAYER_DEATH)
     }
 
     private val _phaseUiState = combine(
@@ -1115,22 +1119,28 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun launchPlayerSanityJob() {
+    private fun launchOperationControllerJob() {
         _playerSanityUiState.update{
             it.copy(
                 lastSanityTickTime = System.currentTimeMillis()
             )
         }
-        sanityJob = viewModelScope.launch {
+        _temperatureState.update{
+            it.copy(
+                lastTickTime = System.currentTimeMillis()
+            )
+        }
+        operationControllerJob = viewModelScope.launch {
             while(!operationTimerState.value.paused) {
                 tickSanity()
+                tickTemperature()
                 delay(1000)
             }
         }
     }
 
-    private fun stopPlayerSanityJob() {
-        sanityJob?.cancel("Player Sanity Job Cancelled")
+    private fun stopOperationControllerJob() {
+        operationControllerJob?.cancel("Operation Controller Job Cancelled")
     }
 
     /*
@@ -1268,6 +1278,38 @@ class InvestigationScreenViewModel private constructor(
         val startingInsanity = SanityLevel.MAX_SANITY -
                 difficultyState.value.settings.startingSanity.toFloat()
         setPlayerSanity(startingInsanity)
+    }
+
+    /*
+     * Temperature
+     */
+    private fun tickTemperature() {
+        val currentTime = System.currentTimeMillis()
+        val lastTickTime = _temperatureState.value.lastTickTime
+        val deltaTime = if (lastTickTime > 0)
+            currentTime - lastTickTime else 0L
+
+        if (deltaTime > 0) {
+            val temperatureChangeModifier = when(difficultyOverridesState.value.fuseBox) {
+                FuseBoxAtStartOfContract.ON -> TEMPERATURE_HEATING_RATE
+                else -> TEMPERATURE_COOLING_RATE
+            }
+
+            val multiplier = 0.001f
+
+            val deltaDrain = deltaTime * temperatureChangeModifier * multiplier
+
+            val currentTemperature = _temperatureState.value.current
+            _temperatureState.update {
+                it.copy(
+                    current = (currentTemperature + deltaDrain)
+                        .coerceIn(_temperatureUiState.value.range.low,
+                            _temperatureUiState.value.range.high),
+                    previous = currentTemperature,
+                    lastTickTime = currentTime
+                )
+            }
+        }
     }
 
     /*
@@ -1413,18 +1455,18 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun playTimer() {
-        stopPlayerSanityJob()
+        stopOperationControllerJob()
         stopTimerJob()
 
         initializeNewTimer()
 
         launchTimerJob()
-        launchPlayerSanityJob()
+        launchOperationControllerJob()
     }
 
     private fun pauseTimer() {
         stopTimerJob()
-        stopPlayerSanityJob()
+        stopOperationControllerJob()
     }
 
     internal fun toggleTimer() {
@@ -1494,12 +1536,16 @@ class InvestigationScreenViewModel private constructor(
                 weather = weather
             )
         }
-    }
 
-    private fun updateWeather(
-        index: Int = 0
-    ) {
-
+        _temperatureState.update {
+            it.copy(
+                current = when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
+                    FuseBoxAtStartOfContract.ON ->
+                        difficultyOverridesState.value.weather.toTemperatureRange().high
+                    else -> Temperature.TEMPERATURE_START_FUSEBOX_DISABLED
+                }
+            )
+        }
     }
 
     /*
@@ -1576,9 +1622,20 @@ class InvestigationScreenViewModel private constructor(
                 )
             }
 
-            setFuseBoxOverride(_difficultyState.value.settings.fuseBoxAtStartOfContract)
+            setFuseBoxOverride(difficultyState.settings.fuseBoxAtStartOfContract)
 
-            setOperationTimerRemainingTime(_difficultyState.value.settings.setupTime.toLong())
+            _temperatureState.update {
+                it.copy(
+                    current = when(difficultyState.settings.fuseBoxAtStartOfContract) {
+                        FuseBoxAtStartOfContract.ON ->
+                            weatherUiState.value.weather.toTemperatureRange().high
+                        else -> Temperature.TEMPERATURE_START_FUSEBOX_DISABLED
+                    },
+                    range = weatherUiState.value.weather.toTemperatureRange()
+                )
+            }
+
+            setOperationTimerRemainingTime(difficultyState.settings.setupTime.toLong())
             resetTimer()
 
         } catch (e: Exception) {

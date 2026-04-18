@@ -93,7 +93,7 @@ fun TimerToggleButton(
     state: TimerUiState,
     actions: TimerUiActions,
     primaryContent: @Composable (Modifier) -> Unit = {},
-    alternativeContent: @Composable (Modifier) -> Unit = {}
+    alternateContent: @Composable (Modifier) -> Unit = {}
 ) {
     val state = state.paused
 
@@ -113,7 +113,7 @@ fun TimerToggleButton(
                     .padding(4.dp)
             )
         } else {
-            alternativeContent(
+            alternateContent(
                 Modifier
                     .fillMaxSize()
                     .padding(4.dp)

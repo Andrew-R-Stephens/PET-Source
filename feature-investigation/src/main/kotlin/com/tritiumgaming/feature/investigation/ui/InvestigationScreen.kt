@@ -90,6 +90,7 @@ import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
+import com.tritiumgaming.feature.investigation.ui.TemperatureUiState.TemporalGradientDirection.*
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
@@ -156,12 +157,11 @@ private fun InvestigationContent(
 
     val toolbarUiState by investigationViewModel.primaryToolbarUiState.collectAsStateWithLifecycle()
 
-    val timerUiState by investigationViewModel.sanityTimerUiState.collectAsStateWithLifecycle()
+    val timerUiState by investigationViewModel.operationTimerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
     val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
-    //val operationConditionsState by investigationViewModel.operationConditionsState.collectAsStateWithLifecycle()
     val weatherUiState by investigationViewModel.weatherUiState.collectAsStateWithLifecycle()
     val temperatureUiState by investigationViewModel.temperatureUiState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
@@ -341,7 +341,7 @@ private fun InvestigationContent(
         ),
         dropdownUiState = ConfigDropdownUiState(
             options = Weather.entries.map {
-                if(it == Weather.RANDOM) R.string.difficulty_setting_response_unknown
+                if(it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown
                 else it.toStringResource() },
             enabled = weatherUiState.enabled,
             label =
@@ -448,11 +448,17 @@ private fun InvestigationContent(
             investigationViewModel.setWeatherOverride(it)
         },
         onUseSanityMedication = {
-            investigationViewModel.useSanityMedication()
+            investigationViewModel.onUseSanityMedication()
         },
         onPlayerDeath = {
-
+            investigationViewModel.onPlayerDeath()
         },
+    )
+
+    val statusBarComponentStateBundle = StatusBarComponentStateBundle(
+        sanityUiState = sanityUiState,
+        digitalTimerUiState = digitalTimerUiState,
+        phaseUiState = phaseUiState
     )
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -472,9 +478,7 @@ private fun InvestigationContent(
                     statusBarComponent = { modifier ->
                         StatusBarComponent(
                             modifier = modifier,
-                            sanityUiState = sanityUiState,
-                            digitalTimerUiState = digitalTimerUiState,
-                            phaseUiState = phaseUiState,
+                            bundle = statusBarComponentStateBundle
                         )
                     },
                     journalComponent = { modifier ->
@@ -516,9 +520,7 @@ private fun InvestigationContent(
                     statusBarComponent = { modifier ->
                         StatusBarComponent(
                             modifier = modifier,
-                            sanityUiState = sanityUiState,
-                            digitalTimerUiState = digitalTimerUiState,
-                            phaseUiState = phaseUiState,
+                            bundle = statusBarComponentStateBundle
                         )
                     },
                     journalComponent = { modifier ->
@@ -843,7 +845,7 @@ private fun TimerComponentColumn(
                         tint = LocalPalette.current.onSurface
                     )
                 },
-                alternativeContent = { modifier ->
+                alternateContent = { modifier ->
                     Icon(
                         modifier = modifier,
                         painter = painterResource(R.drawable.ic_control_pause),
@@ -944,7 +946,7 @@ private fun TimerComponentRow(
                         tint = LocalPalette.current.onSurface
                     )
                 },
-                alternativeContent = { modifier ->
+                alternateContent = { modifier ->
                     Icon(
                         modifier = modifier,
                         painter = painterResource(R.drawable.ic_control_pause),
@@ -978,7 +980,6 @@ private fun TemperatureComponent(
     modifier: Modifier = Modifier,
     temperatureUiState: TemperatureUiState
 ) {
-
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
@@ -991,14 +992,98 @@ private fun TemperatureComponent(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            Text(
+                modifier = Modifier
+                    .wrapContentSize(),
+                text = "${ temperatureUiState.range.high }",
+                color = LocalPalette.current.onSurface,
+                style = LocalTypography.current.tertiary.regular.copy(
+                    fontSize = 8.sp,
+                    textAlign = TextAlign.Center,
+                ),
+                maxLines = 1
+            )
+
+            Icon(
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(4.dp),
+                painter = painterResource(R.drawable.ic_thermostat),
+                contentDescription = null,
+                tint = LocalPalette.current.onSurface
+            )
+
+            Text(
+                modifier = Modifier
+                    .wrapContentSize(),
+                text = "${ temperatureUiState.range.low }",
+                color = LocalPalette.current.onSurface,
+                style = LocalTypography.current.tertiary.regular.copy(
+                    fontSize = 8.sp,
+                    textAlign = TextAlign.Center,
+                ),
+                maxLines = 1
+            )
+
         }
 
-        Row (
+        Row(
             modifier = Modifier
-                .wrapContentSize(),
+                .wrapContentWidth()
+                .height(IntrinsicSize.Min),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
+
+            Text(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .height(IntrinsicSize.Min),
+                text = ((temperatureUiState.current / 10) * 10).toString(),
+                color = LocalPalette.current.onSurface,
+                style = LocalTypography.current.tertiary.regular.copy(
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center,
+                ),
+                maxLines = 1
+            )
+
+            Box(
+                modifier = Modifier
+                    .size(20.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                val modifier = Modifier.matchParentSize()
+                when(temperatureUiState.gradientDirection) {
+                    HEATING -> {
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
+                            contentDescription = null,
+                            tint = LocalPalette.current.tertiary
+                        )
+                    }
+                    COOLING -> {
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
+                            contentDescription = null,
+                            tint = LocalPalette.current.primary
+                        )
+                    }
+                    STABLE -> {
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_arrow_right_flat),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
+                }
+            }
+
+
         }
 
     }
@@ -1102,6 +1187,42 @@ private fun SanityMedicationComponent(
 }
 
 @Composable
+private fun PlayerDeathButtonComponent(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val fillColor = LocalPalette.current.onSurfaceVariant
+    val strokeColor = LocalPalette.current.onSurface
+    var color = if(isPressed) { fillColor } else { strokeColor }
+
+    // This effect runs whenever isPressed changes
+    LaunchedEffect(isPressed) {
+        color = if(isPressed) { fillColor } else { strokeColor }
+    }
+
+    Button(
+        modifier = modifier,
+        interactionSource = interactionSource,
+        shape = CircleShape,
+        colors = ButtonDefaults.buttonColors().copy(
+            containerColor = Color.Transparent
+        ),
+        onClick = { onClick() },
+        contentPadding = PaddingValues(8.dp)
+    ) {
+        Icon(
+            modifier = Modifier,
+            painter = painterResource(R.drawable.ic_skull),
+            contentDescription = null,
+            tint = color
+        )
+    }
+}
+
+@Composable
 private fun BloodMoonComponent(
     modifier: Modifier = Modifier,
     state: Boolean,
@@ -1123,19 +1244,18 @@ private fun BloodMoonComponent(
     )
 }
 
-internal data class StatusBarComponentUiState(
+internal data class StatusBarComponentStateBundle(
     val sanityUiState: PlayerSanityUiState,
-    val digitalTimerUiState: DigitalTimerUiState
+    val digitalTimerUiState: DigitalTimerUiState,
+    val phaseUiState: OperationDetailsUiState.PhaseDetails
 )
 
 @Composable
 private fun StatusBarComponent(
     modifier: Modifier = Modifier,
-    sanityUiState: PlayerSanityUiState,
-    digitalTimerUiState: DigitalTimerUiState,
-    phaseUiState: OperationDetailsUiState.PhaseDetails
+    bundle: StatusBarComponentStateBundle
 ) {
-    val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
+    val sanityPercentString = bundle.sanityUiState.sanityLevel.toPercentageString()
 
     FlowRow(
         modifier = modifier
@@ -1168,7 +1288,7 @@ private fun StatusBarComponent(
                 Text(
                     modifier = Modifier,
                     text = stringResource(
-                        phaseUiState.type.toPhaseTitle().toStringResource()),
+                        bundle.phaseUiState.type.toPhaseTitle().toStringResource()),
                     color = LocalPalette.current.onSurfaceVariant,
                     style = LocalTypography.current.tertiary.regular.copy(
                         fontSize = 12.sp,
@@ -1176,10 +1296,10 @@ private fun StatusBarComponent(
                     )
                 )
 
-                if(digitalTimerUiState.remainingTime > 0L) {
+                if(bundle.digitalTimerUiState.remainingTime > 0L) {
                     DigitalTimer(
                         modifier = Modifier,
-                        state = digitalTimerUiState,
+                        state = bundle.digitalTimerUiState,
                         fontSize = 12.sp,
                         color = LocalPalette.current.onSurfaceVariant
                     )
@@ -1270,6 +1390,7 @@ private fun ToolsBottomSheetComponent(
     val sanityUiState = stateBundle.sanityUiState
     val timerUiState = stateBundle.timerUiState
     val phaseUiState = stateBundle.phaseUiState
+    val temperatureUiState = stateBundle.temperatureUiState
     val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
     val huntDurationBundle = stateBundle.huntDurationBundle
     val huntCooldownBundle = stateBundle.huntCooldownBundle
@@ -1297,9 +1418,6 @@ private fun ToolsBottomSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
-                    operationConditionsComponent = { modifier ->
-
-                    },
                     mapConfigComponent = { modifier ->
                         MapConfigComponent(
                             modifier = modifier,
@@ -1346,9 +1464,21 @@ private fun ToolsBottomSheetComponent(
                             }
                         )
                     },
+                    playerDeathButtonComponent = { modifier ->
+                        PlayerDeathButtonComponent(
+                            modifier = modifier,
+                            onClick = {
+                                actionsBundle.onPlayerDeath()
+                            }
+                        )
+                    },
                     temperatureMeterComponent = { modifier ->
-
-                    }
+                        TemperatureComponent(
+                            modifier = modifier,
+                            temperatureUiState = temperatureUiState
+                        )
+                    },
+                    showTemperatureMeterComponent = weatherUiState.weather != Weather.RANDOM
                 )
             }
 
@@ -1491,6 +1621,7 @@ private fun ToolsSideSheetComponent(
     val sanityUiState = stateBundle.sanityUiState
     val timerUiState = stateBundle.timerUiState
     val phaseUiState = stateBundle.phaseUiState
+    val temperatureUiState = stateBundle.temperatureUiState
     val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
     val huntDurationBundle = stateBundle.huntDurationBundle
     val huntCooldownBundle = stateBundle.huntCooldownBundle
@@ -1519,9 +1650,6 @@ private fun ToolsSideSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
-                    operationConditionsComponent = { modifier ->
-
-                    },
                     sanityMedicationComponent = { modifier ->
                         SanityMedicationComponent(
                             modifier = modifier,
@@ -1696,39 +1824,6 @@ private fun ToolsSideSheetComponent(
     }
 }
 
-/*@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun CustomDifficultySheetComponent(
-    modifier: Modifier = Modifier,
-    showCustomDifficultyBottomSheet: Boolean = false,
-    onDismissRequest: () -> Unit = {}
-) {
-
-    val sheetState = rememberModalBottomSheetState()
-    val scope = rememberCoroutineScope()
-
-    if (showCustomDifficultyBottomSheet) {
-        ModalBottomSheet(
-            modifier = modifier,
-            onDismissRequest = {
-                showCustomDifficultyBottomSheet = false
-            },
-            sheetState = sheetState
-        ) {
-            // Sheet content
-            Button(onClick = {
-                scope.launch { sheetState.hide() }.invokeOnCompletion {
-                    if (!sheetState.isVisible) {
-                        showCustomDifficultyBottomSheet = false
-                    }
-                }
-            }) {
-                Text("Hide bottom sheet")
-            }
-        }
-    }
-}*/
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SanitySeekbar(
@@ -1840,32 +1935,6 @@ private fun SeekbarThumb(
             .clip(CircleShape)
             .background(innerColor)
     )
-}
-
-@Composable
-private fun InvestigationContentPortrait(
-    modifier: Modifier = Modifier,
-    investigationComponent: @Composable ColumnScope.(Modifier) -> Unit = {}
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Top
-    ) {
-        investigationComponent(modifier.weight(1f, false))
-    }
-}
-
-@Composable
-private fun InvestigationContentLandscape(
-    modifier: Modifier = Modifier,
-    investigationComponent: @Composable RowScope.(Modifier) -> Unit = {}
-) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.Start
-    ) {
-        investigationComponent(Modifier)
-    }
 }
 
 @Composable
@@ -2075,14 +2144,15 @@ private fun ToolbarSideSheet(
 @Composable
 fun OperationConfigsBottomSheet(
     modifier: Modifier = Modifier,
-    operationConditionsComponent: @Composable (Modifier) -> Unit = {},
     sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
+    playerDeathButtonComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
+    showTemperatureMeterComponent: Boolean,
 ) {
     Column(
         modifier = modifier,
@@ -2212,35 +2282,36 @@ fun OperationConfigsBottomSheet(
 
                     weatherConfigComponent(
                         Modifier
-                            .fillMaxWidth()
+                            .weight(1f)
                     )
 
                 }
             }
 
-            //TODO Temperature Meter
-            Surface(
-                modifier = Modifier
-                    .fillMaxHeight(),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                Box(
-                    Modifier
-                        .padding(8.dp),
-                    contentAlignment = Alignment.BottomCenter
+            if(showTemperatureMeterComponent) {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxHeight(),
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = LocalPalette.current.surfaceContainerLow
+                    )
                 ) {
-                    temperatureMeterComponent(
+                    Box(
                         Modifier
-                            .width(IntrinsicSize.Min)
-                    )
+                            .padding(8.dp),
+                        contentAlignment = Alignment.BottomCenter
+                    ) {
+                        temperatureMeterComponent(
+                            Modifier
+                                .width(IntrinsicSize.Min)
+                                .align(Alignment.Center)
+                        )
+                    }
                 }
             }
-
         }
 
         Row(
@@ -2268,25 +2339,42 @@ fun OperationConfigsBottomSheet(
                 )
             }
 
-            Surface(
+            Row(
                 modifier = Modifier,
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
+
+                Surface(
                     modifier = Modifier,
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = LocalPalette.current.surfaceContainerLow
+                    )
                 ) {
                     sanityMedicationComponent(
                         Modifier
                             .size(48.dp)
                     )
                 }
+
+                Surface(
+                    modifier = Modifier,
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = LocalPalette.current.surfaceContainerLow
+                    )
+                ) {
+                    playerDeathButtonComponent(
+                        Modifier
+                            .size(48.dp)
+                    )
+                }
+
             }
 
         }
@@ -2298,7 +2386,6 @@ fun OperationConfigsBottomSheet(
 @Composable
 fun OperationConfigsSideSheet(
     modifier: Modifier = Modifier,
-    operationConditionsComponent: @Composable (Modifier) -> Unit = {},
     sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},

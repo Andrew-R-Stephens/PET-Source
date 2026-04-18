@@ -65,6 +65,7 @@
     <string name="difficulty_setting_state_veryHigh">Very High</string>
     <string name="difficulty_setting_state_infinite">Infinite</string>
 
+    <string name="difficulty_setting_state_weather_unknown" translatable="false">Unknown Weather</string>
     <string name="difficulty_setting_state_weather_lightrain">Light Rain</string>
     <string name="difficulty_setting_state_weather_heavyrain">Heavy Rain</string>
     <string name="difficulty_setting_state_weather_snow">Snow</string>
