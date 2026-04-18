@@ -8,7 +8,8 @@ import com.tritiumgaming.shared.data.weather.model.TemperatureRange
 data class TemperatureUiState(
     val range: TemperatureRange = TemperatureRange(),
     val temporalGradient: Float = TEMPERATURE_FREEZING_POINT,
-    val current: Float = Temperature.TEMPERATURE_START_FUSEBOX_DISABLED
+    val current: Float = Temperature.TEMPERATURE_START_FUSEBOX_DISABLED,
+    val currentAsString: String = "%4.1f".format(current),
 ) {
 
     val isFreezingBreath: Boolean
@@ -20,9 +21,6 @@ data class TemperatureUiState(
             temporalGradient < TEMPERATURE_FREEZING_POINT -> TemporalGradientDirection.COOLING
             else -> TemporalGradientDirection.STABLE
         }
-
-    fun formatTemperature(temperature: Float): String =
-        "%4.1f".format(current)
 
     enum class TemporalGradientDirection {
         HEATING,

@@ -175,16 +175,18 @@ internal fun ExpandableCategoryRow(
     modifier: Modifier = Modifier,
     containerColor: Color = Color.Unspecified,
     isExpanded: Boolean = false,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.SpaceBetween,
+    verticalArrangement: Alignment.Vertical = Alignment.CenterVertically,
     content: @Composable RowScope.(modifier: Modifier) -> Unit = {}
 ) {
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = horizontalArrangement,
+        verticalAlignment = verticalArrangement,
         modifier = modifier
             .fillMaxWidth()
             .background(
-                containerColor,
-                RoundedCornerShape(8.dp)
+                color = containerColor,
+                shape = RoundedCornerShape(8.dp)
             )
     ) {
         content(

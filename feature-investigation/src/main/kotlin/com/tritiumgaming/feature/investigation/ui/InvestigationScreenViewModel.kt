@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.core.common.graphics.geometry.Curve.Companion.round
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
@@ -113,7 +114,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlin.math.min
+import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 
 class InvestigationScreenViewModel private constructor(
@@ -481,10 +485,13 @@ class InvestigationScreenViewModel private constructor(
     private val _temperatureState = MutableStateFlow(TemperatureData())
 
     private val _temperatureUiState = _temperatureState.map { temperatureState ->
+        /*val rounded = BigDecimal(temperatureState.current.toDouble())
+            .setScale(1, RoundingMode.HALF_UP).toFloat()*/
+        val rounded = "%4.1f".format(temperatureState.current)
         TemperatureUiState(
             range = temperatureState.range,
+            current = rounded.toFloat(),
             temporalGradient = temperatureState.current - temperatureState.previous,
-            current = temperatureState.current,
         )
     }.stateIn(
         scope = viewModelScope,
@@ -983,7 +990,7 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Timer Ui Functions
      */
-    private fun initTimerUiState() {
+    private fun initOperationTimerUiState() {
         _operationTimerState.update {
             SanityTimerData(
                 startTime = TIME_DEFAULT,
@@ -1154,10 +1161,10 @@ class InvestigationScreenViewModel private constructor(
     internal fun reset() {
         resetJournal()
 
-        resetTimer()
+        resetOperationTimer()
         resetPhase()
         resetSanity()
-        resetTimer()
+        resetOperationTimer()
     }
 
     /*
@@ -1169,7 +1176,6 @@ class InvestigationScreenViewModel private constructor(
      * */
     internal fun resetJournal() {
         resetEvidenceStates()
-        //resetGhostStates()
         resetExplicitNegations()
         resetTraitSelections()
     }
@@ -1188,7 +1194,6 @@ class InvestigationScreenViewModel private constructor(
                 else e
             }
         }
-        //updateGhostStates()
     }
 
     internal fun getRuledEvidence(
@@ -1303,8 +1308,7 @@ class InvestigationScreenViewModel private constructor(
             _temperatureState.update {
                 it.copy(
                     current = (currentTemperature + deltaDrain)
-                        .coerceIn(_temperatureUiState.value.range.low,
-                            _temperatureUiState.value.range.high),
+                        .coerceAtLeast(_temperatureUiState.value.range.low),
                     previous = currentTemperature,
                     lastTickTime = currentTime
                 )
@@ -1386,10 +1390,10 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * Timer ---------------------------
+     * Operation Timer ---------------------------
      */
 
-    private fun launchTimerJob() {
+    private fun launchOperationTimerJob() {
         timerJob = viewModelScope.launch {
 
             while (!operationTimerState.value.paused) {
@@ -1407,7 +1411,7 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun stopTimerJob() {
+    private fun stopOperationTimerJob() {
         _operationTimerState.update {
             it.copy(
                 paused = true
@@ -1415,16 +1419,6 @@ class InvestigationScreenViewModel private constructor(
         }
         timerJob?.cancel("Timer Job Cancelled")
     }
-
-    /*
-    /** The Sanity Drain starting time, whenever the play button is activated.
-     * @return The Sanity drain start time. */
-    private fun resetStartTime() =
-        _timerUiState.update {
-            it.copy(
-                startTime = TIME_DEFAULT
-            )
-        }*/
 
     private fun setOperationTimerRemainingTime(value: Long) {
         _operationTimerState.update {
@@ -1434,7 +1428,7 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun initializeNewTimer() {
+    private fun initializeNewOperationTimer() {
         _operationTimerState.update {
             val startTime =
                 if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
@@ -1454,37 +1448,30 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun playTimer() {
+    private fun playOperationTimer() {
         stopOperationControllerJob()
-        stopTimerJob()
+        stopOperationTimerJob()
 
-        initializeNewTimer()
+        initializeNewOperationTimer()
 
-        launchTimerJob()
+        launchOperationTimerJob()
         launchOperationControllerJob()
     }
 
-    private fun pauseTimer() {
-        stopTimerJob()
+    private fun pauseOperationTimer() {
+        stopOperationTimerJob()
         stopOperationControllerJob()
     }
 
-    internal fun toggleTimer() {
+    internal fun toggleOperationTimer() {
         if (operationTimerState.value.paused) {
-            playTimer()
+            playOperationTimer()
         } else {
-            pauseTimer()
+            pauseOperationTimer()
         }
     }
 
-    internal fun fastForwardTimer(time: Long) {
-        pauseTimer()
-        setOperationTimerRemainingTime(time)
-        skipPlayerInsanity(SanityLevel.HALF_SANITY)
-        playTimer()
-    }
-
-    internal fun skipTimer() {
+    internal fun skipOperationTimer() {
 
         val currentLevel = playerSanityUiState.value.sanityLevel
 
@@ -1497,7 +1484,7 @@ class InvestigationScreenViewModel private constructor(
 
         Log.d("InvestigationViewModel", "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
 
-        playTimer()
+        playOperationTimer()
         skipPlayerInsanity(newLevel)
         _operationTimerState.update {
             it.copy(
@@ -1508,9 +1495,9 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun resetTimer() {
-        stopTimerJob()
-        initTimerUiState()
+    private fun resetOperationTimer() {
+        stopOperationTimerJob()
+        initOperationTimerUiState()
     }
 
     /*
@@ -1636,7 +1623,7 @@ class InvestigationScreenViewModel private constructor(
             }
 
             setOperationTimerRemainingTime(difficultyState.settings.setupTime.toLong())
-            resetTimer()
+            resetOperationTimer()
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -1737,7 +1724,7 @@ class InvestigationScreenViewModel private constructor(
         updateMap(0)
         updateDifficulty(0)
 
-        initTimerUiState()
+        initOperationTimerUiState()
 
         initPlayerSanityUiState()
 

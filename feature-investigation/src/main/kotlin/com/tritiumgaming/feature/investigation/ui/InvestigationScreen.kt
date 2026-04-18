@@ -246,10 +246,10 @@ private fun InvestigationContent(
 
     val timerUiActions = TimerUiActions(
         onToggle = {
-            investigationViewModel.toggleTimer()
+            investigationViewModel.toggleOperationTimer()
         },
         onSkip = {
-            investigationViewModel.skipTimer()
+            investigationViewModel.skipOperationTimer()
         }
     )
 
@@ -1040,11 +1040,11 @@ private fun TemperatureComponent(
                 modifier = Modifier
                     .wrapContentSize()
                     .height(IntrinsicSize.Min),
-                text = ((temperatureUiState.current / 10) * 10).toString(),
+                text = temperatureUiState.currentAsString,
                 color = LocalPalette.current.onSurface,
                 style = LocalTypography.current.tertiary.regular.copy(
                     fontSize = 12.sp,
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 ),
                 maxLines = 1
             )
