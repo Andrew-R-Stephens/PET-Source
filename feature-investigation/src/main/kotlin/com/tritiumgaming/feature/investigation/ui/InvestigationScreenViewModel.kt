@@ -67,6 +67,8 @@ import com.tritiumgaming.shared.data.investigation.model.SanityTimerData.Compani
 import com.tritiumgaming.shared.data.investigation.model.StateOption
 import com.tritiumgaming.shared.data.investigation.model.TagOption
 import com.tritiumgaming.shared.data.investigation.model.TemperatureData
+import com.tritiumgaming.shared.data.investigation.model.ToolTimerData
+import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
@@ -221,71 +223,197 @@ class InvestigationScreenViewModel private constructor(
         )
     val difficultyState = _difficultyState
 
-    internal data class ToolTimerData(
-        val paused: Boolean = true
-    )
+    /**
+     * Tool Timer States
+     */
 
-    val smudgeHuntProtectionTimerUiState = NotchedProgressBarUiState(
-        max = 3.minutes.inWholeMilliseconds,
-        origin = 0,
-        remaining = 50000,
-        notches = listOf(
-            ProgressBarNotch(
-                UiText.StringResource(GhostTitle.SPIRIT.toStringResource()),
-                (3).minutes.inWholeMilliseconds
-            ),
-            ProgressBarNotch(
-                UiText.DynamicString("Standard"),
-                (1.5).minutes.inWholeMilliseconds
-            ),
-            ProgressBarNotch(
-                UiText.StringResource(GhostTitle.DEMON.toStringResource()),
-                (1).minutes.inWholeMilliseconds
-            ),
+    private val smudgeHuntTimerProgressBarNotches = listOf(
+        ProgressBarNotch(
+            UiText.StringResource(GhostTitle.SPIRIT.toStringResource()),
+            (3).minutes.inWholeMilliseconds
         ),
-        running = false
+        ProgressBarNotch(
+            UiText.DynamicString("Standard"),
+            (1.5).minutes.inWholeMilliseconds
+        ),
+        ProgressBarNotch(
+            UiText.StringResource(GhostTitle.DEMON.toStringResource()),
+            (1).minutes.inWholeMilliseconds
+        ),
     )
+    private val _smudgeHuntProtectionTimerState = MutableStateFlow(
+        NotchedProgressBarUiState(
+            max = 3.minutes.inWholeMilliseconds,
+            origin = 0,
+            remaining = 50000,
+            notches = smudgeHuntTimerProgressBarNotches,
+            running = false
+        )
+    )
+    val smudgeHuntProtectionTimerUiState = _smudgeHuntProtectionTimerState.asStateFlow()
 
-    val huntDurationTimerUiState = NotchedProgressBarUiState(
-        max = 1.minutes.inWholeMilliseconds,
-        origin = 0,
-        remaining = (.87).minutes.inWholeMilliseconds,
-        notches = listOf(
-            ProgressBarNotch(
-                UiText.DynamicString("Standard"),
-                (1.5).minutes.inWholeMilliseconds
-            ),
-            ProgressBarNotch(
-                UiText.DynamicString("Cursed"),
-                (1.5).minutes.inWholeMilliseconds
-            ),
+    private val huntDurationTimerProgressBarNotches = listOf(
+        ProgressBarNotch(
+            UiText.DynamicString("Standard"),
+            (1.5).minutes.inWholeMilliseconds
         ),
-        running = false
+        ProgressBarNotch(
+            UiText.DynamicString("Cursed"),
+            (1.5).minutes.inWholeMilliseconds
+        ),
     )
+    private val _huntDurationTimerState = MutableStateFlow(
+        NotchedProgressBarUiState(
+            max = 1.minutes.inWholeMilliseconds,
+            origin = 0,
+            remaining = (.87).minutes.inWholeMilliseconds,
+            notches = huntDurationTimerProgressBarNotches,
+            running = false
+        )
+    )
+    val huntDurationTimerUiState = _huntDurationTimerState.asStateFlow()
 
-    val huntGapTimerUiState = NotchedProgressBarUiState(
-        max = 72000,
-        origin = 0,
-        remaining = 50000,
-        notches = listOf(
-        ),
-        running = false
+
+    private val huntGapTimerProgressBarNotches = listOf(
+        ProgressBarNotch(
+            UiText.DynamicString("Standard"),
+            (1.5).minutes.inWholeMilliseconds
+        )
     )
+    private val _huntCooldownTimerUiState = MutableStateFlow(
+        NotchedProgressBarUiState(
+            max = 72000,
+            origin = 0,
+            notches = huntGapTimerProgressBarNotches,
+            remaining = 50000,
+            running = false
+        )
+    )
+    val huntCooldownTimerUiState = _huntCooldownTimerUiState.asStateFlow()
 
     val maxTimeFromSetting = 120000L
-    val fingerprintTimerState = NotchedProgressBarUiState(
-        max = maxTimeFromSetting,
-        origin = 0,
-        remaining = 50000L,
-        notches = listOf(
-            ProgressBarNotch(UiText.DynamicString("Obake"), (maxTimeFromSetting * .5f).toLong()),
-            ProgressBarNotch(UiText.DynamicString("Normal"), maxTimeFromSetting)
+    private val fingerprintTimerProgressBarNotches = listOf(
+        ProgressBarNotch(
+            UiText.DynamicString("Obake"),
+            (maxTimeFromSetting * .5f).toLong()
         ),
-        running = false
+        ProgressBarNotch(
+            UiText.DynamicString("Normal"),
+            maxTimeFromSetting
+        )
     )
+    private val _fingerprintTimerUiState = MutableStateFlow(
+        NotchedProgressBarUiState(
+            max = maxTimeFromSetting,
+            origin = 0,
+            remaining = 50000L,
+            notches = fingerprintTimerProgressBarNotches,
+            running = false
+        )
+    )
+    val fingerprintTimerUiState = _fingerprintTimerUiState.asStateFlow()
 
     private val _toolsTimerState = MutableStateFlow(ToolTimerData())
-    private val toolsTimerState = _toolsTimerState.asStateFlow()
+
+    fun triggerToolTimer(
+        type: ToolTimerType
+    ) {
+        when(type) {
+            ToolTimerType.HUNT_DURATION -> {
+                if(!_huntDurationTimerState.value.running) {
+                    _huntDurationTimerState.update {
+                        it.copy(
+                            running = true
+                        )
+                    }
+                } else {
+                    _huntDurationTimerState.update {
+                        it.copy(
+                            remaining = it.max,
+                            running = false
+                        )
+                    }
+                }
+            }
+            ToolTimerType.HUNT_COOLDOWN -> {
+                if(!_huntCooldownTimerUiState.value.running) {
+                    _huntCooldownTimerUiState.update {
+                        it.copy(
+                            running = true
+                        )
+                    }
+                } else {
+                    _huntCooldownTimerUiState.update {
+                        it.copy(
+                            remaining = it.max,
+                            running = false
+                        )
+                    }
+                }
+            }
+            ToolTimerType.SMUDGE_TIMER -> {
+                if(!_smudgeHuntProtectionTimerState.value.running) {
+                    _smudgeHuntProtectionTimerState.update {
+                        it.copy(
+                            running = true
+                        )
+                    }
+                } else {
+                    _smudgeHuntProtectionTimerState.update {
+                        it.copy(
+                            remaining = it.max,
+                            running = false
+                        )
+                    }
+                }
+            }
+            ToolTimerType.FINGERPRINT_DURATION -> {
+                if(!_fingerprintTimerUiState.value.running) {
+                    _fingerprintTimerUiState.update {
+                        it.copy(
+                            running = true
+                        )
+                    }
+                } else {
+                    _fingerprintTimerUiState.update {
+                        it.copy(
+                            remaining = it.max,
+                            running = false
+                        )
+                    }
+                }
+            }
+        }
+
+        val runMasterClock = huntDurationTimerUiState.value.running ||
+                huntCooldownTimerUiState.value.running ||
+                smudgeHuntProtectionTimerUiState.value.running ||
+                fingerprintTimerUiState.value.running
+
+        if(runMasterClock) {
+            if(_toolsTimerState.value.paused) {
+                _toolsTimerState.update {
+                    it.copy(
+                        paused = false
+                    )
+                }
+                launchToolTimersJob()
+            }
+        } else {
+            _toolsTimerState.update {
+                it.copy(
+                    paused = true
+                )
+            }
+
+            stopToolTimersJob()
+        }
+
+    }
+
+    /**
+     * Operation Timer State
+     */
 
     private val _operationTimerState = MutableStateFlow(SanityTimerData())
     private val operationTimerState = _operationTimerState.asStateFlow()
@@ -1160,9 +1288,9 @@ class InvestigationScreenViewModel private constructor(
      */
 
     private fun launchToolTimersJob() {
-        timerJob = viewModelScope.launch {
+        toolTimersJob = viewModelScope.launch {
 
-            while (!operationTimerState.value.paused) {
+            while (!_toolsTimerState.value.paused) {
 
                 val delay = 100L
                 val preDelay = System.currentTimeMillis()
@@ -1170,8 +1298,7 @@ class InvestigationScreenViewModel private constructor(
                 val postDelay = System.currentTimeMillis()
                 val actualDelay = postDelay - preDelay
 
-                val remaining = operationTimerState.value.remainingTime
-                setTimeRemaining((remaining - actualDelay).coerceAtLeast(0L))
+                tickToolTimers(actualDelay)
             }
         }
     }
@@ -1183,6 +1310,37 @@ class InvestigationScreenViewModel private constructor(
             )
         }
         timerJob?.cancel("Timer Job Cancelled")
+    }
+
+    private fun tickToolTimers(delay: Long) {
+        if(_huntDurationTimerState.value.running) {
+            _huntDurationTimerState.update {
+                it.copy(
+                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                )
+            }
+        }
+        if(_huntCooldownTimerUiState.value.running) {
+            _huntCooldownTimerUiState.update {
+                it.copy(
+                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                )
+            }
+        }
+        if(_smudgeHuntProtectionTimerState.value.running) {
+            _smudgeHuntProtectionTimerState.update {
+                it.copy(
+                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                )
+            }
+        }
+        if(_fingerprintTimerUiState.value.running) {
+            _fingerprintTimerUiState.update {
+                it.copy(
+                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                )
+            }
+        }
     }
 
     /*
@@ -1201,7 +1359,8 @@ class InvestigationScreenViewModel private constructor(
                 val actualDelay = postDelay - preDelay
 
                 val remaining = operationTimerState.value.remainingTime
-                setTimeRemaining((remaining - actualDelay).coerceAtLeast(0L))
+                setOperationTimerRemainingTime((remaining - actualDelay)
+                    .coerceAtLeast(0L))
             }
         }
     }
@@ -1225,7 +1384,7 @@ class InvestigationScreenViewModel private constructor(
             )
         }*/
 
-    private fun setTimeRemaining(value: Long) {
+    private fun setOperationTimerRemainingTime(value: Long) {
         _operationTimerState.update {
             it.copy(
                 remainingTime = value
@@ -1278,7 +1437,7 @@ class InvestigationScreenViewModel private constructor(
 
     internal fun fastForwardTimer(time: Long) {
         pauseTimer()
-        setTimeRemaining(time)
+        setOperationTimerRemainingTime(time)
         skipPlayerInsanity(SanityLevel.HALF_SANITY)
         playTimer()
     }
@@ -1419,7 +1578,7 @@ class InvestigationScreenViewModel private constructor(
 
             setFuseBoxOverride(_difficultyState.value.settings.fuseBoxAtStartOfContract)
 
-            setTimeRemaining(_difficultyState.value.settings.setupTime.toLong())
+            setOperationTimerRemainingTime(_difficultyState.value.settings.setupTime.toLong())
             resetTimer()
 
         } catch (e: Exception) {

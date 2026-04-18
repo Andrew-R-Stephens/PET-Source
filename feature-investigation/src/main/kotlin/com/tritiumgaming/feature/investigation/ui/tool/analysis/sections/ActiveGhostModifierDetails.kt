@@ -14,9 +14,11 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiActions
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
+import com.tritiumgaming.core.ui.widgets.text.UiText
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
@@ -146,21 +148,21 @@ internal fun ActiveGhostModifierDetails(
                         val notches = mutableListOf<ProgressBarNotch>()
                         sanityBounds.suppressed?.let {
                             notches.add(ProgressBarNotch(
-                                label = "${it.toLong()}",
+                                label = UiText.DynamicString("${it.toLong()}"),
                                 xPos = 100-it.toLong()
                             ))
                             highest = max(highest, it.toLong())
                         }
                         sanityBounds.normal?.let {
                             notches.add(ProgressBarNotch(
-                                label = "${it.toLong()}",
+                                label = UiText.DynamicString("${it.toLong()}"),
                                 xPos = 100-it.toLong()
                             ))
                             highest = max(highest, it.toLong())
                         }
                         sanityBounds.empowered?.let {
                             notches.add(ProgressBarNotch(
-                                label = "${it.toLong()}",
+                                label = UiText.DynamicString("${it.toLong()}"),
                                 xPos = 100-it.toLong()
                             ))
                             highest = max(highest, it.toLong())
@@ -184,7 +186,8 @@ internal fun ActiveGhostModifierDetails(
                                     border = LocalPalette.current.onSurface,
                                     notch = LocalPalette.current.onSurface,
                                     label = LocalPalette.current.onSurface,
-                                )
+                                ),
+                                actions = NotchedProgressBarUiActions()
                             )
                         )
                     }
@@ -216,13 +219,13 @@ internal fun ActiveGhostModifierDetails(
                         val notches = mutableListOf<ProgressBarNotch>()
                         minSpeed.let {
                             notches.add(ProgressBarNotch(
-                                label = "%.1f".format(it / 60f),
+                                label = UiText.DynamicString("%.1f".format(it / 60f)),
                                 xPos = 360L-it.toLong()
                             ))
                         }
                         maxSpeed.let {
                             notches.add(ProgressBarNotch(
-                                label = "%.1f".format(it / 60f),
+                                label = UiText.DynamicString("%.1f".format(it / 60f)),
                                 xPos = 360L-it.toLong()
                             ))
                         }
@@ -245,7 +248,8 @@ internal fun ActiveGhostModifierDetails(
                                     border = LocalPalette.current.onSurface,
                                     notch = LocalPalette.current.onSurface,
                                     label = LocalPalette.current.onSurface,
-                                )
+                                ),
+                                actions = NotchedProgressBarUiActions()
                             )
                         )
                     }

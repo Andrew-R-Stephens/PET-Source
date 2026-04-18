@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
@@ -93,8 +92,8 @@ fun TimerToggleButton(
     modifier: Modifier = Modifier,
     state: TimerUiState,
     actions: TimerUiActions,
-    playContent: @Composable (Modifier) -> Unit = {},
-    pauseContent: @Composable (Modifier) -> Unit = {}
+    primaryContent: @Composable (Modifier) -> Unit = {},
+    alternativeContent: @Composable (Modifier) -> Unit = {}
 ) {
     val state = state.paused
 
@@ -108,13 +107,13 @@ fun TimerToggleButton(
         contentPadding = PaddingValues(8.dp)
     ) {
         if (state) {
-            playContent(
+            primaryContent(
                 Modifier
                     .fillMaxSize()
                     .padding(4.dp)
             )
         } else {
-            pauseContent(
+            alternativeContent(
                 Modifier
                     .fillMaxSize()
                     .padding(4.dp)

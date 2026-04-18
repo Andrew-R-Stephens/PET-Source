@@ -13,6 +13,7 @@ import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import com.tritiumgaming.core.ui.widgets.text.UiText
+import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 
 @Composable
 fun NotchedProgressBar(
@@ -125,7 +126,12 @@ fun NotchedProgressBar(
 data class NotchedProgressBarBundle(
     val title: String = "",
     val state: NotchedProgressBarUiState,
-    val colors: NotchedProgressBarUiColors
+    val colors: NotchedProgressBarUiColors,
+    val actions: NotchedProgressBarUiActions
+)
+
+data class NotchedProgressBarUiActions(
+    val onToggle: () -> Unit = {}
 )
 
 data class NotchedProgressBarUiColors(
@@ -137,9 +143,9 @@ data class NotchedProgressBarUiColors(
 )
 
 data class NotchedProgressBarUiState(
-    val max: Long,
+    val max: Long = 0,
     val origin: Long = 0,
-    val remaining: Long,
+    val remaining: Long = 0,
     val notches: List<ProgressBarNotch> = listOf(),
     val running: Boolean = false
 )

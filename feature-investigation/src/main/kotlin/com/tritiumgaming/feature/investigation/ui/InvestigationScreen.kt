@@ -82,6 +82,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiActions
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toStringResource
@@ -130,6 +131,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
@@ -171,9 +173,9 @@ private fun InvestigationContent(
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
 
     val smudgeHuntProtectionTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
-    val huntDurationTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
-    val huntGapTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
-    val fingerprintTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
+    val huntDurationTimerState by investigationViewModel.huntDurationTimerUiState.collectAsStateWithLifecycle()
+    val huntGapTimerState by investigationViewModel.huntCooldownTimerUiState.collectAsStateWithLifecycle()
+    val fingerprintTimerState by investigationViewModel.fingerprintTimerUiState.collectAsStateWithLifecycle()
 
     // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
 
@@ -360,25 +362,45 @@ private fun InvestigationContent(
     val smudgeHuntPreventionBundle = NotchedProgressBarBundle(
         title = "Smudge Hunt Protection",
         state = smudgeHuntProtectionTimerState,
-        colors = notchedProgressBarUiColors
+        colors = notchedProgressBarUiColors,
+        actions = NotchedProgressBarUiActions(
+            onToggle = {
+                investigationViewModel.triggerToolTimer(ToolTimerType.SMUDGE_TIMER)
+            }
+        )
     )
 
     val huntDurationBundle = NotchedProgressBarBundle(
         title = "Hunt Duration",
         state = huntDurationTimerState,
-        colors = notchedProgressBarUiColors
+        colors = notchedProgressBarUiColors,
+        actions = NotchedProgressBarUiActions(
+            onToggle = {
+                investigationViewModel.triggerToolTimer(ToolTimerType.HUNT_DURATION)
+            }
+        )
     )
 
     val huntCooldownBundle = NotchedProgressBarBundle(
         title = "Hunt Cooldown",
         state = huntGapTimerState,
-        colors = notchedProgressBarUiColors
+        colors = notchedProgressBarUiColors,
+        actions = NotchedProgressBarUiActions(
+            onToggle = {
+                investigationViewModel.triggerToolTimer(ToolTimerType.HUNT_COOLDOWN)
+            }
+        )
     )
 
     val fingerprintTimerBundle = NotchedProgressBarBundle(
         title = "Fingerprint Lifetime",
         state = fingerprintTimerState,
-        colors = notchedProgressBarUiColors
+        colors = notchedProgressBarUiColors,
+        actions = NotchedProgressBarUiActions(
+            onToggle = {
+                investigationViewModel.triggerToolTimer(ToolTimerType.FINGERPRINT_DURATION)
+            }
+        )
     )
 
     val investigationUiState = InvestigationUiState(
@@ -813,7 +835,7 @@ private fun TimerComponentColumn(
                     .size(48.dp),
                 state = timerUiState,
                 actions = timerUiActions,
-                playContent = { modifier ->
+                primaryContent = { modifier ->
                     Icon(
                         modifier = modifier,
                         painter = painterResource(R.drawable.ic_control_play),
@@ -821,7 +843,7 @@ private fun TimerComponentColumn(
                         tint = LocalPalette.current.onSurface
                     )
                 },
-                pauseContent = { modifier ->
+                alternativeContent = { modifier ->
                     Icon(
                         modifier = modifier,
                         painter = painterResource(R.drawable.ic_control_pause),
@@ -914,7 +936,7 @@ private fun TimerComponentRow(
                     .size(48.dp),
                 state = timerUiState,
                 actions = timerUiActions,
-                playContent = { modifier ->
+                primaryContent = { modifier ->
                     Icon(
                         modifier = modifier,
                         painter = painterResource(R.drawable.ic_control_play),
@@ -922,7 +944,7 @@ private fun TimerComponentRow(
                         tint = LocalPalette.current.onSurface
                     )
                 },
-                pauseContent = { modifier ->
+                alternativeContent = { modifier ->
                     Icon(
                         modifier = modifier,
                         painter = painterResource(R.drawable.ic_control_pause),

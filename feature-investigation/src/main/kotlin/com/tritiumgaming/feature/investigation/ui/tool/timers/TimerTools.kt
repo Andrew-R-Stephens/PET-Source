@@ -1,5 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.tool.timers
 
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -7,6 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,9 +36,12 @@ internal fun TimerTools(
     modifier: Modifier = Modifier,
     component: @Composable ColumnScope.(Modifier) -> Unit = {},
 ) {
+    val scrollState = rememberScrollState()
+
     Column (
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier
+            .verticalScroll(scrollState),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
 
 
@@ -87,44 +94,4 @@ fun ProgressBarTimer(
         bundle = bundle,
         icon = { modifier -> iconComponent(modifier) }
     )
-}
-
-@Preview
-@Composable
-private fun Preview() {
-
-    SelectiveTheme {
-
-        ProgressBarTimer(
-            modifier = Modifier,
-            NotchedProgressBarBundle(
-                title = "Smudge Hunt Protection",
-                state = NotchedProgressBarUiState(
-                    max = 180000,
-                    remaining = 120000,
-                    notches = listOf(
-                        ProgressBarNotch("Yurei", 180000),
-                        ProgressBarNotch("Normal", 90000),
-                        ProgressBarNotch("Demon", 60000)
-                    )
-                ),
-                colors = NotchedProgressBarUiColors(
-                    remaining = LocalPalette.current.primary,
-                    background = LocalPalette.current.surface,
-                    border = LocalPalette.current.onSurface,
-                    notch = LocalPalette.current.onSurface,
-                    label = LocalPalette.current.onSurface,
-                )
-            )
-        ) { modifier ->
-            HuntCooldownDurationIcon(
-                modifier = modifier,
-                colors = IconVectorColors.defaults().copy(
-                    fillColor = LocalPalette.current.onSurface
-                )
-            )
-        }
-
-    }
-
 }

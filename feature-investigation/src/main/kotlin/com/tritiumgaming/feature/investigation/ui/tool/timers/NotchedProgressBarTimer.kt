@@ -9,18 +9,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
 import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
 
 @Composable
 internal fun NotchedProgressBarTimer(
@@ -71,7 +77,7 @@ internal fun NotchedProgressBarTimer(
 
             Box(
                 modifier = Modifier
-                    .height(48.dp)
+                    .height(36.dp)
                     .weight(1f)
             ) {
                 NotchedProgressBar(
@@ -82,6 +88,35 @@ internal fun NotchedProgressBarTimer(
                     bundle = bundle
                 )
             }
+
+            TimerToggleButton(
+                modifier = Modifier
+                    .size(48.dp),
+                state = TimerUiState(
+                    paused = !bundle.state.running
+                ),
+                actions = TimerUiActions(
+                    onToggle = {
+                        bundle.actions.onToggle()
+                    }
+                ),
+                primaryContent = { modifier ->
+                    Icon(
+                        modifier = modifier,
+                        painter = painterResource(R.drawable.ic_control_play),
+                        contentDescription = null,
+                        tint = LocalPalette.current.onSurface
+                    )
+                },
+                alternativeContent = { modifier ->
+                    Icon(
+                        modifier = modifier,
+                        painter = painterResource(R.drawable.ic_control_reset),
+                        contentDescription = null,
+                        tint = LocalPalette.current.onSurface
+                    )
+                }
+            )
 
         }
     }
