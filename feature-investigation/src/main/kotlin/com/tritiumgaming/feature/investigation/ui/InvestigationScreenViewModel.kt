@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.core.common.graphics.geometry.Curve.Companion.round
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
@@ -114,10 +113,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
-import java.math.RoundingMode
 import kotlin.math.min
-import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 
 class InvestigationScreenViewModel private constructor(
@@ -205,7 +201,7 @@ class InvestigationScreenViewModel private constructor(
      * Routines
      */
     private var operationControllerJob: Job? = null
-    private var timerJob: Job? = null
+    private var operationTimerJob: Job? = null
 
     private var toolTimersJob: Job? = null
 
@@ -322,8 +318,22 @@ class InvestigationScreenViewModel private constructor(
     val fingerprintTimerUiState = _fingerprintTimerUiState.asStateFlow()
 
     private val _toolsTimerState = MutableStateFlow(ToolTimerData())
+    private fun MutableStateFlow<NotchedProgressBarUiState>.toggleTimer() {
+        update { state ->
+            if (!state.running) state.copy(running = true)
+            else state.copy(remaining = state.max, running = false)
+        }
+    }
 
-    fun triggerToolTimer(
+    fun triggerToolTimer(type: ToolTimerType) {
+        when(type) {
+            ToolTimerType.HUNT_DURATION -> _huntDurationTimerState.toggleTimer()
+            ToolTimerType.HUNT_COOLDOWN -> _huntCooldownTimerUiState.toggleTimer()
+            ToolTimerType.SMUDGE_TIMER -> _smudgeHuntProtectionTimerState.toggleTimer()
+            ToolTimerType.FINGERPRINT_DURATION -> _fingerprintTimerUiState.toggleTimer()
+        }
+    }
+    /*fun triggerToolTimer(
         type: ToolTimerType
     ) {
         when(type) {
@@ -392,8 +402,8 @@ class InvestigationScreenViewModel private constructor(
                 }
             }
         }
-
-        val runMasterClock = huntDurationTimerUiState.value.running ||
+    }
+    val runMasterClock = huntDurationTimerUiState.value.running ||
                 huntCooldownTimerUiState.value.running ||
                 smudgeHuntProtectionTimerUiState.value.running ||
                 fingerprintTimerUiState.value.running
@@ -415,9 +425,7 @@ class InvestigationScreenViewModel private constructor(
             }
 
             stopToolTimersJob()
-        }
-
-    }
+        }*/
 
     /**
      * Operation Timer State
@@ -446,24 +454,15 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    /* Weather */
     private val _weatherState = combine(
         difficultyOverridesState,
         difficultyState
-    ) { operationConditionsState, difficultyState ->
-        val difficultyWeather = difficultyState.settings.weather
-        val weatherOverride = operationConditionsState.weather
-
-        val weather = if(difficultyWeather == Weather.RANDOM) { weatherOverride }
-        else { difficultyWeather }
-
-        WeatherData(
-            weather = weather
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = WeatherData()
+    ) { overrides, diff ->
+        if (diff.settings.weather == Weather.RANDOM) overrides.weather
+        else diff.settings.weather
+    }.stateIn(viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        Weather.RANDOM
     )
 
     private val _weatherUiState = combine(
@@ -471,7 +470,7 @@ class InvestigationScreenViewModel private constructor(
         difficultyState,
     ) { weatherState, difficultyState ->
         WeatherUiState(
-            weather = weatherState.weather,
+            weather = weatherState,
             enabled = difficultyState.settings.weather == Weather.RANDOM
         )
     }.stateIn(
@@ -1350,12 +1349,12 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun stopToolTimersJob() {
-        _operationTimerState.update {
+        _toolsTimerState.update {
             it.copy(
                 paused = true
             )
         }
-        timerJob?.cancel("Timer Job Cancelled")
+        toolTimersJob?.cancel("Timer Job Cancelled")
     }
 
     private fun tickToolTimers(delay: Long) {
@@ -1394,7 +1393,7 @@ class InvestigationScreenViewModel private constructor(
      */
 
     private fun launchOperationTimerJob() {
-        timerJob = viewModelScope.launch {
+        operationTimerJob = viewModelScope.launch {
 
             while (!operationTimerState.value.paused) {
 
@@ -1417,7 +1416,7 @@ class InvestigationScreenViewModel private constructor(
                 paused = true
             )
         }
-        timerJob?.cancel("Timer Job Cancelled")
+        operationTimerJob?.cancel("Timer Job Cancelled")
     }
 
     private fun setOperationTimerRemainingTime(value: Long) {
@@ -1498,23 +1497,6 @@ class InvestigationScreenViewModel private constructor(
     private fun resetOperationTimer() {
         stopOperationTimerJob()
         initOperationTimerUiState()
-    }
-
-    /*
-     * Weather ---------------------------
-     */
-    internal fun incrementWeatherIndex() {
-        /*incrementWeatherIndexUseCase(_difficultyState.value.index)
-            .getOrNull()?.let { index ->
-                setWeatherIndex(index)
-            }*/
-    }
-
-    internal fun decrementWeatherIndex() {
-        /*decrementWeatherIndexUseCase(_weatherState.value.index)
-            .getOrNull()?.let { index ->
-                setWeatherIndex(index)
-            }*/
     }
 
     internal fun setWeather(weather: Weather) {
@@ -1730,6 +1712,27 @@ class InvestigationScreenViewModel private constructor(
 
         resetEvidenceStates()
         resetTraitSelections()
+
+        viewModelScope.launch {
+            combine(
+                _huntDurationTimerState.map { it.running },
+                _huntCooldownTimerUiState.map { it.running },
+                _smudgeHuntProtectionTimerState.map { it.running },
+                _fingerprintTimerUiState.map { it.running }
+            ) { r1, r2, r3, r4 -> r1 || r2 || r3 || r4 }
+                .distinctUntilChanged()
+                .collect { shouldRun ->
+                    if (shouldRun) {
+                        _toolsTimerState.update {
+                            it.copy(
+                                paused = false
+                            )
+                        }
+                        launchToolTimersJob()
+                    }
+                    else stopToolTimersJob()
+                }
+        }
     }
 
     companion object {
