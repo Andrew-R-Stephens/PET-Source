@@ -431,7 +431,13 @@ class InvestigationScreenViewModel private constructor(
      * Operation Timer State
      */
 
-    private val _operationTimerState = MutableStateFlow(SanityTimerData())
+    private val _operationTimerState = MutableStateFlow(
+        SanityTimerData(
+            startTime = TIME_DEFAULT,
+            remainingTime = difficultyState.value.settings.setupTime.toLong(),
+            paused = true
+        )
+    )
     private val operationTimerState = _operationTimerState.asStateFlow()
 
     /**/
@@ -484,8 +490,6 @@ class InvestigationScreenViewModel private constructor(
     private val _temperatureState = MutableStateFlow(TemperatureData())
 
     private val _temperatureUiState = _temperatureState.map { temperatureState ->
-        /*val rounded = BigDecimal(temperatureState.current.toDouble())
-            .setScale(1, RoundingMode.HALF_UP).toFloat()*/
         val rounded = "%4.1f".format(temperatureState.current)
         TemperatureUiState(
             range = temperatureState.range,
@@ -623,7 +627,12 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val operationTimerUiState = _operationTimerUiState
 
-    private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
+    private val _playerSanityUiState = MutableStateFlow(
+        PlayerSanityUiState(
+            sanityLevel = difficultyState.value.settings.startingSanity.toFloat(),
+            insanityLevel = 1f - difficultyState.value.settings.startingSanity.toFloat()
+        )
+    )
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
     fun onUseSanityMedication() {
@@ -1002,14 +1011,14 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Player Sanity Ui Functions
      */
-    private fun initPlayerSanityUiState() {
+    /*private fun initPlayerSanityUiState() {
         _playerSanityUiState.update {
             PlayerSanityUiState(
                 sanityLevel = difficultyState.value.settings.startingSanity.toFloat(),
                 insanityLevel = 1f - difficultyState.value.settings.startingSanity.toFloat()
             )
         }
-    }
+    }*/
 
     /*
      * Toolbar Ui Functions
@@ -1708,7 +1717,7 @@ class InvestigationScreenViewModel private constructor(
 
         initOperationTimerUiState()
 
-        initPlayerSanityUiState()
+        //initPlayerSanityUiState()
 
         resetEvidenceStates()
         resetTraitSelections()

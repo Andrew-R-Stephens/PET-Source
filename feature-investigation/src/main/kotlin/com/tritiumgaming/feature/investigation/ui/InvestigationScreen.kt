@@ -275,8 +275,8 @@ private fun InvestigationContent(
 
     val weatherUiActions = ConfigActionsBundle(
         carouselUiActions = CarouselUiActions(
-            onLeftClick = { investigationViewModel.decrementWeatherIndex() },
-            onRightClick = { investigationViewModel.incrementWeatherIndex() }
+            onLeftClick = { /*investigationViewModel.decrementWeatherIndex()*/ },
+            onRightClick = { /*investigationViewModel.incrementWeatherIndex()*/ }
         ),
         dropdownUiActions = DropdownUiActions(
             onSelect = {
