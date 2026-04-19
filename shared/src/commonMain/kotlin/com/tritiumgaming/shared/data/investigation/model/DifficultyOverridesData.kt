@@ -5,5 +5,14 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 
 data class DifficultyOverridesData(
     val weather: Weather = Weather.RANDOM,
-    val fuseBox: FuseBoxAtStartOfContract = FuseBoxAtStartOfContract.ON
-)
+    val fuseBox: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED
+) {
+
+    companion object {
+        enum class FuseBoxFlag {
+            FUSEBOX_ENABLED,
+            FUSEBOX_DISABLED
+        }
+    }
+
+}

@@ -59,6 +59,7 @@ import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptio
 import com.tritiumgaming.shared.data.investigation.model.InvestigationScreenUserPreferences
 import com.tritiumgaming.shared.data.investigation.model.MapData
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.investigation.model.PhaseData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
@@ -72,7 +73,6 @@ import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
-import com.tritiumgaming.shared.data.investigation.model.WeatherData
 import com.tritiumgaming.shared.data.investigation.model.WeightOption
 import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
@@ -450,12 +450,14 @@ class InvestigationScreenViewModel private constructor(
             )
         }
     }
-    internal fun setFuseBoxOverride(state: FuseBoxAtStartOfContract) {
+    internal fun setFuseBoxOverride(state: FuseBoxFlag) {
         _difficultyOverridesState.update {
             it.copy(
-                fuseBox = if(difficultyState.value.settings.fuseBoxAtStartOfContract !=
-                        FuseBoxAtStartOfContract.BROKEN) { state }
-                    else FuseBoxAtStartOfContract.BROKEN
+                fuseBox =
+                    when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
+                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_DISABLED
+                        else -> state
+                    }
             )
         }
     }
@@ -488,6 +490,36 @@ class InvestigationScreenViewModel private constructor(
 
     /* Temperature */
     private val _temperatureState = MutableStateFlow(TemperatureData())
+    private fun updateTemperature(value: Float, timeStamp: Long) {
+
+        val fuseBoxOnContractOn = difficultyState.value.settings.fuseBoxAtStartOfContract ==
+                FuseBoxAtStartOfContract.ON
+        val fuseBoxOverrideOn = difficultyOverridesState.value.fuseBox ==
+                FuseBoxFlag.FUSEBOX_ENABLED
+
+        val fuseBoxEnabled = fuseBoxOnContractOn && fuseBoxOverrideOn
+
+
+        val maxNormal = when(fuseBoxEnabled &&
+                _temperatureState.value.current >= _weatherState.value.toTemperatureRange().high
+        ) {
+            true -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+            else -> _weatherState.value.toTemperatureRange().high
+        }
+
+        val newTemp = _temperatureState.value.current + value
+
+        _temperatureState.update {
+            it.copy(
+                previous = it.current,
+                current = newTemp.coerceIn(
+                    _weatherState.value.toTemperatureRange().low,
+                    maxNormal
+                ),
+                lastUpdate = timeStamp
+            )
+        }
+    }
 
     private val _temperatureUiState = _temperatureState.map { temperatureState ->
         val rounded = "%4.1f".format(temperatureState.current)
@@ -1142,7 +1174,7 @@ class InvestigationScreenViewModel private constructor(
         }
         _temperatureState.update{
             it.copy(
-                lastTickTime = System.currentTimeMillis()
+                lastUpdate = System.currentTimeMillis()
             )
         }
         operationControllerJob = viewModelScope.launch {
@@ -1298,29 +1330,21 @@ class InvestigationScreenViewModel private constructor(
      */
     private fun tickTemperature() {
         val currentTime = System.currentTimeMillis()
-        val lastTickTime = _temperatureState.value.lastTickTime
+        val lastTickTime = _temperatureState.value.lastUpdate
         val deltaTime = if (lastTickTime > 0)
             currentTime - lastTickTime else 0L
 
         if (deltaTime > 0) {
             val temperatureChangeModifier = when(difficultyOverridesState.value.fuseBox) {
-                FuseBoxAtStartOfContract.ON -> TEMPERATURE_HEATING_RATE
+                FuseBoxFlag.FUSEBOX_ENABLED -> TEMPERATURE_HEATING_RATE
                 else -> TEMPERATURE_COOLING_RATE
             }
 
             val multiplier = 0.001f
-
             val deltaDrain = deltaTime * temperatureChangeModifier * multiplier
 
-            val currentTemperature = _temperatureState.value.current
-            _temperatureState.update {
-                it.copy(
-                    current = (currentTemperature + deltaDrain)
-                        .coerceAtLeast(_temperatureUiState.value.range.low),
-                    previous = currentTemperature,
-                    lastTickTime = currentTime
-                )
-            }
+            updateTemperature(deltaDrain, currentTime)
+
         }
     }
 
@@ -1520,10 +1544,12 @@ class InvestigationScreenViewModel private constructor(
                 current = when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
                     FuseBoxAtStartOfContract.ON ->
                         difficultyOverridesState.value.weather.toTemperatureRange().high
-                    else -> Temperature.TEMPERATURE_START_FUSEBOX_DISABLED
-                }
+                    else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+                },
+                range = weatherUiState.value.weather.toTemperatureRange()
             )
         }
+
     }
 
     /*
@@ -1600,16 +1626,20 @@ class InvestigationScreenViewModel private constructor(
                 )
             }
 
-            setFuseBoxOverride(difficultyState.settings.fuseBoxAtStartOfContract)
+            setFuseBoxOverride(
+                if(difficultyState.settings.fuseBoxAtStartOfContract != FuseBoxAtStartOfContract.BROKEN)
+                    FuseBoxFlag.FUSEBOX_ENABLED
+                else FuseBoxFlag.FUSEBOX_DISABLED
+            )
 
             _temperatureState.update {
                 it.copy(
                     current = when(difficultyState.settings.fuseBoxAtStartOfContract) {
                         FuseBoxAtStartOfContract.ON ->
-                            weatherUiState.value.weather.toTemperatureRange().high
-                        else -> Temperature.TEMPERATURE_START_FUSEBOX_DISABLED
+                            _weatherState.value.toTemperatureRange().high
+                        else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
                     },
-                    range = weatherUiState.value.weather.toTemperatureRange()
+                    range = _weatherState.value.toTemperatureRange()
                 )
             }
 

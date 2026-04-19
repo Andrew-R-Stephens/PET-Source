@@ -1,7 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.tool.timers
 
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -17,19 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
-import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
-import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
-import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 
 @Composable
 internal fun TimerTools(

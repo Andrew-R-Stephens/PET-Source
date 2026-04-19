@@ -61,11 +61,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
@@ -1038,7 +1040,7 @@ private fun TemperatureComponent(
 
             Text(
                 modifier = Modifier
-                    .wrapContentSize()
+                    .widthIn(min = with(LocalDensity.current) { 48.sp.toDp() })
                     .height(IntrinsicSize.Min),
                 text = temperatureUiState.currentAsString,
                 color = LocalPalette.current.onSurface,
