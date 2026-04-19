@@ -8,7 +8,7 @@ import com.tritiumgaming.shared.data.weather.model.TemperatureRange
 data class TemperatureUiState(
     val range: TemperatureRange = TemperatureRange(),
     val temporalGradient: Float = TEMPERATURE_FREEZING_POINT,
-    val current: Float = Temperature.TEMPERATURE_START_FUSEBOX_DISABLED,
+    val current: Float = Temperature.TEMPERATURE_START_FUSEBOX_ENABLED,
     val currentAsString: String = "%4.1f".format(current),
 ) {
 
