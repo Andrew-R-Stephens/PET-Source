@@ -1115,12 +1115,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun stopOperationTimerJob() {
-        _operationTimerState.update {
-            it.copy(
-                paused = true
-            )
-        }
-        operationTimerJob?.cancel("Timer Job Cancelled")
+        operationTimerJob?.cancel("Operation Timer Job Cancelled")
     }
 
     private fun setOperationTimerRemainingTime(value: Long) {
@@ -1152,22 +1147,18 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun playOperationTimer() {
-        stopOperationControllerJob()
-        stopOperationTimerJob()
-
         initializeNewOperationTimer()
-
-        launchOperationTimerJob()
-        launchOperationControllerJob()
     }
 
     private fun pauseOperationTimer() {
-        stopOperationTimerJob()
-        stopOperationControllerJob()
+        _operationTimerState.update {
+            it.copy(
+                paused = true
+            )
+        }
     }
 
     private fun resetOperationTimer() {
-        stopOperationTimerJob()
         initOperationTimerUiState()
     }
 
@@ -1671,6 +1662,21 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private fun observeOperationTimer() {
+        _operationTimerState
+            .map { it.paused }
+            .distinctUntilChanged()
+            .onEach { paused ->
+                if (!paused) {
+                    launchOperationTimerJob()
+                    launchOperationControllerJob()
+                } else {
+                    stopOperationTimerJob()
+                    stopOperationControllerJob()
+                }
+            }.launchIn(viewModelScope)
+    }
+
     private fun observeToolTimers() {
         combine(
             listOf(
@@ -1693,6 +1699,7 @@ class InvestigationScreenViewModel private constructor(
         updateMap()
         updateDifficulty()
         reset()
+        observeOperationTimer()
         observeToolTimers()
     }
 
