@@ -190,14 +190,6 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    /*private val weather = fetchWeatherUseCase().let {
-        it.exceptionOrNull()?.printStackTrace()
-        try { it.getOrThrow() }
-        catch (_: Exception) {
-            emptyList()
-        }
-    }*/
-
     /*
      * Routines
      */
@@ -862,15 +854,6 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Timer Ui Functions
      */
-    private fun initOperationTimerUiState() {
-        _operationTimerState.update {
-            SanityTimerData(
-                startTime = TIME_DEFAULT,
-                remainingTime = difficultyState.value.settings.setupTime.toLong(),
-                paused = true
-            )
-        }
-    }
 
     private fun launchOperationControllerJob() {
         _playerSanityUiState.update{
@@ -908,10 +891,6 @@ class InvestigationScreenViewModel private constructor(
         resetExplicitNegations()
         resetTraitSelections()
     }
-
-    /*
-    * Evidence Ruling Handler ---------------------------
-    */
 
     /*
      * Player Sanity ---------------------------
@@ -1126,7 +1105,7 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun initializeNewOperationTimer() {
+    private fun playOperationTimer() {
         _operationTimerState.update {
             val startTime =
                 if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
@@ -1146,10 +1125,6 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun playOperationTimer() {
-        initializeNewOperationTimer()
-    }
-
     private fun pauseOperationTimer() {
         _operationTimerState.update {
             it.copy(
@@ -1159,7 +1134,13 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun resetOperationTimer() {
-        initOperationTimerUiState()
+        _operationTimerState.update {
+            SanityTimerData(
+                startTime = TIME_DEFAULT,
+                remainingTime = difficultyState.value.settings.setupTime.toLong(),
+                paused = true
+            )
+        }
     }
 
     /*
@@ -1741,16 +1722,19 @@ class InvestigationScreenViewModel private constructor(
         object DecrementDifficulty : InvestigationEvent()
         data class SetDifficulty(val index: Int) : InvestigationEvent()
         data class SetWeather(val weather: Weather) : InvestigationEvent()
-
         data class SetWeatherOverride(val weather: Weather) : InvestigationEvent()
         data class SetFuseBoxOverride(val state: FuseBoxFlag) : InvestigationEvent()
 
-        // Investigation Logic Events
+        // Sanity Tracker Events
         object PlayerDeath : InvestigationEvent()
         object UseSanityMedication : InvestigationEvent()
         data class SetPlayerSanity(val value: Float) : InvestigationEvent()
+
+        // Journal Events
         data class SetEvidence(val type: EvidenceType, val state: EvidenceValidationType) : InvestigationEvent()
         data class ToggleGhostNegation(val ghost: Ghost) : InvestigationEvent()
+
+        // Trait Logic Events
         data class ToggleTrait(val trait: ValidatedGhostTrait) : InvestigationEvent()
         data class SetTraitFilter(val filter: TraitFilter) : InvestigationEvent()
         object ToggleUniqueTraitFilter : InvestigationEvent()
