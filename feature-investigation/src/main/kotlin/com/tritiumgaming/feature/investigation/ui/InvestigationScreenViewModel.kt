@@ -109,7 +109,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -149,7 +151,7 @@ class InvestigationScreenViewModel private constructor(
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
 ) : ViewModel() {
 
-    private val _preferences: StateFlow<InvestigationScreenUserPreferences> =
+    private val preferences: StateFlow<InvestigationScreenUserPreferences> =
         initFlowUserPreferencesUseCase()
         .map {
             InvestigationScreenUserPreferences(
@@ -162,7 +164,6 @@ class InvestigationScreenViewModel private constructor(
             started = SharingStarted.Eagerly,
             initialValue = InvestigationScreenUserPreferences()
         )
-    private val preferences = _preferences
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
@@ -211,21 +212,19 @@ class InvestigationScreenViewModel private constructor(
 
     private val _investigationState = getInvestigationStateUseCase()
 
-    private val _mapState = _investigationState.map { it.map }
+    private val mapState = _investigationState.map { it.map }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = MapData()
         )
-    private val mapState = _mapState
 
-    private val _difficultyState = _investigationState.map { it.difficulty }
+    private val difficultyState = _investigationState.map { it.difficulty }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = DifficultyData()
         )
-    val difficultyState = _difficultyState
 
     /**
      * Tool Timer States
@@ -333,99 +332,6 @@ class InvestigationScreenViewModel private constructor(
             ToolTimerType.FINGERPRINT_DURATION -> _fingerprintTimerUiState.toggleTimer()
         }
     }
-    /*fun triggerToolTimer(
-        type: ToolTimerType
-    ) {
-        when(type) {
-            ToolTimerType.HUNT_DURATION -> {
-                if(!_huntDurationTimerState.value.running) {
-                    _huntDurationTimerState.update {
-                        it.copy(
-                            running = true
-                        )
-                    }
-                } else {
-                    _huntDurationTimerState.update {
-                        it.copy(
-                            remaining = it.max,
-                            running = false
-                        )
-                    }
-                }
-            }
-            ToolTimerType.HUNT_COOLDOWN -> {
-                if(!_huntCooldownTimerUiState.value.running) {
-                    _huntCooldownTimerUiState.update {
-                        it.copy(
-                            running = true
-                        )
-                    }
-                } else {
-                    _huntCooldownTimerUiState.update {
-                        it.copy(
-                            remaining = it.max,
-                            running = false
-                        )
-                    }
-                }
-            }
-            ToolTimerType.SMUDGE_TIMER -> {
-                if(!_smudgeHuntProtectionTimerState.value.running) {
-                    _smudgeHuntProtectionTimerState.update {
-                        it.copy(
-                            running = true
-                        )
-                    }
-                } else {
-                    _smudgeHuntProtectionTimerState.update {
-                        it.copy(
-                            remaining = it.max,
-                            running = false
-                        )
-                    }
-                }
-            }
-            ToolTimerType.FINGERPRINT_DURATION -> {
-                if(!_fingerprintTimerUiState.value.running) {
-                    _fingerprintTimerUiState.update {
-                        it.copy(
-                            running = true
-                        )
-                    }
-                } else {
-                    _fingerprintTimerUiState.update {
-                        it.copy(
-                            remaining = it.max,
-                            running = false
-                        )
-                    }
-                }
-            }
-        }
-    }
-    val runMasterClock = huntDurationTimerUiState.value.running ||
-                huntCooldownTimerUiState.value.running ||
-                smudgeHuntProtectionTimerUiState.value.running ||
-                fingerprintTimerUiState.value.running
-
-        if(runMasterClock) {
-            if(_toolsTimerState.value.paused) {
-                _toolsTimerState.update {
-                    it.copy(
-                        paused = false
-                    )
-                }
-                launchToolTimersJob()
-            }
-        } else {
-            _toolsTimerState.update {
-                it.copy(
-                    paused = true
-                )
-            }
-
-            stopToolTimersJob()
-        }*/
 
     /**
      * Operation Timer State
@@ -627,7 +533,7 @@ class InvestigationScreenViewModel private constructor(
         )
     internal val mapConfigUiState = _mapConfigUiState
 
-    private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState
+    private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = difficultyState
         .map { state ->
             val name = difficulties[state.index].difficultyTitle
 
@@ -1556,13 +1462,13 @@ class InvestigationScreenViewModel private constructor(
      * Difficulty ---------------------------
      */
     internal fun incrementDifficultyIndex() =
-        incrementDifficultyIndexUseCase(_difficultyState.value.index)
+        incrementDifficultyIndexUseCase(difficultyState.value.index)
             .getOrNull()?.let { index ->
                 setDifficultyIndex(index)
             }
 
     internal fun decrementDifficultyIndex() =
-        decrementDifficultyIndexUseCase(_difficultyState.value.index)
+        decrementDifficultyIndexUseCase(difficultyState.value.index)
             .getOrNull()?.let { index ->
                 setDifficultyIndex(index)
             }
@@ -1615,8 +1521,8 @@ class InvestigationScreenViewModel private constructor(
 
             _playerSanityUiState.update {
                 it.copy(
-                    sanityLevel = _difficultyState.value.settings.startingSanity.toFloat(),
-                    insanityLevel = 1f - _difficultyState.value.settings.startingSanity.toFloat()
+                    sanityLevel = difficultyState.settings.startingSanity.toFloat(),
+                    insanityLevel = 1f - difficultyState.settings.startingSanity.toFloat()
                 )
             }
 
@@ -1653,12 +1559,12 @@ class InvestigationScreenViewModel private constructor(
         }
 
         Log.d("InvestigationViewModel", "DifficultyUiState:" +
-                "\n\tindex: ${_difficultyState.value.index}" +
-                "\n\tname: ${_difficultyState.value.title}" +
-                "\n\tmodifier: ${_difficultyState.value.settings.sanityDrainSpeed.toFloat()}" +
-                "\n\ttime: ${_difficultyState.value.settings.setupTime.toLong()}" +
-                "\n\tinitialSanity: ${_difficultyState.value.settings.startingSanity.toFloat()}" +
-                "\n\tresponseType: ${_difficultyState.value.responseType}")
+                "\n\tindex: ${difficultyState.value.index}" +
+                "\n\tname: ${difficultyState.value.title}" +
+                "\n\tmodifier: ${difficultyState.value.settings.sanityDrainSpeed.toFloat()}" +
+                "\n\ttime: ${difficultyState.value.settings.setupTime.toLong()}" +
+                "\n\tinitialSanity: ${difficultyState.value.settings.startingSanity.toFloat()}" +
+                "\n\tresponseType: ${difficultyState.value.responseType}")
 
     }
 
@@ -1668,7 +1574,7 @@ class InvestigationScreenViewModel private constructor(
     internal fun incrementMapIndex() {
         try {
             val newIndex = incrementSimpleMapIndexUseCase(
-                _mapState.value.index).getOrThrow()
+                mapState.value.index).getOrThrow()
             updateMap(newIndex)
         } catch (e: Exception) { e.printStackTrace() }
     }
@@ -1676,7 +1582,7 @@ class InvestigationScreenViewModel private constructor(
     internal fun decrementMapIndex() {
         try {
             val newIndex = decrementSimpleMapIndexUseCase(
-                _mapState.value.index).getOrThrow()
+                mapState.value.index).getOrThrow()
             updateMap(newIndex)
         } catch (e: Exception) { e.printStackTrace() }
     }
@@ -1713,11 +1619,11 @@ class InvestigationScreenViewModel private constructor(
         }
 
         Log.d("InvestigationViewModel", "MapUiSate:" +
-                "\n\tindex: ${_mapState.value.index}" +
+                "\n\tindex: ${mapState.value.index}" +
                 "\n\tname: ${_mapConfigUiState.value.name}" +
-                "\n\tsize: ${_mapState.value.size}" +
-                "\n\tsetupModifier: ${_mapState.value.setupModifier}" +
-                "\n\tnormalModifier: ${_mapState.value.actionModifier}")
+                "\n\tsize: ${mapState.value.size}" +
+                "\n\tsetupModifier: ${mapState.value.setupModifier}" +
+                "\n\tnormalModifier: ${mapState.value.actionModifier}")
     }
 
     /*
@@ -1752,26 +1658,25 @@ class InvestigationScreenViewModel private constructor(
         resetEvidenceStates()
         resetTraitSelections()
 
-        viewModelScope.launch {
-            combine(
-                _huntDurationTimerState.map { it.running },
-                _huntCooldownTimerUiState.map { it.running },
-                _smudgeHuntProtectionTimerState.map { it.running },
-                _fingerprintTimerUiState.map { it.running }
-            ) { r1, r2, r3, r4 -> r1 || r2 || r3 || r4 }
-                .distinctUntilChanged()
-                .collect { shouldRun ->
-                    if (shouldRun) {
-                        _toolsTimerState.update {
-                            it.copy(
-                                paused = false
-                            )
-                        }
-                        launchToolTimersJob()
+        combine(
+            _huntDurationTimerState.map { it.running },
+            _huntCooldownTimerUiState.map { it.running },
+            _smudgeHuntProtectionTimerState.map { it.running },
+            _fingerprintTimerUiState.map { it.running }
+        ) { r1, r2, r3, r4 -> r1 || r2 || r3 || r4 }
+            .distinctUntilChanged()
+            .onEach { shouldRun ->
+                if (shouldRun) {
+                    _toolsTimerState.update {
+                        it.copy(
+                            paused = false
+                        )
                     }
-                    else stopToolTimersJob()
+                    launchToolTimersJob()
                 }
-        }
+                else stopToolTimersJob()
+            }.launchIn(viewModelScope)
+
     }
 
     companion object {

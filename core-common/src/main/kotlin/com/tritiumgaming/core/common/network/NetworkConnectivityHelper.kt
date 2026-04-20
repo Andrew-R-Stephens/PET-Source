@@ -13,22 +13,22 @@ class ConnectivityManagerHelper(
         val connectivityManager = applicationContext.getSystemService(
             Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        val network = connectivityManager.activeNetwork
-        if(network == null) {
-            return Result.failure(ConnectivityManagerHelperException(
-                "An active Network is unavailable."))
-        }
+        val network = connectivityManager.activeNetwork ?: return Result.failure(
+            ConnectivityManagerHelperException(
+                "An active Network is unavailable."
+            )
+        )
 
         Log.d(
             "ConnectivityManagerHelper",
             "Active Network Available: Determining Active Network..."
         )
         val activeNetwork =
-            connectivityManager.getNetworkCapabilities(network)
-        if(activeNetwork == null) {
-            return Result.failure(ConnectivityManagerHelperException(
-                "Active Network Available: Determining Active Network..."))
-        }
+            connectivityManager.getNetworkCapabilities(network) ?: return Result.failure(
+                ConnectivityManagerHelperException(
+                    "Active Network Available: Determining Active Network..."
+                )
+            )
         Log.d(
             "ConnectivityManagerHelper",
             "Active Network Available: Determining Active Network..."
@@ -50,7 +50,7 @@ class ConnectivityManagerHelper(
                 Result.success(NetworkCapabilities.TRANSPORT_BLUETOOTH)
             }
             else -> {
-                return Result.failure(ConnectivityManagerHelperException(
+                Result.failure(ConnectivityManagerHelperException(
                     "Network is unavailable. There are no Active Network Transports."))
             }
         }
