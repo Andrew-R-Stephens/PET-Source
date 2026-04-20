@@ -6,7 +6,6 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 
 data class GhostListUiItemActions(
     val onToggleNegateGhost: (Ghost) -> Unit = {},
-    val onGetEvidenceState: (EvidenceType) -> EvidenceState? = { null },
     val onNameClick: () -> Unit = {},
     val onRequestToolTip: () -> Unit = {}
 )

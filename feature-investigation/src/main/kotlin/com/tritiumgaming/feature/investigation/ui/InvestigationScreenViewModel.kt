@@ -294,7 +294,7 @@ class InvestigationScreenViewModel private constructor(
     )
     val huntCooldownTimerUiState = _huntCooldownTimerUiState.asStateFlow()
 
-    val maxTimeFromSetting = 120000L
+    private val maxTimeFromSetting = 120000L
     private val fingerprintTimerProgressBarNotches = listOf(
         ProgressBarNotch(
             UiText.DynamicString("Obake"),
@@ -324,15 +324,6 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    fun triggerToolTimer(type: ToolTimerType) {
-        when(type) {
-            ToolTimerType.HUNT_DURATION -> _huntDurationTimerState.toggleTimer()
-            ToolTimerType.HUNT_COOLDOWN -> _huntCooldownTimerUiState.toggleTimer()
-            ToolTimerType.SMUDGE_TIMER -> _smudgeHuntProtectionTimerState.toggleTimer()
-            ToolTimerType.FINGERPRINT_DURATION -> _fingerprintTimerUiState.toggleTimer()
-        }
-    }
-
     /**
      * Operation Timer State
      */
@@ -349,24 +340,6 @@ class InvestigationScreenViewModel private constructor(
     /**/
     private val _difficultyOverridesState = MutableStateFlow(DifficultyOverridesData())
     private val difficultyOverridesState = _difficultyOverridesState.asStateFlow()
-    internal fun setWeatherOverride(weather: Weather) {
-        _difficultyOverridesState.update {
-            it.copy (
-                weather = weather
-            )
-        }
-    }
-    internal fun setFuseBoxOverride(state: FuseBoxFlag) {
-        _difficultyOverridesState.update {
-            it.copy(
-                fuseBox =
-                    when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_DISABLED
-                        else -> state
-                    }
-            )
-        }
-    }
 
     private val _weatherState = combine(
         difficultyOverridesState,
@@ -459,23 +432,6 @@ class InvestigationScreenViewModel private constructor(
 
     private val _selectedTraits = MutableStateFlow<List<ValidatedGhostTrait>>(emptyList())
     val selectedTraits = _selectedTraits.asStateFlow()
-    fun toggleTraitSelection(
-        trait: ValidatedGhostTrait
-    ) {
-        val newTraits = selectedTraits.value.map {
-            if(it.ghostTrait.id == trait.ghostTrait.id) {
-                it.copy(
-                    validationType = when(it.validationType) {
-                        TraitValidationType.CONFIRMED -> TraitValidationType.NEUTRAL
-                        TraitValidationType.NEUTRAL -> TraitValidationType.CONFIRMED
-                    }
-                )
-            } else { it }
-        }
-        _selectedTraits.update {
-            newTraits
-        }
-    }
     private fun resetTraitSelections() {
         _selectedTraits.update {
             try {
@@ -573,13 +529,6 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
-    fun onUseSanityMedication() {
-        addPlayerSanity(difficultyState.value.settings.sanityPillRestoration.toFloat())
-    }
-    fun onPlayerDeath() {
-        removePlayerSanity(SANITY_LOSS_ON_PLAYER_DEATH)
-    }
-
     private val _phaseUiState = combine(
         phaseState, operationTimerState, playerSanityUiState, preferences
     ) { phaseState, timerUiState, playerSanityUiState, preferences ->
@@ -663,23 +612,6 @@ class InvestigationScreenViewModel private constructor(
         TraitFilter()
     )
     val traitFilterUiState = _traitFilterUiState.asStateFlow()
-    fun updateTraitFilter(filter: TraitFilter) {
-        _traitFilterUiState.update {
-            it.copy(
-                category = if(it.category == filter.category) null else filter.category,
-                weight = if(it.weight == filter.weight) null else filter.weight,
-                state = if(it.state == filter.state) null else filter.state,
-                tags = if(it.tags == filter.tags) emptyList() else filter.tags
-            )
-        }
-    }
-    fun toggleUniqueOnly() {
-        _traitFilterUiState.update {
-            it.copy(
-                uniqueOnly = !it.uniqueOnly
-            )
-        }
-    }
 
     private val _traitFilterOptionsUiState: StateFlow<GhostTraitFilterUiOptions> = combine(
         traitFilterUiState,
@@ -789,13 +721,7 @@ class InvestigationScreenViewModel private constructor(
     /* Ghost States */
     private val _explicitRejections =
         MutableStateFlow<Set<GhostResources.GhostIdentifier>>(emptySet())
-    internal fun toggleExplicitNegation(ghostModel: Ghost) {
-        _explicitRejections.update { rejections ->
-            if (ghostModel.id in rejections) rejections - ghostModel.id
-            else rejections + ghostModel.id
-        }
-    }
-    fun resetExplicitNegations() {
+    private fun resetExplicitNegations() {
         _explicitRejections.update { emptySet() }
     }
 
@@ -946,132 +872,6 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    /*
-     * Player Sanity Ui Functions
-     */
-    /*private fun initPlayerSanityUiState() {
-        _playerSanityUiState.update {
-            PlayerSanityUiState(
-                sanityLevel = difficultyState.value.settings.startingSanity.toFloat(),
-                insanityLevel = 1f - difficultyState.value.settings.startingSanity.toFloat()
-            )
-        }
-    }*/
-
-    /*
-     * Toolbar Ui Functions
-     */
-    internal fun toggleToolbarState() {
-        _operationToolbarUiState.update {
-            it.copy(
-                isCollapsed = !it.isCollapsed
-            )
-        }
-    }
-
-    internal fun setToolbarCategory(category: OperationToolbarUiState.Category) {
-        if(primaryToolbarUiState.value.category == category) {
-            _operationToolbarUiState.update {
-                val isCollapsed = !it.isCollapsed
-
-                it.copy(
-                    isCollapsed = isCollapsed,
-                    category = if(!isCollapsed)
-                        category
-                    else
-                        OperationToolbarUiState.Category.TOOL_NONE
-                )
-            }
-        } else {
-            _operationToolbarUiState.update {
-                it.copy(
-                    isCollapsed = false,
-                    category = category
-                )
-            }
-        }
-    }
-
-    /*
-     * Popup Ui Functions
-     */
-    internal fun clearPopup() {
-        try {
-            _popupUiState.update {
-                it.copy(
-                    isShown = false,
-                    evidencePopupRecord = null,
-                    ghostPopupRecord = null
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    internal fun setPopup(
-        evidenceType: EvidenceType
-    ) {
-
-        try {
-            val evidence = getEvidenceUseCase(evidenceType).getOrThrow()
-            val equipmentList = fetchCodexEquipmentUseCase().getOrThrow()
-
-            val equipmentId = getEquipmentTypeByEvidenceTypeUseCase(evidenceType)
-            val equipmentType = equipmentList.first {
-                it.id == equipmentId
-            }
-
-            val popupRecord = EvidencePopupRecord(
-                id = evidence.id,
-                name = evidence.name,
-                description = evidence.description,
-                icon = evidence.icon,
-                animation = evidence.animation,
-                equipmentTierAnimations = evidence.tiers.map { it },
-                equipmentType = equipmentType
-            )
-
-            _popupUiState.update {
-                it.copy(
-                    isShown = true,
-                    evidencePopupRecord = popupRecord
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    internal fun setPopup(
-        ghostIdentifier: GhostResources.GhostIdentifier
-    ) {
-        try {
-            val ghost = getGhostUseCase(ghostIdentifier).getOrThrow()
-
-            val popupRecord = GhostPopupRecord(
-                id = ghost.id,
-                name = ghost.name,
-                icon = ghost.icon,
-                info = ghost.info,
-                strengthData = ghost.strengthData,
-                weaknessData = ghost.weaknessData,
-                huntData = ghost.huntData,
-                sanityBounds = ghost.huntSanityBounds,
-                huntCooldown = ghost.huntCooldown
-            )
-
-            _popupUiState.update {
-                it.copy(
-                    isShown = true,
-                    ghostPopupRecord = popupRecord
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
     private fun launchOperationControllerJob() {
         _playerSanityUiState.update{
             it.copy(
@@ -1097,30 +897,13 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * FUNCTIONS
-     */
-    internal fun getGhostById(ghostId: GhostResources.GhostIdentifier): GhostType? {
-        return try { getGhostTypeByIdUseCase(ghostId).getOrThrow() }
-        catch (e: Exception) { e.printStackTrace(); null }
-    }
-
-    internal fun reset() {
-        resetJournal()
-
-        resetOperationTimer()
-        resetPhase()
-        resetSanity()
-        resetOperationTimer()
-    }
-
-    /*
      * Journal ------------------------
      */
 
     /** Resets the Ruling for each Evidence type
      * Depends on the difficulty configuration
      * */
-    internal fun resetJournal() {
+    private fun resetJournal() {
         resetEvidenceStates()
         resetExplicitNegations()
         resetTraitSelections()
@@ -1129,31 +912,13 @@ class InvestigationScreenViewModel private constructor(
     /*
     * Evidence Ruling Handler ---------------------------
     */
-    internal fun setEvidenceRuling(
-        evidence: EvidenceType,
-        evidenceValidationType: EvidenceValidationType
-    ) {
-        _evidenceStates.update {
-            it.map { e ->
-                if (evidence.id == e.evidence.id)
-                    e.copy(state = evidenceValidationType)
-                else e
-            }
-        }
-    }
-
-    internal fun getRuledEvidence(
-        evidenceModel: EvidenceType
-    ): EvidenceState? {
-        return evidenceStates.value.find { it.isEvidence(evidenceModel) }
-    }
 
     /*
      * Player Sanity ---------------------------
      */
 
     /** The level can be between 0f and 1f. Levels outside those extremes are constrained. */
-    internal fun setPlayerSanity(
+    private fun setPlayerSanity(
         value: Float
     ) {
         _playerSanityUiState.update {
@@ -1401,87 +1166,14 @@ class InvestigationScreenViewModel private constructor(
         stopOperationControllerJob()
     }
 
-    internal fun toggleOperationTimer() {
-        if (operationTimerState.value.paused) {
-            playOperationTimer()
-        } else {
-            pauseOperationTimer()
-        }
-    }
-
-    internal fun skipOperationTimer() {
-
-        val currentLevel = playerSanityUiState.value.sanityLevel
-
-        val startingSanity = difficultyState.value.settings.startingSanity.toFloat()
-        val huntThreshold = SanityLevel.HALF_SANITY
-
-        val target = min(startingSanity, huntThreshold)
-
-        val newLevel = currentLevel.coerceAtMost(target)
-
-        Log.d("InvestigationViewModel", "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
-
-        playOperationTimer()
-        skipPlayerInsanity(newLevel)
-        _operationTimerState.update {
-            it.copy(
-                startTime = TIME_DEFAULT,
-                remainingTime = TIME_DEFAULT,
-                paused = false
-            )
-        }
-    }
-
     private fun resetOperationTimer() {
         stopOperationTimerJob()
         initOperationTimerUiState()
     }
 
-    internal fun setWeather(weather: Weather) {
-        _difficultyOverridesState.update {
-            it.copy(
-                weather = weather
-            )
-        }
-
-        _temperatureState.update {
-            it.copy(
-                current = when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                    FuseBoxAtStartOfContract.ON ->
-                        difficultyOverridesState.value.weather.toTemperatureRange().high
-                    else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
-                },
-                range = weatherUiState.value.weather.toTemperatureRange()
-            )
-        }
-
-    }
-
     /*
      * Difficulty ---------------------------
      */
-    internal fun incrementDifficultyIndex() =
-        incrementDifficultyIndexUseCase(difficultyState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
-
-    internal fun decrementDifficultyIndex() =
-        decrementDifficultyIndexUseCase(difficultyState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
-
-    internal fun setDifficultyIndex(newIndex: Int) {
-        setDifficultyIndexUseCase(newIndex)
-            .onSuccess {
-                updateDifficulty(newIndex)
-            }
-            .onFailure {
-                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
-            }
-    }
 
     private fun updateDifficulty(
         index: Int = 0
@@ -1571,29 +1263,8 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Map ---------------------------
      */
-    internal fun incrementMapIndex() {
-        try {
-            val newIndex = incrementSimpleMapIndexUseCase(
-                mapState.value.index).getOrThrow()
-            updateMap(newIndex)
-        } catch (e: Exception) { e.printStackTrace() }
-    }
 
-    internal fun decrementMapIndex() {
-        try {
-            val newIndex = decrementSimpleMapIndexUseCase(
-                mapState.value.index).getOrThrow()
-            updateMap(newIndex)
-        } catch (e: Exception) { e.printStackTrace() }
-    }
-
-    internal fun setMapIndex(index: Int) {
-        //TODO
-
-        updateMap(index)
-    }
-
-    internal fun updateMap(
+    private fun updateMap(
         index: Int = 0
     ) {
         try {
@@ -1629,21 +1300,375 @@ class InvestigationScreenViewModel private constructor(
     /*
     * Footstep Visualizer
     */
-    internal fun setBpmData(data: RealtimeUiState<GraphPoint>) {
+
+    /**
+     * MVI UI Events
+     */
+
+    private fun setBpmData(data: RealtimeUiState<GraphPoint>) {
         _bpmToolUiState.update {
             it.copy(realtimeState = data)
         }
     }
 
-    internal fun setBpmMeasurementType(type: VisualizerMeasurementType) {
+    private fun setBpmMeasurementType(type: VisualizerMeasurementType) {
         _bpmToolUiState.update {
             it.copy(measurementType = type)
         }
     }
 
-    internal fun toggleApplyBpmMeasurement() {
+    private fun toggleApplyBpmMeasurement() {
         _bpmToolUiState.update {
             it.copy(applyMeasurement = !it.applyMeasurement)
+        }
+    }
+
+    private fun updateTraitFilter(filter: TraitFilter) {
+        _traitFilterUiState.update {
+            it.copy(
+                category = if(it.category == filter.category) null else filter.category,
+                weight = if(it.weight == filter.weight) null else filter.weight,
+                state = if(it.state == filter.state) null else filter.state,
+                tags = if(it.tags == filter.tags) emptyList() else filter.tags
+            )
+        }
+    }
+
+    private fun toggleUniqueOnly() {
+        _traitFilterUiState.update {
+            it.copy(
+                uniqueOnly = !it.uniqueOnly
+            )
+        }
+    }
+
+    private fun setWeatherOverride(weather: Weather) {
+        _difficultyOverridesState.update {
+            it.copy (
+                weather = weather
+            )
+        }
+    }
+    private fun setFuseBoxOverride(state: FuseBoxFlag) {
+        _difficultyOverridesState.update {
+            it.copy(
+                fuseBox =
+                    when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
+                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_DISABLED
+                        else -> state
+                    }
+            )
+        }
+    }
+
+    private fun incrementMapIndex() {
+        try {
+            val newIndex = incrementSimpleMapIndexUseCase(
+                mapState.value.index).getOrThrow()
+            updateMap(newIndex)
+        } catch (e: Exception) { e.printStackTrace() }
+    }
+
+    private fun decrementMapIndex() {
+        try {
+            val newIndex = decrementSimpleMapIndexUseCase(
+                mapState.value.index).getOrThrow()
+            updateMap(newIndex)
+        } catch (e: Exception) { e.printStackTrace() }
+    }
+
+    private fun setMapIndex(index: Int) {
+        updateMap(index)
+    }
+
+    private fun incrementDifficultyIndex() =
+        incrementDifficultyIndexUseCase(difficultyState.value.index)
+            .getOrNull()?.let { index ->
+                setDifficultyIndex(index)
+            }
+
+    private fun decrementDifficultyIndex() =
+        decrementDifficultyIndexUseCase(difficultyState.value.index)
+            .getOrNull()?.let { index ->
+                setDifficultyIndex(index)
+            }
+
+    private fun setDifficultyIndex(newIndex: Int) {
+        setDifficultyIndexUseCase(newIndex)
+            .onSuccess {
+                updateDifficulty(newIndex)
+            }
+            .onFailure {
+                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
+            }
+    }
+
+    private fun setWeather(weather: Weather) {
+        _difficultyOverridesState.update {
+            it.copy(
+                weather = weather
+            )
+        }
+
+        _temperatureState.update {
+            it.copy(
+                current = when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
+                    FuseBoxAtStartOfContract.ON ->
+                        difficultyOverridesState.value.weather.toTemperatureRange().high
+                    else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+                },
+                range = weatherUiState.value.weather.toTemperatureRange()
+            )
+        }
+
+    }
+
+    private fun onPlayerDeath() {
+        removePlayerSanity(SANITY_LOSS_ON_PLAYER_DEATH)
+    }
+    private fun onUseSanityMedication() {
+        addPlayerSanity(difficultyState.value.settings.sanityPillRestoration.toFloat())
+    }
+
+    private fun setEvidenceRuling(
+        evidence: EvidenceType,
+        evidenceValidationType: EvidenceValidationType
+    ) {
+        _evidenceStates.update {
+            it.map { e ->
+                if (evidence.id == e.evidence.id)
+                    e.copy(state = evidenceValidationType)
+                else e
+            }
+        }
+    }
+
+    private fun toggleExplicitNegation(ghostModel: Ghost) {
+        _explicitRejections.update { rejections ->
+            if (ghostModel.id in rejections) rejections - ghostModel.id
+            else rejections + ghostModel.id
+        }
+    }
+
+    private fun toggleTraitSelection(
+        trait: ValidatedGhostTrait
+    ) {
+        val newTraits = selectedTraits.value.map {
+            if(it.ghostTrait.id == trait.ghostTrait.id) {
+                it.copy(
+                    validationType = when(it.validationType) {
+                        TraitValidationType.CONFIRMED -> TraitValidationType.NEUTRAL
+                        TraitValidationType.NEUTRAL -> TraitValidationType.CONFIRMED
+                    }
+                )
+            } else { it }
+        }
+        _selectedTraits.update {
+            newTraits
+        }
+    }
+
+    private fun toggleOperationTimer() {
+        if (operationTimerState.value.paused) {
+            playOperationTimer()
+        } else {
+            pauseOperationTimer()
+        }
+    }
+
+    private fun skipOperationTimer() {
+
+        val currentLevel = playerSanityUiState.value.sanityLevel
+
+        val startingSanity = difficultyState.value.settings.startingSanity.toFloat()
+        val huntThreshold = SanityLevel.HALF_SANITY
+
+        val target = min(startingSanity, huntThreshold)
+
+        val newLevel = currentLevel.coerceAtMost(target)
+
+        Log.d("InvestigationViewModel", "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
+
+        playOperationTimer()
+        skipPlayerInsanity(newLevel)
+        _operationTimerState.update {
+            it.copy(
+                startTime = TIME_DEFAULT,
+                remainingTime = TIME_DEFAULT,
+                paused = false
+            )
+        }
+    }
+
+    private fun triggerToolTimer(type: ToolTimerType) {
+        when(type) {
+            ToolTimerType.HUNT_DURATION -> _huntDurationTimerState.toggleTimer()
+            ToolTimerType.HUNT_COOLDOWN -> _huntCooldownTimerUiState.toggleTimer()
+            ToolTimerType.SMUDGE_TIMER -> _smudgeHuntProtectionTimerState.toggleTimer()
+            ToolTimerType.FINGERPRINT_DURATION -> _fingerprintTimerUiState.toggleTimer()
+        }
+    }
+
+    private fun toggleToolbarState() {
+        _operationToolbarUiState.update {
+            it.copy(
+                isCollapsed = !it.isCollapsed
+            )
+        }
+    }
+
+    private fun setToolbarCategory(category: OperationToolbarUiState.Category) {
+        if(primaryToolbarUiState.value.category == category) {
+            _operationToolbarUiState.update {
+                val isCollapsed = !it.isCollapsed
+
+                it.copy(
+                    isCollapsed = isCollapsed,
+                    category = if(!isCollapsed)
+                        category
+                    else
+                        OperationToolbarUiState.Category.TOOL_NONE
+                )
+            }
+        } else {
+            _operationToolbarUiState.update {
+                it.copy(
+                    isCollapsed = false,
+                    category = category
+                )
+            }
+        }
+    }
+
+    private fun setPopup(
+        evidenceType: EvidenceType
+    ) {
+
+        try {
+            val evidence = getEvidenceUseCase(evidenceType).getOrThrow()
+            val equipmentList = fetchCodexEquipmentUseCase().getOrThrow()
+
+            val equipmentId = getEquipmentTypeByEvidenceTypeUseCase(evidenceType)
+            val equipmentType = equipmentList.first {
+                it.id == equipmentId
+            }
+
+            val popupRecord = EvidencePopupRecord(
+                id = evidence.id,
+                name = evidence.name,
+                description = evidence.description,
+                icon = evidence.icon,
+                animation = evidence.animation,
+                equipmentTierAnimations = evidence.tiers.map { it },
+                equipmentType = equipmentType
+            )
+
+            _popupUiState.update {
+                it.copy(
+                    isShown = true,
+                    evidencePopupRecord = popupRecord
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun setPopup(
+        ghostIdentifier: GhostResources.GhostIdentifier
+    ) {
+        try {
+            val ghost = getGhostUseCase(ghostIdentifier).getOrThrow()
+
+            val popupRecord = GhostPopupRecord(
+                id = ghost.id,
+                name = ghost.name,
+                icon = ghost.icon,
+                info = ghost.info,
+                strengthData = ghost.strengthData,
+                weaknessData = ghost.weaknessData,
+                huntData = ghost.huntData,
+                sanityBounds = ghost.huntSanityBounds,
+                huntCooldown = ghost.huntCooldown
+            )
+
+            _popupUiState.update {
+                it.copy(
+                    isShown = true,
+                    ghostPopupRecord = popupRecord
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun clearPopup() {
+        try {
+            _popupUiState.update {
+                it.copy(
+                    isShown = false,
+                    evidencePopupRecord = null,
+                    ghostPopupRecord = null
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun reset() {
+        resetJournal()
+
+        resetOperationTimer()
+        resetPhase()
+        resetSanity()
+        resetOperationTimer()
+    }
+
+    fun onEvent(event: InvestigationEvent) {
+        when (event) {
+            // Configuration
+            is InvestigationEvent.IncrementMap -> incrementMapIndex()
+            is InvestigationEvent.DecrementMap -> decrementMapIndex()
+            is InvestigationEvent.SetMap -> setMapIndex(event.index)
+            is InvestigationEvent.IncrementDifficulty -> incrementDifficultyIndex()
+            is InvestigationEvent.DecrementDifficulty -> decrementDifficultyIndex()
+            is InvestigationEvent.SetDifficulty -> setDifficultyIndex(event.index)
+            is InvestigationEvent.SetWeather -> setWeather(event.weather)
+
+            is InvestigationEvent.SetWeatherOverride -> setWeatherOverride(event.weather)
+            is InvestigationEvent.SetFuseBoxOverride -> setFuseBoxOverride(event.state)
+
+            // Investigation Logic
+            is InvestigationEvent.PlayerDeath -> onPlayerDeath()
+            is InvestigationEvent.UseSanityMedication -> onUseSanityMedication()
+            is InvestigationEvent.SetPlayerSanity -> setPlayerSanity(event.value)
+            is InvestigationEvent.SetEvidence -> setEvidenceRuling(event.type, event.state)
+            is InvestigationEvent.ToggleGhostNegation -> toggleExplicitNegation(event.ghost)
+
+            is InvestigationEvent.ToggleTrait -> toggleTraitSelection(event.trait)
+            is InvestigationEvent.SetTraitFilter -> updateTraitFilter(event.filter)
+            is InvestigationEvent.ToggleUniqueTraitFilter -> toggleUniqueOnly()
+
+            is InvestigationEvent.SetBpmData -> setBpmData(event.data)
+            is InvestigationEvent.SetBpmMeasurementType -> setBpmMeasurementType(event.type)
+            is InvestigationEvent.ToggleApplyBpmMeasurement -> toggleApplyBpmMeasurement()
+
+            // Timers
+            is InvestigationEvent.ToggleOperationTimer -> toggleOperationTimer()
+            is InvestigationEvent.SkipOperationTimer -> skipOperationTimer()
+            is InvestigationEvent.TriggerToolTimer -> triggerToolTimer(event.type)
+
+            // UI Navigation/Popups
+            is InvestigationEvent.ToggleToolbar -> toggleToolbarState()
+            is InvestigationEvent.SetToolbarCategory -> setToolbarCategory(event.category)
+            is InvestigationEvent.ShowEvidencePopup -> setPopup(event.type)
+            is InvestigationEvent.ShowGhostPopup -> setPopup(event.id)
+            is InvestigationEvent.ClearPopup -> clearPopup()
+
+            // Lifecycle
+            is InvestigationEvent.ResetInvestigation -> reset()
         }
     }
 
@@ -1706,7 +1731,48 @@ class InvestigationScreenViewModel private constructor(
                     )
                 }
             }
-
     }
 
+    sealed class InvestigationEvent {
+        // Configuration Events
+        object IncrementMap : InvestigationEvent()
+        object DecrementMap : InvestigationEvent()
+        data class SetMap(val index: Int) : InvestigationEvent()
+        object IncrementDifficulty : InvestigationEvent()
+        object DecrementDifficulty : InvestigationEvent()
+        data class SetDifficulty(val index: Int) : InvestigationEvent()
+        data class SetWeather(val weather: Weather) : InvestigationEvent()
+
+        data class SetWeatherOverride(val weather: Weather) : InvestigationEvent()
+        data class SetFuseBoxOverride(val state: FuseBoxFlag) : InvestigationEvent()
+
+        // Investigation Logic Events
+        object PlayerDeath : InvestigationEvent()
+        object UseSanityMedication : InvestigationEvent()
+        data class SetPlayerSanity(val value: Float) : InvestigationEvent()
+        data class SetEvidence(val type: EvidenceType, val state: EvidenceValidationType) : InvestigationEvent()
+        data class ToggleGhostNegation(val ghost: Ghost) : InvestigationEvent()
+        data class ToggleTrait(val trait: ValidatedGhostTrait) : InvestigationEvent()
+        data class SetTraitFilter(val filter: TraitFilter) : InvestigationEvent()
+        object ToggleUniqueTraitFilter : InvestigationEvent()
+
+        data class SetBpmData(val data: RealtimeUiState<GraphPoint>) : InvestigationEvent()
+        data class SetBpmMeasurementType(val type: VisualizerMeasurementType) : InvestigationEvent()
+        object ToggleApplyBpmMeasurement : InvestigationEvent()
+
+        // Timer Events
+        object ToggleOperationTimer : InvestigationEvent()
+        object SkipOperationTimer : InvestigationEvent()
+        data class TriggerToolTimer(val type: ToolTimerType) : InvestigationEvent()
+
+        // UI State Events
+        object ToggleToolbar : InvestigationEvent()
+        data class SetToolbarCategory(val category: OperationToolbarUiState.Category) : InvestigationEvent()
+        data class ShowEvidencePopup(val type: EvidenceType) : InvestigationEvent()
+        data class ShowGhostPopup(val id: GhostResources.GhostIdentifier) : InvestigationEvent()
+        object ClearPopup : InvestigationEvent()
+
+        // System Events
+        object ResetInvestigation : InvestigationEvent()
+    }
 }

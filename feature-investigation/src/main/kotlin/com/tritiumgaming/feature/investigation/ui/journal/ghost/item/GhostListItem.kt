@@ -64,15 +64,11 @@ fun LazyItemScope.GhostListItem(
     modifier: Modifier = Modifier,
     evidenceState: List<EvidenceState>,
     ghostState: GhostState? = null,
-    label: String = ghostState?.let {
-        stringResource(ghostState.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
     ghostListUiItemActions: GhostListUiItemActions
 ) {
     if (ghostState == null) return
 
-    val scoreState = ghostState.score
     val traitScore = ghostState.traitScore
-    val rejectionState = ghostState.manualRejection
 
     val bpmState = ghostState.bpmIsValid
     val showTraitConfirm = traitScore.confirm > ZERO_EVIDENCE
@@ -83,108 +79,6 @@ fun LazyItemScope.GhostListItem(
     val emitSpecialBadge = bpmState ||
             showTraitConfirm || showTraitReject ||
             showTraitProbableConfirm || showTraitProbableReject
-
-    val ghostIdStr = ghostState.ghostEvidence.ghost.id.toStringResource().let {
-        stringResource(it)
-    }
-    val strikethroughIcon = when (ghostIdStr.toFloat().rem(3f)) {
-        0f -> R.drawable.icon_strikethrough_2
-        1f -> R.drawable.icon_strikethrough_3
-        else -> R.drawable.icon_strikethrough_1
-    }
-
-    @Composable
-    fun Strikethrough(
-        modifier: Modifier = Modifier,
-    ) {
-        scoreState.let {
-            when {
-                (rejectionState) ->
-                    Image(
-                        modifier = modifier,
-                        painter = painterResource(id = R.drawable.ic_ev_omit),
-                        contentScale = ContentScale.FillBounds,
-                        contentDescription = "Omit Icon",
-                        colorFilter = ColorFilter.tint(LocalPalette.current.primary)
-                    )
-
-                it < ZERO_EVIDENCE ->
-                    Image(
-                        modifier = modifier,
-                        painter = painterResource(id = strikethroughIcon),
-                        contentScale = ContentScale.FillBounds,
-                        contentDescription = "Strikeout Icon",
-                        colorFilter = ColorFilter.tint(LocalPalette.current.primary)
-                    )
-
-                it >= NORMAL_AFFIRM_MINIMUM_REACHED ->
-                    Image(
-                        modifier = modifier,
-                        painter = painterResource(id = R.drawable.ic_selector_selected),
-                        contentScale = ContentScale.FillBounds,
-                        contentDescription = "Circle Icon",
-                        colorFilter = ColorFilter.tint(LocalPalette.current.tertiary)
-                    )
-            }
-        }
-    }
-
-    @Composable
-    fun Nameplate(
-        modifier: Modifier = Modifier,
-    ) {
-        BasicText(
-            modifier = modifier,
-            text = label,
-            style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.onSurface,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(
-                minFontSize = 1.sp,
-                maxFontSize = 36.sp,
-                stepSize = 5.sp
-            )
-        )
-    }
-
-    @Composable
-    fun EvidenceIconRow(modifier: Modifier) {
-        Row(
-            modifier = modifier,
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.CenterHorizontally),
-        ) {
-
-            val allEvidence = ghostState.ghostEvidence
-            val evidenceList = allEvidence.normalEvidenceList
-            val strictEvidenceList = allEvidence.strictEvidenceList
-
-            evidenceList
-                .sortedWith(
-                    compareBy(
-                        { evidence ->
-                            ghostListUiItemActions.onGetEvidenceState(evidence)?.state?.ordinal
-                        },
-                        { evidence ->
-                            evidence.id
-                        },
-                    )
-                )
-                .forEach { normal ->
-                    EvidenceIcon(
-                        evidenceState = evidenceState,
-                        evidence = normal,
-                        isStrict = strictEvidenceList.find { strict ->
-                            strict.id == normal.id
-                        }?.let { true } ?: false,
-                        ghostScore = scoreState
-                    )
-                }
-
-        }
-    }
 
     Surface(
         modifier = modifier
@@ -236,18 +130,24 @@ fun LazyItemScope.GhostListItem(
                     ) {
                         Nameplate(
                             Modifier.fillMaxWidth()
-                                .wrapContentHeight()
+                                .wrapContentHeight(),
+                            label = stringResource(
+                                ghostState.ghostEvidence.ghost.name.toStringResource()),
                         )
 
                         Strikethrough(
-                            Modifier.fillMaxSize()
+                            Modifier.fillMaxSize(),
+                            ghostState = ghostState
                         )
                     }
 
                     EvidenceIconRow(
                         Modifier
                             .weight(1f, true)
-                            .fillMaxHeight()
+                            .fillMaxHeight(),
+                        ghostState = ghostState,
+                        evidenceState = evidenceState,
+                        actions = ghostListUiItemActions
                     )
                 }
             }
@@ -420,6 +320,113 @@ fun LazyItemScope.GhostListItem(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun Nameplate(
+    modifier: Modifier = Modifier,
+    label: String = ""
+) {
+    BasicText(
+        modifier = modifier,
+        text = label,
+        style = LocalTypography.current.primary.regular.copy(
+            color = LocalPalette.current.onSurface,
+            textAlign = TextAlign.Center
+        ),
+        maxLines = 1,
+        autoSize = TextAutoSize.StepBased(
+            minFontSize = 1.sp,
+            maxFontSize = 36.sp,
+            stepSize = 5.sp
+        )
+    )
+}
+
+@Composable
+fun Strikethrough(
+    modifier: Modifier = Modifier,
+    ghostState: GhostState
+) {
+
+    val scoreState = ghostState.score
+    val rejectionState = ghostState.manualRejection
+
+    val ghostIdStr = ghostState.ghostEvidence.ghost.id.toStringResource().let {
+        stringResource(it)
+    }
+    val strikethroughIcon = when (ghostIdStr.toFloat().rem(3f)) {
+        0f -> R.drawable.icon_strikethrough_2
+        1f -> R.drawable.icon_strikethrough_3
+        else -> R.drawable.icon_strikethrough_1
+    }
+
+    scoreState.let {
+        when {
+            (rejectionState) ->
+                Image(
+                    modifier = modifier,
+                    painter = painterResource(id = R.drawable.ic_ev_omit),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = "Omit Icon",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.primary)
+                )
+
+            it < ZERO_EVIDENCE ->
+                Image(
+                    modifier = modifier,
+                    painter = painterResource(id = strikethroughIcon),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = "Strikeout Icon",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.primary)
+                )
+
+            it >= NORMAL_AFFIRM_MINIMUM_REACHED ->
+                Image(
+                    modifier = modifier,
+                    painter = painterResource(id = R.drawable.ic_selector_selected),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = "Circle Icon",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.tertiary)
+                )
+        }
+    }
+}
+
+@Composable
+private fun EvidenceIconRow(
+    modifier: Modifier,
+    ghostState: GhostState,
+    evidenceState: List<EvidenceState> = emptyList(),
+    actions: GhostListUiItemActions = GhostListUiItemActions(),
+) {
+    val scoreState = ghostState.score
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.CenterHorizontally),
+    ) {
+
+        val allEvidence = ghostState.ghostEvidence
+        val evidenceList = allEvidence.normalEvidenceList
+        val strictEvidenceList = allEvidence.strictEvidenceList
+
+        val stateMap = evidenceState.associate { it.evidence.id to it.state.ordinal }
+        val strictIdSet = strictEvidenceList.map { it.id }.toSet()
+
+        evidenceList
+            .sortedWith(compareBy({ stateMap[it.id] }, { it.id }))
+            .forEach { evidence ->
+                EvidenceIcon(
+                    evidenceState = evidenceState,
+                    evidence = evidence,
+                    isStrict = evidence.id in strictIdSet,
+                    ghostScore = scoreState
+                )
+            }
+
     }
 }
 

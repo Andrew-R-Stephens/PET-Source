@@ -92,6 +92,7 @@ import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.*
 import com.tritiumgaming.feature.investigation.ui.TemperatureUiState.TemporalGradientDirection.*
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
@@ -208,70 +209,59 @@ private fun InvestigationContent(
             val filter = TraitFilter(
                 category = category
             )
-            investigationViewModel.updateTraitFilter(filter)
+            investigationViewModel.onEvent(SetTraitFilter(filter))
         },
         onSelectTrait = { trait ->
-            investigationViewModel.toggleTraitSelection(trait)
+            investigationViewModel.onEvent(ToggleTrait(trait))
         },
         onToggleUniqueOnly = {
-            investigationViewModel.toggleUniqueOnly()
+            investigationViewModel.onEvent(ToggleUniqueTraitFilter)
         }
     )
 
     val ghostListUiActions = GhostListUiActions(
-        onNameClick = { investigationViewModel.setPopup(it) }
+        onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
     )
-
     val ghostListUiItemActions = GhostListUiItemActions(
-        onGetEvidenceState = { evidenceType ->
-            investigationViewModel.getRuledEvidence(evidenceType)
-        },
         onToggleNegateGhost = { ghost ->
-            investigationViewModel.toggleExplicitNegation(ghost)
+            investigationViewModel.onEvent(ToggleGhostNegation(ghost))
         },
         onRequestToolTip = {  } //TODO
     )
 
     val operationToolbarUiActions = ToolbarUiActions(
-        onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
-        onChangeToolbarCategory = { category -> investigationViewModel.setToolbarCategory(category)
+        onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+        onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category))
         },
-        onReset = { investigationViewModel.reset() }
-    )
-
-    val configSelectUiActions = ToolbarUiActions(
-        onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
-        onChangeToolbarCategory = { category -> investigationViewModel.setToolbarCategory(category)
-        },
-        onReset = { investigationViewModel.reset() }
+        onReset = { investigationViewModel.onEvent(ResetInvestigation) }
     )
 
     val timerUiActions = TimerUiActions(
         onToggle = {
-            investigationViewModel.toggleOperationTimer()
+            investigationViewModel.onEvent(ToggleOperationTimer)
         },
         onSkip = {
-            investigationViewModel.skipOperationTimer()
+            investigationViewModel.onEvent(SkipOperationTimer)
         }
     )
 
     val mapUiActions = ConfigActionsBundle(
         carouselUiActions = CarouselUiActions(
-            onLeftClick = { investigationViewModel.decrementMapIndex() },
-            onRightClick = { investigationViewModel.incrementMapIndex() },
+            onLeftClick = { investigationViewModel.onEvent(DecrementMap) },
+            onRightClick = { investigationViewModel.onEvent(IncrementMap) },
         ),
         dropdownUiActions = DropdownUiActions(
-            onSelect = { investigationViewModel.setMapIndex(it) }
+            onSelect = { investigationViewModel.onEvent(SetMap(it)) }
         )
     )
 
     val difficultyUiActions = ConfigActionsBundle(
         carouselUiActions = CarouselUiActions(
-            onLeftClick = { investigationViewModel.decrementDifficultyIndex() },
-            onRightClick = { investigationViewModel.incrementDifficultyIndex() }
+            onLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) },
+            onRightClick = { investigationViewModel.onEvent(IncrementDifficulty) }
         ),
         dropdownUiActions = DropdownUiActions(
-            onSelect = { investigationViewModel.setDifficultyIndex(it) }
+            onSelect = { investigationViewModel.onEvent(SetDifficulty(it)) }
         )
     )
 
@@ -282,8 +272,8 @@ private fun InvestigationContent(
         ),
         dropdownUiActions = DropdownUiActions(
             onSelect = {
-                investigationViewModel.setWeather(
-                    Weather.entries[it]
+                investigationViewModel.onEvent(
+                    SetWeather(Weather.entries[it])
                 )
             }
         )
@@ -291,20 +281,20 @@ private fun InvestigationContent(
 
     val evidenceListUiActions = EvidenceListUiActions(
         onChangeEvidenceRuling = { e, r ->
-            investigationViewModel.setEvidenceRuling(e, r)
+            investigationViewModel.onEvent(SetEvidence(e, r))
         },
-        onClickItem = { investigationViewModel.setPopup(it) },
+        onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) },
     )
 
     val bpmToolUiActions = BpmToolUiActions(
         onUpdate = {
-            investigationViewModel.setBpmData(it)
+            investigationViewModel.onEvent(SetBpmData(it))
         },
         onChangeMeasurementType = {
-            investigationViewModel.setBpmMeasurementType(it)
+            investigationViewModel.onEvent(SetBpmMeasurementType(it))
         },
         toggleApplyMeasurement = {
-            investigationViewModel.toggleApplyBpmMeasurement()
+            investigationViewModel.onEvent(ToggleApplyBpmMeasurement)
         }
     )
 
@@ -367,7 +357,7 @@ private fun InvestigationContent(
         colors = notchedProgressBarUiColors,
         actions = NotchedProgressBarUiActions(
             onToggle = {
-                investigationViewModel.triggerToolTimer(ToolTimerType.SMUDGE_TIMER)
+                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER))
             }
         )
     )
@@ -378,7 +368,7 @@ private fun InvestigationContent(
         colors = notchedProgressBarUiColors,
         actions = NotchedProgressBarUiActions(
             onToggle = {
-                investigationViewModel.triggerToolTimer(ToolTimerType.HUNT_DURATION)
+                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION))
             }
         )
     )
@@ -389,7 +379,7 @@ private fun InvestigationContent(
         colors = notchedProgressBarUiColors,
         actions = NotchedProgressBarUiActions(
             onToggle = {
-                investigationViewModel.triggerToolTimer(ToolTimerType.HUNT_COOLDOWN)
+                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN))
             }
         )
     )
@@ -400,7 +390,7 @@ private fun InvestigationContent(
         colors = notchedProgressBarUiColors,
         actions = NotchedProgressBarUiActions(
             onToggle = {
-                investigationViewModel.triggerToolTimer(ToolTimerType.FINGERPRINT_DURATION)
+                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.FINGERPRINT_DURATION))
             }
         )
     )
@@ -444,16 +434,16 @@ private fun InvestigationContent(
         mapUiActions = mapUiActions,
         weatherUiActions = weatherUiActions,
         onSanityChange = {
-            investigationViewModel.setPlayerSanity(it)
+            investigationViewModel.onEvent(SetPlayerSanity(it))
         },
         onWeatherChange = {
-            investigationViewModel.setWeatherOverride(it)
+            investigationViewModel.onEvent(SetWeatherOverride(it))
         },
         onUseSanityMedication = {
-            investigationViewModel.onUseSanityMedication()
+            investigationViewModel.onEvent(UseSanityMedication)
         },
         onPlayerDeath = {
-            investigationViewModel.onPlayerDeath()
+            investigationViewModel.onEvent(PlayerDeath)
         },
     )
 
@@ -561,14 +551,13 @@ private fun InvestigationContent(
             GhostPopup(
                 modifier = modifier,
                 record = record,
-            ) { investigationViewModel.clearPopup() }
+            ) { investigationViewModel.onEvent(ClearPopup) }
         }
-
         popupUiState.evidencePopupRecord?.let { record ->
             EvidencePopup(
                 modifier = modifier,
                 record = record
-            ) { investigationViewModel.clearPopup() }
+            ) { investigationViewModel.onEvent(ClearPopup) }
         }
     }
 }
