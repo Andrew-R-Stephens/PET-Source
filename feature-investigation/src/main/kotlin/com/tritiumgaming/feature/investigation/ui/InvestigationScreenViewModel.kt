@@ -1619,11 +1619,9 @@ class InvestigationScreenViewModel private constructor(
 
     private fun reset() {
         resetJournal()
-
         resetOperationTimer()
         resetPhase()
         resetSanity()
-        resetOperationTimer()
     }
 
     fun onEvent(event: InvestigationEvent) {
@@ -1673,34 +1671,29 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    init {
-        updateMap(0)
-        updateDifficulty(0)
-
-        initOperationTimerUiState()
-
-        resetEvidenceStates()
-        resetTraitSelections()
-
+    private fun observeToolTimers() {
         combine(
-            _huntDurationTimerState.map { it.running },
-            _huntCooldownTimerUiState.map { it.running },
-            _smudgeHuntProtectionTimerState.map { it.running },
-            _fingerprintTimerUiState.map { it.running }
-        ) { r1, r2, r3, r4 -> r1 || r2 || r3 || r4 }
+            listOf(
+                _huntDurationTimerState,
+                _huntCooldownTimerUiState,
+                _smudgeHuntProtectionTimerState,
+                _fingerprintTimerUiState
+            )
+        ) { states -> states.any { it.running } }
             .distinctUntilChanged()
             .onEach { shouldRun ->
                 if (shouldRun) {
-                    _toolsTimerState.update {
-                        it.copy(
-                            paused = false
-                        )
-                    }
+                    _toolsTimerState.update { it.copy(paused = false) }
                     launchToolTimersJob()
-                }
-                else stopToolTimersJob()
+                } else stopToolTimersJob()
             }.launchIn(viewModelScope)
+    }
 
+    init {
+        updateMap()
+        updateDifficulty()
+        reset()
+        observeToolTimers()
     }
 
     companion object {
