@@ -1636,21 +1636,22 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.DecrementDifficulty -> decrementDifficultyIndex()
             is InvestigationEvent.SetDifficulty -> setDifficultyIndex(event.index)
             is InvestigationEvent.SetWeather -> setWeather(event.weather)
-
             is InvestigationEvent.SetWeatherOverride -> setWeatherOverride(event.weather)
             is InvestigationEvent.SetFuseBoxOverride -> setFuseBoxOverride(event.state)
 
-            // Investigation Logic
+            // Sanity Tracking
             is InvestigationEvent.PlayerDeath -> onPlayerDeath()
             is InvestigationEvent.UseSanityMedication -> onUseSanityMedication()
             is InvestigationEvent.SetPlayerSanity -> setPlayerSanity(event.value)
             is InvestigationEvent.SetEvidence -> setEvidenceRuling(event.type, event.state)
             is InvestigationEvent.ToggleGhostNegation -> toggleExplicitNegation(event.ghost)
 
+            // Trait Logic
             is InvestigationEvent.ToggleTrait -> toggleTraitSelection(event.trait)
             is InvestigationEvent.SetTraitFilter -> updateTraitFilter(event.filter)
             is InvestigationEvent.ToggleUniqueTraitFilter -> toggleUniqueOnly()
 
+            // BPM Ui
             is InvestigationEvent.SetBpmData -> setBpmData(event.data)
             is InvestigationEvent.SetBpmMeasurementType -> setBpmMeasurementType(event.type)
             is InvestigationEvent.ToggleApplyBpmMeasurement -> toggleApplyBpmMeasurement()
@@ -1677,8 +1678,6 @@ class InvestigationScreenViewModel private constructor(
         updateDifficulty(0)
 
         initOperationTimerUiState()
-
-        //initPlayerSanityUiState()
 
         resetEvidenceStates()
         resetTraitSelections()
