@@ -42,6 +42,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
+import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
@@ -198,11 +199,15 @@ class InvestigationScreenViewModel private constructor(
 
     private var toolTimersJob: Job? = null
 
-    /**
-     * ViewModel States
+    /*
+     * Investigation Repository
      */
 
     private val _investigationState = getInvestigationStateUseCase()
+
+    /*
+     * Map
+     */
 
     private val mapState = _investigationState.map { it.map }
         .stateIn(
@@ -211,6 +216,40 @@ class InvestigationScreenViewModel private constructor(
             initialValue = MapData()
         )
 
+    private fun updateMap(
+        index: Int = 0
+    ) {
+        try {
+            val name = getSimpleMapNameUseCase(index).getOrThrow()
+            val size = getSimpleMapSizeUseCase(index).getOrThrow()
+            val modifier = fetchSimpleMapModifiersUseCase(size).getOrThrow()
+
+            val mapState = MapData(
+                index = index,
+                name = name,
+                size = size,
+                setupModifier = modifier.setupModifier,
+                actionModifier = modifier.actionModifier
+            )
+
+            updateInvestigationMapUseCase(mapState)
+
+            Log.e("InvestigationViewModel", "Set map index success")
+
+        } catch (e: Exception) {
+            Log.e("InvestigationViewModel", "Error setting map index")
+            e.printStackTrace()
+        }
+
+        Log.d("InvestigationViewModel", "MapUiSate:" +
+                "\n\tindex: ${mapState.value.index}" +
+                "\n\tname: ${_mapConfigUiState.value.name}" +
+                "\n\tsize: ${mapState.value.size}" +
+                "\n\tsetupModifier: ${mapState.value.setupModifier}" +
+                "\n\tnormalModifier: ${mapState.value.actionModifier}")
+    }
+
+
     private val difficultyState = _investigationState.map { it.difficulty }
         .stateIn(
             scope = viewModelScope,
@@ -218,8 +257,98 @@ class InvestigationScreenViewModel private constructor(
             initialValue = DifficultyData()
         )
 
-    /**
-     * Tool Timer States
+    /*
+     * Difficulty
+     */
+
+    private fun updateDifficulty(
+        index: Int = 0
+    ) {
+        try {
+            val difficulty = difficulties[index]
+            val type = difficulty.type
+            val difficultyTitle = difficulty.difficultyTitle
+            val responseType = difficulty.responseType
+
+            val settings = difficulty.settingsModel
+
+            var difficultyState = DifficultyData(
+                index = index,
+                type = type,
+                title = difficultyTitle,
+                responseType = responseType,
+                settings = settings
+            )
+
+            if(type == DifficultyType.CHALLENGE) {
+                getCurrentChallengeUseCase().onSuccess {
+                    val challengeTitle = it.challengeTitle
+                    difficultyState = difficultyState.copy(
+                        challengeTitle = challengeTitle,
+                        settings = it.settingsModel
+                    )
+
+                    maps.indexOfFirst { map -> map.mapName == it.map }.let { index ->
+                        if(index != -1) setMapIndex(index)
+                    }
+
+                }
+            }
+
+            updateInvestigationDifficultyUseCase(difficultyState)
+
+            _playerSanityUiState.update {
+                it.copy(
+                    sanityLevel = difficultyState.settings.startingSanity.toFloat(),
+                    insanityLevel = 1f - difficultyState.settings.startingSanity.toFloat()
+                )
+            }
+
+            _phaseState.update {
+                it.copy(
+                    canAlertAudio = false
+                )
+            }
+
+            setFuseBoxOverride(
+                if(difficultyState.settings.fuseBoxAtStartOfContract != FuseBoxAtStartOfContract.BROKEN)
+                    FuseBoxFlag.FUSEBOX_ENABLED
+                else FuseBoxFlag.FUSEBOX_DISABLED
+            )
+
+            _temperatureState.update {
+                it.copy(
+                    current = when(difficultyState.settings.fuseBoxAtStartOfContract) {
+                        FuseBoxAtStartOfContract.ON ->
+                            _weatherState.value.toTemperatureRange().high
+                        else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+                    },
+                    range = _weatherState.value.toTemperatureRange()
+                )
+            }
+
+            setOperationTimerRemainingTime(difficultyState.settings.setupTime.toLong())
+            resetOperationTimer()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
+        }
+
+        Log.d("InvestigationViewModel", "DifficultyUiState:" +
+                "\n\tindex: ${difficultyState.value.index}" +
+                "\n\tname: ${difficultyState.value.title}" +
+                "\n\tmodifier: ${difficultyState.value.settings.sanityDrainSpeed.toFloat()}" +
+                "\n\ttime: ${difficultyState.value.settings.setupTime.toLong()}" +
+                "\n\tinitialSanity: ${difficultyState.value.settings.startingSanity.toFloat()}" +
+                "\n\tresponseType: ${difficultyState.value.responseType}")
+
+    }
+
+
+    /*
+     * Tool Timers
      */
 
     private val smudgeHuntTimerProgressBarNotches = listOf(
@@ -240,7 +369,6 @@ class InvestigationScreenViewModel private constructor(
         NotchedProgressBarUiState(
             max = 3.minutes.inWholeMilliseconds,
             origin = 0,
-            remaining = 50000,
             notches = smudgeHuntTimerProgressBarNotches,
             running = false
         )
@@ -261,7 +389,6 @@ class InvestigationScreenViewModel private constructor(
         NotchedProgressBarUiState(
             max = 1.minutes.inWholeMilliseconds,
             origin = 0,
-            remaining = (.87).minutes.inWholeMilliseconds,
             notches = huntDurationTimerProgressBarNotches,
             running = false
         )
@@ -280,7 +407,6 @@ class InvestigationScreenViewModel private constructor(
             max = 72000,
             origin = 0,
             notches = huntGapTimerProgressBarNotches,
-            remaining = 50000,
             running = false
         )
     )
@@ -301,7 +427,6 @@ class InvestigationScreenViewModel private constructor(
         NotchedProgressBarUiState(
             max = maxTimeFromSetting,
             origin = 0,
-            remaining = 50000L,
             notches = fingerprintTimerProgressBarNotches,
             running = false
         )
@@ -693,7 +818,7 @@ class InvestigationScreenViewModel private constructor(
 
         evidenceStates
             .map {
-                val identifier = getEquipmentTypeByEvidenceTypeUseCase(it.evidence)
+                val identifier = it.evidence.id.toEquipmentIdentifier()
                 val enabled = identifier !in revokedIdentifiers
                 it.copy(
                     state = if(!enabled) { EvidenceValidationType.NEUTRAL } else { it.state },
@@ -1144,132 +1269,6 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * Difficulty ---------------------------
-     */
-
-    private fun updateDifficulty(
-        index: Int = 0
-    ) {
-        try {
-            val difficulty = difficulties[index]
-            val type = difficulty.type
-            val difficultyTitle = difficulty.difficultyTitle
-            val responseType = difficulty.responseType
-
-            val settings = difficulty.settingsModel
-
-            var difficultyState = DifficultyData(
-                index = index,
-                type = type,
-                title = difficultyTitle,
-                responseType = responseType,
-                settings = settings
-            )
-
-            if(type == DifficultyType.CHALLENGE) {
-                getCurrentChallengeUseCase().onSuccess {
-                    val challengeTitle = it.challengeTitle
-                    difficultyState = difficultyState.copy(
-                        challengeTitle = challengeTitle,
-                        settings = it.settingsModel
-                    )
-
-                    maps.indexOfFirst { map -> map.mapName == it.map }.let { index ->
-                        if(index != -1) setMapIndex(index)
-                    }
-
-                }
-            }
-
-            updateInvestigationDifficultyUseCase(difficultyState)
-
-            _playerSanityUiState.update {
-                it.copy(
-                    sanityLevel = difficultyState.settings.startingSanity.toFloat(),
-                    insanityLevel = 1f - difficultyState.settings.startingSanity.toFloat()
-                )
-            }
-
-            _phaseState.update {
-                it.copy(
-                    canAlertAudio = false
-                )
-            }
-
-            setFuseBoxOverride(
-                if(difficultyState.settings.fuseBoxAtStartOfContract != FuseBoxAtStartOfContract.BROKEN)
-                    FuseBoxFlag.FUSEBOX_ENABLED
-                else FuseBoxFlag.FUSEBOX_DISABLED
-            )
-
-            _temperatureState.update {
-                it.copy(
-                    current = when(difficultyState.settings.fuseBoxAtStartOfContract) {
-                        FuseBoxAtStartOfContract.ON ->
-                            _weatherState.value.toTemperatureRange().high
-                        else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
-                    },
-                    range = _weatherState.value.toTemperatureRange()
-                )
-            }
-
-            setOperationTimerRemainingTime(difficultyState.settings.setupTime.toLong())
-            resetOperationTimer()
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-
-            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
-        }
-
-        Log.d("InvestigationViewModel", "DifficultyUiState:" +
-                "\n\tindex: ${difficultyState.value.index}" +
-                "\n\tname: ${difficultyState.value.title}" +
-                "\n\tmodifier: ${difficultyState.value.settings.sanityDrainSpeed.toFloat()}" +
-                "\n\ttime: ${difficultyState.value.settings.setupTime.toLong()}" +
-                "\n\tinitialSanity: ${difficultyState.value.settings.startingSanity.toFloat()}" +
-                "\n\tresponseType: ${difficultyState.value.responseType}")
-
-    }
-
-    /*
-     * Map ---------------------------
-     */
-
-    private fun updateMap(
-        index: Int = 0
-    ) {
-        try {
-            val name = getSimpleMapNameUseCase(index).getOrThrow()
-            val size = getSimpleMapSizeUseCase(index).getOrThrow()
-            val modifier = fetchSimpleMapModifiersUseCase(size).getOrThrow()
-
-            val mapState = MapData(
-                index = index,
-                name = name,
-                size = size,
-                setupModifier = modifier.setupModifier,
-                actionModifier = modifier.actionModifier
-            )
-
-            updateInvestigationMapUseCase(mapState)
-
-            Log.e("InvestigationViewModel", "Set map index success")
-
-        } catch (e: Exception) {
-            Log.e("InvestigationViewModel", "Error setting map index")
-            e.printStackTrace()
-        }
-
-        Log.d("InvestigationViewModel", "MapUiSate:" +
-                "\n\tindex: ${mapState.value.index}" +
-                "\n\tname: ${_mapConfigUiState.value.name}" +
-                "\n\tsize: ${mapState.value.size}" +
-                "\n\tsetupModifier: ${mapState.value.setupModifier}" +
-                "\n\tnormalModifier: ${mapState.value.actionModifier}")
-    }
-
-    /*
     * Footstep Visualizer
     */
 
@@ -1520,7 +1519,7 @@ class InvestigationScreenViewModel private constructor(
             val evidence = getEvidenceUseCase(evidenceType).getOrThrow()
             val equipmentList = fetchCodexEquipmentUseCase().getOrThrow()
 
-            val equipmentId = getEquipmentTypeByEvidenceTypeUseCase(evidenceType)
+            val equipmentId = evidence.id.toEquipmentIdentifier()
             val equipmentType = equipmentList.first {
                 it.id == equipmentId
             }

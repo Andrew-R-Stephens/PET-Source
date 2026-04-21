@@ -1,5 +1,9 @@
 package com.tritiumgaming.shared.data.evidence.mapper
 
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+
 class EvidenceResources {
 
     enum class EvidenceIdentifier {
@@ -76,4 +80,14 @@ class EvidenceResources {
         SPIRIT_BOX_3,
     }
 
+}
+
+fun EvidenceIdentifier.toEquipmentIdentifier(): EquipmentIdentifier = when(this) {
+    EvidenceIdentifier.DOTS -> EquipmentIdentifier.DOTS
+    EvidenceIdentifier.EMF_5 -> EquipmentIdentifier.EMF
+    EvidenceIdentifier.ULTRAVIOLET_LIGHT -> EquipmentIdentifier.UV_LIGHT
+    EvidenceIdentifier.FREEZING_TEMPERATURE -> EquipmentIdentifier.THERMOMETER
+    EvidenceIdentifier.GHOST_ORBS -> EquipmentIdentifier.VIDEO_CAMERA
+    EvidenceIdentifier.GHOST_WRITING -> EquipmentIdentifier.GHOST_WRITING_BOOK
+    EvidenceIdentifier.SPIRIT_BOX -> EquipmentIdentifier.SPIRIT_BOX
 }
