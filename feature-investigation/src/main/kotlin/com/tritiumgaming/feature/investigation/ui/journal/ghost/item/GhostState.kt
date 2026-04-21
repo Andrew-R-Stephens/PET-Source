@@ -152,16 +152,6 @@ data class GhostState(
         evidenceLimit: Int
     ): Int {
 
-        /*val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
-        val isInsanity = currentDifficulty == DifficultyResources.DifficultyType.INSANITY
-        val isHardcore = isNightmare || isInsanity
-
-        val maxPosScore = when {
-            isInsanity -> 1
-            isNightmare -> 2
-            else -> 3
-        }*/
-
         if(evidenceLimit == 0) return ZERO_EVIDENCE
 
         val isHardcore = evidenceLimit < 3

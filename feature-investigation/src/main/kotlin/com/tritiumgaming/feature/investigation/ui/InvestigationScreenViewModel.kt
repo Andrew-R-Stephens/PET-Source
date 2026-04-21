@@ -233,19 +233,11 @@ class InvestigationScreenViewModel private constructor(
 
             updateInvestigationMapUseCase(mapState)
 
-            Log.e("InvestigationViewModel", "Set map index success")
-
         } catch (e: Exception) {
             Log.e("InvestigationViewModel", "Error setting map index")
             e.printStackTrace()
         }
 
-        Log.d("InvestigationViewModel", "MapUiSate:" +
-                "\n\tindex: ${mapState.value.index}" +
-                "\n\tname: ${_mapConfigUiState.value.name}" +
-                "\n\tsize: ${mapState.value.size}" +
-                "\n\tsetupModifier: ${mapState.value.setupModifier}" +
-                "\n\tnormalModifier: ${mapState.value.actionModifier}")
     }
 
 
@@ -295,40 +287,6 @@ class InvestigationScreenViewModel private constructor(
             }
 
             updateInvestigationDifficultyUseCase(difficultyState)
-
-            _playerSanityUiState.update {
-                it.copy(
-                    sanityLevel = difficultyState.settings.startingSanity.toFloat(),
-                    insanityLevel = 1f - difficultyState.settings.startingSanity.toFloat()
-                )
-            }
-
-            _phaseState.update {
-                it.copy(
-                    canAlertAudio = false
-                )
-            }
-
-            setFuseBoxOverride(
-                if(difficultyState.settings.fuseBoxAtStartOfContract != FuseBoxAtStartOfContract.BROKEN)
-                    FuseBoxFlag.FUSEBOX_ENABLED
-                else FuseBoxFlag.FUSEBOX_DISABLED
-            )
-
-            _temperatureState.update {
-                it.copy(
-                    current = when(difficultyState.settings.fuseBoxAtStartOfContract) {
-                        FuseBoxAtStartOfContract.ON ->
-                            _weatherState.value.toTemperatureRange().high
-                        else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
-                    },
-                    range = _weatherState.value.toTemperatureRange()
-                )
-            }
-
-            setOperationTimerRemainingTime(difficultyState.settings.setupTime.toLong())
-            resetOperationTimer()
-
         } catch (e: Exception) {
             e.printStackTrace()
 
@@ -415,7 +373,7 @@ class InvestigationScreenViewModel private constructor(
             origin = 0,
             notches = listOf(
                 ProgressBarNotch(
-                    UiText.StringResource(GhostResources.GhostIdentifier.OBAKE.toStringResource()),
+                    UiText.StringResource(GhostTitle.OBAKE.toStringResource()),
                     (difficultyState.value.settings.fingerprintDuration.toLong() * .5f).toLong()
                 ),
                 ProgressBarNotch(
@@ -509,7 +467,7 @@ class InvestigationScreenViewModel private constructor(
     private val phaseState = _phaseState.asStateFlow()
 
     /*
-     * Traits
+     * Traits Data
      */
     private val _traitData: MutableStateFlow<List<GhostTrait>> =
         MutableStateFlow(
@@ -522,20 +480,9 @@ class InvestigationScreenViewModel private constructor(
         )
     private val traitData = _traitData.asStateFlow()
 
-    private val _selectedTraits = MutableStateFlow<List<ValidatedGhostTrait>>(emptyList())
-    val selectedTraits = _selectedTraits.asStateFlow()
-    private fun resetTraitSelections() {
-        _selectedTraits.update {
-            try {
-                getAllGhostTraitsUseCase().getOrThrow().map {
-                    ValidatedGhostTrait(ghostTrait = it) }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                emptyList()
-            }
-        }
-    }
-
+    /*
+     * Trait Filter
+     */
     private val _traitFilterOptions = traitData.map { traits ->
         val categories = traits.map {it.category }.distinct().sortedBy { it }
         val weights = traits.map { it.weight }.distinct().sortedBy { it }
@@ -553,6 +500,23 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = GhostTraitFilterOptions()
     )
+
+    /*
+     * Traits Selected
+     */
+    private val _selectedTraits = MutableStateFlow<List<ValidatedGhostTrait>>(emptyList())
+    val selectedTraits = _selectedTraits.asStateFlow()
+    private fun resetTraitSelections() {
+        _selectedTraits.update {
+            try {
+                getAllGhostTraitsUseCase().getOrThrow().map {
+                    ValidatedGhostTrait(ghostTrait = it) }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emptyList()
+            }
+        }
+    }
 
     /*
      * EvidenceStates
@@ -583,22 +547,23 @@ class InvestigationScreenViewModel private constructor(
      */
     private val _bpmToolState = MutableStateFlow(BpmToolUiState())
 
-    /* Ghost States */
-    private val _explicitRejections =
+    /* Ghost Rejections */
+    private val _explicitGhostRejects =
         MutableStateFlow<Set<GhostResources.GhostIdentifier>>(emptySet())
-    private fun resetExplicitNegations() {
-        _explicitRejections.update { emptySet() }
+    private fun resetExplicitGhostRejects() {
+        _explicitGhostRejects.update { emptySet() }
     }
 
+    /* Ghost States */
     private val _ghostStates: StateFlow<List<GhostState>> = combine(
         evidenceStates,
         difficultyState,
         _bpmToolState,
-        _explicitRejections,
+        _explicitGhostRejects,
         selectedTraits
-    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections, selectedTraits ->
+    ) { evidenceStates, difficultyState, bpmToolUiState, explicitRejections, selectedTraits ->
         ghostEvidences.map { ghostEvidence ->
-            val isManuallyRejected = ghostEvidence.ghost.id in manualRejections
+            val isManuallyRejected = ghostEvidence.ghost.id in explicitRejections
 
             // Calculate the base state with score
             var state = GhostState(
@@ -638,7 +603,6 @@ class InvestigationScreenViewModel private constructor(
     /**
      * UI States
      */
-
     private val _mapConfigUiState: StateFlow<MapConfigUiState> =
         combine(
             mapState,
@@ -748,6 +712,9 @@ class InvestigationScreenViewModel private constructor(
     private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     internal val popupUiState = _popupUiState.asStateFlow()
 
+    /*
+     * Bpm Tool
+     */
     internal val bpmToolUiState = _bpmToolState.map {
         BpmToolUiState(
             realtimeState = it.realtimeState,
@@ -760,6 +727,9 @@ class InvestigationScreenViewModel private constructor(
         initialValue = BpmToolUiState()
     )
 
+    /*
+     * Operation Sanity Ui
+     */
     private val _operationSanityUiState = combine(
         mapState,
         difficultyState,
@@ -788,6 +758,9 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val operationSanityUiState = _operationSanityUiState
 
+    /*
+     * Weather Ui
+     */
     private val _weatherUiState = combine(
         _weatherState,
         difficultyState,
@@ -803,7 +776,9 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val weatherUiState = _weatherUiState
 
-    /* Trait States */
+    /*
+     * Traits Ui
+     */
     private val _traitFilterUiState: MutableStateFlow<TraitFilter> = MutableStateFlow(
         TraitFilter()
     )
@@ -1032,7 +1007,7 @@ class InvestigationScreenViewModel private constructor(
      * */
     private fun resetJournal() {
         resetEvidenceStates()
-        resetExplicitNegations()
+        resetExplicitGhostRejects()
         resetTraitSelections()
     }
 
@@ -1164,7 +1139,7 @@ class InvestigationScreenViewModel private constructor(
 
             while (!_toolsTimerState.value.paused) {
 
-                val delay = 100L
+                val delay = 500L
                 val preDelay = System.currentTimeMillis()
                 delay(delay)
                 val postDelay = System.currentTimeMillis()
@@ -1188,28 +1163,32 @@ class InvestigationScreenViewModel private constructor(
         if(_huntDurationTimerState.value.running) {
             _huntDurationTimerState.update {
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                    remaining = (it.remaining - delay).coerceAtLeast(0L),
+                    running = (it.remaining - delay) > 0L
                 )
             }
         }
         if(_huntCooldownTimerUiState.value.running) {
             _huntCooldownTimerUiState.update {
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                    remaining = (it.remaining - delay).coerceAtLeast(0L),
+                    running = (it.remaining - delay) > 0L
                 )
             }
         }
         if(_smudgeHuntProtectionTimerState.value.running) {
             _smudgeHuntProtectionTimerState.update {
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                    remaining = (it.remaining - delay).coerceAtLeast(0L),
+                    running = (it.remaining - delay) > 0L
                 )
             }
         }
         if(_fingerprintTimerUiState.value.running) {
             _fingerprintTimerUiState.update {
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L)
+                    remaining = (it.remaining - delay).coerceAtLeast(0L),
+                    running = (it.remaining - delay) > 0L
                 )
             }
         }
@@ -1430,7 +1409,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun toggleExplicitNegation(ghostModel: Ghost) {
-        _explicitRejections.update { rejections ->
+        _explicitGhostRejects.update { rejections ->
             if (ghostModel.id in rejections) rejections - ghostModel.id
             else rejections + ghostModel.id
         }
@@ -1491,7 +1470,7 @@ class InvestigationScreenViewModel private constructor(
             ToolTimerType.HUNT_DURATION -> _huntDurationTimerState.toggleTimer()
             ToolTimerType.HUNT_COOLDOWN -> _huntCooldownTimerUiState.toggleTimer()
             ToolTimerType.SMUDGE_TIMER -> _smudgeHuntProtectionTimerState.toggleTimer()
-            ToolTimerType.FINGERPRINT_DURATION -> _fingerprintTimerUiState.toggleTimer()
+            ToolTimerType.UV_EVIDENCE_DURATION -> _fingerprintTimerUiState.toggleTimer()
         }
     }
 
@@ -1690,7 +1669,7 @@ class InvestigationScreenViewModel private constructor(
             }.launchIn(viewModelScope)
     }
 
-    fun observeToolTimerSettings() {
+    private fun observeToolTimerSettings() {
         combine(
             difficultyState,
             mapState
@@ -1706,6 +1685,7 @@ class InvestigationScreenViewModel private constructor(
                         remaining = huntDuration
                     )
                 }
+
                 val fingerprintDuration = settings.fingerprintDuration.toLong()
                 _fingerprintTimerUiState.update {
                     it.copy(
@@ -1713,12 +1693,12 @@ class InvestigationScreenViewModel private constructor(
                         remaining = fingerprintDuration,
                         notches = listOf(
                             ProgressBarNotch(
-                                UiText.StringResource(GhostResources.GhostIdentifier.OBAKE.toStringResource()),
-                                (difficultyState.value.settings.fingerprintDuration.toLong() * .5f).toLong()
+                                UiText.StringResource(GhostTitle.OBAKE.toStringResource()),
+                                (fingerprintDuration * .5f).toLong()
                             ),
                             ProgressBarNotch(
                                 UiText.DynamicString("Normal"),
-                                difficultyState.value.settings.fingerprintDuration.toLong()
+                                fingerprintDuration
                             )
                         )
                     )
@@ -1726,10 +1706,54 @@ class InvestigationScreenViewModel private constructor(
             }.launchIn(viewModelScope)
     }
 
+    private fun observeDifficulty() {
+        difficultyState
+            .map { difficulty -> difficulty }
+            .distinctUntilChanged()
+            .onEach { difficultyState ->
+
+                _playerSanityUiState.update {
+                    it.copy(
+                        sanityLevel = difficultyState.settings.startingSanity.toFloat(),
+                        insanityLevel = 1f - difficultyState.settings.startingSanity.toFloat()
+                    )
+                }
+
+                _phaseState.update {
+                    it.copy(
+                        canAlertAudio = false
+                    )
+                }
+
+                setFuseBoxOverride(
+                    if(difficultyState.settings.fuseBoxAtStartOfContract != FuseBoxAtStartOfContract.BROKEN)
+                        FuseBoxFlag.FUSEBOX_ENABLED
+                    else FuseBoxFlag.FUSEBOX_DISABLED
+                )
+
+                _temperatureState.update {
+                    it.copy(
+                        current = when(difficultyState.settings.fuseBoxAtStartOfContract) {
+                            FuseBoxAtStartOfContract.ON ->
+                                _weatherState.value.toTemperatureRange().high
+                            else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+                        },
+                        range = _weatherState.value.toTemperatureRange()
+                    )
+                }
+
+                setOperationTimerRemainingTime(difficultyState.settings.setupTime.toLong())
+                resetOperationTimer()
+
+            }.launchIn(viewModelScope)
+    }
+
     init {
         updateMap()
         updateDifficulty()
         reset()
+
+        observeDifficulty()
         observeOperationTimer()
         observeToolTimers()
         observeToolTimerSettings()
