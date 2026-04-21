@@ -180,15 +180,12 @@ private fun InvestigationContent(
     val huntGapTimerState by investigationViewModel.huntCooldownTimerUiState.collectAsStateWithLifecycle()
     val fingerprintTimerState by investigationViewModel.fingerprintTimerUiState.collectAsStateWithLifecycle()
 
-    // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
+    val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
 
     val digitalTimerUiState = DigitalTimerUiState(
         startTime = timerUiState.startTime,
         remainingTime = timerUiState.remainingTime
     )
-
-    val bpmToolUiState by investigationViewModel
-        .bpmToolUiState.collectAsStateWithLifecycle()
 
     val ghostListUiState = GhostListUiState(
         ghostOrder = ghostOrder,

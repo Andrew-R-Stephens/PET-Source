@@ -48,7 +48,6 @@ import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidence
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
 import com.tritiumgaming.shared.data.investigation.model.CategoryOption
@@ -250,16 +249,16 @@ class InvestigationScreenViewModel private constructor(
     }
 
 
+    /*
+     * Difficulty
+     */
+
     private val difficultyState = _investigationState.map { it.difficulty }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = DifficultyData()
         )
-
-    /*
-     * Difficulty
-     */
 
     private fun updateDifficulty(
         index: Int = 0
@@ -346,7 +345,6 @@ class InvestigationScreenViewModel private constructor(
 
     }
 
-
     /*
      * Tool Timers
      */
@@ -395,8 +393,7 @@ class InvestigationScreenViewModel private constructor(
     )
     val huntDurationTimerUiState = _huntDurationTimerState.asStateFlow()
 
-
-    private val huntGapTimerProgressBarNotches = listOf(
+    private val huntCooldownTimerProgressBarNotches = listOf(
         ProgressBarNotch(
             UiText.DynamicString("Standard"),
             (1.5).minutes.inWholeMilliseconds
@@ -406,28 +403,26 @@ class InvestigationScreenViewModel private constructor(
         NotchedProgressBarUiState(
             max = 72000,
             origin = 0,
-            notches = huntGapTimerProgressBarNotches,
+            notches = huntCooldownTimerProgressBarNotches,
             running = false
         )
     )
     val huntCooldownTimerUiState = _huntCooldownTimerUiState.asStateFlow()
 
-    private val maxTimeFromSetting = 120000L
-    private val fingerprintTimerProgressBarNotches = listOf(
-        ProgressBarNotch(
-            UiText.DynamicString("Obake"),
-            (maxTimeFromSetting * .5f).toLong()
-        ),
-        ProgressBarNotch(
-            UiText.DynamicString("Normal"),
-            maxTimeFromSetting
-        )
-    )
     private val _fingerprintTimerUiState = MutableStateFlow(
         NotchedProgressBarUiState(
-            max = maxTimeFromSetting,
+            max = difficultyState.value.settings.fingerprintDuration.toLong(),
             origin = 0,
-            notches = fingerprintTimerProgressBarNotches,
+            notches = listOf(
+                ProgressBarNotch(
+                    UiText.StringResource(GhostResources.GhostIdentifier.OBAKE.toStringResource()),
+                    (difficultyState.value.settings.fingerprintDuration.toLong() * .5f).toLong()
+                ),
+                ProgressBarNotch(
+                    UiText.DynamicString("Normal"),
+                    difficultyState.value.settings.fingerprintDuration.toLong()
+                )
+            ),
             running = false
         )
     )
@@ -441,7 +436,7 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    /**
+    /*
      * Operation Timer State
      */
 
@@ -454,10 +449,15 @@ class InvestigationScreenViewModel private constructor(
     )
     private val operationTimerState = _operationTimerState.asStateFlow()
 
-    /**/
+    /*
+     * Override
+     * */
     private val _difficultyOverridesState = MutableStateFlow(DifficultyOverridesData())
     private val difficultyOverridesState = _difficultyOverridesState.asStateFlow()
 
+    /*
+     * Weather
+     */
     private val _weatherState = combine(
         difficultyOverridesState,
         difficultyState
@@ -468,21 +468,6 @@ class InvestigationScreenViewModel private constructor(
         SharingStarted.WhileSubscribed(5000),
         Weather.RANDOM
     )
-
-    private val _weatherUiState = combine(
-        _weatherState,
-        difficultyState,
-    ) { weatherState, difficultyState ->
-        WeatherUiState(
-            weather = weatherState,
-            enabled = difficultyState.settings.weather == Weather.RANDOM
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = WeatherUiState()
-    )
-    internal val weatherUiState = _weatherUiState
 
     /* Temperature */
     private val _temperatureState = MutableStateFlow(TemperatureData())
@@ -517,25 +502,15 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private val _temperatureUiState = _temperatureState.map { temperatureState ->
-        val rounded = "%4.1f".format(temperatureState.current)
-        TemperatureUiState(
-            range = temperatureState.range,
-            current = rounded.toFloat(),
-            temporalGradient = temperatureState.current - temperatureState.previous,
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = TemperatureUiState()
-    )
-    internal val temperatureUiState = _temperatureUiState
-
-    /* Phase */
+    /*
+     * Phase
+     */
     private val _phaseState = MutableStateFlow(PhaseData())
     private val phaseState = _phaseState.asStateFlow()
 
-    /* Traits */
+    /*
+     * Traits
+     */
     private val _traitData: MutableStateFlow<List<GhostTrait>> =
         MutableStateFlow(
             try {
@@ -578,6 +553,87 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = GhostTraitFilterOptions()
     )
+
+    /*
+     * EvidenceStates
+     */
+    private val _evidenceStates: MutableStateFlow<List<EvidenceState>> =
+        MutableStateFlow(emptyList())
+    internal val evidenceStates = _evidenceStates.asStateFlow()
+    private fun resetEvidenceStates() {
+        _evidenceStates.update {
+            try {
+                fetchEvidenceTypesUseCase().getOrThrow()
+                    .map { evidenceType ->
+                        EvidenceState(
+                            evidence = evidenceType,
+                            state = EvidenceValidationType.NEUTRAL
+                        )
+                    }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emptyList()
+            }
+        }
+    }
+
+    /*
+     * BPM Tool
+     */
+    private val _bpmToolState = MutableStateFlow(BpmToolUiState())
+
+    /* Ghost States */
+    private val _explicitRejections =
+        MutableStateFlow<Set<GhostResources.GhostIdentifier>>(emptySet())
+    private fun resetExplicitNegations() {
+        _explicitRejections.update { emptySet() }
+    }
+
+    private val _ghostStates: StateFlow<List<GhostState>> = combine(
+        evidenceStates,
+        difficultyState,
+        _bpmToolState,
+        _explicitRejections,
+        selectedTraits
+    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections, selectedTraits ->
+        ghostEvidences.map { ghostEvidence ->
+            val isManuallyRejected = ghostEvidence.ghost.id in manualRejections
+
+            // Calculate the base state with score
+            var state = GhostState(
+                ghostEvidence = ghostEvidence,
+                manualRejection = isManuallyRejected
+            ).updateScore(
+                evidenceState = evidenceStates,
+                evidenceGiven = difficultyState.settings.evidenceGiven
+            )
+
+            // Apply BPM validation if enabled
+            state = if (bpmToolUiState.applyMeasurement) {
+                val bpmValue = when (bpmToolUiState.measurementType) {
+                    VisualizerMeasurementType.INSTANT -> bpmToolUiState.realtimeState.smoothed
+                    VisualizerMeasurementType.AVERAGED -> bpmToolUiState.realtimeState.average
+                    VisualizerMeasurementType.WEIGHTED -> bpmToolUiState.realtimeState.weightedAverage
+                }
+                state.updateBpmValidation(bpmValue)
+            } else {
+                state.resetBpmValidation()
+            }
+
+            val traits = selectedTraits
+                .filter { it.validationType == TraitValidationType.CONFIRMED }
+                .filter { state.ghostEvidence.ghost.id in it.ghostTrait.affectedGhosts }
+            state = state.updateTraits(traits.map { it.ghostTrait }.toSet())
+
+            state
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = ghostEvidences.map { GhostState(it) }
+    )
+    private val ghostStates = _ghostStates
 
     /**
      * UI States
@@ -692,8 +748,17 @@ class InvestigationScreenViewModel private constructor(
     private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     internal val popupUiState = _popupUiState.asStateFlow()
 
-    private val _bpmToolUiState = MutableStateFlow(BpmToolUiState())
-    internal val bpmToolUiState = _bpmToolUiState.asStateFlow()
+    internal val bpmToolUiState = _bpmToolState.map {
+        BpmToolUiState(
+            realtimeState = it.realtimeState,
+            measurementType = it.measurementType,
+            applyMeasurement = it.applyMeasurement
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = BpmToolUiState()
+    )
 
     private val _operationSanityUiState = combine(
         mapState,
@@ -723,6 +788,20 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val operationSanityUiState = _operationSanityUiState
 
+    private val _weatherUiState = combine(
+        _weatherState,
+        difficultyState,
+    ) { weatherState, difficultyState ->
+        WeatherUiState(
+            weather = weatherState,
+            enabled = difficultyState.settings.weather == Weather.RANDOM
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = WeatherUiState()
+    )
+    internal val weatherUiState = _weatherUiState
 
     /* Trait States */
     private val _traitFilterUiState: MutableStateFlow<TraitFilter> = MutableStateFlow(
@@ -785,27 +864,19 @@ class InvestigationScreenViewModel private constructor(
     )
     val traitListUiState = _traitListUiState
 
-    /* EvidenceStates */
-    private val _evidenceStates: MutableStateFlow<List<EvidenceState>> =
-        MutableStateFlow(emptyList())
-    internal val evidenceStates = _evidenceStates.asStateFlow()
-    private fun resetEvidenceStates() {
-        _evidenceStates.update {
-            try {
-                fetchEvidenceTypesUseCase().getOrThrow()
-                    .map { evidenceType ->
-                        EvidenceState(
-                            evidence = evidenceType,
-                            state = EvidenceValidationType.NEUTRAL
-                        )
-                    }
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-                emptyList()
-            }
-        }
-    }
+    private val _temperatureUiState = _temperatureState.map { temperatureState ->
+        val rounded = "%4.1f".format(temperatureState.current)
+        TemperatureUiState(
+            range = temperatureState.range,
+            current = rounded.toFloat(),
+            temporalGradient = temperatureState.current - temperatureState.previous,
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = TemperatureUiState()
+    )
+    internal val temperatureUiState = _temperatureUiState
 
     private val _evidenceListUiState: StateFlow<List<EvidenceState>> = combine(
         evidenceStates, difficultyState
@@ -827,65 +898,13 @@ class InvestigationScreenViewModel private constructor(
             }.sortedBy { it.evidence.id.ordinal }
             .sortedByDescending { it.enabled }
     }
-        .distinctUntilChanged()
-        .stateIn(
+    .distinctUntilChanged()
+    .stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
         initialValue = emptyList()
     )
     val evidenceListUiState = _evidenceListUiState
-
-    /* Ghost States */
-    private val _explicitRejections =
-        MutableStateFlow<Set<GhostResources.GhostIdentifier>>(emptySet())
-    private fun resetExplicitNegations() {
-        _explicitRejections.update { emptySet() }
-    }
-
-    private val _ghostStates: StateFlow<List<GhostState>> = combine(
-        evidenceStates,
-        difficultyState,
-        bpmToolUiState,
-        _explicitRejections,
-        selectedTraits
-    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections, selectedTraits ->
-        ghostEvidences.map { ghostEvidence ->
-            val isManuallyRejected = ghostEvidence.ghost.id in manualRejections
-
-            // Calculate the base state with score
-            var state = GhostState(
-                ghostEvidence = ghostEvidence,
-                manualRejection = isManuallyRejected
-            ).updateScore(
-                evidenceState = evidenceStates,
-                evidenceGiven = difficultyState.settings.evidenceGiven
-            )
-
-            // Apply BPM validation if enabled
-            state = if (bpmToolUiState.applyMeasurement) {
-                val bpmValue = when (bpmToolUiState.measurementType) {
-                    VisualizerMeasurementType.INSTANT -> bpmToolUiState.realtimeState.smoothed
-                    VisualizerMeasurementType.AVERAGED -> bpmToolUiState.realtimeState.average
-                    VisualizerMeasurementType.WEIGHTED -> bpmToolUiState.realtimeState.weightedAverage
-                }
-                state.updateBpmValidation(bpmValue)
-            } else {
-                state.resetBpmValidation()
-            }
-
-            val traits = selectedTraits
-                .filter { it.validationType == TraitValidationType.CONFIRMED }
-                .filter { state.ghostEvidence.ghost.id in it.ghostTrait.affectedGhosts }
-            state = state.updateTraits(traits.map { it.ghostTrait }.toSet())
-
-            state
-        }
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = ghostEvidences.map { GhostState(it) }
-    )
-    private val ghostStates = _ghostStates
 
     /* Ghost Order **/
     private val _ghostsSortedUiState: StateFlow<List<GhostState>> =
@@ -1268,28 +1287,24 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    /*
-    * Footstep Visualizer
-    */
-
     /**
      * MVI UI Events
      */
 
     private fun setBpmData(data: RealtimeUiState<GraphPoint>) {
-        _bpmToolUiState.update {
+        _bpmToolState.update {
             it.copy(realtimeState = data)
         }
     }
 
     private fun setBpmMeasurementType(type: VisualizerMeasurementType) {
-        _bpmToolUiState.update {
+        _bpmToolState.update {
             it.copy(measurementType = type)
         }
     }
 
     private fun toggleApplyBpmMeasurement() {
-        _bpmToolUiState.update {
+        _bpmToolState.update {
             it.copy(applyMeasurement = !it.applyMeasurement)
         }
     }
@@ -1675,12 +1690,49 @@ class InvestigationScreenViewModel private constructor(
             }.launchIn(viewModelScope)
     }
 
+    fun observeToolTimerSettings() {
+        combine(
+            difficultyState,
+            mapState
+        ) { difficulty, map ->
+            difficulty.settings to map.size
+        }
+            .distinctUntilChanged()
+            .onEach { (settings, mapSize) ->
+                val huntDuration = settings.huntDuration.toLong(mapSize)
+                _huntDurationTimerState.update {
+                    it.copy(
+                        max = huntDuration,
+                        remaining = huntDuration
+                    )
+                }
+                val fingerprintDuration = settings.fingerprintDuration.toLong()
+                _fingerprintTimerUiState.update {
+                    it.copy(
+                        max = fingerprintDuration,
+                        remaining = fingerprintDuration,
+                        notches = listOf(
+                            ProgressBarNotch(
+                                UiText.StringResource(GhostResources.GhostIdentifier.OBAKE.toStringResource()),
+                                (difficultyState.value.settings.fingerprintDuration.toLong() * .5f).toLong()
+                            ),
+                            ProgressBarNotch(
+                                UiText.DynamicString("Normal"),
+                                difficultyState.value.settings.fingerprintDuration.toLong()
+                            )
+                        )
+                    )
+                }
+            }.launchIn(viewModelScope)
+    }
+
     init {
         updateMap()
         updateDifficulty()
         reset()
         observeOperationTimer()
         observeToolTimers()
+        observeToolTimerSettings()
     }
 
     companion object {
