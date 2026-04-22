@@ -437,35 +437,55 @@ class InvestigationScreenViewModel private constructor(
 
     /* Temperature */
     private val _temperatureState = MutableStateFlow(TemperatureData())
-    private fun updateTemperature(value: Float, timeStamp: Long) {
+    private fun updateTemperature(delta: Float, timeStamp: Long) {
+        val weatherRange = getCurrentWeather().toTemperatureRange()
+        val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
 
-        val fuseBoxOnContractOn = difficultyState.value.settings.fuseBoxAtStartOfContract ==
-                FuseBoxAtStartOfContract.ON
-        val fuseBoxOverrideOn = difficultyOverridesState.value.fuseBox ==
-                FuseBoxFlag.FUSEBOX_ENABLED
+        val floor = weatherRange.low
+        val ceiling = if (fuseBoxOn) Temperature.TEMPERATURE_START_FUSEBOX_ENABLED else weatherRange.high
 
-        val fuseBoxEnabled = fuseBoxOnContractOn && fuseBoxOverrideOn
+        _temperatureState.update { state ->
+            var nextTemp = state.current + delta
+            if (delta > 0) { // Heating
+                if (nextTemp > ceiling) nextTemp = ceiling
+            } else { // Cooling
+                if (nextTemp < floor) nextTemp = floor
+            }
 
-
-        val maxNormal = when(fuseBoxEnabled &&
-                _temperatureState.value.current >= _weatherState.value.toTemperatureRange().high
-        ) {
-            true -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
-            else -> _weatherState.value.toTemperatureRange().high
-        }
-
-        val newTemp = _temperatureState.value.current + value
-
-        _temperatureState.update {
-            it.copy(
-                previous = it.current,
-                current = newTemp.coerceIn(
-                    _weatherState.value.toTemperatureRange().low,
-                    maxNormal
-                ),
+            state.copy(
+                previous = state.current,
+                current = nextTemp,
                 lastUpdate = timeStamp
             )
         }
+    }
+
+    private fun resetTemperature() {
+        val weather = getCurrentWeather()
+        val weatherRange = weather.toTemperatureRange()
+        val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+
+        val startTemp = if (fuseBoxOn) {
+            Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+        } else {
+            weatherRange.high
+        }
+
+        _temperatureState.update {
+            it.copy(
+                current = startTemp,
+                previous = startTemp,
+                range = weatherRange,
+                lastUpdate = System.currentTimeMillis()
+            )
+        }
+    }
+
+    private fun getCurrentWeather(): Weather {
+        val diff = difficultyState.value
+        val overrides = _difficultyOverridesState.value
+        return if (diff.settings.weather == Weather.RANDOM) overrides.weather
+        else diff.settings.weather
     }
 
     /*
@@ -834,10 +854,9 @@ class InvestigationScreenViewModel private constructor(
     val traitListUiState = _traitListUiState
 
     private val _temperatureUiState = _temperatureState.map { temperatureState ->
-        val rounded = "%4.1f".format(temperatureState.current)
         TemperatureUiState(
             range = temperatureState.range,
-            current = rounded.toFloat(),
+            current = temperatureState.current,
             temporalGradient = temperatureState.current - temperatureState.previous,
         )
     }.stateIn(
@@ -1043,6 +1062,10 @@ class InvestigationScreenViewModel private constructor(
         setPlayerSanity(normalizedLevel)
     }
 
+    private fun getBloodMoonMultiplier(): Float {
+        return if (getCurrentWeather() == Weather.BLOOD_MOON) 2f else 1f
+    }
+
     /**
      * Reduces player sanity level each doTick. Sanity cannot drop below 50% if the clock still has
      * time remaining.
@@ -1061,9 +1084,7 @@ class InvestigationScreenViewModel private constructor(
         if (deltaTime > 0) {
             val drainModifier = operationSanityUiState.value.drainModifier
             val multiplier = 0.00001f
-            val bloodMoonMultiplier =
-                if(difficultyState.value.settings.weather == Weather.BLOOD_MOON ||
-                    difficultyOverridesState.value.weather == Weather.BLOOD_MOON) 2f else 1f
+            val bloodMoonMultiplier = getBloodMoonMultiplier()
 
             val deltaDrain = deltaTime * drainModifier * multiplier * bloodMoonMultiplier
 
@@ -1098,13 +1119,10 @@ class InvestigationScreenViewModel private constructor(
             currentTime - lastTickTime else 0L
 
         if (deltaTime > 0) {
-            val temperatureChangeModifier = when(difficultyOverridesState.value.fuseBox) {
-                FuseBoxFlag.FUSEBOX_ENABLED -> TEMPERATURE_HEATING_RATE
-                else -> TEMPERATURE_COOLING_RATE
-            }
+            val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+            val temperatureChangeModifier = if (fuseBoxOn) TEMPERATURE_HEATING_RATE else TEMPERATURE_COOLING_RATE
 
-            val multiplier = 0.001f
-            val deltaDrain = deltaTime * temperatureChangeModifier * multiplier
+            val deltaDrain = (deltaTime / 1000f) * temperatureChangeModifier
 
             updateTemperature(deltaDrain, currentTime)
 
@@ -1307,6 +1325,7 @@ class InvestigationScreenViewModel private constructor(
                 weather = weather
             )
         }
+        resetTemperature()
     }
     private fun setFuseBoxOverride(state: FuseBoxFlag) {
         _difficultyOverridesState.update {
@@ -1363,23 +1382,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun setWeather(weather: Weather) {
-        _difficultyOverridesState.update {
-            it.copy(
-                weather = weather
-            )
-        }
-
-        _temperatureState.update {
-            it.copy(
-                current = when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                    FuseBoxAtStartOfContract.ON ->
-                        difficultyOverridesState.value.weather.toTemperatureRange().high
-                    else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
-                },
-                range = weatherUiState.value.weather.toTemperatureRange()
-            )
-        }
-
+        setWeatherOverride(weather)
     }
 
     private fun onPlayerDeath() {
@@ -1702,14 +1705,12 @@ class InvestigationScreenViewModel private constructor(
 
     private fun observeDifficulty() {
         difficultyState
-            .map { difficulty -> difficulty }
-            .distinctUntilChanged()
-            .onEach { difficultyState ->
+            .onEach { difficulty ->
 
                 _playerSanityUiState.update {
                     it.copy(
-                        sanityLevel = difficultyState.settings.startingSanity.toFloat(),
-                        insanityLevel = 1f - difficultyState.settings.startingSanity.toFloat()
+                        sanityLevel = difficulty.settings.startingSanity.toFloat(),
+                        insanityLevel = 1f - difficulty.settings.startingSanity.toFloat()
                     )
                 }
 
@@ -1719,27 +1720,19 @@ class InvestigationScreenViewModel private constructor(
                     )
                 }
 
-                setFuseBoxOverride(
-                    if(difficultyState.settings.fuseBoxAtStartOfContract != FuseBoxAtStartOfContract.BROKEN)
-                        FuseBoxFlag.FUSEBOX_ENABLED
-                    else FuseBoxFlag.FUSEBOX_DISABLED
-                )
+                val fuseState = if (difficulty.settings.fuseBoxAtStartOfContract ==
+                    FuseBoxAtStartOfContract.ON) FuseBoxFlag.FUSEBOX_ENABLED
+                else FuseBoxFlag.FUSEBOX_DISABLED
 
-                _temperatureState.update {
-                    it.copy(
-                        current = when(difficultyState.settings.fuseBoxAtStartOfContract) {
-                            FuseBoxAtStartOfContract.ON ->
-                                _weatherState.value.toTemperatureRange().high
-                            else -> Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
-                        },
-                        range = _weatherState.value.toTemperatureRange()
-                    )
-                }
-
-                setOperationTimerRemainingTime(difficultyState.settings.setupTime.toLong())
+                setFuseBoxOverride(fuseState)
                 resetOperationTimer()
+                resetTemperature()
 
             }.launchIn(viewModelScope)
+    }
+
+    private fun observeConfigOverrides() {
+        // Handled by individual setters or other observers
     }
 
     init {
@@ -1748,6 +1741,7 @@ class InvestigationScreenViewModel private constructor(
         reset()
 
         observeDifficulty()
+        observeConfigOverrides()
         observeOperationTimer()
         observeToolTimers()
         observeToolTimerSettings()
