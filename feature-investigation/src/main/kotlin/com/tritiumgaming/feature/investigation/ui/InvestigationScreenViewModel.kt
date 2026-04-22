@@ -190,6 +190,16 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private val allGhostTraits: List<GhostTrait> = try {
+        getAllGhostTraitsUseCase().getOrThrow()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        emptyList()
+    }
+
+    private val defaultSelectedTraits
+        get() = allGhostTraits.map { ValidatedGhostTrait(ghostTrait = it) }
+
     /*
      * Routines
      */
@@ -201,7 +211,6 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Investigation Repository
      */
-
     private val _investigationState = getInvestigationStateUseCase()
 
     /*
@@ -300,7 +309,6 @@ class InvestigationScreenViewModel private constructor(
                 "\n\ttime: ${difficultyState.value.settings.setupTime.toLong()}" +
                 "\n\tinitialSanity: ${difficultyState.value.settings.startingSanity.toFloat()}" +
                 "\n\tresponseType: ${difficultyState.value.responseType}")
-
     }
 
     /*
@@ -469,15 +477,7 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Traits Data
      */
-    private val _traitData: MutableStateFlow<List<GhostTrait>> =
-        MutableStateFlow(
-            try {
-                getAllGhostTraitsUseCase().getOrThrow().map { it }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                emptyList()
-            }
-        )
+    private val _traitData = MutableStateFlow(allGhostTraits)
     private val traitData = _traitData.asStateFlow()
 
     /*
@@ -504,18 +504,12 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Traits Selected
      */
-    private val _selectedTraits = MutableStateFlow<List<ValidatedGhostTrait>>(emptyList())
+    private val _selectedTraits = MutableStateFlow(
+        allGhostTraits.map { ValidatedGhostTrait(ghostTrait = it) }
+    )
     val selectedTraits = _selectedTraits.asStateFlow()
     private fun resetTraitSelections() {
-        _selectedTraits.update {
-            try {
-                getAllGhostTraitsUseCase().getOrThrow().map {
-                    ValidatedGhostTrait(ghostTrait = it) }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                emptyList()
-            }
-        }
+        _selectedTraits.update { defaultSelectedTraits }
     }
 
     /*
