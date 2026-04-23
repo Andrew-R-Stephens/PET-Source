@@ -461,13 +461,9 @@ private fun InvestigationContent(
         },
         onUseSanityMedication = {
             investigationViewModel.onEvent(UseSanityMedication)
-
-            Toast.makeText(context, "Sanity Medication Used", Toast.LENGTH_SHORT).show()
         },
         onPlayerDeath = {
             investigationViewModel.onEvent(PlayerDeath)
-
-            Toast.makeText(context, "Player Death Triggered", Toast.LENGTH_SHORT).show()
         },
     )
 
