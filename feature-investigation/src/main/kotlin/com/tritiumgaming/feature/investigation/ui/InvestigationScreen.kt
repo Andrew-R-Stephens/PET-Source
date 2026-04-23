@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
@@ -42,6 +43,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
@@ -62,6 +64,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -136,6 +139,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
@@ -157,6 +161,8 @@ fun InvestigationSoloScreen(
 private fun InvestigationContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
+    val context = LocalContext.current
+
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
 
     val toolbarUiState by investigationViewModel.primaryToolbarUiState.collectAsStateWithLifecycle()
@@ -345,6 +351,8 @@ private fun InvestigationContent(
     val temperatureUiActions = TemperatureUiActions(
         onTogglePower = {
             investigationViewModel.onEvent(ToggleFuseBoxOverride)
+
+            Toast.makeText(context, "Fuse Box Toggled", Toast.LENGTH_SHORT).show()
         }
     )
 
@@ -453,9 +461,13 @@ private fun InvestigationContent(
         },
         onUseSanityMedication = {
             investigationViewModel.onEvent(UseSanityMedication)
+
+            Toast.makeText(context, "Sanity Medication Used", Toast.LENGTH_SHORT).show()
         },
         onPlayerDeath = {
             investigationViewModel.onEvent(PlayerDeath)
+
+            Toast.makeText(context, "Player Death Triggered", Toast.LENGTH_SHORT).show()
         },
     )
 
@@ -981,8 +993,7 @@ private fun TimerComponentRow(
 @Composable
 private fun TemperatureComponent(
     modifier: Modifier = Modifier,
-    state: TemperatureStateBundle,
-    actions: TemperatureUiActions
+    state: TemperatureStateBundle
 ) {
     val temperatureUiState = state.temperatureUiState
 
@@ -1002,7 +1013,7 @@ private fun TemperatureComponent(
             Text(
                 modifier = Modifier
                     .wrapContentSize(),
-                text = "${ temperatureUiState.range.high }",
+                text = "${temperatureUiState.range.high}",
                 color = LocalPalette.current.onSurface,
                 style = LocalTypography.current.tertiary.regular.copy(
                     fontSize = 8.sp,
@@ -1023,7 +1034,7 @@ private fun TemperatureComponent(
             Text(
                 modifier = Modifier
                     .wrapContentSize(),
-                text = "${ temperatureUiState.range.low }",
+                text = "${temperatureUiState.range.low}",
                 color = LocalPalette.current.onSurface,
                 style = LocalTypography.current.tertiary.regular.copy(
                     fontSize = 8.sp,
@@ -1034,7 +1045,49 @@ private fun TemperatureComponent(
 
         }
 
-        Row(
+        Column(
+            modifier = Modifier
+                .wrapContentWidth()
+                .height(IntrinsicSize.Min),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            Icon(
+                modifier = Modifier
+                    .size(20.dp),
+                painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
+                contentDescription = null,
+                tint = if(temperatureUiState.gradientDirection == HEATING) {
+                    LocalPalette.current.tertiary
+                } else { Color.Transparent }
+            )
+
+            Text(
+                modifier = Modifier
+                    .widthIn(min = with(LocalDensity.current) { 48.sp.toDp() }),
+                text = temperatureUiState.currentAsString,
+                color = LocalPalette.current.onSurface,
+                style = LocalTypography.current.tertiary.regular.copy(
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1
+            )
+
+            Icon(
+                modifier = Modifier
+                    .size(20.dp),
+                painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
+                contentDescription = null,
+                tint = if(temperatureUiState.gradientDirection == COOLING) {
+                    LocalPalette.current.primary
+                } else { Color.Transparent }
+            )
+
+        }
+
+        /*Row(
             modifier = Modifier
                 .wrapContentWidth()
                 .height(IntrinsicSize.Min),
@@ -1061,7 +1114,7 @@ private fun TemperatureComponent(
                 contentAlignment = Alignment.Center
             ) {
                 val modifier = Modifier.matchParentSize()
-                when(temperatureUiState.gradientDirection) {
+                when (temperatureUiState.gradientDirection) {
                     HEATING -> {
                         Icon(
                             modifier = modifier,
@@ -1070,6 +1123,7 @@ private fun TemperatureComponent(
                             tint = LocalPalette.current.tertiary
                         )
                     }
+
                     COOLING -> {
                         Icon(
                             modifier = modifier,
@@ -1078,39 +1132,19 @@ private fun TemperatureComponent(
                             tint = LocalPalette.current.primary
                         )
                     }
+
                     STABLE -> {
                         Icon(
                             modifier = modifier,
                             painter = painterResource(R.drawable.ic_arrow_right_flat),
                             contentDescription = null,
-                            tint = LocalPalette.current.onSurface
+                            tint = *//*LocalPalette.current.onSurface*//* Color.Transparent
                         )
                     }
                 }
             }
-        }
+        }*/
 
-        val fuseBoxIcon = when(state.fuseBoxState) {
-            DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_DISABLED -> R.drawable.ic_fuse_box
-            else -> R.drawable.ic_fuse_box_fill
-        }
-
-        Surface(
-            modifier = Modifier
-                .size(48.dp)
-                .padding(4.dp),
-            color = LocalPalette.current.surfaceContainerHigh,
-            shape = RoundedCornerShape(8.dp),
-        ) {
-            Icon(
-                modifier = Modifier
-                    .clickable(onClick = { actions.onTogglePower() })
-                    .padding(8.dp),
-                painter = painterResource(fuseBoxIcon),
-                contentDescription = null,
-                tint = LocalPalette.current.onSurface
-            )
-        }
     }
 }
 
@@ -1501,6 +1535,12 @@ private fun ToolsBottomSheetComponent(
                     },
                     temperatureMeterComponent = { modifier ->
                         TemperatureComponent(
+                            modifier = modifier,
+                            state = temperatureBundle
+                        )
+                    },
+                    fuseBoxControlComponent = { modifier ->
+                        FuseBoxControlComponent(
                             modifier = modifier,
                             state = temperatureBundle,
                             actions = temperatureUiActions
@@ -2181,6 +2221,7 @@ fun OperationConfigsBottomSheet(
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
+    fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
     showTemperatureMeterComponent: Boolean,
 ) {
@@ -2225,7 +2266,7 @@ fun OperationConfigsBottomSheet(
 
         Row(
             modifier = Modifier
-                .height(IntrinsicSize.Min)
+                .height(IntrinsicSize.Max)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
@@ -2258,36 +2299,80 @@ fun OperationConfigsBottomSheet(
                             .fillMaxWidth()
                     )
 
+                    weatherConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
                 }
             }
 
-            Surface(
-                modifier = Modifier
-                    .fillMaxHeight(),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
+
+            Column(
+                Modifier
+                    .fillMaxHeight()
+                    .width(IntrinsicSize.Min),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Box(
-                    Modifier
-                        .padding(8.dp),
-                    contentAlignment = Alignment.BottomCenter
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = LocalPalette.current.surfaceContainerLow
+                    )
                 ) {
                     timerComponent(
                         Modifier
                             .width(IntrinsicSize.Min)
+                            .padding(8.dp)
                     )
+                }
+
+                if (showTemperatureMeterComponent) {
+
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp),
+                        border = BorderStroke(
+                            width = 2.dp,
+                            color = LocalPalette.current.surfaceContainerLow
+                        )
+                    ) {
+
+                        Row(
+                            modifier = Modifier
+                                .width(IntrinsicSize.Min)
+                                .padding(8.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            temperatureMeterComponent(
+                                Modifier
+                                    .width(IntrinsicSize.Min)
+                            )
+
+                            fuseBoxControlComponent(
+                                Modifier
+                                    .width(48.dp)
+                                    .fillMaxHeight()
+                                    .heightIn(min = 48.dp)
+                            )
+
+                        }
+                    }
                 }
             }
 
         }
 
-        Row(
+        /*Row(
             modifier = Modifier
-                .height(IntrinsicSize.Min)
+                .height(IntrinsicSize.Max)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
@@ -2319,6 +2404,14 @@ fun OperationConfigsBottomSheet(
             }
 
             if(showTemperatureMeterComponent) {
+
+                fuseBoxControlComponent(
+                    Modifier
+                        .width(48.dp)
+                        .fillMaxHeight()
+                        .heightIn(min = 48.dp)
+                )
+
                 Surface(
                     modifier = Modifier
                         .fillMaxHeight(),
@@ -2341,8 +2434,9 @@ fun OperationConfigsBottomSheet(
                         )
                     }
                 }
+
             }
-        }
+        }*/
 
         Row(
             modifier = Modifier
@@ -2411,6 +2505,46 @@ fun OperationConfigsBottomSheet(
 
     }
 
+}
+
+@Composable
+fun FuseBoxControlComponent(
+    modifier: Modifier,
+    state: TemperatureStateBundle,
+    actions: TemperatureUiActions
+) {
+    data class FuseButtonTheme(
+        val icon: Int, val foreground: Color)
+
+    val theme = when (state.fuseBoxState) {
+        FuseBoxFlag.FUSEBOX_ENABLED -> {
+            FuseButtonTheme(
+                R.drawable.ic_fuse_box_fill,
+                LocalPalette.current.primary
+            )
+        }
+        FuseBoxFlag.FUSEBOX_DISABLED -> {
+            FuseButtonTheme(
+                R.drawable.ic_fuse_box,
+                LocalPalette.current.onSurface
+            )
+        }
+    }
+
+    Surface(
+        onClick = { actions.onTogglePower() },
+        modifier = modifier,
+        shape = RoundedCornerShape(8.dp),
+        color = LocalPalette.current.surfaceContainer,
+        contentColor = theme.foreground
+    ) {
+        Icon(
+            modifier = Modifier
+                .padding(12.dp),
+            painter = painterResource(theme.icon),
+            contentDescription = "Toggle Power"
+        )
+    }
 }
 
 @Composable
@@ -2565,7 +2699,7 @@ fun OperationConfigsSideSheet(
 
         Row(
             modifier = Modifier
-                .height(IntrinsicSize.Min)
+                .height(IntrinsicSize.Max)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
