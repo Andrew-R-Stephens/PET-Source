@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui
+package com.tritiumgaming.feature.investigation.ui.tool.temperature
 
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 

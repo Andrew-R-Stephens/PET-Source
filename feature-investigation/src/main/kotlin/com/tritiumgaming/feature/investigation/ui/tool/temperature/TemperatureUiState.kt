@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui
+package com.tritiumgaming.feature.investigation.ui.tool.temperature
 
 import com.tritiumgaming.shared.data.weather.model.Temperature
 import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_FREEZING_BREATH

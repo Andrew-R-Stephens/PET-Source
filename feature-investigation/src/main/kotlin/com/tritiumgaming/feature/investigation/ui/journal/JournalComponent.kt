@@ -3,6 +3,9 @@ package com.tritiumgaming.feature.investigation.ui.journal
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -23,6 +26,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.theme.LocalUiConfiguration
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
@@ -33,8 +37,70 @@ import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActio
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 
+
 @Composable
-internal fun GhostListColumn(
+internal fun JournalComponent(
+    modifier: Modifier = Modifier,
+    evidenceListUiState: EvidenceListUiState,
+    evidenceListUiActions: EvidenceListUiActions,
+    ghostListUiState: GhostListUiState,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions
+) {
+
+    val uiIsRtl = LocalUiConfiguration.current.isRtl
+
+    val evidenceListComponent: @Composable (Modifier) -> Unit = { modifier ->
+        EvidenceListColumn(
+            modifier = modifier,
+            evidenceListUiState = evidenceListUiState,
+            evidenceListUiActions = evidenceListUiActions
+        )
+    }
+
+    val ghostListComponent: @Composable (Modifier) -> Unit = { modifier ->
+        GhostListColumn(
+            modifier = modifier,
+            ghostListUiState = ghostListUiState,
+            ghostListUiActions = ghostListUiActions,
+            ghostListUiItemActions = ghostListUiItemActions
+        )
+    }
+
+    Row(
+        modifier = modifier
+            .fillMaxSize(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.Top
+    ) {
+        if(uiIsRtl) {
+            evidenceListComponent(Modifier
+                .weight(1f)
+                .fillMaxSize()
+            )
+            ghostListComponent(Modifier
+                .weight(1f, false)
+                .wrapContentWidth(Alignment.CenterHorizontally)
+                .fillMaxHeight()
+            )
+        } else {
+            ghostListComponent(Modifier
+                .weight(1f, false)
+                .wrapContentWidth(Alignment.CenterHorizontally)
+                .fillMaxHeight()
+            )
+            evidenceListComponent(Modifier
+                .weight(1f)
+                .fillMaxSize()
+            )
+        }
+    }
+
+}
+
+
+@Composable
+private fun GhostListColumn(
     modifier: Modifier = Modifier,
     ghostListUiState: GhostListUiState,
     ghostListUiActions: GhostListUiActions,
@@ -54,7 +120,7 @@ internal fun GhostListColumn(
 }
 
 @Composable
-internal fun EvidenceListColumn(
+private fun EvidenceListColumn(
     modifier: Modifier,
     evidenceListUiState: EvidenceListUiState,
     evidenceListUiActions: EvidenceListUiActions,

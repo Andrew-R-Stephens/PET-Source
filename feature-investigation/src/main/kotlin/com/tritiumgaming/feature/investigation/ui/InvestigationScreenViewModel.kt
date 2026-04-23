@@ -27,6 +27,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigU
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
