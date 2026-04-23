@@ -419,7 +419,7 @@ class InvestigationScreenViewModel private constructor(
      * Override
      * */
     private val _difficultyOverridesState = MutableStateFlow(DifficultyOverridesData())
-    private val difficultyOverridesState = _difficultyOverridesState.asStateFlow()
+    val difficultyOverridesState = _difficultyOverridesState.asStateFlow()
 
     /*
      * Weather
@@ -441,15 +441,17 @@ class InvestigationScreenViewModel private constructor(
         val weatherRange = getCurrentWeather().toTemperatureRange()
         val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
 
-        val floor = weatherRange.low
-        val ceiling = if (fuseBoxOn) Temperature.TEMPERATURE_START_FUSEBOX_ENABLED else weatherRange.high
+        val targetTemp = if (fuseBoxOn)
+            Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+        else
+            weatherRange.low
 
         _temperatureState.update { state ->
             var nextTemp = state.current + delta
             if (delta > 0) { // Heating
-                if (nextTemp > ceiling) nextTemp = ceiling
-            } else { // Cooling
-                if (nextTemp < floor) nextTemp = floor
+                if (state.current <= targetTemp && nextTemp > targetTemp) nextTemp = targetTemp
+            } else if (delta < 0) { // Cooling
+                if (state.current >= targetTemp && nextTemp < targetTemp) nextTemp = targetTemp
             }
 
             state.copy(
@@ -1120,12 +1122,23 @@ class InvestigationScreenViewModel private constructor(
 
         if (deltaTime > 0) {
             val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
-            val temperatureChangeModifier = if (fuseBoxOn) TEMPERATURE_HEATING_RATE else TEMPERATURE_COOLING_RATE
+            val currentTemp = _temperatureState.value.current
+            val weatherRange = getCurrentWeather().toTemperatureRange()
+
+            val targetTemp = if (fuseBoxOn)
+                Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
+            else
+                weatherRange.low
+
+            val isHeating = currentTemp < targetTemp
+            val temperatureChangeModifier = if (isHeating)
+                TEMPERATURE_HEATING_RATE
+            else
+                TEMPERATURE_COOLING_RATE
 
             val deltaDrain = (deltaTime / 1000f) * temperatureChangeModifier
 
             updateTemperature(deltaDrain, currentTime)
-
         }
     }
 
@@ -1334,6 +1347,22 @@ class InvestigationScreenViewModel private constructor(
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
                         FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_DISABLED
                         else -> state
+                    }
+            )
+        }
+    }
+    private fun toggleFuseBoxOverride() {
+        _difficultyOverridesState.update {
+            it.copy(
+                fuseBox =
+                    when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
+                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_DISABLED
+                        else -> {
+                            when(it.fuseBox) {
+                                FuseBoxFlag.FUSEBOX_ENABLED -> FuseBoxFlag.FUSEBOX_DISABLED
+                                else -> FuseBoxFlag.FUSEBOX_ENABLED
+                            }
+                        }
                     }
             )
         }
@@ -1597,7 +1626,7 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.SetDifficulty -> setDifficultyIndex(event.index)
             is InvestigationEvent.SetWeather -> setWeather(event.weather)
             is InvestigationEvent.SetWeatherOverride -> setWeatherOverride(event.weather)
-            is InvestigationEvent.SetFuseBoxOverride -> setFuseBoxOverride(event.state)
+            is InvestigationEvent.ToggleFuseBoxOverride -> toggleFuseBoxOverride()
 
             // Sanity Tracking
             is InvestigationEvent.PlayerDeath -> onPlayerDeath()
@@ -1786,7 +1815,7 @@ class InvestigationScreenViewModel private constructor(
         data class SetDifficulty(val index: Int) : InvestigationEvent()
         data class SetWeather(val weather: Weather) : InvestigationEvent()
         data class SetWeatherOverride(val weather: Weather) : InvestigationEvent()
-        data class SetFuseBoxOverride(val state: FuseBoxFlag) : InvestigationEvent()
+        object ToggleFuseBoxOverride : InvestigationEvent()
 
         // Sanity Tracker Events
         object PlayerDeath : InvestigationEvent()

@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -134,6 +135,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
@@ -166,6 +168,7 @@ private fun InvestigationContent(
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
     val weatherUiState by investigationViewModel.weatherUiState.collectAsStateWithLifecycle()
     val temperatureUiState by investigationViewModel.temperatureUiState.collectAsStateWithLifecycle()
+    val difficultyOverrideUiState by investigationViewModel.difficultyOverridesState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
 
@@ -339,6 +342,18 @@ private fun InvestigationContent(
         )
     )
 
+    val temperatureUiActions = TemperatureUiActions(
+        onTogglePower = {
+            investigationViewModel.onEvent(ToggleFuseBoxOverride)
+        }
+    )
+
+    val temperatureStateBundle = TemperatureStateBundle(
+        temperatureUiState = temperatureUiState,
+        fuseBoxState = difficultyOverrideUiState.fuseBox,
+        temperatureUiActions = temperatureUiActions
+    )
+
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
         remaining = LocalPalette.current.primary,
         background = LocalPalette.current.surface,
@@ -419,7 +434,7 @@ private fun InvestigationContent(
         mapUiStateBundle = mapUiStateBundle,
         weatherUiStateBundle = weatherUiStateBundle,
         weatherUiState = weatherUiState,
-        temperatureUiState = temperatureUiState
+        temperatureStateBundle = temperatureStateBundle
     )
 
     val toolSheetActionsBundle = ToolSheetActionsBundle(
@@ -429,6 +444,7 @@ private fun InvestigationContent(
         difficultyUiActions = difficultyUiActions,
         mapUiActions = mapUiActions,
         weatherUiActions = weatherUiActions,
+        temperatureUiActions = temperatureUiActions,
         onSanityChange = {
             investigationViewModel.onEvent(SetPlayerSanity(it))
         },
@@ -965,8 +981,11 @@ private fun TimerComponentRow(
 @Composable
 private fun TemperatureComponent(
     modifier: Modifier = Modifier,
-    temperatureUiState: TemperatureUiState
+    state: TemperatureStateBundle,
+    actions: TemperatureUiActions
 ) {
+    val temperatureUiState = state.temperatureUiState
+
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
@@ -1069,10 +1088,29 @@ private fun TemperatureComponent(
                     }
                 }
             }
-
-
         }
 
+        val fuseBoxIcon = when(state.fuseBoxState) {
+            DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_DISABLED -> R.drawable.ic_fuse_box
+            else -> R.drawable.ic_fuse_box_fill
+        }
+
+        Surface(
+            modifier = Modifier
+                .size(48.dp)
+                .padding(4.dp),
+            color = LocalPalette.current.surfaceContainerHigh,
+            shape = RoundedCornerShape(8.dp),
+        ) {
+            Icon(
+                modifier = Modifier
+                    .clickable(onClick = { actions.onTogglePower() })
+                    .padding(8.dp),
+                painter = painterResource(fuseBoxIcon),
+                contentDescription = null,
+                tint = LocalPalette.current.onSurface
+            )
+        }
     }
 }
 
@@ -1338,8 +1376,8 @@ private data class ToolSheetStateBundle(
     val difficultyUiStateBundle: ConfigStateBundle,
     val mapUiStateBundle: ConfigStateBundle,
     val weatherUiStateBundle: ConfigStateBundle,
+    val temperatureStateBundle: TemperatureStateBundle,
     val weatherUiState: WeatherUiState,
-    val temperatureUiState: TemperatureUiState,
     val toolbarUiState: OperationToolbarUiState,
     val traitListUiState: TraitListUiState,
     val operationDetailsUiState: OperationDetailsUiState,
@@ -1356,6 +1394,7 @@ private data class ToolSheetActionsBundle(
     val traitListUiActions: TraitListUiActions,
     val bpmToolUiActions: BpmToolUiActions,
     val timerUiActions: TimerUiActions,
+    val temperatureUiActions: TemperatureUiActions,
     val onSanityChange: (Float) -> Unit = {},
     val onWeatherChange: (Weather) -> Unit = {},
     val onUseSanityMedication: () -> Unit = {},
@@ -1377,7 +1416,7 @@ private fun ToolsBottomSheetComponent(
     val sanityUiState = stateBundle.sanityUiState
     val timerUiState = stateBundle.timerUiState
     val phaseUiState = stateBundle.phaseUiState
-    val temperatureUiState = stateBundle.temperatureUiState
+    val temperatureBundle = stateBundle.temperatureStateBundle
     val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
     val huntDurationBundle = stateBundle.huntDurationBundle
     val huntCooldownBundle = stateBundle.huntCooldownBundle
@@ -1392,6 +1431,7 @@ private fun ToolsBottomSheetComponent(
     val traitListUiActions = actionsBundle.traitListUiActions
     val bpmToolUiActions = actionsBundle.bpmToolUiActions
     val timerUiActions = actionsBundle.timerUiActions
+    val temperatureUiActions = actionsBundle.temperatureUiActions
 
     Column(
         modifier = modifier,
@@ -1462,7 +1502,8 @@ private fun ToolsBottomSheetComponent(
                     temperatureMeterComponent = { modifier ->
                         TemperatureComponent(
                             modifier = modifier,
-                            temperatureUiState = temperatureUiState
+                            state = temperatureBundle,
+                            actions = temperatureUiActions
                         )
                     },
                     showTemperatureMeterComponent = weatherUiState.weather != Weather.RANDOM
@@ -1601,6 +1642,7 @@ private fun ToolsSideSheetComponent(
     actionsBundle: ToolSheetActionsBundle
 ) {
 
+    val weatherUiState = stateBundle.weatherUiState
     val toolbarUiState = stateBundle.toolbarUiState
     val traitListUiState = stateBundle.traitListUiState
     val operationDetailsUiState = stateBundle.operationDetailsUiState
@@ -1608,7 +1650,7 @@ private fun ToolsSideSheetComponent(
     val sanityUiState = stateBundle.sanityUiState
     val timerUiState = stateBundle.timerUiState
     val phaseUiState = stateBundle.phaseUiState
-    val temperatureUiState = stateBundle.temperatureUiState
+    val temperatureBundle = stateBundle.temperatureStateBundle
     val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
     val huntDurationBundle = stateBundle.huntDurationBundle
     val huntCooldownBundle = stateBundle.huntCooldownBundle
@@ -1623,6 +1665,7 @@ private fun ToolsSideSheetComponent(
     val traitListUiActions = actionsBundle.traitListUiActions
     val bpmToolUiActions = actionsBundle.bpmToolUiActions
     val timerUiActions = actionsBundle.timerUiActions
+    val temperatureUiActions = actionsBundle.temperatureUiActions
 
     Column(
         modifier = modifier,
