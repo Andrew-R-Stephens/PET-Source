@@ -33,6 +33,7 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsBottomSheet
+import com.tritiumgaming.feature.investigation.ui.OperationConfigsSideSheet
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigComponent
 import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxControlComponent
@@ -382,7 +383,30 @@ internal fun ToolsSideSheetComponent(
                             timerUiActions = timerUiActions,
                             phaseUiState = phaseUiState
                         )
-                    }
+                    },
+                    playerDeathButtonComponent = { modifier ->
+                        PlayerDeathButtonComponent(
+                            modifier = modifier,
+                            onClick = {
+                                actionsBundle.onPlayerDeath()
+                            }
+                        )
+                    },
+                    temperatureMeterComponent = { modifier ->
+                        TemperatureComponent(
+                            modifier = modifier,
+                            state = temperatureBundle
+                        )
+                    },
+                    fuseBoxControlComponent = { modifier ->
+                        FuseBoxControlComponent(
+                            modifier = modifier,
+                            state = temperatureBundle,
+                            actions = temperatureUiActions
+                        )
+                    },
+                    showTemperatureMeterComponent = weatherUiState.weather != Weather.RANDOM
+
                 )
             }
 
@@ -509,216 +533,4 @@ internal fun ToolsSideSheetComponent(
 
         }
     }
-}
-
-@Composable
-fun OperationConfigsSideSheet(
-    modifier: Modifier = Modifier,
-    sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
-    timerComponent: @Composable (Modifier) -> Unit = {},
-    mapConfigComponent: @Composable (Modifier) -> Unit = {},
-    difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
-    weatherConfigComponent: @Composable (Modifier) -> Unit = {},
-    temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
-    sanityMeterComponent: @Composable (Modifier) -> Unit = {},
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically) {
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
-            )
-
-            Text(
-                modifier = Modifier
-                    .wrapContentWidth(),
-                text = "Operation Config".uppercase(),
-                color = LocalPalette.current.onSurfaceVariant,
-                style = LocalTypography.current.quaternary.bold.copy(
-                    textAlign = TextAlign.Start
-                ),
-                fontSize = 18.sp,
-                maxLines = 1
-            )
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
-            )
-        }
-
-        Surface(
-            modifier = Modifier,
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
-        ) {
-            Column(
-                modifier = Modifier
-                    .padding(8.dp),
-                verticalArrangement = Arrangement.SpaceBetween,
-                horizontalAlignment = Alignment.Start
-            ) {
-
-                mapConfigComponent(
-                    Modifier
-                        .fillMaxWidth()
-                )
-
-                difficultyConfigComponent(
-                    Modifier
-                        .fillMaxWidth()
-                )
-
-            }
-        }
-
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth(),
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
-        ) {
-            Box(
-                Modifier
-                    .padding(8.dp),
-                contentAlignment = Alignment.BottomCenter
-            ) {
-                timerComponent(
-                    Modifier
-                        .fillMaxWidth()
-                )
-            }
-        }
-
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            Surface(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                sanityMeterComponent(
-                    Modifier
-                        .height(48.dp)
-                        .weight(1f)
-                        .padding(8.dp)
-                )
-            }
-
-            Surface(
-                modifier = Modifier,
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                Row(
-                    modifier = Modifier,
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    sanityMedicationComponent(
-                        Modifier
-                            .size(48.dp)
-                    )
-                }
-            }
-
-        }
-
-        Row(
-            modifier = Modifier
-                .height(IntrinsicSize.Max)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
-        ) {
-            Surface(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                Column(
-                    modifier = Modifier
-                        .padding(8.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
-                    horizontalAlignment = Alignment.Start
-                ) {
-
-                    weatherConfigComponent(
-                        Modifier
-                            .fillMaxWidth()
-                    )
-
-                }
-            }
-
-            //TODO Temperature Meter
-            Surface(
-                modifier = Modifier
-                    .fillMaxHeight(),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                Box(
-                    Modifier
-                        .padding(8.dp),
-                    contentAlignment = Alignment.BottomCenter
-                ) {
-                    temperatureMeterComponent(
-                        Modifier
-                            .width(IntrinsicSize.Min)
-                    )
-                }
-            }
-
-        }
-
-    }
-
 }
