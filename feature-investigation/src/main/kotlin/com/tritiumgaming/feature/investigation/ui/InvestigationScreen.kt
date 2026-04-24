@@ -2,6 +2,7 @@ package com.tritiumgaming.feature.investigation.ui
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -847,40 +848,41 @@ fun OperationConfigsBottomSheet(
                     )
                 }
 
-                if (showTemperatureMeterComponent) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                ) {
+                    if (showTemperatureMeterComponent) {
 
-                    Surface(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(8.dp),
-                        border = BorderStroke(
-                            width = 2.dp,
-                            color = LocalPalette.current.surfaceContainerLow
-                        )
-                    ) {
-
-                        Row(
+                        Surface(
                             modifier = Modifier
-                                .width(IntrinsicSize.Min)
-                                .padding(8.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
+                                .width(IntrinsicSize.Min),
+                            color = LocalPalette.current.surfaceContainer,
+                            shape = RoundedCornerShape(8.dp),
+                            border = BorderStroke(
+                                width = 2.dp,
+                                color = LocalPalette.current.surfaceContainerLow
+                            )
                         ) {
+
                             temperatureMeterComponent(
                                 Modifier
                                     .width(IntrinsicSize.Min)
-                            )
-
-                            fuseBoxControlComponent(
-                                Modifier
-                                    .width(48.dp)
-                                    .fillMaxHeight()
-                                    .heightIn(min = 48.dp)
+                                    .padding(8.dp)
                             )
 
                         }
+
                     }
+
+                    fuseBoxControlComponent(
+                        Modifier
+                            .width(48.dp)
+                            .fillMaxHeight()
+                            .heightIn(min = 48.dp)
+                    )
                 }
             }
 

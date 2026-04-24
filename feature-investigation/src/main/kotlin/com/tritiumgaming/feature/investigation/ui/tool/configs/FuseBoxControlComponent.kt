@@ -1,5 +1,8 @@
 package com.tritiumgaming.feature.investigation.ui.tool.configs
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -39,7 +42,14 @@ internal fun FuseBoxButton(
 
     Surface(
         onClick = { actions.onTogglePower() },
-        modifier = modifier,
+        modifier = modifier
+            .border(
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ),
         shape = RoundedCornerShape(8.dp),
         color = LocalPalette.current.surfaceContainer,
         contentColor = theme.foreground
