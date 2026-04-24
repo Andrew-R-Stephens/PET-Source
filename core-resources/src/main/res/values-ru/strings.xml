@@ -63,6 +63,7 @@
     <string name="settings_huntwarningflashtimeout">Тайм-аут мигающего предупреждения об охоте</string>
     <string name="settings_huntwarningflashtimeout_never">Никогда тайм-аут</string>
     <string name="settings_enableLeftHandSupport">Включить режим для левшей</string>
+    <string name="settings_uiDensity">Включить компактный интерфейс</string>
     <string name="settings_enablehuntaudioqueue">Включить звуковое предупреждение об обнаружении</string>
     <string name="settings_enableGhostReorder">Включить переупорядочение списка призраков</string>
     <string name="settings_colorblindnessmode_title">Режим дальтонизма</string>
@@ -97,6 +98,7 @@
 
 
     <!-- Solo/Team Data -->
+    <string name="investigation_prep_time_title">Время подготовки</string>
     <string name="investigation_your_sanity_level_title">Ваш уровень здравомыслия</string>
     <string name="investigation_timer_label">Время подготовки:</string>
     <string name="difficulty_title_default">Нет</string>
@@ -109,6 +111,7 @@
     <string name="investigation_timer_maplabel">Карта</string>
     <string name="investigation_phase_label_action">Действие</string>
     <string name="investigation_phase_label_setup">Настройка</string>
+    <string name="investigation_phase_label_hunt">Охота</string>
     <string name="investigation_sanity_huntwarn">Предупреждение Охоты</string>
     <string name="investigation_sanitymeter_title">Максимальный Уровень Вменяемости</string>
     <string name="investigation_section_title_ghosts">Призраки</string>
@@ -723,6 +726,7 @@
     <string name="objectives_title_ghost_name">Имя призрака</string>
     <string name="objectives_ghostname_note">Введите здесь имя призрака</string>
     <string name="objectives_title_response">Отвечает людям, которые</string>
+    <string name="objectives_title_optional_objective">Цель</string>
     <string name="objectives_title_optional_objective_1">Цель 1</string>
     <string name="objectives_title_optional_objective_2">Цель 2</string>
     <string name="objectives_title_optional_objective_3">Цель 3</string>
@@ -750,6 +754,7 @@
     -->
     <!-- All Entries -->
     <!-- Personal Statements -->
+    <string name="ghostbox_title">Призрачный ящик</string>
     <string name="spiritbox_entry_q01">Кровавая Мэри.</string>
     <string name="spiritbox_entry_q02">Мне страшно!</string>
     <string name="spiritbox_entry_q03">Скрыть!</string>
@@ -1683,6 +1688,7 @@
     <string name="general_navigation_home">Главная</string>
     <string name="general_navigation_primary">Основной</string>
     <string name="general_navigation_menu">меню</string>
+    <string name="investigation_label_phase">Фаза</string>
     <string name="codex_section_equipment">Оборудование</string>
     <string name="codex_section_more">Продолжение следует</string>
     <string name="navigation_open_state">Отдел навигации открыт.</string>
@@ -2423,6 +2429,7 @@
     <string name="marketplace_purchase_equip">Оборудовать тему %1$s?</string>
     <string name="map_setting_label_size">Размер</string>
     <string name="map_setting_label_modifier">Модификатор</string>
+    <string name="map_setting_label_multiplier">Множитель</string>
     <string name="map_setting_state_small">Маленький</string>
     <string name="map_setting_state_medium">Середина</string>
     <string name="language_name_localized_it">Ital\'yanskiy yazyk</string>
@@ -2568,6 +2575,7 @@
     <string name="difficulty_setting_state_broken">Прерывистый</string>
     <string name="difficulty_setting_state_off">Выкл.</string>
     <string name="difficulty_setting_state_infinite">Бесконечный</string>
+    <string name="difficulty_setting_state_weather_unknown">Неизвестная погода</string>
     <string name="difficulty_setting_state_weather_lightrain">Легкий дождь</string>
     <string name="difficulty_setting_state_weather_heavyrain">Сильный дождь</string>
     <string name="difficulty_setting_state_weather_snow">Снег</string>
@@ -2601,6 +2609,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Длительность получения отпечатка пальца</string>
     <string name="difficulty_setting_title_setup_time">Время подготовки</string>
     <string name="difficulty_setting_title_weather">Погода</string>
+    <string name="difficulty_setting_title_weather_temperature_range">Диапазон температур</string>
     <string name="difficulty_setting_title_doors_starting_open">Двери изначально открыты</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Количество укрытий</string>
     <string name="difficulty_setting_title_sanity_monitor">Монитор рассудка</string>
@@ -2613,5 +2622,77 @@
     <string name="map_setting_state_setup">Настройка</string>
     <string name="map_setting_state_action">Действие</string>
     <string name="objectives_title_response_type">Тип ответа</string>
+    <string name="evidence_trait_description_always_finds_players_if_hunt">Всегда находит игроков во время охоты</string>
+    <string name="evidence_trait_description_audible_long_range_if_hunt">Слышен издалека во время охоты</string>
+    <string name="evidence_trait_description_hunt_start_distant_from_favorite_room">Начинает охоту далеко за пределами любимой комнаты</string>
+    <string name="evidence_trait_description_candle_works_like_crucifix_if_hunt">Свеча или распятие предотвращают охоту</string>
+    <string name="evidence_trait_description_age_change">Меняет возраст</string>
+    <string name="evidence_trait_description_changes_favorite_room">Меняет любимую комнату</string>
+    <string name="evidence_trait_description_interaction_moroi_curse">Проклятие: После использования спиритического ящика рассудок истощается, пока находится в свете</string>
+    <string name="evidence_trait_description_interaction_poltergeist_explosion">Разрушает стопки предметов в результате мощного «взрыва»</string>
+    <string name="evidence_trait_description_interaction_disturb_salt">Беспокойт Соль</string>
+    <string name="evidence_trait_description_event_ghost_ball">Участвует в событии «Призрачный туман»</string>
+    <string name="evidence_trait_description_interaction_does_not_disturb_salt">Не беспокоит Соль</string>
+    <string name="evidence_trait_description_event_singing">Участвует в событии «Пение»</string>
+    <string name="evidence_trait_description_interaction_sanity_drain_if_event_door_slam">События «Закрытие двери» отнимают 15% рассудка</string>
+    <string name="evidence_trait_description_interaction_dots_visible_if_without_camera">Точки видны невооруженным глазом</string>
+    <string name="evidence_trait_description_interaction_drain_sanity_if_emf_at_circuit_breaker">События «Электромагнитное поле» у автоматического выключателя отнимают 25% рассудка</string>
+    <string name="evidence_trait_description_interaction_heavy_breathing_in_spirit_box">Излучает тяжелое дыхание в спиритическом ящике</string>
+    <string name="evidence_trait_description_interaction_emits_wail_into_parabolic">Излучает громкий крик в параболическом микрофоне</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_light_switch">Излучает УФ-отпечаток пальца на выключателе света</string>
+    <string name="evidence_trait_description_interaction_uv_footprint">Излучает УФ-след</string>
+    <string name="evidence_trait_description_speed_wander_extremely_slow_if_hunt">Скорость перемещения крайне низкая</string>
+    <string name="evidence_trait_description_event_light_bulb_explosion">Предпочитает событие «Взрыв лампочки»</string>
+    <string name="evidence_trait_description_event_shadow">Предпочитает события «Тень»</string>
+    <string name="evidence_trait_description_interaction_not_visible_in_ghost_photo">Невидим на фотографии призрака</string>
+    <string name="evidence_trait_description_freezing_ghost_breath_if_hunt">Излучает ледяное дыхание во время Охота</string>
+    <string name="evidence_trait_description_speed_high_if_chase_and_breaker_active">Активный разрушитель обеспечивает более высокую скорость преследования</string>
+    <string name="evidence_trait_description_visibility_high_if_hunt">Хорошо виден во время охоты</string>
+    <string name="evidence_trait_description_seek_specific_player_if_hunt">Охотится за одним конкретным игроком</string>
+    <string name="evidence_trait_description_hunt_after_smudge_180">Охотится до 180 секунд после комнаты с окуриванием</string>
+    <string name="evidence_trait_description_hunt_early">Охотится рано</string>
+    <string name="evidence_trait_description_hunt_before_smudge_60">Охотится в течение 60 секунд после комнаты с окуриванием</string>
+    <string name="evidence_trait_description_interaction_ignite_flame">Зажигает пламя</string>
+    <string name="evidence_trait_description_interaction_uv_inconsistent">Непостоянно излучает УФ-доказательства при взаимодействиях</string>
+    <string name="evidence_trait_description_interaction_parabolic_emission_increase">Увеличенное взаимодействие с параболическим микрофоном</string>
+    <string name="evidence_trait_description_activity_increase_if_close_to_player_voice">Повышенная активность при близком голосовом чате</string>
+    <string name="evidence_trait_description_speed_increase_if_hunt_in_low_temperature">Увеличивает скорость охоты при более низкой температуре в комнате</string>
+    <string name="evidence_trait_description_interaction_door_open_slightly">Взаимодействующие двери слегка приоткрываются</string>
+    <string name="evidence_trait_description_is_male">Мужской пол</string>
+    <string name="evidence_trait_description_sanity_drain_if_player_look_at">Прямой взгляд на привидение истощает рассудок</string>
+    <string name="evidence_trait_description_activity_low_if_player_nearby">Менее активен, находясь рядом с игроками</string>
+    <string name="evidence_trait_description_visibility_low_if_hunt">В основном невидим во время охоты</string>
+    <string name="evidence_trait_description_interaction_close_exit_door">Закрытие выходной двери вне охоты</string>
+    <string name="evidence_trait_description_simultaneous_favorite_rooms">По-видимому, имеет одновременно избранные комнаты</string>
+    <string name="evidence_trait_description_shapeshift_if_hunt">Переключается между моделями призрака во время охоты</string>
+    <string name="evidence_trait_description_seek_electronics_and_voice_range_limited_if_hunt">Меньший радиус притяжения к электронике и голосу во время охоты</string>
+    <string name="evidence_trait_description_speed_increase_if_active_electronics_nearby">Ускоряется рядом с активной электроникой</string>
+    <string name="evidence_trait_description_favors_dark_of_favorite_room">Чаще находится рядом с темными участками избранной комнаты</string>
+    <string name="evidence_trait_description_interaction_emf_if_teleports_to_player">Телепортируется к игроку и излучает ЭМП</string>
+    <string name="evidence_trait_description_interaction_item_thrown_harder">Бросает предметы сильнее</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_off">Выключает автоматический выключатель</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_on">Включает автоматический выключатель</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_off_if_player_turns_on">Выключает выключатель света сразу после включения игроком</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_on">Включает выключатель света</string>
+    <string name="evidence_trait_description_interaction_uv_short_lifetime">Сокращенное время жизни УФ-излучения (~50%)</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_2_fingers">Излучает 2 пальца с УФ-отпечатком</string>
+    <string name="evidence_trait_description_interaction_uv_footprint_2_feet_per_audio">Излучает 2 УФ-отпечатка стопы за каждый звук шага</string>
+    <string name="evidence_trait_description_interaction_uv_handprint_6_fingers">Излучает 6 пальцев с УФ-отпечатком ладони</string>
+    <string name="evidence_trait_description_interaction_vanish_if_photo_taken">Исчезает после фотографирования</string>
+    <string name="evidence_trait_label_evidence">Вторичные доказательства</string>
+    <string name="evidence_trait_category_unique">Уникальный</string>
+    <string name="evidence_trait_category_behavior">Поведение</string>
+    <string name="evidence_trait_category_characteristic">Атрибут</string>
+    <string name="evidence_trait_category_hunt">Охота</string>
+    <string name="evidence_trait_category_interaction">Взаимодействие</string>
+    <string name="evidence_trait_state_confirm">Подтверждение</string>
+    <string name="evidence_trait_state_reject">Отклонение</string>
+    <string name="evidence_trait_weight_probable">Вероятный</string>
+    <string name="evidence_trait_weight_definitive">Определенный</string>
+    <string name="evidence_trait_weight_likely">Более вероятный</string>
+    <string name="evidence_trait_weight_unlikely">Менее вероятный</string>
+    <string name="map_setting_label_drainrate">Скорость разрядки</string>
+    <string name="store_title_achievements">Достижения</string>
+    <string name="investigation_average_sanity_title">Средний уровень рассудка</string>
 
 </resources>

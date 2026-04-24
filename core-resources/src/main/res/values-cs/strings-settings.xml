@@ -20,6 +20,7 @@
     <string name="settings_huntwarningflashtimeout">Vypršel časový limit blesku upozornění na lov</string>
     <string name="settings_huntwarningflashtimeout_never">Nikdy vypršel časový limit</string>
     <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>
+    <string name="settings_uiDensity">Povolit kompaktní uživatelské rozhraní</string>
     <string name="settings_enablehuntaudioqueue">Povolit zvukové varování lovu</string>
     <string name="settings_enableGhostReorder">Povolit změnu pořadí seznamu duchů</string>
     <string name="settings_colorblindnessmode_title">Režim barvoslepé</string>

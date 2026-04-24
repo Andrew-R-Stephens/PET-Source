@@ -51,6 +51,7 @@
     <string name="settings_huntwarningflashtimeout">Tempo limite do flash de aviso de caça</string>
     <string name="settings_huntwarningflashtimeout_never">Nunca limite de tempo</string>
     <string name="settings_enableLeftHandSupport">Ativar modo canhoto</string>
+    <string name="settings_uiDensity">Ativar interface compacta</string>
     <string name="settings_enablehuntaudioqueue">Ativar aviso de áudio de busca</string>
     <string name="settings_enableGhostReorder">Habilitar reordenação da lista fantasma</string>
     <string name="settings_colorblindnessmode_title">Modo daltônico</string>
@@ -83,6 +84,7 @@
 
     <!-- Solo/Team Data -->
 
+    <string name="investigation_prep_time_title">Tempo de preparação</string>
     <string name="investigation_your_sanity_level_title">Seu nível de sanidade</string>
     <string name="investigation_timer_label">Tempo de preparação:</string>
     <string name="difficulty_title_default">Nenhum</string>
@@ -95,6 +97,7 @@
     <string name="investigation_timer_maplabel">Mapa</string>
     <string name="investigation_phase_label_action">Ação</string>
     <string name="investigation_phase_label_setup">Configurar</string>
+    <string name="investigation_phase_label_hunt">Caçada</string>
     <string name="investigation_sanity_huntwarn">Aviso De Caça</string>
     <string name="investigation_sanitymeter_title">Nível máximo de sanidade</string>
     <string name="investigation_section_title_ghosts">Fantasmas</string>
@@ -135,6 +138,7 @@
     <string name="objectives_title_ghost_name">Nome do Fantasma</string>
     <string name="objectives_ghostname_note">Digite o nome do fantasma aqui</string>
     <string name="objectives_title_response">Responde a pessoas que são</string>
+    <string name="objectives_title_optional_objective">Objetivo</string>
     <string name="objectives_title_optional_objective_1">Objetivo 1</string>
     <string name="objectives_title_optional_objective_2">Objetivo 2</string>
     <string name="objectives_title_optional_objective_3">Objetivo 3</string>
@@ -163,6 +167,7 @@
 
     <!-- Personal Statements -->
 
+    <string name="ghostbox_title">Caixa fantasma</string>
     <string name="spiritbox_entry_q01">Maria Sangrenta.</string>
     <string name="spiritbox_entry_q02">Estou com medo!</string>
     <string name="spiritbox_entry_q03">Esconder!</string>
@@ -711,6 +716,7 @@
     <string name="general_navigation_home">Página inicial</string>
     <string name="general_navigation_primary">Primário</string>
     <string name="general_navigation_menu">cardápio</string>
+    <string name="investigation_label_phase">Fase</string>
     <string name="codex_section_equipment">Equipamento</string>
     <string name="codex_section_more">Mais em breve</string>
     <string name="navigation_open_state">Gaveta de navegação aberta.</string>
@@ -1060,6 +1066,7 @@
     <string name="marketplace_purchase_equip">Equipar o tema %1$s?</string>
     <string name="map_setting_label_size">Tamanho</string>
     <string name="map_setting_label_modifier">Modificador</string>
+    <string name="map_setting_label_multiplier">Multiplicador</string>
     <string name="map_setting_state_small">Pequeno</string>
     <string name="map_setting_state_medium">Médio</string>
     <string name="language_name_localized_ja">Japonês</string>
@@ -1205,6 +1212,7 @@
     <string name="difficulty_setting_state_broken">Quebrado</string>
     <string name="difficulty_setting_state_off">Desligado</string>
     <string name="difficulty_setting_state_infinite">Infinito</string>
+    <string name="difficulty_setting_state_weather_unknown">Clima Desconhecido</string>
     <string name="difficulty_setting_state_weather_lightrain">Chuva Leve</string>
     <string name="difficulty_setting_state_weather_heavyrain">Chuva Forte</string>
     <string name="difficulty_setting_state_weather_snow">Neve</string>
@@ -1238,6 +1246,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Duração da impressão digital</string>
     <string name="difficulty_setting_title_setup_time">Tempo de preparação</string>
     <string name="difficulty_setting_title_weather">Clima</string>
+    <string name="difficulty_setting_title_weather_temperature_range">Faixa de Temperatura</string>
     <string name="difficulty_setting_title_doors_starting_open">Portas abertas inicialmente</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Número de esconderijos</string>
     <string name="difficulty_setting_title_sanity_monitor">Monitor de sanidade</string>
@@ -1250,5 +1259,77 @@
     <string name="map_setting_state_setup">Configuração</string>
     <string name="map_setting_state_action">Ação</string>
     <string name="objectives_title_response_type">Tipo de Resposta</string>
+    <string name="evidence_trait_description_always_finds_players_if_hunt">Sempre encontra jogadores durante a Caçada</string>
+    <string name="evidence_trait_description_audible_long_range_if_hunt">Audível de longe durante as Caçadas</string>
+    <string name="evidence_trait_description_hunt_start_distant_from_favorite_room">Inicia a Caçada longe do Quarto Favorito</string>
+    <string name="evidence_trait_description_candle_works_like_crucifix_if_hunt">Uma Vela ou Crucifixo impede a Caçada</string>
+    <string name="evidence_trait_description_age_change">Altera a Idade</string>
+    <string name="evidence_trait_description_changes_favorite_room">Altera o Quarto Favorito</string>
+    <string name="evidence_trait_description_interaction_moroi_curse">Amaldiçoado: Após usar a Caixa de Espíritos, a Sanidade diminui enquanto estiver na Luz</string>
+    <string name="evidence_trait_description_interaction_poltergeist_explosion">Destrói pilhas de itens em uma violenta \"explosão\"</string>
+    <string name="evidence_trait_description_interaction_disturb_salt">Perturba o Sal</string>
+    <string name="evidence_trait_description_event_ghost_ball">Realiza o Evento de Névoa Fantasma</string>
+    <string name="evidence_trait_description_interaction_does_not_disturb_salt">Não perturba o Sal</string>
+    <string name="evidence_trait_description_event_singing">Realiza o Evento de Canto</string>
+    <string name="evidence_trait_description_interaction_sanity_drain_if_event_door_slam">Eventos de fechamento de porta reduzem 15% da Sanidade</string>
+    <string name="evidence_trait_description_interaction_dots_visible_if_without_camera">Pontos visíveis a olho nu</string>
+    <string name="evidence_trait_description_interaction_drain_sanity_if_emf_at_circuit_breaker">Eventos de EMF no Disjuntor reduzem 25% da Sanidade</string>
+    <string name="evidence_trait_description_interaction_heavy_breathing_in_spirit_box">Emite respiração pesada na Caixa de Espíritos</string>
+    <string name="evidence_trait_description_interaction_emits_wail_into_parabolic">Emite um grito alto no Microfone Parabólico</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_light_switch">Emite impressão digital UV no Interruptor de Luz</string>
+    <string name="evidence_trait_description_interaction_uv_footprint">Emite pegada UV</string>
+    <string name="evidence_trait_description_speed_wander_extremely_slow_if_hunt">Velocidade de deslocamento extremamente lenta</string>
+    <string name="evidence_trait_description_event_light_bulb_explosion">Prefere o Evento de explosão da Lâmpada</string>
+    <string name="evidence_trait_description_event_shadow">Prefere Eventos de sombra</string>
+    <string name="evidence_trait_description_interaction_not_visible_in_ghost_photo">Invisível na Foto Fantasma</string>
+    <string name="evidence_trait_description_freezing_ghost_breath_if_hunt">Emite hálito congelante durante a Caçada</string>
+    <string name="evidence_trait_description_speed_high_if_chase_and_breaker_active">Disjuntor ativo proporciona maior velocidade de perseguição</string>
+    <string name="evidence_trait_description_visibility_high_if_hunt">Altamente visível durante Caça</string>
+    <string name="evidence_trait_description_seek_specific_player_if_hunt">Caça um jogador específico</string>
+    <string name="evidence_trait_description_hunt_after_smudge_180">Caça antes de 180 segundos após purificar a sala</string>
+    <string name="evidence_trait_description_hunt_early">Caça cedo</string>
+    <string name="evidence_trait_description_hunt_before_smudge_60">Caça dentro de 60 segundos após purificar a sala</string>
+    <string name="evidence_trait_description_interaction_ignite_flame">Acende chamas</string>
+    <string name="evidence_trait_description_interaction_uv_inconsistent">Emite evidências UV de forma inconsistente com interações</string>
+    <string name="evidence_trait_description_interaction_parabolic_emission_increase">Aumento nas interações com o microfone parabólico</string>
+    <string name="evidence_trait_description_activity_increase_if_close_to_player_voice">Atividade aumentada se estiver próximo ao bate-papo por voz</string>
+    <string name="evidence_trait_description_speed_increase_if_hunt_in_low_temperature">Aumenta a velocidade de caça com temperaturas de sala mais baixas</string>
+    <string name="evidence_trait_description_interaction_door_open_slightly">As portas interagidas se abrem ligeiramente</string>
+    <string name="evidence_trait_description_is_male">É do sexo masculino</string>
+    <string name="evidence_trait_description_sanity_drain_if_player_look_at">Olhar diretamente para a aparição drena a sanidade</string>
+    <string name="evidence_trait_description_activity_low_if_player_nearby">Menos ativo quando próximo a jogadores</string>
+    <string name="evidence_trait_description_visibility_low_if_hunt">Quase invisível durante a caça</string>
+    <string name="evidence_trait_description_interaction_close_exit_door">Fechamento da porta de saída fora da caçada</string>
+    <string name="evidence_trait_description_simultaneous_favorite_rooms">Aparentemente possui salas favoritas simultâneas</string>
+    <string name="evidence_trait_description_shapeshift_if_hunt">Alterna entre modelos de fantasmas durante a caçada</string>
+    <string name="evidence_trait_description_seek_electronics_and_voice_range_limited_if_hunt">Menor alcance de atração para eletrônicos e voz durante a caçada</string>
+    <string name="evidence_trait_description_speed_increase_if_active_electronics_nearby">Acelera perto de eletrônicos ativos</string>
+    <string name="evidence_trait_description_favors_dark_of_favorite_room">Permanece perto de áreas escuras da sala favorita com mais frequência</string>
+    <string name="evidence_trait_description_interaction_emf_if_teleports_to_player">Teletransporta-se para o jogador e emite EMF</string>
+    <string name="evidence_trait_description_interaction_item_thrown_harder">Arremessa itens com mais força</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_off">Desliga o disjuntor</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_on">Liga o disjuntor</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_off_if_player_turns_on">Desliga o interruptor de luz imediatamente após ser ligado pelo jogador</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_on">Acende a luz Ativar</string>
+    <string name="evidence_trait_description_interaction_uv_short_lifetime">Tempo de vida da emissão UV reduzido (~50%)</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_2_fingers">Emitir 2 dedos com impressão digital UV</string>
+    <string name="evidence_trait_description_interaction_uv_footprint_2_feet_per_audio">Emitir 2 impressões digitais UV por áudio de passo</string>
+    <string name="evidence_trait_description_interaction_uv_handprint_6_fingers">Emitir 6 dedos com impressão digital UV</string>
+    <string name="evidence_trait_description_interaction_vanish_if_photo_taken">Desaparece após tirar foto</string>
+    <string name="evidence_trait_label_evidence">Evidência secundária</string>
+    <string name="evidence_trait_category_unique">Único</string>
+    <string name="evidence_trait_category_behavior">Comportamento</string>
+    <string name="evidence_trait_category_characteristic">Atributo</string>
+    <string name="evidence_trait_category_hunt">Caçada</string>
+    <string name="evidence_trait_category_interaction">Interação</string>
+    <string name="evidence_trait_state_confirm">Confirmar</string>
+    <string name="evidence_trait_state_reject">Rejeitar</string>
+    <string name="evidence_trait_weight_probable">Provável</string>
+    <string name="evidence_trait_weight_definitive">Definitivo</string>
+    <string name="evidence_trait_weight_likely">Mais provável</string>
+    <string name="evidence_trait_weight_unlikely">Menos provável</string>
+    <string name="map_setting_label_drainrate">Taxa de drenagem</string>
+    <string name="store_title_achievements">Conquistas</string>
+    <string name="investigation_average_sanity_title">Sanidade média</string>
 
 </resources>

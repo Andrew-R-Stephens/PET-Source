@@ -30,6 +30,7 @@
     <string name="difficulty_setting_state_broken">Cassé</string>
     <string name="difficulty_setting_state_off">Éteint</string>
     <string name="difficulty_setting_state_infinite">Infini</string>
+    <string name="difficulty_setting_state_weather_unknown">Météo inconnue</string>
     <string name="difficulty_setting_state_weather_lightrain">Pluie légère</string>
     <string name="difficulty_setting_state_weather_heavyrain">Forte pluie</string>
     <string name="difficulty_setting_state_weather_snow">Neige</string>
@@ -63,6 +64,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Durée de l\'empreinte digitale</string>
     <string name="difficulty_setting_title_setup_time">Temps de préparation</string>
     <string name="difficulty_setting_title_weather">Météo</string>
+    <string name="difficulty_setting_title_weather_temperature_range">Plage de températures</string>
     <string name="difficulty_setting_title_doors_starting_open">Portes initialement ouvertes</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Nombre de cachettes</string>
     <string name="difficulty_setting_title_sanity_monitor">Moniteur de santé mentale</string>

@@ -60,6 +60,75 @@
              <a>Se puede encontrar una huella de mano de 6 dedos que identificará el tipo Fantasma inmediatamente como un Obake.</a>
          ]]>
     </string>
+    <string name="evidence_trait_description_always_finds_players_if_hunt">Siempre encuentra jugadores durante la caza</string>
+    <string name="evidence_trait_description_audible_long_range_if_hunt">Audible desde lejos durante las cacerías</string>
+    <string name="evidence_trait_description_hunt_start_distant_from_favorite_room">Comienza la caza lejos de la habitación favorita</string>
+    <string name="evidence_trait_description_candle_works_like_crucifix_if_hunt">Una vela o crucifijo impide la caza</string>
+    <string name="evidence_trait_description_age_change">Cambia de edad</string>
+    <string name="evidence_trait_description_changes_favorite_room">Cambia de habitación favorita</string>
+    <string name="evidence_trait_description_interaction_moroi_curse">Maldito: Después de usar la caja de espíritus, la cordura se agota mientras está iluminado</string>
+    <string name="evidence_trait_description_interaction_poltergeist_explosion">Interrumpe las pilas de objetos con una violenta \"explosión\"</string>
+    <string name="evidence_trait_description_interaction_disturb_salt">Perturba la sal</string>
+    <string name="evidence_trait_description_event_ghost_ball">Activa el evento Niebla fantasmal</string>
+    <string name="evidence_trait_description_interaction_does_not_disturb_salt">No perturba la sal</string>
+    <string name="evidence_trait_description_event_singing">Activa el evento Canto</string>
+    <string name="evidence_trait_description_interaction_sanity_drain_if_event_door_slam">Los eventos de cierre de puertas reducen la cordura en un 15 %</string>
+    <string name="evidence_trait_description_interaction_dots_visible_if_without_camera">Los puntos son visibles a simple vista</string>
+    <string name="evidence_trait_description_interaction_drain_sanity_if_emf_at_circuit_breaker">Los eventos EMF en el disyuntor reducen la cordura en un 25 %</string>
+    <string name="evidence_trait_description_interaction_heavy_breathing_in_spirit_box">Emite respiración agitada en la caja de espíritus</string>
+    <string name="evidence_trait_description_interaction_emits_wail_into_parabolic">Emite un chillido fuerte en el micrófono parabólico</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_light_switch">Emite huella UV en el interruptor de luz</string>
+    <string name="evidence_trait_description_interaction_uv_footprint">Emite huella UV</string>
+    <string name="evidence_trait_description_speed_wander_extremely_slow_if_hunt">La velocidad de vagar es extremadamente lenta</string>
+    <string name="evidence_trait_description_event_light_bulb_explosion">Favorece el evento Explosión de bombilla</string>
+    <string name="evidence_trait_description_event_shadow">Favorece los eventos de sombra</string>
+    <string name="evidence_trait_description_interaction_not_visible_in_ghost_photo">Invisible en la foto fantasma</string>
+    <string name="evidence_trait_description_freezing_ghost_breath_if_hunt">Emite aliento helado durante la caza</string>
+    <string name="evidence_trait_description_speed_high_if_chase_and_breaker_active">El disyuntor activo proporciona mayor velocidad de persecución</string>
+    <string name="evidence_trait_description_visibility_high_if_hunt">Muy visible durante Caza</string>
+    <string name="evidence_trait_description_seek_specific_player_if_hunt">Caza tras un jugador específico</string>
+    <string name="evidence_trait_description_hunt_after_smudge_180">Caza antes de los 180 s después de la Sala de Purificación</string>
+    <string name="evidence_trait_description_hunt_early">Caza temprano</string>
+    <string name="evidence_trait_description_hunt_before_smudge_60">Caza dentro de los 60 s después de la Sala de Purificación</string>
+    <string name="evidence_trait_description_interaction_ignite_flame">Enciende llamas</string>
+    <string name="evidence_trait_description_interaction_uv_inconsistent">Emite evidencia UV de forma inconsistente con las interacciones</string>
+    <string name="evidence_trait_description_interaction_parabolic_emission_increase">Aumentan las interacciones con el micrófono parabólico</string>
+    <string name="evidence_trait_description_activity_increase_if_close_to_player_voice">Aumenta la actividad si está cerca del chat de voz</string>
+    <string name="evidence_trait_description_speed_increase_if_hunt_in_low_temperature">Aumenta la velocidad de caza con temperaturas más bajas en la habitación</string>
+    <string name="evidence_trait_description_interaction_door_open_slightly">Las puertas con las que interactúa se abren ligeramente</string>
+    <string name="evidence_trait_description_is_male">Es masculino</string>
+    <string name="evidence_trait_description_sanity_drain_if_player_look_at">Mirar directamente a la aparición drena la cordura</string>
+    <string name="evidence_trait_description_activity_low_if_player_nearby">Menos activo cerca de otros jugadores</string>
+    <string name="evidence_trait_description_visibility_low_if_hunt">Mayormente invisible durante la caza</string>
+    <string name="evidence_trait_description_interaction_close_exit_door">Cierre de la puerta de salida fuera de la caza</string>
+    <string name="evidence_trait_description_simultaneous_favorite_rooms">Aparentemente tiene habitaciones favoritas simultáneas</string>
+    <string name="evidence_trait_description_shapeshift_if_hunt">Cambia entre modelos de fantasmas durante la caza</string>
+    <string name="evidence_trait_description_seek_electronics_and_voice_range_limited_if_hunt">Menor rango de atracción a la electrónica y la voz durante la caza</string>
+    <string name="evidence_trait_description_speed_increase_if_active_electronics_nearby">Acelera cerca de la electrónica activa</string>
+    <string name="evidence_trait_description_favors_dark_of_favorite_room">Permanece más a menudo cerca de las zonas oscuras de su habitación favorita</string>
+    <string name="evidence_trait_description_interaction_emf_if_teleports_to_player">Se teletransporta al jugador y emite campos electromagnéticos</string>
+    <string name="evidence_trait_description_interaction_item_thrown_harder">Lanza objetos con más fuerza</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_off">Apaga el interruptor</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_on">Enciende el interruptor</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_off_if_player_turns_on">Apaga el interruptor de luz inmediatamente después de que el jugador lo encienda</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_on">Enciende la luz Activar</string>
+    <string name="evidence_trait_description_interaction_uv_short_lifetime">Duración de emisión UV reducida (~50 %)</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_2_fingers">Emite 2 huellas dactilares UV</string>
+    <string name="evidence_trait_description_interaction_uv_footprint_2_feet_per_audio">Emite 2 huellas de pies UV por cada sonido de pisada</string>
+    <string name="evidence_trait_description_interaction_uv_handprint_6_fingers">Emite 6 huellas de manos UV</string>
+    <string name="evidence_trait_description_interaction_vanish_if_photo_taken">Desaparece tras tomar la foto</string>
+    <string name="evidence_trait_label_evidence">Evidencia secundaria</string>
+    <string name="evidence_trait_category_unique">Único</string>
+    <string name="evidence_trait_category_behavior">Comportamiento</string>
+    <string name="evidence_trait_category_characteristic">Atributo</string>
+    <string name="evidence_trait_category_hunt">Caza</string>
+    <string name="evidence_trait_category_interaction">Interacción</string>
+    <string name="evidence_trait_state_confirm">Confirmar</string>
+    <string name="evidence_trait_state_reject">Rechazar</string>
+    <string name="evidence_trait_weight_probable">Probable</string>
+    <string name="evidence_trait_weight_definitive">Definitivo</string>
+    <string name="evidence_trait_weight_likely">Más probable</string>
+    <string name="evidence_trait_weight_unlikely">Menos probable</string>
 
 
 </resources>

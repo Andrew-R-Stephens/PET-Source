@@ -20,6 +20,7 @@
     <string name="settings_huntwarningflashtimeout">Zeitüberschreitung für Jagdwarnblitze</string>
     <string name="settings_huntwarningflashtimeout_never">Niemals eine Auszeit</string>
     <string name="settings_enableLeftHandSupport">Linkshändermodus Aktivieren</string>
+    <string name="settings_uiDensity">Kompakte Benutzeroberfläche aktivieren</string>
     <string name="settings_enablehuntaudioqueue">Aktivieren Sie Hunt Audio Warning</string>
     <string name="settings_enableGhostReorder">Neuanordnung der Ghost-Liste aktivieren</string>
     <string name="settings_colorblindnessmode_note">(Wird wirksam, nachdem Sie die Einstellungen verlassen haben.)</string>

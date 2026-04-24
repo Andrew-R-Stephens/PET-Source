@@ -18,6 +18,7 @@
     <string name="difficulty_setting_state_broken">Перерваний</string>
     <string name="difficulty_setting_state_off">Вимкнено</string>
     <string name="difficulty_setting_state_infinite">Нескінченний</string>
+    <string name="difficulty_setting_state_weather_unknown">Невідома погода</string>
     <string name="difficulty_setting_state_weather_lightrain">Невеликий дощ</string>
     <string name="difficulty_setting_state_weather_heavyrain">Сильний дощ</string>
     <string name="difficulty_setting_state_weather_snow">Сніг</string>
@@ -51,6 +52,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Тривалість отримання відбитка пальця</string>
     <string name="difficulty_setting_title_setup_time">Час встановлення</string>
     <string name="difficulty_setting_title_weather">Погода</string>
+    <string name="difficulty_setting_title_weather_temperature_range">Діапазон температур</string>
     <string name="difficulty_setting_title_doors_starting_open">Двері, що починають відкриватися</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Кількість схованок</string>
     <string name="difficulty_setting_title_sanity_monitor">Монітор здорового глузду</string>

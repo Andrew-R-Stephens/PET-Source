@@ -35,5 +35,7 @@
     <string name="map_setting_label_modifier">Modifikátor</string>
     <string name="map_setting_state_setup">Nastavení</string>
     <string name="map_setting_state_action">Akce</string>
+    <string name="map_setting_label_drainrate">Rychlost vysávání</string>
+    <string name="map_setting_label_multiplier">Násobitel</string>
 
 </resources>

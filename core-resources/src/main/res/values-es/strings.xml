@@ -7,6 +7,7 @@
     <string name="titlescreen_description">La herramienta de evidencia definitiva</string>
     <string name="titlescreen_button">Comenzar Cacería</string>
     <string name="investigation_timer_difficulty_label">Dificultad</string>
+    <string name="investigation_prep_time_title">Tiempo de preparación</string>
     <string name="investigation_your_sanity_level_title">Tu nivel de cordura</string>
     <string name="investigation_timer_label">Tiempo de preparacion:</string>
 
@@ -64,6 +65,7 @@
 
 
     <string name="investigation_timer_maplabel">Mapa</string>
+    <string name="investigation_phase_label_hunt">Caza</string>
     <string name="investigation_sanity_huntwarn">Advertencia de caza</string>
     <string name="investigation_phase_label_action">Acción</string>
     <string name="investigation_phase_label_setup">preparacion</string>
@@ -93,6 +95,7 @@
     <string name="general_navigation_home">Inicio</string>
     <string name="general_navigation_primary">Primario</string>
     <string name="general_navigation_menu">El Menú</string>
+    <string name="investigation_label_phase">Fase</string>
     <string name="codex_section_equipment">Equipo</string>
     <string name="codex_section_more">Más muy pronto</string>
 
@@ -150,5 +153,6 @@
     <string name="alert_gui_palette_error">¡Paleta sin definir!</string>
     <string name="alert_gui_typography_error">¡Tipografía sin definir!</string>
     <string name="account_button_visit_marketplace">Visita Marketplace</string>
+    <string name="investigation_average_sanity_title">Cordura promedio</string>
 
 </resources>

@@ -7,6 +7,7 @@
     <string name="settings_title">Paramètres</string>
     <string name="settings_screenalwayson">Maintenir l\'écran allumé</string>
 
+    <string name="settings_uiDensity">Activer l\'interface utilisateur compacte</string>
     <string name="settings_enablehuntaudioqueue">Avertissement sonore lors de chasse</string>
     <string name="settings_huntwarningflashtimeout">délai de flash d\'avertissement de chasse</string>
     <string name="settings_huntwarningflashtimeout_never">Jamais Dépasser</string>

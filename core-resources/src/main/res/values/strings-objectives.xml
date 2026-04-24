@@ -11,7 +11,7 @@
     <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
     <string name="objectives_title_response">Responds to People who are</string>
     <string name="objectives_title_response_type">Response Type</string>
-    <string name="objectives_title_optional_objective" translatable="false">Objective</string>
+    <string name="objectives_title_optional_objective">Objective</string>
     <string name="objectives_title_optional_objective_1">Objective 1</string>
     <string name="objectives_title_optional_objective_2">Objective 2</string>
     <string name="objectives_title_optional_objective_3">Objective 3</string>

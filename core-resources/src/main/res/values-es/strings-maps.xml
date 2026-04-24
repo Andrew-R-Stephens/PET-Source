@@ -35,5 +35,7 @@
     <string name="map_setting_label_modifier">Modificador</string>
     <string name="map_setting_state_setup">Configuración</string>
     <string name="map_setting_state_action">Acción</string>
+    <string name="map_setting_label_drainrate">Tasa de drenaje</string>
+    <string name="map_setting_label_multiplier">Multiplicador</string>
 
 </resources>

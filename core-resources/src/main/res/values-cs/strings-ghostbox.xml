@@ -6,6 +6,7 @@
 
     <!-- All Entries -->
     <!-- Personal Statements -->
+    <string name="ghostbox_title">Ghost Box</string>
     <string name="spiritbox_entry_q01">Bloody Mary.</string>
     <string name="spiritbox_entry_q02">Bojím se!</string>
     <string name="spiritbox_entry_q03">Skryjte se!</string>

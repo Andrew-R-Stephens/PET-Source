@@ -52,6 +52,7 @@
     <string name="settings_huntwarningflashtimeout">狩猎警告闪光超时</string>
     <string name="settings_huntwarningflashtimeout_never">永不超时</string>
     <string name="settings_enableLeftHandSupport">启用左手模式</string>
+    <string name="settings_uiDensity">启用精简界面</string>
     <string name="settings_enablehuntaudioqueue">启用寻线音频警告</string>
     <string name="settings_enableGhostReorder">启用幽灵列表重新排序</string>
     <string name="settings_colorblindnessmode_title">色盲模式</string>
@@ -84,6 +85,7 @@
 
     <!-- Solo/Team Data -->
 
+    <string name="investigation_prep_time_title">准备时间</string>
     <string name="investigation_your_sanity_level_title">您的理智水平</string>
     <string name="investigation_timer_label">准备时间：</string>
     <string name="difficulty_title_default">没有任何</string>
@@ -96,6 +98,7 @@
     <string name="investigation_timer_maplabel">地图</string>
     <string name="investigation_phase_label_action">行动</string>
     <string name="investigation_phase_label_setup">设置</string>
+    <string name="investigation_phase_label_hunt">狩猎</string>
     <string name="investigation_sanity_huntwarn">狩猎警告</string>
     <string name="investigation_sanitymeter_title">最大理智水平</string>
     <string name="investigation_section_title_ghosts">鬼魂</string>
@@ -136,6 +139,7 @@
     <string name="objectives_title_ghost_name">鬼魂的名字</string>
     <string name="objectives_ghostname_note">在此输入幽灵名称</string>
     <string name="objectives_title_response">回应以下人士</string>
+    <string name="objectives_title_optional_objective">目标</string>
     <string name="objectives_title_optional_objective_1">目标 1</string>
     <string name="objectives_title_optional_objective_2">目标 2</string>
     <string name="objectives_title_optional_objective_3">目标 3</string>
@@ -164,6 +168,7 @@
 
     <!-- Personal Statements -->
 
+    <string name="ghostbox_title">幽灵盒</string>
     <string name="spiritbox_entry_q01">血腥玛丽。</string>
     <string name="spiritbox_entry_q02">我很害怕！</string>
     <string name="spiritbox_entry_q03">隐藏！</string>
@@ -705,6 +710,7 @@
     <string name="general_navigation_home">主页</string>
     <string name="general_navigation_primary">主要</string>
     <string name="general_navigation_menu">目录</string>
+    <string name="investigation_label_phase">阶段</string>
     <string name="codex_section_equipment">设备</string>
     <string name="codex_section_more">更多即将推出</string>
     <string name="navigation_open_state">导航抽屉已打开。</string>
@@ -927,6 +933,7 @@
     <string name="marketplace_purchase_equip">装备 %1$s 主题？</string>
     <string name="map_setting_label_size">尺寸</string>
     <string name="map_setting_label_modifier">修饰符</string>
+    <string name="map_setting_label_multiplier">倍率</string>
     <string name="map_setting_state_small">小的</string>
     <string name="map_setting_state_medium">中等的</string>
     <string name="language_name_localized_zh_Hans">简体中文</string>
@@ -1073,6 +1080,7 @@
     <string name="difficulty_setting_state_broken">损坏</string>
     <string name="difficulty_setting_state_off">关闭</string>
     <string name="difficulty_setting_state_infinite">无限</string>
+    <string name="difficulty_setting_state_weather_unknown">未知天气</string>
     <string name="difficulty_setting_state_weather_lightrain">小雨</string>
     <string name="difficulty_setting_state_weather_heavyrain">大雨</string>
     <string name="difficulty_setting_state_weather_snow">雪</string>
@@ -1106,6 +1114,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">指纹持续时间</string>
     <string name="difficulty_setting_title_setup_time">准备时间</string>
     <string name="difficulty_setting_title_weather">天气</string>
+    <string name="difficulty_setting_title_weather_temperature_range">温度范围</string>
     <string name="difficulty_setting_title_doors_starting_open">初始门是否打开</string>
     <string name="difficulty_setting_title_number_of_hiding_places">藏身之处数量</string>
     <string name="difficulty_setting_title_sanity_monitor">理智值监控器</string>

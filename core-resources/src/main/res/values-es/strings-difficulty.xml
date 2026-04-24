@@ -31,6 +31,7 @@
     <string name="difficulty_setting_state_broken">Interrumpido</string>
     <string name="difficulty_setting_state_off">Apagado</string>
     <string name="difficulty_setting_state_infinite">Infinito</string>
+    <string name="difficulty_setting_state_weather_unknown">Clima desconocido</string>
     <string name="difficulty_setting_state_weather_lightrain">Lluvia ligera</string>
     <string name="difficulty_setting_state_weather_heavyrain">Lluvia intensa</string>
     <string name="difficulty_setting_state_weather_snow">Nieve</string>
@@ -64,6 +65,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Duración de huella dactilar</string>
     <string name="difficulty_setting_title_setup_time">Tiempo de preparación</string>
     <string name="difficulty_setting_title_weather">Clima</string>
+    <string name="difficulty_setting_title_weather_temperature_range">Rango de temperatura</string>
     <string name="difficulty_setting_title_doors_starting_open">Puertas abiertas al inicio</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Número de escondites</string>
     <string name="difficulty_setting_title_sanity_monitor">Monitor de cordura</string>

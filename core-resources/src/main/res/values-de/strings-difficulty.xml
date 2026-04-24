@@ -30,6 +30,7 @@
     <string name="difficulty_setting_state_broken">Unterbrochen</string>
     <string name="difficulty_setting_state_off">Aus</string>
     <string name="difficulty_setting_state_infinite">Unendlich</string>
+    <string name="difficulty_setting_state_weather_unknown">Unbekanntes Wetter</string>
     <string name="difficulty_setting_state_weather_lightrain">Leichter Regen</string>
     <string name="difficulty_setting_state_weather_heavyrain">Starker Regen</string>
     <string name="difficulty_setting_state_weather_snow">Schnee</string>
@@ -63,6 +64,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Dauer für Fingerabdrücke</string>
     <string name="difficulty_setting_title_setup_time">Vorbereitungszeit</string>
     <string name="difficulty_setting_title_weather">Wetter</string>
+    <string name="difficulty_setting_title_weather_temperature_range">Temperaturbereich</string>
     <string name="difficulty_setting_title_doors_starting_open">Zu Beginn geöffnete Türen</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Anzahl der Verstecke</string>
     <string name="difficulty_setting_title_sanity_monitor">Überwachung der geistigen Gesundheit</string>

@@ -35,5 +35,7 @@
     <string name="map_setting_label_modifier">Modificateur</string>
     <string name="map_setting_state_setup">Configuration</string>
     <string name="map_setting_state_action">Action</string>
+    <string name="map_setting_label_drainrate">Taux de consommation</string>
+    <string name="map_setting_label_multiplier">Multiplicateur</string>
 
 </resources>

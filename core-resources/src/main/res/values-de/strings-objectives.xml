@@ -10,6 +10,7 @@
     <string name="objectives_title_ghost_name">Name des Geistes</string>
     <string name="objectives_ghostname_note">Geben Sie hier den Geisternamen ein</string>
     <string name="objectives_title_response">Reagiert auf Personen, die</string>
+    <string name="objectives_title_optional_objective">Ziel</string>
     <string name="objectives_title_optional_objective_1">Ziel 1</string>
     <string name="objectives_title_optional_objective_2">Ziel 2</string>
     <string name="objectives_title_optional_objective_3">Ziel 3</string>

@@ -51,12 +51,14 @@
         EVIDENCE PAGE
     -->
     <!-- Page Details -->
+    <string name="investigation_prep_time_title">Doba přípravy</string>
     <string name="investigation_your_sanity_level_title">Vaše úroveň příčetnosti</string>
     <string name="investigation_timer_label">Čas přípravy:</string>
     <string name="investigation_timer_maplabel">Mapa</string>
     <string name="investigation_timer_difficulty_label">Obtížnost</string>
     <string name="investigation_phase_label_action">Akce</string>
     <string name="investigation_phase_label_setup">Nastavení</string>
+    <string name="investigation_phase_label_hunt">Lov</string>
     <string name="investigation_sanity_huntwarn">Pozor Na Lov</string>
     <string name="investigation_sanitymeter_title">Max. úroveň příčetnosti</string>
     <string name="investigation_section_title_ghosts">Duchové</string>
@@ -72,6 +74,7 @@
     <string name="general_navigation_home">Domů</string>
     <string name="general_navigation_primary">Primární</string>
     <string name="general_navigation_menu">Menu</string>
+    <string name="investigation_label_phase">Fáze</string>
     <string name="codex_section_equipment">Zařízení</string>
     <string name="codex_section_more">Více již brzy</string>
 
@@ -104,4 +107,5 @@
     <string name="map_setting_state_medium">Střední</string>
     <string name="alert_gui_palette_error">Paleta není nastavena!</string>
     <string name="alert_gui_typography_error">Typografie není nastavena!</string>
+    <string name="investigation_average_sanity_title">Průměrná příčetnost</string>
 </resources>

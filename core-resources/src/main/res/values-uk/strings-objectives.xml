@@ -9,6 +9,7 @@
     <string name="objectives_title_investigation_debrief">Звіт про розслідування</string>
     <string name="objectives_title_ghost_name">Ім\'я Привида</string>
     <string name="objectives_ghostname_note">Введіть ім\'я привида тут</string>
+    <string name="objectives_title_optional_objective">Мета</string>
     <string name="objectives_title_optional_objective_1">Ціль 1</string>
     <string name="objectives_title_optional_objective_2">Ціль 2</string>
     <string name="objectives_title_optional_objective_3">Ціль 3</string>

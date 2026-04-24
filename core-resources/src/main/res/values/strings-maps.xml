@@ -85,8 +85,8 @@
     <!-- Map Size Label -->
     <string name="map_setting_label_size">Size</string>
     <string name="map_setting_label_modifier">Modifier</string>
-    <string name="map_setting_label_drainrate" translatable="false">Drain Rate</string>
-    <string name="map_setting_label_multiplier" translatable="false">Multiplier</string>
+    <string name="map_setting_label_drainrate">Drain Rate</string>
+    <string name="map_setting_label_multiplier">Multiplier</string>
     <!-- Map Size Titles -->
     <string name="map_setting_state_small">Small</string>
     <string name="map_setting_state_medium">Medium</string>

@@ -50,6 +50,7 @@
     <string name="settings_huntwarningflashtimeout">ハント警告フラッシュのタイムアウト</string>
     <string name="settings_huntwarningflashtimeout_never">タイムアウトしない</string>
     <string name="settings_enableLeftHandSupport">左利きモードを有効にする</string>
+    <string name="settings_uiDensity">コンパクトUIを有効にする</string>
     <string name="settings_enablehuntaudioqueue">ハント音声警告を有効にする</string>
     <string name="settings_enableGhostReorder">ゴーストリストの並べ替えを有効にする</string>
     <string name="settings_colorblindnessmode_title">色覚異常モード</string>
@@ -83,6 +84,7 @@
 
     <!-- Solo/Team Data -->
 
+    <string name="investigation_prep_time_title">準備時間</string>
     <string name="investigation_your_sanity_level_title">あなたの正気度</string>
     <string name="investigation_timer_label">準備時間：</string>
     <string name="difficulty_title_default">なし</string>
@@ -95,6 +97,7 @@
     <string name="investigation_timer_maplabel">地図</string>
     <string name="investigation_phase_label_action">アクション</string>
     <string name="investigation_phase_label_setup">設定</string>
+    <string name="investigation_phase_label_hunt">ハント</string>
     <string name="investigation_sanity_huntwarn">狩猟警告</string>
     <string name="investigation_sanitymeter_title">最大正気度レベル</string>
     <string name="investigation_section_title_ghosts">幽霊</string>
@@ -136,6 +139,7 @@
     <string name="objectives_title_ghost_name">幽霊の名前</string>
     <string name="objectives_ghostname_note">ここにゴースト名を入力してください</string>
     <string name="objectives_title_response">次のような人々に対応します。</string>
+    <string name="objectives_title_optional_objective">目標</string>
     <string name="objectives_title_optional_objective_1">目標 1</string>
     <string name="objectives_title_optional_objective_2">目標 2</string>
     <string name="objectives_title_optional_objective_3">目標 3</string>
@@ -164,6 +168,7 @@
 
     <!-- Personal Statements -->
 
+    <string name="ghostbox_title">ゴーストボックス</string>
     <string name="spiritbox_entry_q01">ブラッディマリー。</string>
     <string name="spiritbox_entry_q02">怖いよ！</string>
     <string name="spiritbox_entry_q03">隠れる！</string>
@@ -708,6 +713,7 @@
     <string name="general_navigation_home">ホーム</string>
     <string name="general_navigation_primary">プライマリ</string>
     <string name="general_navigation_menu">メニュー</string>
+    <string name="investigation_label_phase">フェーズ</string>
     <string name="codex_section_equipment">装置</string>
     <string name="codex_section_more">さらに近日公開予定</string>
 
@@ -1052,6 +1058,7 @@
     <string name="marketplace_purchase_equip">%1$s テーマを装備しますか?</string>
     <string name="map_setting_label_size">サイズ</string>
     <string name="map_setting_label_modifier">修飾子</string>
+    <string name="map_setting_label_multiplier">乗数</string>
     <string name="map_setting_state_small">小さい</string>
     <string name="map_setting_state_medium">中くらい</string>
     <string name="language_name_localized_it">イタリア語</string>
@@ -1196,6 +1203,7 @@
     <string name="difficulty_setting_state_broken">壊れた</string>
     <string name="difficulty_setting_state_off">オフ</string>
     <string name="difficulty_setting_state_infinite">無限</string>
+    <string name="difficulty_setting_state_weather_unknown">不明な天候</string>
     <string name="difficulty_setting_state_weather_lightrain">小雨</string>
     <string name="difficulty_setting_state_weather_heavyrain">大雨</string>
     <string name="difficulty_setting_state_weather_snow">雪</string>
@@ -1229,6 +1237,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">指紋採取の持続時間</string>
     <string name="difficulty_setting_title_setup_time">準備時間</string>
     <string name="difficulty_setting_title_weather">天候</string>
+    <string name="difficulty_setting_title_weather_temperature_range">温度範囲</string>
     <string name="difficulty_setting_title_doors_starting_open">ドアの開き始め</string>
     <string name="difficulty_setting_title_number_of_hiding_places">隠れ場所の数</string>
     <string name="difficulty_setting_title_sanity_monitor">正気度モニター</string>
@@ -1241,5 +1250,77 @@
     <string name="map_setting_state_setup">設定</string>
     <string name="map_setting_state_action">アクション</string>
     <string name="objectives_title_response_type">応答タイプ</string>
+    <string name="evidence_trait_description_always_finds_players_if_hunt">狩り中は必ずプレイヤーを見つける</string>
+    <string name="evidence_trait_description_audible_long_range_if_hunt">狩り中は遠くから聞こえる</string>
+    <string name="evidence_trait_description_hunt_start_distant_from_favorite_room">お気に入りの部屋のはるか外で狩りを始める</string>
+    <string name="evidence_trait_description_candle_works_like_crucifix_if_hunt">ろうそくや十字架があると狩りができない</string>
+    <string name="evidence_trait_description_age_change">年齢が変わる</string>
+    <string name="evidence_trait_description_changes_favorite_room">お気に入りの部屋が変わる</string>
+    <string name="evidence_trait_description_interaction_moroi_curse">呪われている：スピリットボックスを使用した後、光の中にいる間は正気度が減少する</string>
+    <string name="evidence_trait_description_interaction_poltergeist_explosion">アイテムの山を激しい「爆発」で破壊する</string>
+    <string name="evidence_trait_description_interaction_disturb_salt">塩を乱す</string>
+    <string name="evidence_trait_description_event_ghost_ball">ゴーストミストイベントを起こす</string>
+    <string name="evidence_trait_description_interaction_does_not_disturb_salt">塩を乱さない</string>
+    <string name="evidence_trait_description_event_singing">歌うイベントを起こす</string>
+    <string name="evidence_trait_description_interaction_sanity_drain_if_event_door_slam">ドアを閉めるイベントで正気度が15%減少する</string>
+    <string name="evidence_trait_description_interaction_dots_visible_if_without_camera">ドットは肉眼で見える</string>
+    <string name="evidence_trait_description_interaction_drain_sanity_if_emf_at_circuit_breaker">回路ブレーカーでのEMFイベントで正気度が25%減少する</string>
+    <string name="evidence_trait_description_interaction_heavy_breathing_in_spirit_box">スピリットボックスで荒い呼吸音を発する</string>
+    <string name="evidence_trait_description_interaction_emits_wail_into_parabolic">パラボラマイクで大きな叫び声を発する</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_light_switch">ライトスイッチでUV指紋を発する</string>
+    <string name="evidence_trait_description_interaction_uv_footprint">UVフットプリントを発する</string>
+    <string name="evidence_trait_description_speed_wander_extremely_slow_if_hunt">徘徊速度が非常に遅い</string>
+    <string name="evidence_trait_description_event_light_bulb_explosion">電球爆発イベントを好んで起こす</string>
+    <string name="evidence_trait_description_event_shadow">影イベントを好んで起こす</string>
+    <string name="evidence_trait_description_interaction_not_visible_in_ghost_photo">ゴースト写真には写らない</string>
+    <string name="evidence_trait_description_freezing_ghost_breath_if_hunt">狩り中に凍える息を吐く</string>
+    <string name="evidence_trait_description_speed_high_if_chase_and_breaker_active">アクティブなブレーカーは追跡速度を上げる</string>
+    <string name="evidence_trait_description_visibility_high_if_hunt">非常にハント中は視認可能</string>
+    <string name="evidence_trait_description_seek_specific_player_if_hunt">特定のプレイヤーを追う</string>
+    <string name="evidence_trait_description_hunt_after_smudge_180">スマッジングルームから180秒以内にハントを開始</string>
+    <string name="evidence_trait_description_hunt_early">早期にハントを開始</string>
+    <string name="evidence_trait_description_hunt_before_smudge_60">スマッジングルームから60秒以内にハントを開始</string>
+    <string name="evidence_trait_description_interaction_ignite_flame">炎を放つ</string>
+    <string name="evidence_trait_description_interaction_uv_inconsistent">インタラクション時に不規則にUV証拠を放出</string>
+    <string name="evidence_trait_description_interaction_parabolic_emission_increase">パラボラマイクとのインタラクションが増加</string>
+    <string name="evidence_trait_description_activity_increase_if_close_to_player_voice">近接ボイスチャットの近くで活動が増加</string>
+    <string name="evidence_trait_description_speed_increase_if_hunt_in_low_temperature">室温が低いほどハント速度が増加</string>
+    <string name="evidence_trait_description_interaction_door_open_slightly">インタラクションしたドアがわずかに開く</string>
+    <string name="evidence_trait_description_is_male">男性</string>
+    <string name="evidence_trait_description_sanity_drain_if_player_look_at">幽霊を直接見ると正気度が低下する</string>
+    <string name="evidence_trait_description_activity_low_if_player_nearby">近くにプレイヤーがいると活動が減少</string>
+    <string name="evidence_trait_description_visibility_low_if_hunt">ハント中はほとんど視認できない</string>
+    <string name="evidence_trait_description_interaction_close_exit_door">ハント以外の出口ドアが閉まる</string>
+    <string name="evidence_trait_description_simultaneous_favorite_rooms">お気に入りの部屋が複数あるように見える</string>
+    <string name="evidence_trait_description_shapeshift_if_hunt">ハント中にゴーストモデルが切り替わる</string>
+    <string name="evidence_trait_description_seek_electronics_and_voice_range_limited_if_hunt">ハント中は電子機器と音声に対する誘引範囲が狭くなる</string>
+    <string name="evidence_trait_description_speed_increase_if_active_electronics_nearby">稼働中の電子機器の近くで速度が上がる</string>
+    <string name="evidence_trait_description_favors_dark_of_favorite_room">お気に入りの部屋の暗い場所に留まる頻度が高くなる</string>
+    <string name="evidence_trait_description_interaction_emf_if_teleports_to_player">プレイヤーにテレポートし、EMFを放出</string>
+    <string name="evidence_trait_description_interaction_item_thrown_harder">アイテムをより強く投げる</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_off">ブレーカーをオフにする</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_on">ブレーカーをオンにする</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_off_if_player_turns_on">ライトを点灯するプレイヤーがオンにした後、すぐにオフにする</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_on">ライトスイッチをオンにする</string>
+    <string name="evidence_trait_description_interaction_uv_short_lifetime">UV発光寿命を短縮（約50%）</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_2_fingers">UV指紋を持つ指を2本放出する</string>
+    <string name="evidence_trait_description_interaction_uv_footprint_2_feet_per_audio">足音1回につきUV足跡を2つ放出する</string>
+    <string name="evidence_trait_description_interaction_uv_handprint_6_fingers">UV手形を持つ指を6本放出する</string>
+    <string name="evidence_trait_description_interaction_vanish_if_photo_taken">写真撮影後に消滅する</string>
+    <string name="evidence_trait_label_evidence">二次証拠</string>
+    <string name="evidence_trait_category_unique">固有</string>
+    <string name="evidence_trait_category_behavior">動作</string>
+    <string name="evidence_trait_category_characteristic">属性</string>
+    <string name="evidence_trait_category_hunt">ハント</string>
+    <string name="evidence_trait_category_interaction">インタラクション</string>
+    <string name="evidence_trait_state_confirm">確認</string>
+    <string name="evidence_trait_state_reject">拒否</string>
+    <string name="evidence_trait_weight_probable">可能性が高い</string>
+    <string name="evidence_trait_weight_definitive">確定</string>
+    <string name="evidence_trait_weight_likely">可能性が高い</string>
+    <string name="evidence_trait_weight_unlikely">可能性が低い</string>
+    <string name="map_setting_label_drainrate">消耗率</string>
+    <string name="store_title_achievements">実績</string>
+    <string name="investigation_average_sanity_title">平均正気度</string>
 
 </resources>

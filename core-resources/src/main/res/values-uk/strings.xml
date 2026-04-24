@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="investigation_average_sanity_title">Середня осудність</string>
+    <string name="investigation_prep_time_title">Час підготовки</string>
+    <string name="investigation_phase_label_hunt">Полювання</string>
+    <string name="investigation_label_phase">Фаза</string>
+</resources>

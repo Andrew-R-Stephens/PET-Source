@@ -9,6 +9,7 @@
     <string name="titlescreen_button">Starten Sie die Jagd</string>
 
     <string name="investigation_timer_difficulty_label">Schwierigkeit</string>
+    <string name="investigation_prep_time_title">Vorbereitungszeit</string>
     <string name="investigation_your_sanity_level_title">Ihre geistige Gesundheit</string>
     <string name="investigation_timer_label">Vorbereitungszeit:</string>
 
@@ -37,6 +38,7 @@
     <string name="aboutinfo_discord_join">Tritt unserer Discord bei</string>
 
     <string name="investigation_timer_maplabel">Karte</string>
+    <string name="investigation_phase_label_hunt">Jagd</string>
     <string name="investigation_sanity_huntwarn">Jagdwarnung</string>
     <string name="investigation_phase_label_action">Aktion</string>
     <string name="investigation_phase_label_setup">Vorbereitung</string>
@@ -67,6 +69,7 @@
     <string name="general_navigation_home">Startseite</string>
     <string name="general_navigation_primary">Primär</string>
     <string name="general_navigation_menu">Menü</string>
+    <string name="investigation_label_phase">Phase</string>
     <string name="codex_section_equipment">Ausrüstung</string>
     <string name="codex_section_more">Mehr folgt bald</string>
 
@@ -101,5 +104,6 @@
     <string name="map_setting_state_medium">Medium</string>
     <string name="alert_gui_palette_error">Palette nicht festgelegt!</string>
     <string name="alert_gui_typography_error">Typografie nicht festgelegt!</string>
+    <string name="investigation_average_sanity_title">Durchschnittliche geistige Gesundheit</string>
 
 </resources>

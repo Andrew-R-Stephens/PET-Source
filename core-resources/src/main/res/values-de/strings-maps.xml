@@ -35,5 +35,7 @@
     <string name="map_setting_label_modifier">Modifikator</string>
     <string name="map_setting_state_setup">Setup</string>
     <string name="map_setting_state_action">Aktion</string>
+    <string name="map_setting_label_drainrate">Entzugsrate</string>
+    <string name="map_setting_label_multiplier">Multiplikator</string>
 
 </resources>

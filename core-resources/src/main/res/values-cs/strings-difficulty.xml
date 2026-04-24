@@ -30,6 +30,7 @@
     <string name="difficulty_setting_state_broken">Přerušované</string>
     <string name="difficulty_setting_state_off">Vypnuto</string>
     <string name="difficulty_setting_state_infinite">Nekonečné</string>
+    <string name="difficulty_setting_state_weather_unknown">Neznámé počasí</string>
     <string name="difficulty_setting_state_weather_lightrain">Slabý déšť</string>
     <string name="difficulty_setting_state_weather_heavyrain">Silný déšť</string>
     <string name="difficulty_setting_state_weather_snow">Sníh</string>
@@ -63,6 +64,7 @@
     <string name="difficulty_setting_title_fingerprint_duration">Doba trvání otisku prstu</string>
     <string name="difficulty_setting_title_setup_time">Doba přípravy</string>
     <string name="difficulty_setting_title_weather">Počasí</string>
+    <string name="difficulty_setting_title_weather_temperature_range">Teplotní rozsah</string>
     <string name="difficulty_setting_title_doors_starting_open">Dveře od začátku otevřené</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Počet úkrytů</string>
     <string name="difficulty_setting_title_sanity_monitor">Monitor duševního zdraví</string>

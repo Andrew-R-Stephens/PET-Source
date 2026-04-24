@@ -9,6 +9,7 @@
     <string name="titlescreen_button">Commencer la chasse</string>
 
     <string name="investigation_timer_difficulty_label">Difficulté</string>
+    <string name="investigation_prep_time_title">Temps de préparation</string>
     <string name="investigation_your_sanity_level_title">Votre niveau de santé mentale</string>
     <string name="investigation_timer_label">Temps de préparation:</string>
 
@@ -38,6 +39,7 @@
     <string name="aboutinfo_developerinfo_title">Informations</string>
     <string name="aboutinfo_discord_join">Rejoignez-nous sur Discord</string>
     <string name="investigation_timer_maplabel">Carte</string>
+    <string name="investigation_phase_label_hunt">Recherche</string>
     <string name="investigation_sanity_huntwarn">Avertissement de chasse</string>
     <string name="investigation_phase_label_action">Action</string>
     <string name="investigation_phase_label_setup">Préparation</string>
@@ -55,6 +57,7 @@
     <string name="general_navigation_home">Accueil</string>
     <string name="general_navigation_primary">Primaire</string>
     <string name="general_navigation_menu">Menu</string>
+    <string name="investigation_label_phase">Phase</string>
     <string name="codex_section_equipment">Équipement</string>
     <string name="codex_section_more">Plus à venir bientôt</string>
 
@@ -87,5 +90,6 @@
     <string name="map_setting_state_medium">Moyen</string>
     <string name="alert_gui_palette_error">Palette non définie !</string>
     <string name="alert_gui_typography_error">Typographie non définie !</string>
+    <string name="investigation_average_sanity_title">Santé mentale moyenne</string>
 
 </resources>

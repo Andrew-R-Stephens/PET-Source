@@ -33,4 +33,6 @@
     <string name="map_setting_label_modifier">Модифікатор</string>
     <string name="map_setting_state_setup">Налаштування</string>
     <string name="map_setting_state_action">Дія</string>
+    <string name="map_setting_label_drainrate">Швидкість висмоктування</string>
+    <string name="map_setting_label_multiplier">Множник</string>
 </resources>

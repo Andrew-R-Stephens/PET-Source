@@ -6,6 +6,7 @@
 
     <!-- All Entries -->
     <!-- Personal Statements -->
+    <string name="ghostbox_title">Geisterbox</string>
     <string name="spiritbox_entry_q01">Bloody Mary.</string>
     <string name="spiritbox_entry_q02">Ich habe Angst!</string>
     <string name="spiritbox_entry_q03">Ausblenden!</string>
