@@ -42,9 +42,9 @@ import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUi
 internal fun JournalComponent(
     modifier: Modifier = Modifier,
     evidenceListUiState: EvidenceListUiState,
-    evidenceListUiActions: EvidenceListUiActions,
     ghostListUiState: GhostListUiState,
     ghostListUiActions: GhostListUiActions,
+    evidenceListUiActions: EvidenceListUiActions,
     ghostListUiItemActions: GhostListUiItemActions
 ) {
 

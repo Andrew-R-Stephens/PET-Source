@@ -16,9 +16,10 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigS
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.OperationConfigCarousel
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 @Composable
-internal fun MapConfigComponent(
+internal fun MapConfigControl(
     modifier: Modifier = Modifier,
     bundle: ConfigStateBundle,
     actions: ConfigActionsBundle
@@ -64,3 +65,9 @@ internal fun MapConfigComponent(
         }
     }
 }
+
+internal data class MapConfigUiState(
+    internal val name: SimpleMapResources.MapTitle = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
+    internal val enabled: Boolean = true,
+    internal val allMaps: List<SimpleMapResources.MapTitle> = emptyList()
+)

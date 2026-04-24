@@ -11,20 +11,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
-import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiActions
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 
 @Composable
-fun FuseBoxControlComponent(
+internal fun FuseBoxButton(
     modifier: Modifier,
-    state: TemperatureStateBundle,
-    actions: TemperatureUiActions
+    state: FuseBoxUiState,
+    actions: FuseBoxUiActions
 ) {
     data class FuseButtonTheme(
         val icon: Int, val foreground: Color)
 
-    val theme = when (state.fuseBoxState) {
+    val theme = when (state.flag) {
         FuseBoxFlag.FUSEBOX_ENABLED -> {
             FuseButtonTheme(
                 R.drawable.ic_fuse_box_fill,
@@ -54,3 +52,12 @@ fun FuseBoxControlComponent(
         )
     }
 }
+
+internal data class FuseBoxUiState(
+    val flag: FuseBoxFlag,
+)
+
+internal data class FuseBoxUiActions(
+    val onTogglePower: () -> Unit
+)
+

@@ -49,13 +49,25 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 import org.jetbrains.annotations.TestOnly
 
-data class EvidenceListItemUiColors(
+internal data class EvidenceListItemUiState(
+    val state: EvidenceValidationType,
+    val label: String,
+    val enabled: Boolean
+)
+
+internal data class EvidenceListItemUiAction(
+    val onToggle: (evidenceValidationType: EvidenceValidationType) -> Unit = {},
+    val onNameClick: () -> Unit = {}
+)
+
+
+internal data class EvidenceListItemUiColors(
     val selectedColor: Color = Color.Transparent,
     val unselectedColor: Color = Color.Transparent
 )
 
 @Composable
-fun EvidenceListItem(
+internal fun EvidenceListItem(
     modifier: Modifier = Modifier,
     state: EvidenceListItemUiState,
     actions: EvidenceListItemUiAction,

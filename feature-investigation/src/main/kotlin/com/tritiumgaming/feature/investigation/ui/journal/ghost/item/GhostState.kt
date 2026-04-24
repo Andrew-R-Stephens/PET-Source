@@ -13,14 +13,14 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 
-data class TraitScore(
+internal data class TraitScore(
     val confirm: Int = 0,
     val probableConfirm: Int = 0,
     val reject: Int = 0,
     val probableReject: Int = 0,
 )
 
-data class GhostState(
+internal data class GhostState(
     val ghostEvidence: GhostEvidence,
     val score: Int = 0,
     val manualRejection: Boolean = false,

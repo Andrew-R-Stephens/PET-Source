@@ -20,9 +20,12 @@ import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListIt
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 
 @Composable
-fun GhostList(
+internal fun GhostList(
     modifier: Modifier = Modifier,
     ghostListUiState: GhostListUiState,
     ghostListUiActions: GhostListUiActions,
@@ -72,3 +75,12 @@ fun GhostList(
     }
 
 }
+
+internal data class GhostListUiActions(
+    val onNameClick: (GhostResources.GhostIdentifier) -> Unit = {}
+)
+
+internal data class GhostListUiState(
+    val ghostOrder: List<GhostState>,
+    val evidenceState: List<EvidenceState>
+)

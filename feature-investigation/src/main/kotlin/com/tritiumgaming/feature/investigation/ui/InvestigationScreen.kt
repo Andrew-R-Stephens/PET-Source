@@ -98,11 +98,12 @@ import com.tritiumgaming.feature.investigation.ui.sheet.ToolSheetActionsBundle
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolSheetStateBundle
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
+import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxUiActions
+import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
-import com.tritiumgaming.feature.investigation.ui.tool.statusbar.StatusBarComponent
+import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.StatusBarComponentStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
-import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
@@ -316,18 +317,18 @@ private fun InvestigationContent(
         )
     )
 
-    val temperatureUiActions = TemperatureUiActions(
-        onTogglePower = {
-            investigationViewModel.onEvent(ToggleFuseBoxOverride)
-
-            Toast.makeText(context, "Fuse Box Toggled", Toast.LENGTH_SHORT).show()
-        }
+    val temperatureStateBundle = TemperatureStateBundle(
+        temperatureUiState = temperatureUiState
     )
 
-    val temperatureStateBundle = TemperatureStateBundle(
-        temperatureUiState = temperatureUiState,
-        fuseBoxState = difficultyOverrideUiState.fuseBox,
-        temperatureUiActions = temperatureUiActions
+    val fuseBoxUiState = FuseBoxUiState(
+        flag = difficultyOverrideUiState.fuseBox
+    )
+
+    val fuseBoxUiActions = FuseBoxUiActions(
+        onTogglePower = {
+            investigationViewModel.onEvent(ToggleFuseBoxOverride)
+        }
     )
 
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
@@ -410,7 +411,8 @@ private fun InvestigationContent(
         mapUiStateBundle = mapUiStateBundle,
         weatherUiStateBundle = weatherUiStateBundle,
         weatherUiState = weatherUiState,
-        temperatureStateBundle = temperatureStateBundle
+        temperatureStateBundle = temperatureStateBundle,
+        fuseBoxUiState = fuseBoxUiState
     )
 
     val toolSheetActionsBundle = ToolSheetActionsBundle(
@@ -420,7 +422,7 @@ private fun InvestigationContent(
         difficultyUiActions = difficultyUiActions,
         mapUiActions = mapUiActions,
         weatherUiActions = weatherUiActions,
-        temperatureUiActions = temperatureUiActions,
+        fuseBoxUiActions = fuseBoxUiActions,
         onSanityChange = {
             investigationViewModel.onEvent(SetPlayerSanity(it))
         },
@@ -456,7 +458,7 @@ private fun InvestigationContent(
                     state = investigationUiState,
                     actions = investigationUiActions,
                     statusBarComponent = { modifier ->
-                        StatusBarComponent(
+                        OperationStatusBar(
                             modifier = modifier,
                             bundle = statusBarComponentStateBundle
                         )
@@ -495,7 +497,7 @@ private fun InvestigationContent(
                     state = investigationUiState,
                     actions = investigationUiActions,
                     statusBarComponent = { modifier ->
-                        StatusBarComponent(
+                        OperationStatusBar(
                             modifier = modifier,
                             bundle = statusBarComponentStateBundle
                         )

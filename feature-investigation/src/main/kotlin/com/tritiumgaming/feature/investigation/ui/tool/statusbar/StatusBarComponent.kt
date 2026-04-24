@@ -22,9 +22,13 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
+import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 
 @Composable
-internal fun StatusBarComponent(
+internal fun OperationStatusBar(
     modifier: Modifier = Modifier,
     bundle: StatusBarComponentStateBundle
 ) {
@@ -115,3 +119,9 @@ internal fun StatusBarComponent(
 
     }
 }
+
+internal data class StatusBarComponentStateBundle(
+    val sanityUiState: PlayerSanityUiState,
+    val digitalTimerUiState: DigitalTimerUiState,
+    val phaseUiState: PhaseUiState
+)

@@ -26,14 +26,14 @@ import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggl
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseComponent
-
+import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 
 @Composable
-internal fun TimerComponentColumn(
+internal fun OperationTimerColumn(
     modifier: Modifier = Modifier,
     timerUiState: TimerUiState,
     timerUiActions: TimerUiActions,
-    phaseUiState: OperationDetailsUiState.PhaseDetails
+    phaseUiState: PhaseUiState
 ) {
 
     Column(
@@ -109,18 +109,18 @@ internal fun TimerComponentColumn(
                 Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
-                phaseUiState = phaseUiState
+                state = phaseUiState
             )
         }
     }
 }
 
 @Composable
-internal fun TimerComponentRow(
+internal fun OperationTimerRow(
     modifier: Modifier = Modifier,
     timerUiState: TimerUiState,
     timerUiActions: TimerUiActions,
-    phaseUiState: OperationDetailsUiState.PhaseDetails
+    phaseUiState: PhaseUiState
 ) {
 
     Row(
@@ -150,7 +150,7 @@ internal fun TimerComponentRow(
                 PhaseComponent(
                     Modifier
                         .padding(8.dp),
-                    phaseUiState = phaseUiState
+                    state = phaseUiState
                 )
             }
         }

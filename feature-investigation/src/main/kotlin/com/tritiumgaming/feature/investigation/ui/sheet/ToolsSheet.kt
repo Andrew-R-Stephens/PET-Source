@@ -1,50 +1,38 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsBottomSheet
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsSideSheet
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
-import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigComponent
-import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxControlComponent
-import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigComponent
+import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigControl
+import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxButton
+import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherConfigComponent
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButtonComponent
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationComponent
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeterComponent
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.TimerComponentColumn
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.TimerComponentRow
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButton
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationButton
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeter
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationTimerColumn
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationTimerRow
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
 import com.tritiumgaming.feature.investigation.ui.tool.timers.ProgressBarTimer
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
@@ -69,6 +57,7 @@ internal fun ToolsBottomSheetComponent(
     val timerUiState = stateBundle.timerUiState
     val phaseUiState = stateBundle.phaseUiState
     val temperatureBundle = stateBundle.temperatureStateBundle
+    val fuseBoxUiState = stateBundle.fuseBoxUiState
     val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
     val huntDurationBundle = stateBundle.huntDurationBundle
     val huntCooldownBundle = stateBundle.huntCooldownBundle
@@ -83,7 +72,7 @@ internal fun ToolsBottomSheetComponent(
     val traitListUiActions = actionsBundle.traitListUiActions
     val bpmToolUiActions = actionsBundle.bpmToolUiActions
     val timerUiActions = actionsBundle.timerUiActions
-    val temperatureUiActions = actionsBundle.temperatureUiActions
+    val fuseBoxUiActions = actionsBundle.fuseBoxUiActions
 
     Column(
         modifier = modifier,
@@ -98,14 +87,14 @@ internal fun ToolsBottomSheetComponent(
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
                     mapConfigComponent = { modifier ->
-                        MapConfigComponent(
+                        MapConfigControl(
                             modifier = modifier,
                             bundle = mapUiStateBundle,
                             actions = mapUiActions
                         )
                     },
                     difficultyConfigComponent = { modifier ->
-                        DifficultyConfigComponent(
+                        DifficultyConfigControl(
                             modifier = modifier,
                             bundle = difficultyUiStateBundle,
                             actions = difficultyUiActions
@@ -120,7 +109,7 @@ internal fun ToolsBottomSheetComponent(
                         )
                     },
                     sanityMeterComponent = { modifier ->
-                        SanityMeterComponent(
+                        SanityMeter(
                             modifier = modifier,
                             sanityUiState = sanityUiState
                         ) {
@@ -128,7 +117,7 @@ internal fun ToolsBottomSheetComponent(
                         }
                     },
                     timerComponent = { modifier ->
-                        TimerComponentColumn(
+                        OperationTimerColumn(
                             modifier = modifier,
                             timerUiState = timerUiState,
                             timerUiActions = timerUiActions,
@@ -136,7 +125,7 @@ internal fun ToolsBottomSheetComponent(
                         )
                     },
                     sanityMedicationComponent = { modifier ->
-                        SanityMedicationComponent(
+                        SanityMedicationButton(
                             modifier = modifier,
                             onClick = {
                                 actionsBundle.onUseSanityMedication()
@@ -144,7 +133,7 @@ internal fun ToolsBottomSheetComponent(
                         )
                     },
                     playerDeathButtonComponent = { modifier ->
-                        PlayerDeathButtonComponent(
+                        PlayerDeathButton(
                             modifier = modifier,
                             onClick = {
                                 actionsBundle.onPlayerDeath()
@@ -158,10 +147,10 @@ internal fun ToolsBottomSheetComponent(
                         )
                     },
                     fuseBoxControlComponent = { modifier ->
-                        FuseBoxControlComponent(
+                        FuseBoxButton(
                             modifier = modifier,
-                            state = temperatureBundle,
-                            actions = temperatureUiActions
+                            state = fuseBoxUiState,
+                            actions = fuseBoxUiActions
                         )
                     },
                     showTemperatureMeterComponent = weatherUiState.weather != Weather.RANDOM
@@ -308,6 +297,7 @@ internal fun ToolsSideSheetComponent(
     val sanityUiState = stateBundle.sanityUiState
     val timerUiState = stateBundle.timerUiState
     val phaseUiState = stateBundle.phaseUiState
+    val fuseBoxUiState = stateBundle.fuseBoxUiState
     val temperatureBundle = stateBundle.temperatureStateBundle
     val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
     val huntDurationBundle = stateBundle.huntDurationBundle
@@ -323,7 +313,7 @@ internal fun ToolsSideSheetComponent(
     val traitListUiActions = actionsBundle.traitListUiActions
     val bpmToolUiActions = actionsBundle.bpmToolUiActions
     val timerUiActions = actionsBundle.timerUiActions
-    val temperatureUiActions = actionsBundle.temperatureUiActions
+    val fuseBoxUiActions = actionsBundle.fuseBoxUiActions
 
     Column(
         modifier = modifier,
@@ -339,7 +329,7 @@ internal fun ToolsSideSheetComponent(
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
                     sanityMedicationComponent = { modifier ->
-                        SanityMedicationComponent(
+                        SanityMedicationButton(
                             modifier = modifier,
                             onClick = {
                                 actionsBundle.onUseSanityMedication()
@@ -347,14 +337,14 @@ internal fun ToolsSideSheetComponent(
                         )
                     },
                     mapConfigComponent = { modifier ->
-                        MapConfigComponent(
+                        MapConfigControl(
                             modifier = modifier,
                             bundle = mapUiStateBundle,
                             actions = mapUiActions
                         )
                     },
                     difficultyConfigComponent = { modifier ->
-                        DifficultyConfigComponent(
+                        DifficultyConfigControl(
                             modifier = modifier,
                             bundle = difficultyUiStateBundle,
                             actions = difficultyUiActions
@@ -369,7 +359,7 @@ internal fun ToolsSideSheetComponent(
                         )
                     },
                     sanityMeterComponent = { modifier ->
-                        SanityMeterComponent(
+                        SanityMeter(
                             modifier = modifier,
                             sanityUiState = sanityUiState
                         ) {
@@ -377,7 +367,7 @@ internal fun ToolsSideSheetComponent(
                         }
                     },
                     timerComponent = { modifier ->
-                        TimerComponentRow(
+                        OperationTimerRow(
                             modifier = modifier,
                             timerUiState = timerUiState,
                             timerUiActions = timerUiActions,
@@ -385,7 +375,7 @@ internal fun ToolsSideSheetComponent(
                         )
                     },
                     playerDeathButtonComponent = { modifier ->
-                        PlayerDeathButtonComponent(
+                        PlayerDeathButton(
                             modifier = modifier,
                             onClick = {
                                 actionsBundle.onPlayerDeath()
@@ -399,10 +389,10 @@ internal fun ToolsSideSheetComponent(
                         )
                     },
                     fuseBoxControlComponent = { modifier ->
-                        FuseBoxControlComponent(
+                        FuseBoxButton(
                             modifier = modifier,
-                            state = temperatureBundle,
-                            actions = temperatureUiActions
+                            state = fuseBoxUiState,
+                            actions = fuseBoxUiActions
                         )
                     },
                     showTemperatureMeterComponent = weatherUiState.weather != Weather.RANDOM

@@ -27,6 +27,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigU
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
@@ -696,7 +697,7 @@ class InvestigationScreenViewModel private constructor(
         val canFlash = playerSanityUiState.isInsane &&
                 phaseState.elapsedFlashTime <= preferences.maxHuntWarnFlashTime
 
-        OperationDetailsUiState.PhaseDetails(
+        PhaseUiState(
             type = type,
             canFlash = canFlash,
             canAlertAudio = phaseState.canAlertAudio,
@@ -706,7 +707,7 @@ class InvestigationScreenViewModel private constructor(
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = OperationDetailsUiState.PhaseDetails(
+        initialValue = PhaseUiState(
             elapsedFlashTime = 0L,
             startFlashTime = DEFAULT,
             maxFlashTime = DURATION_30_SECONDS,
@@ -750,12 +751,12 @@ class InvestigationScreenViewModel private constructor(
     private val _operationSanityUiState = combine(
         mapState,
         difficultyState,
-        phaseUiState
-    ) { mapState, difficultyState, phaseUiState ->
+        phaseState
+    ) { mapState, difficultyState, phaseState ->
         val mapModifier = try {
             getSimpleMapModifierUseCase(
                 mapState.size.ordinal,
-                phaseUiState.type
+                phaseState.type
             ).getOrThrow().toFloat()
         } catch (e: Exception) {
             e.printStackTrace()

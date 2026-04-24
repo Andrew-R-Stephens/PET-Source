@@ -16,9 +16,12 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigS
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.OperationConfigCarousel
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle.AMATEUR
+
 
 @Composable
-internal fun DifficultyConfigComponent(
+internal fun DifficultyConfigControl(
     modifier: Modifier = Modifier,
     bundle: ConfigStateBundle,
     actions: ConfigActionsBundle
@@ -64,3 +67,8 @@ internal fun DifficultyConfigComponent(
         }
     }
 }
+
+internal data class DifficultyConfigUiState(
+    internal val name: DifficultyTitle = AMATEUR,
+    val allDifficulties: List<DifficultyTitle> = emptyList()
+)

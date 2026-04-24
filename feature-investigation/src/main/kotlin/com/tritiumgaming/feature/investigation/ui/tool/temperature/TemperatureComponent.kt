@@ -27,6 +27,11 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.COOLING
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.HEATING
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import com.tritiumgaming.shared.data.weather.model.Temperature
+import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_FREEZING_BREATH
+import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_FREEZING_POINT
+import com.tritiumgaming.shared.data.weather.model.TemperatureRange
 
 
 @Composable
@@ -126,5 +131,33 @@ internal fun TemperatureComponent(
 
         }
 
+    }
+}
+
+internal data class TemperatureStateBundle(
+    val temperatureUiState: TemperatureUiState
+)
+
+internal data class TemperatureUiState(
+    val range: TemperatureRange = TemperatureRange(),
+    val temporalGradient: Float = TEMPERATURE_FREEZING_POINT,
+    val current: Float = Temperature.TEMPERATURE_START_FUSEBOX_ENABLED,
+    val currentAsString: String = "%4.1f".format(current),
+) {
+
+    val isFreezingBreath: Boolean
+        get() = current <= TEMPERATURE_FREEZING_BREATH
+
+    val gradientDirection: TemporalGradientDirection =
+        when {
+            temporalGradient > TEMPERATURE_FREEZING_POINT -> TemporalGradientDirection.HEATING
+            temporalGradient < TEMPERATURE_FREEZING_POINT -> TemporalGradientDirection.COOLING
+            else -> TemporalGradientDirection.STABLE
+        }
+
+    enum class TemporalGradientDirection {
+        HEATING,
+        COOLING,
+        STABLE
     }
 }

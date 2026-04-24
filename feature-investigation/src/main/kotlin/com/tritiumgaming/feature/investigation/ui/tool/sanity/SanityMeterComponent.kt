@@ -48,7 +48,7 @@ import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 
 
 @Composable
-internal fun SanityMeterComponent(
+internal fun SanityMeter(
     modifier: Modifier = Modifier,
     sanityUiState: PlayerSanityUiState,
     onSanityChange: (Float) -> Unit = {}

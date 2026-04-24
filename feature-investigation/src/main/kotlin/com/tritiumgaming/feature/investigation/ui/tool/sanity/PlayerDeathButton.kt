@@ -21,7 +21,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 
 
 @Composable
-internal fun PlayerDeathButtonComponent(
+internal fun PlayerDeathButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {

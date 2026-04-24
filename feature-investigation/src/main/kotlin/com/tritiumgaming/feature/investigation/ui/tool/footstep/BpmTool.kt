@@ -2,7 +2,6 @@ package com.tritiumgaming.feature.investigation.ui.tool.footstep
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,6 +34,8 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabe
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
@@ -43,7 +44,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.Visua
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-fun BpmTool(
+internal fun BpmTool(
     modifier: Modifier = Modifier,
     state: BpmToolUiState,
     actions: BpmToolUiActions
@@ -286,3 +287,15 @@ fun BpmTool(
 
     }
 }
+
+internal data class BpmToolUiActions(
+    val onUpdate: (RealtimeUiState<GraphPoint>) -> Unit = {},
+    val onChangeMeasurementType: (VisualizerMeasurementType) -> Unit = {},
+    val toggleApplyMeasurement: () -> Unit = {}
+)
+
+internal data class BpmToolUiState(
+    val realtimeState: RealtimeUiState<GraphPoint> = RealtimeUiState(),
+    val measurementType: VisualizerMeasurementType = VisualizerMeasurementType.INSTANT,
+    val applyMeasurement: Boolean = false
+)

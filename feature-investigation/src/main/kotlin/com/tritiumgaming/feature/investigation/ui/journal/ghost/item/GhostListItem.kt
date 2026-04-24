@@ -54,13 +54,16 @@ import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResourc
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState.Companion.NORMAL_AFFIRM_MINIMUM_REACHED
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState.Companion.ZERO_EVIDENCE
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEGATIVE
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEUTRAL
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.POSITIVE
 
+
+
 @Composable
-fun LazyItemScope.GhostListItem(
+internal fun LazyItemScope.GhostListItem(
     modifier: Modifier = Modifier,
     evidenceState: List<EvidenceState>,
     ghostState: GhostState? = null,
@@ -324,7 +327,7 @@ fun LazyItemScope.GhostListItem(
 }
 
 @Composable
-fun Nameplate(
+private fun Nameplate(
     modifier: Modifier = Modifier,
     label: String = ""
 ) {
@@ -345,7 +348,7 @@ fun Nameplate(
 }
 
 @Composable
-fun Strikethrough(
+private fun Strikethrough(
     modifier: Modifier = Modifier,
     ghostState: GhostState
 ) {
@@ -511,3 +514,9 @@ private fun RowScope.EvidenceIcon(
         }
     }
 }
+
+internal data class GhostListUiItemActions(
+    val onToggleNegateGhost: (Ghost) -> Unit = {},
+    val onNameClick: () -> Unit = {},
+    val onRequestToolTip: () -> Unit = {}
+)

@@ -20,7 +20,7 @@ import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 
 @Composable
-internal fun SanityMedicationComponent(
+internal fun SanityMedicationButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {

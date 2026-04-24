@@ -6,7 +6,7 @@ import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUi
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 
-data class InvestigationUiActions(
+internal data class InvestigationUiActions(
     val evidenceListUi: EvidenceListUiActions,
     val ghostListUi: GhostListUiActions,
     val ghostListItemUi: GhostListUiItemActions,

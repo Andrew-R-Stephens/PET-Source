@@ -14,13 +14,15 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
+import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 
 
 @Composable
 internal fun PhaseComponent(
     modifier: Modifier = Modifier,
-    phaseUiState: OperationDetailsUiState.PhaseDetails
+    state: PhaseUiState
 ) {
 
     Box(
@@ -30,7 +32,7 @@ internal fun PhaseComponent(
         Text(
             modifier = Modifier
                 .wrapContentHeight(),
-            text = stringResource(phaseUiState.type.toPhaseTitle().toStringResource()),
+            text = stringResource(state.type.toPhaseTitle().toStringResource()),
             color = LocalPalette.current.onSurface,
             style = LocalTypography.current.tertiary.regular.copy(
                 fontSize = 12.sp,
@@ -40,3 +42,12 @@ internal fun PhaseComponent(
         )
     }
 }
+
+internal data class PhaseUiState(
+    internal val type: PhaseIdentifier = PhaseIdentifier.SETUP,
+    internal val canAlertAudio: Boolean = false,
+    internal val canFlash: Boolean = true,
+    internal val startFlashTime: Long = DEFAULT,
+    internal val elapsedFlashTime: Long = DEFAULT,
+    internal val maxFlashTime: Long = DURATION_30_SECONDS,
+)
