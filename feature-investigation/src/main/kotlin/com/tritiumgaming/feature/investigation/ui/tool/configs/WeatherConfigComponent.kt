@@ -16,6 +16,7 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigS
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.OperationConfigCarousel
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 
 @Composable
 internal fun WeatherConfigComponent(
@@ -65,3 +66,8 @@ internal fun WeatherConfigComponent(
         }
     }
 }
+
+internal data class WeatherUiState(
+    val weather: Weather = Weather.RANDOM,
+    val enabled: Boolean = true
+)

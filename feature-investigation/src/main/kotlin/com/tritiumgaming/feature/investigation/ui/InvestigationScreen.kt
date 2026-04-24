@@ -108,10 +108,12 @@ import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
+import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+
 
 @Composable
 fun InvestigationSoloScreen(
@@ -135,7 +137,7 @@ private fun InvestigationContent(
 
     val toolbarUiState by investigationViewModel.operationToolbarUiState.collectAsStateWithLifecycle()
 
-    val timerUiState by investigationViewModel.operationTimerUiState.collectAsStateWithLifecycle()
+    val operationTimerUiState by investigationViewModel.operationTimerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
     val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
@@ -159,8 +161,8 @@ private fun InvestigationContent(
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
 
     val digitalTimerUiState = DigitalTimerUiState(
-        startTime = timerUiState.startTime,
-        remainingTime = timerUiState.remainingTime
+        startTime = operationTimerUiState.startTime,
+        remainingTime = operationTimerUiState.remainingTime
     )
 
     val ghostListUiState = GhostListUiState(
@@ -400,7 +402,7 @@ private fun InvestigationContent(
         toolbarUiState = toolbarUiState,
         operationDetailsUiState = operationDetailsUiState,
         sanityUiState = sanityUiState,
-        timerUiState = timerUiState,
+        timerUiState = operationTimerUiState,
         phaseUiState = phaseUiState,
         smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
         huntDurationBundle = huntDurationBundle,
@@ -1166,3 +1168,15 @@ fun OperationConfigsSideSheet(
     }
 
 }
+
+internal data class InvestigationUiActions(
+    val evidenceListUi: EvidenceListUiActions,
+    val ghostListUi: GhostListUiActions,
+    val ghostListItemUi: GhostListUiItemActions,
+    val toolbarUi: ToolbarUiActions,
+    val bpmUi: BpmToolUiActions
+)
+
+internal data class InvestigationUiState(
+    val operationToolbarUiState: OperationToolbarUiState
+)

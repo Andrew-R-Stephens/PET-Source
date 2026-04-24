@@ -38,10 +38,12 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLine
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiState
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiState
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsXAxis
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsYAxis
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurface
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiState
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlot
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiState
@@ -50,7 +52,10 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterUiState
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.VisualizerUiState
+import kotlin.math.ceil
 import kotlin.time.Duration.Companion.seconds
+
 
 @Composable
 internal fun BpmVisualizer(
@@ -287,6 +292,17 @@ internal fun BpmVisualizer(
     }
 }
 
+private fun calcInterval(
+    interval: Int,
+    subInterval: Float
+): Int {
+    val quantizedMax = ceil(subInterval * interval / subInterval)
+
+    val steps = (quantizedMax / subInterval).toInt()
+
+    return steps
+}
+
 @Composable
 @Preview
 private fun Preview() {
@@ -413,3 +429,50 @@ private fun Preview() {
         }
     }
 }
+
+internal data class BpmVisualizerUiActions<T>(
+    val onUpdate: (state: T) -> Unit
+)
+
+internal data class BpmVisualizerStateBundle(
+    private val alpha: Float = 0.01f,
+    private val range: Int = 360,
+    private val domain: Long = 10.seconds.inWholeMilliseconds,
+    private val domainInterval: Float = 10f,
+    private val rangeInterval: Float = 120f,
+    private val domainSampleInterval: Long = 3.seconds.inWholeMilliseconds,
+    val visualizerUiState: VisualizerUiState = VisualizerUiState(
+        alpha = alpha,
+        range = range,
+        domain = domain,
+        domainInterval = domainInterval,
+        rangeInterval = rangeInterval,
+        domainSampleInterval = domainSampleInterval
+    ),
+    val graphSurfaceUiState: GraphSurfaceUiState = GraphSurfaceUiState(
+        domain = visualizerUiState.domain,
+        domainInterval = visualizerUiState.domainInterval,
+        rangeInterval = calcInterval(
+            visualizerUiState.range,
+            visualizerUiState.rangeInterval
+        ).toFloat(),
+        domainSampleInterval = visualizerUiState.domainSampleInterval
+    ),
+    val graphLabelsXUiState: GraphLabelsUiState = GraphLabelsUiState(
+        viewport = visualizerUiState.domain.toInt(),
+        interval = visualizerUiState.domainInterval
+    ),
+    val graphLabelsYUiState: GraphLabelsUiState = GraphLabelsUiState(
+        viewport = visualizerUiState.range,
+        interval = visualizerUiState.rangeInterval
+    )
+)
+
+internal data class BpmVisualizerColorBundle(
+    val graphLabelsXAxisUiColors: GraphLabelsUiColors,
+    val graphLabelsYAxisUiColors: GraphLabelsUiColors,
+    val graphSurfaceUiColors: GraphSurfaceUiColors,
+    val realtimePlotUiColors: RealtimePlotUiColors,
+    val beatLineUiColors: BeatLineUiColors,
+    val realtimeVerticalMeterColors: RealtimeVerticalMeterColors
+)

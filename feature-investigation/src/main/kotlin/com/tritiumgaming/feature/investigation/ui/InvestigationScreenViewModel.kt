@@ -25,6 +25,7 @@ import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState

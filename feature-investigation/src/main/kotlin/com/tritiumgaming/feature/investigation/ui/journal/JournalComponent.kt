@@ -177,3 +177,13 @@ private fun ListColumn(
         listComponent(Modifier)
     }
 }
+
+internal data class JournalStateBundle(
+    val journalUiState: JournalUiState,
+    val evidenceListUiState: EvidenceListUiState,
+    val ghostListUiState: GhostListUiState
+)
+
+class JournalUiState(
+    val rtlPreference: Boolean
+)
