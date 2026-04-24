@@ -725,7 +725,7 @@ class InvestigationScreenViewModel private constructor(
             openWidth = 0.5f
         )
     )
-    internal val primaryToolbarUiState = _operationToolbarUiState.asStateFlow()
+    internal val operationToolbarUiState = _operationToolbarUiState.asStateFlow()
 
     private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     internal val popupUiState = _popupUiState.asStateFlow()
@@ -1511,7 +1511,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun setToolbarCategory(category: OperationToolbarUiState.Category) {
-        if(primaryToolbarUiState.value.category == category) {
+        if(operationToolbarUiState.value.category == category) {
             _operationToolbarUiState.update {
                 val isCollapsed = !it.isCollapsed
 

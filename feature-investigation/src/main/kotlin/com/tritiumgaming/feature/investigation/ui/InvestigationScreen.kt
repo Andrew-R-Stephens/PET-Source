@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui
 
-import android.widget.Toast
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -134,7 +133,7 @@ private fun InvestigationContent(
 
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
 
-    val toolbarUiState by investigationViewModel.primaryToolbarUiState.collectAsStateWithLifecycle()
+    val toolbarUiState by investigationViewModel.operationToolbarUiState.collectAsStateWithLifecycle()
 
     val timerUiState by investigationViewModel.operationTimerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
