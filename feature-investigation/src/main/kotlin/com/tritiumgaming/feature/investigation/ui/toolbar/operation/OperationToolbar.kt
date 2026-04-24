@@ -50,6 +50,8 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import androidx.annotation.FloatRange
+
 
 @Composable
 fun OperationToolbar(
@@ -183,244 +185,20 @@ fun OperationToolRail(
     )
 }
 
-@Composable
-private fun ResetButton(
-    modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions
+data class OperationToolbarUiState(
+    internal val isCollapsed: Boolean = false,
+    internal val category: Category = Category.TOOL_CONFIG,
+    @param:FloatRange(from = 0.0, to = 1.0)
+    internal val openWidth: Float = 0.5f
 ) {
-    ToolbarItem(
-        modifier = modifier
-    ) { modifier ->
-        ResetIcon(
-            modifier = modifier
-                .fillMaxSize(),
-            onClick = { toolbarUiActions.onReset() }
-        )
+
+    enum class Category {
+        TOOL_NONE,
+        TOOL_CONFIG,
+        TOOL_TRAITS,
+        TOOL_ANALYZER,
+        TOOL_FOOTSTEP,
+        TOOL_TIMERS
     }
-}
 
-@Composable
-private fun BpmButton(
-    modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
-) {
-    ToolbarItem(
-        modifier = modifier,
-        onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_FOOTSTEP)
-        }
-    ) { modifier ->
-        FootprintsIcon(
-            modifier = modifier
-                .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_FOOTSTEP) {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.primary,
-                    strokeColor = LocalPalette.current.primary,
-                )
-            } else {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.onSurface,
-                    strokeColor = LocalPalette.current.onSurface,
-                )
-            }
-        )
-    }
-}
-
-@Composable
-private fun StopwatchButton(
-    modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
-) {
-    ToolbarItem(
-        modifier = modifier,
-        onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_TIMERS)
-        }
-    ) { modifier ->
-        StopwatchIcon(
-            modifier = modifier
-                .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_TIMERS) {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.primary,
-                    strokeColor = LocalPalette.current.primary,
-                )
-            } else {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.onSurface,
-                    strokeColor = LocalPalette.current.onSurface,
-                )
-            }
-        )
-    }
-}
-
-@Composable
-private fun AnalyticsButton(
-    modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
-) {
-    ToolbarItem(
-        modifier = modifier
-            .aspectRatio(1f)
-            .fillMaxSize(),
-        onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_ANALYZER)
-        }
-    ) { modifier ->
-        AnalyticsIcon(
-            modifier = modifier
-                .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_ANALYZER) {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.primary,
-                    strokeColor = LocalPalette.current.primary,
-                )
-            } else {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.onSurface,
-                    strokeColor = LocalPalette.current.onSurface,
-                )
-            }
-        )
-
-    }
-}
-
-@Composable
-private fun ConfigButton(
-    modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
-) {
-    ToolbarItem(
-        modifier = modifier
-            .aspectRatio(1f)
-            .fillMaxSize(),
-        onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_CONFIG)
-        }
-    ) { modifier ->
-        ConfigIcon(
-            modifier = modifier
-                .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_CONFIG) {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.primary,
-                    strokeColor = LocalPalette.current.primary,
-                )
-            } else {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.onSurface,
-                    strokeColor = LocalPalette.current.onSurface,
-                )
-            }
-        )
-    }
-}
-
-@Composable
-private fun TraitsButton(
-    modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
-) {
-    ToolbarItem(
-        modifier = modifier
-            .aspectRatio(1f)
-            .fillMaxSize(),
-        onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_TRAITS)
-        }
-    ) { modifier ->
-        GeneticsIcon(
-            modifier = modifier
-                .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_TRAITS) {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.primary,
-                    strokeColor = LocalPalette.current.primary,
-                )
-            } else {
-                IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.onSurface,
-                    strokeColor = LocalPalette.current.onSurface,
-                )
-            }
-        )
-    }
-}
-
-@Composable
-private fun ResetIcon(
-    modifier: Modifier = Modifier,
-    tintColor: Color = Color.Unspecified,
-    onClick: () -> Unit = {}
-) {
-    var rotationTarget by remember { mutableFloatStateOf(0f) }
-
-    val rotation by animateFloatAsState(
-        targetValue = rotationTarget,
-        animationSpec = spring(
-            stiffness = StiffnessLow,
-            dampingRatio = DampingRatioLowBouncy
-        ),
-        label = "ResetRotation"
-    )
-
-    Icon(
-        painter = painterResource(id = R.drawable.ic_control_reset),
-        contentDescription = "Reset Button",
-        tint = tintColor,
-        modifier = modifier
-            .fillMaxSize()
-            .aspectRatio(1f)
-            .clickable(onClick = {
-                rotationTarget -= 360f
-                onClick()
-            })
-            .padding(2.dp)
-            .rotate(rotation)
-    )
-}
-
-@Composable
-fun SanityButton(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
-    isShownState: StateFlow<Boolean> = MutableStateFlow(false)
-) {
-
-    val foregroundColor = LocalPalette.current.onSurface
-
-    Box(
-        modifier = modifier
-            .size(48.dp)
-            //.border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
-            .clickable {
-                onClick()
-            }
-    ) {
-
-        when(LocalConfiguration.current.orientation) {
-            ORIENTATION_PORTRAIT -> 90
-            ORIENTATION_LANDSCAPE -> 180
-            else -> 0
-        }
-
-        Image(
-            painterResource(id = R.drawable.icon_sanityhead_skull),
-            contentDescription = "Sanity Drawable",
-            colorFilter = ColorFilter.tint(foregroundColor),
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center)
-                .clip(RectangleShape)
-        )
-    }
 }
