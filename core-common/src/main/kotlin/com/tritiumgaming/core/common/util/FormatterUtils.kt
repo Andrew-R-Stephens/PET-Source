@@ -9,6 +9,7 @@ import java.text.DecimalFormat
 import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.roundToLong
 
 object FormatterUtils {
 
@@ -20,6 +21,13 @@ object FormatterUtils {
             "%s:%s",
             breakdown
         )
+    }
+
+    fun Long.roundMillisToDuration(
+        roundMillis: Long
+    ): Long {
+        val half = (roundMillis * .5f).roundToLong()
+        return ((this + half) / roundMillis) * roundMillis
     }
 
     private fun millisToTime(format: String, millis: Long): String {

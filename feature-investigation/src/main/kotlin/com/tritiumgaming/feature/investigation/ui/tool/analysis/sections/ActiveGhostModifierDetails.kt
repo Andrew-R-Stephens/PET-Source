@@ -177,6 +177,7 @@ internal fun ActiveGhostModifierDetails(
                                     max = 100L,
                                     origin = 0L,
                                     remaining = highest,
+                                    timeText = highest.toString(),
                                     notches = notches,
                                     running = false
                                 ),
@@ -239,6 +240,7 @@ internal fun ActiveGhostModifierDetails(
                                     max = 360L,
                                     origin = (minSpeed).toLong(),
                                     remaining = (maxSpeed - minSpeed).toLong(),
+                                    timeText = (maxSpeed - minSpeed).toLong().toString(),
                                     notches = notches,
                                     running = false
                                 ),

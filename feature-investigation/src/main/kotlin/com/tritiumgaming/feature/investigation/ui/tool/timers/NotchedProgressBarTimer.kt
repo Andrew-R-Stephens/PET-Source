@@ -66,7 +66,7 @@ internal fun NotchedProgressBarTimer(
                     modifier = Modifier,
                     state = DigitalTimerUiState(
                         startTime = bundle.state.max,
-                        remainingTime = bundle.state.remaining,
+                        remainingTime = bundle.state.timeText,
                         paused = !bundle.state.running
                     ),
                     color = bundle.colors.label,

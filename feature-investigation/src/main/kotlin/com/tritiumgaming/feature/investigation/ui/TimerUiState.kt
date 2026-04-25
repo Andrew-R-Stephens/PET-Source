@@ -2,7 +2,7 @@ package com.tritiumgaming.feature.investigation.ui
 
 data class TimerUiState(
     val startTime: Long = TIME_DEFAULT,
-    val remainingTime: Long = 0L,
+    val remainingTime: String = "",
     val paused: Boolean = true
 ) {
 

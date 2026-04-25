@@ -73,7 +73,7 @@ internal fun OperationStatusBar(
                     )
                 )
 
-                if(bundle.digitalTimerUiState.remainingTime > 0L) {
+                if(bundle.digitalTimerUiState.remainingTime.isNotEmpty()) {
                     DigitalTimer(
                         modifier = Modifier,
                         state = bundle.digitalTimerUiState,

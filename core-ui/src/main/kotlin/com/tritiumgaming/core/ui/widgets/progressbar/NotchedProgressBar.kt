@@ -145,7 +145,8 @@ data class NotchedProgressBarUiColors(
 data class NotchedProgressBarUiState(
     val max: Long = 0,
     val origin: Long = 0,
-    val remaining: Long = max,
+    val timeText: String = "",
+    val remaining: Long = 0,
     val notches: List<ProgressBarNotch> = listOf(),
     val running: Boolean = false
 )

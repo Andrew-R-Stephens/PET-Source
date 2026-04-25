@@ -30,7 +30,7 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState
 
 internal data class DigitalTimerUiState(
     val startTime: Long = TimerUiState.TIME_DEFAULT,
-    val remainingTime: Long = 0L,
+    val remainingTime: String = "",
     val paused: Boolean = true
 )
 
@@ -49,7 +49,7 @@ internal fun DigitalTimer(
         Text(
             modifier = Modifier
                 .wrapContentHeight(),
-            text = FormatterUtils.formatMillisToTime(state.remainingTime),
+            text = state.remainingTime,
             style = DigitalDreamTextStyle,
             color = color,
             fontSize = fontSize
@@ -78,7 +78,7 @@ fun DigitalTimer(
             Text(
                 modifier = Modifier
                     .wrapContentHeight(),
-                text = FormatterUtils.formatMillisToTime(state.remainingTime),
+                text = state.remainingTime,
                 style = DigitalDreamTextStyle,
                 color = color,
                 autoSize = TextAutoSize.StepBased(1.sp, maxFontSize = 48.sp, stepSize = 1.sp)
