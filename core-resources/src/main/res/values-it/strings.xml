@@ -714,6 +714,7 @@
     <string name="general_navigation_primary">Primaria</string>
     <string name="general_navigation_menu">Menù</string>
     <string name="investigation_label_phase">Fase</string>
+    <string name="investigation_label_tool_footstep">Strumento rilevamento passi</string>
     <string name="codex_section_equipment">Attrezzatura</string>
     <string name="codex_section_more">Maggiori informazioni tra breve</string>
 
@@ -1326,5 +1327,9 @@
     <string name="map_setting_label_drainrate">Tasso di consumo</string>
     <string name="store_title_achievements">Obiettivi</string>
     <string name="investigation_average_sanity_title">Sanità mentale media</string>
+    <string name="investigation_label_operation_configuration">Configurazione operazione</string>
+    <string name="investigation_label_tool_operation_details">Dettagli operazione</string>
+    <string name="investigation_label_tool_secondary_evidence">Prove secondarie</string>
+    <string name="investigation_label_tool_timers">Timer</string>
 
 </resources>

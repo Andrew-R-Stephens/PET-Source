@@ -714,6 +714,7 @@
     <string name="general_navigation_primary">プライマリ</string>
     <string name="general_navigation_menu">メニュー</string>
     <string name="investigation_label_phase">フェーズ</string>
+    <string name="investigation_label_tool_footstep">足跡ツール</string>
     <string name="codex_section_equipment">装置</string>
     <string name="codex_section_more">さらに近日公開予定</string>
 
@@ -1322,5 +1323,9 @@
     <string name="map_setting_label_drainrate">消耗率</string>
     <string name="store_title_achievements">実績</string>
     <string name="investigation_average_sanity_title">平均正気度</string>
+    <string name="investigation_label_operation_configuration">操作設定</string>
+    <string name="investigation_label_tool_operation_details">操作詳細</string>
+    <string name="investigation_label_tool_secondary_evidence">二次証拠</string>
+    <string name="investigation_label_tool_timers">タイマー</string>
 
 </resources>

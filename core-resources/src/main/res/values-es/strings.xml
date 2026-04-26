@@ -96,6 +96,7 @@
     <string name="general_navigation_primary">Primario</string>
     <string name="general_navigation_menu">El Menú</string>
     <string name="investigation_label_phase">Fase</string>
+    <string name="investigation_label_tool_footstep">Herramienta de detección de pasos</string>
     <string name="codex_section_equipment">Equipo</string>
     <string name="codex_section_more">Más muy pronto</string>
 
@@ -154,5 +155,9 @@
     <string name="alert_gui_typography_error">¡Tipografía sin definir!</string>
     <string name="account_button_visit_marketplace">Visita Marketplace</string>
     <string name="investigation_average_sanity_title">Cordura promedio</string>
+    <string name="investigation_label_operation_configuration">Configuración de la operación</string>
+    <string name="investigation_label_tool_operation_details">Detalles de la operación</string>
+    <string name="investigation_label_tool_secondary_evidence">Pruebas secundarias</string>
+    <string name="investigation_label_tool_timers">Temporizadores</string>
 
 </resources>

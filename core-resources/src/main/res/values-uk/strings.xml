@@ -4,4 +4,9 @@
     <string name="investigation_prep_time_title">Час підготовки</string>
     <string name="investigation_phase_label_hunt">Полювання</string>
     <string name="investigation_label_phase">Фаза</string>
+    <string name="investigation_label_operation_configuration">Конфігурація операції</string>
+    <string name="investigation_label_tool_operation_details">Деталі операції</string>
+    <string name="investigation_label_tool_secondary_evidence">Вторинні докази</string>
+    <string name="investigation_label_tool_timers">Таймери</string>
+    <string name="investigation_label_tool_footstep">Інструмент кроків</string>
 </resources>

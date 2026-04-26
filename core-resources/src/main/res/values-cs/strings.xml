@@ -75,6 +75,7 @@
     <string name="general_navigation_primary">Primární</string>
     <string name="general_navigation_menu">Menu</string>
     <string name="investigation_label_phase">Fáze</string>
+    <string name="investigation_label_tool_footstep">Nástroj pro schody</string>
     <string name="codex_section_equipment">Zařízení</string>
     <string name="codex_section_more">Více již brzy</string>
 
@@ -108,4 +109,8 @@
     <string name="alert_gui_palette_error">Paleta není nastavena!</string>
     <string name="alert_gui_typography_error">Typografie není nastavena!</string>
     <string name="investigation_average_sanity_title">Průměrná příčetnost</string>
+    <string name="investigation_label_operation_configuration">Konfigurace operace</string>
+    <string name="investigation_label_tool_operation_details">Detaily operace</string>
+    <string name="investigation_label_tool_secondary_evidence">Sekundární důkazy</string>
+    <string name="investigation_label_tool_timers">Časovače</string>
 </resources>

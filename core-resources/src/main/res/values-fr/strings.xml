@@ -58,6 +58,7 @@
     <string name="general_navigation_primary">Primaire</string>
     <string name="general_navigation_menu">Menu</string>
     <string name="investigation_label_phase">Phase</string>
+    <string name="investigation_label_tool_footstep">Outil de suivi des pas</string>
     <string name="codex_section_equipment">Équipement</string>
     <string name="codex_section_more">Plus à venir bientôt</string>
 
@@ -91,5 +92,9 @@
     <string name="alert_gui_palette_error">Palette non définie !</string>
     <string name="alert_gui_typography_error">Typographie non définie !</string>
     <string name="investigation_average_sanity_title">Santé mentale moyenne</string>
+    <string name="investigation_label_operation_configuration">Configuration de l\'opération</string>
+    <string name="investigation_label_tool_operation_details">Détails de l\'opération</string>
+    <string name="investigation_label_tool_secondary_evidence">Preuves secondaires</string>
+    <string name="investigation_label_tool_timers">Minuteurs</string>
 
 </resources>

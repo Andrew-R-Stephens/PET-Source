@@ -1689,6 +1689,7 @@
     <string name="general_navigation_primary">Основной</string>
     <string name="general_navigation_menu">меню</string>
     <string name="investigation_label_phase">Фаза</string>
+    <string name="investigation_label_tool_footstep">Инструмент для отслеживания шагов</string>
     <string name="codex_section_equipment">Оборудование</string>
     <string name="codex_section_more">Продолжение следует</string>
     <string name="navigation_open_state">Отдел навигации открыт.</string>
@@ -2694,5 +2695,9 @@
     <string name="map_setting_label_drainrate">Скорость разрядки</string>
     <string name="store_title_achievements">Достижения</string>
     <string name="investigation_average_sanity_title">Средний уровень рассудка</string>
+    <string name="investigation_label_operation_configuration">Конфигурация операции</string>
+    <string name="investigation_label_tool_operation_details">Подробности операции</string>
+    <string name="investigation_label_tool_secondary_evidence">Вторичные доказательства</string>
+    <string name="investigation_label_tool_timers">Таймеры</string>
 
 </resources>

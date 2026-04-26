@@ -717,6 +717,7 @@
     <string name="general_navigation_primary">Primário</string>
     <string name="general_navigation_menu">cardápio</string>
     <string name="investigation_label_phase">Fase</string>
+    <string name="investigation_label_tool_footstep">Ferramenta de Pegadas</string>
     <string name="codex_section_equipment">Equipamento</string>
     <string name="codex_section_more">Mais em breve</string>
     <string name="navigation_open_state">Gaveta de navegação aberta.</string>
@@ -1331,5 +1332,9 @@
     <string name="map_setting_label_drainrate">Taxa de drenagem</string>
     <string name="store_title_achievements">Conquistas</string>
     <string name="investigation_average_sanity_title">Sanidade média</string>
+    <string name="investigation_label_operation_configuration">Configuração da Operação</string>
+    <string name="investigation_label_tool_operation_details">Detalhes da Operação</string>
+    <string name="investigation_label_tool_secondary_evidence">Evidências Secundárias</string>
+    <string name="investigation_label_tool_timers">Temporizadores</string>
 
 </resources>

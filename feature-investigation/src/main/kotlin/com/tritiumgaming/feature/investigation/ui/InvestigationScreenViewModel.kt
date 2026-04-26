@@ -1283,7 +1283,7 @@ class InvestigationScreenViewModel private constructor(
             _huntDurationTimerState.update {
                 it.copy(
                     remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining - delay) > 0L
+                    running = (it.remaining) >= 0L
                 )
             }
         }
@@ -1291,7 +1291,7 @@ class InvestigationScreenViewModel private constructor(
             _huntCooldownTimerState.update {
                 it.copy(
                     remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining - delay) > 0L
+                    running = (it.remaining) >= 0L
                 )
             }
         }
@@ -1299,7 +1299,7 @@ class InvestigationScreenViewModel private constructor(
             _smudgeHuntProtectionTimerState.update {
                 it.copy(
                     remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining - delay) > 0L
+                    running = (it.remaining) >= 0L
                 )
             }
         }
@@ -1307,7 +1307,7 @@ class InvestigationScreenViewModel private constructor(
             _fingerprintTimerState.update {
                 it.copy(
                     remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining - delay) > 0L
+                    running = (it.remaining) >= 0L
                 )
             }
         }
