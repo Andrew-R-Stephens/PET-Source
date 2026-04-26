@@ -23,13 +23,12 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.core.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.feature.investigation.ui.TimerUiState
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 
 internal data class DigitalTimerUiState(
-    val startTime: Long = TimerUiState.TIME_DEFAULT,
+    val startTime: Long = OperationTimerUiState.TIME_DEFAULT,
     val remainingTime: String = "",
     val paused: Boolean = true
 )
@@ -60,7 +59,7 @@ internal fun DigitalTimer(
 @Composable
 fun DigitalTimer(
     modifier: Modifier = Modifier,
-    state: TimerUiState,
+    state: OperationTimerUiState,
     color: Color = LocalPalette.current.onSurface
 ) {
 
@@ -90,7 +89,7 @@ fun DigitalTimer(
 @Composable
 fun TimerToggleButton(
     modifier: Modifier = Modifier,
-    state: TimerUiState,
+    state: OperationTimerUiState,
     actions: TimerUiActions,
     primaryContent: @Composable (Modifier) -> Unit = {},
     alternateContent: @Composable (Modifier) -> Unit = {}
@@ -125,7 +124,7 @@ fun TimerToggleButton(
 @Composable
 fun TimerSkipButton(
     modifier: Modifier = Modifier,
-    state: TimerUiState,
+    state: OperationTimerUiState,
     actions: TimerUiActions,
     content: @Composable (Modifier) -> Unit = {}
 ) {

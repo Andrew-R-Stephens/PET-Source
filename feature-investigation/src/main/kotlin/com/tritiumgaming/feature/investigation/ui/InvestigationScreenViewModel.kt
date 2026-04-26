@@ -20,7 +20,7 @@ import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundl
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
@@ -31,6 +31,8 @@ import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationSanityUiState
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
@@ -679,16 +681,16 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
 
-    private val _operationTimerUiState: StateFlow<TimerUiState> = _operationTimerState.map {
+    private val _operationTimerUiState: StateFlow<OperationTimerUiState> = _operationTimerState.map {
         sanityTimerState ->
-        TimerUiState(
+        OperationTimerUiState(
             remainingTime = FormatterUtils.formatMillisToTime(sanityTimerState.remainingTime),
             paused = sanityTimerState.paused
         )
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = TimerUiState()
+        initialValue = OperationTimerUiState()
     )
     internal val operationTimerUiState = _operationTimerUiState
 

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui
+package com.tritiumgaming.feature.investigation.ui.tool.sanity
 
 import android.util.Log
 

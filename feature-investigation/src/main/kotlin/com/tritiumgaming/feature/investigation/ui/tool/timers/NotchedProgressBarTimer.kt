@@ -22,7 +22,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
-import com.tritiumgaming.feature.investigation.ui.TimerUiState
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
@@ -92,7 +92,7 @@ internal fun NotchedProgressBarTimer(
             TimerToggleButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = TimerUiState(
+                state = OperationTimerUiState(
                     paused = !bundle.state.running
                 ),
                 actions = TimerUiActions(

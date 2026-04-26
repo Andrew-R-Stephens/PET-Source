@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
-import com.tritiumgaming.feature.investigation.ui.TimerUiState
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigActionsBundle
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigStateBundle
@@ -35,7 +35,7 @@ internal data class ToolSheetStateBundle(
     val operationDetailsUiState: OperationDetailsUiState,
     val bpmToolUiState: BpmToolUiState,
     val sanityUiState: PlayerSanityUiState,
-    val timerUiState: TimerUiState,
+    val operationTimerUiState: OperationTimerUiState,
     val phaseUiState: PhaseUiState,
 )
 

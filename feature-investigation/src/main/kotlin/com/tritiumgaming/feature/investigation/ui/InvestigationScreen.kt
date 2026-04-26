@@ -2,7 +2,6 @@ package com.tritiumgaming.feature.investigation.ui
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -208,7 +207,8 @@ private fun InvestigationContent(
 
     val operationToolbarUiActions = ToolbarUiActions(
         onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
-        onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category))
+        onChangeToolbarCategory = { category ->
+            investigationViewModel.onEvent(SetToolbarCategory(category))
         },
         onReset = { investigationViewModel.onEvent(ResetInvestigation) }
     )
@@ -404,7 +404,7 @@ private fun InvestigationContent(
         toolbarUiState = toolbarUiState,
         operationDetailsUiState = operationDetailsUiState,
         sanityUiState = sanityUiState,
-        timerUiState = operationTimerUiState,
+        operationTimerUiState = operationTimerUiState,
         phaseUiState = phaseUiState,
         smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
         huntDurationBundle = huntDurationBundle,

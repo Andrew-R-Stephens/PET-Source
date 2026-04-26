@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.tool.sanity
+package com.tritiumgaming.feature.investigation.ui.tool.operationtimer
 
 
 import androidx.compose.foundation.layout.Arrangement
@@ -19,19 +19,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseComponent
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 
 @Composable
 internal fun OperationTimerColumn(
     modifier: Modifier = Modifier,
-    timerUiState: TimerUiState,
+    operationTimerUiState: OperationTimerUiState,
     timerUiActions: TimerUiActions,
     phaseUiState: PhaseUiState
 ) {
@@ -51,7 +49,7 @@ internal fun OperationTimerColumn(
                 modifier = Modifier
                     .height(36.dp)
                     .padding(8.dp),
-                state = timerUiState,
+                state = operationTimerUiState,
             )
         }
 
@@ -63,7 +61,7 @@ internal fun OperationTimerColumn(
             TimerToggleButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = timerUiState,
+                state = operationTimerUiState,
                 actions = timerUiActions,
                 primaryContent = { modifier ->
                     Icon(
@@ -86,7 +84,7 @@ internal fun OperationTimerColumn(
             TimerSkipButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = timerUiState,
+                state = operationTimerUiState,
                 actions = timerUiActions,
                 content = { modifier ->
                     Icon(
@@ -118,7 +116,7 @@ internal fun OperationTimerColumn(
 @Composable
 internal fun OperationTimerRow(
     modifier: Modifier = Modifier,
-    timerUiState: TimerUiState,
+    operationTimerUiState: OperationTimerUiState,
     timerUiActions: TimerUiActions,
     phaseUiState: PhaseUiState
 ) {
@@ -139,7 +137,7 @@ internal fun OperationTimerRow(
                 modifier = Modifier
                     .height(36.dp)
                     .padding(8.dp),
-                state = timerUiState,
+                state = operationTimerUiState,
             )
 
             Surface(
@@ -164,7 +162,7 @@ internal fun OperationTimerRow(
             TimerToggleButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = timerUiState,
+                state = operationTimerUiState,
                 actions = timerUiActions,
                 primaryContent = { modifier ->
                     Icon(
@@ -187,7 +185,7 @@ internal fun OperationTimerRow(
             TimerSkipButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = timerUiState,
+                state = operationTimerUiState,
                 actions = timerUiActions,
                 content = { modifier ->
                     Icon(

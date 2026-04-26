@@ -31,8 +31,8 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButton
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationButton
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeter
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationTimerColumn
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationTimerRow
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerColumn
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerRow
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
 import com.tritiumgaming.feature.investigation.ui.tool.timers.ProgressBarTimer
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
@@ -54,7 +54,7 @@ internal fun ToolsBottomSheetComponent(
     val operationDetailsUiState = stateBundle.operationDetailsUiState
     val bpmToolUiState = stateBundle.bpmToolUiState
     val sanityUiState = stateBundle.sanityUiState
-    val timerUiState = stateBundle.timerUiState
+    val timerUiState = stateBundle.operationTimerUiState
     val phaseUiState = stateBundle.phaseUiState
     val temperatureBundle = stateBundle.temperatureStateBundle
     val fuseBoxUiState = stateBundle.fuseBoxUiState
@@ -119,7 +119,7 @@ internal fun ToolsBottomSheetComponent(
                     timerComponent = { modifier ->
                         OperationTimerColumn(
                             modifier = modifier,
-                            timerUiState = timerUiState,
+                            operationTimerUiState = timerUiState,
                             timerUiActions = timerUiActions,
                             phaseUiState = phaseUiState
                         )
@@ -295,7 +295,7 @@ internal fun ToolsSideSheetComponent(
     val operationDetailsUiState = stateBundle.operationDetailsUiState
     val bpmToolUiState = stateBundle.bpmToolUiState
     val sanityUiState = stateBundle.sanityUiState
-    val timerUiState = stateBundle.timerUiState
+    val timerUiState = stateBundle.operationTimerUiState
     val phaseUiState = stateBundle.phaseUiState
     val fuseBoxUiState = stateBundle.fuseBoxUiState
     val temperatureBundle = stateBundle.temperatureStateBundle
@@ -369,7 +369,7 @@ internal fun ToolsSideSheetComponent(
                     timerComponent = { modifier ->
                         OperationTimerRow(
                             modifier = modifier,
-                            timerUiState = timerUiState,
+                            operationTimerUiState = timerUiState,
                             timerUiActions = timerUiActions,
                             phaseUiState = phaseUiState
                         )

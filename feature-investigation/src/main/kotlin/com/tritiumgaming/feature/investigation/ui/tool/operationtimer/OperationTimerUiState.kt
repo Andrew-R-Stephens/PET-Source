@@ -1,6 +1,6 @@
-package com.tritiumgaming.feature.investigation.ui
+package com.tritiumgaming.feature.investigation.ui.tool.operationtimer
 
-data class TimerUiState(
+data class OperationTimerUiState(
     val startTime: Long = TIME_DEFAULT,
     val remainingTime: String = "",
     val paused: Boolean = true
