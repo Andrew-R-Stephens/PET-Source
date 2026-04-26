@@ -75,7 +75,7 @@ include(
     ":feature-newsletter",
     ":feature-settings",
     ":feature-language",
-    ":feature-introduciton"
+    ":feature-introduction"
 )
 
 include(
