@@ -83,7 +83,7 @@ internal fun TraitConfig(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = "Secondary Evidence".uppercase(),
+                text = stringResource(R.string.investigation_label_tool_secondary_evidence).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start

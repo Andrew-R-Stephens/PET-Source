@@ -12,11 +12,11 @@
             android:icon="@drawable/icon_nav_evidence_selector" />
         <item
             android:id="@+id/objectivesFragment"
-            android:title="@string/general_tasks_button"
+            android:title="@string/general_label_tasks"
             android:icon="@drawable/icon_nav_tasks_selector"/>
         <item
             android:id="@+id/mapMenuFragment"
-            android:title="@string/general_maps_button"
+            android:title="@string/general_label_maps"
             android:icon="@drawable/icon_nav_mapmenu2_selector"/>
     </group>
 

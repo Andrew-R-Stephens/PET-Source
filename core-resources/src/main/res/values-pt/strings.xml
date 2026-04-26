@@ -4,11 +4,11 @@
     <!-- Page Details -->
 
     <string name="toast_discardchanges">Alterações descartadas</string>
-    <string name="general_evidence_button">Evidência</string>
-    <string name="general_maps_button">Mapas</string>
-    <string name="general_tasks_button">Tarefas</string>
-    <string name="general_codex_button">Códice</string>
-    <string name="general_evidence_reset_button">Reiniciar</string>
+    <string name="general_label_evidence">Evidência</string>
+    <string name="general_label_maps">Mapas</string>
+    <string name="general_label_tasks">Tarefas</string>
+    <string name="general_label_codex">Códice</string>
+    <string name="general_label_reset">Reiniciar</string>
 
     <!-- Page Details -->
 

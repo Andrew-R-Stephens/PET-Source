@@ -10,10 +10,10 @@
     <string name="navigation_open_state">Navigation Drawer opened.</string>
     <string name="navigation_closed_state">Navigation Drawer closed.</string>
 
-    <string name="general_evidence_button">Evidence</string>
-    <string name="general_maps_button">Maps</string>
-    <string name="general_tasks_button">Tasks</string>
-    <string name="general_codex_button">Codex</string>
+    <string name="general_label_evidence">Evidence</string>
+    <string name="general_label_maps">Maps</string>
+    <string name="general_label_tasks">Tasks</string>
+    <string name="general_label_codex">Codex</string>
     <string name="general_navigation_menu">Menu</string>
     <string name="general_navigation_home">Home</string>
     <string name="general_navigation_primary">Primary</string>
@@ -22,7 +22,8 @@
     <string name="general_navigation_tools">Tools</string>
     <string name="general_navigation_settings">Settings</string>
     <string name="general_navigation_system">System</string>
-    <string name="general_evidence_reset_button">Reset</string>
+
+    <string name="general_label_reset">Reset</string>
 
     <!--
         TITLESCREEN FRAGMENT
@@ -87,6 +88,12 @@
     <string name="investigation_section_title_ghosts">Ghosts</string>
     <string name="investigation_section_title_evidence">Evidence</string>
     <string name="investigation_label_phase">Phase</string>
+
+    <string name="investigation_label_operation_configuration">Operation Config</string>
+    <string name="investigation_label_tool_operation_details">Operation Details</string>
+    <string name="investigation_label_tool_secondary_evidence">Secondary Evidence</string>
+    <string name="investigation_label_tool_timers">Timers</string>
+    <string name="investigation_label_tool_footstep">Footstep Tool</string>
 
     <!--
         TOOLS PAGE

@@ -8,10 +8,10 @@
     <!-- Navigation Labels -->
     <string name="navigation_open_state">Панель навігації відкрито.</string>
     <string name="navigation_closed_state">Панель навігації закрита.</string>
-    <string name="general_evidence_button">Докази</string>
-    <string name="general_maps_button">Карти</string>
-    <string name="general_tasks_button">Завдання</string>
-    <string name="general_codex_button">Кодекс</string>
+    <string name="general_label_evidence">Докази</string>
+    <string name="general_label_maps">Карти</string>
+    <string name="general_label_tasks">Завдання</string>
+    <string name="general_label_codex">Кодекс</string>
     <string name="general_navigation_menu">Меню</string>
     <string name="general_navigation_home">Додому</string>
     <string name="general_navigation_primary">Первинний</string>
@@ -20,7 +20,7 @@
     <string name="general_navigation_tools">Інструменти</string>
     <string name="general_navigation_settings">Налаштування</string>
     <string name="general_navigation_system">Система</string>
-    <string name="general_evidence_reset_button">Скинути</string>
+    <string name="general_label_reset">Скинути</string>
     <!--
         TITLESCREEN FRAGMENT
     -->

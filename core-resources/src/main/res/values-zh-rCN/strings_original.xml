@@ -5,11 +5,11 @@
     <!-- Page Details -->
 
     <string name="toast_discardchanges">更改被放弃</string>
-    <string name="general_evidence_button">证据</string>
-    <string name="general_maps_button">地图</string>
-    <string name="general_tasks_button">任务</string>
-    <string name="general_codex_button">法典</string>
-    <string name="general_evidence_reset_button">重置</string>
+    <string name="general_label_evidence">证据</string>
+    <string name="general_label_maps">地图</string>
+    <string name="general_label_tasks">任务</string>
+    <string name="general_label_codex">法典</string>
+    <string name="general_label_reset">重置</string>
 
     <!-- Page Details -->
 
@@ -85,6 +85,7 @@
 
     <!-- Solo/Team Data -->
 
+    <string name="investigation_average_sanity_title">平均理智</string>
     <string name="investigation_prep_time_title">准备时间</string>
     <string name="investigation_your_sanity_level_title">您的理智水平</string>
     <string name="investigation_timer_label">准备时间：</string>

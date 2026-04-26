@@ -4,11 +4,11 @@
     <!-- Page Details -->
 
     <string name="toast_discardchanges">Modifiche scartate</string>
-    <string name="general_evidence_button">Prova</string>
-    <string name="general_maps_button">Mappe</string>
-    <string name="general_tasks_button">Compiti</string>
-    <string name="general_codex_button">Codice</string>
-    <string name="general_evidence_reset_button">Ripristina</string>
+    <string name="general_label_evidence">Prova</string>
+    <string name="general_label_maps">Mappe</string>
+    <string name="general_label_tasks">Compiti</string>
+    <string name="general_label_codex">Codice</string>
+    <string name="general_label_reset">Ripristina</string>
 
     <!-- Page Details -->
 

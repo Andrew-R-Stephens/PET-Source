@@ -23,7 +23,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:padding="4dp"
-            android:text="@string/general_codex_button"
+            android:text="@string/general_label_codex"
             android:textAllCaps="true"
             android:textColor="?attr/codex5_navHeaderText"
             app:layout_constraintBottom_toBottomOf="parent"

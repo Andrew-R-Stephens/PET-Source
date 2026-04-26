@@ -22,13 +22,13 @@
     </string>
 
     <string name="map_setting_state_large">Groß</string>
-    <string name="general_codex_button">Kodex</string>
-    <string name="general_evidence_reset_button">Zurücksetzen</string>
+    <string name="general_label_codex">Kodex</string>
+    <string name="general_label_reset">Zurücksetzen</string>
     <string name="titlescreen_languages_label">Sprache Auswählen</string>
     <string name="toast_discardchanges">Änderungen verworfen</string>
-    <string name="general_evidence_button">Beweis</string>
-    <string name="general_tasks_button">Aufgaben</string>
-    <string name="general_maps_button">Karten</string>
+    <string name="general_label_evidence">Beweis</string>
+    <string name="general_label_tasks">Aufgaben</string>
+    <string name="general_label_maps">Karten</string>
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_title_about">Über</string>
     <string name="aboutinfo_specialthanks_title">Besonderer Dank</string>

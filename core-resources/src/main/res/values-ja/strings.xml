@@ -3,11 +3,11 @@
     <!-- Page Details -->
 
     <string name="toast_discardchanges">破棄された変更</string>
-    <string name="general_evidence_button">証拠</string>
-    <string name="general_maps_button">地図</string>
-    <string name="general_tasks_button">タスク</string>
-    <string name="general_codex_button">コーデックス</string>
-    <string name="general_evidence_reset_button">リセット</string>
+    <string name="general_label_evidence">証拠</string>
+    <string name="general_label_maps">地図</string>
+    <string name="general_label_tasks">タスク</string>
+    <string name="general_label_codex">コーデックス</string>
+    <string name="general_label_reset">リセット</string>
 
     <!-- Page Details -->
 

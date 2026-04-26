@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -79,7 +80,7 @@ internal fun OperationDetails(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = "Operation Details".uppercase(),
+                text = stringResource(R.string.investigation_label_tool_operation_details).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start

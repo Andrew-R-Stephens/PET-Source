@@ -19,10 +19,12 @@ import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.preferredFrameRate
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
@@ -131,7 +133,7 @@ internal fun BpmTool(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = "Footstep Tool".uppercase(),
+                text = stringResource(R.string.investigation_label_tool_footstep).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start

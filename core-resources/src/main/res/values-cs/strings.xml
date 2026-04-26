@@ -5,11 +5,11 @@
     -->
     <!-- Page Details -->
     <string name="toast_discardchanges">" Změny byly zahozeny"</string>
-    <string name="general_evidence_button">Důkaz</string>
-    <string name="general_maps_button">Mapy</string>
-    <string name="general_tasks_button">Úkoly</string>
-    <string name="general_codex_button">Kodex</string>
-    <string name="general_evidence_reset_button">Resetovat</string>
+    <string name="general_label_evidence">Důkaz</string>
+    <string name="general_label_maps">Mapy</string>
+    <string name="general_label_tasks">Úkoly</string>
+    <string name="general_label_codex">Kodex</string>
+    <string name="general_label_reset">Resetovat</string>
     <string name="general_navigation_settings">Nastavení</string>
     <string name="general_navigation_system">Systém</string>
 

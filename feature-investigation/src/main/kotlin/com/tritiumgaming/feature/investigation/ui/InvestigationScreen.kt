@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -765,7 +766,7 @@ fun OperationConfigsBottomSheet(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = "Operation Config".uppercase(),
+                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start

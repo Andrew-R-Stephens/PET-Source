@@ -14,10 +14,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
@@ -53,7 +55,7 @@ internal fun TimerTools(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = "Timers".uppercase(),
+                text = stringResource(R.string.investigation_label_tool_timers).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start

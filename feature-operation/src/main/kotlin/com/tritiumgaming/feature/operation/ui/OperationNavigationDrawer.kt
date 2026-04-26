@@ -121,7 +121,7 @@ fun OperationNavigationDrawer(
                             .padding(8.dp),
                         label = {
                             Text(
-                                text = stringResource(R.string.general_tasks_button),
+                                text = stringResource(R.string.general_label_tasks),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
                                     color = LocalPalette.current.onSurface
@@ -148,7 +148,7 @@ fun OperationNavigationDrawer(
                             .padding(8.dp),
                         label = {
                             Text(
-                                text = stringResource(R.string.general_maps_button),
+                                text = stringResource(R.string.general_label_maps),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
                                     color = LocalPalette.current.onSurface
@@ -186,7 +186,7 @@ fun OperationNavigationDrawer(
                             .padding(8.dp),
                         label = {
                             Text(
-                                text = stringResource(R.string.general_codex_button),
+                                text = stringResource(R.string.general_label_codex),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
                                     color = LocalPalette.current.onSurface

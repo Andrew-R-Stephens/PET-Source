@@ -5,11 +5,11 @@
     -->
     <!-- Page Details -->
     <string name="toast_discardchanges">Изменения отменены</string>
-    <string name="general_evidence_button">Доказательства</string>
-    <string name="general_maps_button">Карты</string>
-    <string name="general_tasks_button">Задачи</string>
-    <string name="general_codex_button">Кодекс</string>
-    <string name="general_evidence_reset_button">Сброс</string>
+    <string name="general_label_evidence">Доказательства</string>
+    <string name="general_label_maps">Карты</string>
+    <string name="general_label_tasks">Задачи</string>
+    <string name="general_label_codex">Кодекс</string>
+    <string name="general_label_reset">Сброс</string>
 
     <!--
         TITLESCREEN FRAGMENT

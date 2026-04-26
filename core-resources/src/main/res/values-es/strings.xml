@@ -43,16 +43,16 @@
     <string name="map_setting_state_large">Grande</string>
 
 
-    <string name="general_codex_button">Códice</string>
-    <string name="general_evidence_reset_button">Reiniciar</string>
+    <string name="general_label_codex">Códice</string>
+    <string name="general_label_reset">Reiniciar</string>
 
     <string name="titlescreen_languages_label">Seleccione el Idioma</string>
 
 
     <string name="toast_discardchanges">Cambios descartados</string>
-    <string name="general_evidence_button">Evidencia</string>
-    <string name="general_tasks_button">Tareas</string>
-    <string name="general_maps_button">Mapas</string>
+    <string name="general_label_evidence">Evidencia</string>
+    <string name="general_label_tasks">Tareas</string>
+    <string name="general_label_maps">Mapas</string>
 
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_title_about">Sobre el</string>

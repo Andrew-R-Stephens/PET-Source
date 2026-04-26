@@ -24,13 +24,13 @@
 
 
     <string name="map_setting_state_large">Grand</string>
-    <string name="general_codex_button">Manuscrit</string>
-    <string name="general_evidence_reset_button">Réinitialiser</string>
+    <string name="general_label_codex">Manuscrit</string>
+    <string name="general_label_reset">Réinitialiser</string>
     <string name="titlescreen_languages_label">Choisir la langue</string>
     <string name="toast_discardchanges">Modifications rejetées</string>
-    <string name="general_evidence_button">Preuve</string>
-    <string name="general_maps_button">Plans</string>
-    <string name="general_tasks_button">Tâches</string>
+    <string name="general_label_evidence">Preuve</string>
+    <string name="general_label_maps">Plans</string>
+    <string name="general_label_tasks">Tâches</string>
     <string name="aboutinfo_version">Versión</string>
     <string name="aboutinfo_title_about">À propos</string>
     <string name="aboutinfo_specialthanks_title">Remerciements spéciaux</string>
