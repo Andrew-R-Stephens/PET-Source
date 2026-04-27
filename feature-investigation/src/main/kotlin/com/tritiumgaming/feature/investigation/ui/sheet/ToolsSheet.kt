@@ -30,7 +30,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherConfigComp
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButton
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationButton
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeter
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeterComponent
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerColumn
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerRow
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
@@ -109,7 +109,7 @@ internal fun ToolsBottomSheetComponent(
                         )
                     },
                     sanityMeterComponent = { modifier ->
-                        SanityMeter(
+                        SanityMeterComponent(
                             modifier = modifier,
                             sanityUiState = sanityUiState
                         ) {
@@ -359,7 +359,7 @@ internal fun ToolsSideSheetComponent(
                         )
                     },
                     sanityMeterComponent = { modifier ->
-                        SanityMeter(
+                        SanityMeterComponent(
                             modifier = modifier,
                             sanityUiState = sanityUiState
                         ) {

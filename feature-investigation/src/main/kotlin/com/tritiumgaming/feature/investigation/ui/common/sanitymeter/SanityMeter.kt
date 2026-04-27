@@ -37,16 +37,15 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import java.util.Locale
 
 @Composable
-fun SanityMeter(
+internal fun SanityMeter(
     modifier: Modifier = Modifier,
-    sanityUiState: PlayerSanityUiState,
-    showText: Boolean = false,
-    showProgress: Boolean = false
+    state: SanityMeterUiState
 ) {
-    val sanityPercent = sanityUiState.sanityLevel
+    val sanityLevel = state.sanityLevel
+    val showText = state.showText
+    val showProgress = state.showProgress
 
     Box(
         modifier = modifier
@@ -63,7 +62,7 @@ fun SanityMeter(
                     ),
                 startColor = LocalPalette.current.onSurface.toArgb(),
                 endColor = LocalPalette.current.error.toArgb(),
-                interpolation = sanityPercent
+                interpolation = sanityLevel
             )
         }
 
@@ -79,21 +78,21 @@ fun SanityMeter(
             image = R.drawable.icon_sanityhead_skull,
             startColor = LocalPalette.current.surfaceContainer.toArgb(),
             endColor = LocalPalette.current.surfaceContainer.toArgb(),
-            interpolation = sanityPercent
+            interpolation = sanityLevel
         )
         SanityImageLayer(
             modifier = layerModifier,
             image = R.drawable.icon_sanityhead_brain,
             startColor = (Color.Gray).toArgb(),
             endColor = LocalPalette.current.error.toArgb(),
-            interpolation = sanityPercent
+            interpolation = sanityLevel
         )
         SanityImageLayer(
             modifier = layerModifier,
             image = R.drawable.icon_sanityhead_border,
             startColor = LocalPalette.current.onSurface.toArgb(),
             endColor = LocalPalette.current.onSurface.toArgb(),
-            interpolation = sanityPercent
+            interpolation = sanityLevel
         )
 
         if (showText) {
@@ -105,7 +104,7 @@ fun SanityMeter(
                 fontSize = fontSize,
             )
 
-            val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
+            val sanityPercentString = sanityLevel.toPercentageString()
 
             Text(
                 modifier = Modifier
@@ -192,36 +191,8 @@ private fun SanityPie(
     )
 }
 
-
-@Composable
-@Preview
-private fun PreviewSanityPieEmpty() {
-    SelectiveTheme {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            SanityMeter(
-                modifier = Modifier.size(96.dp),
-                sanityUiState = PlayerSanityUiState(sanityLevel = 1f)
-            )
-            SanityMeter(
-                modifier = Modifier.size(96.dp),
-                sanityUiState = PlayerSanityUiState(sanityLevel = .75f)
-            )
-            SanityMeter(
-                modifier = Modifier.size(96.dp),
-                sanityUiState = PlayerSanityUiState(sanityLevel = .5f),
-                showProgress = false,
-                showText = true,
-            )
-            SanityMeter(
-                modifier = Modifier.size(96.dp),
-                sanityUiState = PlayerSanityUiState(sanityLevel = .25f)
-            )
-            SanityMeter(
-                modifier = Modifier.size(96.dp),
-                sanityUiState = PlayerSanityUiState(sanityLevel = 0f)
-            )
-        }
-    }
-}
+internal data class SanityMeterUiState(
+    val sanityLevel: Float,
+    val showText: Boolean = false,
+    val showProgress: Boolean = false
+)

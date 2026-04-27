@@ -292,6 +292,7 @@ dependencies {
     implementation(project(":feature-marketplace"))
     implementation(project(":feature-codex"))
     implementation(project(":feature-investigation"))
+    implementation(project(":feature-customdifficulty"))
     implementation(project(":feature-mapviewer"))
     implementation(project(":feature-missions"))
     implementation(project(":feature-operation"))

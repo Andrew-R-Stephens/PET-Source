@@ -43,16 +43,18 @@ import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
-
+import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeterUiState
 
 @Composable
-internal fun SanityMeter(
+internal fun SanityMeterComponent(
     modifier: Modifier = Modifier,
-    sanityUiState: PlayerSanityUiState,
-    onSanityChange: (Float) -> Unit = {}
+    bundle: SanityMeterComponentBundle,
+    actions: SanitySeekbarComponentActions
 ) {
+    val sanityUiState = bundle.sanityMeterUiState
+
+    val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
 
     Row(
         modifier = modifier,
@@ -62,10 +64,9 @@ internal fun SanityMeter(
         SanityMeter(
             modifier = Modifier
                 .aspectRatio(1f),
-            sanityUiState = sanityUiState
+            state = sanityUiState
         )
 
-        val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
 
         Text(
             modifier = Modifier
@@ -91,9 +92,9 @@ internal fun SanityMeter(
             SanitySeekbar(
                 modifier = Modifier
                     .fillMaxWidth(),
-                state = sanityUiState.insanityLevel,
+                state = bundle.sanitySeekbarUiState,
                 onValueChange = {
-                    onSanityChange(it)
+                    actions.onSanityChange(it)
                 },
                 containerColor = Color.Transparent,
                 inactiveTrackColor = LocalPalette.current.onSurface,
@@ -110,7 +111,7 @@ internal fun SanityMeter(
 @Composable
 private fun SanitySeekbar(
     modifier: Modifier = Modifier,
-    state: Float,
+    state: SanitySeekbarUiState,
     containerColor: Color = Color.White,
     inactiveTrackColor: Color = Color.White,
     activeTrackColor: Color = Color.White,
@@ -118,23 +119,24 @@ private fun SanitySeekbar(
     thumbInnerColor: Color = Color.White,
     onValueChange: (Float) -> Unit = {}
 ) {
+    val value = state.value
 
-    var rememberSliderPosition by remember { mutableFloatStateOf(state) }
+    var rememberSliderPosition by remember { mutableFloatStateOf(value) }
 
     val rememberSliderState =
         rememberSliderState(
-            value = state,
+            value = value,
             valueRange = 0f..1f,
             steps = 100,
             onValueChangeFinished = {
                 onValueChange(rememberSliderPosition)
-                Log.d("Slider", "Slider finished $rememberSliderPosition $state")
+                Log.d("Slider", "Slider finished $rememberSliderPosition $value")
             }
         )
 
-    LaunchedEffect(state) {
-        rememberSliderPosition = state
-        rememberSliderState.value = state
+    LaunchedEffect(value) {
+        rememberSliderPosition = value
+        rememberSliderState.value = value
     }
 
     val interactionSource = remember { MutableInteractionSource() }
@@ -161,7 +163,7 @@ private fun SanitySeekbar(
             onValueChangeFinished = {
                 onValueChange(rememberSliderPosition)
                 Log.d("Slider",
-                    "Slider finished $rememberSliderPosition $state")
+                    "Slider finished $rememberSliderPosition $value")
             },
             valueRange = 0f..1f,
             interactionSource = interactionSource,
@@ -218,3 +220,16 @@ private fun SeekbarThumb(
             .background(innerColor)
     )
 }
+
+internal data class SanitySeekbarUiState(
+    val value: Float
+)
+
+internal data class SanitySeekbarComponentActions(
+    val onSanityChange: (Float) -> Unit
+)
+
+internal data class SanityMeterComponentBundle(
+    val sanityMeterUiState: SanityMeterUiState,
+    val sanitySeekbarUiState: SanitySeekbarUiState
+)

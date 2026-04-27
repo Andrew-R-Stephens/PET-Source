@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.tool.sanity
 
-
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 
-
 @Composable
 internal fun PlayerDeathButton(
     modifier: Modifier = Modifier,
@@ -32,7 +30,6 @@ internal fun PlayerDeathButton(
     val strokeColor = LocalPalette.current.onSurface
     var color = if(isPressed) { fillColor } else { strokeColor }
 
-    // This effect runs whenever isPressed changes
     LaunchedEffect(isPressed) {
         color = if(isPressed) { fillColor } else { strokeColor }
     }

@@ -82,6 +82,7 @@ include(
     ":feature-operation",
     ":feature-codex",
     ":feature-investigation",
+    ":feature-customdifficulty",
     ":feature-missions",
     ":feature-mapviewer",
     ":feature-ghostbox",
