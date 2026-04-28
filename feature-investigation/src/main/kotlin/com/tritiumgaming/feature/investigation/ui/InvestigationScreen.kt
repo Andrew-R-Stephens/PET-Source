@@ -137,6 +137,113 @@ private fun InvestigationContent(
 
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
 
+    val toolbarCategory = toolbarUiState.category
+
+    val weather = weatherUiState.weather
+    val weatherIcon = weather.toDrawable()
+    val isWeatherEnabled = weatherUiState.enabled
+    val weatherLabel = if (weather == Weather.RANDOM) {
+        R.string.difficulty_setting_response_unknown
+    } else {
+        weather.toStringResource()
+    }
+    val weatherDropdownOptions = Weather.entries.map {
+        if (it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown else it.toStringResource()
+    }
+
+    val mapName = mapConfigUiState.name
+    val isMapEnabled = mapConfigUiState.enabled
+    val mapLabel = mapName.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED)
+    val mapDropdownOptions = mapConfigUiState.allMaps.map {
+        it.toStringResource(SimpleMapResources.MapTitleLength.FULL)
+    }
+
+    val difficultyName = difficultyUiState.name
+    val isDifficultyEnabled = true
+    val difficultyLabel = difficultyName.toStringResource()
+    val difficultyDropdownOptions = difficultyUiState.allDifficulties.map {
+        it.toStringResource()
+    }
+
+    val sanityLevel = sanityUiState.sanityLevel
+    val insanityLevel = sanityUiState.insanityLevel
+
+    val timerRemainingTime = operationTimerUiState.remainingTime
+    val timerPaused = operationTimerUiState.paused
+
+    val temperatureStateBundle = TemperatureStateBundle(temperatureUiState)
+    val fuseBoxFlag = difficultyOverrideUiState.fuseBox
+
+    val smudgeHuntPreventionTitle = "Smudge Hunt Protection"
+    val smudgeHuntPreventionMax = smudgeHuntProtectionTimerState.max
+    val smudgeHuntPreventionRemaining = smudgeHuntProtectionTimerState.remaining
+    val smudgeHuntPreventionTimeText = smudgeHuntProtectionTimerState.timeText
+    val smudgeHuntPreventionRunning = smudgeHuntProtectionTimerState.running
+    val smudgeNotches = smudgeHuntProtectionTimerState.notches
+
+    val huntDurationTitle = "Hunt Duration"
+    val huntDurationMax = huntDurationTimerState.max
+    val huntDurationRemaining = huntDurationTimerState.remaining
+    val huntDurationTimeText = huntDurationTimerState.timeText
+    val huntDurationRunning = huntDurationTimerState.running
+    val huntDurationNotches = huntDurationTimerState.notches
+
+    val huntCooldownTitle = "Hunt Cooldown"
+    val huntCooldownMax = huntGapTimerState.max
+    val huntCooldownRemaining = huntGapTimerState.remaining
+    val huntCooldownTimeText = huntGapTimerState.timeText
+    val huntCooldownRunning = huntGapTimerState.running
+    val huntCooldownNotches = huntGapTimerState.notches
+
+    val fingerprintTimerTitle = "UV Evidence Lifetime"
+    val fingerprintTimerMax = fingerprintTimerState.max
+    val fingerprintTimerRemaining = fingerprintTimerState.remaining
+    val fingerprintTimerTimeText = fingerprintTimerState.timeText
+    val fingerprintTimerRunning = fingerprintTimerState.running
+    val fingerprintNotches = fingerprintTimerState.notches
+
+    val bpmRealtimeState = bpmToolUiState.realtimeState
+    val bpmMeasurementType = bpmToolUiState.measurementType
+    val bpmApplyMeasurement = bpmToolUiState.applyMeasurement
+
+    val onWeatherCarouselLeftClick = { }
+    val onWeatherCarouselRightClick = { }
+    val onWeatherDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) }
+
+    val onMapCarouselLeftClick = { investigationViewModel.onEvent(DecrementMap) }
+    val onMapCarouselRightClick = { investigationViewModel.onEvent(IncrementMap) }
+    val onMapDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetMap(it)) }
+
+    val onDifficultyCarouselLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) }
+    val onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) }
+    val onDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetDifficulty(it)) }
+
+    val onSanityChange: (Float) -> Unit = { investigationViewModel.onEvent(SetPlayerSanity(it)) }
+    val onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) }
+    val onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) }
+
+    val onTimerToggle = { investigationViewModel.onEvent(ToggleOperationTimer) }
+    val onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) }
+
+    val onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) }
+
+    val onSelectTraitCategory: (com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory) -> Unit = { category ->
+        investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category)))
+    }
+    val onToggleTrait: (com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait) -> Unit = { trait ->
+        investigationViewModel.onEvent(ToggleTrait(trait))
+    }
+    val onToggleUniqueOnly: () -> Unit = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) }
+
+    val onSmudgeToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) }
+    val onHuntDurationToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) }
+    val onHuntCooldownToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) }
+    val onFingerprintToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) }
+
+    val onBpmUpdate: (com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState<com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint>) -> Unit = { investigationViewModel.onEvent(SetBpmData(it)) }
+    val onBpmChangeMeasurementType: (com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType) -> Unit = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) }
+    val onBpmToggleApplyMeasurement: () -> Unit = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
+
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
         remaining = LocalPalette.current.primary,
         background = LocalPalette.current.surface,
@@ -151,174 +258,174 @@ private fun InvestigationContent(
     val bottomSheetComponent: @Composable (Modifier) -> Unit = { modifier ->
         ToolsBottomSheetComponent(
             modifier = modifier,
-            toolbarCategory = toolbarUiState.category,
-            weather = weatherUiState.weather,
-            weatherIcon = weatherUiState.weather.toDrawable(),
-            weatherCarouselLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
-            isWeatherCarouselEnabled = weatherUiState.enabled,
-            onWeatherCarouselLeftClick = { },
-            onWeatherCarouselRightClick = { },
-            weatherDropdownOptions = Weather.entries.map { if (it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown else it.toStringResource() },
-            isWeatherDropdownEnabled = weatherUiState.enabled,
-            weatherDropdownLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
-            onWeatherDropdownSelect = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) },
-            mapCarouselLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
-            isMapCarouselEnabled = mapConfigUiState.enabled,
-            onMapCarouselLeftClick = { investigationViewModel.onEvent(DecrementMap) },
-            onMapCarouselRightClick = { investigationViewModel.onEvent(IncrementMap) },
-            mapDropdownOptions = mapConfigUiState.allMaps.map { it.toStringResource(SimpleMapResources.MapTitleLength.FULL) },
-            isMapDropdownEnabled = mapConfigUiState.enabled,
-            mapDropdownLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
-            onMapDropdownSelect = { investigationViewModel.onEvent(SetMap(it)) },
-            difficultyCarouselLabel = difficultyUiState.name.toStringResource(),
-            isDifficultyCarouselEnabled = true,
-            onDifficultyCarouselLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) },
-            onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) },
-            difficultyDropdownOptions = difficultyUiState.allDifficulties.map { it.toStringResource() },
-            isDifficultyDropdownEnabled = true,
-            difficultyDropdownLabel = difficultyUiState.name.toStringResource(),
-            onDifficultyDropdownSelect = { investigationViewModel.onEvent(SetDifficulty(it)) },
-            sanityLevel = sanityUiState.sanityLevel,
-            insanityLevel = sanityUiState.insanityLevel,
-            onSanityChange = { investigationViewModel.onEvent(SetPlayerSanity(it)) },
-            onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) },
-            onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) },
-            timerRemainingTime = operationTimerUiState.remainingTime,
-            timerPaused = operationTimerUiState.paused,
-            onTimerToggle = { investigationViewModel.onEvent(ToggleOperationTimer) },
-            onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) },
+            toolbarCategory = toolbarCategory,
+            weather = weather,
+            weatherIcon = weatherIcon,
+            weatherCarouselLabel = weatherLabel,
+            isWeatherCarouselEnabled = isWeatherEnabled,
+            weatherDropdownOptions = weatherDropdownOptions,
+            isWeatherDropdownEnabled = isWeatherEnabled,
+            weatherDropdownLabel = weatherLabel,
+            mapCarouselLabel = mapLabel,
+            isMapCarouselEnabled = isMapEnabled,
+            mapDropdownOptions = mapDropdownOptions,
+            isMapDropdownEnabled = isMapEnabled,
+            mapDropdownLabel = mapLabel,
+            difficultyCarouselLabel = difficultyLabel,
+            isDifficultyCarouselEnabled = isDifficultyEnabled,
+            difficultyDropdownOptions = difficultyDropdownOptions,
+            isDifficultyDropdownEnabled = isDifficultyEnabled,
+            difficultyDropdownLabel = difficultyLabel,
+            sanityLevel = sanityLevel,
+            insanityLevel = insanityLevel,
+            timerRemainingTime = timerRemainingTime,
+            timerPaused = timerPaused,
             phaseUiState = phaseUiState,
-            temperatureStateBundle = TemperatureStateBundle(temperatureUiState),
-            fuseBoxFlag = difficultyOverrideUiState.fuseBox,
-            onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) },
+            temperatureStateBundle = temperatureStateBundle,
+            fuseBoxFlag = fuseBoxFlag,
             traitListOptions = traitFilterOptions,
             traitList = traitListUiStates,
-            onSelectTraitCategory = { category -> investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category))) },
-            onToggleTrait = { trait -> investigationViewModel.onEvent(ToggleTrait(trait)) },
-            onToggleUniqueOnly = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) },
             operationDetailsUiState = operationDetailsUiState,
-            smudgeHuntPreventionTitle = "Smudge Hunt Protection",
-            smudgeHuntPreventionMax = smudgeHuntProtectionTimerState.max,
-            smudgeHuntPreventionRemaining = smudgeHuntProtectionTimerState.remaining,
-            smudgeHuntPreventionTimeText = smudgeHuntProtectionTimerState.timeText,
-            smudgeHuntPreventionRunning = smudgeHuntProtectionTimerState.running,
-            onSmudgeToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) },
-            smudgeNotches = smudgeHuntProtectionTimerState.notches,
-            huntDurationTitle = "Hunt Duration",
-            huntDurationMax = huntDurationTimerState.max,
-            huntDurationRemaining = huntDurationTimerState.remaining,
-            huntDurationTimeText = huntDurationTimerState.timeText,
-            huntDurationRunning = huntDurationTimerState.running,
-            onHuntDurationToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) },
-            huntDurationNotches = huntDurationTimerState.notches,
-            huntCooldownTitle = "Hunt Cooldown",
-            huntCooldownMax = huntGapTimerState.max,
-            huntCooldownRemaining = huntGapTimerState.remaining,
-            huntCooldownTimeText = huntGapTimerState.timeText,
-            huntCooldownRunning = huntGapTimerState.running,
-            onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
-            huntCooldownNotches = huntGapTimerState.notches,
-            fingerprintTimerTitle = "UV Evidence Lifetime",
-            fingerprintTimerMax = fingerprintTimerState.max,
-            fingerprintTimerRemaining = fingerprintTimerState.remaining,
-            fingerprintTimerTimeText = fingerprintTimerState.timeText,
-            fingerprintTimerRunning = fingerprintTimerState.running,
-            onFingerprintToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) },
-            fingerprintNotches = fingerprintTimerState.notches,
-            bpmRealtimeState = bpmToolUiState.realtimeState,
-            bpmMeasurementType = bpmToolUiState.measurementType,
-            bpmApplyMeasurement = bpmToolUiState.applyMeasurement,
-            onBpmUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
-            onBpmChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
-            onBpmToggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) },
-            notchedProgressBarUiColors = notchedProgressBarUiColors
+            smudgeHuntPreventionTitle = smudgeHuntPreventionTitle,
+            smudgeHuntPreventionMax = smudgeHuntPreventionMax,
+            smudgeHuntPreventionRemaining = smudgeHuntPreventionRemaining,
+            smudgeHuntPreventionTimeText = smudgeHuntPreventionTimeText,
+            smudgeHuntPreventionRunning = smudgeHuntPreventionRunning,
+            smudgeNotches = smudgeNotches,
+            huntDurationTitle = huntDurationTitle,
+            huntDurationMax = huntDurationMax,
+            huntDurationRemaining = huntDurationRemaining,
+            huntDurationTimeText = huntDurationTimeText,
+            huntDurationRunning = huntDurationRunning,
+            huntDurationNotches = huntDurationNotches,
+            huntCooldownTitle = huntCooldownTitle,
+            huntCooldownMax = huntCooldownMax,
+            huntCooldownRemaining = huntCooldownRemaining,
+            huntCooldownTimeText = huntCooldownTimeText,
+            huntCooldownRunning = huntCooldownRunning,
+            huntCooldownNotches = huntCooldownNotches,
+            fingerprintTimerTitle = fingerprintTimerTitle,
+            fingerprintTimerMax = fingerprintTimerMax,
+            fingerprintTimerRemaining = fingerprintTimerRemaining,
+            fingerprintTimerTimeText = fingerprintTimerTimeText,
+            fingerprintTimerRunning = fingerprintTimerRunning,
+            fingerprintNotches = fingerprintNotches,
+            bpmRealtimeState = bpmRealtimeState,
+            bpmMeasurementType = bpmMeasurementType,
+            bpmApplyMeasurement = bpmApplyMeasurement,
+            notchedProgressBarUiColors = notchedProgressBarUiColors,
+            onWeatherCarouselLeftClick = onWeatherCarouselLeftClick,
+            onWeatherCarouselRightClick = onWeatherCarouselRightClick,
+            onWeatherDropdownSelect = onWeatherDropdownSelect,
+            onMapCarouselLeftClick = onMapCarouselLeftClick,
+            onMapCarouselRightClick = onMapCarouselRightClick,
+            onMapDropdownSelect = onMapDropdownSelect,
+            onDifficultyCarouselLeftClick = onDifficultyCarouselLeftClick,
+            onDifficultyCarouselRightClick = onDifficultyCarouselRightClick,
+            onDifficultyDropdownSelect = onDifficultyDropdownSelect,
+            onSanityChange = onSanityChange,
+            onUseSanityMedication = onUseSanityMedication,
+            onPlayerDeath = onPlayerDeath,
+            onTimerToggle = onTimerToggle,
+            onTimerSkip = onTimerSkip,
+            onTogglePower = onTogglePower,
+            onSelectTraitCategory = onSelectTraitCategory,
+            onToggleTrait = onToggleTrait,
+            onToggleUniqueOnly = onToggleUniqueOnly,
+            onSmudgeToggle = onSmudgeToggle,
+            onHuntDurationToggle = onHuntDurationToggle,
+            onHuntCooldownToggle = onHuntCooldownToggle,
+            onFingerprintToggle = onFingerprintToggle,
+            onBpmUpdate = onBpmUpdate,
+            onBpmChangeMeasurementType = onBpmChangeMeasurementType,
+            onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
         )
     }
 
     val sideSheetComponent: @Composable (Modifier) -> Unit = { modifier ->
         ToolsSideSheetComponent(
             modifier = modifier,
-            toolbarCategory = toolbarUiState.category,
-            weather = weatherUiState.weather,
-            weatherIcon = weatherUiState.weather.toDrawable(),
-            weatherCarouselLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
-            isWeatherCarouselEnabled = weatherUiState.enabled,
-            onWeatherCarouselLeftClick = { },
-            onWeatherCarouselRightClick = { },
-            weatherDropdownOptions = Weather.entries.map { if (it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown else it.toStringResource() },
-            isWeatherDropdownEnabled = weatherUiState.enabled,
-            weatherDropdownLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
-            onWeatherDropdownSelect = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) },
-            mapCarouselLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
-            isMapCarouselEnabled = mapConfigUiState.enabled,
-            onMapCarouselLeftClick = { investigationViewModel.onEvent(DecrementMap) },
-            onMapCarouselRightClick = { investigationViewModel.onEvent(IncrementMap) },
-            mapDropdownOptions = mapConfigUiState.allMaps.map { it.toStringResource(SimpleMapResources.MapTitleLength.FULL) },
-            isMapDropdownEnabled = mapConfigUiState.enabled,
-            mapDropdownLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
-            onMapDropdownSelect = { investigationViewModel.onEvent(SetMap(it)) },
-            difficultyCarouselLabel = difficultyUiState.name.toStringResource(),
-            isDifficultyCarouselEnabled = true,
-            onDifficultyCarouselLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) },
-            onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) },
-            difficultyDropdownOptions = difficultyUiState.allDifficulties.map { it.toStringResource() },
-            isDifficultyDropdownEnabled = true,
-            difficultyDropdownLabel = difficultyUiState.name.toStringResource(),
-            onDifficultyDropdownSelect = { investigationViewModel.onEvent(SetDifficulty(it)) },
-            sanityLevel = sanityUiState.sanityLevel,
-            insanityLevel = sanityUiState.insanityLevel,
-            onSanityChange = { investigationViewModel.onEvent(SetPlayerSanity(it)) },
-            onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) },
-            onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) },
-            timerRemainingTime = operationTimerUiState.remainingTime,
-            timerPaused = operationTimerUiState.paused,
-            onTimerToggle = { investigationViewModel.onEvent(ToggleOperationTimer) },
-            onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) },
+            toolbarCategory = toolbarCategory,
+            weather = weather,
+            weatherIcon = weatherIcon,
+            weatherCarouselLabel = weatherLabel,
+            isWeatherCarouselEnabled = isWeatherEnabled,
+            weatherDropdownOptions = weatherDropdownOptions,
+            isWeatherDropdownEnabled = isWeatherEnabled,
+            weatherDropdownLabel = weatherLabel,
+            mapCarouselLabel = mapLabel,
+            isMapCarouselEnabled = isMapEnabled,
+            mapDropdownOptions = mapDropdownOptions,
+            isMapDropdownEnabled = isMapEnabled,
+            mapDropdownLabel = mapLabel,
+            difficultyCarouselLabel = difficultyLabel,
+            isDifficultyCarouselEnabled = isDifficultyEnabled,
+            difficultyDropdownOptions = difficultyDropdownOptions,
+            isDifficultyDropdownEnabled = isDifficultyEnabled,
+            difficultyDropdownLabel = difficultyLabel,
+            sanityLevel = sanityLevel,
+            insanityLevel = insanityLevel,
+            timerRemainingTime = timerRemainingTime,
+            timerPaused = timerPaused,
             phaseUiState = phaseUiState,
-            temperatureStateBundle = TemperatureStateBundle(temperatureUiState),
-            fuseBoxFlag = difficultyOverrideUiState.fuseBox,
-            onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) },
+            temperatureStateBundle = temperatureStateBundle,
+            fuseBoxFlag = fuseBoxFlag,
             traitListOptions = traitFilterOptions,
             traitList = traitListUiStates,
-            onSelectTraitCategory = { category -> investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category))) },
-            onSelectTrait = { trait -> investigationViewModel.onEvent(ToggleTrait(trait)) },
-            onToggleUniqueOnly = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) },
             operationDetailsUiState = operationDetailsUiState,
-            smudgeHuntPreventionTitle = "Smudge Hunt Protection",
-            smudgeHuntPreventionMax = smudgeHuntProtectionTimerState.max,
-            smudgeHuntPreventionRemaining = smudgeHuntProtectionTimerState.remaining,
-            smudgeHuntPreventionTimeText = smudgeHuntProtectionTimerState.timeText,
-            smudgeHuntPreventionRunning = smudgeHuntProtectionTimerState.running,
-            onSmudgeToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) },
-            smudgeNotches = smudgeHuntProtectionTimerState.notches,
-            huntDurationTitle = "Hunt Duration",
-            huntDurationMax = huntDurationTimerState.max,
-            huntDurationRemaining = huntDurationTimerState.remaining,
-            huntDurationTimeText = huntDurationTimerState.timeText,
-            huntDurationRunning = huntDurationTimerState.running,
-            onHuntDurationToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) },
-            huntDurationNotches = huntDurationTimerState.notches,
-            huntCooldownTitle = "Hunt Cooldown",
-            huntCooldownMax = huntGapTimerState.max,
-            huntCooldownRemaining = huntGapTimerState.remaining,
-            huntCooldownTimeText = huntGapTimerState.timeText,
-            huntCooldownRunning = huntGapTimerState.running,
-            onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
-            huntCooldownNotches = huntGapTimerState.notches,
-            fingerprintTimerTitle = "UV Evidence Lifetime",
-            fingerprintTimerMax = fingerprintTimerState.max,
-            fingerprintTimerRemaining = fingerprintTimerState.remaining,
-            fingerprintTimerTimeText = fingerprintTimerState.timeText,
-            fingerprintTimerRunning = fingerprintTimerState.running,
-            onFingerprintToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) },
-            fingerprintNotches = fingerprintTimerState.notches,
-            bpmRealtimeState = bpmToolUiState.realtimeState,
-            bpmMeasurementType = bpmToolUiState.measurementType,
-            bpmApplyMeasurement = bpmToolUiState.applyMeasurement,
-            onBpmUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
-            onBpmChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
-            onBpmToggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) },
-            notchedProgressBarUiColors = notchedProgressBarUiColors
+            smudgeHuntPreventionTitle = smudgeHuntPreventionTitle,
+            smudgeHuntPreventionMax = smudgeHuntPreventionMax,
+            smudgeHuntPreventionRemaining = smudgeHuntPreventionRemaining,
+            smudgeHuntPreventionTimeText = smudgeHuntPreventionTimeText,
+            smudgeHuntPreventionRunning = smudgeHuntPreventionRunning,
+            smudgeNotches = smudgeNotches,
+            huntDurationTitle = huntDurationTitle,
+            huntDurationMax = huntDurationMax,
+            huntDurationRemaining = huntDurationRemaining,
+            huntDurationTimeText = huntDurationTimeText,
+            huntDurationRunning = huntDurationRunning,
+            huntDurationNotches = huntDurationNotches,
+            huntCooldownTitle = huntCooldownTitle,
+            huntCooldownMax = huntCooldownMax,
+            huntCooldownRemaining = huntCooldownRemaining,
+            huntCooldownTimeText = huntCooldownTimeText,
+            huntCooldownRunning = huntCooldownRunning,
+            huntCooldownNotches = huntCooldownNotches,
+            fingerprintTimerTitle = fingerprintTimerTitle,
+            fingerprintTimerMax = fingerprintTimerMax,
+            fingerprintTimerRemaining = fingerprintTimerRemaining,
+            fingerprintTimerTimeText = fingerprintTimerTimeText,
+            fingerprintTimerRunning = fingerprintTimerRunning,
+            fingerprintNotches = fingerprintNotches,
+            bpmRealtimeState = bpmRealtimeState,
+            bpmMeasurementType = bpmMeasurementType,
+            bpmApplyMeasurement = bpmApplyMeasurement,
+            notchedProgressBarUiColors = notchedProgressBarUiColors,
+            onWeatherCarouselLeftClick = onWeatherCarouselLeftClick,
+            onWeatherCarouselRightClick = onWeatherCarouselRightClick,
+            onWeatherDropdownSelect = onWeatherDropdownSelect,
+            onMapCarouselLeftClick = onMapCarouselLeftClick,
+            onMapCarouselRightClick = onMapCarouselRightClick,
+            onMapDropdownSelect = onMapDropdownSelect,
+            onDifficultyCarouselLeftClick = onDifficultyCarouselLeftClick,
+            onDifficultyCarouselRightClick = onDifficultyCarouselRightClick,
+            onDifficultyDropdownSelect = onDifficultyDropdownSelect,
+            onSanityChange = onSanityChange,
+            onUseSanityMedication = onUseSanityMedication,
+            onPlayerDeath = onPlayerDeath,
+            onTimerToggle = onTimerToggle,
+            onTimerSkip = onTimerSkip,
+            onTogglePower = onTogglePower,
+            onSelectTraitCategory = onSelectTraitCategory,
+            onSelectTrait = onToggleTrait,
+            onToggleUniqueOnly = onToggleUniqueOnly,
+            onSmudgeToggle = onSmudgeToggle,
+            onHuntDurationToggle = onHuntDurationToggle,
+            onHuntCooldownToggle = onHuntCooldownToggle,
+            onFingerprintToggle = onFingerprintToggle,
+            onBpmUpdate = onBpmUpdate,
+            onBpmChangeMeasurementType = onBpmChangeMeasurementType,
+            onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
         )
     }
 
