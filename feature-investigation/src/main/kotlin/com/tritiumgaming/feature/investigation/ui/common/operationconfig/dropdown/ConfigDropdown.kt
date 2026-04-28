@@ -42,35 +42,18 @@ import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 
-
-@Composable
-@Preview
-private fun OperationDropdownPreview() {
-    SelectiveTheme(ClassicPalette, ClassicTypography) {
-        OperationConfigDropdown(
-            state = ConfigDropdownUiState(),
-            actions = DropdownUiActions(),
-        )
-    }
-
-    SelectiveTheme(ClassicPalette, ClassicTypography) {
-        OperationConfigDropdown(
-            state = ConfigDropdownUiState(),
-            actions = DropdownUiActions(),
-        )
-    }
-}
-
 @Composable
 fun OperationConfigDropdown(
     modifier: Modifier = Modifier,
     icon: @Composable (Modifier) -> Unit = {},
-    state: ConfigDropdownUiState,
+    options: List<Int>,
+    enabled: Boolean = true,
+    label: Int,
     textStyle: TextStyle = TextStyle.Default,
     onColor: Color = Color.Unspecified,
     containerColor: Color = Color.Unspecified,
     expandedColor: Color = Color.Unspecified,
-    actions: DropdownUiActions,
+    onSelect: (Int) -> Unit,
 ) {
 
     Surface(
@@ -97,8 +80,10 @@ fun OperationConfigDropdown(
                     //.fillMaxWidth()
                     .wrapContentHeight()
                     .align(Alignment.CenterVertically),
-                state = state,
-                actions = actions,
+                options = options,
+                enabled = enabled,
+                label = label,
+                onSelect = onSelect,
                 textStyle = textStyle,
                 color = expandedColor,
                 onColor = onColor
@@ -112,8 +97,10 @@ fun OperationConfigDropdown(
 @Composable
 private fun DropdownList(
     modifier: Modifier = Modifier,
-    state: ConfigDropdownUiState,
-    actions: DropdownUiActions,
+    options: List<Int>,
+    enabled: Boolean = true,
+    label: Int,
+    onSelect: (Int) -> Unit,
     textStyle: TextStyle = TextStyle.Default,
     color: Color = Color.Unspecified,
     onColor: Color = Color.Unspecified
@@ -130,7 +117,7 @@ private fun DropdownList(
                 .wrapContentHeight(),
             expanded = expanded,
             onExpandedChange = {
-                expanded = if(state.enabled) !expanded else false
+                expanded = if(enabled) !expanded else false
             },
         ) {
 
@@ -148,25 +135,25 @@ private fun DropdownList(
                             type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
                             enabled = true
                         ),
-                    value = stringResource(state.label),
+                    value = stringResource(label),
                     onValueChange = {},
                     readOnly = true,
                     textStyle = textStyle.copy(
                         fontSize = 18.sp,
                         color = onColor,
                     ),
-                    enabled = state.enabled,
+                    enabled = enabled,
                     interactionSource = interactionSource,
                     decorationBox = { innerTextField ->
                         TextFieldDefaults.DecorationBox(
-                            value = stringResource(state.label),
+                            value = stringResource(label),
                             innerTextField = innerTextField,
                             enabled = true,
                             singleLine = true,
                             visualTransformation = VisualTransformation.None,
                             interactionSource = interactionSource,
                             trailingIcon = {
-                                if(state.enabled) {
+                                if(enabled) {
                                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                                 }
                             },
@@ -175,7 +162,7 @@ private fun DropdownList(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .wrapContentHeight(),
-                                    text = stringResource(state.label),
+                                    text = stringResource(label),
                                     style = textStyle,
                                     color = onColor.copy(alpha = 0.5f),
                                     fontSize = 14.sp
@@ -234,7 +221,7 @@ private fun DropdownList(
                 matchAnchorWidth = false
             ) {
 
-                state.options.forEachIndexed { index, item ->
+                options.forEachIndexed { index, item ->
                     DropdownMenuItem(
                         text = {
                             Text(
@@ -249,7 +236,7 @@ private fun DropdownList(
                         contentPadding = PaddingValues.Zero,
                         onClick = {
                             expanded = false
-                            actions.onSelect(index)
+                            onSelect(index)
                         },
                     )
                 }

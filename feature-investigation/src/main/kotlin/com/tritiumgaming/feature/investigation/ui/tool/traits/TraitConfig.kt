@@ -42,23 +42,28 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toGhostTitle
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState.CONFIRM
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState.REJECT
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.DEFINITIVE
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.PROBABLE
+import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
+import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
 
 @Composable
 internal fun TraitConfig(
     modifier: Modifier = Modifier,
-    state: TraitListUiState,
-    actions: TraitListUiActions,
+    uniqueOnly: Boolean,
+    categories: List<CategoryOption>,
+    list: List<ValidatedGhostTrait>,
+    onSelectCategory: (TraitCategory) -> Unit,
+    onSelectTrait: (ValidatedGhostTrait) -> Unit,
+    onToggleUniqueOnly: () -> Unit,
     colors: TraitListItemUiColors = TraitListItemUiColors()
 ) {
 
-    val traits = state.list
-    val uniqueOnly = state.options.uniqueOnly
-    val categories = state.options.category
+    val traits = list
 
     Column(
         modifier = modifier,
@@ -119,7 +124,7 @@ internal fun TraitConfig(
                         .wrapContentHeight()
                         .heightIn(min = 36.dp)
                         .clickable(onClick = {
-                            actions.onToggleUniqueOnly()
+                            onToggleUniqueOnly()
                         }),
                     color = when(uniqueOnly) {
                         true -> LocalPalette.current.surfaceContainerLow
@@ -157,7 +162,7 @@ internal fun TraitConfig(
                             .heightIn(min = 36.dp)
                             .clickable(onClick = {
                                 option.data?.let { category ->
-                                    actions.onSelectCategory(category)
+                                    onSelectCategory(category)
                                 }
                             }),
                         color = if (option.state) LocalPalette.current.surfaceContainerLow
@@ -211,15 +216,8 @@ internal fun TraitConfig(
                                 bottom = if (index < traits.lastIndex) 8.dp else 0.dp
                             )
                             .animateItem(),
-                        state = TraitListItemUiState(
-                            item = trait
-                        ),
-                        actions = TraitListItemUiAction(
-                            onToggle = { trait ->
-                                actions.onSelectTrait(trait)
-                            },
-                            onInspect = { }
-                        ),
+                        item = trait,
+                        onToggle = onSelectTrait,
                         colors = colors
                     )
                 }
@@ -232,18 +230,18 @@ internal fun TraitConfig(
 @Composable
 private fun TraitListItem(
     modifier: Modifier = Modifier,
-    state: TraitListItemUiState,
-    actions: TraitListItemUiAction,
+    item: ValidatedGhostTrait,
+    onToggle: (ValidatedGhostTrait) -> Unit,
     colors: TraitListItemUiColors = TraitListItemUiColors()
 ) {
-    val selected = state.item.validationType == TraitValidationType.CONFIRMED
+    val selected = item.validationType == TraitValidationType.CONFIRMED
 
     Card(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(Alignment.Top)
             .clickable(onClick = {
-                actions.onToggle(state.item)
+                onToggle(item)
             }),
         colors = CardDefaults.cardColors().copy(
             containerColor = if(selected) colors.selectedColor else colors.unselectedColor
@@ -265,7 +263,7 @@ private fun TraitListItem(
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .padding(bottom = 2.dp),
-                text = stringResource(state.item.ghostTrait.description.toStringResource()),
+                text = stringResource(item.ghostTrait.description.toStringResource()),
                 style = JetBrainsMonoTypography.primary.regular.copy(
                     color = if (selected) colors.selectedOnColor else colors.unselectedOnColor,
                     textAlign = TextAlign.Start
@@ -284,7 +282,7 @@ private fun TraitListItem(
 
                 Text(
                     modifier = Modifier,
-                    text = state.item.ghostTrait.affectedGhosts.map {
+                    text = item.ghostTrait.affectedGhosts.map {
                             stringResource(it.toGhostTitle().toStringResource())
                         }.joinToString(", ").uppercase(),
                     style = JetBrainsMonoTypography.primary.bold.copy(
@@ -295,18 +293,18 @@ private fun TraitListItem(
                     fontSize = 11.sp
                 )
 
-                val uniqueText = if (state.item.ghostTrait.isUnique) {
+                val uniqueText = if (item.ghostTrait.isUnique) {
                     "${stringResource(R.string.evidence_trait_category_unique)} " } else ""
 
-                val dataText = when(state.item.ghostTrait.weight) {
+                val dataText = when(item.ghostTrait.weight) {
                      DEFINITIVE -> {
-                        when(state.item.ghostTrait.state) {
+                        when(item.ghostTrait.state) {
                             CONFIRM -> stringResource(R.string.evidence_trait_state_confirm)
                             REJECT -> stringResource(R.string.evidence_trait_state_reject)
                         }
                     }
                     PROBABLE -> {
-                        when (state.item.ghostTrait.state) {
+                        when (item.ghostTrait.state) {
                             CONFIRM -> stringResource(R.string.evidence_trait_weight_likely)
                             REJECT -> stringResource(R.string.evidence_trait_weight_unlikely)
                         }

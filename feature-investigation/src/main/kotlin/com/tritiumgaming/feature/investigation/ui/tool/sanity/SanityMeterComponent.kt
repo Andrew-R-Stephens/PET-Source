@@ -43,18 +43,17 @@ import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
-import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeterUiState
 
 @Composable
 internal fun SanityMeterComponent(
     modifier: Modifier = Modifier,
-    bundle: SanityMeterComponentBundle,
-    actions: SanitySeekbarComponentActions
+    sanityLevel: Float,
+    insanityLevel: Float,
+    onSanityChange: (Float) -> Unit
 ) {
-    val sanityUiState = bundle.sanityMeterUiState
-
-    val sanityPercentString = sanityUiState.sanityLevel.toPercentageString()
+    val sanityPercentString = sanityLevel.toPercentageString()
 
     Row(
         modifier = modifier,
@@ -64,7 +63,9 @@ internal fun SanityMeterComponent(
         SanityMeter(
             modifier = Modifier
                 .aspectRatio(1f),
-            state = sanityUiState
+            sanityLevel = sanityLevel,
+            showText = false,
+            showProgress = false
         )
 
 
@@ -79,7 +80,7 @@ internal fun SanityMeterComponent(
             color = Color(ColorUtils.interpolate(
                 LocalPalette.current.onSurface.toArgb(),
                 endColor = LocalPalette.current.primary.toArgb(),
-                sanityUiState.sanityLevel)
+                sanityLevel)
             ),
             fontSize = 14.sp,
         )
@@ -92,9 +93,9 @@ internal fun SanityMeterComponent(
             SanitySeekbar(
                 modifier = Modifier
                     .fillMaxWidth(),
-                state = bundle.sanitySeekbarUiState,
+                state = insanityLevel,
                 onValueChange = {
-                    actions.onSanityChange(it)
+                    onSanityChange(it)
                 },
                 containerColor = Color.Transparent,
                 inactiveTrackColor = LocalPalette.current.onSurface,
@@ -111,7 +112,7 @@ internal fun SanityMeterComponent(
 @Composable
 private fun SanitySeekbar(
     modifier: Modifier = Modifier,
-    state: SanitySeekbarUiState,
+    state: Float,
     containerColor: Color = Color.White,
     inactiveTrackColor: Color = Color.White,
     activeTrackColor: Color = Color.White,
@@ -119,24 +120,23 @@ private fun SanitySeekbar(
     thumbInnerColor: Color = Color.White,
     onValueChange: (Float) -> Unit = {}
 ) {
-    val value = state.value
 
-    var rememberSliderPosition by remember { mutableFloatStateOf(value) }
+    var rememberSliderPosition by remember { mutableFloatStateOf(state) }
 
     val rememberSliderState =
         rememberSliderState(
-            value = value,
+            value = state,
             valueRange = 0f..1f,
             steps = 100,
             onValueChangeFinished = {
                 onValueChange(rememberSliderPosition)
-                Log.d("Slider", "Slider finished $rememberSliderPosition $value")
+                Log.d("Slider", "Slider finished $rememberSliderPosition $state")
             }
         )
 
-    LaunchedEffect(value) {
-        rememberSliderPosition = value
-        rememberSliderState.value = value
+    LaunchedEffect(state) {
+        rememberSliderPosition = state
+        rememberSliderState.value = state
     }
 
     val interactionSource = remember { MutableInteractionSource() }
@@ -163,7 +163,7 @@ private fun SanitySeekbar(
             onValueChangeFinished = {
                 onValueChange(rememberSliderPosition)
                 Log.d("Slider",
-                    "Slider finished $rememberSliderPosition $value")
+                    "Slider finished $rememberSliderPosition $state")
             },
             valueRange = 0f..1f,
             interactionSource = interactionSource,
@@ -227,9 +227,4 @@ internal data class SanitySeekbarUiState(
 
 internal data class SanitySeekbarComponentActions(
     val onSanityChange: (Float) -> Unit
-)
-
-internal data class SanityMeterComponentBundle(
-    val sanityMeterUiState: SanityMeterUiState,
-    val sanitySeekbarUiState: SanitySeekbarUiState
 )

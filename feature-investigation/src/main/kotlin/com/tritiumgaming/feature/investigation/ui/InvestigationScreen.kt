@@ -42,12 +42,11 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
-import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiActions
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
+import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ClearPopup
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.DecrementDifficulty
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.DecrementMap
@@ -77,36 +76,14 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleUniqueTraitFilter
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
-import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
-import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigActionsBundle
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigStateBundle
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.CarouselUiActions
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.ConfigCarouselUiState
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.ConfigDropdownUiState
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.DropdownUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
-import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
-import com.tritiumgaming.feature.investigation.ui.sheet.ToolSheetActionsBundle
-import com.tritiumgaming.feature.investigation.ui.sheet.ToolSheetStateBundle
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
-import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxUiActions
-import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxUiState
-import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
-import com.tritiumgaming.feature.investigation.ui.tool.statusbar.StatusBarComponentStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
-import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiActions
-import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
@@ -161,179 +138,6 @@ private fun InvestigationContent(
 
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
 
-    val digitalTimerUiState = DigitalTimerUiState(
-        startTime = operationTimerUiState.startTime,
-        remainingTime = operationTimerUiState.remainingTime
-    )
-
-    val ghostListUiState = GhostListUiState(
-        ghostOrder = ghostOrder,
-        evidenceState = evidenceStates
-    )
-
-    val evidenceListUiState = EvidenceListUiState(
-        evidenceStateList = evidenceListUiStates
-    )
-
-    val traitListUiState = TraitListUiState(
-        options = traitFilterOptions,
-        list = traitListUiStates
-    )
-
-    val traitListUiActions = TraitListUiActions(
-        onSelectCategory = { category ->
-            val filter = TraitFilter(
-                category = category
-            )
-            investigationViewModel.onEvent(SetTraitFilter(filter))
-        },
-        onSelectTrait = { trait ->
-            investigationViewModel.onEvent(ToggleTrait(trait))
-        },
-        onToggleUniqueOnly = {
-            investigationViewModel.onEvent(ToggleUniqueTraitFilter)
-        }
-    )
-
-    val ghostListUiActions = GhostListUiActions(
-        onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
-    )
-    val ghostListUiItemActions = GhostListUiItemActions(
-        onToggleNegateGhost = { ghost ->
-            investigationViewModel.onEvent(ToggleGhostNegation(ghost))
-        },
-        onRequestToolTip = {  } //TODO
-    )
-
-    val operationToolbarUiActions = ToolbarUiActions(
-        onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
-        onChangeToolbarCategory = { category ->
-            investigationViewModel.onEvent(SetToolbarCategory(category))
-        },
-        onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-    )
-
-    val timerUiActions = TimerUiActions(
-        onToggle = {
-            investigationViewModel.onEvent(ToggleOperationTimer)
-        },
-        onSkip = {
-            investigationViewModel.onEvent(SkipOperationTimer)
-        }
-    )
-
-    val mapUiActions = ConfigActionsBundle(
-        carouselUiActions = CarouselUiActions(
-            onLeftClick = { investigationViewModel.onEvent(DecrementMap) },
-            onRightClick = { investigationViewModel.onEvent(IncrementMap) },
-        ),
-        dropdownUiActions = DropdownUiActions(
-            onSelect = { investigationViewModel.onEvent(SetMap(it)) }
-        )
-    )
-
-    val difficultyUiActions = ConfigActionsBundle(
-        carouselUiActions = CarouselUiActions(
-            onLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) },
-            onRightClick = { investigationViewModel.onEvent(IncrementDifficulty) }
-        ),
-        dropdownUiActions = DropdownUiActions(
-            onSelect = { investigationViewModel.onEvent(SetDifficulty(it)) }
-        )
-    )
-
-    val weatherUiActions = ConfigActionsBundle(
-        carouselUiActions = CarouselUiActions(
-            onLeftClick = { /*investigationViewModel.decrementWeatherIndex()*/ },
-            onRightClick = { /*investigationViewModel.incrementWeatherIndex()*/ }
-        ),
-        dropdownUiActions = DropdownUiActions(
-            onSelect = {
-                investigationViewModel.onEvent(
-                    SetWeather(Weather.entries[it])
-                )
-            }
-        )
-    )
-
-    val evidenceListUiActions = EvidenceListUiActions(
-        onChangeEvidenceRuling = { e, r ->
-            investigationViewModel.onEvent(SetEvidence(e, r))
-        },
-        onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) },
-    )
-
-    val bpmToolUiActions = BpmToolUiActions(
-        onUpdate = {
-            investigationViewModel.onEvent(SetBpmData(it))
-        },
-        onChangeMeasurementType = {
-            investigationViewModel.onEvent(SetBpmMeasurementType(it))
-        },
-        toggleApplyMeasurement = {
-            investigationViewModel.onEvent(ToggleApplyBpmMeasurement)
-        }
-    )
-
-    val mapUiStateBundle = ConfigStateBundle(
-        carouselUiState = ConfigCarouselUiState(
-            label = mapConfigUiState.name.toStringResource(
-                SimpleMapResources.MapTitleLength.ABBREVIATED),
-            enabled = mapConfigUiState.enabled
-        ),
-        dropdownUiState = ConfigDropdownUiState(
-            options = mapConfigUiState.allMaps.map { it
-                .toStringResource(SimpleMapResources.MapTitleLength.FULL) },
-            enabled = mapConfigUiState.enabled,
-            label = mapConfigUiState.name
-                .toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED)
-        )
-    )
-
-    val difficultyUiStateBundle = ConfigStateBundle(
-        carouselUiState = ConfigCarouselUiState(
-            label = difficultyUiState.name.toStringResource()
-        ),
-        dropdownUiState = ConfigDropdownUiState(
-            options = difficultyUiState.allDifficulties.map { it.toStringResource() },
-            label = difficultyUiState.name.toStringResource()
-        )
-    )
-
-    val weatherUiStateBundle = ConfigStateBundle(
-        carouselUiState = ConfigCarouselUiState(
-            label =
-                if(weatherUiState.weather == Weather.RANDOM) {
-                    R.string.difficulty_setting_response_unknown }
-                else weatherUiState.weather.toStringResource(),
-            enabled = weatherUiState.enabled
-        ),
-        dropdownUiState = ConfigDropdownUiState(
-            options = Weather.entries.map {
-                if(it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown
-                else it.toStringResource() },
-            enabled = weatherUiState.enabled,
-            label =
-                if(weatherUiState.weather == Weather.RANDOM) {
-                    R.string.difficulty_setting_response_unknown }
-                else weatherUiState.weather.toStringResource(),
-        )
-    )
-
-    val temperatureStateBundle = TemperatureStateBundle(
-        temperatureUiState = temperatureUiState
-    )
-
-    val fuseBoxUiState = FuseBoxUiState(
-        flag = difficultyOverrideUiState.fuseBox
-    )
-
-    val fuseBoxUiActions = FuseBoxUiActions(
-        onTogglePower = {
-            investigationViewModel.onEvent(ToggleFuseBoxOverride)
-        }
-    )
-
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
         remaining = LocalPalette.current.primary,
         background = LocalPalette.current.surface,
@@ -342,112 +146,182 @@ private fun InvestigationContent(
         label = LocalPalette.current.onSurface,
     )
 
-    val smudgeHuntPreventionBundle = NotchedProgressBarBundle(
-        title = "Smudge Hunt Protection",
-        state = smudgeHuntProtectionTimerState,
-        colors = notchedProgressBarUiColors,
-        actions = NotchedProgressBarUiActions(
-            onToggle = {
-                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER))
-            }
-        )
-    )
-
-    val huntDurationBundle = NotchedProgressBarBundle(
-        title = "Hunt Duration",
-        state = huntDurationTimerState,
-        colors = notchedProgressBarUiColors,
-        actions = NotchedProgressBarUiActions(
-            onToggle = {
-                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION))
-            }
-        )
-    )
-
-    val huntCooldownBundle = NotchedProgressBarBundle(
-        title = "Hunt Cooldown",
-        state = huntGapTimerState,
-        colors = notchedProgressBarUiColors,
-        actions = NotchedProgressBarUiActions(
-            onToggle = {
-                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN))
-            }
-        )
-    )
-
-    val fingerprintTimerBundle = NotchedProgressBarBundle(
-        title = "UV Evidence Lifetime",
-        state = fingerprintTimerState,
-        colors = notchedProgressBarUiColors,
-        actions = NotchedProgressBarUiActions(
-            onToggle = {
-                investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION))
-            }
-        )
-    )
-
-    val investigationUiState = InvestigationUiState(
-        operationToolbarUiState = toolbarUiState
-    )
-
-    val investigationUiActions = InvestigationUiActions(
-        evidenceListUi = evidenceListUiActions,
-        ghostListUi = ghostListUiActions,
-        ghostListItemUi = ghostListUiItemActions,
-        toolbarUi = operationToolbarUiActions,
-        bpmUi = bpmToolUiActions
-    )
-
-    val toolSheetStateBundle = ToolSheetStateBundle(
-        bpmToolUiState = bpmToolUiState,
-        traitListUiState = traitListUiState,
-        toolbarUiState = toolbarUiState,
-        operationDetailsUiState = operationDetailsUiState,
-        sanityUiState = sanityUiState,
-        operationTimerUiState = operationTimerUiState,
-        phaseUiState = phaseUiState,
-        smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
-        huntDurationBundle = huntDurationBundle,
-        huntCooldownBundle = huntCooldownBundle,
-        fingerprintTimerBundle = fingerprintTimerBundle,
-        difficultyUiStateBundle = difficultyUiStateBundle,
-        mapUiStateBundle = mapUiStateBundle,
-        weatherUiStateBundle = weatherUiStateBundle,
-        weatherUiState = weatherUiState,
-        temperatureStateBundle = temperatureStateBundle,
-        fuseBoxUiState = fuseBoxUiState
-    )
-
-    val toolSheetActionsBundle = ToolSheetActionsBundle(
-        bpmToolUiActions = bpmToolUiActions,
-        traitListUiActions = traitListUiActions,
-        timerUiActions = timerUiActions,
-        difficultyUiActions = difficultyUiActions,
-        mapUiActions = mapUiActions,
-        weatherUiActions = weatherUiActions,
-        fuseBoxUiActions = fuseBoxUiActions,
-        onSanityChange = {
-            investigationViewModel.onEvent(SetPlayerSanity(it))
-        },
-        onWeatherChange = {
-            investigationViewModel.onEvent(SetWeatherOverride(it))
-        },
-        onUseSanityMedication = {
-            investigationViewModel.onEvent(UseSanityMedication)
-        },
-        onPlayerDeath = {
-            investigationViewModel.onEvent(PlayerDeath)
-        },
-    )
-
-    val statusBarComponentStateBundle = StatusBarComponentStateBundle(
-        sanityUiState = sanityUiState,
-        digitalTimerUiState = digitalTimerUiState,
-        phaseUiState = phaseUiState
-    )
-
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+    val bottomSheetComponent: @Composable (Modifier) -> Unit = { modifier ->
+        ToolsBottomSheetComponent(
+            modifier = modifier,
+            toolbarCategory = toolbarUiState.category,
+            weather = weatherUiState.weather,
+            weatherIcon = weatherUiState.weather.toDrawable(),
+            weatherCarouselLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
+            isWeatherCarouselEnabled = weatherUiState.enabled,
+            onWeatherCarouselLeftClick = { },
+            onWeatherCarouselRightClick = { },
+            weatherDropdownOptions = Weather.entries.map { if (it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown else it.toStringResource() },
+            isWeatherDropdownEnabled = weatherUiState.enabled,
+            weatherDropdownLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
+            onWeatherDropdownSelect = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) },
+            mapCarouselLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
+            isMapCarouselEnabled = mapConfigUiState.enabled,
+            onMapCarouselLeftClick = { investigationViewModel.onEvent(DecrementMap) },
+            onMapCarouselRightClick = { investigationViewModel.onEvent(IncrementMap) },
+            mapDropdownOptions = mapConfigUiState.allMaps.map { it.toStringResource(SimpleMapResources.MapTitleLength.FULL) },
+            isMapDropdownEnabled = mapConfigUiState.enabled,
+            mapDropdownLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
+            onMapDropdownSelect = { investigationViewModel.onEvent(SetMap(it)) },
+            difficultyCarouselLabel = difficultyUiState.name.toStringResource(),
+            isDifficultyCarouselEnabled = true,
+            onDifficultyCarouselLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) },
+            onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) },
+            difficultyDropdownOptions = difficultyUiState.allDifficulties.map { it.toStringResource() },
+            isDifficultyDropdownEnabled = true,
+            difficultyDropdownLabel = difficultyUiState.name.toStringResource(),
+            onDifficultyDropdownSelect = { investigationViewModel.onEvent(SetDifficulty(it)) },
+            sanityLevel = sanityUiState.sanityLevel,
+            insanityLevel = sanityUiState.insanityLevel,
+            onSanityChange = { investigationViewModel.onEvent(SetPlayerSanity(it)) },
+            onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) },
+            onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) },
+            timerRemainingTime = operationTimerUiState.remainingTime,
+            timerPaused = operationTimerUiState.paused,
+            onTimerToggle = { investigationViewModel.onEvent(ToggleOperationTimer) },
+            onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) },
+            phaseUiState = phaseUiState,
+            temperatureStateBundle = TemperatureStateBundle(temperatureUiState),
+            fuseBoxFlag = difficultyOverrideUiState.fuseBox,
+            onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) },
+            traitListOptions = traitFilterOptions,
+            traitList = traitListUiStates,
+            onSelectTraitCategory = { category -> investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category))) },
+            onToggleTrait = { trait -> investigationViewModel.onEvent(ToggleTrait(trait)) },
+            onToggleUniqueOnly = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) },
+            operationDetailsUiState = operationDetailsUiState,
+            smudgeHuntPreventionTitle = "Smudge Hunt Protection",
+            smudgeHuntPreventionMax = smudgeHuntProtectionTimerState.max,
+            smudgeHuntPreventionRemaining = smudgeHuntProtectionTimerState.remaining,
+            smudgeHuntPreventionTimeText = smudgeHuntProtectionTimerState.timeText,
+            smudgeHuntPreventionRunning = smudgeHuntProtectionTimerState.running,
+            onSmudgeToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) },
+            smudgeNotches = smudgeHuntProtectionTimerState.notches,
+            huntDurationTitle = "Hunt Duration",
+            huntDurationMax = huntDurationTimerState.max,
+            huntDurationRemaining = huntDurationTimerState.remaining,
+            huntDurationTimeText = huntDurationTimerState.timeText,
+            huntDurationRunning = huntDurationTimerState.running,
+            onHuntDurationToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) },
+            huntDurationNotches = huntDurationTimerState.notches,
+            huntCooldownTitle = "Hunt Cooldown",
+            huntCooldownMax = huntGapTimerState.max,
+            huntCooldownRemaining = huntGapTimerState.remaining,
+            huntCooldownTimeText = huntGapTimerState.timeText,
+            huntCooldownRunning = huntGapTimerState.running,
+            onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
+            huntCooldownNotches = huntGapTimerState.notches,
+            fingerprintTimerTitle = "UV Evidence Lifetime",
+            fingerprintTimerMax = fingerprintTimerState.max,
+            fingerprintTimerRemaining = fingerprintTimerState.remaining,
+            fingerprintTimerTimeText = fingerprintTimerState.timeText,
+            fingerprintTimerRunning = fingerprintTimerState.running,
+            onFingerprintToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) },
+            fingerprintNotches = fingerprintTimerState.notches,
+            bpmRealtimeState = bpmToolUiState.realtimeState,
+            bpmMeasurementType = bpmToolUiState.measurementType,
+            bpmApplyMeasurement = bpmToolUiState.applyMeasurement,
+            onBpmUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
+            onBpmChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
+            onBpmToggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) },
+            notchedProgressBarUiColors = notchedProgressBarUiColors
+        )
+    }
+
+    val sideSheetComponent: @Composable (Modifier) -> Unit = { modifier ->
+        ToolsSideSheetComponent(
+            modifier = modifier,
+            toolbarCategory = toolbarUiState.category,
+            weather = weatherUiState.weather,
+            weatherIcon = weatherUiState.weather.toDrawable(),
+            weatherCarouselLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
+            isWeatherCarouselEnabled = weatherUiState.enabled,
+            onWeatherCarouselLeftClick = { },
+            onWeatherCarouselRightClick = { },
+            weatherDropdownOptions = Weather.entries.map { if (it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown else it.toStringResource() },
+            isWeatherDropdownEnabled = weatherUiState.enabled,
+            weatherDropdownLabel = if (weatherUiState.weather == Weather.RANDOM) R.string.difficulty_setting_response_unknown else weatherUiState.weather.toStringResource(),
+            onWeatherDropdownSelect = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) },
+            mapCarouselLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
+            isMapCarouselEnabled = mapConfigUiState.enabled,
+            onMapCarouselLeftClick = { investigationViewModel.onEvent(DecrementMap) },
+            onMapCarouselRightClick = { investigationViewModel.onEvent(IncrementMap) },
+            mapDropdownOptions = mapConfigUiState.allMaps.map { it.toStringResource(SimpleMapResources.MapTitleLength.FULL) },
+            isMapDropdownEnabled = mapConfigUiState.enabled,
+            mapDropdownLabel = mapConfigUiState.name.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED),
+            onMapDropdownSelect = { investigationViewModel.onEvent(SetMap(it)) },
+            difficultyCarouselLabel = difficultyUiState.name.toStringResource(),
+            isDifficultyCarouselEnabled = true,
+            onDifficultyCarouselLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) },
+            onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) },
+            difficultyDropdownOptions = difficultyUiState.allDifficulties.map { it.toStringResource() },
+            isDifficultyDropdownEnabled = true,
+            difficultyDropdownLabel = difficultyUiState.name.toStringResource(),
+            onDifficultyDropdownSelect = { investigationViewModel.onEvent(SetDifficulty(it)) },
+            sanityLevel = sanityUiState.sanityLevel,
+            insanityLevel = sanityUiState.insanityLevel,
+            onSanityChange = { investigationViewModel.onEvent(SetPlayerSanity(it)) },
+            onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) },
+            onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) },
+            timerRemainingTime = operationTimerUiState.remainingTime,
+            timerPaused = operationTimerUiState.paused,
+            onTimerToggle = { investigationViewModel.onEvent(ToggleOperationTimer) },
+            onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) },
+            phaseUiState = phaseUiState,
+            temperatureStateBundle = TemperatureStateBundle(temperatureUiState),
+            fuseBoxFlag = difficultyOverrideUiState.fuseBox,
+            onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) },
+            traitListOptions = traitFilterOptions,
+            traitList = traitListUiStates,
+            onSelectTraitCategory = { category -> investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category))) },
+            onSelectTrait = { trait -> investigationViewModel.onEvent(ToggleTrait(trait)) },
+            onToggleUniqueOnly = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) },
+            operationDetailsUiState = operationDetailsUiState,
+            smudgeHuntPreventionTitle = "Smudge Hunt Protection",
+            smudgeHuntPreventionMax = smudgeHuntProtectionTimerState.max,
+            smudgeHuntPreventionRemaining = smudgeHuntProtectionTimerState.remaining,
+            smudgeHuntPreventionTimeText = smudgeHuntProtectionTimerState.timeText,
+            smudgeHuntPreventionRunning = smudgeHuntProtectionTimerState.running,
+            onSmudgeToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) },
+            smudgeNotches = smudgeHuntProtectionTimerState.notches,
+            huntDurationTitle = "Hunt Duration",
+            huntDurationMax = huntDurationTimerState.max,
+            huntDurationRemaining = huntDurationTimerState.remaining,
+            huntDurationTimeText = huntDurationTimerState.timeText,
+            huntDurationRunning = huntDurationTimerState.running,
+            onHuntDurationToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) },
+            huntDurationNotches = huntDurationTimerState.notches,
+            huntCooldownTitle = "Hunt Cooldown",
+            huntCooldownMax = huntGapTimerState.max,
+            huntCooldownRemaining = huntGapTimerState.remaining,
+            huntCooldownTimeText = huntGapTimerState.timeText,
+            huntCooldownRunning = huntGapTimerState.running,
+            onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
+            huntCooldownNotches = huntGapTimerState.notches,
+            fingerprintTimerTitle = "UV Evidence Lifetime",
+            fingerprintTimerMax = fingerprintTimerState.max,
+            fingerprintTimerRemaining = fingerprintTimerState.remaining,
+            fingerprintTimerTimeText = fingerprintTimerState.timeText,
+            fingerprintTimerRunning = fingerprintTimerState.running,
+            onFingerprintToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) },
+            fingerprintNotches = fingerprintTimerState.notches,
+            bpmRealtimeState = bpmToolUiState.realtimeState,
+            bpmMeasurementType = bpmToolUiState.measurementType,
+            bpmApplyMeasurement = bpmToolUiState.applyMeasurement,
+            onBpmUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
+            onBpmChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
+            onBpmToggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) },
+            notchedProgressBarUiColors = notchedProgressBarUiColors
+        )
+    }
 
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT,
@@ -458,31 +332,50 @@ private fun InvestigationContent(
             ) {
                 Investigation(
                     modifier = Modifier.weight(1f, false),
-                    state = investigationUiState,
-                    actions = investigationUiActions,
+                    operationToolbarUiState = toolbarUiState,
+                    evidenceListUiActions = com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions(
+                        onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
+                        onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
+                    ),
+                    ghostListUiActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions(
+                        onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
+                    ),
+                    ghostListUiItemActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions(
+                        onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
+                        onRequestToolTip = { }
+                    ),
+                    toolbarUiActions = com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions(
+                        onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                        onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
+                        onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                    ),
+                    bpmToolUiActions = com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions(
+                        onUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
+                        onChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
+                        toggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
+                    ),
                     statusBarComponent = { modifier ->
                         OperationStatusBar(
                             modifier = modifier,
-                            bundle = statusBarComponentStateBundle
+                            remainingTime = operationTimerUiState.remainingTime,
+                            phaseType = phaseUiState.type,
+                            sanityLevel = sanityUiState.sanityLevel
                         )
                     },
                     journalComponent = { modifier ->
                         JournalComponent(
                             modifier = modifier,
-                            evidenceListUiState = evidenceListUiState,
-                            evidenceListUiActions = evidenceListUiActions,
-                            ghostListUiState = ghostListUiState,
-                            ghostListUiActions = ghostListUiActions,
-                            ghostListUiItemActions = ghostListUiItemActions
+                            evidenceStateList = evidenceListUiStates,
+                            ghostOrder = ghostOrder,
+                            ghostEvidenceState = evidenceStates,
+                            onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
+                            onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
+                            onRequestToolTip = { },
+                            onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
+                            onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
                         )
                     },
-                    bottomSheetComponent = { modifier ->
-                        ToolsBottomSheetComponent(
-                            modifier = modifier,
-                            stateBundle = toolSheetStateBundle,
-                            actionsBundle = toolSheetActionsBundle
-                        )
-                    }
+                    bottomSheetComponent = bottomSheetComponent
                 )
 
             }
@@ -497,31 +390,50 @@ private fun InvestigationContent(
             ) {
                 Investigation(
                     modifier = Modifier,
-                    state = investigationUiState,
-                    actions = investigationUiActions,
+                    operationToolbarUiState = toolbarUiState,
+                    evidenceListUiActions = com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions(
+                        onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
+                        onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
+                    ),
+                    ghostListUiActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions(
+                        onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
+                    ),
+                    ghostListUiItemActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions(
+                        onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
+                        onRequestToolTip = { }
+                    ),
+                    toolbarUiActions = com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions(
+                        onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                        onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
+                        onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                    ),
+                    bpmToolUiActions = com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions(
+                        onUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
+                        onChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
+                        toggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
+                    ),
                     statusBarComponent = { modifier ->
                         OperationStatusBar(
                             modifier = modifier,
-                            bundle = statusBarComponentStateBundle
+                            remainingTime = operationTimerUiState.remainingTime,
+                            phaseType = phaseUiState.type,
+                            sanityLevel = sanityUiState.sanityLevel
                         )
                     },
                     journalComponent = { modifier ->
                         JournalComponent(
                             modifier = modifier,
-                            evidenceListUiState = evidenceListUiState,
-                            evidenceListUiActions = evidenceListUiActions,
-                            ghostListUiState = ghostListUiState,
-                            ghostListUiActions = ghostListUiActions,
-                            ghostListUiItemActions = ghostListUiItemActions
+                            evidenceStateList = evidenceListUiStates,
+                            ghostOrder = ghostOrder,
+                            ghostEvidenceState = evidenceStates,
+                            onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
+                            onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
+                            onRequestToolTip = { },
+                            onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
+                            onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
                         )
                     },
-                    sideSheetComponent = { modifier ->
-                        ToolsSideSheetComponent(
-                            modifier = modifier,
-                            stateBundle = toolSheetStateBundle,
-                            actionsBundle = toolSheetActionsBundle
-                        )
-                    }
+                    sideSheetComponent = sideSheetComponent
                 )
             }
 
@@ -552,8 +464,12 @@ private fun InvestigationContent(
 @Composable
 private fun ColumnScope.Investigation(
     modifier: Modifier = Modifier,
-    state: InvestigationUiState,
-    actions: InvestigationUiActions,
+    operationToolbarUiState: OperationToolbarUiState,
+    evidenceListUiActions: com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions,
+    ghostListUiActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions,
+    ghostListUiItemActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions,
+    toolbarUiActions: com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions,
+    bpmToolUiActions: com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
     bottomSheetComponent: @Composable (Modifier) -> Unit,
     journalComponent: @Composable (Modifier) -> Unit
@@ -563,8 +479,9 @@ private fun ColumnScope.Investigation(
         OperationToolbar(
             modifier = modifier
                 .heightIn(min = 48.dp),
-            operationToolbarUiState = state.operationToolbarUiState,
-            toolbarUiActions = actions.toolbarUi,
+            category = operationToolbarUiState.category,
+            onChangeToolbarCategory = toolbarUiActions.onChangeToolbarCategory,
+            onReset = toolbarUiActions.onReset,
             containerColor = LocalPalette.current.surfaceContainerHigh
         )
     }
@@ -596,7 +513,7 @@ private fun ColumnScope.Investigation(
                         .fillMaxWidth()
                         .animateContentSize()
                         .then(
-                            if (!state.operationToolbarUiState.isCollapsed)
+                            if (!operationToolbarUiState.isCollapsed)
                                 Modifier
                                     .alpha(1f)
                                     .wrapContentHeight()
@@ -614,8 +531,12 @@ private fun ColumnScope.Investigation(
 @Composable
 private fun RowScope.Investigation(
     modifier: Modifier = Modifier,
-    state: InvestigationUiState,
-    actions: InvestigationUiActions,
+    operationToolbarUiState: OperationToolbarUiState,
+    evidenceListUiActions: com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions,
+    ghostListUiActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions,
+    ghostListUiItemActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions,
+    toolbarUiActions: com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions,
+    bpmToolUiActions: com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
     journalComponent: @Composable (Modifier) -> Unit,
     sideSheetComponent: @Composable (Modifier) -> Unit
@@ -629,8 +550,9 @@ private fun RowScope.Investigation(
             OperationToolRail(
                 modifier = modifier
                     .widthIn(min = 48.dp),
-                operationToolbarUiState = state.operationToolbarUiState,
-                toolbarUiActions = actions.toolbarUi,
+                category = operationToolbarUiState.category,
+                onChangeToolbarCategory = toolbarUiActions.onChangeToolbarCategory,
+                onReset = toolbarUiActions.onReset,
                 containerColor = LocalPalette.current.surfaceContainerHigh
             )
         }
@@ -645,7 +567,7 @@ private fun RowScope.Investigation(
                         .fillMaxHeight()
                         .animateContentSize()
                         .then(
-                            if (!state.operationToolbarUiState.isCollapsed)
+                            if (!operationToolbarUiState.isCollapsed)
                                 Modifier
                                     .fillMaxWidth(.35f)
                                     .alpha(1f)
@@ -1171,15 +1093,3 @@ fun OperationConfigsSideSheet(
     }
 
 }
-
-internal data class InvestigationUiActions(
-    val evidenceListUi: EvidenceListUiActions,
-    val ghostListUi: GhostListUiActions,
-    val ghostListItemUi: GhostListUiItemActions,
-    val toolbarUi: ToolbarUiActions,
-    val bpmUi: BpmToolUiActions
-)
-
-internal data class InvestigationUiState(
-    val operationToolbarUiState: OperationToolbarUiState
-)

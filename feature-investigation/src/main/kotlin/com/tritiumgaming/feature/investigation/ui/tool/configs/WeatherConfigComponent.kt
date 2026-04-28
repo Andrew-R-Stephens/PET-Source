@@ -22,8 +22,14 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 internal fun WeatherConfigComponent(
     modifier: Modifier = Modifier,
     @DrawableRes icon: Int,
-    bundle: ConfigStateBundle,
-    actions: ConfigActionsBundle
+    carouselLabel: Int,
+    isCarouselEnabled: Boolean,
+    onCarouselLeftClick: () -> Unit,
+    onCarouselRightClick: () -> Unit,
+    dropdownOptions: List<Int>,
+    isDropdownEnabled: Boolean,
+    dropdownLabel: Int,
+    onDropdownSelect: (Int) -> Unit
 ) {
     val uiDensityType = LocalUiConfiguration.current.densityType
 
@@ -47,8 +53,10 @@ internal fun WeatherConfigComponent(
             OperationConfigDropdown(
                 modifier = modifier,
                 icon = { icon(it) },
-                state = bundle.dropdownUiState,
-                actions = actions.dropdownUiActions,
+                options = dropdownOptions,
+                enabled = isDropdownEnabled,
+                label = dropdownLabel,
+                onSelect = onDropdownSelect,
                 textStyle = textStyle,
                 onColor = onColor,
                 expandedColor = color,
@@ -57,8 +65,10 @@ internal fun WeatherConfigComponent(
         else -> {
             OperationConfigCarousel(
                 modifier = modifier,
-                state = bundle.carouselUiState,
-                actions = actions.carouselUiActions,
+                label = carouselLabel,
+                enabled = isCarouselEnabled,
+                onLeftClick = onCarouselLeftClick,
+                onRightClick = onCarouselRightClick,
                 leadingIcon = { icon(it) },
                 textStyle = textStyle,
                 onColor = onColor,

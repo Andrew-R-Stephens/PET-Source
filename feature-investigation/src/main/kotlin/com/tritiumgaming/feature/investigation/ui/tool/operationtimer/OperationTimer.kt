@@ -29,8 +29,10 @@ import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 @Composable
 internal fun OperationTimerColumn(
     modifier: Modifier = Modifier,
-    operationTimerUiState: OperationTimerUiState,
-    timerUiActions: TimerUiActions,
+    remainingTime: String,
+    paused: Boolean,
+    onToggle: () -> Unit,
+    onSkip: () -> Unit,
     phaseUiState: PhaseUiState
 ) {
 
@@ -49,7 +51,7 @@ internal fun OperationTimerColumn(
                 modifier = Modifier
                     .height(36.dp)
                     .padding(8.dp),
-                state = operationTimerUiState,
+                remainingTime = remainingTime,
             )
         }
 
@@ -61,8 +63,8 @@ internal fun OperationTimerColumn(
             TimerToggleButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = operationTimerUiState,
-                actions = timerUiActions,
+                paused = paused,
+                onToggle = onToggle,
                 primaryContent = { modifier ->
                     Icon(
                         modifier = modifier,
@@ -84,8 +86,7 @@ internal fun OperationTimerColumn(
             TimerSkipButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = operationTimerUiState,
-                actions = timerUiActions,
+                onSkip = onSkip,
                 content = { modifier ->
                     Icon(
                         modifier = modifier,
@@ -116,8 +117,10 @@ internal fun OperationTimerColumn(
 @Composable
 internal fun OperationTimerRow(
     modifier: Modifier = Modifier,
-    operationTimerUiState: OperationTimerUiState,
-    timerUiActions: TimerUiActions,
+    remainingTime: String,
+    paused: Boolean,
+    onToggle: () -> Unit,
+    onSkip: () -> Unit,
     phaseUiState: PhaseUiState
 ) {
 
@@ -137,7 +140,7 @@ internal fun OperationTimerRow(
                 modifier = Modifier
                     .height(36.dp)
                     .padding(8.dp),
-                state = operationTimerUiState,
+                remainingTime = remainingTime,
             )
 
             Surface(
@@ -162,8 +165,8 @@ internal fun OperationTimerRow(
             TimerToggleButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = operationTimerUiState,
-                actions = timerUiActions,
+                paused = paused,
+                onToggle = onToggle,
                 primaryContent = { modifier ->
                     Icon(
                         modifier = modifier,
@@ -185,8 +188,7 @@ internal fun OperationTimerRow(
             TimerSkipButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = operationTimerUiState,
-                actions = timerUiActions,
+                onSkip = onSkip,
                 content = { modifier ->
                     Icon(
                         modifier = modifier,

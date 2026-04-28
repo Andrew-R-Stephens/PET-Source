@@ -48,8 +48,12 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 internal fun BpmTool(
     modifier: Modifier = Modifier,
-    state: BpmToolUiState,
-    actions: BpmToolUiActions
+    realtimeState: RealtimeUiState<GraphPoint>,
+    measurementType: VisualizerMeasurementType,
+    applyMeasurement: Boolean,
+    onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
+    onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
+    toggleApplyMeasurement: () -> Unit
 ) {
 
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
@@ -68,19 +72,19 @@ internal fun BpmTool(
         realtimePlotUiColors = RealtimePlotUiColors(
             instant = LocalPalette.current.primary.copy(
                 alpha = alpha(
-                    state.measurementType,
+                    measurementType,
                     VisualizerMeasurementType.INSTANT
                 )
             ),
             averaged = LocalPalette.current.tertiary.copy(
                 alpha = alpha(
-                    state.measurementType,
+                    measurementType,
                     VisualizerMeasurementType.AVERAGED
                 )
             ),
             weighted = LocalPalette.current.secondary.copy(
                 alpha = alpha(
-                    state.measurementType,
+                    measurementType,
                     VisualizerMeasurementType.WEIGHTED
                 )
             ),
@@ -154,7 +158,7 @@ internal fun BpmTool(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable {
-                    actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
+                    onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
                 },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start)
@@ -162,8 +166,8 @@ internal fun BpmTool(
             Checkbox(
                 modifier = Modifier
                     .padding(8.dp),
-                checked = state.applyMeasurement,
-                onCheckedChange = { actions.toggleApplyMeasurement() }
+                checked = applyMeasurement,
+                onCheckedChange = { toggleApplyMeasurement() }
             )
 
             Text(
@@ -183,7 +187,7 @@ internal fun BpmTool(
             colorBundle = bpmVisualizerColorBundle,
             actions = BpmVisualizerUiActions(
                 onUpdate = { newTapUiState ->
-                    actions.onUpdate(newTapUiState) }
+                    onUpdate(newTapUiState) }
             )
         )
 
@@ -191,7 +195,7 @@ internal fun BpmTool(
            modifier = Modifier
                .fillMaxWidth()
                .clickable {
-                   actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
+                   onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
                }
         ) {
             SpeedIcon(
@@ -201,13 +205,13 @@ internal fun BpmTool(
                 colors = IconVectorColors(
                     fillColor = LocalPalette.current.onSurface.copy(
                         alpha = alpha(
-                            state.measurementType,
+                            measurementType,
                             VisualizerMeasurementType.INSTANT
                         )
                     ),
                     strokeColor = LocalPalette.current.onSurface.copy(
                         alpha = alpha(
-                            state.measurementType,
+                            measurementType,
                             VisualizerMeasurementType.INSTANT
                         )
                     )
@@ -218,7 +222,7 @@ internal fun BpmTool(
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentHeight(),
-                text = "%.1f".format(state.realtimeState.smoothed / 60f),
+                text = "%.1f".format(realtimeState.smoothed / 60f),
                 color = LocalPalette.current.onSurface
             )
         }
@@ -227,7 +231,7 @@ internal fun BpmTool(
            modifier = Modifier
                .fillMaxWidth()
                .clickable {
-                   actions.onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
+                   onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
                }
         ) {
             SpeedBIcon(
@@ -236,11 +240,11 @@ internal fun BpmTool(
                     .padding(8.dp),
                 colors = IconVectorColors(
                     fillColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(state.measurementType,
+                        alpha = alpha(measurementType,
                             VisualizerMeasurementType.AVERAGED)
                     ),
                     strokeColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(state.measurementType,
+                        alpha = alpha(measurementType,
                             VisualizerMeasurementType.AVERAGED)
                     )
                 )
@@ -250,7 +254,7 @@ internal fun BpmTool(
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentHeight(),
-                text = "%.1f".format((state.realtimeState.points.tail?.data?.avg ?: 0f) / 60f),
+                text = "%.1f".format((realtimeState.points.tail?.data?.avg ?: 0f) / 60f),
                 color = LocalPalette.current.onSurface
             )
         }
@@ -259,7 +263,7 @@ internal fun BpmTool(
            modifier = Modifier
                .fillMaxWidth()
                .clickable {
-                   actions.onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
+                   onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
                }
         ) {
             SpeedBBIcon(
@@ -268,11 +272,11 @@ internal fun BpmTool(
                     .padding(8.dp),
                 colors = IconVectorColors(
                     fillColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(state.measurementType,
+                        alpha = alpha(measurementType,
                             VisualizerMeasurementType.WEIGHTED)
                     ),
                     strokeColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(state.measurementType,
+                        alpha = alpha(measurementType,
                             VisualizerMeasurementType.WEIGHTED)
                     )
                 )
@@ -282,7 +286,7 @@ internal fun BpmTool(
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentHeight(),
-                text = "%.1f".format((state.realtimeState.points.tail?.data?.weightedAvg?: 0f) / 60f),
+                text = "%.1f".format((realtimeState.points.tail?.data?.weightedAvg?: 0f) / 60f),
                 color = LocalPalette.current.onSurface
             )
         }

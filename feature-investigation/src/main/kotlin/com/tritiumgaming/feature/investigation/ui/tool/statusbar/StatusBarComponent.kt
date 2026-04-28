@@ -42,13 +42,16 @@ import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanit
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
+import com.tritiumgaming.shared.data.phase.model.PhaseResources
 
 @Composable
 internal fun OperationStatusBar(
     modifier: Modifier = Modifier,
-    bundle: StatusBarComponentStateBundle
+    sanityLevel: Float,
+    remainingTime: String,
+    phaseType: PhaseResources.PhaseIdentifier
 ) {
-    val sanityPercentString = bundle.sanityUiState.sanityLevel.toPercentageString()
+    val sanityPercentString = sanityLevel.toPercentageString()
 
     val density = LocalDensity.current
     var textHeight by remember { mutableStateOf(16.dp) }
@@ -84,7 +87,7 @@ internal fun OperationStatusBar(
                 Text(
                     modifier = Modifier,
                     text = stringResource(
-                        bundle.phaseUiState.type.toPhaseTitle().toStringResource()),
+                        phaseType.toPhaseTitle().toStringResource()),
                     color = LocalPalette.current.onSurfaceVariant,
                     style = LocalTypography.current.tertiary.regular.copy(
                         fontSize = 12.sp,
@@ -92,10 +95,10 @@ internal fun OperationStatusBar(
                     )
                 )
 
-                if(bundle.digitalTimerUiState.remainingTime.isNotEmpty()) {
+                if(remainingTime.isNotEmpty()) {
                     DigitalTimer(
                         modifier = Modifier,
-                        state = bundle.digitalTimerUiState,
+                        remainingTime = remainingTime,
                         fontSize = 12.sp,
                         color = LocalPalette.current.onSurfaceVariant
                     )
@@ -116,14 +119,15 @@ internal fun OperationStatusBar(
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                val sanityUiState = bundle.sanityUiState
 
                 SanityMeter(
                     modifier = Modifier
                         .heightIn(min = 18.dp)
                         .height(textHeight)
                         .aspectRatio(1f),
-                    sanityUiState = sanityUiState
+                    sanityLevel = sanityLevel,
+                    showText = false,
+                    showProgress = false
                 )
 
                 Text(

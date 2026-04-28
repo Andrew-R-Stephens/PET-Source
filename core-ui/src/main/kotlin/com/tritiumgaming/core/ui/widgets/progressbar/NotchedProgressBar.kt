@@ -18,14 +18,14 @@ import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 @Composable
 fun NotchedProgressBar(
     modifier: Modifier = Modifier,
-    bundle: NotchedProgressBarBundle
+    max: Long,
+    remaining: Long,
+    notches: List<ProgressBarNotch>,
+    colors: NotchedProgressBarUiColors
 ) {
     val textMeasurer = rememberTextMeasurer()
 
-    val state = bundle.state
-    val colors = bundle.colors
-
-    val labels = state.notches.map { notch -> notch.label.asString() }
+    val labels = notches.map { notch -> notch.label.asString() }
 
     Canvas(
         modifier = modifier
@@ -33,9 +33,9 @@ fun NotchedProgressBar(
         val barHeight = size.height * 0.5f
         val labelsHeight = size.height * 0.5f
 
-        val maxDurationNormal = state.max.coerceAtLeast(1).toFloat()
-        val progressOffset = bundle.state.origin / maxDurationNormal
-        val progressWidth = state.remaining.toFloat() / maxDurationNormal
+        val maxDurationNormal = max.coerceAtLeast(1).toFloat()
+        val progressOffset = 0f // bundle.state.origin / maxDurationNormal
+        val progressWidth = remaining.toFloat() / maxDurationNormal
         val scale = barHeight / 48f
 
         // --- Draw Progress Bar ---
@@ -61,7 +61,7 @@ fun NotchedProgressBar(
 
         // Draw Notches
         val notchStrokeWidth = 3f * scale
-        state.notches.forEach { notch ->
+        notches.forEach { notch ->
             val inverseNotch = maxDurationNormal - notch.xPos.toFloat()
             val progressAreaWidth = size.width - 24f * scale
             val notchX = 12f * scale +
@@ -90,11 +90,11 @@ fun NotchedProgressBar(
         )
 
         // --- Draw Labels ---
-        state.notches.forEachIndexed { index, notch ->
-            val inverseNotch = (state.max.coerceAtLeast(1) - notch.xPos).toFloat()
+        notches.forEachIndexed { index, notch ->
+            val inverseNotch = (max.coerceAtLeast(1) - notch.xPos).toFloat()
             val progressAreaWidth = size.width - 24f * scale
             val notchX = 12f * scale +
-                    (inverseNotch / state.max.coerceAtLeast(1)) *
+                    (inverseNotch / max.coerceAtLeast(1)) *
                     progressAreaWidth
 
             val textLayoutResult = textMeasurer.measure(

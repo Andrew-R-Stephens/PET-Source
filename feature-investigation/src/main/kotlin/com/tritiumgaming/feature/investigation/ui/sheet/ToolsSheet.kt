@@ -13,73 +13,155 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
+import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsBottomSheet
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsSideSheet
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxButton
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherConfigComponent
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerColumn
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerRow
+import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButton
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationButton
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeterComponent
-import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerColumn
-import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerRow
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
+import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.timers.ProgressBarTimer
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
+import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
+import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
+import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 
 @Composable
 internal fun ToolsBottomSheetComponent(
     modifier: Modifier = Modifier,
-    stateBundle: ToolSheetStateBundle,
-    actionsBundle: ToolSheetActionsBundle
+    // Toolbar state
+    toolbarCategory: OperationToolbarUiState.Category,
+    // Weather state
+    weather: Weather,
+    weatherIcon: Int,
+    weatherCarouselLabel: Int,
+    isWeatherCarouselEnabled: Boolean,
+    onWeatherCarouselLeftClick: () -> Unit,
+    onWeatherCarouselRightClick: () -> Unit,
+    weatherDropdownOptions: List<Int>,
+    isWeatherDropdownEnabled: Boolean,
+    weatherDropdownLabel: Int,
+    onWeatherDropdownSelect: (Int) -> Unit,
+    // Map state
+    mapCarouselLabel: Int,
+    isMapCarouselEnabled: Boolean,
+    onMapCarouselLeftClick: () -> Unit,
+    onMapCarouselRightClick: () -> Unit,
+    mapDropdownOptions: List<Int>,
+    isMapDropdownEnabled: Boolean,
+    mapDropdownLabel: Int,
+    onMapDropdownSelect: (Int) -> Unit,
+    // Difficulty state
+    difficultyCarouselLabel: Int,
+    isDifficultyCarouselEnabled: Boolean,
+    onDifficultyCarouselLeftClick: () -> Unit,
+    onDifficultyCarouselRightClick: () -> Unit,
+    difficultyDropdownOptions: List<Int>,
+    isDifficultyDropdownEnabled: Boolean,
+    difficultyDropdownLabel: Int,
+    onDifficultyDropdownSelect: (Int) -> Unit,
+    // Sanity state
+    sanityLevel: Float,
+    insanityLevel: Float,
+    onSanityChange: (Float) -> Unit,
+    onUseSanityMedication: () -> Unit,
+    onPlayerDeath: () -> Unit,
+    // Timer state
+    timerRemainingTime: String,
+    timerPaused: Boolean,
+    onTimerToggle: () -> Unit,
+    onTimerSkip: () -> Unit,
+    phaseUiState: PhaseUiState,
+    // Temperature state
+    temperatureStateBundle: TemperatureStateBundle,
+    // FuseBox state
+    fuseBoxFlag: FuseBoxFlag,
+    onTogglePower: () -> Unit,
+    // Trait state
+    traitListOptions: GhostTraitFilterUiOptions,
+    traitList: List<ValidatedGhostTrait>,
+    onSelectTraitCategory: (TraitCategory) -> Unit,
+    onToggleTrait: (ValidatedGhostTrait) -> Unit,
+    onToggleUniqueOnly: () -> Unit,
+    // Analyzer state
+    operationDetailsUiState: OperationDetailsUiState,
+    // Timers state
+    smudgeHuntPreventionTitle: String,
+    smudgeHuntPreventionMax: Long,
+    smudgeHuntPreventionRemaining: Long,
+    smudgeHuntPreventionTimeText: String,
+    smudgeHuntPreventionRunning: Boolean,
+    onSmudgeToggle: () -> Unit,
+    smudgeNotches: List<ProgressBarNotch>,
+
+    huntDurationTitle: String,
+    huntDurationMax: Long,
+    huntDurationRemaining: Long,
+    huntDurationTimeText: String,
+    huntDurationRunning: Boolean,
+    onHuntDurationToggle: () -> Unit,
+    huntDurationNotches: List<ProgressBarNotch>,
+
+    huntCooldownTitle: String,
+    huntCooldownMax: Long,
+    huntCooldownRemaining: Long,
+    huntCooldownTimeText: String,
+    huntCooldownRunning: Boolean,
+    onHuntCooldownToggle: () -> Unit,
+    huntCooldownNotches: List<ProgressBarNotch>,
+
+    fingerprintTimerTitle: String,
+    fingerprintTimerMax: Long,
+    fingerprintTimerRemaining: Long,
+    fingerprintTimerTimeText: String,
+    fingerprintTimerRunning: Boolean,
+    onFingerprintToggle: () -> Unit,
+    fingerprintNotches: List<ProgressBarNotch>,
+
+    // BPM Tool state
+    bpmRealtimeState: RealtimeUiState<GraphPoint>,
+    bpmMeasurementType: VisualizerMeasurementType,
+    bpmApplyMeasurement: Boolean,
+    onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
+    onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
+    onBpmToggleApplyMeasurement: () -> Unit,
+    // Colors
+    notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
-
-    val weatherUiState = stateBundle.weatherUiState
-    val toolbarUiState = stateBundle.toolbarUiState
-    val traitListUiState = stateBundle.traitListUiState
-    val operationDetailsUiState = stateBundle.operationDetailsUiState
-    val bpmToolUiState = stateBundle.bpmToolUiState
-    val sanityUiState = stateBundle.sanityUiState
-    val timerUiState = stateBundle.operationTimerUiState
-    val phaseUiState = stateBundle.phaseUiState
-    val temperatureBundle = stateBundle.temperatureStateBundle
-    val fuseBoxUiState = stateBundle.fuseBoxUiState
-    val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
-    val huntDurationBundle = stateBundle.huntDurationBundle
-    val huntCooldownBundle = stateBundle.huntCooldownBundle
-    val fingerprintTimerBundle = stateBundle.fingerprintTimerBundle
-    val difficultyUiStateBundle = stateBundle.difficultyUiStateBundle
-    val mapUiStateBundle = stateBundle.mapUiStateBundle
-    val weatherUiStateBundle = stateBundle.weatherUiStateBundle
-
-    val difficultyUiActions = actionsBundle.difficultyUiActions
-    val mapUiActions = actionsBundle.mapUiActions
-    val weatherUiActions = actionsBundle.weatherUiActions
-    val traitListUiActions = actionsBundle.traitListUiActions
-    val bpmToolUiActions = actionsBundle.bpmToolUiActions
-    val timerUiActions = actionsBundle.timerUiActions
-    val fuseBoxUiActions = actionsBundle.fuseBoxUiActions
 
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        when (toolbarUiState.category) {
+        when (toolbarCategory) {
             OperationToolbarUiState.Category.TOOL_NONE -> {}
             OperationToolbarUiState.Category.TOOL_CONFIG -> {
                 OperationConfigsBottomSheet(
@@ -89,71 +171,87 @@ internal fun ToolsBottomSheetComponent(
                     mapConfigComponent = { modifier ->
                         MapConfigControl(
                             modifier = modifier,
-                            bundle = mapUiStateBundle,
-                            actions = mapUiActions
+                            carouselLabel = mapCarouselLabel,
+                            isCarouselEnabled = isMapCarouselEnabled,
+                            onCarouselLeftClick = onMapCarouselLeftClick,
+                            onCarouselRightClick = onMapCarouselRightClick,
+                            dropdownOptions = mapDropdownOptions,
+                            isDropdownEnabled = isMapDropdownEnabled,
+                            dropdownLabel = mapDropdownLabel,
+                            onDropdownSelect = onMapDropdownSelect
                         )
                     },
                     difficultyConfigComponent = { modifier ->
                         DifficultyConfigControl(
                             modifier = modifier,
-                            bundle = difficultyUiStateBundle,
-                            actions = difficultyUiActions
+                            carouselLabel = difficultyCarouselLabel,
+                            isCarouselEnabled = isDifficultyCarouselEnabled,
+                            onCarouselLeftClick = onDifficultyCarouselLeftClick,
+                            onCarouselRightClick = onDifficultyCarouselRightClick,
+                            dropdownOptions = difficultyDropdownOptions,
+                            isDropdownEnabled = isDifficultyDropdownEnabled,
+                            dropdownLabel = difficultyDropdownLabel,
+                            onDropdownSelect = onDifficultyDropdownSelect
                         )
                     },
                     weatherConfigComponent = { modifier ->
                         WeatherConfigComponent(
                             modifier = modifier,
-                            icon = weatherUiState.weather.toDrawable(),
-                            bundle = weatherUiStateBundle,
-                            actions = weatherUiActions
+                            icon = weatherIcon,
+                            carouselLabel = weatherCarouselLabel,
+                            isCarouselEnabled = isWeatherCarouselEnabled,
+                            onCarouselLeftClick = onWeatherCarouselLeftClick,
+                            onCarouselRightClick = onWeatherCarouselRightClick,
+                            dropdownOptions = weatherDropdownOptions,
+                            isDropdownEnabled = isWeatherDropdownEnabled,
+                            dropdownLabel = weatherDropdownLabel,
+                            onDropdownSelect = onWeatherDropdownSelect
                         )
                     },
                     sanityMeterComponent = { modifier ->
                         SanityMeterComponent(
                             modifier = modifier,
-                            sanityUiState = sanityUiState
-                        ) {
-                            actionsBundle.onSanityChange(it)
-                        }
+                            sanityLevel = sanityLevel,
+                            insanityLevel = insanityLevel,
+                            onSanityChange = onSanityChange
+                        )
                     },
                     timerComponent = { modifier ->
                         OperationTimerColumn(
                             modifier = modifier,
-                            operationTimerUiState = timerUiState,
-                            timerUiActions = timerUiActions,
+                            remainingTime = timerRemainingTime,
+                            paused = timerPaused,
+                            onToggle = onTimerToggle,
+                            onSkip = onTimerSkip,
                             phaseUiState = phaseUiState
                         )
                     },
                     sanityMedicationComponent = { modifier ->
                         SanityMedicationButton(
                             modifier = modifier,
-                            onClick = {
-                                actionsBundle.onUseSanityMedication()
-                            }
+                            onClick = onUseSanityMedication
                         )
                     },
                     playerDeathButtonComponent = { modifier ->
                         PlayerDeathButton(
                             modifier = modifier,
-                            onClick = {
-                                actionsBundle.onPlayerDeath()
-                            }
+                            onClick = onPlayerDeath
                         )
                     },
                     temperatureMeterComponent = { modifier ->
                         TemperatureComponent(
                             modifier = modifier,
-                            state = temperatureBundle
+                            state = temperatureStateBundle
                         )
                     },
                     fuseBoxControlComponent = { modifier ->
                         FuseBoxButton(
                             modifier = modifier,
-                            state = fuseBoxUiState,
-                            actions = fuseBoxUiActions
+                            flag = fuseBoxFlag,
+                            onTogglePower = onTogglePower
                         )
                     },
-                    showTemperatureMeterComponent = weatherUiState.weather != Weather.RANDOM
+                    showTemperatureMeterComponent = weather != Weather.RANDOM
                 )
             }
 
@@ -162,8 +260,12 @@ internal fun ToolsBottomSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .fillMaxHeight(.5f),
-                    state = traitListUiState,
-                    actions = traitListUiActions,
+                    uniqueOnly = traitListOptions.uniqueOnly ?: false,
+                    categories = traitListOptions.category,
+                    list = traitList,
+                    onSelectCategory = onSelectTraitCategory,
+                    onSelectTrait = onToggleTrait,
+                    onToggleUniqueOnly = onToggleUniqueOnly,
                     colors = TraitListItemUiColors(
                         unselectedColor = LocalPalette.current.surfaceContainerHigh,
                         unselectedOnColor = LocalPalette.current.onSurface,
@@ -198,7 +300,14 @@ internal fun ToolsBottomSheetComponent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(8.dp),
-                            bundle = smudgeHuntPreventionBundle
+                            title = smudgeHuntPreventionTitle,
+                            max = smudgeHuntPreventionMax,
+                            remaining = smudgeHuntPreventionRemaining,
+                            timeText = smudgeHuntPreventionTimeText,
+                            running = smudgeHuntPreventionRunning,
+                            onToggle = onSmudgeToggle,
+                            notches = smudgeNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             PreventHuntIcon(
                                 modifier = modifier,
@@ -217,7 +326,14 @@ internal fun ToolsBottomSheetComponent(
                         ProgressBarTimer(
                             modifier = Modifier
                                 .padding(8.dp),
-                            bundle = huntDurationBundle
+                            title = huntDurationTitle,
+                            max = huntDurationMax,
+                            remaining = huntDurationRemaining,
+                            timeText = huntDurationTimeText,
+                            running = huntDurationRunning,
+                            onToggle = onHuntDurationToggle,
+                            notches = huntDurationNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             HuntDurationIcon(
                                 modifier = modifier,
@@ -236,7 +352,14 @@ internal fun ToolsBottomSheetComponent(
                         ProgressBarTimer(
                             modifier = Modifier
                                 .padding(8.dp),
-                            bundle = huntCooldownBundle
+                            title = huntCooldownTitle,
+                            max = huntCooldownMax,
+                            remaining = huntCooldownRemaining,
+                            timeText = huntCooldownTimeText,
+                            running = huntCooldownRunning,
+                            onToggle = onHuntCooldownToggle,
+                            notches = huntCooldownNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             HuntCooldownDurationIcon(
                                 modifier = modifier,
@@ -255,7 +378,14 @@ internal fun ToolsBottomSheetComponent(
                         ProgressBarTimer(
                             modifier = Modifier
                                 .padding(8.dp),
-                            bundle = fingerprintTimerBundle
+                            title = fingerprintTimerTitle,
+                            max = fingerprintTimerMax,
+                            remaining = fingerprintTimerRemaining,
+                            timeText = fingerprintTimerTimeText,
+                            running = fingerprintTimerRunning,
+                            onToggle = onFingerprintToggle,
+                            notches = fingerprintNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             HuntCooldownDurationIcon(
                                 modifier = modifier,
@@ -273,8 +403,12 @@ internal fun ToolsBottomSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
-                    state = bpmToolUiState,
-                    actions = bpmToolUiActions
+                    realtimeState = bpmRealtimeState,
+                    measurementType = bpmMeasurementType,
+                    applyMeasurement = bpmApplyMeasurement,
+                    onUpdate = onBpmUpdate,
+                    onChangeMeasurementType = onBpmChangeMeasurementType,
+                    toggleApplyMeasurement = onBpmToggleApplyMeasurement
                 )
             }
 
@@ -285,42 +419,112 @@ internal fun ToolsBottomSheetComponent(
 @Composable
 internal fun ToolsSideSheetComponent(
     modifier: Modifier = Modifier,
-    stateBundle: ToolSheetStateBundle,
-    actionsBundle: ToolSheetActionsBundle
+    // Toolbar state
+    toolbarCategory: OperationToolbarUiState.Category,
+    // Weather state
+    weather: Weather,
+    weatherIcon: Int,
+    weatherCarouselLabel: Int,
+    isWeatherCarouselEnabled: Boolean,
+    onWeatherCarouselLeftClick: () -> Unit,
+    onWeatherCarouselRightClick: () -> Unit,
+    weatherDropdownOptions: List<Int>,
+    isWeatherDropdownEnabled: Boolean,
+    weatherDropdownLabel: Int,
+    onWeatherDropdownSelect: (Int) -> Unit,
+    // Map state
+    mapCarouselLabel: Int,
+    isMapCarouselEnabled: Boolean,
+    onMapCarouselLeftClick: () -> Unit,
+    onMapCarouselRightClick: () -> Unit,
+    mapDropdownOptions: List<Int>,
+    isMapDropdownEnabled: Boolean,
+    mapDropdownLabel: Int,
+    onMapDropdownSelect: (Int) -> Unit,
+    // Difficulty state
+    difficultyCarouselLabel: Int,
+    isDifficultyCarouselEnabled: Boolean,
+    onDifficultyCarouselLeftClick: () -> Unit,
+    onDifficultyCarouselRightClick: () -> Unit,
+    difficultyDropdownOptions: List<Int>,
+    isDifficultyDropdownEnabled: Boolean,
+    difficultyDropdownLabel: Int,
+    onDifficultyDropdownSelect: (Int) -> Unit,
+    // Sanity state
+    sanityLevel: Float,
+    insanityLevel: Float,
+    onSanityChange: (Float) -> Unit,
+    onUseSanityMedication: () -> Unit,
+    onPlayerDeath: () -> Unit,
+    // Timer state
+    timerRemainingTime: String,
+    timerPaused: Boolean,
+    onTimerToggle: () -> Unit,
+    onTimerSkip: () -> Unit,
+    phaseUiState: PhaseUiState,
+    // Temperature state
+    temperatureStateBundle: TemperatureStateBundle,
+    // FuseBox state
+    fuseBoxFlag: FuseBoxFlag,
+    onTogglePower: () -> Unit,
+    // Trait state
+    traitListOptions: GhostTraitFilterUiOptions,
+    traitList: List<ValidatedGhostTrait>,
+    onSelectTraitCategory: (TraitCategory) -> Unit,
+    onSelectTrait: (ValidatedGhostTrait) -> Unit,
+    onToggleUniqueOnly: () -> Unit,
+    // Analyzer state
+    operationDetailsUiState: OperationDetailsUiState,
+    // Timers state
+    smudgeHuntPreventionTitle: String,
+    smudgeHuntPreventionMax: Long,
+    smudgeHuntPreventionRemaining: Long,
+    smudgeHuntPreventionTimeText: String,
+    smudgeHuntPreventionRunning: Boolean,
+    onSmudgeToggle: () -> Unit,
+    smudgeNotches: List<ProgressBarNotch>,
+
+    huntDurationTitle: String,
+    huntDurationMax: Long,
+    huntDurationRemaining: Long,
+    huntDurationTimeText: String,
+    huntDurationRunning: Boolean,
+    onHuntDurationToggle: () -> Unit,
+    huntDurationNotches: List<ProgressBarNotch>,
+
+    huntCooldownTitle: String,
+    huntCooldownMax: Long,
+    huntCooldownRemaining: Long,
+    huntCooldownTimeText: String,
+    huntCooldownRunning: Boolean,
+    onHuntCooldownToggle: () -> Unit,
+    huntCooldownNotches: List<ProgressBarNotch>,
+
+    fingerprintTimerTitle: String,
+    fingerprintTimerMax: Long,
+    fingerprintTimerRemaining: Long,
+    fingerprintTimerTimeText: String,
+    fingerprintTimerRunning: Boolean,
+    onFingerprintToggle: () -> Unit,
+    fingerprintNotches: List<ProgressBarNotch>,
+
+    // BPM Tool state
+    bpmRealtimeState: RealtimeUiState<GraphPoint>,
+    bpmMeasurementType: VisualizerMeasurementType,
+    bpmApplyMeasurement: Boolean,
+    onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
+    onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
+    onBpmToggleApplyMeasurement: () -> Unit,
+    // Colors
+    notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
-
-    val weatherUiState = stateBundle.weatherUiState
-    val toolbarUiState = stateBundle.toolbarUiState
-    val traitListUiState = stateBundle.traitListUiState
-    val operationDetailsUiState = stateBundle.operationDetailsUiState
-    val bpmToolUiState = stateBundle.bpmToolUiState
-    val sanityUiState = stateBundle.sanityUiState
-    val timerUiState = stateBundle.operationTimerUiState
-    val phaseUiState = stateBundle.phaseUiState
-    val fuseBoxUiState = stateBundle.fuseBoxUiState
-    val temperatureBundle = stateBundle.temperatureStateBundle
-    val smudgeHuntPreventionBundle = stateBundle.smudgeHuntPreventionBundle
-    val huntDurationBundle = stateBundle.huntDurationBundle
-    val huntCooldownBundle = stateBundle.huntCooldownBundle
-    val fingerprintTimerBundle = stateBundle.fingerprintTimerBundle
-    val difficultyUiStateBundle = stateBundle.difficultyUiStateBundle
-    val mapUiStateBundle = stateBundle.mapUiStateBundle
-    val weatherUiStateBundle = stateBundle.weatherUiStateBundle
-
-    val difficultyUiActions = actionsBundle.difficultyUiActions
-    val mapUiActions = actionsBundle.mapUiActions
-    val weatherUiActions = actionsBundle.weatherUiActions
-    val traitListUiActions = actionsBundle.traitListUiActions
-    val bpmToolUiActions = actionsBundle.bpmToolUiActions
-    val timerUiActions = actionsBundle.timerUiActions
-    val fuseBoxUiActions = actionsBundle.fuseBoxUiActions
 
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        when (toolbarUiState.category) {
+        when (toolbarCategory) {
             OperationToolbarUiState.Category.TOOL_NONE -> {}
             OperationToolbarUiState.Category.TOOL_CONFIG -> {
 
@@ -331,71 +535,87 @@ internal fun ToolsSideSheetComponent(
                     sanityMedicationComponent = { modifier ->
                         SanityMedicationButton(
                             modifier = modifier,
-                            onClick = {
-                                actionsBundle.onUseSanityMedication()
-                            }
+                            onClick = onUseSanityMedication
                         )
                     },
                     mapConfigComponent = { modifier ->
                         MapConfigControl(
                             modifier = modifier,
-                            bundle = mapUiStateBundle,
-                            actions = mapUiActions
+                            carouselLabel = mapCarouselLabel,
+                            isCarouselEnabled = isMapCarouselEnabled,
+                            onCarouselLeftClick = onMapCarouselLeftClick,
+                            onCarouselRightClick = onMapCarouselRightClick,
+                            dropdownOptions = mapDropdownOptions,
+                            isDropdownEnabled = isMapDropdownEnabled,
+                            dropdownLabel = mapDropdownLabel,
+                            onDropdownSelect = onMapDropdownSelect
                         )
                     },
                     difficultyConfigComponent = { modifier ->
                         DifficultyConfigControl(
                             modifier = modifier,
-                            bundle = difficultyUiStateBundle,
-                            actions = difficultyUiActions
+                            carouselLabel = difficultyCarouselLabel,
+                            isCarouselEnabled = isDifficultyCarouselEnabled,
+                            onCarouselLeftClick = onDifficultyCarouselLeftClick,
+                            onCarouselRightClick = onDifficultyCarouselRightClick,
+                            dropdownOptions = difficultyDropdownOptions,
+                            isDropdownEnabled = isDifficultyDropdownEnabled,
+                            dropdownLabel = difficultyDropdownLabel,
+                            onDropdownSelect = onDifficultyDropdownSelect
                         )
                     },
                     weatherConfigComponent = { modifier ->
                         WeatherConfigComponent(
                             modifier = modifier,
-                            icon = R.drawable.icon_cp_tarot_moon,
-                            bundle = weatherUiStateBundle,
-                            actions = weatherUiActions
+                            icon = weatherIcon,
+                            carouselLabel = weatherCarouselLabel,
+                            isCarouselEnabled = isWeatherCarouselEnabled,
+                            onCarouselLeftClick = onWeatherCarouselLeftClick,
+                            onCarouselRightClick = onWeatherCarouselRightClick,
+                            dropdownOptions = weatherDropdownOptions,
+                            isDropdownEnabled = isWeatherDropdownEnabled,
+                            dropdownLabel = weatherDropdownLabel,
+                            onDropdownSelect = onWeatherDropdownSelect
                         )
                     },
                     sanityMeterComponent = { modifier ->
                         SanityMeterComponent(
                             modifier = modifier,
-                            sanityUiState = sanityUiState
-                        ) {
-                            actionsBundle.onSanityChange(it)
-                        }
+                            sanityLevel = sanityLevel,
+                            insanityLevel = insanityLevel,
+                            onSanityChange = onSanityChange
+                        )
                     },
                     timerComponent = { modifier ->
                         OperationTimerRow(
                             modifier = modifier,
-                            operationTimerUiState = timerUiState,
-                            timerUiActions = timerUiActions,
+                            remainingTime = timerRemainingTime,
+                            paused = timerPaused,
+                            onToggle = onTimerToggle,
+                            onSkip = onTimerSkip,
                             phaseUiState = phaseUiState
                         )
                     },
                     playerDeathButtonComponent = { modifier ->
                         PlayerDeathButton(
                             modifier = modifier,
-                            onClick = {
-                                actionsBundle.onPlayerDeath()
-                            }
+                            onClick = onPlayerDeath
                         )
                     },
                     temperatureMeterComponent = { modifier ->
                         TemperatureComponent(
                             modifier = modifier,
-                            state = temperatureBundle
+                            state = temperatureStateBundle
                         )
                     },
                     fuseBoxControlComponent = { modifier ->
                         FuseBoxButton(
                             modifier = modifier,
-                            state = fuseBoxUiState,
-                            actions = fuseBoxUiActions
+                            flag = fuseBoxFlag,
+                            onTogglePower = onTogglePower
                         )
                     },
-                    showTemperatureMeterComponent = weatherUiState.weather != Weather.RANDOM
+                    showTemperatureMeterComponent = weather != Weather.RANDOM
 
                 )
             }
@@ -405,8 +625,12 @@ internal fun ToolsSideSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .fillMaxHeight(),
-                    state = traitListUiState,
-                    actions = traitListUiActions,
+                    uniqueOnly = traitListOptions.uniqueOnly ?: false,
+                    categories = traitListOptions.category,
+                    list = traitList,
+                    onSelectCategory = onSelectTraitCategory,
+                    onSelectTrait = onSelectTrait,
+                    onToggleUniqueOnly = onToggleUniqueOnly,
                     colors = TraitListItemUiColors(
                         unselectedColor = LocalPalette.current.surfaceContainerHigh,
                         unselectedOnColor = LocalPalette.current.onSurface,
@@ -441,7 +665,14 @@ internal fun ToolsSideSheetComponent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(8.dp),
-                            bundle = smudgeHuntPreventionBundle
+                            title = smudgeHuntPreventionTitle,
+                            max = smudgeHuntPreventionMax,
+                            remaining = smudgeHuntPreventionRemaining,
+                            timeText = smudgeHuntPreventionTimeText,
+                            running = smudgeHuntPreventionRunning,
+                            onToggle = onSmudgeToggle,
+                            notches = smudgeNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             PreventHuntIcon(
                                 modifier = modifier,
@@ -460,7 +691,14 @@ internal fun ToolsSideSheetComponent(
                         ProgressBarTimer(
                             modifier = Modifier
                                 .padding(8.dp),
-                            bundle = huntDurationBundle
+                            title = huntDurationTitle,
+                            max = huntDurationMax,
+                            remaining = huntDurationRemaining,
+                            timeText = huntDurationTimeText,
+                            running = huntDurationRunning,
+                            onToggle = onHuntDurationToggle,
+                            notches = huntDurationNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             HuntDurationIcon(
                                 modifier = modifier,
@@ -479,7 +717,14 @@ internal fun ToolsSideSheetComponent(
                         ProgressBarTimer(
                             modifier = Modifier
                                 .padding(8.dp),
-                            bundle = huntCooldownBundle
+                            title = huntCooldownTitle,
+                            max = huntCooldownMax,
+                            remaining = huntCooldownRemaining,
+                            timeText = huntCooldownTimeText,
+                            running = huntCooldownRunning,
+                            onToggle = onHuntCooldownToggle,
+                            notches = huntCooldownNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             HuntCooldownDurationIcon(
                                 modifier = modifier,
@@ -498,7 +743,14 @@ internal fun ToolsSideSheetComponent(
                         ProgressBarTimer(
                             modifier = Modifier
                                 .padding(8.dp),
-                            bundle = fingerprintTimerBundle
+                            title = fingerprintTimerTitle,
+                            max = fingerprintTimerMax,
+                            remaining = fingerprintTimerRemaining,
+                            timeText = fingerprintTimerTimeText,
+                            running = fingerprintTimerRunning,
+                            onToggle = onFingerprintToggle,
+                            notches = fingerprintNotches,
+                            colors = notchedProgressBarUiColors
                         ) { modifier ->
                             HuntCooldownDurationIcon(
                                 modifier = modifier,
@@ -516,8 +768,12 @@ internal fun ToolsSideSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
-                    state = bpmToolUiState,
-                    actions = bpmToolUiActions
+                    realtimeState = bpmRealtimeState,
+                    measurementType = bpmMeasurementType,
+                    applyMeasurement = bpmApplyMeasurement,
+                    onUpdate = onBpmUpdate,
+                    onChangeMeasurementType = onBpmChangeMeasurementType,
+                    toggleApplyMeasurement = onBpmToggleApplyMeasurement
                 )
             }
 

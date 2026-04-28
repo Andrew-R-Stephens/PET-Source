@@ -33,39 +33,16 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 
 @Composable
-@Preview
-private fun OperationCarouselPreview() {
-    SelectiveTheme(ClassicPalette, ClassicTypography) {
-
-        OperationConfigCarousel(
-            state = ConfigCarouselUiState(
-                label = R.string.map_name_short_prison,
-                true
-            ),
-            leadingIcon = { modifier ->
-                Image(
-                    modifier = modifier,
-                    contentScale = ContentScale.Inside,
-                    alignment = Alignment.Center,
-                    painter = painterResource(R.drawable.icon_nav_mapmenu2),
-                    colorFilter = ColorFilter.tint(Color.Red),
-                    contentDescription = ""
-                )
-            },
-            actions = CarouselUiActions()
-        )
-    }
-}
-
-@Composable
 fun OperationConfigCarousel(
     modifier: Modifier = Modifier,
-    state: ConfigCarouselUiState,
+    label: Int,
+    enabled: Boolean = true,
     leadingIcon: @Composable (Modifier) -> Unit = {},
     textStyle: TextStyle = TextStyle.Default,
     onColor: Color = Color.Unspecified,
     containerColor: Color = Color.Unspecified,
-    actions: CarouselUiActions
+    onLeftClick: () -> Unit,
+    onRightClick: () -> Unit
 ) {
 
     Surface(
@@ -94,12 +71,12 @@ fun OperationConfigCarousel(
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                if(state.enabled) {
+                if(enabled) {
 
                     Image(
                         modifier = Modifier
                             .size(48.dp)
-                            .clickable(onClick = { actions.onLeftClick() })
+                            .clickable(onClick = { onLeftClick() })
                             .padding(8.dp),
                         painter = painterResource(R.drawable.ic_arrow_60_left),
                         colorFilter = ColorFilter.tint(onColor),
@@ -122,7 +99,7 @@ fun OperationConfigCarousel(
                             .wrapContentHeight()
                             .fillMaxWidth()
                             .padding(8.dp),
-                        text = stringResource(state.label),
+                        text = stringResource(label),
                         style = textStyle,
                         textAlign = TextAlign.Center,
                         color = onColor,
@@ -131,11 +108,11 @@ fun OperationConfigCarousel(
 
                 }
 
-                if(state.enabled) {
+                if(enabled) {
                     Image(
                         modifier = Modifier
                             .size(48.dp)
-                            .clickable(onClick = { actions.onRightClick() })
+                            .clickable(onClick = { onRightClick() })
                             .padding(8.dp),
                         painter = painterResource(R.drawable.ic_arrow_60_right),
                         colorFilter = ColorFilter.tint(onColor),

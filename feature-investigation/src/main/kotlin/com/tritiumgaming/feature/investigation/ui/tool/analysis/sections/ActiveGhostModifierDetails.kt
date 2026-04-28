@@ -172,24 +172,16 @@ internal fun ActiveGhostModifierDetails(
                             modifier = Modifier
                                 .height(24.dp)
                                 .fillMaxWidth(),
-                            bundle = NotchedProgressBarBundle(
-                                state = NotchedProgressBarUiState(
-                                    max = 100L,
-                                    origin = 0L,
-                                    remaining = highest,
-                                    timeText = highest.toString(),
-                                    notches = notches,
-                                    running = false
-                                ),
-                                colors = NotchedProgressBarUiColors(
-                                    remaining = LocalPalette.current.primary,
-                                    background = LocalPalette.current.surface,
-                                    border = LocalPalette.current.onSurface,
-                                    notch = LocalPalette.current.onSurface,
-                                    label = LocalPalette.current.onSurface,
-                                ),
-                                actions = NotchedProgressBarUiActions()
-                            )
+                            colors = NotchedProgressBarUiColors(
+                                remaining = LocalPalette.current.primary,
+                                background = LocalPalette.current.surface,
+                                border = LocalPalette.current.onSurface,
+                                notch = LocalPalette.current.onSurface,
+                                label = LocalPalette.current.onSurface,
+                            ),
+                            max = 100L,
+                            remaining = highest,
+                            notches = notches,
                         )
                     }
 
@@ -235,23 +227,15 @@ internal fun ActiveGhostModifierDetails(
                             modifier = Modifier
                                 .height(24.dp)
                                 .fillMaxWidth(),
-                            bundle = NotchedProgressBarBundle(
-                                state = NotchedProgressBarUiState(
-                                    max = 360L,
-                                    origin = (minSpeed).toLong(),
-                                    remaining = (maxSpeed - minSpeed).toLong(),
-                                    timeText = (maxSpeed - minSpeed).toLong().toString(),
-                                    notches = notches,
-                                    running = false
-                                ),
-                                colors = NotchedProgressBarUiColors(
-                                    remaining = LocalPalette.current.primary,
-                                    background = LocalPalette.current.surface,
-                                    border = LocalPalette.current.onSurface,
-                                    notch = LocalPalette.current.onSurface,
-                                    label = LocalPalette.current.onSurface,
-                                ),
-                                actions = NotchedProgressBarUiActions()
+                            max = 360L,
+                            remaining = (maxSpeed - minSpeed).toLong(),
+                            notches = notches,
+                            colors = NotchedProgressBarUiColors(
+                                remaining = LocalPalette.current.primary,
+                                background = LocalPalette.current.surface,
+                                border = LocalPalette.current.onSurface,
+                                notch = LocalPalette.current.onSurface,
+                                label = LocalPalette.current.onSurface,
                             )
                         )
                     }

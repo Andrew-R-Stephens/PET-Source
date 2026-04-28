@@ -16,8 +16,9 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 @Composable
 fun OperationToolbar(
     modifier: Modifier = Modifier,
-    operationToolbarUiState: OperationToolbarUiState,
-    toolbarUiActions: ToolbarUiActions,
+    category: OperationToolbarUiState.Category,
+    onChangeToolbarCategory: (OperationToolbarUiState.Category) -> Unit,
+    onReset: () -> Unit,
     containerColor: Color
 ) {
 
@@ -34,14 +35,14 @@ fun OperationToolbar(
 
                 ConfigButton(
                     modifier,
-                    toolbarUiActions,
-                    operationToolbarUiState
+                    category = category,
+                    onCategoryChange = onChangeToolbarCategory
                 )
 
                 AnalyticsButton(
                     modifier,
-                    toolbarUiActions,
-                    operationToolbarUiState
+                    category = category,
+                    onCategoryChange = onChangeToolbarCategory
                 )
 
             }
@@ -51,7 +52,7 @@ fun OperationToolbar(
 
             ResetButton(
                 modifier,
-                toolbarUiActions
+                onReset = onReset
             )
 
         },
@@ -59,20 +60,20 @@ fun OperationToolbar(
 
             TraitsButton(
                 modifier,
-                toolbarUiActions,
-                operationToolbarUiState
+                category = category,
+                onCategoryChange = onChangeToolbarCategory
             )
 
             StopwatchButton(
                 modifier,
-                toolbarUiActions,
-                operationToolbarUiState
+                category = category,
+                onCategoryChange = onChangeToolbarCategory
             )
 
             BpmButton(
                 modifier,
-                toolbarUiActions,
-                operationToolbarUiState
+                category = category,
+                onCategoryChange = onChangeToolbarCategory
             )
 
         }
@@ -83,8 +84,9 @@ fun OperationToolbar(
 @Composable
 fun OperationToolRail(
     modifier: Modifier = Modifier,
-    operationToolbarUiState: OperationToolbarUiState,
-    toolbarUiActions: ToolbarUiActions,
+    category: OperationToolbarUiState.Category,
+    onChangeToolbarCategory: (OperationToolbarUiState.Category) -> Unit,
+    onReset: () -> Unit,
     containerColor: Color
 ) {
 
@@ -101,14 +103,14 @@ fun OperationToolRail(
 
                 ConfigButton(
                     modifier,
-                    toolbarUiActions,
-                    operationToolbarUiState
+                    category = category,
+                    onCategoryChange = onChangeToolbarCategory
                 )
 
                 AnalyticsButton(
                     modifier,
-                    toolbarUiActions,
-                    operationToolbarUiState
+                    category = category,
+                    onCategoryChange = onChangeToolbarCategory
                 )
 
             }
@@ -118,27 +120,28 @@ fun OperationToolRail(
 
             ResetButton(
                 modifier,
-                toolbarUiActions)
+                onReset = onReset
+            )
 
         },
         scrollContent = { modifier ->
 
             TraitsButton(
                 modifier,
-                toolbarUiActions,
-                operationToolbarUiState
+                category = category,
+                onCategoryChange = onChangeToolbarCategory
             )
 
             StopwatchButton(
                 modifier,
-                toolbarUiActions,
-                operationToolbarUiState
+                category = category,
+                onCategoryChange = onChangeToolbarCategory
             )
 
             BpmButton(
                 modifier,
-                toolbarUiActions,
-                operationToolbarUiState
+                category = category,
+                onCategoryChange = onChangeToolbarCategory
             )
 
         }

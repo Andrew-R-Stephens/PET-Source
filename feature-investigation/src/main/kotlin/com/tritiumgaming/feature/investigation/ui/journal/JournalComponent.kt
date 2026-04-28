@@ -36,16 +36,25 @@ import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostList
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.model.Ghost
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 
 
 @Composable
 internal fun JournalComponent(
     modifier: Modifier = Modifier,
-    evidenceListUiState: EvidenceListUiState,
-    ghostListUiState: GhostListUiState,
-    ghostListUiActions: GhostListUiActions,
-    evidenceListUiActions: EvidenceListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions
+    evidenceStateList: List<EvidenceState>,
+    ghostOrder: List<GhostState>,
+    ghostEvidenceState: List<EvidenceState>,
+    onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit,
+    onChangeEvidenceRuling: (evidence: EvidenceType, evidenceValidationType: EvidenceValidationType) -> Unit,
+    onEvidenceClick: (evidence: EvidenceType) -> Unit,
+    onToggleNegateGhost: (Ghost) -> Unit,
+    onRequestToolTip: () -> Unit
 ) {
 
     val uiIsRtl = LocalUiConfiguration.current.isRtl
@@ -53,17 +62,20 @@ internal fun JournalComponent(
     val evidenceListComponent: @Composable (Modifier) -> Unit = { modifier ->
         EvidenceListColumn(
             modifier = modifier,
-            evidenceListUiState = evidenceListUiState,
-            evidenceListUiActions = evidenceListUiActions
+            evidenceStateList = evidenceStateList,
+            onChangeEvidenceRuling = onChangeEvidenceRuling,
+            onEvidenceClick = onEvidenceClick
         )
     }
 
     val ghostListComponent: @Composable (Modifier) -> Unit = { modifier ->
         GhostListColumn(
             modifier = modifier,
-            ghostListUiState = ghostListUiState,
-            ghostListUiActions = ghostListUiActions,
-            ghostListUiItemActions = ghostListUiItemActions
+            ghostOrder = ghostOrder,
+            ghostEvidenceState = ghostEvidenceState,
+            onGhostNameClick = onGhostNameClick,
+            onToggleNegateGhost = onToggleNegateGhost,
+            onRequestToolTip = onRequestToolTip
         )
     }
 
@@ -102,9 +114,11 @@ internal fun JournalComponent(
 @Composable
 private fun GhostListColumn(
     modifier: Modifier = Modifier,
-    ghostListUiState: GhostListUiState,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions
+    ghostOrder: List<GhostState>,
+    ghostEvidenceState: List<EvidenceState>,
+    onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit,
+    onToggleNegateGhost: (Ghost) -> Unit,
+    onRequestToolTip: () -> Unit
 ) {
     ListColumn(
         modifier = modifier,
@@ -112,9 +126,11 @@ private fun GhostListColumn(
     ) {
         GhostList(
             modifier = Modifier,
-            ghostListUiState = ghostListUiState,
-            ghostListUiActions = ghostListUiActions,
-            ghostListUiItemActions = ghostListUiItemActions
+            ghostOrder = ghostOrder,
+            ghostEvidenceState = ghostEvidenceState,
+            onGhostNameClick = onGhostNameClick,
+            onToggleNegateGhost = onToggleNegateGhost,
+            onRequestToolTip = onRequestToolTip
         )
     }
 }
@@ -122,16 +138,18 @@ private fun GhostListColumn(
 @Composable
 private fun EvidenceListColumn(
     modifier: Modifier,
-    evidenceListUiState: EvidenceListUiState,
-    evidenceListUiActions: EvidenceListUiActions,
+    evidenceStateList: List<EvidenceState>,
+    onChangeEvidenceRuling: (evidence: EvidenceType, evidenceValidationType: EvidenceValidationType) -> Unit,
+    onEvidenceClick: (evidence: EvidenceType) -> Unit,
 ) {
     ListColumn(
         modifier = modifier,
         title = stringResource(R.string.investigation_section_title_evidence),
     ) {
         PrimaryEvidenceList(
-            evidenceListUiState = evidenceListUiState,
-            evidenceListUiActions = evidenceListUiActions
+            evidenceStateList = evidenceStateList,
+            onChangeEvidenceRuling = onChangeEvidenceRuling,
+            onEvidenceClick = onEvidenceClick
         )
     }
 }

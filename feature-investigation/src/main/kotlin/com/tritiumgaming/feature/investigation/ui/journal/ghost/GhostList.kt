@@ -21,22 +21,24 @@ import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 
 @Composable
 internal fun GhostList(
     modifier: Modifier = Modifier,
-    ghostListUiState: GhostListUiState,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions
+    ghostOrder: List<GhostState>,
+    ghostEvidenceState: List<EvidenceState>,
+    onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit,
+    onToggleNegateGhost: (Ghost) -> Unit,
+    onRequestToolTip: () -> Unit
 ) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
-
-    val ghostOrder = ghostListUiState.ghostOrder
-    val ruledEvidence = ghostListUiState.evidenceState
 
     LaunchedEffect(ghostOrder) {
         Log.d("GhostList", "LaunchedEffect: ghostOrder")
@@ -64,10 +66,13 @@ internal fun GhostList(
                     .padding(horizontal = 2.dp)
                     .wrapContentWidth(Alignment.CenterHorizontally)
                     .animateItem(),
-                evidenceState = ruledEvidence,
+                evidenceState = ghostEvidenceState,
                 ghostState = state,
-                ghostListUiItemActions = ghostListUiItemActions.copy (
-                    onNameClick = { ghostListUiActions.onNameClick(state.ghostEvidence.ghost.id) }
+                ghostListUiItemActions = GhostListUiItemActions(
+                    onToggleNegateGhost = { onToggleNegateGhost(it) },
+                    onRequestToolTip = { onRequestToolTip() }
+                ).copy (
+                    onNameClick = { onGhostNameClick(state.ghostEvidence.ghost.id) }
                 )
             )
         }

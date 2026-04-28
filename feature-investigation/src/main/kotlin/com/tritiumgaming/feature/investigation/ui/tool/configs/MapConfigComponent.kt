@@ -21,8 +21,14 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 @Composable
 internal fun MapConfigControl(
     modifier: Modifier = Modifier,
-    bundle: ConfigStateBundle,
-    actions: ConfigActionsBundle
+    carouselLabel: Int,
+    isCarouselEnabled: Boolean,
+    onCarouselLeftClick: () -> Unit,
+    onCarouselRightClick: () -> Unit,
+    dropdownOptions: List<Int>,
+    isDropdownEnabled: Boolean,
+    dropdownLabel: Int,
+    onDropdownSelect: (Int) -> Unit
 ) {
     val uiDensityType = LocalUiConfiguration.current.densityType
 
@@ -46,8 +52,10 @@ internal fun MapConfigControl(
             OperationConfigDropdown(
                 modifier = modifier,
                 icon = { icon(it) },
-                state = bundle.dropdownUiState,
-                actions = actions.dropdownUiActions,
+                options = dropdownOptions,
+                enabled = isDropdownEnabled,
+                label = dropdownLabel,
+                onSelect = onDropdownSelect,
                 textStyle = textStyle,
                 onColor = onColor,
                 expandedColor = color,
@@ -56,8 +64,10 @@ internal fun MapConfigControl(
         else -> {
             OperationConfigCarousel(
                 modifier = modifier,
-                state = bundle.carouselUiState,
-                actions = actions.carouselUiActions,
+                label = carouselLabel,
+                enabled = isCarouselEnabled,
+                onLeftClick = onCarouselLeftClick,
+                onRightClick = onCarouselRightClick,
                 leadingIcon = { icon(it) },
                 textStyle = textStyle,
                 onColor = onColor,

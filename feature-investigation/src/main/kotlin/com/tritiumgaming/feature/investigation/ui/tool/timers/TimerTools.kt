@@ -23,6 +23,8 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
+import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 
 @Composable
 internal fun TimerTools(
@@ -79,12 +81,26 @@ internal fun TimerTools(
 @Composable
 fun ProgressBarTimer(
     modifier: Modifier = Modifier,
-    bundle: NotchedProgressBarBundle,
+    title: String,
+    max: Long,
+    remaining: Long,
+    timeText: String,
+    running: Boolean,
+    onToggle: () -> Unit,
+    notches: List<ProgressBarNotch>,
+    colors: NotchedProgressBarUiColors,
     iconComponent: @Composable (Modifier) -> Unit = {}
 ) {
     NotchedProgressBarTimer(
         modifier = modifier,
-        bundle = bundle,
+        title = title,
+        max = max,
+        remaining = remaining,
+        timeText = timeText,
+        running = running,
+        onToggle = onToggle,
+        notches = notches,
+        colors = colors,
         icon = { modifier -> iconComponent(modifier) }
     )
 }

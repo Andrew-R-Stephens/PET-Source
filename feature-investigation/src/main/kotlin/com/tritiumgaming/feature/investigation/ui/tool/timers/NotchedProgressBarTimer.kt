@@ -21,7 +21,8 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
-import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
+import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
@@ -31,7 +32,14 @@ import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiAct
 @Composable
 internal fun NotchedProgressBarTimer(
     modifier: Modifier = Modifier,
-    bundle: NotchedProgressBarBundle,
+    title: String,
+    max: Long,
+    remaining: Long,
+    timeText: String,
+    running: Boolean,
+    onToggle: () -> Unit,
+    notches: List<ProgressBarNotch>,
+    colors: NotchedProgressBarUiColors,
     icon: @Composable (Modifier) -> Unit = {}
 ) {
 
@@ -42,9 +50,9 @@ internal fun NotchedProgressBarTimer(
         Text(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = bundle.title.uppercase(),
+            text = title.uppercase(),
             style = LocalTypography.current.quaternary.bold,
-            color = bundle.colors.label,
+            color = colors.label,
             fontSize = 14.sp
         )
 
@@ -64,12 +72,8 @@ internal fun NotchedProgressBarTimer(
 
                 DigitalTimer(
                     modifier = Modifier,
-                    state = DigitalTimerUiState(
-                        startTime = bundle.state.max,
-                        remainingTime = bundle.state.timeText,
-                        paused = !bundle.state.running
-                    ),
-                    color = bundle.colors.label,
+                    remainingTime = timeText,
+                    color = colors.label,
                     fontSize = 12.sp
                 )
 
@@ -85,21 +89,20 @@ internal fun NotchedProgressBarTimer(
                         .align(Alignment.Center)
                         .fillMaxSize()
                         .padding(8.dp),
-                    bundle = bundle
+                    max = max,
+                    remaining = remaining,
+                    notches = notches,
+                    colors = colors
                 )
             }
 
             TimerToggleButton(
                 modifier = Modifier
                     .size(48.dp),
-                state = OperationTimerUiState(
-                    paused = !bundle.state.running
-                ),
-                actions = TimerUiActions(
-                    onToggle = {
-                        bundle.actions.onToggle()
-                    }
-                ),
+                paused = !running,
+                onToggle = {
+                    onToggle()
+                },
                 primaryContent = { modifier ->
                     Icon(
                         modifier = modifier

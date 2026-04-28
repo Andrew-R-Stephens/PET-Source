@@ -47,7 +47,7 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 internal fun ResetButton(
     modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions
+    onReset: () -> Unit
 ) {
     ToolbarItem(
         modifier = modifier
@@ -55,7 +55,7 @@ internal fun ResetButton(
         ResetIcon(
             modifier = modifier
                 .fillMaxSize(),
-            onClick = { toolbarUiActions.onReset() }
+            onClick = { onReset() }
         )
     }
 }
@@ -63,19 +63,19 @@ internal fun ResetButton(
 @Composable
 internal fun BpmButton(
     modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
+    category: OperationToolbarUiState.Category,
+    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier,
         onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_FOOTSTEP)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_FOOTSTEP)
         }
     ) { modifier ->
         FootprintsIcon(
             modifier = modifier
                 .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_FOOTSTEP) {
+            if (category == OperationToolbarUiState.Category.TOOL_FOOTSTEP) {
                 IconVectorColors.defaults(
                     fillColor = LocalPalette.current.primary,
                     strokeColor = LocalPalette.current.primary,
@@ -93,19 +93,19 @@ internal fun BpmButton(
 @Composable
 internal fun StopwatchButton(
     modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
+    category: OperationToolbarUiState.Category,
+    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier,
         onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_TIMERS)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_TIMERS)
         }
     ) { modifier ->
         StopwatchIcon(
             modifier = modifier
                 .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_TIMERS) {
+            if (category == OperationToolbarUiState.Category.TOOL_TIMERS) {
                 IconVectorColors.defaults(
                     fillColor = LocalPalette.current.primary,
                     strokeColor = LocalPalette.current.primary,
@@ -123,21 +123,21 @@ internal fun StopwatchButton(
 @Composable
 internal fun AnalyticsButton(
     modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
+    category: OperationToolbarUiState.Category,
+    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
             .fillMaxSize(),
         onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_ANALYZER)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_ANALYZER)
         }
     ) { modifier ->
         AnalyticsIcon(
             modifier = modifier
                 .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_ANALYZER) {
+            if (category == OperationToolbarUiState.Category.TOOL_ANALYZER) {
                 IconVectorColors.defaults(
                     fillColor = LocalPalette.current.primary,
                     strokeColor = LocalPalette.current.primary,
@@ -156,21 +156,21 @@ internal fun AnalyticsButton(
 @Composable
 internal fun ConfigButton(
     modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
+    category: OperationToolbarUiState.Category,
+    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
             .fillMaxSize(),
         onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_CONFIG)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_CONFIG)
         }
     ) { modifier ->
         ConfigIcon(
             modifier = modifier
                 .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_CONFIG) {
+            if (category == OperationToolbarUiState.Category.TOOL_CONFIG) {
                 IconVectorColors.defaults(
                     fillColor = LocalPalette.current.primary,
                     strokeColor = LocalPalette.current.primary,
@@ -188,21 +188,21 @@ internal fun ConfigButton(
 @Composable
 internal fun TraitsButton(
     modifier: Modifier = Modifier,
-    toolbarUiActions: ToolbarUiActions,
-    operationToolbarUiState: OperationToolbarUiState
+    category: OperationToolbarUiState.Category,
+    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
             .fillMaxSize(),
         onClick = {
-            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_TRAITS)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_TRAITS)
         }
     ) { modifier ->
         GeneticsIcon(
             modifier = modifier
                 .fillMaxSize(),
-            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_TRAITS) {
+            if (category == OperationToolbarUiState.Category.TOOL_TRAITS) {
                 IconVectorColors.defaults(
                     fillColor = LocalPalette.current.primary,
                     strokeColor = LocalPalette.current.primary,

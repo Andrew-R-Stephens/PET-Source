@@ -23,8 +23,14 @@ import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Diffi
 @Composable
 internal fun DifficultyConfigControl(
     modifier: Modifier = Modifier,
-    bundle: ConfigStateBundle,
-    actions: ConfigActionsBundle
+    carouselLabel: Int,
+    isCarouselEnabled: Boolean,
+    onCarouselLeftClick: () -> Unit,
+    onCarouselRightClick: () -> Unit,
+    dropdownOptions: List<Int>,
+    isDropdownEnabled: Boolean,
+    dropdownLabel: Int,
+    onDropdownSelect: (Int) -> Unit
 ) {
     val uiDensityType = LocalUiConfiguration.current.densityType
 
@@ -47,8 +53,10 @@ internal fun DifficultyConfigControl(
         DensityType.COMPACT -> {
             OperationConfigDropdown(
                 modifier = modifier,
-                state = bundle.dropdownUiState,
-                actions = actions.dropdownUiActions,
+                options = dropdownOptions,
+                enabled = isDropdownEnabled,
+                label = dropdownLabel,
+                onSelect = onDropdownSelect,
                 icon = { icon(it) },
                 textStyle = textStyle,
                 expandedColor = color,
@@ -58,8 +66,10 @@ internal fun DifficultyConfigControl(
         else -> {
             OperationConfigCarousel(
                 modifier = modifier,
-                state = bundle.carouselUiState,
-                actions = actions.carouselUiActions,
+                label = carouselLabel,
+                enabled = isCarouselEnabled,
+                onLeftClick = onCarouselLeftClick,
+                onRightClick = onCarouselRightClick,
                 leadingIcon = { icon(it) },
                 textStyle = textStyle,
                 onColor = onColor,

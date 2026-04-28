@@ -41,11 +41,13 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 @Composable
 internal fun SanityMeter(
     modifier: Modifier = Modifier,
-    state: SanityMeterUiState
+    sanityLevel: Float,
+    showText: Boolean,
+    showProgress: Boolean
 ) {
-    val sanityLevel = state.sanityLevel
-    val showText = state.showText
-    val showProgress = state.showProgress
+    val sanityLevel = sanityLevel
+    val showText = showText
+    val showProgress = showProgress
 
     Box(
         modifier = modifier
@@ -190,9 +192,3 @@ private fun SanityPie(
             .fillMaxSize()
     )
 }
-
-internal data class SanityMeterUiState(
-    val sanityLevel: Float,
-    val showText: Boolean = false,
-    val showProgress: Boolean = false
-)

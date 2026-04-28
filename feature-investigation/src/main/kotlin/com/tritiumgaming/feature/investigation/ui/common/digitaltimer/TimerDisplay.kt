@@ -34,33 +34,11 @@ internal data class DigitalTimerUiState(
 )
 
 @Composable
-internal fun DigitalTimer(
-    modifier: Modifier = Modifier,
-    state: DigitalTimerUiState,
-    color: Color = LocalPalette.current.onSurface,
-    fontSize: TextUnit = 48.sp
-) {
-
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            modifier = Modifier
-                .wrapContentHeight(),
-            text = state.remainingTime,
-            style = DigitalDreamTextStyle,
-            color = color,
-            fontSize = fontSize
-        )
-    }
-}
-
-@Composable
 fun DigitalTimer(
     modifier: Modifier = Modifier,
-    state: OperationTimerUiState,
-    color: Color = LocalPalette.current.onSurface
+    remainingTime: String,
+    color: Color = LocalPalette.current.onSurface,
+    fontSize: TextUnit = 48.sp
 ) {
 
     var size by remember{
@@ -77,10 +55,10 @@ fun DigitalTimer(
             Text(
                 modifier = Modifier
                     .wrapContentHeight(),
-                text = state.remainingTime,
+                text = remainingTime,
                 style = DigitalDreamTextStyle,
                 color = color,
-                autoSize = TextAutoSize.StepBased(1.sp, maxFontSize = 48.sp, stepSize = 1.sp)
+                autoSize = TextAutoSize.StepBased(1.sp, maxFontSize = fontSize, stepSize = 1.sp)
             )
         }
     }
@@ -89,23 +67,22 @@ fun DigitalTimer(
 @Composable
 fun TimerToggleButton(
     modifier: Modifier = Modifier,
-    state: OperationTimerUiState,
-    actions: TimerUiActions,
+    paused: Boolean,
+    onToggle: () -> Unit,
     primaryContent: @Composable (Modifier) -> Unit = {},
     alternateContent: @Composable (Modifier) -> Unit = {}
 ) {
-    val state = state.paused
 
     Button(
         modifier = modifier,
-        onClick = { actions.onToggle() },
+        onClick = { onToggle() },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = LocalPalette.current.onSurface
         ),
         contentPadding = PaddingValues(8.dp)
     ) {
-        if (state) {
+        if (paused) {
             primaryContent(
                 Modifier
                     .fillMaxSize()
@@ -124,13 +101,12 @@ fun TimerToggleButton(
 @Composable
 fun TimerSkipButton(
     modifier: Modifier = Modifier,
-    state: OperationTimerUiState,
-    actions: TimerUiActions,
+    onSkip: () -> Unit,
     content: @Composable (Modifier) -> Unit = {}
 ) {
     Button(
         modifier = modifier,
-        onClick = { actions.onSkip() },
+        onClick = { onSkip() },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = LocalPalette.current.onSurface

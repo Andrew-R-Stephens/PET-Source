@@ -19,13 +19,13 @@ import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 @Composable
 internal fun FuseBoxButton(
     modifier: Modifier,
-    state: FuseBoxUiState,
-    actions: FuseBoxUiActions
+    flag: FuseBoxFlag,
+    onTogglePower: () -> Unit
 ) {
     data class FuseButtonTheme(
         val icon: Int, val foreground: Color)
 
-    val theme = when (state.flag) {
+    val theme = when (flag) {
         FuseBoxFlag.FUSEBOX_ENABLED -> {
             FuseButtonTheme(
                 R.drawable.ic_fuse_box_fill,
@@ -41,7 +41,7 @@ internal fun FuseBoxButton(
     }
 
     Surface(
-        onClick = { actions.onTogglePower() },
+        onClick = { onTogglePower() },
         modifier = modifier
             .border(
                 shape = RoundedCornerShape(8.dp),

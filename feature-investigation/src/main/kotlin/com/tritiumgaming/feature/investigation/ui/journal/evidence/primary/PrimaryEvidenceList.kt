@@ -18,8 +18,9 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 
 @Composable
 internal fun PrimaryEvidenceList(
-    evidenceListUiState: EvidenceListUiState,
-    evidenceListUiActions: EvidenceListUiActions
+    evidenceStateList: List<EvidenceState>,
+    onChangeEvidenceRuling: (evidence: EvidenceType, evidenceValidationType: EvidenceValidationType) -> Unit,
+    onEvidenceClick: (evidence: EvidenceType) -> Unit
 ) {
 
     LazyColumn(
@@ -28,7 +29,7 @@ internal fun PrimaryEvidenceList(
     ) {
 
         items(
-            items = evidenceListUiState.evidenceStateList,
+            items = evidenceStateList,
             key = { it.evidence.id }
         ) { ruledEvidence ->
 
@@ -42,13 +43,13 @@ internal fun PrimaryEvidenceList(
                 actions = EvidenceListItemUiAction(
                     onToggle = { ruling ->
                         if (ruledEvidence.enabled) {
-                            evidenceListUiActions.onChangeEvidenceRuling(
+                            onChangeEvidenceRuling(
                                 ruledEvidence.evidence, ruling
                             )
                         }
                     },
                     onNameClick = {
-                        evidenceListUiActions.onClickItem(ruledEvidence.evidence)
+                        onEvidenceClick(ruledEvidence.evidence)
                     }
                 )
             )
