@@ -86,6 +86,10 @@ class InvestigationContainer(
     internal val investigationUseCaseBundle: InvestigationUseCaseBundle
 ) {
 
+    internal val challengesUseCaseBundle = ChallengesUseCaseBundle(
+        getCurrentChallengeUseCase = getCurrentChallengeUseCase
+    )
+
     internal val preferencesUseCaseBundle = PreferencesUseCaseBundle(
         initFlowUserPreferencesUseCase = initFlowUserPreferencesUseCase
     )
@@ -403,4 +407,8 @@ internal data class CodexUseCaseBundle(
 
 internal data class PreferencesUseCaseBundle(
     val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase
+)
+
+internal data class ChallengesUseCaseBundle(
+    val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
 )

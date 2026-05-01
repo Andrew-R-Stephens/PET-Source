@@ -13,6 +13,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUi
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.core.ui.widgets.text.UiText
+import com.tritiumgaming.feature.investigation.app.container.ChallengesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.CodexUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.DifficultyUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
@@ -129,39 +130,38 @@ import kotlin.time.Duration.Companion.minutes
 
 class InvestigationScreenViewModel private constructor(
     journalUseCaseBundle: JournalUseCaseBundle,
-    private val getEvidenceUseCase: GetEvidenceUseCase = journalUseCaseBundle.getEvidenceUseCase,
-    private val fetchEvidenceTypesUseCase: FetchEvidenceTypesUseCase = journalUseCaseBundle.fetchEvidenceTypesUseCase,
-    private val getGhostUseCase: GetGhostUseCase = journalUseCaseBundle.getGhostUseCase,
-    private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
-    private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase,
-    private val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase = journalUseCaseBundle.getAllGhostTraitsUseCase,
     difficultyUseCaseBundle: DifficultyUseCaseBundle,
-    private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase,
-    private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase = difficultyUseCaseBundle.incrementDifficultyIndexUseCase,
-    private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase = difficultyUseCaseBundle.decrementDifficultyIndexUseCase,
-    private val setDifficultyIndexUseCase: SetDifficultyIndexUseCase = difficultyUseCaseBundle.setDifficultyIndexUseCase,
     simpleMapUseCaseBundle: SimpleMapUseCaseBundle,
-    private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase = simpleMapUseCaseBundle.fetchSimpleMapsUseCase,
-    private val incrementSimpleMapIndexUseCase: IncrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.incrementSimpleMapIndexUseCase,
-    private val decrementSimpleMapIndexUseCase: DecrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.decrementSimpleMapIndexUseCase,
-    private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase = simpleMapUseCaseBundle.getSimpleMapNameUseCase,
-    private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase = simpleMapUseCaseBundle.getSimpleMapSizeUseCase,
-    private val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase = simpleMapUseCaseBundle.getSimpleMapModifierUseCase,
-    private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase = simpleMapUseCaseBundle.fetchSimpleMapModifiersUseCase,
     codexUseCaseBundle: CodexUseCaseBundle,
-    private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase,
-    private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase = codexUseCaseBundle.getEquipmentTypeByEvidenceTypeUseCase,
     investigationUseCaseBundle: InvestigationUseCaseBundle,
-    private val getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationUseCaseBundle.getInvestigationStateUseCase,
-    private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase,
-    private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase,
+    challengesUseCaseBundle: ChallengesUseCaseBundle,
     preferencesUseCaseBundle: PreferencesUseCaseBundle,
-    initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase = preferencesUseCaseBundle.initFlowUserPreferencesUseCase,
-    private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
 ) : ViewModel() {
 
+    private val getEvidenceUseCase: GetEvidenceUseCase = journalUseCaseBundle.getEvidenceUseCase
+    private val fetchEvidenceTypesUseCase: FetchEvidenceTypesUseCase = journalUseCaseBundle.fetchEvidenceTypesUseCase
+    private val getGhostUseCase: GetGhostUseCase = journalUseCaseBundle.getGhostUseCase
+    private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase
+    private val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase = journalUseCaseBundle.getAllGhostTraitsUseCase
+    private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase
+    private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase = difficultyUseCaseBundle.incrementDifficultyIndexUseCase
+    private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase = difficultyUseCaseBundle.decrementDifficultyIndexUseCase
+    private val setDifficultyIndexUseCase: SetDifficultyIndexUseCase = difficultyUseCaseBundle.setDifficultyIndexUseCase
+    private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase = simpleMapUseCaseBundle.fetchSimpleMapsUseCase
+    private val incrementSimpleMapIndexUseCase: IncrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.incrementSimpleMapIndexUseCase
+    private val decrementSimpleMapIndexUseCase: DecrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.decrementSimpleMapIndexUseCase
+    private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase = simpleMapUseCaseBundle.getSimpleMapNameUseCase
+    private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase = simpleMapUseCaseBundle.getSimpleMapSizeUseCase
+    private val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase = simpleMapUseCaseBundle.getSimpleMapModifierUseCase
+    private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase = simpleMapUseCaseBundle.fetchSimpleMapModifiersUseCase
+    private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase
+    private val getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationUseCaseBundle.getInvestigationStateUseCase
+    private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase
+    private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase
+    private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
+
     private val preferences: StateFlow<InvestigationScreenUserPreferences> =
-        initFlowUserPreferencesUseCase()
+        preferencesUseCaseBundle.initFlowUserPreferencesUseCase()
         .map {
             InvestigationScreenUserPreferences(
                 enableGhostReorder = it.enableGhostReorder,
@@ -1251,6 +1251,17 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private fun resetWeatherOverride() {
+        _difficultyOverridesState.update { it.copy(weather = Weather.RANDOM) }
+    }
+
+    private fun resetToolTimers() {
+        _huntDurationTimerState.update { it.copy(remaining = it.max, running = false) }
+        _huntCooldownTimerState.update { it.copy(remaining = it.max, running = false) }
+        _smudgeHuntProtectionTimerState.update { it.copy(remaining = it.max, running = false) }
+        _fingerprintTimerState.update { it.copy(remaining = it.max, running = false) }
+    }
+
     /*
      * Tool Timers ---------------------------
      */
@@ -1709,6 +1720,9 @@ class InvestigationScreenViewModel private constructor(
         resetOperationTimer()
         resetPhase()
         resetSanity()
+        resetWeatherOverride()
+        resetTemperature()
+        resetToolTimers()
     }
 
     fun onEvent(event: InvestigationEvent) {
@@ -1886,7 +1900,7 @@ class InvestigationScreenViewModel private constructor(
                     val codexUseCaseBundle = container.codexUseCaseBundle
                     val investigationUseCaseBundle = container.investigationUseCaseBundle
                     val preferencesUseCaseBundle = container.preferencesUseCaseBundle
-                    val getCurrentChallengeUseCase = container.getCurrentChallengeUseCase
+                    val challengesUseCaseBundle = container.challengesUseCaseBundle
 
                     InvestigationScreenViewModel(
                         journalUseCaseBundle = journalUseCaseBundle,
@@ -1895,7 +1909,7 @@ class InvestigationScreenViewModel private constructor(
                         codexUseCaseBundle = codexUseCaseBundle,
                         investigationUseCaseBundle = investigationUseCaseBundle,
                         preferencesUseCaseBundle = preferencesUseCaseBundle,
-                        getCurrentChallengeUseCase = getCurrentChallengeUseCase
+                        challengesUseCaseBundle = challengesUseCaseBundle
                     )
                 }
             }
