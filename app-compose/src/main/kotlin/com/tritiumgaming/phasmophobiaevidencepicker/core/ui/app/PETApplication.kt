@@ -23,8 +23,8 @@ import com.tritiumgaming.feature.maps.app.container.MapViewerContainer
 import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainer
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
-import com.tritiumgaming.feature.missions.app.container.MissionsContainer
-import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.customdifficulty.app.container.MissionsContainer
+import com.tritiumgaming.feature.customdifficulty.app.container.MissionsContainerProvider
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainer
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
 import com.tritiumgaming.feature.settings.app.container.SettingsContainer

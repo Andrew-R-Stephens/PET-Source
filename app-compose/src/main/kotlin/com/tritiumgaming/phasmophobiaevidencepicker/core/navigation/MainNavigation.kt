@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -25,6 +24,7 @@ import com.tritiumgaming.feature.account.ui.AccountScreenViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreen
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreenViewModel
 import com.tritiumgaming.feature.codex.ui.menu.CodexMenuScreen
+import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyScreen
 import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.InvestigationSoloScreen
@@ -260,6 +260,18 @@ private fun NavGraphBuilder.operationNavigation(
             ) {
                 ObjectivesScreen(
                     objectivesViewModel = objectivesViewModel
+                )
+            }
+        }
+
+        composable(route = NavRoute.SCREEN_CUSTOM_DIFFICULTY.route) {
+            OperationScreen(
+                modifier = Modifier
+                    .padding(horizontal = 8.dp),
+                navController = navController,
+                windowInsets = windowInsets
+            ) {
+                CustomDifficultyScreen(
                 )
             }
         }
