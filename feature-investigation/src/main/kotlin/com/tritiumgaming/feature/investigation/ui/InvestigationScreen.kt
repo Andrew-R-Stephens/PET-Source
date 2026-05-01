@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -31,7 +33,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -226,6 +228,10 @@ private fun InvestigationContent(
     val onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) }
     val onDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetDifficulty(it)) }
 
+    val onEditCustomDifficulty: () -> Unit = {
+        // TODO Navigate to Custom Difficulty editing page
+    }
+
     val onSanityChange: (Float) -> Unit = { investigationViewModel.onEvent(SetPlayerSanity(it)) }
     val onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) }
     val onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) }
@@ -331,6 +337,7 @@ private fun InvestigationContent(
             onDifficultyCarouselLeftClick = onDifficultyCarouselLeftClick,
             onDifficultyCarouselRightClick = onDifficultyCarouselRightClick,
             onDifficultyDropdownSelect = onDifficultyDropdownSelect,
+            onEditCustomDifficulty = onEditCustomDifficulty,
             onSanityChange = onSanityChange,
             onUseSanityMedication = onUseSanityMedication,
             onPlayerDeath = onPlayerDeath,
@@ -773,6 +780,7 @@ fun OperationConfigsBottomSheet(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    editCustomDifficultyComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
@@ -810,6 +818,7 @@ fun OperationConfigsBottomSheet(
                 fontSize = 18.sp,
                 maxLines = 1
             )
+
             HorizontalDivider(
                 modifier = Modifier
                     .weight(1f),
@@ -848,10 +857,16 @@ fun OperationConfigsBottomSheet(
                             .fillMaxWidth()
                     )
 
-                    difficultyConfigComponent(
-                        Modifier
-                            .fillMaxWidth()
-                    )
+                    Row {
+                        editCustomDifficultyComponent(
+                            Modifier
+                        )
+
+                        difficultyConfigComponent(
+                            Modifier
+                                .fillMaxWidth()
+                        )
+                    }
 
                     weatherConfigComponent(
                         Modifier
