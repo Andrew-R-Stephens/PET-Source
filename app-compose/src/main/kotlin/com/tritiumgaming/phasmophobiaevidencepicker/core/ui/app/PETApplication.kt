@@ -4,10 +4,12 @@ import android.app.Application
 import android.content.Context
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.room.Room
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.tritiumgaming.database.unknown.database.AppDatabase
 import com.tritiumgaming.feature.about.app.container.AboutContainer
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
 import com.tritiumgaming.feature.account.app.container.AccountContainer
@@ -15,6 +17,8 @@ import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
 import com.tritiumgaming.feature.codex.app.container.CodexContainer
 import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
 import com.tritiumgaming.feature.core.container.CoreContainer
+import com.tritiumgaming.feature.customdifficulty.app.container.CustomDifficultyContainer
+import com.tritiumgaming.feature.customdifficulty.app.container.CustomDifficultyContainerProvider
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainer
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
 import com.tritiumgaming.feature.language.app.container.LanguageContainer
@@ -23,8 +27,8 @@ import com.tritiumgaming.feature.maps.app.container.MapViewerContainer
 import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainer
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
-import com.tritiumgaming.feature.customdifficulty.app.container.MissionsContainer
-import com.tritiumgaming.feature.customdifficulty.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.missions.app.container.MissionsContainer
+import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainer
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
 import com.tritiumgaming.feature.settings.app.container.SettingsContainer
@@ -55,12 +59,15 @@ class PETApplication : Application(),
     InvestigationContainerProvider,
     MissionsContainerProvider,
     CodexContainerProvider,
-    MapViewerContainerProvider {
+    MapViewerContainerProvider,
+    CustomDifficultyContainerProvider {
 
-    /*val db = Room.databaseBuilder(
-        applicationContext,
-        AppDatabase::class.java, "pet-db"
-    ).build()*/
+    val db by lazy {
+        Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "pet-db"
+        ).build()
+    }
 
     private val firestore: FirebaseFirestore by lazy {
         Firebase.firestore
@@ -84,6 +91,7 @@ class PETApplication : Application(),
     lateinit var codexContainer: CodexContainer
     lateinit var missionsContainer: MissionsContainer
     lateinit var mapViewerContainer: MapViewerContainer
+    lateinit var customDifficultyContainer: CustomDifficultyContainer
     lateinit var investigationContainer: InvestigationContainer
 
     override fun onCreate() {
@@ -202,6 +210,10 @@ class PETApplication : Application(),
             applicationContext = applicationContext
         )
 
+        customDifficultyContainer = CustomDifficultyContainer(
+            applicationContext = applicationContext
+        )
+
     }
 
     override fun provideAppContainer(): AppContainer = appContainer
@@ -216,5 +228,6 @@ class PETApplication : Application(),
     override fun provideMissionsContainer(): MissionsContainer = missionsContainer
     override fun provideMapViewerContainer(): MapViewerContainer = mapViewerContainer
     override fun provideInvestigationContainer(): InvestigationContainer = investigationContainer
+    override fun provideCustomDifficultyContainer(): CustomDifficultyContainer = customDifficultyContainer
 
 }

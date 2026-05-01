@@ -2,15 +2,15 @@ import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.devtools.ksp)
 }
 
 configure<LibraryExtension> {
-    namespace = "com.tritiumgaming.data.difficulty"
+    namespace = "com.tritiumgaming.database.customdifficulty"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 23
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -29,19 +29,13 @@ configure<LibraryExtension> {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
-    buildToolsVersion = "36.1.0"
-
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.google.gson)
 
     implementation(project(":shared"))
-    implementation(project(":core-resources"))
 }

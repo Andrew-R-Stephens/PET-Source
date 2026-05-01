@@ -5,12 +5,11 @@ plugins {
 }
 
 configure<LibraryExtension> {
-    namespace = "com.tritiumgaming.data.difficulty"
+    namespace = "com.tritiumgaming.data.customdifficulty"
     compileSdk = 36
 
     defaultConfig {
         minSdk = 23
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -29,19 +28,11 @@ configure<LibraryExtension> {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
-    buildToolsVersion = "36.1.0"
-
 }
 
 dependencies {
+    api(project(":database-customdifficulty"))
+    implementation(project(":shared"))
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(project(":shared"))
-    implementation(project(":core-resources"))
 }

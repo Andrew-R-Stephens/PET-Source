@@ -44,6 +44,7 @@ include(
     ":data-challenge",
     ":data-codex",
     ":data-contributor",
+    ":data-customdifficulty",
     ":data-difficulty",
     ":data-evidence",
     ":data-ghost",
@@ -60,6 +61,7 @@ include(
     ":data-trait",
     ":data-typography",
     ":database-unknown",
+    ":database-customdifficulty",
 )
 
 include(

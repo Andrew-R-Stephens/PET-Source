@@ -158,7 +158,8 @@ private fun InvestigationContent(
         weather.toStringResource()
     }
     val weatherDropdownOptions = Weather.entries.map {
-        if (it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown else it.toStringResource()
+        if (it == Weather.RANDOM) R.string.difficulty_setting_state_weather_unknown
+        else it.toStringResource()
     }
 
     val mapName = mapConfigUiState.name

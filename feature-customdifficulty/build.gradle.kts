@@ -108,5 +108,6 @@ dependencies {
     implementation(project(":core-ui"))
 
     implementation(project(":shared"))
+    implementation(project(":data-customdifficulty"))
 
 }

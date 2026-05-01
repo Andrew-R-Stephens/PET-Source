@@ -279,6 +279,8 @@ dependencies {
     implementation(project(":core-ui"))
 
     implementation(project(":database-unknown"))
+    implementation(project(":database-customdifficulty"))
+    implementation(project(":data-customdifficulty"))
 
     implementation(project(":feature-core"))
 
