@@ -97,7 +97,8 @@ internal fun OperationStatusBar(
 
                 if(remainingTime.isNotEmpty()) {
                     DigitalTimer(
-                        modifier = Modifier,
+                        modifier = Modifier
+                            .height(16.dp),
                         remainingTime = remainingTime,
                         fontSize = 12.sp,
                         color = LocalPalette.current.onSurfaceVariant

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -62,7 +63,8 @@ internal fun NotchedProgressBarTimer(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
-                Modifier,
+                modifier = Modifier
+                    .width(56.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically)
             ) {
@@ -71,7 +73,9 @@ internal fun NotchedProgressBarTimer(
                 )
 
                 DigitalTimer(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(16.dp),
                     remainingTime = timeText,
                     color = colors.label,
                     fontSize = 12.sp
@@ -100,9 +104,7 @@ internal fun NotchedProgressBarTimer(
                 modifier = Modifier
                     .size(48.dp),
                 paused = !running,
-                onToggle = {
-                    onToggle()
-                },
+                onToggle = { onToggle() },
                 primaryContent = { modifier ->
                     Icon(
                         modifier = modifier

@@ -42,6 +42,8 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toStringResource
@@ -76,19 +78,27 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
 import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
+import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
+import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 
@@ -108,8 +118,6 @@ fun InvestigationSoloScreen(
 private fun InvestigationContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
-    val context = LocalContext.current
-
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
 
     val toolbarUiState by investigationViewModel.operationToolbarUiState.collectAsStateWithLifecycle()
@@ -227,10 +235,10 @@ private fun InvestigationContent(
 
     val onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) }
 
-    val onSelectTraitCategory: (com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory) -> Unit = { category ->
+    val onSelectTraitCategory: (TraitCategory) -> Unit = { category ->
         investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category)))
     }
-    val onToggleTrait: (com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait) -> Unit = { trait ->
+    val onToggleTrait: (ValidatedGhostTrait) -> Unit = { trait ->
         investigationViewModel.onEvent(ToggleTrait(trait))
     }
     val onToggleUniqueOnly: () -> Unit = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) }
@@ -240,8 +248,8 @@ private fun InvestigationContent(
     val onHuntCooldownToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) }
     val onFingerprintToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) }
 
-    val onBpmUpdate: (com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState<com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint>) -> Unit = { investigationViewModel.onEvent(SetBpmData(it)) }
-    val onBpmChangeMeasurementType: (com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType) -> Unit = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) }
+    val onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit = { investigationViewModel.onEvent(SetBpmData(it)) }
+    val onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) }
     val onBpmToggleApplyMeasurement: () -> Unit = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
 
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
@@ -439,23 +447,23 @@ private fun InvestigationContent(
                 Investigation(
                     modifier = Modifier.weight(1f, false),
                     operationToolbarUiState = toolbarUiState,
-                    evidenceListUiActions = com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions(
+                    evidenceListUiActions = EvidenceListUiActions(
                         onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
                         onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
                     ),
-                    ghostListUiActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions(
+                    ghostListUiActions = GhostListUiActions(
                         onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
                     ),
-                    ghostListUiItemActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions(
+                    ghostListUiItemActions = GhostListUiItemActions(
                         onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
                         onRequestToolTip = { }
                     ),
-                    toolbarUiActions = com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions(
+                    toolbarUiActions = ToolbarUiActions(
                         onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
                         onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
                         onReset = { investigationViewModel.onEvent(ResetInvestigation) }
                     ),
-                    bpmToolUiActions = com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions(
+                    bpmToolUiActions = BpmToolUiActions(
                         onUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
                         onChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
                         toggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
@@ -497,23 +505,23 @@ private fun InvestigationContent(
                 Investigation(
                     modifier = Modifier,
                     operationToolbarUiState = toolbarUiState,
-                    evidenceListUiActions = com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions(
+                    evidenceListUiActions = EvidenceListUiActions(
                         onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
                         onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
                     ),
-                    ghostListUiActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions(
+                    ghostListUiActions = GhostListUiActions(
                         onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
                     ),
-                    ghostListUiItemActions = com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions(
+                    ghostListUiItemActions = GhostListUiItemActions(
                         onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
                         onRequestToolTip = { }
                     ),
-                    toolbarUiActions = com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions(
+                    toolbarUiActions = ToolbarUiActions(
                         onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
                         onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
                         onReset = { investigationViewModel.onEvent(ResetInvestigation) }
                     ),
-                    bpmToolUiActions = com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions(
+                    bpmToolUiActions = BpmToolUiActions(
                         onUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
                         onChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
                         toggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
@@ -571,11 +579,11 @@ private fun InvestigationContent(
 private fun ColumnScope.Investigation(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
-    evidenceListUiActions: com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions,
-    ghostListUiActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions,
-    ghostListUiItemActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions,
-    toolbarUiActions: com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions,
-    bpmToolUiActions: com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions,
+    evidenceListUiActions: EvidenceListUiActions,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions,
+    toolbarUiActions: ToolbarUiActions,
+    bpmToolUiActions: BpmToolUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
     bottomSheetComponent: @Composable (Modifier) -> Unit,
     journalComponent: @Composable (Modifier) -> Unit
@@ -638,11 +646,11 @@ private fun ColumnScope.Investigation(
 private fun RowScope.Investigation(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
-    evidenceListUiActions: com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions,
-    ghostListUiActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions,
-    ghostListUiItemActions: com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions,
-    toolbarUiActions: com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions,
-    bpmToolUiActions: com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions,
+    evidenceListUiActions: EvidenceListUiActions,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions,
+    toolbarUiActions: ToolbarUiActions,
+    bpmToolUiActions: BpmToolUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
     journalComponent: @Composable (Modifier) -> Unit,
     sideSheetComponent: @Composable (Modifier) -> Unit
