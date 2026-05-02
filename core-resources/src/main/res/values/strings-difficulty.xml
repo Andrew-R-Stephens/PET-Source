@@ -78,4 +78,47 @@
     <string name= "difficulty_permission_revoked">Revoked</string>
     <string name= "difficulty_permission_permitted">Permitted</string>
     <string name= "difficulty_permission_quantity_all">All</string>
+
+    <!-- Percentage Values -->
+    <string name="difficulty_setting_value_0_percent" translatable="false">0%</string>
+    <string name="difficulty_setting_value_5_percent" translatable="false">5%</string>
+    <string name="difficulty_setting_value_10_percent" translatable="false">10%</string>
+    <string name="difficulty_setting_value_20_percent" translatable="false">20%</string>
+    <string name="difficulty_setting_value_25_percent" translatable="false">25%</string>
+    <string name="difficulty_setting_value_30_percent" translatable="false">30%</string>
+    <string name="difficulty_setting_value_35_percent" translatable="false">35%</string>
+    <string name="difficulty_setting_value_40_percent" translatable="false">40%</string>
+    <string name="difficulty_setting_value_45_percent" translatable="false">45%</string>
+    <string name="difficulty_setting_value_50_percent" translatable="false">50%</string>
+    <string name="difficulty_setting_value_75_percent" translatable="false">75%</string>
+    <string name="difficulty_setting_value_100_percent" translatable="false">100%</string>
+    <string name="difficulty_setting_value_125_percent" translatable="false">125%</string>
+    <string name="difficulty_setting_value_150_percent" translatable="false">150%</string>
+    <string name="difficulty_setting_value_200_percent" translatable="false">200%</string>
+
+    <!-- Time Values (Seconds) -->
+    <string name="difficulty_setting_value_0_seconds" translatable="false">0s</string>
+    <string name="difficulty_setting_value_1_second" translatable="false">1s</string>
+    <string name="difficulty_setting_value_2_seconds" translatable="false">2s</string>
+    <string name="difficulty_setting_value_3_seconds" translatable="false">3s</string>
+    <string name="difficulty_setting_value_4_seconds" translatable="false">4s</string>
+    <string name="difficulty_setting_value_5_seconds" translatable="false">5s</string>
+    <string name="difficulty_setting_value_15_seconds" translatable="false">15s</string>
+    <string name="difficulty_setting_value_30_seconds" translatable="false">30s</string>
+    <string name="difficulty_setting_value_60_seconds" translatable="false">60s</string>
+    <string name="difficulty_setting_value_90_seconds" translatable="false">90s</string>
+    <string name="difficulty_setting_value_120_seconds" translatable="false">120s</string>
+    <string name="difficulty_setting_value_180_seconds" translatable="false">180s</string>
+    <string name="difficulty_setting_value_240_seconds" translatable="false">240s</string>
+    <string name="difficulty_setting_value_300_seconds" translatable="false">300s</string>
+
+    <!-- Quantity Values -->
+    <string name="difficulty_setting_value_0" translatable="false">0</string>
+    <string name="difficulty_setting_value_1" translatable="false">1</string>
+    <string name="difficulty_setting_value_2" translatable="false">2</string>
+    <string name="difficulty_setting_value_3" translatable="false">3</string>
+    <string name="difficulty_setting_value_4" translatable="false">4</string>
+    <string name="difficulty_setting_value_5" translatable="false">5</string>
+    <string name="difficulty_setting_value_6" translatable="false">6</string>
+    <string name="difficulty_setting_value_7" translatable="false">7</string>
 </resources>
