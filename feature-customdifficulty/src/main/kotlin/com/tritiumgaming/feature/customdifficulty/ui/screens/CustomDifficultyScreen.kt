@@ -1,9 +1,9 @@
-package com.tritiumgaming.feature.customdifficulty.ui
+package com.tritiumgaming.feature.customdifficulty.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -21,12 +22,14 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.feature.customdifficulty.app.mappers.*
+import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyUiState
+import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
 import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 
 @Composable
 fun CustomDifficultyScreen(
-    viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Factory)
+    viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Companion.Factory)
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -137,28 +140,68 @@ private fun LandscapeContent(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DifficultySelector(
     difficulties: List<CustomDifficultyModel>,
     selectedDifficulty: CustomDifficultyModel?,
     onSelect: (CustomDifficultyModel) -> Unit
 ) {
+    var expanded by remember { mutableStateOf(false) }
+
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        difficulties.forEach { difficulty ->
-            val isSelected = difficulty.id == selectedDifficulty?.id
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(if (isSelected) LocalPalette.current.primary else LocalPalette.current.surfaceContainer)
-                    .clickable { onSelect(difficulty) }
-                    .padding(12.dp)
+        Text(
+            text = "Select Preset",
+            style = MaterialTheme.typography.labelLarge,
+            color = LocalPalette.current.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 4.dp)
+        )
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = { expanded = !expanded },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            OutlinedTextField(
+                value = selectedDifficulty?.name ?: "",
+                onValueChange = {},
+                readOnly = true,
+                modifier = Modifier.fillMaxWidth().menuAnchor(
+                    type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                    enabled = true
+                ),
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = LocalPalette.current.surfaceContainerHigh,
+                    unfocusedContainerColor = LocalPalette.current.surfaceContainerHigh,
+                    focusedTextColor = LocalPalette.current.onSurface,
+                    unfocusedTextColor = LocalPalette.current.onSurface,
+                    focusedBorderColor = LocalPalette.current.primary,
+                    unfocusedBorderColor = Color.Transparent
+                ),
+                shape = RoundedCornerShape(8.dp)
+            )
+
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.background(LocalPalette.current.surfaceContainerHigh),
+                scrollState = rememberScrollState()
             ) {
-                Text(
-                    text = difficulty.name,
-                    color = if (isSelected) LocalPalette.current.onPrimary else LocalPalette.current.onSurface,
-                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-                )
+                difficulties.forEach { difficulty ->
+                    DropdownMenuItem(
+                        text = {
+                            Text(
+                                text = difficulty.name,
+                                color = LocalPalette.current.onSurface,
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                        },
+                        onClick = {
+                            onSelect(difficulty)
+                            expanded = false
+                        }
+                    )
+                }
             }
         }
     }

@@ -24,7 +24,7 @@ import com.tritiumgaming.feature.account.ui.AccountScreenViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreen
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreenViewModel
 import com.tritiumgaming.feature.codex.ui.menu.CodexMenuScreen
-import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyScreen
+import com.tritiumgaming.feature.customdifficulty.ui.screens.CustomDifficultyScreen
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
 import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel

@@ -463,7 +463,8 @@ class CoreContainer(
         ),
         resetInvestigationUseCase = ResetInvestigationUseCase(
             repository = investigationRepository
-        )
+        ),
+        getCustomDifficultiesUseCase = getCustomDifficultiesUseCase
     )
 
 }

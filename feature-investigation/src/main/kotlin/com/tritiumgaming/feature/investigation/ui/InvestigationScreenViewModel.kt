@@ -36,6 +36,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationSanityUiS
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
@@ -119,10 +120,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.math.min
@@ -272,62 +275,65 @@ class InvestigationScreenViewModel private constructor(
             initialValue = DifficultyData()
         )
 
-    private fun updateDifficulty(
-        index: Int = 0
-    ) {
-        try {
-            val difficulty = difficulties[index]
-            val type = difficulty.type
-            val difficultyTitle = difficulty.difficultyTitle
-            val responseType = difficulty.responseType
+    private fun updateDifficulty(index: Int = 0) {
+        viewModelScope.launch {
+            try {
+                val baseDifficulty = difficulties.getOrNull(index) ?: return@launch
 
-            val settings = difficulty.settingsModel
+                var settings = baseDifficulty.settingsModel
+                var challengeTitle: ChallengeResources.ChallengeTitle? = null
 
-            var difficultyState = DifficultyData(
-                index = index,
-                type = type,
-                title = difficultyTitle,
-                responseType = responseType,
-                settings = settings
-            )
+                // Resolve specific settings based on type
+                when (baseDifficulty.type) {
+                    DifficultyType.CHALLENGE -> {
+                        getCurrentChallengeUseCase().onSuccess { challenge ->
+                            challengeTitle = challenge.challengeTitle
+                            settings = challenge.settingsModel
 
-            when(type) {
-                DifficultyType.CHALLENGE -> {
-                    getCurrentChallengeUseCase().onSuccess {
-                        val challengeTitle = it.challengeTitle
-                        difficultyState = difficultyState.copy(
-                            challengeTitle = challengeTitle,
-                            settings = it.settingsModel
-                        )
-
-                        maps.indexOfFirst { map -> map.mapName == it.map }.let { index ->
-                            if (index != -1) setMapIndex(index)
+                            // Sync map if required by challenge
+                            maps.indexOfFirst { it.mapName == challenge.map }.let { mapIndex ->
+                                if (mapIndex != -1) setMapIndex(mapIndex)
+                            }
                         }
-
                     }
+                    DifficultyType.CUSTOM -> {
+                        getCustomDifficultiesUseCase().first().firstOrNull()?.let { custom ->
+                            settings = custom.settings
+                        }
+                    }
+                    else -> { /* Use base settings */ }
                 }
-                DifficultyType.CUSTOM -> {
-                    difficultyState
-                }
-                else -> {}
+
+                val newDifficultyState = DifficultyData(
+                    index = index,
+                    type = baseDifficulty.type,
+                    title = baseDifficulty.difficultyTitle,
+                    responseType = baseDifficulty.responseType,
+                    challengeTitle = challengeTitle,
+                    settings = settings
+                )
+
+                // Single update point
+                updateInvestigationDifficultyUseCase(newDifficultyState)
+
+                // Log the actual state being applied
+                logDifficultyUpdate(newDifficultyState)
+
+            } catch (e: Exception) {
+                Log.e("InvestigationViewModel", "Update Difficulty failed", e)
             }
-
-            updateInvestigationDifficultyUseCase(difficultyState)
-        } catch (e: Exception) {
-            e.printStackTrace()
-
-            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
         }
-
-        Log.d("InvestigationViewModel", "DifficultyUiState:" +
-                "\n\tindex: ${difficultyState.value.index}" +
-                "\n\tname: ${difficultyState.value.title}" +
-                "\n\tmodifier: ${difficultyState.value.settings.sanityDrainSpeed.toFloat()}" +
-                "\n\ttime: ${difficultyState.value.settings.setupTime.toLong()}" +
-                "\n\tinitialSanity: ${difficultyState.value.settings.startingSanity.toFloat()}" +
-                "\n\tresponseType: ${difficultyState.value.responseType}")
     }
 
+    private fun logDifficultyUpdate(data: DifficultyData) {
+        Log.d("InvestigationViewModel", "Difficulty updated: " +
+                "\n\tindex: ${data.index}" +
+                "\n\tname: ${data.title}" +
+                "\n\tmodifier: ${data.settings.sanityDrainSpeed.toFloat()}" +
+                "\n\ttime: ${data.settings.setupTime.toLong()}" +
+                "\n\tinitialSanity: ${data.settings.startingSanity.toFloat()}" +
+                "\n\tresponseType: ${data.responseType}")
+    }
     /*
      * Tool Timers
      */
@@ -1852,6 +1858,23 @@ class InvestigationScreenViewModel private constructor(
             }.launchIn(viewModelScope)
     }
 
+    private fun observeCustomDifficulty() {
+        getCustomDifficultiesUseCase()
+            .onEach { customDifficulties ->
+                val currentDifficulty = difficultyState.value
+                if (currentDifficulty.type == DifficultyType.CUSTOM) {
+                    customDifficulties.firstOrNull()?.let { custom ->
+                        if (currentDifficulty.settings != custom.settings) {
+                            updateInvestigationDifficultyUseCase(
+                                currentDifficulty.copy(settings = custom.settings)
+                            )
+                        }
+                    }
+                }
+            }
+            .launchIn(viewModelScope)
+    }
+
     private fun observeDifficulty() {
         difficultyState
             .onEach { difficulty ->
@@ -1889,6 +1912,7 @@ class InvestigationScreenViewModel private constructor(
         updateDifficulty()
         reset()
 
+        observeCustomDifficulty()
         observeDifficulty()
         observeConfigOverrides()
         observeOperationTimer()

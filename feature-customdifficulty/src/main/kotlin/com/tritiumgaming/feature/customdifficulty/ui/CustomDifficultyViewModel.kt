@@ -36,9 +36,10 @@ class CustomDifficultyViewModel(
         _selectedDifficulty,
         _isSaving
     ) { difficulties, selected, isSaving ->
+        val currentSelected = selected ?: difficulties.firstOrNull()
         CustomDifficultyUiState(
             difficulties = difficulties,
-            selectedDifficulty = selected,
+            selectedDifficulty = currentSelected,
             isSaving = isSaving
         )
     }.stateIn(
@@ -52,11 +53,14 @@ class CustomDifficultyViewModel(
     }
 
     fun updateSelectedDifficulty(transform: (CustomDifficultyModel) -> CustomDifficultyModel) {
-        _selectedDifficulty.update { it?.let(transform) }
+        _selectedDifficulty.update { current ->
+            val target = current ?: uiState.value.selectedDifficulty
+            target?.let(transform)
+        }
     }
 
     fun saveChanges() {
-        val difficulty = _selectedDifficulty.value ?: return
+        val difficulty = _selectedDifficulty.value ?: uiState.value.selectedDifficulty ?: return
         viewModelScope.launch {
             _isSaving.value = true
             updateCustomDifficultyUseCase(difficulty)
