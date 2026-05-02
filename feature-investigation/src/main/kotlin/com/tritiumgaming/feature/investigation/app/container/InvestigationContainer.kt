@@ -31,6 +31,7 @@ import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
+import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
@@ -81,9 +82,10 @@ import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferences
 
 class InvestigationContainer(
     applicationContext: Context,
+    internal val investigationUseCaseBundle: InvestigationUseCaseBundle,
     private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase,
     internal val getCurrentChallengeUseCase: GetCurrentChallengeUseCase,
-    internal val investigationUseCaseBundle: InvestigationUseCaseBundle
+    internal val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase
 ) {
 
     internal val challengesUseCaseBundle = ChallengesUseCaseBundle(

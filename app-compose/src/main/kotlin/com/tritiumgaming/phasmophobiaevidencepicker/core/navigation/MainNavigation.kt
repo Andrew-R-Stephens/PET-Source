@@ -25,6 +25,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreen
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreenViewModel
 import com.tritiumgaming.feature.codex.ui.menu.CodexMenuScreen
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyScreen
+import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
 import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.InvestigationSoloScreen
@@ -246,6 +247,7 @@ private fun NavGraphBuilder.operationNavigation(
                 windowInsets = windowInsets
             ) {
                 InvestigationSoloScreen(
+                    navController = navController,
                     investigationViewModel = investigationViewModel
                 )
             }
@@ -264,7 +266,7 @@ private fun NavGraphBuilder.operationNavigation(
             }
         }
 
-        composable(route = NavRoute.SCREEN_CUSTOM_DIFFICULTY.route) {
+        composable(route = NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route) {
             OperationScreen(
                 modifier = Modifier
                     .padding(horizontal = 8.dp),
@@ -272,6 +274,7 @@ private fun NavGraphBuilder.operationNavigation(
                 windowInsets = windowInsets
             ) {
                 CustomDifficultyScreen(
+                    viewModel = viewModel(factory = CustomDifficultyViewModel.Factory),
                 )
             }
         }

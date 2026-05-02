@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -51,13 +51,13 @@ import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
-import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
-import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 
 @Composable
 internal fun ToolsBottomSheetComponent(
@@ -85,11 +85,12 @@ internal fun ToolsBottomSheetComponent(
     mapDropdownLabel: Int,
     onMapDropdownSelect: (Int) -> Unit,
     // Difficulty state
+    difficulty: DifficultyType,
     difficultyCarouselLabel: Int,
     isDifficultyCarouselEnabled: Boolean,
     onDifficultyCarouselLeftClick: () -> Unit,
     onDifficultyCarouselRightClick: () -> Unit,
-    onEditCustomDifficulty: () -> Unit,
+    onNavigateToEditCustomDifficulty: () -> Unit,
     difficultyDropdownOptions: List<Int>,
     isDifficultyDropdownEnabled: Boolean,
     difficultyDropdownLabel: Int,
@@ -203,15 +204,15 @@ internal fun ToolsBottomSheetComponent(
                     },
                     editCustomDifficultyComponent = { modifier ->
                         IconButton(
-                            modifier = modifier
-                                .sizeIn(minWidth = 48.dp, minHeight = 48.dp),
+                            modifier = modifier,
                             onClick = {
-                                onEditCustomDifficulty()
+                                onNavigateToEditCustomDifficulty()
                             }
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.ic_settings),
-                                contentDescription = "Custom Difficulty Settings"
+                                contentDescription = "Custom Difficulty Settings",
+                                tint = LocalPalette.current.onSurface
                             )
                         }
                     },
@@ -272,7 +273,9 @@ internal fun ToolsBottomSheetComponent(
                             onTogglePower = onTogglePower
                         )
                     },
-                    showTemperatureMeterComponent = weather != Weather.RANDOM
+                    showTemperatureMeterComponent = weather != Weather.RANDOM,
+                    showEditCustomDifficultyComponent =
+                        difficulty == DifficultyType.CUSTOM
                 )
             }
 

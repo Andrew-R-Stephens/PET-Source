@@ -38,6 +38,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUi
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
+import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
@@ -159,6 +160,7 @@ class InvestigationScreenViewModel private constructor(
     private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase
     private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
+    private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase = investigationUseCaseBundle.getCustomDifficultiesUseCase
 
     private val preferences: StateFlow<InvestigationScreenUserPreferences> =
         preferencesUseCaseBundle.initFlowUserPreferencesUseCase()
@@ -289,19 +291,25 @@ class InvestigationScreenViewModel private constructor(
                 settings = settings
             )
 
-            if(type == DifficultyType.CHALLENGE) {
-                getCurrentChallengeUseCase().onSuccess {
-                    val challengeTitle = it.challengeTitle
-                    difficultyState = difficultyState.copy(
-                        challengeTitle = challengeTitle,
-                        settings = it.settingsModel
-                    )
+            when(type) {
+                DifficultyType.CHALLENGE -> {
+                    getCurrentChallengeUseCase().onSuccess {
+                        val challengeTitle = it.challengeTitle
+                        difficultyState = difficultyState.copy(
+                            challengeTitle = challengeTitle,
+                            settings = it.settingsModel
+                        )
 
-                    maps.indexOfFirst { map -> map.mapName == it.map }.let { index ->
-                        if(index != -1) setMapIndex(index)
+                        maps.indexOfFirst { map -> map.mapName == it.map }.let { index ->
+                            if (index != -1) setMapIndex(index)
+                        }
+
                     }
-
                 }
+                DifficultyType.CUSTOM -> {
+                    difficultyState
+                }
+                else -> {}
             }
 
             updateInvestigationDifficultyUseCase(difficultyState)
@@ -664,9 +672,11 @@ class InvestigationScreenViewModel private constructor(
 
     private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = difficultyState
         .map { state ->
+            val type = difficulties[state.index].type
             val name = difficulties[state.index].difficultyTitle
 
             DifficultyConfigUiState(
+                type = type,
                 name = name,
                 allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
             )

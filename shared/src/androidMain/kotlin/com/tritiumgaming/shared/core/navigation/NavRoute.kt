@@ -27,7 +27,7 @@ enum class NavRoute(val route: String) {
 
     SCREEN_INVESTIGATION(route = "InvestigationScreen"),
     SCREEN_MISSIONS(route = "MissionsScreen"),
-    SCREEN_CUSTOM_DIFFICULTY(route = "CustomDifficultyScreen"),
+    SCREEN_CUSTOM_DIFFICULTY_EDIT(route = "CustomDifficultyScreen"),
     SCREEN_MAPS_MENU(route = "MapMenuScreen"),
     SCREEN_MAP_VIEWER(route = "MapViewerScreen"),
 

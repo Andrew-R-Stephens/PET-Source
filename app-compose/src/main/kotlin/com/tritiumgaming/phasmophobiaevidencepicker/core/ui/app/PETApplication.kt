@@ -70,7 +70,7 @@ class PETApplication : Application(),
         ).build()
     }
 
-    val customDifficultyDb by lazy {
+    val localDatabase by lazy {
         Room.databaseBuilder(
             applicationContext,
             CustomDifficultyDatabase::class.java, "custom-difficulty-db"
@@ -106,7 +106,13 @@ class PETApplication : Application(),
 
         super.onCreate()
 
-        coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth, customDifficultyDb)
+        coreContainer = CoreContainer(
+            applicationContext = applicationContext,
+            dataStore = dataStore,
+            firestore = firestore,
+            firebaseAuth = firebaseAuth,
+            localDatabase = localDatabase
+        )
 
         appContainer = AppContainer(
             initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
@@ -201,10 +207,10 @@ class PETApplication : Application(),
 
         investigationContainer = InvestigationContainer(
             applicationContext = applicationContext,
-            // User Preferences
+            investigationUseCaseBundle = coreContainer.investigationUseCaseBundle,
             initFlowUserPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
             getCurrentChallengeUseCase = coreContainer.getCurrentChallengeUseCase,
-            investigationUseCaseBundle = coreContainer.investigationUseCaseBundle
+            getCustomDifficultiesUseCase = coreContainer.getCustomDifficultiesUseCase
         )
 
         codexContainer = CodexContainer()
@@ -221,7 +227,7 @@ class PETApplication : Application(),
         customDifficultyContainer = CustomDifficultyContainer(
             applicationContext = applicationContext,
             getCustomDifficultiesUseCase = coreContainer.getCustomDifficultiesUseCase,
-            updateCustomDifficultyUseCase = coreContainer.updateCustomDifficultyUseCase
+            updateCustomDifficultyUseCase = coreContainer.updateCustomDifficultyUseCase,
         )
 
     }

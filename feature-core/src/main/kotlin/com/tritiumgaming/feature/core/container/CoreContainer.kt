@@ -116,13 +116,13 @@ class CoreContainer(
     dataStore: DataStore<Preferences>,
     firestore: FirebaseFirestore,
     firebaseAuth: FirebaseAuth,
-    customDifficultyDatabase: CustomDifficultyDatabase
+    localDatabase: CustomDifficultyDatabase
 ) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     private val customDifficultyRepository: CustomDifficultyRepository by lazy {
         CustomDifficultyRepositoryImpl(
-            customDifficultyDao = customDifficultyDatabase.customDifficultyDao(),
+            customDifficultyDao = localDatabase.customDifficultyDao(),
             scope = coroutineScope
         )
     }

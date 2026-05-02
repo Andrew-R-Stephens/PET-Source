@@ -28,6 +28,7 @@
 /app-compose/libs/processing-core.jar
 
 /data-customdifficulty/build/
+/database-customdifficulty/build/
 
 /KeyEncrypts/
 keystore.jks

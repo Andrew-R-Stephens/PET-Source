@@ -23,8 +23,6 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -33,13 +31,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -96,6 +96,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
@@ -106,10 +107,12 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 @Composable
 fun InvestigationSoloScreen(
+    navController: NavHostController,
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
     InvestigationContent(
+        navController = navController,
         investigationViewModel = investigationViewModel
     )
 
@@ -118,6 +121,7 @@ fun InvestigationSoloScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun InvestigationContent(
+    navController: NavHostController,
     investigationViewModel: InvestigationScreenViewModel
 ) {
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
@@ -229,8 +233,18 @@ private fun InvestigationContent(
     val onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) }
     val onDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetDifficulty(it)) }
 
-    val onEditCustomDifficulty: () -> Unit = {
-        // TODO Navigate to Custom Difficulty editing page
+    val onNavigateToEditCustomDifficulty: () -> Unit = {
+        navController.navigate(
+            route = NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route,
+            navOptions = NavOptions.Builder()
+                .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = false)
+                .setLaunchSingleTop(true)
+                .setEnterAnim(0)
+                .setExitAnim(0)
+                .setPopEnterAnim(0)
+                .setPopExitAnim(0)
+                .build()
+        )
     }
 
     val onSanityChange: (Float) -> Unit = { investigationViewModel.onEvent(SetPlayerSanity(it)) }
@@ -338,7 +352,7 @@ private fun InvestigationContent(
             onDifficultyCarouselLeftClick = onDifficultyCarouselLeftClick,
             onDifficultyCarouselRightClick = onDifficultyCarouselRightClick,
             onDifficultyDropdownSelect = onDifficultyDropdownSelect,
-            onEditCustomDifficulty = onEditCustomDifficulty,
+            onNavigateToEditCustomDifficulty = onNavigateToEditCustomDifficulty,
             onSanityChange = onSanityChange,
             onUseSanityMedication = onUseSanityMedication,
             onPlayerDeath = onPlayerDeath,
@@ -355,6 +369,7 @@ private fun InvestigationContent(
             onBpmUpdate = onBpmUpdate,
             onBpmChangeMeasurementType = onBpmChangeMeasurementType,
             onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
+            difficulty = difficultyUiState.type
         )
     }
 
@@ -787,6 +802,7 @@ fun OperationConfigsBottomSheet(
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
     showTemperatureMeterComponent: Boolean,
+    showEditCustomDifficultyComponent: Boolean
 ) {
     Column(
         modifier = modifier,
@@ -858,15 +874,25 @@ fun OperationConfigsBottomSheet(
                             .fillMaxWidth()
                     )
 
-                    Row {
-                        editCustomDifficultyComponent(
-                            Modifier
-                        )
+                    Row(
+                        modifier = Modifier.
+                            fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
 
                         difficultyConfigComponent(
                             Modifier
-                                .fillMaxWidth()
+                                .weight(1f)
                         )
+
+                        if(showEditCustomDifficultyComponent) {
+                            editCustomDifficultyComponent(
+                                Modifier
+                                    .size(48.dp)
+                                    .padding(8.dp)
+                            )
+                        }
                     }
 
                     weatherConfigComponent(
