@@ -9,6 +9,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.tritiumgaming.database.customdifficulty.CustomDifficultyDatabase
 import com.tritiumgaming.database.unknown.database.AppDatabase
 import com.tritiumgaming.feature.about.app.container.AboutContainer
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
@@ -69,6 +70,13 @@ class PETApplication : Application(),
         ).build()
     }
 
+    val customDifficultyDb by lazy {
+        Room.databaseBuilder(
+            applicationContext,
+            CustomDifficultyDatabase::class.java, "custom-difficulty-db"
+        ).build()
+    }
+
     private val firestore: FirebaseFirestore by lazy {
         Firebase.firestore
     }
@@ -98,7 +106,7 @@ class PETApplication : Application(),
 
         super.onCreate()
 
-        coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth)
+        coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth, customDifficultyDb)
 
         appContainer = AppContainer(
             initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
@@ -211,7 +219,9 @@ class PETApplication : Application(),
         )
 
         customDifficultyContainer = CustomDifficultyContainer(
-            applicationContext = applicationContext
+            applicationContext = applicationContext,
+            getCustomDifficultiesUseCase = coreContainer.getCustomDifficultiesUseCase,
+            updateCustomDifficultyUseCase = coreContainer.updateCustomDifficultyUseCase
         )
 
     }

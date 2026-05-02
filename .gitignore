@@ -27,6 +27,8 @@
 /app-compose/upload_certificate.pem
 /app-compose/libs/processing-core.jar
 
+/data-customdifficulty/build/
+
 /KeyEncrypts/
 keystore.jks
 Keystore_old.jks
@@ -34,3 +36,4 @@ Keystore_old2.jks
 /firestore.rules
 /firestore.indexes.json
 /iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/andrew.xcuserdatad/UserInterfaceState.xcuserstate
+

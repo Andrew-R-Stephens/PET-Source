@@ -2,12 +2,67 @@ package com.tritiumgaming.feature.customdifficulty.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
+import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
+import com.tritiumgaming.shared.data.customdifficulty.usecase.UpdateCustomDifficultyUseCase
 import com.tritiumgaming.feature.customdifficulty.app.container.CustomDifficultyContainerProvider
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+
+data class CustomDifficultyUiState(
+    val difficulties: List<CustomDifficultyModel> = emptyList(),
+    val selectedDifficulty: CustomDifficultyModel? = null,
+    val isSaving: Boolean = false
+)
 
 class CustomDifficultyViewModel(
+    private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase,
+    private val updateCustomDifficultyUseCase: UpdateCustomDifficultyUseCase
 ): ViewModel() {
+
+    private val _selectedDifficulty = MutableStateFlow<CustomDifficultyModel?>(null)
+    private val _isSaving = MutableStateFlow(false)
+
+    val uiState: StateFlow<CustomDifficultyUiState> = combine(
+        getCustomDifficultiesUseCase(),
+        _selectedDifficulty,
+        _isSaving
+    ) { difficulties, selected, isSaving ->
+        CustomDifficultyUiState(
+            difficulties = difficulties,
+            selectedDifficulty = selected,
+            isSaving = isSaving
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = CustomDifficultyUiState()
+    )
+
+    fun selectDifficulty(difficulty: CustomDifficultyModel) {
+        _selectedDifficulty.value = difficulty
+    }
+
+    fun updateSelectedDifficulty(transform: (CustomDifficultyModel) -> CustomDifficultyModel) {
+        _selectedDifficulty.update { it?.let(transform) }
+    }
+
+    fun saveChanges() {
+        val difficulty = _selectedDifficulty.value ?: return
+        viewModelScope.launch {
+            _isSaving.value = true
+            updateCustomDifficultyUseCase(difficulty)
+            _isSaving.value = false
+        }
+    }
 
     companion object {
 
@@ -17,7 +72,8 @@ class CustomDifficultyViewModel(
                 val container = (application as CustomDifficultyContainerProvider).provideCustomDifficultyContainer()
 
                 CustomDifficultyViewModel(
-
+                    getCustomDifficultiesUseCase = container.getCustomDifficultiesUseCase,
+                    updateCustomDifficultyUseCase = container.updateCustomDifficultyUseCase
                 )
             }
         }

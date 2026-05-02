@@ -15,8 +15,10 @@ import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSourc
 import com.tritiumgaming.data.challenges.repository.ChallengeRepositoryImpl
 import com.tritiumgaming.data.challenges.source.ChallengeDataSource
 import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource
+import com.tritiumgaming.data.customdifficulty.repository.CustomDifficultyRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
+import com.tritiumgaming.database.customdifficulty.CustomDifficultyDatabase
 import com.tritiumgaming.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
@@ -52,6 +54,9 @@ import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketpl
 import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository
 import com.tritiumgaming.shared.data.challenge.usecase.GetChallengesUseCase
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficultyRepository
+import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
+import com.tritiumgaming.shared.data.customdifficulty.usecase.UpdateCustomDifficultyUseCase
 import com.tritiumgaming.shared.data.investigation.InvestigationRepository
 import com.tritiumgaming.shared.data.investigation.repository.impl.InvestigationRepositoryImpl
 import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
@@ -102,14 +107,33 @@ import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatu
 import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 
 class CoreContainer(
     applicationContext: Context,
     dataStore: DataStore<Preferences>,
     firestore: FirebaseFirestore,
-    firebaseAuth: FirebaseAuth
+    firebaseAuth: FirebaseAuth,
+    customDifficultyDatabase: CustomDifficultyDatabase
 ) {
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+
+    private val customDifficultyRepository: CustomDifficultyRepository by lazy {
+        CustomDifficultyRepositoryImpl(
+            customDifficultyDao = customDifficultyDatabase.customDifficultyDao(),
+            scope = coroutineScope
+        )
+    }
+
+    val getCustomDifficultiesUseCase = GetCustomDifficultiesUseCase(
+        repository = customDifficultyRepository
+    )
+
+    val updateCustomDifficultyUseCase = UpdateCustomDifficultyUseCase(
+        repository = customDifficultyRepository
+    )
     // Challenges
     private val challengeRepository: ChallengeRepository by lazy {
         val challengeLocalDataSource: ChallengeDataSource = ChallengeLocalDataSource()

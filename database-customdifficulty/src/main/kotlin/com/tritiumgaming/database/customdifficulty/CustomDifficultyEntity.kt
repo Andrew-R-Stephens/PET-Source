@@ -38,4 +38,40 @@ data class CustomDifficultyEntity(
     val fuseBoxVisibleOnMap: FuseBoxVisibleOnMap,
     val cursedPossessionsQuantity: CursedPossessionsQuantity,
     val cursedPossessions: List<CursedPossession>
-)
+) {
+    companion object {
+        fun createDefault(id: Int = 0, name: String = "Custom Difficulty") = CustomDifficultyEntity(
+            id = id,
+            name = name,
+            startingSanity = StartingSanity.SANITY_100,
+            sanityPillRestoration = SanityPillRestoration.RESTORE_40,
+            sanityDrainSpeed = SanityDrainSpeed.SPEED_100,
+            sprinting = Sprinting.ON,
+            playerSpeed = PlayerSpeed.SPEED_100,
+            flashlights = Flashlights.ON,
+            loseItemsAndConsumables = LoseItemsAndConsumables.ON,
+            ghostSpeed = GhostSpeed.SPEED_100,
+            roamingFrequency = RoamingFrequency.MEDIUM,
+            changingFavouriteRoom = ChangingFavoriteRoom.NONE,
+            activityLevel = ActivityLevel.HIGH,
+            eventFrequency = EventFrequency.LOW,
+            friendlyGhost = FriendlyGhost.OFF,
+            gracePeriod = GracePeriod.PERIOD_5,
+            huntDuration = HuntDuration.LOW,
+            killsExtendHunts = KillsExtendHunts.OFF,
+            evidenceGiven = EvidenceGiven.COUNT_3,
+            fingerprintChance = FingerprintChance.CHANCE_100,
+            fingerprintDuration = FingerprintDuration.DURATION_120,
+            setupTime = SetupTime.TIME_300,
+            weather = Weather.RANDOM,
+            doorsStartingOpen = DoorsStartingOpen.NONE,
+            numberOfHidingPlaces = NumberOfHidingPlaces.VERY_HIGH,
+            sanityMonitor = SanityMonitor.ON,
+            activityMonitor = ActivityMonitor.ON,
+            fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.ON,
+            fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.ON,
+            cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
+            cursedPossessions = List(7) { CursedPossession.RANDOM }
+        )
+    }
+}
