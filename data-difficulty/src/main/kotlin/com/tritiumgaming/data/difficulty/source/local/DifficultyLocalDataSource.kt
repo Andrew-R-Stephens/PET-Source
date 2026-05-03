@@ -320,14 +320,14 @@ class DifficultyLocalDataSource: DifficultyDataSource {
             )
         ),
         DifficultyResourceDto(
-            type = DifficultyType.CUSTOM,
-            difficultyTitle = DifficultyTitle.CUSTOM,
+            type = DifficultyType.CHALLENGE,
+            difficultyTitle = DifficultyTitle.CHALLENGE,
             responseType = DifficultyResponseType.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto()
         ),
         DifficultyResourceDto(
-            type = DifficultyType.CHALLENGE,
-            difficultyTitle = DifficultyTitle.CHALLENGE,
+            type = DifficultyType.CUSTOM,
+            difficultyTitle = DifficultyTitle.CUSTOM,
             responseType = DifficultyResponseType.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto()
         ),

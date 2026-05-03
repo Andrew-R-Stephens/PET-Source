@@ -12,5 +12,6 @@ data class DifficultyData(
     val title: DifficultyTitle = DifficultyTitle.AMATEUR,
     val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN,
     val challengeTitle: ChallengeResources.ChallengeTitle? = null,
-    val settings: DifficultySettingsModel = DifficultySettingsModel()
+    val settings: DifficultySettingsModel = DifficultySettingsModel(),
+    val customIndex: Int? = null
 )

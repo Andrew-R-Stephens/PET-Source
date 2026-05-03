@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -51,7 +49,6 @@ import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
@@ -201,6 +198,9 @@ internal fun ToolsBottomSheetComponent(
                             dropdownLabel = difficultyDropdownLabel,
                             onDropdownSelect = onDifficultyDropdownSelect
                         )
+                    },
+                    customDifficultyConfigComponent = { modifier ->
+
                     },
                     editCustomDifficultyComponent = { modifier ->
                         IconButton(

@@ -796,6 +796,7 @@ fun OperationConfigsBottomSheet(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    customDifficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     editCustomDifficultyComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
@@ -882,6 +883,20 @@ fun OperationConfigsBottomSheet(
                     ) {
 
                         difficultyConfigComponent(
+                            Modifier
+                                .weight(1f)
+                        )
+
+                    }
+
+                    Row(
+                        modifier = Modifier.
+                            fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+
+                        customDifficultyConfigComponent(
                             Modifier
                                 .weight(1f)
                         )

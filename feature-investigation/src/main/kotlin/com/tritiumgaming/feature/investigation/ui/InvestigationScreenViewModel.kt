@@ -54,7 +54,6 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
 import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.model.Ghost
@@ -91,7 +90,6 @@ import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMa
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
-import com.tritiumgaming.shared.data.journal.usecase.GetGhostTypeByIdUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
 import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
@@ -104,7 +102,6 @@ import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexU
 import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
-import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel.SAFE_MIN_BOUNDS
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel.SANITY_LOSS_ON_PLAYER_DEATH
@@ -125,7 +122,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.math.min
@@ -275,15 +271,14 @@ class InvestigationScreenViewModel private constructor(
             initialValue = DifficultyData()
         )
 
-    private fun updateDifficulty(index: Int = 0) {
+    private fun updateDifficulty(difficultyIndex: Int = 0, customIndex: Int? = null) {
         viewModelScope.launch {
             try {
-                val baseDifficulty = difficulties.getOrNull(index) ?: return@launch
+                val baseDifficulty = difficulties.getOrNull(difficultyIndex) ?: return@launch
 
                 var settings = baseDifficulty.settingsModel
                 var challengeTitle: ChallengeResources.ChallengeTitle? = null
 
-                // Resolve specific settings based on type
                 when (baseDifficulty.type) {
                     DifficultyType.CHALLENGE -> {
                         getCurrentChallengeUseCase().onSuccess { challenge ->
@@ -297,27 +292,27 @@ class InvestigationScreenViewModel private constructor(
                         }
                     }
                     DifficultyType.CUSTOM -> {
-                        getCustomDifficultiesUseCase().first().firstOrNull()?.let { custom ->
-                            settings = custom.settings
+                        val customDifficulties = getCustomDifficultiesUseCase().first()
+                        val custom = customIndex?.let { customDifficulties.getOrNull(it) }
+                            ?: customDifficulties.firstOrNull()
+                        custom?.let {
+                            settings = it.settings
                         }
                     }
                     else -> { /* Use base settings */ }
                 }
 
                 val newDifficultyState = DifficultyData(
-                    index = index,
+                    index = difficultyIndex,
                     type = baseDifficulty.type,
                     title = baseDifficulty.difficultyTitle,
                     responseType = baseDifficulty.responseType,
                     challengeTitle = challengeTitle,
-                    settings = settings
+                    settings = settings,
+                    customIndex = customIndex
                 )
 
-                // Single update point
                 updateInvestigationDifficultyUseCase(newDifficultyState)
-
-                // Log the actual state being applied
-                logDifficultyUpdate(newDifficultyState)
 
             } catch (e: Exception) {
                 Log.e("InvestigationViewModel", "Update Difficulty failed", e)
@@ -325,15 +320,6 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun logDifficultyUpdate(data: DifficultyData) {
-        Log.d("InvestigationViewModel", "Difficulty updated: " +
-                "\n\tindex: ${data.index}" +
-                "\n\tname: ${data.title}" +
-                "\n\tmodifier: ${data.settings.sanityDrainSpeed.toFloat()}" +
-                "\n\ttime: ${data.settings.setupTime.toLong()}" +
-                "\n\tinitialSanity: ${data.settings.startingSanity.toFloat()}" +
-                "\n\tresponseType: ${data.responseType}")
-    }
     /*
      * Tool Timers
      */
@@ -1533,6 +1519,13 @@ class InvestigationScreenViewModel private constructor(
             }
     }
 
+    private fun setCustomDifficultyIndex(newIndex: Int) {
+        updateDifficulty(
+            difficultyIndex = difficultyState.value.index,
+            customIndex = newIndex
+        )
+    }
+
     private fun setWeather(weather: Weather) {
         setWeatherOverride(weather)
     }
@@ -1750,6 +1743,7 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.IncrementDifficulty -> incrementDifficultyIndex()
             is InvestigationEvent.DecrementDifficulty -> decrementDifficultyIndex()
             is InvestigationEvent.SetDifficulty -> setDifficultyIndex(event.index)
+            is InvestigationEvent.SetCustomDifficulty -> setCustomDifficultyIndex(event.index)
             is InvestigationEvent.SetWeather -> setWeather(event.weather)
             is InvestigationEvent.SetWeatherOverride -> setWeatherOverride(event.weather)
             is InvestigationEvent.ToggleFuseBoxOverride -> toggleFuseBoxOverride()
@@ -1863,10 +1857,12 @@ class InvestigationScreenViewModel private constructor(
             .onEach { customDifficulties ->
                 val currentDifficulty = difficultyState.value
                 if (currentDifficulty.type == DifficultyType.CUSTOM) {
-                    customDifficulties.firstOrNull()?.let { custom ->
-                        if (currentDifficulty.settings != custom.settings) {
+                    val custom = currentDifficulty.customIndex?.let { customDifficulties.getOrNull(it) }
+                        ?: customDifficulties.firstOrNull()
+                    custom?.let {
+                        if (currentDifficulty.settings != it.settings) {
                             updateInvestigationDifficultyUseCase(
-                                currentDifficulty.copy(settings = custom.settings)
+                                currentDifficulty.copy(settings = it.settings)
                             )
                         }
                     }
@@ -1957,6 +1953,7 @@ class InvestigationScreenViewModel private constructor(
         object IncrementDifficulty : InvestigationEvent()
         object DecrementDifficulty : InvestigationEvent()
         data class SetDifficulty(val index: Int) : InvestigationEvent()
+        data class SetCustomDifficulty(val index: Int) : InvestigationEvent()
         data class SetWeather(val weather: Weather) : InvestigationEvent()
         data class SetWeatherOverride(val weather: Weather) : InvestigationEvent()
         object ToggleFuseBoxOverride : InvestigationEvent()
