@@ -887,6 +887,27 @@ fun OperationConfigsBottomSheet(
                                 .weight(1f)
                         )
 
+                        if(showEditCustomDifficultyComponent) {
+                            editCustomDifficultyComponent(
+                                Modifier
+                                    .size(48.dp)
+                                    .padding(8.dp)
+                            )
+                        }
+                    }
+
+                    /*Row(
+                        modifier = Modifier.
+                            fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+
+                        difficultyConfigComponent(
+                            Modifier
+                                .weight(1f)
+                        )
+
                     }
 
                     Row(
@@ -908,7 +929,7 @@ fun OperationConfigsBottomSheet(
                                     .padding(8.dp)
                             )
                         }
-                    }
+                    }*/
 
                     weatherConfigComponent(
                         Modifier

@@ -1,13 +1,39 @@
 package com.tritiumgaming.feature.customdifficulty.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,7 +47,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
-import com.tritiumgaming.feature.customdifficulty.app.mappers.*
+import com.tritiumgaming.feature.customdifficulty.app.mappers.toValueStringResource
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyUiState
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
 import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
@@ -36,7 +62,9 @@ fun CustomDifficultyScreen(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    Box(modifier = Modifier.fillMaxSize().background(LocalPalette.current.surface)) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(LocalPalette.current.surface)) {
         when (deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 PortraitContent(
@@ -65,14 +93,17 @@ private fun PortraitContent(
     onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
     onSave: () -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
+    ) {
         DifficultySelector(
             difficulties = uiState.difficulties,
             selectedDifficulty = uiState.selectedDifficulty,
             onSelect = onSelectDifficulty
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         if (uiState.selectedDifficulty != null) {
             SettingsEditor(
@@ -83,7 +114,9 @@ private fun PortraitContent(
 
             Button(
                 onClick = onSave,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
                 enabled = !uiState.isSaving
             ) {
@@ -104,7 +137,9 @@ private fun LandscapeContent(
     onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
     onSave: () -> Unit
 ) {
-    Row(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Row(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
         Column(modifier = Modifier.width(200.dp)) {
             DifficultySelector(
                 difficulties = uiState.difficulties,
@@ -125,7 +160,9 @@ private fun LandscapeContent(
 
                 Button(
                     onClick = onSave,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
                     enabled = !uiState.isSaving
                 ) {
@@ -165,17 +202,19 @@ private fun DifficultySelector(
                 value = selectedDifficulty?.name ?: "",
                 onValueChange = {},
                 readOnly = true,
-                modifier = Modifier.fillMaxWidth().menuAnchor(
-                    type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
-                    enabled = true
-                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .menuAnchor(
+                        type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                        enabled = true
+                    ),
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = LocalPalette.current.surfaceContainerHigh,
-                    unfocusedContainerColor = LocalPalette.current.surfaceContainerHigh,
+                    focusedContainerColor = LocalPalette.current.surfaceContainer,
+                    unfocusedContainerColor = LocalPalette.current.surfaceContainer,
                     focusedTextColor = LocalPalette.current.onSurface,
                     unfocusedTextColor = LocalPalette.current.onSurface,
-                    focusedBorderColor = LocalPalette.current.primary,
+                    focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(8.dp)
@@ -218,83 +257,78 @@ private fun SettingsEditor(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(bottom = 16.dp)
     ) {
-        item { CategoryHeader(stringResource(R.string.difficulty_category_player)) }
-
         item {
-            SettingDropdown(
-                label = R.string.difficulty_setting_title_starting_sanity,
-                options = DifficultySettingResources.StartingSanity.entries.map { it.toValueStringResource() },
-                selectedOption = difficulty.settings.startingSanity.toValueStringResource(),
-                onSelect = { index ->
-                    onUpdate { it.copy(settings = it.settings.copy(startingSanity = DifficultySettingResources.StartingSanity.entries[index])) }
-                }
-            )
-        }
+            Surface(
+                color = LocalPalette.current.surfaceContainerLow,
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    CategoryHeader(stringResource(R.string.difficulty_category_player))
 
-        item {
-            SettingDropdown(
-                label = R.string.difficulty_setting_title_sanity_pill_restoration,
-                options = DifficultySettingResources.SanityPillRestoration.entries.map { it.toValueStringResource() },
-                selectedOption = difficulty.settings.sanityPillRestoration.toValueStringResource(),
-                onSelect = { index ->
-                    onUpdate { it.copy(settings = it.settings.copy(sanityPillRestoration = DifficultySettingResources.SanityPillRestoration.entries[index])) }
-                }
-            )
-        }
+                    SettingDropdown(
+                        label = R.string.difficulty_setting_title_starting_sanity,
+                        options = DifficultySettingResources.StartingSanity.entries.map { it.toValueStringResource() },
+                        selectedOption = difficulty.settings.startingSanity.toValueStringResource(),
+                        onSelect = { index ->
+                            onUpdate { it.copy(settings = it.settings.copy(startingSanity = DifficultySettingResources.StartingSanity.entries[index])) }
+                        }
+                    )
 
-        item {
-            SettingDropdown(
-                label = R.string.difficulty_setting_title_sanity_drain_speed,
-                options = DifficultySettingResources.SanityDrainSpeed.entries.map { it.toValueStringResource() },
-                selectedOption = difficulty.settings.sanityDrainSpeed.toValueStringResource(),
-                onSelect = { index ->
-                    onUpdate { it.copy(settings = it.settings.copy(sanityDrainSpeed = DifficultySettingResources.SanityDrainSpeed.entries[index])) }
+                    SettingDropdown(
+                        label = R.string.difficulty_setting_title_sanity_pill_restoration,
+                        options = DifficultySettingResources.SanityPillRestoration.entries.map { it.toValueStringResource() },
+                        selectedOption = difficulty.settings.sanityPillRestoration.toValueStringResource(),
+                        onSelect = { index ->
+                            onUpdate { it.copy(settings = it.settings.copy(sanityPillRestoration = DifficultySettingResources.SanityPillRestoration.entries[index])) }
+                        }
+                    )
+                    SettingDropdown(
+                        label = R.string.difficulty_setting_title_sanity_drain_speed,
+                        options = DifficultySettingResources.SanityDrainSpeed.entries.map { it.toValueStringResource() },
+                        selectedOption = difficulty.settings.sanityDrainSpeed.toValueStringResource(),
+                        onSelect = { index ->
+                            onUpdate { it.copy(settings = it.settings.copy(sanityDrainSpeed = DifficultySettingResources.SanityDrainSpeed.entries[index])) }
+                        }
+                    )
+                    SettingDropdown(
+                        label = R.string.difficulty_setting_title_sprinting,
+                        options = DifficultySettingResources.Sprinting.entries.map { it.toValueStringResource() },
+                        selectedOption = difficulty.settings.sprinting.toValueStringResource(),
+                        onSelect = { index ->
+                            onUpdate { it.copy(settings = it.settings.copy(sprinting = DifficultySettingResources.Sprinting.entries[index])) }
+                        }
+                    )
+                    SettingDropdown(
+                        label = R.string.difficulty_setting_title_player_speed,
+                        options = DifficultySettingResources.PlayerSpeed.entries.map { it.toValueStringResource() },
+                        selectedOption = difficulty.settings.playerSpeed.toValueStringResource(),
+                        onSelect = { index ->
+                            onUpdate { it.copy(settings = it.settings.copy(playerSpeed = DifficultySettingResources.PlayerSpeed.entries[index])) }
+                        }
+                    )
+                    SettingDropdown(
+                        label = R.string.difficulty_setting_title_flashlights,
+                        options = DifficultySettingResources.Flashlights.entries.map { it.toValueStringResource() },
+                        selectedOption = difficulty.settings.flashlights.toValueStringResource(),
+                        onSelect = { index ->
+                            onUpdate { it.copy(settings = it.settings.copy(flashlights = DifficultySettingResources.Flashlights.entries[index])) }
+                        }
+                    )
+                    SettingDropdown(
+                        label = R.string.difficulty_setting_title_lose_items_and_consumables,
+                        options = DifficultySettingResources.LoseItemsAndConsumables.entries.map { it.toValueStringResource() },
+                        selectedOption = difficulty.settings.loseItemsAndConsumables.toValueStringResource(),
+                        onSelect = { index ->
+                            onUpdate { it.copy(settings = it.settings.copy(loseItemsAndConsumables = DifficultySettingResources.LoseItemsAndConsumables.entries[index])) }
+                        }
+                    )
                 }
-            )
-        }
-
-        item {
-            SettingDropdown(
-                label = R.string.difficulty_setting_title_sprinting,
-                options = DifficultySettingResources.Sprinting.entries.map { it.toValueStringResource() },
-                selectedOption = difficulty.settings.sprinting.toValueStringResource(),
-                onSelect = { index ->
-                    onUpdate { it.copy(settings = it.settings.copy(sprinting = DifficultySettingResources.Sprinting.entries[index])) }
-                }
-            )
-        }
-
-        item {
-            SettingDropdown(
-                label = R.string.difficulty_setting_title_player_speed,
-                options = DifficultySettingResources.PlayerSpeed.entries.map { it.toValueStringResource() },
-                selectedOption = difficulty.settings.playerSpeed.toValueStringResource(),
-                onSelect = { index ->
-                    onUpdate { it.copy(settings = it.settings.copy(playerSpeed = DifficultySettingResources.PlayerSpeed.entries[index])) }
-                }
-            )
-        }
-
-        item {
-            SettingDropdown(
-                label = R.string.difficulty_setting_title_flashlights,
-                options = DifficultySettingResources.Flashlights.entries.map { it.toValueStringResource() },
-                selectedOption = difficulty.settings.flashlights.toValueStringResource(),
-                onSelect = { index ->
-                    onUpdate { it.copy(settings = it.settings.copy(flashlights = DifficultySettingResources.Flashlights.entries[index])) }
-                }
-            )
-        }
-
-        item {
-            SettingDropdown(
-                label = R.string.difficulty_setting_title_lose_items_and_consumables,
-                options = DifficultySettingResources.LoseItemsAndConsumables.entries.map { it.toValueStringResource() },
-                selectedOption = difficulty.settings.loseItemsAndConsumables.toValueStringResource(),
-                onSelect = { index ->
-                    onUpdate { it.copy(settings = it.settings.copy(loseItemsAndConsumables = DifficultySettingResources.LoseItemsAndConsumables.entries[index])) }
-                }
-            )
+            }
         }
 
         item { CategoryHeader(stringResource(R.string.difficulty_category_ghost)) }
@@ -536,13 +570,20 @@ private fun SettingsEditor(
 
 @Composable
 private fun CategoryHeader(text: String) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.titleLarge,
-        color = LocalPalette.current.primary,
-        modifier = Modifier.padding(vertical = 8.dp),
-        fontWeight = FontWeight.Bold
-    )
+    Surface(
+        color = LocalPalette.current.surfaceContainer,
+        shape = RoundedCornerShape(8.dp)
+    ){
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            text = text,
+            style = MaterialTheme.typography.titleLarge,
+            color = LocalPalette.current.primary,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }
 
 @Composable
@@ -552,20 +593,29 @@ private fun SettingDropdown(
     selectedOption: Int,
     onSelect: (Int) -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = stringResource(label),
-            style = MaterialTheme.typography.labelLarge,
-            color = LocalPalette.current.onSurfaceVariant,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
-        DropdownList(
-            options = options,
-            label = selectedOption,
-            onSelect = onSelect,
-            color = LocalPalette.current.surfaceContainerHigh,
-            onColor = LocalPalette.current.onSurface,
-            textStyle = MaterialTheme.typography.bodyLarge
-        )
+    Surface(
+        color = LocalPalette.current.surfaceContainer,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Text(
+                text = stringResource(label),
+                style = MaterialTheme.typography.labelLarge,
+                color = LocalPalette.current.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            DropdownList(
+                options = options,
+                label = selectedOption,
+                onSelect = onSelect,
+                color = LocalPalette.current.surfaceContainerHigh,
+                onColor = LocalPalette.current.onSurface,
+                textStyle = MaterialTheme.typography.bodyLarge
+            )
+        }
     }
 }
