@@ -31,7 +31,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -42,20 +41,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
-import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ClearPopup
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.DecrementDifficulty
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.DecrementMap
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.IncrementDifficulty
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.IncrementMap
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.PlayerDeath
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ResetInvestigation
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmData
@@ -80,15 +75,11 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
 import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
-import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
-import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
@@ -225,16 +216,10 @@ private fun InvestigationContent(
     val bpmMeasurementType = bpmToolUiState.measurementType
     val bpmApplyMeasurement = bpmToolUiState.applyMeasurement
 
-    val onWeatherCarouselLeftClick = { }
-    val onWeatherCarouselRightClick = { }
     val onWeatherDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) }
 
-    val onMapCarouselLeftClick = { investigationViewModel.onEvent(DecrementMap) }
-    val onMapCarouselRightClick = { investigationViewModel.onEvent(IncrementMap) }
     val onMapDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetMap(it)) }
 
-    val onDifficultyCarouselLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) }
-    val onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) }
     val onDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetDifficulty(it)) }
 
     val onCustomDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(
@@ -297,19 +282,13 @@ private fun InvestigationContent(
             toolbarCategory = toolbarCategory,
             weather = weather,
             weatherIcon = weatherIcon,
-            weatherCarouselLabel = weatherLabel,
-            isWeatherCarouselEnabled = isWeatherEnabled,
             weatherDropdownOptions = weatherDropdownOptions,
             isWeatherDropdownEnabled = isWeatherEnabled,
             weatherDropdownLabel = weatherLabel,
-            mapCarouselLabel = mapLabel,
-            isMapCarouselEnabled = isMapEnabled,
             mapDropdownOptions = mapDropdownOptions,
             isMapDropdownEnabled = isMapEnabled,
             mapDropdownLabel = mapLabel,
             difficulty = difficultyUiState.type,
-            difficultyCarouselLabel = difficultyLabel,
-            isDifficultyCarouselEnabled = isDifficultyEnabled,
             difficultyDropdownOptions = difficultyDropdownOptions,
             isDifficultyDropdownEnabled = isDifficultyEnabled,
             difficultyDropdownLabel = difficultyLabel,
@@ -354,14 +333,8 @@ private fun InvestigationContent(
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
-            onWeatherCarouselLeftClick = onWeatherCarouselLeftClick,
-            onWeatherCarouselRightClick = onWeatherCarouselRightClick,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
-            onMapCarouselLeftClick = onMapCarouselLeftClick,
-            onMapCarouselRightClick = onMapCarouselRightClick,
             onMapDropdownSelect = onMapDropdownSelect,
-            onDifficultyCarouselLeftClick = onDifficultyCarouselLeftClick,
-            onDifficultyCarouselRightClick = onDifficultyCarouselRightClick,
             onDifficultyDropdownSelect = onDifficultyDropdownSelect,
             onNavigateToEditCustomDifficulty = onNavigateToEditCustomDifficulty,
             onSanityChange = onSanityChange,
@@ -389,18 +362,12 @@ private fun InvestigationContent(
             toolbarCategory = toolbarCategory,
             weather = weather,
             weatherIcon = weatherIcon,
-            weatherCarouselLabel = weatherLabel,
-            isWeatherCarouselEnabled = isWeatherEnabled,
             weatherDropdownOptions = weatherDropdownOptions,
             isWeatherDropdownEnabled = isWeatherEnabled,
             weatherDropdownLabel = weatherLabel,
-            mapCarouselLabel = mapLabel,
-            isMapCarouselEnabled = isMapEnabled,
             mapDropdownOptions = mapDropdownOptions,
             isMapDropdownEnabled = isMapEnabled,
             mapDropdownLabel = mapLabel,
-            difficultyCarouselLabel = difficultyLabel,
-            isDifficultyCarouselEnabled = isDifficultyEnabled,
             difficultyDropdownOptions = difficultyDropdownOptions,
             isDifficultyDropdownEnabled = isDifficultyEnabled,
             difficultyDropdownLabel = difficultyLabel,
@@ -442,14 +409,8 @@ private fun InvestigationContent(
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
-            onWeatherCarouselLeftClick = onWeatherCarouselLeftClick,
-            onWeatherCarouselRightClick = onWeatherCarouselRightClick,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
-            onMapCarouselLeftClick = onMapCarouselLeftClick,
-            onMapCarouselRightClick = onMapCarouselRightClick,
             onMapDropdownSelect = onMapDropdownSelect,
-            onDifficultyCarouselLeftClick = onDifficultyCarouselLeftClick,
-            onDifficultyCarouselRightClick = onDifficultyCarouselRightClick,
             onDifficultyDropdownSelect = onDifficultyDropdownSelect,
             onSanityChange = onSanityChange,
             onUseSanityMedication = onUseSanityMedication,
@@ -480,26 +441,10 @@ private fun InvestigationContent(
                 Investigation(
                     modifier = Modifier.weight(1f, false),
                     operationToolbarUiState = toolbarUiState,
-                    evidenceListUiActions = EvidenceListUiActions(
-                        onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
-                        onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
-                    ),
-                    ghostListUiActions = GhostListUiActions(
-                        onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
-                    ),
-                    ghostListUiItemActions = GhostListUiItemActions(
-                        onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
-                        onRequestToolTip = { }
-                    ),
                     toolbarUiActions = ToolbarUiActions(
                         onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
                         onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
                         onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-                    ),
-                    bpmToolUiActions = BpmToolUiActions(
-                        onUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
-                        onChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
-                        toggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
                     ),
                     statusBarComponent = { modifier ->
                         OperationStatusBar(
@@ -538,26 +483,10 @@ private fun InvestigationContent(
                 Investigation(
                     modifier = Modifier,
                     operationToolbarUiState = toolbarUiState,
-                    evidenceListUiActions = EvidenceListUiActions(
-                        onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
-                        onClickItem = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
-                    ),
-                    ghostListUiActions = GhostListUiActions(
-                        onNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) }
-                    ),
-                    ghostListUiItemActions = GhostListUiItemActions(
-                        onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
-                        onRequestToolTip = { }
-                    ),
                     toolbarUiActions = ToolbarUiActions(
                         onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
                         onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
                         onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-                    ),
-                    bpmToolUiActions = BpmToolUiActions(
-                        onUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
-                        onChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
-                        toggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
                     ),
                     statusBarComponent = { modifier ->
                         OperationStatusBar(
@@ -612,11 +541,7 @@ private fun InvestigationContent(
 private fun ColumnScope.Investigation(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
-    evidenceListUiActions: EvidenceListUiActions,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
-    bpmToolUiActions: BpmToolUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
     bottomSheetComponent: @Composable (Modifier) -> Unit,
     journalComponent: @Composable (Modifier) -> Unit
@@ -679,11 +604,7 @@ private fun ColumnScope.Investigation(
 private fun RowScope.Investigation(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
-    evidenceListUiActions: EvidenceListUiActions,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
-    bpmToolUiActions: BpmToolUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
     journalComponent: @Composable (Modifier) -> Unit,
     sideSheetComponent: @Composable (Modifier) -> Unit
@@ -807,7 +728,6 @@ fun OperationConfigsBottomSheet(
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     customDifficultyConfigComponent: @Composable (Modifier) -> Unit = {},
-    editCustomDifficultyComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},

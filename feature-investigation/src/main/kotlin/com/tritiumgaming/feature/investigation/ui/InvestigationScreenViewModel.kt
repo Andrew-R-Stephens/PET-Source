@@ -144,12 +144,8 @@ class InvestigationScreenViewModel private constructor(
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase
     private val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase = journalUseCaseBundle.getAllGhostTraitsUseCase
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase
-    private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase = difficultyUseCaseBundle.incrementDifficultyIndexUseCase
-    private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase = difficultyUseCaseBundle.decrementDifficultyIndexUseCase
     private val setDifficultyIndexUseCase: SetDifficultyIndexUseCase = difficultyUseCaseBundle.setDifficultyIndexUseCase
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase = simpleMapUseCaseBundle.fetchSimpleMapsUseCase
-    private val incrementSimpleMapIndexUseCase: IncrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.incrementSimpleMapIndexUseCase
-    private val decrementSimpleMapIndexUseCase: DecrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.decrementSimpleMapIndexUseCase
     private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase = simpleMapUseCaseBundle.getSimpleMapNameUseCase
     private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase = simpleMapUseCaseBundle.getSimpleMapSizeUseCase
     private val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase = simpleMapUseCaseBundle.getSimpleMapModifierUseCase
@@ -1495,37 +1491,9 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun incrementMapIndex() {
-        try {
-            val newIndex = incrementSimpleMapIndexUseCase(
-                mapState.value.index).getOrThrow()
-            updateMap(newIndex)
-        } catch (e: Exception) { e.printStackTrace() }
-    }
-
-    private fun decrementMapIndex() {
-        try {
-            val newIndex = decrementSimpleMapIndexUseCase(
-                mapState.value.index).getOrThrow()
-            updateMap(newIndex)
-        } catch (e: Exception) { e.printStackTrace() }
-    }
-
     private fun setMapIndex(index: Int) {
         updateMap(index)
     }
-
-    private fun incrementDifficultyIndex() =
-        incrementDifficultyIndexUseCase(difficultyState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
-
-    private fun decrementDifficultyIndex() =
-        decrementDifficultyIndexUseCase(difficultyState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
 
     private fun setDifficultyIndex(newIndex: Int) {
         setDifficultyIndexUseCase(newIndex)
@@ -1542,24 +1510,6 @@ class InvestigationScreenViewModel private constructor(
             difficultyIndex = difficultyState.value.index,
             customIndex = newIndex
         )
-    }
-
-    private fun incrementCustomDifficultyIndex() {
-        val names = customDifficultyConfigUiState.value.options
-        if (names.isNotEmpty()) {
-            val currentIndex = customDifficultyConfigUiState.value.selectedIndex
-            val nextIndex = (currentIndex + 1) % names.size
-            setCustomDifficultyIndex(nextIndex)
-        }
-    }
-
-    private fun decrementCustomDifficultyIndex() {
-        val names = customDifficultyConfigUiState.value.options
-        if (names.isNotEmpty()) {
-            val currentIndex = customDifficultyConfigUiState.value.selectedIndex
-            val nextIndex = if (currentIndex <= 0) names.size - 1 else currentIndex - 1
-            setCustomDifficultyIndex(nextIndex)
-        }
     }
 
     private fun setWeather(weather: Weather) {
@@ -1773,14 +1723,8 @@ class InvestigationScreenViewModel private constructor(
     fun onEvent(event: InvestigationEvent) {
         when (event) {
             // Configuration
-            is InvestigationEvent.IncrementMap -> incrementMapIndex()
-            is InvestigationEvent.DecrementMap -> decrementMapIndex()
             is InvestigationEvent.SetMap -> setMapIndex(event.index)
-            is InvestigationEvent.IncrementDifficulty -> incrementDifficultyIndex()
-            is InvestigationEvent.DecrementDifficulty -> decrementDifficultyIndex()
             is InvestigationEvent.SetDifficulty -> setDifficultyIndex(event.index)
-            is InvestigationEvent.IncrementCustomDifficulty -> incrementCustomDifficultyIndex()
-            is InvestigationEvent.DecrementCustomDifficulty -> decrementCustomDifficultyIndex()
             is InvestigationEvent.SetCustomDifficulty -> setCustomDifficultyIndex(event.index)
             is InvestigationEvent.SetWeather -> setWeather(event.weather)
             is InvestigationEvent.SetWeatherOverride -> setWeatherOverride(event.weather)
@@ -1985,14 +1929,8 @@ class InvestigationScreenViewModel private constructor(
 
     sealed class InvestigationEvent {
         // Configuration Events
-        object IncrementMap : InvestigationEvent()
-        object DecrementMap : InvestigationEvent()
         data class SetMap(val index: Int) : InvestigationEvent()
-        object IncrementDifficulty : InvestigationEvent()
-        object DecrementDifficulty : InvestigationEvent()
         data class SetDifficulty(val index: Int) : InvestigationEvent()
-        object IncrementCustomDifficulty : InvestigationEvent()
-        object DecrementCustomDifficulty : InvestigationEvent()
         data class SetCustomDifficulty(val index: Int) : InvestigationEvent()
         data class SetWeather(val weather: Weather) : InvestigationEvent()
         data class SetWeatherOverride(val weather: Weather) : InvestigationEvent()

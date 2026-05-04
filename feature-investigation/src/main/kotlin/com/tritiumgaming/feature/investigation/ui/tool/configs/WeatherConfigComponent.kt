@@ -22,17 +22,11 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 internal fun WeatherConfigComponent(
     modifier: Modifier = Modifier,
     @DrawableRes icon: Int,
-    carouselLabel: Int,
-    isCarouselEnabled: Boolean,
-    onCarouselLeftClick: () -> Unit,
-    onCarouselRightClick: () -> Unit,
     dropdownOptions: List<Int>,
     isDropdownEnabled: Boolean,
     dropdownLabel: Int,
     onDropdownSelect: (Int) -> Unit
 ) {
-    val uiDensityType = LocalUiConfiguration.current.densityType
-
     val textStyle = LocalTypography.current.quaternary.regular
     val color = LocalPalette.current.surfaceContainer
     val onColor = LocalPalette.current.onSurface
@@ -48,33 +42,17 @@ internal fun WeatherConfigComponent(
         )
     }
 
-    when(uiDensityType) {
-        DensityType.COMPACT -> {
-            OperationConfigDropdown(
-                modifier = modifier,
-                icon = { icon(it) },
-                options = dropdownOptions,
-                enabled = isDropdownEnabled,
-                label = dropdownLabel,
-                onSelect = onDropdownSelect,
-                textStyle = textStyle,
-                onColor = onColor,
-                expandedColor = color,
-            )
-        }
-        else -> {
-            OperationConfigCarousel(
-                modifier = modifier,
-                label = carouselLabel,
-                enabled = isCarouselEnabled,
-                onLeftClick = onCarouselLeftClick,
-                onRightClick = onCarouselRightClick,
-                leadingIcon = { icon(it) },
-                textStyle = textStyle,
-                onColor = onColor,
-            )
-        }
-    }
+    OperationConfigDropdown(
+        modifier = modifier,
+        icon = { icon(it) },
+        options = dropdownOptions,
+        enabled = isDropdownEnabled,
+        label = dropdownLabel,
+        onSelect = onDropdownSelect,
+        textStyle = textStyle,
+        onColor = onColor,
+        expandedColor = color,
+    )
 }
 
 internal data class WeatherUiState(

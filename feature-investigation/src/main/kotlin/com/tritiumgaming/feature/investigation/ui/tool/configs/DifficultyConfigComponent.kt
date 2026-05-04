@@ -21,17 +21,11 @@ import com.tritiumgaming.shared.data.preferences.properties.DensityType
 @Composable
 internal fun DifficultyConfigControl(
     modifier: Modifier = Modifier,
-    carouselLabel: Int,
-    isCarouselEnabled: Boolean,
-    onCarouselLeftClick: () -> Unit,
-    onCarouselRightClick: () -> Unit,
     dropdownOptions: List<Int>,
     isDropdownEnabled: Boolean,
     dropdownLabel: Int,
     onDropdownSelect: (Int) -> Unit
 ) {
-    val uiDensityType = LocalUiConfiguration.current.densityType
-
     val textStyle = LocalTypography.current.quaternary.regular
     val color = LocalPalette.current.surfaceContainer
     val onColor = LocalPalette.current.onSurface
@@ -47,33 +41,17 @@ internal fun DifficultyConfigControl(
         )
     }
 
-    when(uiDensityType) {
-        DensityType.COMPACT -> {
-            OperationConfigDropdown(
-                modifier = modifier,
-                options = dropdownOptions,
-                enabled = isDropdownEnabled,
-                label = dropdownLabel,
-                onSelect = onDropdownSelect,
-                icon = { icon(it) },
-                textStyle = textStyle,
-                expandedColor = color,
-                onColor = onColor,
-            )
-        }
-        else -> {
-            OperationConfigCarousel(
-                modifier = modifier,
-                label = carouselLabel,
-                enabled = isCarouselEnabled,
-                onLeftClick = onCarouselLeftClick,
-                onRightClick = onCarouselRightClick,
-                leadingIcon = { icon(it) },
-                textStyle = textStyle,
-                onColor = onColor,
-            )
-        }
-    }
+    OperationConfigDropdown(
+        modifier = modifier,
+        options = dropdownOptions,
+        enabled = isDropdownEnabled,
+        label = dropdownLabel,
+        onSelect = onDropdownSelect,
+        icon = { icon(it) },
+        textStyle = textStyle,
+        expandedColor = color,
+        onColor = onColor,
+    )
 }
 
 internal data class DifficultyConfigUiState(

@@ -21,17 +21,11 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 @Composable
 internal fun MapConfigControl(
     modifier: Modifier = Modifier,
-    carouselLabel: Int,
-    isCarouselEnabled: Boolean,
-    onCarouselLeftClick: () -> Unit,
-    onCarouselRightClick: () -> Unit,
     dropdownOptions: List<Int>,
     isDropdownEnabled: Boolean,
     dropdownLabel: Int,
     onDropdownSelect: (Int) -> Unit
 ) {
-    val uiDensityType = LocalUiConfiguration.current.densityType
-
     val textStyle = LocalTypography.current.quaternary.regular
     val color = LocalPalette.current.surfaceContainer
     val onColor = LocalPalette.current.onSurface
@@ -47,33 +41,17 @@ internal fun MapConfigControl(
         )
     }
 
-    when(uiDensityType) {
-        DensityType.COMPACT -> {
-            OperationConfigDropdown(
-                modifier = modifier,
-                icon = { icon(it) },
-                options = dropdownOptions,
-                enabled = isDropdownEnabled,
-                label = dropdownLabel,
-                onSelect = onDropdownSelect,
-                textStyle = textStyle,
-                onColor = onColor,
-                expandedColor = color,
-            )
-        }
-        else -> {
-            OperationConfigCarousel(
-                modifier = modifier,
-                label = carouselLabel,
-                enabled = isCarouselEnabled,
-                onLeftClick = onCarouselLeftClick,
-                onRightClick = onCarouselRightClick,
-                leadingIcon = { icon(it) },
-                textStyle = textStyle,
-                onColor = onColor,
-            )
-        }
-    }
+    OperationConfigDropdown(
+        modifier = modifier,
+        icon = { icon(it) },
+        options = dropdownOptions,
+        enabled = isDropdownEnabled,
+        label = dropdownLabel,
+        onSelect = onDropdownSelect,
+        textStyle = textStyle,
+        onColor = onColor,
+        expandedColor = color,
+    )
 }
 
 internal data class MapConfigUiState(
