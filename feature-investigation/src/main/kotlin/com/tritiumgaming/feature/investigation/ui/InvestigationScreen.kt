@@ -133,6 +133,7 @@ private fun InvestigationContent(
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
     val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
+    val customDifficultyConfigUiState by investigationViewModel.customDifficultyConfigUiState.collectAsStateWithLifecycle()
     val weatherUiState by investigationViewModel.weatherUiState.collectAsStateWithLifecycle()
     val temperatureUiState by investigationViewModel.temperatureUiState.collectAsStateWithLifecycle()
     val difficultyOverrideUiState by investigationViewModel.difficultyOverridesState.collectAsStateWithLifecycle()
@@ -179,6 +180,9 @@ private fun InvestigationContent(
     val difficultyDropdownOptions = difficultyUiState.allDifficulties.map {
         it.toStringResource()
     }
+
+    val customDifficultyLabel = customDifficultyConfigUiState.name
+    val customDifficultyDropdownOptions = customDifficultyConfigUiState.options
 
     val sanityLevel = sanityUiState.sanityLevel
     val insanityLevel = sanityUiState.insanityLevel
@@ -232,6 +236,9 @@ private fun InvestigationContent(
     val onDifficultyCarouselLeftClick = { investigationViewModel.onEvent(DecrementDifficulty) }
     val onDifficultyCarouselRightClick = { investigationViewModel.onEvent(IncrementDifficulty) }
     val onDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetDifficulty(it)) }
+
+    val onCustomDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(
+        InvestigationScreenViewModel.InvestigationEvent.SetCustomDifficulty(it)) }
 
     val onNavigateToEditCustomDifficulty: () -> Unit = {
         navController.navigate(
@@ -300,11 +307,15 @@ private fun InvestigationContent(
             mapDropdownOptions = mapDropdownOptions,
             isMapDropdownEnabled = isMapEnabled,
             mapDropdownLabel = mapLabel,
+            difficulty = difficultyUiState.type,
             difficultyCarouselLabel = difficultyLabel,
             isDifficultyCarouselEnabled = isDifficultyEnabled,
             difficultyDropdownOptions = difficultyDropdownOptions,
             isDifficultyDropdownEnabled = isDifficultyEnabled,
             difficultyDropdownLabel = difficultyLabel,
+            customDifficultyDropdownOptions = customDifficultyDropdownOptions,
+            customDifficultyDropdownLabel = customDifficultyLabel,
+            onCustomDifficultyDropdownSelect = onCustomDifficultyDropdownSelect,
             sanityLevel = sanityLevel,
             insanityLevel = insanityLevel,
             timerRemainingTime = timerRemainingTime,
@@ -369,7 +380,6 @@ private fun InvestigationContent(
             onBpmUpdate = onBpmUpdate,
             onBpmChangeMeasurementType = onBpmChangeMeasurementType,
             onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
-            difficulty = difficultyUiState.type
         )
     }
 
@@ -875,27 +885,6 @@ fun OperationConfigsBottomSheet(
                             .fillMaxWidth()
                     )
 
-                    Row(
-                        modifier = Modifier.
-                            fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-
-                        difficultyConfigComponent(
-                            Modifier
-                                .weight(1f)
-                        )
-
-                        if(showEditCustomDifficultyComponent) {
-                            editCustomDifficultyComponent(
-                                Modifier
-                                    .size(48.dp)
-                                    .padding(8.dp)
-                            )
-                        }
-                    }
-
                     /*Row(
                         modifier = Modifier.
                             fillMaxWidth(),
@@ -908,20 +897,6 @@ fun OperationConfigsBottomSheet(
                                 .weight(1f)
                         )
 
-                    }
-
-                    Row(
-                        modifier = Modifier.
-                            fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-
-                        customDifficultyConfigComponent(
-                            Modifier
-                                .weight(1f)
-                        )
-
                         if(showEditCustomDifficultyComponent) {
                             editCustomDifficultyComponent(
                                 Modifier
@@ -930,6 +905,26 @@ fun OperationConfigsBottomSheet(
                             )
                         }
                     }*/
+
+                    Row(
+                        modifier = Modifier.
+                            fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+
+                        difficultyConfigComponent(
+                            Modifier
+                                .weight(1f)
+                        )
+
+                    }
+                    if(showEditCustomDifficultyComponent) {
+                        customDifficultyConfigComponent(
+                            Modifier
+                                .fillMaxWidth()
+                        )
+                    }
 
                     weatherConfigComponent(
                         Modifier

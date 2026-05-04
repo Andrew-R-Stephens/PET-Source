@@ -30,6 +30,7 @@ import com.tritiumgaming.feature.investigation.ui.OperationConfigsBottomSheet
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsSideSheet
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.CustomDifficultyConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxButton
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigControl
@@ -87,11 +88,15 @@ internal fun ToolsBottomSheetComponent(
     isDifficultyCarouselEnabled: Boolean,
     onDifficultyCarouselLeftClick: () -> Unit,
     onDifficultyCarouselRightClick: () -> Unit,
-    onNavigateToEditCustomDifficulty: () -> Unit,
     difficultyDropdownOptions: List<Int>,
     isDifficultyDropdownEnabled: Boolean,
     difficultyDropdownLabel: Int,
     onDifficultyDropdownSelect: (Int) -> Unit,
+    // Custom Difficulty State
+    onNavigateToEditCustomDifficulty: () -> Unit,
+    customDifficultyDropdownOptions: List<String>,
+    customDifficultyDropdownLabel: String,
+    onCustomDifficultyDropdownSelect: (Int) -> Unit,
     // Sanity state
     sanityLevel: Float,
     insanityLevel: Float,
@@ -200,20 +205,23 @@ internal fun ToolsBottomSheetComponent(
                         )
                     },
                     customDifficultyConfigComponent = { modifier ->
-
-                    },
-                    editCustomDifficultyComponent = { modifier ->
-                        IconButton(
+                        CustomDifficultyConfigControl(
                             modifier = modifier,
-                            onClick = {
-                                onNavigateToEditCustomDifficulty()
+                            dropdownOptions = customDifficultyDropdownOptions,
+                            isDropdownEnabled = isDifficultyDropdownEnabled,
+                            dropdownLabel = customDifficultyDropdownLabel,
+                            onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                        ) { modifier ->
+                            IconButton(
+                                modifier = modifier,
+                                onClick = { onNavigateToEditCustomDifficulty() }
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_settings),
+                                    contentDescription = "Custom Difficulty Settings",
+                                    tint = LocalPalette.current.onSurface
+                                )
                             }
-                        ) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_settings),
-                                contentDescription = "Custom Difficulty Settings",
-                                tint = LocalPalette.current.onSurface
-                            )
                         }
                     },
                     weatherConfigComponent = { modifier ->

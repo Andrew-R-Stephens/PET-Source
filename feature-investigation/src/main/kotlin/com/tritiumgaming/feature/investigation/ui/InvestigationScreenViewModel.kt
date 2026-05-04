@@ -320,6 +320,24 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    internal val customDifficultyConfigUiState: StateFlow<CustomDifficultyConfigUiState> = combine(
+        difficultyState,
+        getCustomDifficultiesUseCase()
+    ) { difficulty, customDifficulties ->
+        val customDifficultyIndex = difficulty.customIndex ?: 0
+
+        CustomDifficultyConfigUiState(
+            name = customDifficulties[customDifficultyIndex].name,
+            options = customDifficulties.map { it.name },
+            selectedIndex = difficulty.customIndex ?: 0,
+            isVisible = difficulty.type == DifficultyType.CUSTOM
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = CustomDifficultyConfigUiState()
+    )
+
     /*
      * Tool Timers
      */
@@ -1526,6 +1544,24 @@ class InvestigationScreenViewModel private constructor(
         )
     }
 
+    private fun incrementCustomDifficultyIndex() {
+        val names = customDifficultyConfigUiState.value.options
+        if (names.isNotEmpty()) {
+            val currentIndex = customDifficultyConfigUiState.value.selectedIndex
+            val nextIndex = (currentIndex + 1) % names.size
+            setCustomDifficultyIndex(nextIndex)
+        }
+    }
+
+    private fun decrementCustomDifficultyIndex() {
+        val names = customDifficultyConfigUiState.value.options
+        if (names.isNotEmpty()) {
+            val currentIndex = customDifficultyConfigUiState.value.selectedIndex
+            val nextIndex = if (currentIndex <= 0) names.size - 1 else currentIndex - 1
+            setCustomDifficultyIndex(nextIndex)
+        }
+    }
+
     private fun setWeather(weather: Weather) {
         setWeatherOverride(weather)
     }
@@ -1743,6 +1779,8 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.IncrementDifficulty -> incrementDifficultyIndex()
             is InvestigationEvent.DecrementDifficulty -> decrementDifficultyIndex()
             is InvestigationEvent.SetDifficulty -> setDifficultyIndex(event.index)
+            is InvestigationEvent.IncrementCustomDifficulty -> incrementCustomDifficultyIndex()
+            is InvestigationEvent.DecrementCustomDifficulty -> decrementCustomDifficultyIndex()
             is InvestigationEvent.SetCustomDifficulty -> setCustomDifficultyIndex(event.index)
             is InvestigationEvent.SetWeather -> setWeather(event.weather)
             is InvestigationEvent.SetWeatherOverride -> setWeatherOverride(event.weather)
@@ -1953,6 +1991,8 @@ class InvestigationScreenViewModel private constructor(
         object IncrementDifficulty : InvestigationEvent()
         object DecrementDifficulty : InvestigationEvent()
         data class SetDifficulty(val index: Int) : InvestigationEvent()
+        object IncrementCustomDifficulty : InvestigationEvent()
+        object DecrementCustomDifficulty : InvestigationEvent()
         data class SetCustomDifficulty(val index: Int) : InvestigationEvent()
         data class SetWeather(val weather: Weather) : InvestigationEvent()
         data class SetWeatherOverride(val weather: Weather) : InvestigationEvent()
@@ -2001,4 +2041,11 @@ class InvestigationScreenViewModel private constructor(
             get() = sanityLevel < SAFE_MIN_BOUNDS
 
     }
+
+    internal data class CustomDifficultyConfigUiState(
+        val name: String = "",
+        val options: List<String> = emptyList(),
+        val selectedIndex: Int = 0,
+        val isVisible: Boolean = false
+    )
 }
