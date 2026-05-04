@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [CustomDifficultyEntity::class], version = 1, exportSchema = false)
+@Database(entities = [CustomDifficultyEntity::class], version = 2, exportSchema = false)
 @TypeConverters(DifficultyTypeConverters::class)
 abstract class CustomDifficultyDatabase : RoomDatabase() {
     abstract fun customDifficultyDao(): CustomDifficultyDao

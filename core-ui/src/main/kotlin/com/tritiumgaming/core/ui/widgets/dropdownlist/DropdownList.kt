@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -196,7 +197,9 @@ fun DropdownList(
     onSelect: (Int) -> Unit,
     textStyle: TextStyle = TextStyle.Default,
     color: Color = Color.Unspecified,
-    onColor: Color = Color.Unspecified
+    onColor: Color = Color.Unspecified,
+    selectionFontSize: TextUnit = textStyle.fontSize,
+    optionsFontSize: TextUnit = textStyle.fontSize
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -232,7 +235,7 @@ fun DropdownList(
                     onValueChange = {},
                     readOnly = true,
                     textStyle = textStyle.copy(
-                        fontSize = 18.sp,
+                        fontSize = selectionFontSize,
                         color = onColor,
                     ),
                     enabled = enabled,
@@ -258,7 +261,7 @@ fun DropdownList(
                                     text = label,
                                     style = textStyle,
                                     color = onColor.copy(alpha = 0.5f),
-                                    fontSize = 14.sp
+                                    fontSize = optionsFontSize
                                 )
                             },
                             colors = TextFieldDefaults.colors(

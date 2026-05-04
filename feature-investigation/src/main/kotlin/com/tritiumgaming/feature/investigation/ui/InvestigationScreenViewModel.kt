@@ -41,15 +41,14 @@ import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCas
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
-import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
 import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
@@ -94,11 +93,9 @@ import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
 import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
@@ -323,8 +320,8 @@ class InvestigationScreenViewModel private constructor(
         val customDifficultyIndex = difficulty.customIndex ?: 0
 
         CustomDifficultyConfigUiState(
-            name = customDifficulties[customDifficultyIndex].name,
-            options = customDifficulties.map { it.name },
+            name = customDifficulties[customDifficultyIndex].name ?: "",
+            options = customDifficulties.map { it.name ?: "" },
             selectedIndex = difficulty.customIndex ?: 0,
             isVisible = difficulty.type == DifficultyType.CUSTOM
         )
@@ -915,21 +912,25 @@ class InvestigationScreenViewModel private constructor(
     private val _evidenceListUiState: StateFlow<List<EvidenceState>> = combine(
         evidenceStates, difficultyState
     ) { evidenceStates, difficultyState ->
-        val settings = difficultyState.settings.equipmentPermission
+        val equipmentPermissions = difficultyState.settings.equipmentPermission
+        val isEvidencePermitted = difficultyState.settings.evidenceGiven.toInt() > 0
 
-        val revokedIdentifiers = settings
+        val revokedIdentifiers = equipmentPermissions
             .filter { it.permission == Permission.REVOKED && it.quantity == EquipmentPermission.ALL }
             .map { it.identifier }
 
         evidenceStates
             .map {
                 val identifier = it.evidence.id.toEquipmentIdentifier()
-                val enabled = identifier !in revokedIdentifiers
+
+                val enabled = isEvidencePermitted && (identifier !in revokedIdentifiers)
+
                 it.copy(
                     state = if(!enabled) { EvidenceValidationType.NEUTRAL } else { it.state },
                     enabled = enabled
                 )
-            }.sortedBy { it.evidence.id.ordinal }
+            }
+            .sortedBy { it.evidence.id.ordinal }
             .sortedByDescending { it.enabled }
     }
     .distinctUntilChanged()
@@ -1981,7 +1982,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     internal data class CustomDifficultyConfigUiState(
-        val name: String = "",
+        val name:String = "",
         val options: List<String> = emptyList(),
         val selectedIndex: Int = 0,
         val isVisible: Boolean = false

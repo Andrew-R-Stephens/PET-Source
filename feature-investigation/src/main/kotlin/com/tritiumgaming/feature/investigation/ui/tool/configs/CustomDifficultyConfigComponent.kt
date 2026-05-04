@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -93,7 +94,9 @@ internal fun CustomDifficultyConfigControl(
             onSelect = onDropdownSelect,
             textStyle = textStyle,
             color = color,
-            onColor = onColor
+            onColor = onColor,
+            selectionFontSize = 18.sp,
+            optionsFontSize = 14.sp
         )
 
         editButtonComponent(

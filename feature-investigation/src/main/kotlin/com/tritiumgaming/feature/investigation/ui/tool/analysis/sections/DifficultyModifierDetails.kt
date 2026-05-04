@@ -33,11 +33,10 @@ import com.tritiumgaming.shared.data.weather.model.fahrenheit
 
 @Composable
 internal fun DifficultyModifierDetails(
-    operationDetails: OperationDetailsUiState
+    difficultyState: OperationDetailsUiState.DifficultyDetails,
+    mapState: OperationDetailsUiState.MapDetails,
+    weatherDetails: OperationDetailsUiState.WeatherDetails
 ) {
-    val difficultyState = operationDetails.difficultyDetails
-    val mapState = operationDetails.mapDetails
-    val weatherDetails = operationDetails.weatherDetails
 
     ExpandableCategoryColumn(
         expanded = false,

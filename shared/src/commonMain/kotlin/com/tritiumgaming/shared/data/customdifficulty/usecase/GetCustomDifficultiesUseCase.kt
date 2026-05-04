@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 class GetCustomDifficultiesUseCase(
     private val repository: CustomDifficultyRepository
 ) {
-    operator fun invoke(): Flow<List<CustomDifficultyModel>> = repository.allDifficulties
+    operator fun invoke(): Flow<List<CustomDifficultyModel>> = repository.allCustomDifficulties
 }

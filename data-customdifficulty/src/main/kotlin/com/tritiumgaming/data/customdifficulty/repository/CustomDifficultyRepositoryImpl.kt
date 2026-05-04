@@ -16,14 +16,14 @@ class CustomDifficultyRepositoryImpl(
     scope: CoroutineScope
 ): CustomDifficultyRepository {
 
-    override val allDifficulties: Flow<List<CustomDifficultyModel>> = 
+    override val allCustomDifficulties: Flow<List<CustomDifficultyModel>> =
         customDifficultyDao.getAll().map { list -> list.map { it.toDomain() } }
 
     init {
         scope.launch {
             if (customDifficultyDao.getCount() == 0) {
                 val defaults = List(5) { i ->
-                    CustomDifficultyEntity.createDefault(name = "Custom Difficulty ${i + 1}")
+                    CustomDifficultyEntity.createDefault()
                 }
                 customDifficultyDao.insertAll(defaults)
             }

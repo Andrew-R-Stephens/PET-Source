@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
@@ -36,11 +34,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.common.config.DeviceConfiguration
@@ -48,9 +46,11 @@ import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyUiState
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
+import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
@@ -59,7 +59,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 
 @Composable
 fun CustomDifficultyScreen(
-    viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Companion.Factory)
+    viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Factory)
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -75,7 +75,8 @@ fun CustomDifficultyScreen(
                     uiState = uiState,
                     onSelectDifficulty = viewModel::selectDifficulty,
                     onUpdateDifficulty = viewModel::updateSelectedDifficulty,
-                    onSave = viewModel::saveChanges
+                    onSave = viewModel::saveChanges,
+                    onRevert = viewModel::revertChanges
                 )
             }
             else -> {
@@ -83,7 +84,8 @@ fun CustomDifficultyScreen(
                     uiState = uiState,
                     onSelectDifficulty = viewModel::selectDifficulty,
                     onUpdateDifficulty = viewModel::updateSelectedDifficulty,
-                    onSave = viewModel::saveChanges
+                    onSave = viewModel::saveChanges,
+                    onRevert = viewModel::revertChanges
                 )
             }
         }
@@ -95,7 +97,8 @@ private fun PortraitContent(
     uiState: CustomDifficultyUiState,
     onSelectDifficulty: (CustomDifficultyModel) -> Unit,
     onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
-    onSave: () -> Unit
+    onSave: () -> Unit,
+    onRevert: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -104,7 +107,7 @@ private fun PortraitContent(
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
     ) {
         DifficultySelector(
-            difficulties = uiState.difficulties,
+            options = uiState.difficulties,
             selectedDifficulty = uiState.selectedDifficulty,
             onSelect = onSelectDifficulty
         )
@@ -116,15 +119,29 @@ private fun PortraitContent(
                 onUpdate = onUpdateDifficulty
             )
 
-            Button(
-                onClick = onSave,
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
-                enabled = !uiState.isSaving
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(stringResource(R.string.settings_confirm), color = LocalPalette.current.onPrimary)
+                Button(
+                    onClick = onRevert,
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
+                    enabled = !uiState.isSaving
+                ) {
+                    Text(stringResource(R.string.general_label_revert), color = LocalPalette.current.onSurface)
+                }
+
+                Button(
+                    onClick = onSave,
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
+                    enabled = !uiState.isSaving
+                ) {
+                    Text(stringResource(R.string.general_label_save), color = LocalPalette.current.onPrimary)
+                }
             }
         } else {
             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
@@ -139,14 +156,15 @@ private fun LandscapeContent(
     uiState: CustomDifficultyUiState,
     onSelectDifficulty: (CustomDifficultyModel) -> Unit,
     onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
-    onSave: () -> Unit
+    onSave: () -> Unit,
+    onRevert: () -> Unit
 ) {
     Row(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)) {
         Column(modifier = Modifier.width(200.dp)) {
             DifficultySelector(
-                difficulties = uiState.difficulties,
+                options = uiState.difficulties,
                 selectedDifficulty = uiState.selectedDifficulty,
                 onSelect = onSelectDifficulty
             )
@@ -162,15 +180,29 @@ private fun LandscapeContent(
                     onUpdate = onUpdateDifficulty
                 )
 
-                Button(
-                    onClick = onSave,
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
-                    enabled = !uiState.isSaving
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(stringResource(R.string.settings_confirm), color = LocalPalette.current.onPrimary)
+                    Button(
+                        onClick = onRevert,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
+                        enabled = !uiState.isSaving
+                    ) {
+                        Text(stringResource(R.string.general_label_revert), color = LocalPalette.current.onSurface)
+                    }
+
+                    Button(
+                        onClick = onSave,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
+                        enabled = !uiState.isSaving
+                    ) {
+                        Text(stringResource(R.string.general_label_save), color = LocalPalette.current.onPrimary)
+                    }
                 }
             }
         } else {
@@ -184,7 +216,7 @@ private fun LandscapeContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DifficultySelector(
-    difficulties: List<CustomDifficultyModel>,
+    options: List<CustomDifficultyModel>,
     selectedDifficulty: CustomDifficultyModel?,
     onSelect: (CustomDifficultyModel) -> Unit
 ) {
@@ -198,20 +230,20 @@ private fun DifficultySelector(
             modifier = Modifier.padding(bottom = 4.dp)
         )
         ExposedDropdownMenuBox(
+            modifier = Modifier.fillMaxWidth(),
             expanded = expanded,
             onExpandedChange = { expanded = !expanded },
-            modifier = Modifier.fillMaxWidth()
         ) {
             OutlinedTextField(
-                value = selectedDifficulty?.name ?: "",
-                onValueChange = {},
-                readOnly = true,
                 modifier = Modifier
                     .fillMaxWidth()
                     .menuAnchor(
                         type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
                         enabled = true
                     ),
+                value = selectedDifficulty?.name ?: "",
+                onValueChange = {},
+                readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = LocalPalette.current.surfaceContainer,
@@ -225,16 +257,16 @@ private fun DifficultySelector(
             )
 
             ExposedDropdownMenu(
+                modifier = Modifier.background(LocalPalette.current.surfaceContainerHigh),
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
-                modifier = Modifier.background(LocalPalette.current.surfaceContainerHigh),
                 scrollState = rememberScrollState()
             ) {
-                difficulties.forEach { difficulty ->
+                options.forEach { difficulty ->
                     DropdownMenuItem(
                         text = {
                             Text(
-                                text = difficulty.name,
+                                text = difficulty.name ?: "${ stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource()) } ${difficulty.id}" ,
                                 color = LocalPalette.current.onSurface,
                                 style = MaterialTheme.typography.bodyLarge
                             )
@@ -541,7 +573,9 @@ private fun SettingsEditor(
                         options = DifficultySettingResources.CursedPossessionsQuantity.entries.map { it.toInt().toString() },
                         selectedOption = difficulty.settings.cursedPossessionsQuantity.toInt().toString(),
                         onSelect = { index ->
-                            onUpdate { it.copy(settings = it.settings.copy(cursedPossessionsQuantity = DifficultySettingResources.CursedPossessionsQuantity.entries[index])) }
+                            onUpdate { it.copy(
+                                settings = it.settings.copy(
+                                    cursedPossessionsQuantity = DifficultySettingResources.CursedPossessionsQuantity.entries[index])) }
                         }
                     )
                 }
@@ -554,9 +588,12 @@ private fun SettingsEditor(
 private fun CategoryHeader(text: String) {
     Text(
         modifier = Modifier
-            .fillMaxWidth(),
-        text = text,
-        style = MaterialTheme.typography.titleLarge,
+            .fillMaxWidth()
+            .padding(8.dp),
+        text = text.uppercase(),
+        style = LocalTypography.current.quaternary.bold.copy(
+            fontSize = 16.sp
+        ),
         color = LocalPalette.current.primary,
         fontWeight = FontWeight.Bold
     )
@@ -579,18 +616,22 @@ private fun SettingDropdown(
                 .padding(8.dp)
         ) {
             Text(
-                text = stringResource(label),
-                style = MaterialTheme.typography.labelLarge,
+                text = stringResource(label).uppercase(),
+                style = LocalTypography.current.quaternary.bold.copy(
+                    fontSize = 14.sp
+                ),
                 color = LocalPalette.current.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
             DropdownList(
                 options = options,
-                label = selectedOption,
+                label = selectedOption.uppercase(),
                 onSelect = onSelect,
                 color = LocalPalette.current.surfaceContainerHigh,
                 onColor = LocalPalette.current.onSurface,
-                textStyle = MaterialTheme.typography.bodyLarge
+                textStyle = LocalTypography.current.quaternary.bold,
+                selectionFontSize = 14.sp,
+                optionsFontSize = 14.sp
             )
         }
     }

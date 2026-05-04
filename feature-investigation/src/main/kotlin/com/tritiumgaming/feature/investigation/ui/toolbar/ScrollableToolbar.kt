@@ -50,8 +50,8 @@ fun ScrollableToolbar(
         ) { modifier ->
             stickyContentStart(
                 modifier
-                    .padding(4.dp)
                     .sizeIn(maxHeight = 48.dp)
+                    .padding(4.dp)
                     .aspectRatio(1f)
             )
         }
@@ -72,8 +72,8 @@ fun ScrollableToolbar(
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
             scrollContent(Modifier
-                .padding(4.dp)
                 .sizeIn(maxHeight = 48.dp)
+                .padding(4.dp)
             )
         }
 
@@ -82,8 +82,8 @@ fun ScrollableToolbar(
         ) { modifier ->
             stickyContentEnd(
                 modifier
-                    .padding(4.dp)
                     .sizeIn(maxHeight = 48.dp)
+                    .padding(4.dp)
                     .aspectRatio(1f)
             )
         }

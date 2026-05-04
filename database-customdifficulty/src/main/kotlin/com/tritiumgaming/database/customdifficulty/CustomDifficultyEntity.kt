@@ -2,13 +2,14 @@ package com.tritiumgaming.database.customdifficulty
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.*
 
 @Entity(tableName = "custom_difficulties")
 data class CustomDifficultyEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val name: String,
+    val name: String? = null,
     val startingSanity: StartingSanity,
     val sanityPillRestoration: SanityPillRestoration,
     val sanityDrainSpeed: SanityDrainSpeed,
@@ -40,9 +41,9 @@ data class CustomDifficultyEntity(
     val cursedPossessions: List<CursedPossession>
 ) {
     companion object {
-        fun createDefault(id: Int = 0, name: String = "Custom Difficulty") = CustomDifficultyEntity(
+        fun createDefault(id: Int = 0) = CustomDifficultyEntity(
             id = id,
-            name = name,
+            name = null,
             startingSanity = StartingSanity.SANITY_100,
             sanityPillRestoration = SanityPillRestoration.RESTORE_40,
             sanityDrainSpeed = SanityDrainSpeed.SPEED_100,

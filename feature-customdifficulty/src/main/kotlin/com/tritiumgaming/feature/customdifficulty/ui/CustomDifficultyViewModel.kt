@@ -68,6 +68,14 @@ class CustomDifficultyViewModel(
         }
     }
 
+    fun revertChanges() {
+        val current = _selectedDifficulty.value ?: uiState.value.selectedDifficulty ?: return
+        val original = uiState.value.difficulties.find { it.id == current.id }
+        if (original != null) {
+            _selectedDifficulty.value = original
+        }
+    }
+
     companion object {
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {

@@ -38,6 +38,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.MapModi
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.PhaseModifierDetails
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
@@ -104,7 +105,9 @@ internal fun OperationDetails(
             state = operationDetailsUiState.mapDetails
         )
         DifficultyModifierDetails(
-            operationDetails = operationDetailsUiState
+            difficultyState = operationDetailsUiState.difficultyDetails,
+            mapState = operationDetailsUiState.mapDetails,
+            weatherDetails = operationDetailsUiState.weatherDetails
         )
         ActiveGhostModifierDetails(
             state = operationDetailsUiState.ghostDetails
@@ -277,6 +280,7 @@ internal data class OperationDetailsUiState(
         internal val difficultyTitle: DifficultyTitle = DifficultyTitle.AMATEUR,
         internal val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN,
         internal val challengeTitle: ChallengeResources.ChallengeTitle? = null,
+        internal val customTitle: CustomDifficultyModel? = null,
         internal val settings: DifficultySettingsModel = DifficultySettingsModel()
     )
 

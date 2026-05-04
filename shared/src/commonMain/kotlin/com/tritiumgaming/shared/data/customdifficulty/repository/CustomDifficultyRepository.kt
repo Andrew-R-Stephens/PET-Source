@@ -4,6 +4,6 @@ import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyMode
 import kotlinx.coroutines.flow.Flow
 
 interface CustomDifficultyRepository {
-    val allDifficulties: Flow<List<CustomDifficultyModel>>
+    val allCustomDifficulties: Flow<List<CustomDifficultyModel>>
     suspend fun update(difficulty: CustomDifficultyModel)
 }
