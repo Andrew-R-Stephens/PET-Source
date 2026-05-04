@@ -1,26 +1,8 @@
-package com.tritiumgaming.feature.investigation.app.mappers.difficultysettings
+package com.tritiumgaming.core.ui.mapper
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityLevel
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityMonitor
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DifficultySetting
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DoorsStartingOpen
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EventFrequency
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Flashlights
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FriendlyGhost
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxVisibleOnMap
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.KillsExtendHunts
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.LoseItemsAndConsumables
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.NumberOfHidingPlaces
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.RoamingFrequency
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityMonitor
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Sprinting
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.*
 
 @StringRes fun DifficultySetting.toStringResource(): Int =
     when(this) {
