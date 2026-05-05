@@ -14,14 +14,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -35,6 +39,9 @@ fun OperationNavigationDrawer(
     drawerState: DrawerState = DrawerState(DrawerValue.Closed),
     content: @Composable () -> Unit,
 ) {
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
     ModalNavigationDrawer(
         modifier = modifier,
@@ -60,21 +67,34 @@ fun OperationNavigationDrawer(
                             Text(
                                 text = stringResource(R.string.general_navigation_home),
                                 style = LocalTypography.current.quaternary.bold.copy(
-                                    fontSize = 18.sp,
-                                    color = LocalPalette.current.onSurface
+                                    fontSize = 18.sp
                                 )
                             )
                         },
-                        selected = false,
+                        selected = currentDestination?.route == NavRoute.SCREEN_HOME.route,
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedIconColor = LocalPalette.current.primary,
+                            unselectedIconColor = LocalPalette.current.onSurface,
+                            selectedTextColor = LocalPalette.current.primary,
+                            unselectedTextColor = LocalPalette.current.onSurface,
+                            unselectedContainerColor = Color.Transparent,
+                            selectedContainerColor = Color.Transparent
+                        ),
                         icon = {
                             Icon(
                                 painter = painterResource(R.drawable.ic_nav_home),
-                                contentDescription = null,
-                                tint = LocalPalette.current.onSurface
+                                contentDescription = null
                             )
                         },
                         onClick = {
-                            navController.navigate(NavRoute.SCREEN_HOME.route)
+                            if (currentDestination?.route != NavRoute.SCREEN_HOME.route) {
+                                navController.navigate(NavRoute.SCREEN_HOME.route) {
+                                    popUpTo(NavRoute.SCREEN_HOME.route) {
+                                        inclusive = true
+                                    }
+                                    launchSingleTop = true
+                                }
+                            }
                         }
                     )
 
@@ -96,21 +116,34 @@ fun OperationNavigationDrawer(
                             Text(
                                 text = stringResource(R.string.investigation_section_title_evidence),
                                 style = LocalTypography.current.quaternary.bold.copy(
-                                    fontSize = 18.sp,
-                                    color = LocalPalette.current.onSurface
+                                    fontSize = 18.sp
                                 )
                             )
                         },
-                        selected = false,
+                        selected = currentDestination?.route == NavRoute.SCREEN_INVESTIGATION.route,
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedIconColor = LocalPalette.current.primary,
+                            unselectedIconColor = LocalPalette.current.onSurface,
+                            selectedTextColor = LocalPalette.current.primary,
+                            unselectedTextColor = LocalPalette.current.onSurface,
+                            unselectedContainerColor = Color.Transparent,
+                            selectedContainerColor = Color.Transparent
+                        ),
                         icon = {
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_evidence),
-                                contentDescription = null,
-                                tint = LocalPalette.current.onSurface
+                                contentDescription = null
                             )
                         },
                         onClick = {
-                            navController.navigate(NavRoute.SCREEN_INVESTIGATION.route)
+                            if (currentDestination?.route != NavRoute.SCREEN_INVESTIGATION.route) {
+                                navController.navigate(NavRoute.SCREEN_INVESTIGATION.route) {
+                                    popUpTo(NavRoute.SCREEN_INVESTIGATION.route) {
+                                        inclusive = true
+                                    }
+                                    launchSingleTop = true
+                                }
+                            }
                         }
                     )
 
@@ -123,21 +156,34 @@ fun OperationNavigationDrawer(
                             Text(
                                 text = stringResource(R.string.general_label_tasks),
                                 style = LocalTypography.current.quaternary.bold.copy(
-                                    fontSize = 18.sp,
-                                    color = LocalPalette.current.onSurface
+                                    fontSize = 18.sp
                                 )
                             )
                         },
-                        selected = false,
+                        selected = currentDestination?.route == NavRoute.SCREEN_MISSIONS.route,
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedIconColor = LocalPalette.current.primary,
+                            unselectedIconColor = LocalPalette.current.onSurface,
+                            selectedTextColor = LocalPalette.current.primary,
+                            unselectedTextColor = LocalPalette.current.onSurface,
+                            unselectedContainerColor = Color.Transparent,
+                            selectedContainerColor = Color.Transparent
+                        ),
                         icon = {
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_tasks),
-                                contentDescription = null,
-                                tint = LocalPalette.current.onSurface
+                                contentDescription = null
                             )
                         },
                         onClick = {
-                            navController.navigate(NavRoute.SCREEN_MISSIONS.route)
+                            if (currentDestination?.route != NavRoute.SCREEN_MISSIONS.route) {
+                                navController.navigate(NavRoute.SCREEN_MISSIONS.route) {
+                                    popUpTo(NavRoute.SCREEN_INVESTIGATION.route) {
+                                        inclusive = false
+                                    }
+                                    launchSingleTop = true
+                                }
+                            }
                         }
                     )
 
@@ -150,21 +196,35 @@ fun OperationNavigationDrawer(
                             Text(
                                 text = stringResource(R.string.general_label_maps),
                                 style = LocalTypography.current.quaternary.bold.copy(
-                                    fontSize = 18.sp,
-                                    color = LocalPalette.current.onSurface
+                                    fontSize = 18.sp
                                 )
                             )
                         },
-                        selected = false,
+                        selected = currentDestination?.route == NavRoute.SCREEN_MAPS_MENU.route ||
+                                currentDestination?.route?.startsWith(NavRoute.SCREEN_MAP_VIEWER.route) == true,
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedIconColor = LocalPalette.current.primary,
+                            unselectedIconColor = LocalPalette.current.onSurface,
+                            selectedTextColor = LocalPalette.current.primary,
+                            unselectedTextColor = LocalPalette.current.onSurface,
+                            unselectedContainerColor = Color.Transparent,
+                            selectedContainerColor = Color.Transparent
+                        ),
                         icon = {
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_mapmenu2),
-                                contentDescription = null,
-                                tint = LocalPalette.current.onSurface
+                                contentDescription = null
                             )
                         },
                         onClick = {
-                            navController.navigate(NavRoute.SCREEN_MAPS_MENU.route)
+                            if (currentDestination?.route != NavRoute.SCREEN_MAPS_MENU.route) {
+                                navController.navigate(NavRoute.SCREEN_MAPS_MENU.route) {
+                                    popUpTo(NavRoute.SCREEN_INVESTIGATION.route) {
+                                        inclusive = false
+                                    }
+                                    launchSingleTop = true
+                                }
+                            }
                         }
                     )
 
@@ -188,21 +248,35 @@ fun OperationNavigationDrawer(
                             Text(
                                 text = stringResource(R.string.general_label_codex),
                                 style = LocalTypography.current.quaternary.bold.copy(
-                                    fontSize = 18.sp,
-                                    color = LocalPalette.current.onSurface
+                                    fontSize = 18.sp
                                 )
                             )
                         },
-                        selected = false,
+                        selected = currentDestination?.route == NavRoute.SCREEN_CODEX_MENU.route ||
+                                currentDestination?.route?.startsWith(NavRoute.SCREEN_CODEX_ITEM_SCREEN.route) == true,
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedIconColor = LocalPalette.current.primary,
+                            unselectedIconColor = LocalPalette.current.onSurface,
+                            selectedTextColor = LocalPalette.current.primary,
+                            unselectedTextColor = LocalPalette.current.onSurface,
+                            unselectedContainerColor = Color.Transparent,
+                            selectedContainerColor = Color.Transparent
+                        ),
                         icon = {
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_codex),
-                                contentDescription = null,
-                                tint = LocalPalette.current.onSurface
+                                contentDescription = null
                             )
                         },
                         onClick = {
-                            navController.navigate(NavRoute.SCREEN_CODEX_MENU.route)
+                            if (currentDestination?.route != NavRoute.SCREEN_CODEX_MENU.route) {
+                                navController.navigate(NavRoute.SCREEN_CODEX_MENU.route) {
+                                    popUpTo(NavRoute.SCREEN_INVESTIGATION.route) {
+                                        inclusive = false
+                                    }
+                                    launchSingleTop = true
+                                }
+                            }
                         }
                     )
 

@@ -24,17 +24,14 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
@@ -55,10 +52,6 @@ fun OperationNavigationBar(
 ) {
     val scope = rememberCoroutineScope()
     val rememberDrawerState = rememberDrawerState(DrawerValue.Closed)
-
-    var selectedDestination by rememberSaveable {
-        mutableStateOf(navController.currentDestination?.route)
-    }
 
     val destinations = listOf(
         Destination.INVESTIGATION,
@@ -88,9 +81,6 @@ fun OperationNavigationBar(
                     navController = navController,
                     scope = scope,
                     rememberDrawerState = rememberDrawerState,
-                    onChangeDestination = {
-                        selectedDestination = it
-                    },
                     destinations = destinations,
                     windowInsets = windowInsets
                 )
@@ -119,9 +109,6 @@ fun OperationNavigationBar(
                 navController = navController,
                 scope = scope,
                 rememberDrawerState = rememberDrawerState,
-                onChangeDestination = {
-                    selectedDestination = it
-                },
                 destinations = destinations,
                 windowInsets = windowInsets
             ) {
@@ -148,10 +135,12 @@ private fun OperationNavigationBottomBar(
     navController: NavHostController = rememberNavController(),
     scope: CoroutineScope,
     rememberDrawerState: DrawerState,
-    onChangeDestination: (route: String) -> Unit = {},
     destinations: List<Destination>,
     windowInsets: WindowInsets
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
     NavigationBar(
         modifier = modifier,
         contentColor = LocalPalette.current.surfaceContainerHigh,
@@ -182,8 +171,7 @@ private fun OperationNavigationBottomBar(
             icon = {
                 HamburgerMenuIcon(
                     modifier = Modifier
-                        .size(24.dp)
-                        .align(Alignment.CenterVertically),
+                        .size(24.dp),
                     colors = if (rememberDrawerState.isOpen) {
                             IconVectorColors.defaults(
                                 fillColor = LocalPalette.current.surfaceContainer,
@@ -208,27 +196,22 @@ private fun OperationNavigationBottomBar(
                     selectedIconColor = LocalPalette.current.primary,
                     unselectedIconColor = LocalPalette.current.onSurface
                 ),
-                selected = navController.currentDestination?.route == destination.route,
-                enabled = navController.currentDestination?.route != destination.route,
+                selected = currentDestination?.route == destination.route ||
+                        destination.subRoutes.any { currentDestination?.route?.startsWith(it) == true },
                 onClick = {
-                    navController.navigate(
-                        route = destination.route,
-                        navOptions = destination.navOptions,
-                    )
-                    onChangeDestination(destination.route)
+                    if (currentDestination?.route != destination.route) {
+                        navController.navigate(
+                            route = destination.route,
+                            navOptions = destination.navOptions,
+                        )
+                    }
                 },
                 icon = {
                     Icon(
                         modifier = Modifier
-                            .size(24.dp)
-                            .align(Alignment.CenterVertically),
+                            .size(24.dp),
                         painter = painterResource(destination.icon),
-                        contentDescription = destination.name,
-                        tint =
-                            if (navController.currentDestination?.route == destination.route)
-                                LocalPalette.current.primary
-                            else
-                                LocalPalette.current.onSurface
+                        contentDescription = destination.name
                     )
                 },
                 label = { }
@@ -244,11 +227,13 @@ private fun OperationNavigationRail(
     navController: NavHostController = rememberNavController(),
     scope: CoroutineScope,
     rememberDrawerState: DrawerState,
-    onChangeDestination: (route: String) -> Unit = {},
     destinations: List<Destination>,
     windowInsets: WindowInsets,
     content: @Composable () -> Unit
 ) {
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
     Row {
 
@@ -301,7 +286,7 @@ private fun OperationNavigationRail(
                 }
             )
 
-            destinations.forEachIndexed { index, destination ->
+            destinations.forEach { destination ->
 
                 NavigationRailItem(
                     colors = NavigationRailItemDefaults.colors(
@@ -310,26 +295,22 @@ private fun OperationNavigationRail(
                         unselectedIconColor = LocalPalette.current.onSurface
                     ),
                     modifier = Modifier,
-                    selected = navController.currentDestination?.route == destination.route,
-                    enabled = navController.currentDestination?.route != destination.route,
+                    selected = currentDestination?.route == destination.route ||
+                            destination.subRoutes.any { currentDestination?.route?.startsWith(it) == true },
                     onClick = {
-                        navController.navigate(
-                            route = destination.route,
-                            navOptions = destination.navOptions,
-                        )
-                        onChangeDestination(destination.route)
+                        if (currentDestination?.route != destination.route) {
+                            navController.navigate(
+                                route = destination.route,
+                                navOptions = destination.navOptions,
+                            )
+                        }
                     },
                     icon = {
                         Icon(
                             modifier = Modifier
                                 .size(24.dp),
                             painter = painterResource(destination.icon),
-                            contentDescription = destination.name,
-                            tint =
-                                if (navController.currentDestination?.route == destination.route)
-                                    LocalPalette.current.primary
-                                else
-                                    LocalPalette.current.onSurface
+                            contentDescription = destination.name
                         )
                     }
                 )
@@ -346,7 +327,8 @@ private fun OperationNavigationRail(
 private enum class Destination(
     val route: String,
     @field:DrawableRes val icon: Int,
-    val navOptions: NavOptions? = null
+    val navOptions: NavOptions? = null,
+    val subRoutes: List<String> = emptyList()
 ) {
     INVESTIGATION(
         NavRoute.SCREEN_INVESTIGATION.route,
@@ -378,6 +360,7 @@ private enum class Destination(
             .setExitAnim(0)
             .setPopEnterAnim(0)
             .setPopExitAnim(0)
-            .build()
+            .build(),
+        subRoutes = listOf(NavRoute.SCREEN_MAP_VIEWER.route)
     ),
 }
