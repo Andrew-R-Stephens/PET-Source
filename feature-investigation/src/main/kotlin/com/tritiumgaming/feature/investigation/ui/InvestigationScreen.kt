@@ -88,6 +88,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
@@ -172,8 +173,12 @@ private fun InvestigationContent(
         it.toStringResource()
     }
 
-    val customDifficultyLabel = customDifficultyConfigUiState.name
-    val customDifficultyDropdownOptions = customDifficultyConfigUiState.options
+    val customDifficultyLabel = customDifficultyConfigUiState.selectedDifficulty?.let {
+        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
+    } ?: ""
+    val customDifficultyDropdownOptions = customDifficultyConfigUiState.difficulties.map {
+        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
+    }
 
     val sanityLevel = sanityUiState.sanityLevel
     val insanityLevel = sanityUiState.insanityLevel
@@ -368,9 +373,14 @@ private fun InvestigationContent(
             mapDropdownOptions = mapDropdownOptions,
             isMapDropdownEnabled = isMapEnabled,
             mapDropdownLabel = mapLabel,
+            difficulty = difficultyUiState.type,
             difficultyDropdownOptions = difficultyDropdownOptions,
             isDifficultyDropdownEnabled = isDifficultyEnabled,
             difficultyDropdownLabel = difficultyLabel,
+            customDifficultyDropdownOptions = customDifficultyDropdownOptions,
+            customDifficultyDropdownLabel = customDifficultyLabel,
+            onCustomDifficultyDropdownSelect = onCustomDifficultyDropdownSelect,
+            onNavigateToEditCustomDifficulty = onNavigateToEditCustomDifficulty,
             sanityLevel = sanityLevel,
             insanityLevel = insanityLevel,
             timerRemainingTime = timerRemainingTime,
@@ -995,11 +1005,13 @@ fun OperationConfigsSideSheet(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    customDifficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier) -> Unit = {},
     showTemperatureMeterComponent: Boolean,
+    showEditCustomDifficultyComponent: Boolean
 ) {
     Column(
         modifier = modifier,
@@ -1065,6 +1077,13 @@ fun OperationConfigsSideSheet(
                     Modifier
                         .fillMaxWidth()
                 )
+
+                if(showEditCustomDifficultyComponent) {
+                    customDifficultyConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
+                }
 
             }
         }

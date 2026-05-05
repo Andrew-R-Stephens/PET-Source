@@ -22,7 +22,7 @@ class CustomDifficultyRepositoryImpl(
     init {
         scope.launch {
             if (customDifficultyDao.getCount() == 0) {
-                val defaults = List(5) { i ->
+                val defaults = List(3) { i ->
                     CustomDifficultyEntity.createDefault()
                 }
                 customDifficultyDao.insertAll(defaults)

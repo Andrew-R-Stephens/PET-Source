@@ -442,10 +442,16 @@ internal fun ToolsSideSheetComponent(
     mapDropdownLabel: Int,
     onMapDropdownSelect: (Int) -> Unit,
     // Difficulty state
+    difficulty: DifficultyType,
     difficultyDropdownOptions: List<Int>,
     isDifficultyDropdownEnabled: Boolean,
     difficultyDropdownLabel: Int,
     onDifficultyDropdownSelect: (Int) -> Unit,
+    // Custom Difficulty State
+    onNavigateToEditCustomDifficulty: () -> Unit,
+    customDifficultyDropdownOptions: List<String>,
+    customDifficultyDropdownLabel: String,
+    onCustomDifficultyDropdownSelect: (Int) -> Unit,
     // Sanity state
     sanityLevel: Float,
     insanityLevel: Float,
@@ -552,6 +558,26 @@ internal fun ToolsSideSheetComponent(
                             onDropdownSelect = onDifficultyDropdownSelect
                         )
                     },
+                    customDifficultyConfigComponent = { modifier ->
+                        CustomDifficultyConfigControl(
+                            modifier = modifier,
+                            dropdownOptions = customDifficultyDropdownOptions,
+                            isDropdownEnabled = isDifficultyDropdownEnabled,
+                            dropdownLabel = customDifficultyDropdownLabel,
+                            onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                        ) { modifier ->
+                            IconButton(
+                                modifier = modifier,
+                                onClick = { onNavigateToEditCustomDifficulty() }
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_settings),
+                                    contentDescription = "Custom Difficulty Settings",
+                                    tint = LocalPalette.current.onSurface
+                                )
+                            }
+                        }
+                    },
                     weatherConfigComponent = { modifier ->
                         WeatherConfigComponent(
                             modifier = modifier,
@@ -599,8 +625,9 @@ internal fun ToolsSideSheetComponent(
                             onTogglePower = onTogglePower
                         )
                     },
-                    showTemperatureMeterComponent = weather != Weather.RANDOM
-
+                    showTemperatureMeterComponent = weather != Weather.RANDOM,
+                    showEditCustomDifficultyComponent =
+                        difficulty == DifficultyType.CUSTOM
                 )
             }
 

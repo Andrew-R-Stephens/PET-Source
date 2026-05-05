@@ -241,7 +241,9 @@ private fun DifficultySelector(
                         type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
                         enabled = true
                     ),
-                value = selectedDifficulty?.name ?: "",
+                value = selectedDifficulty?.let {
+                    it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id + 1}"
+                } ?: "",
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -304,6 +306,14 @@ private fun SettingsEditor(
                         .padding(8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
+                    SettingTextField(
+                        label = R.string.difficulty_setting_title_name,
+                        value = difficulty.name ?: "",
+                        onValueChange = { newName ->
+                            onUpdate { it.copy(name = newName.ifBlank { null }) }
+                        }
+                    )
+
                     CategoryHeader(stringResource(R.string.difficulty_category_player))
 
                     SettingDropdown(
@@ -597,6 +607,49 @@ private fun CategoryHeader(text: String) {
         color = LocalPalette.current.primary,
         fontWeight = FontWeight.Bold
     )
+}
+
+@Composable
+private fun SettingTextField(
+    label: Int,
+    value: String,
+    onValueChange: (String) -> Unit
+) {
+    Surface(
+        color = LocalPalette.current.surfaceContainer,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Text(
+                text = stringResource(label).uppercase(),
+                style = LocalTypography.current.quaternary.bold.copy(
+                    fontSize = 14.sp
+                ),
+                color = LocalPalette.current.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            OutlinedTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = Modifier.fillMaxWidth(),
+                textStyle = LocalTypography.current.quaternary.bold.copy(fontSize = 14.sp),
+                singleLine = true,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = LocalPalette.current.surfaceContainerHigh,
+                    unfocusedContainerColor = LocalPalette.current.surfaceContainerHigh,
+                    focusedTextColor = LocalPalette.current.onSurface,
+                    unfocusedTextColor = LocalPalette.current.onSurface,
+                    focusedBorderColor = LocalPalette.current.primary,
+                    unfocusedBorderColor = Color.Transparent
+                ),
+                shape = RoundedCornerShape(4.dp)
+            )
+        }
+    }
 }
 
 @Composable

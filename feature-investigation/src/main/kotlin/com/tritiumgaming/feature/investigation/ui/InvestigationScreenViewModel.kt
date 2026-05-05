@@ -39,6 +39,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
+import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
@@ -320,9 +321,8 @@ class InvestigationScreenViewModel private constructor(
         val customDifficultyIndex = difficulty.customIndex ?: 0
 
         CustomDifficultyConfigUiState(
-            name = customDifficulties[customDifficultyIndex].name ?: "",
-            options = customDifficulties.map { it.name ?: "" },
-            selectedIndex = difficulty.customIndex ?: 0,
+            selectedDifficulty = customDifficulties.getOrNull(customDifficultyIndex),
+            difficulties = customDifficulties,
             isVisible = difficulty.type == DifficultyType.CUSTOM
         )
     }.stateIn(
@@ -1982,9 +1982,8 @@ class InvestigationScreenViewModel private constructor(
     }
 
     internal data class CustomDifficultyConfigUiState(
-        val name:String = "",
-        val options: List<String> = emptyList(),
-        val selectedIndex: Int = 0,
+        val selectedDifficulty: CustomDifficultyModel? = null,
+        val difficulties: List<CustomDifficultyModel> = emptyList(),
         val isVisible: Boolean = false
     )
 }
