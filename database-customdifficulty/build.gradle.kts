@@ -6,6 +6,7 @@ plugins {
 }
 
 configure<LibraryExtension> {
+
     namespace = "com.tritiumgaming.database.customdifficulty"
     compileSdk = 36
 
@@ -29,13 +30,41 @@ configure<LibraryExtension> {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
+    buildToolsVersion = "36.1.0"
+
+    /* kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
+    } */
 }
 
 dependencies {
+
     api(libs.androidx.room.runtime)
     api(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.google.gson)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat.core)
+    implementation(libs.android.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.testExt.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
+    /*
+     * Room DB
+     */
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    //annotationProcessor(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.rxjava2)
+    implementation(libs.androidx.room.rxjava3)
+    implementation(libs.androidx.room.guava)
+    testImplementation(libs.androidx.room.testing)
+    implementation(libs.androidx.room.paging)
 
     implementation(project(":shared"))
 }
