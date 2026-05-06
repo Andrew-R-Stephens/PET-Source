@@ -1,5 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.tool.footstep
 
+import androidx.compose.foundation.MarqueeAnimationMode
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -131,7 +133,7 @@ internal fun BpmTool(
             .fillMaxWidth()
             .wrapContentHeight()
             .preferredFrameRate(FrameRateCategory.Normal),
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -168,22 +170,10 @@ internal fun BpmTool(
             )
         }
 
-        BpmVisualizer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp),
-            stateBundle = bpmVisualizerStateBundle,
-            colorBundle = bpmVisualizerColorBundle,
-            actions = BpmVisualizerUiActions(
-                onUpdate = { newTapUiState ->
-                    onUpdate(newTapUiState) }
-            )
-        )
-
         val segmentedColors = SegmentedButtonDefaults.colors(
             activeContainerColor = LocalPalette.current.primaryContainer,
-            activeContentColor = LocalPalette.current.primary,
-            inactiveContainerColor = LocalPalette.current.surface,
+            activeContentColor = LocalPalette.current.surfaceContainer,
+            inactiveContainerColor = LocalPalette.current.surfaceContainerLow,
             inactiveContentColor = LocalPalette.current.onSurface
         )
 
@@ -208,7 +198,8 @@ internal fun BpmTool(
                     icon = {}
                 ) {
                     Text(
-                        text = "None",
+                        modifier = Modifier,
+                        text = "None".uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )
@@ -226,7 +217,8 @@ internal fun BpmTool(
                     icon = {}
                 ) {
                     Text(
-                        text = "Instant",
+                        modifier = Modifier,
+                        text = "Instant".uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )
@@ -244,7 +236,8 @@ internal fun BpmTool(
                     icon = {}
                 ) {
                     Text(
-                        text = "Averaged",
+                        modifier = Modifier,
+                        text = "Averaged".uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )
@@ -262,7 +255,8 @@ internal fun BpmTool(
                     icon = {}
                 ) {
                     Text(
-                        text = "Weighted",
+                        modifier = Modifier,
+                        text = "Weighted".uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )
@@ -270,6 +264,19 @@ internal fun BpmTool(
             }
         }
 
+        BpmVisualizer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp),
+            stateBundle = bpmVisualizerStateBundle,
+            colorBundle = bpmVisualizerColorBundle,
+            actions = BpmVisualizerUiActions(
+                onUpdate = { newTapUiState ->
+                    onUpdate(newTapUiState) }
+            )
+        )
+
+        /*
         Row(
            modifier = Modifier
                .fillMaxWidth()
@@ -368,7 +375,7 @@ internal fun BpmTool(
                 text = "%.1f".format((realtimeState.points.tail?.data?.weightedAvg?: 0f) / 60f),
                 color = LocalPalette.current.onSurface
             )
-        }
+        }*/
 
     }
 }
