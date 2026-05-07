@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
@@ -21,6 +24,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -37,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -59,7 +65,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 
 @Composable
 fun CustomDifficultyScreen(
-    viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Factory)
+    viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Factory),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -110,7 +116,9 @@ private fun PortraitContent(
             options = uiState.difficulties,
             selectedDifficulty = uiState.selectedDifficulty,
             onSelect = onSelectDifficulty
-        )
+        ) { newName ->
+            onUpdateDifficulty { it.copy(name = newName.ifBlank { null }) }
+        }
 
         if (uiState.selectedDifficulty != null) {
             SettingsEditor(
@@ -167,7 +175,9 @@ private fun LandscapeContent(
                 options = uiState.difficulties,
                 selectedDifficulty = uiState.selectedDifficulty,
                 onSelect = onSelectDifficulty
-            )
+            ) { newName ->
+                onUpdateDifficulty { it.copy(name = newName.ifBlank { null }) }
+            }
         }
 
         Spacer(modifier = Modifier.width(16.dp))
@@ -218,9 +228,19 @@ private fun LandscapeContent(
 private fun DifficultySelector(
     options: List<CustomDifficultyModel>,
     selectedDifficulty: CustomDifficultyModel?,
-    onSelect: (CustomDifficultyModel) -> Unit
+    onSelect: (CustomDifficultyModel) -> Unit,
+    onNameChange: (String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
+    var isEditing by remember { mutableStateOf(false) }
+
+    val currentDisplayName = selectedDifficulty?.let {
+        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id + 1}"
+    } ?: ""
+
+    var editedName by remember(selectedDifficulty?.id) {
+        mutableStateOf(currentDisplayName)
+    }
 
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(
@@ -231,28 +251,72 @@ private fun DifficultySelector(
         )
         ExposedDropdownMenuBox(
             modifier = Modifier.fillMaxWidth(),
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded },
+            expanded = if (isEditing) false else expanded,
+            onExpandedChange = {
+                if (!isEditing) {
+                    expanded = it
+                }
+            },
         ) {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
                     .menuAnchor(
-                        type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                        type = if (isEditing) ExposedDropdownMenuAnchorType.PrimaryEditable
+                        else ExposedDropdownMenuAnchorType.PrimaryNotEditable,
                         enabled = true
                     ),
-                value = selectedDifficulty?.let {
-                    it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id + 1}"
-                } ?: "",
-                onValueChange = {},
-                readOnly = true,
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                value = if (isEditing) editedName else currentDisplayName,
+                onValueChange = {
+                    if (isEditing && it.length <= 32) {
+                        editedName = it
+                    }
+                },
+                readOnly = !isEditing,
+                supportingText = if (isEditing) {
+                    {
+                        Text(
+                            text = "${editedName.length} / 32",
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.End,
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    }
+                } else null,
+                trailingIcon = {
+                    Row(
+                        modifier = Modifier.padding(end = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        if (selectedDifficulty != null) {
+                            IconButton(onClick = {
+                                if (isEditing) {
+                                    val trimmedName = editedName.trim()
+                                    onNameChange(trimmedName)
+                                    editedName = trimmedName
+                                } else {
+                                    editedName = currentDisplayName
+                                    expanded = false
+                                }
+                                isEditing = !isEditing
+                            }) {
+                                Icon(
+                                    imageVector = if (isEditing) Icons.Default.Check else Icons.Default.Edit,
+                                    contentDescription = if (isEditing) "Save" else "Edit Name",
+                                    tint = LocalPalette.current.primary
+                                )
+                            }
+                        }
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                    }
+                },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = LocalPalette.current.surfaceContainer,
                     unfocusedContainerColor = LocalPalette.current.surfaceContainer,
                     focusedTextColor = LocalPalette.current.onSurface,
                     unfocusedTextColor = LocalPalette.current.onSurface,
-                    focusedBorderColor = Color.Transparent,
+                    focusedBorderColor = if (isEditing) LocalPalette.current.primary else Color.Transparent,
                     unfocusedBorderColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(8.dp)
@@ -268,7 +332,7 @@ private fun DifficultySelector(
                     DropdownMenuItem(
                         text = {
                             Text(
-                                text = difficulty.name ?: "${ stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource()) } ${difficulty.id}" ,
+                                text = difficulty.name ?: "${ stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource()) } ${difficulty.id + 1}" ,
                                 color = LocalPalette.current.onSurface,
                                 style = MaterialTheme.typography.bodyLarge
                             )
@@ -306,14 +370,6 @@ private fun SettingsEditor(
                         .padding(8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    SettingTextField(
-                        label = R.string.difficulty_setting_title_name,
-                        value = difficulty.name ?: "",
-                        onValueChange = { newName ->
-                            onUpdate { it.copy(name = newName.ifBlank { null }) }
-                        }
-                    )
-
                     CategoryHeader(stringResource(R.string.difficulty_category_player))
 
                     SettingDropdown(
@@ -607,49 +663,6 @@ private fun CategoryHeader(text: String) {
         color = LocalPalette.current.primary,
         fontWeight = FontWeight.Bold
     )
-}
-
-@Composable
-private fun SettingTextField(
-    label: Int,
-    value: String,
-    onValueChange: (String) -> Unit
-) {
-    Surface(
-        color = LocalPalette.current.surfaceContainer,
-        shape = RoundedCornerShape(8.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            Text(
-                text = stringResource(label).uppercase(),
-                style = LocalTypography.current.quaternary.bold.copy(
-                    fontSize = 14.sp
-                ),
-                color = LocalPalette.current.onSurfaceVariant,
-                modifier = Modifier.padding(bottom = 4.dp)
-            )
-            OutlinedTextField(
-                value = value,
-                onValueChange = onValueChange,
-                modifier = Modifier.fillMaxWidth(),
-                textStyle = LocalTypography.current.quaternary.bold.copy(fontSize = 14.sp),
-                singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = LocalPalette.current.surfaceContainerHigh,
-                    unfocusedContainerColor = LocalPalette.current.surfaceContainerHigh,
-                    focusedTextColor = LocalPalette.current.onSurface,
-                    unfocusedTextColor = LocalPalette.current.onSurface,
-                    focusedBorderColor = LocalPalette.current.primary,
-                    unfocusedBorderColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(4.dp)
-            )
-        }
-    }
 }
 
 @Composable
