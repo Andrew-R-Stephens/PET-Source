@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
@@ -17,7 +18,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -59,9 +59,11 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.common.util.ValidationUtils
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.impl.base.MarkCheckIcon
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyUiState
@@ -116,6 +118,8 @@ private fun PortraitContent(
     onSave: () -> Unit,
     onRevert: () -> Unit
 ) {
+    var isEditingName by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -125,40 +129,63 @@ private fun PortraitContent(
         DifficultySelector(
             options = uiState.difficulties,
             selectedDifficulty = uiState.selectedDifficulty,
-            onSelect = onSelectDifficulty
-        ) { newName ->
-            onUpdateDifficulty { it.copy(name = newName.ifBlank { null }) }
-        }
+            onSelect = onSelectDifficulty,
+            onEditStateChange = { isEditingName = it },
+            onNameChange = { newName ->
+                onUpdateDifficulty { it.copy(name = newName.ifBlank { null }) }
+            }
+        )
 
         if (uiState.selectedDifficulty != null) {
+            val selected = uiState.selectedDifficulty
+            val defaultName = "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${selected.id}"
+
+            Surface(
+                color = LocalPalette.current.surfaceContainerLow,
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    text = "${stringResource(R.string.general_label_preset)}: ${defaultName.uppercase()}",
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        fontSize = 16.sp
+                    ),
+                    color = LocalPalette.current.onSurface
+                )
+            }
+
             SettingsEditor(
                 modifier = Modifier.weight(1f),
-                difficulty = uiState.selectedDifficulty,
+                difficulty = selected,
                 onUpdate = onUpdateDifficulty
             )
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Button(
-                    onClick = onRevert,
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
-                    enabled = !uiState.isSaving
+            if (uiState.hasChanges && !isEditingName) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(stringResource(R.string.general_label_discard), color = LocalPalette.current.onSurface)
-                }
+                    Button(
+                        onClick = onRevert,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
+                        enabled = !uiState.isSaving
+                    ) {
+                        Text(stringResource(R.string.general_label_discard), color = LocalPalette.current.onSurface)
+                    }
 
-                Button(
-                    onClick = onSave,
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
-                    enabled = !uiState.isSaving
-                ) {
-                    Text(stringResource(R.string.general_label_save), color = LocalPalette.current.onPrimary)
+                    Button(
+                        onClick = onSave,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
+                        enabled = !uiState.isSaving
+                    ) {
+                        Text(stringResource(R.string.general_label_save), color = LocalPalette.current.onPrimary)
+                    }
                 }
             }
         } else {
@@ -186,6 +213,8 @@ private fun LandscapeContent(
     onSave: () -> Unit,
     onRevert: () -> Unit
 ) {
+    var isEditingName by remember { mutableStateOf(false) }
+
     Row(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)) {
@@ -193,10 +222,12 @@ private fun LandscapeContent(
             DifficultySelector(
                 options = uiState.difficulties,
                 selectedDifficulty = uiState.selectedDifficulty,
-                onSelect = onSelectDifficulty
-            ) { newName ->
-                onUpdateDifficulty { it.copy(name = newName.ifBlank { null }) }
-            }
+                onSelect = onSelectDifficulty,
+                onEditStateChange = { isEditingName = it },
+                onNameChange = { newName ->
+                    onUpdateDifficulty { it.copy(name = newName.ifBlank { null }) }
+                }
+            )
         }
 
         Spacer(modifier = Modifier.width(16.dp))
@@ -204,40 +235,65 @@ private fun LandscapeContent(
         Column(modifier = Modifier.weight(1f)) {
 
             if(uiState.selectedDifficulty != null) {
+                val selected = uiState.selectedDifficulty
+                val defaultName = "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${selected.id}"
+
+                Text(
+                    text = defaultName.uppercase(),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        fontSize = 20.sp
+                    ),
+                    color = LocalPalette.current.onSurface,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+
+                selected.name?.let {
+                    Text(
+                        text = it,
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            fontSize = 16.sp
+                        ),
+                        color = LocalPalette.current.onSurfaceVariant,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                    )
+                }
+
                 SettingsEditor(
                     modifier = Modifier.weight(1f),
-                    difficulty = uiState.selectedDifficulty,
+                    difficulty = selected,
                     onUpdate = onUpdateDifficulty
                 )
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Button(
-                        onClick = onRevert,
-                        modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
-                        enabled = !uiState.isSaving
+                if (uiState.hasChanges && !isEditingName) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        Text(
-                            stringResource(R.string.general_label_revert),
-                            color = LocalPalette.current.onSurface
-                        )
-                    }
+                        Button(
+                            onClick = onRevert,
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
+                            enabled = !uiState.isSaving
+                        ) {
+                            Text(
+                                stringResource(R.string.general_label_revert),
+                                color = LocalPalette.current.onSurface
+                            )
+                        }
 
-                    Button(
-                        onClick = onSave,
-                        modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
-                        enabled = !uiState.isSaving
-                    ) {
-                        Text(
-                            stringResource(R.string.general_label_save),
-                            color = LocalPalette.current.onPrimary
-                        )
+                        Button(
+                            onClick = onSave,
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
+                            enabled = !uiState.isSaving
+                        ) {
+                            Text(
+                                stringResource(R.string.general_label_save),
+                                color = LocalPalette.current.onPrimary
+                            )
+                        }
                     }
                 }
             } else {
@@ -257,6 +313,7 @@ private fun DifficultySelector(
     options: List<CustomDifficultyModel>,
     selectedDifficulty: CustomDifficultyModel?,
     onSelect: (CustomDifficultyModel) -> Unit,
+    onEditStateChange: (Boolean) -> Unit = {},
     onNameChange: (String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -265,12 +322,20 @@ private fun DifficultySelector(
     var errorMessage by remember(selectedDifficulty?.id) { mutableStateOf("") }
     var everFocused by remember(isEditing) { mutableStateOf(false) }
 
+    LaunchedEffect(isEditing) {
+        onEditStateChange(isEditing)
+    }
+
+    val currentDefaultName = selectedDifficulty?.let {
+        "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
+    } ?: ""
+
     val currentDisplayName = selectedDifficulty?.let {
-        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${ it.id }"
+        it.name ?: currentDefaultName
     } ?: ""
 
     var editedName by remember(selectedDifficulty?.id) {
-        mutableStateOf(currentDisplayName)
+        mutableStateOf(selectedDifficulty?.name ?: "")
     }
 
     val focusManager = LocalFocusManager.current
@@ -291,7 +356,7 @@ private fun DifficultySelector(
     }
 
     LaunchedEffect(currentDisplayName) {
-        editedName = currentDisplayName
+        editedName = selectedDifficulty?.name ?: ""
         isEditing = false
         isError = false
     }
@@ -413,12 +478,14 @@ private fun DifficultySelector(
                         onDismissRequest = { expanded = false },
                         scrollState = rememberScrollState()
                     ) {
-                        options.forEach { difficulty ->
+                        options.filter { it.id != selectedDifficulty?.id }.forEach { difficulty ->
+                            val defaultName = "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${difficulty.id}"
+                            val displayName = if (difficulty.name != null) "${difficulty.name} [$defaultName]" else defaultName
+
                             DropdownMenuItem(
                                 text = {
                                     Text(
-                                        text = difficulty.name
-                                            ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${difficulty.id}",
+                                        text = displayName,
                                         color = LocalPalette.current.onSurface,
                                         style = MaterialTheme.typography.bodyLarge
                                     )
@@ -441,17 +508,26 @@ private fun DifficultySelector(
                         if (isEditing) {
                             onCommitName()
                         } else {
-                            editedName = currentDisplayName
+                            editedName = selectedDifficulty.name ?: ""
                             expanded = false
                             isEditing = true
                         }
                     }
                 ) {
-                    Icon(
-                        imageVector = if (isEditing) Icons.Default.Check else Icons.Default.Edit,
-                        contentDescription = if (isEditing) "Save" else "Edit Name",
-                        tint = if (isError && isEditing) MaterialTheme.colorScheme.error else LocalPalette.current.primary
-                    )
+                    if (isEditing) {
+                        MarkCheckIcon(
+                            modifier = Modifier.size(24.dp),
+                            colors = IconVectorColors.defaults(
+                                fillColor = if (isError) MaterialTheme.colorScheme.error else LocalPalette.current.primary
+                            )
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.Default.Edit,
+                            contentDescription = "Edit Name",
+                            tint = LocalPalette.current.primary
+                        )
+                    }
                 }
             }
         }

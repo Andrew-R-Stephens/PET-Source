@@ -20,7 +20,8 @@ import kotlinx.coroutines.launch
 data class CustomDifficultyUiState(
     val difficulties: List<CustomDifficultyModel> = emptyList(),
     val selectedDifficulty: CustomDifficultyModel? = null,
-    val isSaving: Boolean = false
+    val isSaving: Boolean = false,
+    val hasChanges: Boolean = false
 )
 
 class CustomDifficultyViewModel(
@@ -37,10 +38,14 @@ class CustomDifficultyViewModel(
         _isSaving
     ) { difficulties, selected, isSaving ->
         val currentSelected = selected ?: difficulties.firstOrNull()
+        val original = difficulties.find { it.id == currentSelected?.id }
+        val hasChanges = currentSelected != null && original != null && currentSelected != original
+
         CustomDifficultyUiState(
             difficulties = difficulties,
             selectedDifficulty = currentSelected,
-            isSaving = isSaving
+            isSaving = isSaving,
+            hasChanges = hasChanges
         )
     }.stateIn(
         scope = viewModelScope,
