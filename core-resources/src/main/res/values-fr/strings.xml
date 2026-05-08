@@ -4,6 +4,7 @@
     <string name="investigation_section_title_ghosts">Fantômes</string>
     <string name="investigation_section_title_evidence">Preuve</string>
 
+    <string name="general_label_discard">Annuler</string>
     <string name="titlescreen_beta_label">Bêta</string>
     <string name="titlescreen_description">L’outil de preuves ultime</string>
     <string name="titlescreen_button">Commencer la chasse</string>
@@ -25,6 +26,7 @@
 
     <string name="map_setting_state_large">Grand</string>
     <string name="general_label_codex">Manuscrit</string>
+    <string name="general_navigation_customdifficultyeditor">Éditeur de difficulté</string>
     <string name="general_label_reset">Réinitialiser</string>
     <string name="titlescreen_languages_label">Choisir la langue</string>
     <string name="toast_discardchanges">Modifications rejetées</string>
@@ -57,8 +59,11 @@
     <string name="general_navigation_home">Accueil</string>
     <string name="general_navigation_primary">Primaire</string>
     <string name="general_navigation_menu">Menu</string>
+    <string name="investigation_section_title_movement_speed">Vitesse de déplacement</string>
     <string name="investigation_label_phase">Phase</string>
     <string name="investigation_label_tool_footstep">Outil de suivi des pas</string>
+    <string name="tool_timer_label_standard">Standard</string>
+    <string name="tool_timer_label_cursed">Maudite</string>
     <string name="codex_section_equipment">Équipement</string>
     <string name="codex_section_more">Plus à venir bientôt</string>
 
@@ -96,5 +101,19 @@
     <string name="investigation_label_tool_operation_details">Détails de l\'opération</string>
     <string name="investigation_label_tool_secondary_evidence">Preuves secondaires</string>
     <string name="investigation_label_tool_timers">Minuteurs</string>
+    <string name="general_label_preset_slot">Emplacement de préréglage</string>
+    <string name="general_label_save">Enregistrer</string>
+    <string name="general_label_revert">Rétablir</string>
+    <string name="investigation_section_title_active_ghosts">Fantômes actifs</string>
+    <string name="investigation_section_title_hunt_sanity">Seuil de chasse (Santé mentale)</string>
+    <string name="footstep_label_apply">Application du BPM</string>
+    <string name="footstep_label_none">Aucun</string>
+    <string name="footstep_label_instant">Instantané</string>
+    <string name="footstep_label_average">Moyen</string>
+    <string name="footstep_label_weighted">Pondéré</string>
+    <string name="tool_timer_label_smudge_protection">Protection contre la chasse (Encens)</string>
+    <string name="tool_timer_label_hunt_duration">Durée de la chasse</string>
+    <string name="tool_timer_label_hunt_cooldown">Délai de récupération de la chasse</string>
+    <string name="tool_timer_label_uv_lifetime">Durée des UV</string>
 
 </resources>

@@ -3,6 +3,7 @@
 
     <string name="investigation_section_title_ghosts">Fantasmas</string>
     <string name="investigation_section_title_evidence">Evidencia</string>
+    <string name="general_label_discard">Descartar</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">La herramienta de evidencia definitiva</string>
     <string name="titlescreen_button">Comenzar Cacería</string>
@@ -44,6 +45,7 @@
 
 
     <string name="general_label_codex">Códice</string>
+    <string name="general_navigation_customdifficultyeditor">Editor de dificultad</string>
     <string name="general_label_reset">Reiniciar</string>
 
     <string name="titlescreen_languages_label">Seleccione el Idioma</string>
@@ -95,8 +97,11 @@
     <string name="general_navigation_home">Inicio</string>
     <string name="general_navigation_primary">Primario</string>
     <string name="general_navigation_menu">El Menú</string>
+    <string name="investigation_section_title_movement_speed">Velocidad de movimiento</string>
     <string name="investigation_label_phase">Fase</string>
     <string name="investigation_label_tool_footstep">Herramienta de detección de pasos</string>
+    <string name="tool_timer_label_standard">Estándar</string>
+    <string name="tool_timer_label_cursed">Maldita</string>
     <string name="codex_section_equipment">Equipo</string>
     <string name="codex_section_more">Más muy pronto</string>
 
@@ -159,5 +164,19 @@
     <string name="investigation_label_tool_operation_details">Detalles de la operación</string>
     <string name="investigation_label_tool_secondary_evidence">Pruebas secundarias</string>
     <string name="investigation_label_tool_timers">Temporizadores</string>
+    <string name="general_label_preset_slot">Ranura de preajuste</string>
+    <string name="general_label_save">Guardar</string>
+    <string name="general_label_revert">Revertir</string>
+    <string name="investigation_section_title_active_ghosts">Fantasmas activos</string>
+    <string name="investigation_section_title_hunt_sanity">Cordura de caza</string>
+    <string name="footstep_label_apply">Aplicar PPM</string>
+    <string name="footstep_label_none">Ninguno</string>
+    <string name="footstep_label_instant">Instantáneo</string>
+    <string name="footstep_label_average">Promedio</string>
+    <string name="footstep_label_weighted">Ponderado</string>
+    <string name="tool_timer_label_smudge_protection">Protección de caza con incienso</string>
+    <string name="tool_timer_label_hunt_duration">Duración de la caza</string>
+    <string name="tool_timer_label_hunt_cooldown">Enfriamiento de la caza</string>
+    <string name="tool_timer_label_uv_lifetime">Duración de la luz UV</string>
 
 </resources>

@@ -4,6 +4,7 @@
     <string name="investigation_section_title_ghosts">Geister</string>
     <string name="investigation_section_title_evidence">Beweis</string>
 
+    <string name="general_label_discard">Verwerfen</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Das ultimative Beweiswerkzeug</string>
     <string name="titlescreen_button">Starten Sie die Jagd</string>
@@ -23,6 +24,7 @@
 
     <string name="map_setting_state_large">Groß</string>
     <string name="general_label_codex">Kodex</string>
+    <string name="general_navigation_customdifficultyeditor">Schwierigkeits-Editor</string>
     <string name="general_label_reset">Zurücksetzen</string>
     <string name="titlescreen_languages_label">Sprache Auswählen</string>
     <string name="toast_discardchanges">Änderungen verworfen</string>
@@ -69,8 +71,11 @@
     <string name="general_navigation_home">Startseite</string>
     <string name="general_navigation_primary">Primär</string>
     <string name="general_navigation_menu">Menü</string>
+    <string name="investigation_section_title_movement_speed">Bewegungsgeschwindigkeit</string>
     <string name="investigation_label_phase">Phase</string>
     <string name="investigation_label_tool_footstep">Fußspuren-Tool</string>
+    <string name="tool_timer_label_standard">Standard</string>
+    <string name="tool_timer_label_cursed">Verflucht</string>
     <string name="codex_section_equipment">Ausrüstung</string>
     <string name="codex_section_more">Mehr folgt bald</string>
 
@@ -110,5 +115,19 @@
     <string name="investigation_label_tool_operation_details">Operationsdetails</string>
     <string name="investigation_label_tool_secondary_evidence">Sekundäre Beweismittel</string>
     <string name="investigation_label_tool_timers">Timer</string>
+    <string name="general_label_preset_slot">Preset-Slot</string>
+    <string name="general_label_save">Speichern</string>
+    <string name="general_label_revert">Wiederherstellen</string>
+    <string name="investigation_section_title_active_ghosts">Aktive Geister</string>
+    <string name="investigation_section_title_hunt_sanity">Jagd-Sanity</string>
+    <string name="footstep_label_apply">BPM-Anwendung</string>
+    <string name="footstep_label_none">Keine</string>
+    <string name="footstep_label_instant">Sofort</string>
+    <string name="footstep_label_average">Durchschnittlich</string>
+    <string name="footstep_label_weighted">Gewichtet</string>
+    <string name="tool_timer_label_smudge_protection">Schutz durch Räucherstab</string>
+    <string name="tool_timer_label_hunt_duration">Jagddauer</string>
+    <string name="tool_timer_label_hunt_cooldown">Jagd-Cooldown</string>
+    <string name="tool_timer_label_uv_lifetime">UV-Dauer</string>
 
 </resources>

@@ -14,6 +14,7 @@
     <string name="objectives_title_optional_objective_1">Ziel 1</string>
     <string name="objectives_title_optional_objective_2">Ziel 2</string>
     <string name="objectives_title_optional_objective_3">Ziel 3</string>
+    <string name="objectives_title_surname">Nachname</string>
     <string name="objectives_title_response_alone">"Alleine "</string>
     <string name="objectives_title_response_everyone">Gruppen</string>
 
@@ -34,5 +35,7 @@
     <string name="objective_info_emfphotograph">Nimm ein Foto von jeder erfolgreichen Messung mit einem EMF-Lesegerät auf</string>
     <string name="objective_info_ghostvideo">Nimm ein Video von einem Geist auf</string>
     <string name="objectives_title_response_type">Antworttyp</string>
+    <string name="objectives_title_firstname">Vorname</string>
+    <string name="objectives_notice_response_type">Hinweis: Auf Schwierigkeitsgraden über „Mittel“ wird der Reaktionstyp nicht angezeigt.</string>
 
 </resources>

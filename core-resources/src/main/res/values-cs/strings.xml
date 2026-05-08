@@ -9,6 +9,7 @@
     <string name="general_label_maps">Mapy</string>
     <string name="general_label_tasks">Úkoly</string>
     <string name="general_label_codex">Kodex</string>
+    <string name="general_navigation_customdifficultyeditor">Editor obtížnosti</string>
     <string name="general_label_reset">Resetovat</string>
     <string name="general_navigation_settings">Nastavení</string>
     <string name="general_navigation_system">Systém</string>
@@ -17,6 +18,7 @@
         TITLESCREEN PAGE
     -->
     <!-- Page Details -->
+    <string name="general_label_discard">Zahodit</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Nejlepší důkazní nástroj</string>
     <string name="titlescreen_button">Zahájit lov</string>
@@ -74,8 +76,11 @@
     <string name="general_navigation_home">Domů</string>
     <string name="general_navigation_primary">Primární</string>
     <string name="general_navigation_menu">Menu</string>
+    <string name="investigation_section_title_movement_speed">Rychlost pohybu</string>
     <string name="investigation_label_phase">Fáze</string>
     <string name="investigation_label_tool_footstep">Nástroj pro schody</string>
+    <string name="tool_timer_label_standard">Standardní</string>
+    <string name="tool_timer_label_cursed">Prokletý</string>
     <string name="codex_section_equipment">Zařízení</string>
     <string name="codex_section_more">Více již brzy</string>
 
@@ -113,4 +118,18 @@
     <string name="investigation_label_tool_operation_details">Detaily operace</string>
     <string name="investigation_label_tool_secondary_evidence">Sekundární důkazy</string>
     <string name="investigation_label_tool_timers">Časovače</string>
+    <string name="general_label_preset_slot">Přednastavený slot</string>
+    <string name="general_label_save">Uložit</string>
+    <string name="general_label_revert">Vrátit zpět</string>
+    <string name="investigation_section_title_active_ghosts">Duchové aktivní</string>
+    <string name="investigation_section_title_hunt_sanity">Lov příčetnosti</string>
+    <string name="footstep_label_apply">Použití BPM</string>
+    <string name="footstep_label_none">Žádné</string>
+    <string name="footstep_label_instant">Okamžité</string>
+    <string name="footstep_label_average">Průměrné</string>
+    <string name="footstep_label_weighted">Vážené</string>
+    <string name="tool_timer_label_smudge_protection">Ochrana proti rozmazání při lovu</string>
+    <string name="tool_timer_label_hunt_duration">Trvání lovu</string>
+    <string name="tool_timer_label_hunt_cooldown">Chladicí doba lovu</string>
+    <string name="tool_timer_label_uv_lifetime">Doba trvání UV</string>
 </resources>

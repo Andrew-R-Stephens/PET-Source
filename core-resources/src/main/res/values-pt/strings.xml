@@ -8,10 +8,12 @@
     <string name="general_label_maps">Mapas</string>
     <string name="general_label_tasks">Tarefas</string>
     <string name="general_label_codex">Códice</string>
+    <string name="general_navigation_customdifficultyeditor">Editor de Dificuldade</string>
     <string name="general_label_reset">Reiniciar</string>
 
     <!-- Page Details -->
 
+    <string name="general_label_discard">Descartar</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">A melhor ferramenta de evidência</string>
     <string name="titlescreen_button">Comece a caçar</string>
@@ -142,6 +144,7 @@
     <string name="objectives_title_optional_objective_1">Objetivo 1</string>
     <string name="objectives_title_optional_objective_2">Objetivo 2</string>
     <string name="objectives_title_optional_objective_3">Objetivo 3</string>
+    <string name="objectives_title_surname">Sobrenome</string>
     <string name="objectives_title_response_alone">Sozinho</string>
     <string name="objectives_title_response_everyone">Agrupado</string>
 
@@ -716,8 +719,11 @@
     <string name="general_navigation_home">Página inicial</string>
     <string name="general_navigation_primary">Primário</string>
     <string name="general_navigation_menu">cardápio</string>
+    <string name="investigation_section_title_movement_speed">Velocidade de Movimento</string>
     <string name="investigation_label_phase">Fase</string>
     <string name="investigation_label_tool_footstep">Ferramenta de Pegadas</string>
+    <string name="tool_timer_label_standard">Padrão</string>
+    <string name="tool_timer_label_cursed">Amaldiçoada</string>
     <string name="codex_section_equipment">Equipamento</string>
     <string name="codex_section_more">Mais em breve</string>
     <string name="navigation_open_state">Gaveta de navegação aberta.</string>
@@ -1256,6 +1262,7 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Caixa de fusíveis visível no mapa</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">Quantidade de Possessões Amaldiçoadas</string>
     <string name="difficulty_category_player">Jogador</string>
+    <string name="difficulty_setting_title_name">Nome</string>
     <string name="difficulty_category_ghost">Fantasma</string>
     <string name="map_setting_state_setup">Configuração</string>
     <string name="map_setting_state_action">Ação</string>
@@ -1336,5 +1343,21 @@
     <string name="investigation_label_tool_operation_details">Detalhes da Operação</string>
     <string name="investigation_label_tool_secondary_evidence">Evidências Secundárias</string>
     <string name="investigation_label_tool_timers">Temporizadores</string>
+    <string name="general_label_preset_slot">Slot de Predefinição</string>
+    <string name="general_label_save">Salvar</string>
+    <string name="general_label_revert">Reverter</string>
+    <string name="investigation_section_title_active_ghosts">Fantasmas Ativos</string>
+    <string name="investigation_section_title_hunt_sanity">Sanidade para Caçada</string>
+    <string name="footstep_label_apply">Aplicação de BPM</string>
+    <string name="footstep_label_none">Nenhum</string>
+    <string name="footstep_label_instant">Instantâneo</string>
+    <string name="footstep_label_average">Médio</string>
+    <string name="footstep_label_weighted">Ponderado</string>
+    <string name="tool_timer_label_smudge_protection">Proteção contra Caçada com Defumador</string>
+    <string name="tool_timer_label_hunt_duration">Duração da Caçada</string>
+    <string name="tool_timer_label_hunt_cooldown">Intervalo entre Caçadas</string>
+    <string name="tool_timer_label_uv_lifetime">Duração da Luz UV</string>
+    <string name="objectives_title_firstname">Nome</string>
+    <string name="objectives_notice_response_type">Nota: Dificuldades acima do nível Intermediário não revelam o tipo de resposta.</string>
 
 </resources>

@@ -14,6 +14,7 @@
     <string name="objectives_title_optional_objective_1">Objectif 1</string>
     <string name="objectives_title_optional_objective_2">Objectif 2</string>
     <string name="objectives_title_optional_objective_3">Objectif 3</string>
+    <string name="objectives_title_surname">Nom</string>
     <string name="objectives_title_response_alone">Seule</string>
     <string name="objectives_title_response_everyone">Groupe</string>
 
@@ -34,5 +35,7 @@
     <string name="objective_info_uniquephotograph">Capturez 3 photos uniques avec un appareil photo</string>
     <string name="objective_info_uniquevideo">Capturez 3 vidéos uniques avec une caméra vidéo</string>
     <string name="objectives_title_response_type">Type de Réponse</string>
+    <string name="objectives_title_firstname">Prénom</string>
+    <string name="objectives_notice_response_type">Note : Les niveaux de difficulté supérieurs à « Intermédiaire » ne révèlent pas le type de réponse.</string>
 
 </resources>

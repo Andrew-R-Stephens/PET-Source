@@ -73,6 +73,7 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Boîte à fusibles visible sur la carte</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">Quantité d\'objets maudits</string>
     <string name="difficulty_category_player">Joueur</string>
+    <string name="difficulty_setting_title_name">Nom</string>
     <string name="difficulty_category_ghost">Fantôme</string>
 
 </resources>

@@ -73,6 +73,7 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Pojistková skříňka viditelná na mapě</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">Množství prokletých posednutí</string>
     <string name="difficulty_category_player">Hráč</string>
+    <string name="difficulty_setting_title_name">Jméno</string>
     <string name="difficulty_category_ghost">Duch</string>
 
 </resources>

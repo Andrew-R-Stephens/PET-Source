@@ -15,8 +15,11 @@
     <string name="objectives_title_optional_objective_1">Objective 1</string>
     <string name="objectives_title_optional_objective_2">Objective 2</string>
     <string name="objectives_title_optional_objective_3">Objective 3</string>
+    <string name="objectives_title_firstname">First Name</string>
+    <string name="objectives_title_surname">Surname</string>
     <string name="objectives_title_response_alone">Alone</string>
     <string name="objectives_title_response_everyone">Grouped Up</string>
+    <string name="objectives_notice_response_type">Note: Difficulties higher than intermediate do not disclose response type</string>
 
     <!-- Mission IDs -->
     <string name="objective_id_ghostevent" translatable="false">976caba69673421df691ce46c7c1759b</string>

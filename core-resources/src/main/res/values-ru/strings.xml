@@ -9,12 +9,14 @@
     <string name="general_label_maps">Карты</string>
     <string name="general_label_tasks">Задачи</string>
     <string name="general_label_codex">Кодекс</string>
+    <string name="general_navigation_customdifficultyeditor">Редактор сложности</string>
     <string name="general_label_reset">Сброс</string>
 
     <!--
         TITLESCREEN FRAGMENT
     -->
     <!-- Page Details -->
+    <string name="general_label_discard">Отменить</string>
     <string name="titlescreen_beta_label">Бета</string>
     <string name="titlescreen_description">Лучший инструмент для сбора доказательств</string>
     <string name="titlescreen_button">Начать охоту</string>
@@ -730,6 +732,7 @@
     <string name="objectives_title_optional_objective_1">Цель 1</string>
     <string name="objectives_title_optional_objective_2">Цель 2</string>
     <string name="objectives_title_optional_objective_3">Цель 3</string>
+    <string name="objectives_title_surname">Фамилия</string>
     <string name="objectives_title_response_alone">Один</string>
     <string name="objectives_title_response_everyone">Сгруппированы</string>
     <!-- Objective Description -->
@@ -1688,8 +1691,11 @@
     <string name="general_navigation_home">Главная</string>
     <string name="general_navigation_primary">Основной</string>
     <string name="general_navigation_menu">меню</string>
+    <string name="investigation_section_title_movement_speed">Скорость передвижения</string>
     <string name="investigation_label_phase">Фаза</string>
     <string name="investigation_label_tool_footstep">Инструмент для отслеживания шагов</string>
+    <string name="tool_timer_label_standard">Стандартное</string>
+    <string name="tool_timer_label_cursed">Проклятый</string>
     <string name="codex_section_equipment">Оборудование</string>
     <string name="codex_section_more">Продолжение следует</string>
     <string name="navigation_open_state">Отдел навигации открыт.</string>
@@ -2619,6 +2625,7 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Распределительный щит виден на карте</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">Количество проклятых вещей</string>
     <string name="difficulty_category_player">Игрок</string>
+    <string name="difficulty_setting_title_name">Название</string>
     <string name="difficulty_category_ghost">Призрак</string>
     <string name="map_setting_state_setup">Настройка</string>
     <string name="map_setting_state_action">Действие</string>
@@ -2699,5 +2706,21 @@
     <string name="investigation_label_tool_operation_details">Подробности операции</string>
     <string name="investigation_label_tool_secondary_evidence">Вторичные доказательства</string>
     <string name="investigation_label_tool_timers">Таймеры</string>
+    <string name="general_label_preset_slot">Слот пресета</string>
+    <string name="general_label_save">Сохранить</string>
+    <string name="general_label_revert">Восстановить</string>
+    <string name="investigation_section_title_active_ghosts">Активность призраков</string>
+    <string name="investigation_section_title_hunt_sanity">Порог охоты (рассудок)</string>
+    <string name="footstep_label_apply">Применение ЭМП</string>
+    <string name="footstep_label_none">Нет</string>
+    <string name="footstep_label_instant">Мгновенно</string>
+    <string name="footstep_label_average">Среднее</string>
+    <string name="footstep_label_weighted">Взвешенное</string>
+    <string name="tool_timer_label_smudge_protection">Защита от охоты (благовония)</string>
+    <string name="tool_timer_label_hunt_duration">Длительность охоты</string>
+    <string name="tool_timer_label_hunt_cooldown">Перезарядка охоты</string>
+    <string name="tool_timer_label_uv_lifetime">Время действия УФ-света</string>
+    <string name="objectives_title_firstname">Имя</string>
+    <string name="objectives_notice_response_type">Примечание: На уровнях сложности выше «Среднего» тип ответа не раскрывается.</string>
 
 </resources>

@@ -193,7 +193,7 @@ internal fun BpmTool(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "Apply BPM".uppercase(),
+                text = stringResource(R.string.footstep_label_apply).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
@@ -224,7 +224,7 @@ internal fun BpmTool(
                 ) {
                     Text(
                         modifier = Modifier,
-                        text = "None".uppercase(),
+                        text = stringResource(R.string.footstep_label_none).uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )
@@ -247,7 +247,7 @@ internal fun BpmTool(
                 ) {
                     Text(
                         modifier = Modifier,
-                        text = "Instant".uppercase(),
+                        text = stringResource(R.string.footstep_label_instant).uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )
@@ -270,7 +270,7 @@ internal fun BpmTool(
                 ) {
                     Text(
                         modifier = Modifier,
-                        text = "Averaged".uppercase(),
+                        text = stringResource(R.string.footstep_label_average).uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )
@@ -293,7 +293,7 @@ internal fun BpmTool(
                 ) {
                     Text(
                         modifier = Modifier,
-                        text = "Weighted".uppercase(),
+                        text = stringResource(R.string.footstep_label_weighted).uppercase(),
                         fontSize = 12.sp,
                         maxLines = 1
                     )

@@ -14,6 +14,7 @@
     <string name="objectives_title_optional_objective_1">Cíl 1</string>
     <string name="objectives_title_optional_objective_2">Cíl 2</string>
     <string name="objectives_title_optional_objective_3">Cíl 3</string>
+    <string name="objectives_title_surname">Příjmení</string>
     <string name="objectives_title_response_alone">Sám</string>
     <string name="objectives_title_response_everyone">Seskupeno</string>
 
@@ -34,5 +35,7 @@
     <string name="objective_info_uniquephotograph">Pořiďte 3 unikátní fotografie fotoaparátem</string>
     <string name="objective_info_uniquevideo">Natočte 3 unikátní videa videokamerou</string>
     <string name="objectives_title_response_type">Typ odpovědi</string>
+    <string name="objectives_title_firstname">Jméno</string>
+    <string name="objectives_notice_response_type">Poznámka: Obtížnosti vyšší než střední neodhalují typ reakce</string>
 
 </resources>

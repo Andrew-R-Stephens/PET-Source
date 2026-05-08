@@ -74,5 +74,6 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Caja de fusibles visible en el mapa</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">Cantidad de posesiones malditas</string>
     <string name="difficulty_category_player">Jugador</string>
+    <string name="difficulty_setting_title_name">Nombre</string>
     <string name="difficulty_category_ghost">Fantasma</string>
 </resources>

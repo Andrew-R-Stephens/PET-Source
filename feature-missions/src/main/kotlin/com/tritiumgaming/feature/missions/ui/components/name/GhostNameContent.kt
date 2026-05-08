@@ -79,7 +79,7 @@ fun GhostNameContent(
                     .wrapContentHeight(),
                 state = ghostDetailsUiState.firstName,
                 dropdownList = namesSpinnerUiState.firstNames,
-                placeholder = "First Name",
+                placeholder = stringResource(R.string.objectives_title_firstname),
             ) { name ->
                 ghostNameUiActions.onSelectFirstName(name)
             }
@@ -90,7 +90,7 @@ fun GhostNameContent(
                     .wrapContentHeight(),
                 state = ghostDetailsUiState.surname,
                 dropdownList = namesSpinnerUiState.surnames,
-                placeholder = "Surname",
+                placeholder = stringResource(R.string.objectives_title_surname),
             ) { surname ->
                 ghostNameUiActions.onSelectSurname(surname)
             }

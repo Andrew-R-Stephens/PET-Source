@@ -14,6 +14,7 @@
     <string name="objectives_title_optional_objective_2">Ціль 2</string>
     <string name="objectives_title_optional_objective_3">Ціль 3</string>
     <string name="objectives_title_response">Відповідає людям, які є</string>
+    <string name="objectives_title_surname">Прізвище</string>
     <string name="objectives_title_response_alone">Наодинці</string>
     <string name="objectives_title_response_everyone">Згруповані</string>
     <!-- Objective Description -->
@@ -33,4 +34,6 @@
     <string name="objective_info_uniquephotograph">Зробіть 3 унікальних фотографії за допомогою фотокамери</string>
     <string name="objective_info_uniquevideo">Зробіть 3 унікальних відео за допомогою відеокамери</string>
     <string name="objectives_title_response_type">Тип відповіді</string>
+    <string name="objectives_title_firstname">Ім\'я</string>
+    <string name="objectives_notice_response_type">Примітка: Складність вище середньої не розкриває тип реакції</string>
 </resources>

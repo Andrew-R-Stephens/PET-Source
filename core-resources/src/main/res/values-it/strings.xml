@@ -8,10 +8,12 @@
     <string name="general_label_maps">Mappe</string>
     <string name="general_label_tasks">Compiti</string>
     <string name="general_label_codex">Codice</string>
+    <string name="general_navigation_customdifficultyeditor">Editor difficoltà</string>
     <string name="general_label_reset">Ripristina</string>
 
     <!-- Page Details -->
 
+    <string name="general_label_discard">Annulla</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Lo strumento di prova definitivo</string>
     <string name="titlescreen_button">Inizia la caccia</string>
@@ -142,6 +144,7 @@
     <string name="objectives_title_optional_objective_1">Obiettivo 1</string>
     <string name="objectives_title_optional_objective_2">Obiettivo 2</string>
     <string name="objectives_title_optional_objective_3">Obiettivo 3</string>
+    <string name="objectives_title_surname">Cognome</string>
     <string name="objectives_title_response_alone">Solo</string>
     <string name="objectives_title_response_everyone">Raggruppati</string>
 
@@ -713,8 +716,11 @@
     <string name="general_navigation_home">Casa</string>
     <string name="general_navigation_primary">Primaria</string>
     <string name="general_navigation_menu">Menù</string>
+    <string name="investigation_section_title_movement_speed">Velocità di movimento</string>
     <string name="investigation_label_phase">Fase</string>
     <string name="investigation_label_tool_footstep">Strumento rilevamento passi</string>
+    <string name="tool_timer_label_standard">Standard</string>
+    <string name="tool_timer_label_cursed">Maledetta</string>
     <string name="codex_section_equipment">Attrezzatura</string>
     <string name="codex_section_more">Maggiori informazioni tra breve</string>
 
@@ -1251,6 +1257,7 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Scatola dei fusibili visibile sulla mappa</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">Quantità di beni maledetti</string>
     <string name="difficulty_category_player">Giocatore</string>
+    <string name="difficulty_setting_title_name">Nome</string>
     <string name="difficulty_category_ghost">Fantasma</string>
     <string name="map_setting_state_setup">Impostazione</string>
     <string name="map_setting_state_action">Azione</string>
@@ -1331,5 +1338,21 @@
     <string name="investigation_label_tool_operation_details">Dettagli operazione</string>
     <string name="investigation_label_tool_secondary_evidence">Prove secondarie</string>
     <string name="investigation_label_tool_timers">Timer</string>
+    <string name="general_label_preset_slot">Slot preimpostazione</string>
+    <string name="general_label_save">Salva</string>
+    <string name="general_label_revert">Ripristina</string>
+    <string name="investigation_section_title_active_ghosts">Spettri attivi</string>
+    <string name="investigation_section_title_hunt_sanity">Soglia di caccia (Sanità)</string>
+    <string name="footstep_label_apply">Applicazione BPM</string>
+    <string name="footstep_label_none">Nessuno</string>
+    <string name="footstep_label_instant">Istantaneo</string>
+    <string name="footstep_label_average">Medio</string>
+    <string name="footstep_label_weighted">Ponderato</string>
+    <string name="tool_timer_label_smudge_protection">Protezione dalla caccia (Fumigante)</string>
+    <string name="tool_timer_label_hunt_duration">Durata della caccia</string>
+    <string name="tool_timer_label_hunt_cooldown">Intervallo tra le cacce</string>
+    <string name="tool_timer_label_uv_lifetime">Durata UV</string>
+    <string name="objectives_title_firstname">Nome</string>
+    <string name="objectives_notice_response_type">Nota: I livelli di difficoltà superiori a \"Intermedio\" non rivelano il tipo di risposta.</string>
 
 </resources>

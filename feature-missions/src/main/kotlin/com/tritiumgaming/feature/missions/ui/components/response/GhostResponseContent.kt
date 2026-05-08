@@ -121,7 +121,7 @@ fun GhostResponseContent(
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .padding(top = 16.dp),
-                text = "Note: Difficulties higher than intermediate do not disclose response type",
+                text = stringResource(R.string.objectives_notice_response_type),
                 style = LocalTypography.current.quaternary.regular.copy(
                     textAlign = TextAlign.Center
                 ),

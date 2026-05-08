@@ -9,10 +9,12 @@
     <string name="general_label_maps">地图</string>
     <string name="general_label_tasks">任务</string>
     <string name="general_label_codex">法典</string>
+    <string name="general_navigation_customdifficultyeditor">难度编辑器</string>
     <string name="general_label_reset">重置</string>
 
     <!-- Page Details -->
 
+    <string name="general_label_discard">放弃</string>
     <string name="titlescreen_beta_label">贝塔</string>
     <string name="titlescreen_description">最终的证据工具</string>
     <string name="titlescreen_button">开始狩猎</string>
@@ -144,6 +146,7 @@
     <string name="objectives_title_optional_objective_1">目标 1</string>
     <string name="objectives_title_optional_objective_2">目标 2</string>
     <string name="objectives_title_optional_objective_3">目标 3</string>
+    <string name="objectives_title_surname">姓氏</string>
     <string name="objectives_title_response_alone">独自的</string>
     <string name="objectives_title_response_everyone">分组</string>
 
@@ -711,8 +714,11 @@
     <string name="general_navigation_home">主页</string>
     <string name="general_navigation_primary">主要</string>
     <string name="general_navigation_menu">目录</string>
+    <string name="investigation_section_title_movement_speed">移动速度</string>
     <string name="investigation_label_phase">阶段</string>
     <string name="investigation_label_tool_footstep">足迹工具</string>
+    <string name="tool_timer_label_standard">标准</string>
+    <string name="tool_timer_label_cursed">被诅咒的</string>
     <string name="codex_section_equipment">设备</string>
     <string name="codex_section_more">更多即将推出</string>
     <string name="navigation_open_state">导航抽屉已打开。</string>
@@ -1126,6 +1132,7 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">地图上可见的保险丝盒</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">诅咒物品数量</string>
     <string name="difficulty_category_player">玩家</string>
+    <string name="difficulty_setting_title_name">名称</string>
     <string name="difficulty_category_ghost">幽灵</string>
     <string name="map_setting_state_setup">设置</string>
     <string name="map_setting_state_action">动作</string>
@@ -1204,5 +1211,21 @@
     <string name="evidence_trait_weight_likely">更有可能</string>
     <string name="evidence_trait_weight_unlikely">不太可能</string>
     <string name="store_title_achievements">成就</string>
+    <string name="general_label_preset_slot">预设槽位</string>
+    <string name="general_label_save">保存</string>
+    <string name="general_label_revert">还原</string>
+    <string name="investigation_section_title_active_ghosts">活跃幽灵数</string>
+    <string name="investigation_section_title_hunt_sanity">狩猎理智阈值</string>
+    <string name="footstep_label_apply">应用 BPM</string>
+    <string name="footstep_label_none">无</string>
+    <string name="footstep_label_instant">即时</string>
+    <string name="footstep_label_average">平均</string>
+    <string name="footstep_label_weighted">加权</string>
+    <string name="tool_timer_label_smudge_protection">烟熏狩猎保护</string>
+    <string name="tool_timer_label_hunt_duration">狩猎持续时间</string>
+    <string name="tool_timer_label_hunt_cooldown">狩猎冷却时间</string>
+    <string name="tool_timer_label_uv_lifetime">紫外线持续时间</string>
+    <string name="objectives_title_firstname">名字</string>
+    <string name="objectives_notice_response_type">注：高于“中等”难度的模式不显示响应类型</string>
 
 </resources>

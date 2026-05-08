@@ -15,7 +15,7 @@
     <string name="difficulty_title_apocalypse_3">Apocalypse 3</string>
 
     <string name="difficulty_category_player">Player</string>
-    <string name="difficulty_setting_title_name" translatable="false">Name</string>
+    <string name="difficulty_setting_title_name">Name</string>
     <string name="difficulty_category_ghost">Ghost</string>
     <string name="difficulty_category_contract">Contract</string>
 

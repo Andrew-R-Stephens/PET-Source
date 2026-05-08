@@ -7,10 +7,12 @@
     <string name="general_label_maps">地図</string>
     <string name="general_label_tasks">タスク</string>
     <string name="general_label_codex">コーデックス</string>
+    <string name="general_navigation_customdifficultyeditor">難易度エディタ</string>
     <string name="general_label_reset">リセット</string>
 
     <!-- Page Details -->
 
+    <string name="general_label_discard">破棄</string>
     <string name="titlescreen_beta_label">ベータ</string>
     <string name="titlescreen_description">究極の証拠ツール</string>
     <string name="titlescreen_button">狩猟を開始する</string>
@@ -143,6 +145,7 @@
     <string name="objectives_title_optional_objective_1">目標 1</string>
     <string name="objectives_title_optional_objective_2">目標 2</string>
     <string name="objectives_title_optional_objective_3">目標 3</string>
+    <string name="objectives_title_surname">姓</string>
     <string name="objectives_title_response_alone">一人で</string>
     <string name="objectives_title_response_everyone">グループ化</string>
 
@@ -713,8 +716,11 @@
     <string name="general_navigation_home">ホーム</string>
     <string name="general_navigation_primary">プライマリ</string>
     <string name="general_navigation_menu">メニュー</string>
+    <string name="investigation_section_title_movement_speed">移動速度</string>
     <string name="investigation_label_phase">フェーズ</string>
     <string name="investigation_label_tool_footstep">足跡ツール</string>
+    <string name="tool_timer_label_standard">標準</string>
+    <string name="tool_timer_label_cursed">呪われし者</string>
     <string name="codex_section_equipment">装置</string>
     <string name="codex_section_more">さらに近日公開予定</string>
 
@@ -1247,6 +1253,7 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">マップ上でヒューズボックスが見える</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">呪われた持ち物の数</string>
     <string name="difficulty_category_player">プレイヤー</string>
+    <string name="difficulty_setting_title_name">名前</string>
     <string name="difficulty_category_ghost">ゴースト</string>
     <string name="map_setting_state_setup">設定</string>
     <string name="map_setting_state_action">アクション</string>
@@ -1327,5 +1334,21 @@
     <string name="investigation_label_tool_operation_details">操作詳細</string>
     <string name="investigation_label_tool_secondary_evidence">二次証拠</string>
     <string name="investigation_label_tool_timers">タイマー</string>
+    <string name="general_label_preset_slot">プリセットスロット</string>
+    <string name="general_label_save">保存</string>
+    <string name="general_label_revert">元に戻す</string>
+    <string name="investigation_section_title_active_ghosts">活動中のゴースト</string>
+    <string name="investigation_section_title_hunt_sanity">ハント開始時の正気度</string>
+    <string name="footstep_label_apply">BPM適用</string>
+    <string name="footstep_label_none">なし</string>
+    <string name="footstep_label_instant">即時</string>
+    <string name="footstep_label_average">平均</string>
+    <string name="footstep_label_weighted">加重平均</string>
+    <string name="tool_timer_label_smudge_protection">スマッジによるハント阻止</string>
+    <string name="tool_timer_label_hunt_duration">ハント継続時間</string>
+    <string name="tool_timer_label_hunt_cooldown">ハントのクールダウン</string>
+    <string name="tool_timer_label_uv_lifetime">UVライトの持続時間</string>
+    <string name="objectives_title_firstname">名</string>
+    <string name="objectives_notice_response_type">注：難易度「中級」より上では、反応の種類は開示されません。</string>
 
 </resources>

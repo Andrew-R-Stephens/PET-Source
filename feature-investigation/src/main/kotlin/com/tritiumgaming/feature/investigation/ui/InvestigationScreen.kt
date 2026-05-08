@@ -189,28 +189,28 @@ private fun InvestigationContent(
     val temperatureStateBundle = TemperatureStateBundle(temperatureUiState)
     val fuseBoxFlag = difficultyOverrideUiState.fuseBox
 
-    val smudgeHuntPreventionTitle = "Smudge Hunt Protection"
+    val smudgeHuntPreventionTitle = stringResource(R.string.tool_timer_label_smudge_protection)
     val smudgeHuntPreventionMax = smudgeHuntProtectionTimerState.max
     val smudgeHuntPreventionRemaining = smudgeHuntProtectionTimerState.remaining
     val smudgeHuntPreventionTimeText = smudgeHuntProtectionTimerState.timeText
     val smudgeHuntPreventionRunning = smudgeHuntProtectionTimerState.running
     val smudgeNotches = smudgeHuntProtectionTimerState.notches
 
-    val huntDurationTitle = "Hunt Duration"
+    val huntDurationTitle = stringResource(R.string.tool_timer_label_hunt_duration)
     val huntDurationMax = huntDurationTimerState.max
     val huntDurationRemaining = huntDurationTimerState.remaining
     val huntDurationTimeText = huntDurationTimerState.timeText
     val huntDurationRunning = huntDurationTimerState.running
     val huntDurationNotches = huntDurationTimerState.notches
 
-    val huntCooldownTitle = "Hunt Cooldown"
+    val huntCooldownTitle = stringResource(R.string.tool_timer_label_hunt_cooldown)
     val huntCooldownMax = huntGapTimerState.max
     val huntCooldownRemaining = huntGapTimerState.remaining
     val huntCooldownTimeText = huntGapTimerState.timeText
     val huntCooldownRunning = huntGapTimerState.running
     val huntCooldownNotches = huntGapTimerState.notches
 
-    val fingerprintTimerTitle = "UV Evidence Lifetime"
+    val fingerprintTimerTitle = stringResource(R.string.tool_timer_label_uv_lifetime)
     val fingerprintTimerMax = fingerprintTimerState.max
     val fingerprintTimerRemaining = fingerprintTimerState.remaining
     val fingerprintTimerTimeText = fingerprintTimerState.timeText

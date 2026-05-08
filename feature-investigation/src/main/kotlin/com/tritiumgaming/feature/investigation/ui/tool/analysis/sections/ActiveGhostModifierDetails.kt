@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
@@ -54,7 +55,8 @@ internal fun ActiveGhostModifierDetails(
                 ) {
                     TextCategoryTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Ghosts Active: ")
+                        text = "${stringResource(R.string.investigation_section_title_active_ghosts)}:"
+                    )
                     TextSubTitle(
                         modifier = Modifier.padding(start= 8.dp),
                         color = LocalPalette.current.onSurfaceVariant,
@@ -102,7 +104,7 @@ internal fun ActiveGhostModifierDetails(
                         TextSubTitle(
                             modifier = Modifier,
                             color = LocalPalette.current.onSurface,
-                            text = "Evidence"
+                            text = "${stringResource(R.string.investigation_section_title_evidence) }:"
                         )
                     }
                     Column(
@@ -132,7 +134,7 @@ internal fun ActiveGhostModifierDetails(
                         TextSubTitle(
                             modifier = Modifier,
                             color = LocalPalette.current.onSurface,
-                            text = "Hunt Sanity"
+                            text = "${stringResource(R.string.investigation_section_title_hunt_sanity) }:"
                         )
                     }
 
@@ -192,7 +194,7 @@ internal fun ActiveGhostModifierDetails(
                         TextSubTitle(
                             modifier = Modifier,
                             color = LocalPalette.current.onSurface,
-                            text = "Movement Speed"
+                            text = "${stringResource(R.string.investigation_section_title_movement_speed) }:"
                         )
                     }
 

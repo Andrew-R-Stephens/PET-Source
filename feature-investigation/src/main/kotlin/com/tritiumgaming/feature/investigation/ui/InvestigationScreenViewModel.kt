@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.core.common.util.FormatterUtils.roundMillisToDuration
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
@@ -349,7 +350,7 @@ class InvestigationScreenViewModel private constructor(
             (3).minutes.inWholeMilliseconds
         ),
         ProgressBarNotch(
-            UiText.DynamicString("Standard"),
+            UiText.StringResource(R.string.tool_timer_label_standard),
             (1.5).minutes.inWholeMilliseconds
         ),
         ProgressBarNotch(
@@ -368,11 +369,11 @@ class InvestigationScreenViewModel private constructor(
 
     private val huntDurationTimerProgressBarNotches = listOf(
         ProgressBarNotch(
-            UiText.DynamicString("Standard"),
+            UiText.StringResource(R.string.tool_timer_label_standard),
             (1.5).minutes.inWholeMilliseconds
         ),
         ProgressBarNotch(
-            UiText.DynamicString("Cursed"),
+            UiText.StringResource(R.string.tool_timer_label_cursed),
             (1.5).minutes.inWholeMilliseconds
         ),
     )
@@ -387,7 +388,7 @@ class InvestigationScreenViewModel private constructor(
 
     private val huntCooldownTimerProgressBarNotches = listOf(
         ProgressBarNotch(
-            UiText.DynamicString("Standard"),
+            UiText.StringResource(R.string.tool_timer_label_standard),
             (1.5).minutes.inWholeMilliseconds
         )
     )
@@ -410,7 +411,7 @@ class InvestigationScreenViewModel private constructor(
                     (difficultyState.value.settings.fingerprintDuration.toLong() * .5f).toLong()
                 ),
                 ProgressBarNotch(
-                    UiText.DynamicString("Normal"),
+                    UiText.StringResource(R.string.tool_timer_label_standard),
                     difficultyState.value.settings.fingerprintDuration.toLong()
                 )
             ),
@@ -1826,7 +1827,7 @@ class InvestigationScreenViewModel private constructor(
                                 (fingerprintDuration * .5f).toLong()
                             ),
                             ProgressBarNotch(
-                                UiText.DynamicString("Normal"),
+                                UiText.StringResource(R.string.tool_timer_label_standard),
                                 fingerprintDuration
                             )
                         )

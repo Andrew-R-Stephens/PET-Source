@@ -14,6 +14,7 @@
     <string name="objectives_title_optional_objective_1">Objetivo 1</string>
     <string name="objectives_title_optional_objective_2">Objetivo 2</string>
     <string name="objectives_title_optional_objective_3">Objetivo 3</string>
+    <string name="objectives_title_surname">Apellido</string>
     <string name="objectives_title_response_alone">Sola</string>
     <string name="objectives_title_response_everyone">Agrupados</string>
 
@@ -34,5 +35,7 @@
     <string name="objective_info_emfphotograph">Captura una foto de cualquier lectura exitosa en un lector EMF</string>
     <string name="objective_info_ghostvideo">Captura un video de un fantasma</string>
     <string name="objectives_title_response_type">Tipo de Respuesta</string>
+    <string name="objectives_title_firstname">Nombre</string>
+    <string name="objectives_notice_response_type">Nota: Las dificultades superiores a la intermedia no revelan el tipo de respuesta.</string>
 
 </resources>

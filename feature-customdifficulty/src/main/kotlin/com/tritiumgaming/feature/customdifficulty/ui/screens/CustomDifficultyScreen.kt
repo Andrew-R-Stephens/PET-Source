@@ -256,7 +256,7 @@ private fun LandscapeContent(
         Column(modifier = Modifier.weight(1f)) {
 
             if(uiState.selectedDifficulty != null) {
-                val selected = uiState.selectedDifficulty!!
+                val selected = uiState.selectedDifficulty
                 val defaultName = "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${selected.id}"
 
                 Text(

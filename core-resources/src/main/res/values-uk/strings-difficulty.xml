@@ -61,5 +61,6 @@
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Блок запобіжників видно на карті</string>
     <string name="difficulty_setting_title_cursed_possessions_quantity">Кількість проклятих володінь</string>
     <string name="difficulty_category_player">Гравець</string>
+    <string name="difficulty_setting_title_name">Ім\'я</string>
     <string name="difficulty_category_ghost">Привид</string>
 </resources>
