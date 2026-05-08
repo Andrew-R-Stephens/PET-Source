@@ -274,6 +274,7 @@ private fun NavGraphBuilder.operationNavigation(
                 windowInsets = windowInsets
             ) {
                 CustomDifficultyScreen(
+                    navController = navController,
                     viewModel = viewModel(factory = CustomDifficultyViewModel.Factory),
                 )
             }

@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.customdifficulty.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,14 +10,17 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
@@ -46,7 +50,9 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -55,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.common.util.ValidationUtils
@@ -66,6 +73,9 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyUiState
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
@@ -77,12 +87,17 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 
 @Composable
 fun CustomDifficultyScreen(
+    navController: NavController,
     viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Factory),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+    val onNavigateBack = {
+        navController.popBackStack()
+    }
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -94,7 +109,8 @@ fun CustomDifficultyScreen(
                     onSelectDifficulty = viewModel::selectDifficulty,
                     onUpdateDifficulty = viewModel::updateSelectedDifficulty,
                     onSave = viewModel::saveChanges,
-                    onRevert = viewModel::revertChanges
+                    onRevert = viewModel::revertChanges,
+                    onNavigateBack = { onNavigateBack() }
                 )
             }
             else -> {
@@ -103,7 +119,8 @@ fun CustomDifficultyScreen(
                     onSelectDifficulty = viewModel::selectDifficulty,
                     onUpdateDifficulty = viewModel::updateSelectedDifficulty,
                     onSave = viewModel::saveChanges,
-                    onRevert = viewModel::revertChanges
+                    onRevert = viewModel::revertChanges,
+                    onNavigateBack = { onNavigateBack() }
                 )
             }
         }
@@ -116,7 +133,8 @@ private fun PortraitContent(
     onSelectDifficulty: (CustomDifficultyModel) -> Unit,
     onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
     onSave: () -> Unit,
-    onRevert: () -> Unit
+    onRevert: () -> Unit,
+    onNavigateBack: () -> Unit
 ) {
     var isEditingName by remember { mutableStateOf(false) }
 
@@ -126,6 +144,10 @@ private fun PortraitContent(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
     ) {
+        NavigationHeader(
+            onLeftClick = { onNavigateBack() }
+        )
+
         DifficultySelector(
             options = uiState.difficulties,
             selectedDifficulty = uiState.selectedDifficulty,
@@ -138,23 +160,6 @@ private fun PortraitContent(
 
         if (uiState.selectedDifficulty != null) {
             val selected = uiState.selectedDifficulty
-            val defaultName = "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${selected.id}"
-
-            Surface(
-                color = LocalPalette.current.surfaceContainerLow,
-                shape = RoundedCornerShape(8.dp)
-            ) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    text = "${stringResource(R.string.general_label_preset)}: ${defaultName.uppercase()}",
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        fontSize = 16.sp
-                    ),
-                    color = LocalPalette.current.onSurface
-                )
-            }
 
             SettingsEditor(
                 modifier = Modifier.weight(1f),
@@ -211,7 +216,8 @@ private fun LandscapeContent(
     onSelectDifficulty: (CustomDifficultyModel) -> Unit,
     onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
     onSave: () -> Unit,
-    onRevert: () -> Unit
+    onRevert: () -> Unit,
+    onNavigateBack: () -> Unit
 ) {
     var isEditingName by remember { mutableStateOf(false) }
 
@@ -370,12 +376,6 @@ private fun DifficultySelector(
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text(
-            text = "Select Preset",
-            style = MaterialTheme.typography.labelLarge,
-            color = LocalPalette.current.onSurfaceVariant,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -540,11 +540,35 @@ private fun SettingsEditor(
     difficulty: CustomDifficultyModel,
     onUpdate: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit
 ) {
+    val defaultName = "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${difficulty.id}"
+
     LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(bottom = 16.dp)
     ) {
+
+        item {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                color = LocalPalette.current.surfaceContainerLow,
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Text(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    text = "${stringResource(R.string.general_label_preset_slot)}: ${defaultName.uppercase()}",
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        fontSize = 16.sp
+                    ),
+                    color = LocalPalette.current.onSurface
+                )
+            }
+        }
+
         item {
             Surface(
                 color = LocalPalette.current.surfaceContainerLow,
@@ -887,4 +911,52 @@ private fun SettingDropdown(
             )
         }
     }
+}
+
+@Composable
+private fun NavigationHeader(
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {}
+) {
+    NavigationHeaderComposable(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp),
+        leftContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+                iconContent = { iconModifier ->
+                    Image(
+                        modifier = iconModifier,
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                        contentDescription = ""
+                    )
+                }
+            ) { onLeftClick() }
+        },
+        rightContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+            )
+        },
+        centerContent = { outerModifier ->
+            NavigationHeaderCenter(
+                modifier = outerModifier,
+                textContent = { modifier ->
+                    BasicText(
+                        modifier = modifier,
+                        text = stringResource(R.string.general_navigation_customdifficultyeditor),
+                        style = LocalTypography.current.primary.regular.copy(
+                            color = LocalPalette.current.primary,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                    )
+                }
+            )
+        }
+    )
 }
