@@ -246,6 +246,46 @@ fun OperationNavigationDrawer(
                             .padding(8.dp),
                         label = {
                             Text(
+                                text = stringResource(R.string.general_navigation_customdifficultyeditor),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    fontSize = 18.sp
+                                )
+                            )
+                        },
+                        selected = currentDestination?.route == NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route,
+                        colors = NavigationDrawerItemDefaults.colors(
+                            selectedIconColor = LocalPalette.current.primary,
+                            unselectedIconColor = LocalPalette.current.onSurface,
+                            selectedTextColor = LocalPalette.current.primary,
+                            unselectedTextColor = LocalPalette.current.onSurface,
+                            unselectedContainerColor = Color.Transparent,
+                            selectedContainerColor = Color.Transparent
+                        ),
+                        icon = {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_skull),
+                                contentDescription = null
+                            )
+                        },
+                        onClick = {
+                            if (currentDestination?.route != NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route) {
+                                navController.navigate(NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route) {
+                                    popUpTo(NavRoute.SCREEN_INVESTIGATION.route) {
+                                        inclusive = false
+                                    }
+                                    launchSingleTop = true
+                                }
+                            }
+                        }
+                    )
+
+                    NavigationDrawerItem(
+                        modifier = Modifier
+                            .height(48.dp)
+                            .wrapContentWidth()
+                            .padding(8.dp),
+                        label = {
+                            Text(
                                 text = stringResource(R.string.general_label_codex),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp

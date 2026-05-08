@@ -336,7 +336,8 @@ private enum class Destination(
         NavOptions.Builder()
             .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
             .setLaunchSingleTop(true)
-            .build()
+            .build(),
+        subRoutes = listOf(NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route)
     ),
     MISSIONS(
         NavRoute.SCREEN_MISSIONS.route,
