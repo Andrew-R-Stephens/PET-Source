@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CornerBasedShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -30,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -133,7 +136,7 @@ internal fun BpmTool(
             .fillMaxWidth()
             .wrapContentHeight()
             .preferredFrameRate(FrameRateCategory.Normal),
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -171,24 +174,46 @@ internal fun BpmTool(
         }
 
         val segmentedColors = SegmentedButtonDefaults.colors(
-            activeContainerColor = LocalPalette.current.primaryContainer,
+            activeContainerColor = LocalPalette.current.onSurfaceVariant,
             activeContentColor = LocalPalette.current.surfaceContainer,
-            inactiveContainerColor = LocalPalette.current.surfaceContainerLow,
-            inactiveContentColor = LocalPalette.current.onSurface
+            inactiveContainerColor = LocalPalette.current.surfaceContainer,
+            inactiveContentColor = LocalPalette.current.onSurface,
+            inactiveBorderColor = Transparent,
+            activeBorderColor = Transparent
         )
 
         Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
+
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = "Apply BPM".uppercase(),
+                color = LocalPalette.current.onSurfaceVariant,
+                style = LocalTypography.current.quaternary.bold.copy(
+                    textAlign = TextAlign.Start
+                ),
+                fontSize = 14.sp,
+                maxLines = 1
+            )
+
             SingleChoiceSegmentedButtonRow(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .height(32.dp)
             ) {
                 SegmentedButton(
                     modifier = Modifier.height(32.dp),
-                    shape = SegmentedButtonDefaults.itemShape(index = 0, count = 4),
+                    shape = SegmentedButtonDefaults.itemShape(
+                        index = 0,
+                        count = 4,
+                        baseShape = RoundedCornerShape(8.dp)
+                    ),
                     onClick = {
                         if(applyMeasurement)
                             toggleApplyMeasurement()
@@ -207,7 +232,11 @@ internal fun BpmTool(
 
                 SegmentedButton(
                     modifier = Modifier.height(32.dp),
-                    shape = SegmentedButtonDefaults.itemShape(index = 1, count = 4),
+                    shape = SegmentedButtonDefaults.itemShape(
+                        index = 1,
+                        count = 4,
+                        baseShape = RoundedCornerShape(8.dp)
+                    ),
                     onClick = {
                         if(!applyMeasurement) { toggleApplyMeasurement() }
                         onChangeMeasurementType(VisualizerMeasurementType.INSTANT) },
@@ -226,7 +255,11 @@ internal fun BpmTool(
 
                 SegmentedButton(
                     modifier = Modifier.height(32.dp),
-                    shape = SegmentedButtonDefaults.itemShape(index = 2, count = 4),
+                    shape = SegmentedButtonDefaults.itemShape(
+                        index = 2,
+                        count = 4,
+                        baseShape = RoundedCornerShape(8.dp)
+                    ),
                     onClick = {
                         if(!applyMeasurement) { toggleApplyMeasurement() }
                         onChangeMeasurementType(VisualizerMeasurementType.AVERAGED) },
@@ -245,7 +278,11 @@ internal fun BpmTool(
 
                 SegmentedButton(
                     modifier = Modifier.height(32.dp),
-                    shape = SegmentedButtonDefaults.itemShape(index = 3, count = 4),
+                    shape = SegmentedButtonDefaults.itemShape(
+                        index = 3,
+                        count = 4,
+                        baseShape = RoundedCornerShape(8.dp)
+                    ),
                     onClick = {
                         if(!applyMeasurement) { toggleApplyMeasurement() }
                         onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED) },
@@ -267,7 +304,8 @@ internal fun BpmTool(
         BpmVisualizer(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp),
+                .height(200.dp)
+                .padding(top = 16.dp),
             stateBundle = bpmVisualizerStateBundle,
             colorBundle = bpmVisualizerColorBundle,
             actions = BpmVisualizerUiActions(
