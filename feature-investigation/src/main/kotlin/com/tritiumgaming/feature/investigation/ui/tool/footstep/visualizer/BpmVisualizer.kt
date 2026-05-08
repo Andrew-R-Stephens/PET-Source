@@ -66,19 +66,18 @@ internal fun BpmVisualizer(
 ) {
     val state = stateBundle.visualizerUiState
 
-    var now = System.currentTimeMillis()
-
-    var realtimeUiState by remember {
+    val realtimeUiStateState = remember {
         mutableStateOf(
             RealtimeUiState<GraphPoint>(
                 instant = 0f,
                 smoothed = 0f,
                 potential = 0f,
-                recordedTime = now,
+                recordedTime = System.currentTimeMillis(),
                 points = CircularQueueLinkedList(50)
             )
         )
     }
+    var realtimeUiState by realtimeUiStateState
 
     val infiniteTransition = rememberInfiniteTransition(label = "BPMDecay")
     val ticker by infiniteTransition.animateFloat(
@@ -91,6 +90,8 @@ internal fun BpmVisualizer(
         ),
         label = "Ticker"
     )
+
+    val now = remember(ticker) { System.currentTimeMillis() }
 
     val bpmRatioSmooth = (realtimeUiState.smoothed / state.range).coerceIn(0f, 1f)
     val bpmRatioPredictive = (realtimeUiState.potential / state.range).coerceIn(0f, 1f)
@@ -109,13 +110,13 @@ internal fun BpmVisualizer(
 
     // Real-time decay if no taps occur
     LaunchedEffect(ticker) {
+        val currentTime = System.currentTimeMillis()
         if (realtimeUiState.recordedTime != 0L) {
-            val delta = now - realtimeUiState.recordedTime
+            val delta = (currentTime - realtimeUiState.recordedTime).coerceAtLeast(1L)
 
             val potentialBPM = (60000f / delta)
 
-            var smoothedBPM = (state.alpha * realtimeUiState.instant) +
-                    ((1f - state.alpha) * realtimeUiState.instant)
+            var smoothedBPM = realtimeUiState.smoothed
             if(smoothedBPM > potentialBPM) {
                 smoothedBPM = potentialBPM
             }
@@ -127,15 +128,15 @@ internal fun BpmVisualizer(
             )
         }
 
-        if(realtimeUiState.recordedTime + state.domain < now) {
+        if(realtimeUiState.recordedTime + state.domain < currentTime) {
             realtimeUiState.points.clear()
         }
 
     }
 
-    val calculateSampleIntervalBPM: () -> Pair<Float, Float> = {
+    val calculateSampleIntervalBPM: (Long) -> Pair<Float, Float> = { currentTime ->
 
-        val targetTime = now - state.domainSampleInterval
+        val targetTime = currentTime - state.domainSampleInterval
 
         var intervalSum = 0f
         var intervalAverageSum = 0f
@@ -162,39 +163,42 @@ internal fun BpmVisualizer(
     }
 
     val onBeat = {
+        val eventTime = System.currentTimeMillis()
         var intervalBpm: Pair<Float, Float>? = null
+        var nextState = realtimeUiState
 
         if (realtimeUiState.recordedTime != 0L) {
-            val delta = now - realtimeUiState.recordedTime
+            val delta = (eventTime - realtimeUiState.recordedTime).coerceAtLeast(1L)
 
             val instantBPM = (60000f / delta)
 
             var smoothedBPM = if (realtimeUiState.smoothed == 0f) { instantBPM }
-            else { (state.alpha * instantBPM) + ((1f - state.alpha) * instantBPM) }
+            else { (state.alpha * instantBPM) + ((1f - state.alpha) * realtimeUiState.smoothed) }
 
             if (smoothedBPM < 1f) smoothedBPM = 0f
 
-            realtimeUiState = realtimeUiState.copy(
-                instant = instantBPM,
-                smoothed = smoothedBPM
-            )
+            intervalBpm = calculateSampleIntervalBPM(eventTime)
 
-            intervalBpm = calculateSampleIntervalBPM()
-
-            realtimeUiState.points.enqueue(
+            nextState.points.enqueue(
                 GraphPoint(
-                    pX = now,
+                    pX = eventTime,
                     pY = instantBPM,
                     avg = intervalBpm.first,
                     weightedAvg = intervalBpm.second
                 )
             )
+
+            nextState = nextState.copy(
+                instant = instantBPM,
+                smoothed = smoothedBPM
+            )
         }
 
-        realtimeUiState = realtimeUiState.copy(
-            recordedTime = now,
-            average = intervalBpm?.first ?: realtimeUiState.average,
-            weightedAverage = intervalBpm?.second ?: realtimeUiState.weightedAverage
+        realtimeUiState = nextState.copy(
+            recordedTime = eventTime,
+            potential = Float.POSITIVE_INFINITY,
+            average = intervalBpm?.first ?: nextState.average,
+            weightedAverage = intervalBpm?.second ?: nextState.weightedAverage
         )
 
         actions.onUpdate(
@@ -207,12 +211,8 @@ internal fun BpmVisualizer(
             .pointerInput(Unit) {
                 awaitPointerEventScope {
                     while (true) {
-                        val down = awaitFirstDown(requireUnconsumed = false)
-                        down.consume()
-
-                        now = System.currentTimeMillis()
+                        awaitFirstDown(requireUnconsumed = false)
                         onBeat()
-
                         waitForUpOrCancellation()
                     }
                 }

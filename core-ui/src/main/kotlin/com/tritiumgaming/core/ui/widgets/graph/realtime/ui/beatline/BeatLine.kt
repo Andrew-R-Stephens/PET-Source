@@ -9,8 +9,8 @@ import androidx.compose.ui.graphics.drawscope.clipRect
 @Composable
 fun BeatLine(
     modifier: Modifier = Modifier,
-    state: com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiState,
-    colors: com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors,
+    state: BeatLineUiState,
+    colors: BeatLineUiColors,
 ) {
 
     Canvas(
