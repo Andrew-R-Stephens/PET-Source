@@ -170,7 +170,7 @@ private fun PortraitContent(
         if (uiState.selectedDifficulty != null) {
             SettingsEditor(
                 modifier = Modifier.weight(1f),
-                difficulty = uiState.selectedDifficulty!!,
+                difficulty = uiState.selectedDifficulty,
                 onUpdate = onUpdateDifficulty
             )
 
