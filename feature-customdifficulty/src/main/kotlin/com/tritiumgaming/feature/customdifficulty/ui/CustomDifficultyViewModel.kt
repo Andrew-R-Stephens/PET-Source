@@ -72,7 +72,7 @@ class CustomDifficultyViewModel(
         val current = _selectedDifficulty.value ?: uiState.value.selectedDifficulty ?: return
         val original = uiState.value.difficulties.find { it.id == current.id }
         if (original != null) {
-            _selectedDifficulty.value = original
+            _selectedDifficulty.value = original.copy(name = null)
         }
     }
 

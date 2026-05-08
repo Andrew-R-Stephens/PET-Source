@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
@@ -33,15 +35,21 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,11 +57,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
+import com.tritiumgaming.core.common.util.ValidationUtils
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
+import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyUiState
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
@@ -139,7 +149,7 @@ private fun PortraitContent(
                     colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
                     enabled = !uiState.isSaving
                 ) {
-                    Text(stringResource(R.string.general_label_revert), color = LocalPalette.current.onSurface)
+                    Text(stringResource(R.string.general_label_discard), color = LocalPalette.current.onSurface)
                 }
 
                 Button(
@@ -152,8 +162,17 @@ private fun PortraitContent(
                 }
             }
         } else {
-            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
-                Text("Select a slot to edit", color = LocalPalette.current.onSurface)
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                InfiniteThrobber(
+                    color1 = LocalPalette.current.onSurface,
+                    color2 = LocalPalette.current.primary,
+                    isLoading = true
+                )
             }
         }
     }
@@ -182,8 +201,9 @@ private fun LandscapeContent(
 
         Spacer(modifier = Modifier.width(16.dp))
 
-        if (uiState.selectedDifficulty != null) {
-            Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier.weight(1f)) {
+
+            if(uiState.selectedDifficulty != null) {
                 SettingsEditor(
                     modifier = Modifier.weight(1f),
                     difficulty = uiState.selectedDifficulty,
@@ -202,7 +222,10 @@ private fun LandscapeContent(
                         colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.surfaceContainerHigh),
                         enabled = !uiState.isSaving
                     ) {
-                        Text(stringResource(R.string.general_label_revert), color = LocalPalette.current.onSurface)
+                        Text(
+                            stringResource(R.string.general_label_revert),
+                            color = LocalPalette.current.onSurface
+                        )
                     }
 
                     Button(
@@ -211,13 +234,18 @@ private fun LandscapeContent(
                         colors = ButtonDefaults.buttonColors(containerColor = LocalPalette.current.primary),
                         enabled = !uiState.isSaving
                     ) {
-                        Text(stringResource(R.string.general_label_save), color = LocalPalette.current.onPrimary)
+                        Text(
+                            stringResource(R.string.general_label_save),
+                            color = LocalPalette.current.onPrimary
+                        )
                     }
                 }
-            }
-        } else {
-            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
-                Text("Select a slot to edit", color = LocalPalette.current.onSurface)
+            } else {
+                InfiniteThrobber(
+                    color1 = LocalPalette.current.onSurface,
+                    color2 = LocalPalette.current.primary,
+                    isLoading = true
+                )
             }
         }
     }
@@ -233,114 +261,196 @@ private fun DifficultySelector(
 ) {
     var expanded by remember { mutableStateOf(false) }
     var isEditing by remember { mutableStateOf(false) }
+    var isError by remember(selectedDifficulty?.id) { mutableStateOf(false) }
+    var errorMessage by remember(selectedDifficulty?.id) { mutableStateOf("") }
+    var everFocused by remember(isEditing) { mutableStateOf(false) }
 
     val currentDisplayName = selectedDifficulty?.let {
-        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id + 1}"
+        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${ it.id }"
     } ?: ""
 
     var editedName by remember(selectedDifficulty?.id) {
         mutableStateOf(currentDisplayName)
     }
 
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    val focusManager = LocalFocusManager.current
+    val focusRequester = remember { FocusRequester() }
+
+    val onCommitName = {
+        try {
+            val validatedName = ValidationUtils.validateUserString(editedName, maxLength = 32)
+            onNameChange(validatedName)
+            editedName = validatedName
+            isEditing = false
+            isError = false
+            focusManager.clearFocus()
+        } catch (e: IllegalArgumentException) {
+            isError = true
+            errorMessage = e.message ?: ""
+        }
+    }
+
+    LaunchedEffect(currentDisplayName) {
+        editedName = currentDisplayName
+        isEditing = false
+        isError = false
+    }
+
+    LaunchedEffect(isEditing) {
+        if (isEditing) {
+            focusRequester.requestFocus()
+        }
+    }
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         Text(
             text = "Select Preset",
             style = MaterialTheme.typography.labelLarge,
             color = LocalPalette.current.onSurfaceVariant,
             modifier = Modifier.padding(bottom = 4.dp)
         )
-        ExposedDropdownMenuBox(
-            modifier = Modifier.fillMaxWidth(),
-            expanded = if (isEditing) false else expanded,
-            onExpandedChange = {
-                if (!isEditing) {
-                    expanded = it
-                }
-            },
-        ) {
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .menuAnchor(
-                        type = if (isEditing) ExposedDropdownMenuAnchorType.PrimaryEditable
-                        else ExposedDropdownMenuAnchorType.PrimaryNotEditable,
-                        enabled = true
-                    ),
-                value = if (isEditing) editedName else currentDisplayName,
-                onValueChange = {
-                    if (isEditing && it.length <= 32) {
-                        editedName = it
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .onFocusChanged { focusState ->
+                    if (focusState.isFocused) {
+                        everFocused = true
+                    }
+                    if (!focusState.isFocused && isEditing && everFocused) {
+                        editedName = currentDisplayName
+                        isEditing = false
+                        isError = false
                     }
                 },
-                readOnly = !isEditing,
-                supportingText = if (isEditing) {
-                    {
-                        Text(
-                            text = "${editedName.length} / 32",
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.Top
+        ) {
+            if (isEditing) {
+                OutlinedTextField(
+                    modifier = Modifier
+                        .weight(1f)
+                        .focusRequester(focusRequester),
+                    value = editedName,
+                    onValueChange = {
+                        editedName = it
+                        try {
+                            ValidationUtils.validateUserString(it, maxLength = 32)
+                            isError = false
+                        } catch (e: IllegalArgumentException) {
+                            isError = true
+                            errorMessage = e.message ?: ""
+                        }
+                    },
+                    isError = isError,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    keyboardActions = KeyboardActions(onDone = { onCommitName() }),
+                    supportingText = {
+                        Row(
                             modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.End,
-                            style = MaterialTheme.typography.labelSmall
-                        )
-                    }
-                } else null,
-                trailingIcon = {
-                    Row(
-                        modifier = Modifier.padding(end = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        if (selectedDifficulty != null) {
-                            IconButton(onClick = {
-                                if (isEditing) {
-                                    val trimmedName = editedName.trim()
-                                    onNameChange(trimmedName)
-                                    editedName = trimmedName
-                                } else {
-                                    editedName = currentDisplayName
-                                    expanded = false
-                                }
-                                isEditing = !isEditing
-                            }) {
-                                Icon(
-                                    imageVector = if (isEditing) Icons.Default.Check else Icons.Default.Edit,
-                                    contentDescription = if (isEditing) "Save" else "Edit Name",
-                                    tint = LocalPalette.current.primary
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            if (isError) {
+                                Text(
+                                    text = errorMessage,
+                                    color = MaterialTheme.colorScheme.error,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    modifier = Modifier.weight(1f)
                                 )
                             }
-                        }
-                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
-                    }
-                },
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = LocalPalette.current.surfaceContainer,
-                    unfocusedContainerColor = LocalPalette.current.surfaceContainer,
-                    focusedTextColor = LocalPalette.current.onSurface,
-                    unfocusedTextColor = LocalPalette.current.onSurface,
-                    focusedBorderColor = if (isEditing) LocalPalette.current.primary else Color.Transparent,
-                    unfocusedBorderColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(8.dp)
-            )
-
-            ExposedDropdownMenu(
-                modifier = Modifier.background(LocalPalette.current.surfaceContainerHigh),
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                scrollState = rememberScrollState()
-            ) {
-                options.forEach { difficulty ->
-                    DropdownMenuItem(
-                        text = {
                             Text(
-                                text = difficulty.name ?: "${ stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource()) } ${difficulty.id + 1}" ,
-                                color = LocalPalette.current.onSurface,
-                                style = MaterialTheme.typography.bodyLarge
+                                text = "${editedName.length} / 32",
+                                textAlign = TextAlign.End,
+                                style = MaterialTheme.typography.labelSmall,
+                                modifier = if (isError) Modifier else Modifier.fillMaxWidth()
                             )
-                        },
-                        onClick = {
-                            onSelect(difficulty)
-                            expanded = false
                         }
+                    },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = LocalPalette.current.surfaceContainer,
+                        unfocusedContainerColor = LocalPalette.current.surfaceContainer,
+                        focusedTextColor = LocalPalette.current.onSurface,
+                        unfocusedTextColor = LocalPalette.current.onSurface,
+                        focusedBorderColor = LocalPalette.current.primary,
+                        unfocusedBorderColor = Color.Transparent
+                    ),
+                    shape = RoundedCornerShape(8.dp)
+                )
+            } else {
+                ExposedDropdownMenuBox(
+                    modifier = Modifier.weight(1f),
+                    expanded = expanded,
+                    onExpandedChange = { expanded = it },
+                ) {
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .menuAnchor(
+                                type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                                enabled = true
+                            ),
+                        value = currentDisplayName,
+                        onValueChange = {},
+                        readOnly = true,
+                        trailingIcon = {
+                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = LocalPalette.current.surfaceContainer,
+                            unfocusedContainerColor = LocalPalette.current.surfaceContainer,
+                            focusedTextColor = LocalPalette.current.onSurface,
+                            unfocusedTextColor = LocalPalette.current.onSurface,
+                            focusedBorderColor = Color.Transparent,
+                            unfocusedBorderColor = Color.Transparent
+                        ),
+                        shape = RoundedCornerShape(8.dp)
+                    )
+
+                    ExposedDropdownMenu(
+                        modifier = Modifier.background(LocalPalette.current.surfaceContainerHigh),
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false },
+                        scrollState = rememberScrollState()
+                    ) {
+                        options.forEach { difficulty ->
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = difficulty.name
+                                            ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${difficulty.id}",
+                                        color = LocalPalette.current.onSurface,
+                                        style = MaterialTheme.typography.bodyLarge
+                                    )
+                                },
+                                onClick = {
+                                    onSelect(difficulty)
+                                    expanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+
+            if (selectedDifficulty != null) {
+                IconButton(
+                    modifier = Modifier
+                        .padding(top = 4.dp),
+                    onClick = {
+                        if (isEditing) {
+                            onCommitName()
+                        } else {
+                            editedName = currentDisplayName
+                            expanded = false
+                            isEditing = true
+                        }
+                    }
+                ) {
+                    Icon(
+                        imageVector = if (isEditing) Icons.Default.Check else Icons.Default.Edit,
+                        contentDescription = if (isEditing) "Save" else "Edit Name",
+                        tint = if (isError && isEditing) MaterialTheme.colorScheme.error else LocalPalette.current.primary
                     )
                 }
             }

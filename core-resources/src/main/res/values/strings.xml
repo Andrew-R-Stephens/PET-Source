@@ -24,8 +24,9 @@
     <string name="general_navigation_system">System</string>
 
     <string name="general_label_reset">Reset</string>
-    <string name="general_label_save">Save</string>
-    <string name="general_label_revert">Revert</string>
+    <string name="general_label_save" translatable="false">Save</string>
+    <string name="general_label_revert" translatable="false">Revert</string>
+    <string name="general_label_discard" translatable="false">Discard</string>
 
     <!--
         TITLESCREEN FRAGMENT
