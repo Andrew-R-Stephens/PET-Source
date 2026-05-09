@@ -343,7 +343,6 @@ private fun InvestigationContent(
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
             bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
-            bpmWeather = bpmToolUiState.weather,
             bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
             bpmDomainMillis = bpmToolUiState.domainMillis,
             bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,

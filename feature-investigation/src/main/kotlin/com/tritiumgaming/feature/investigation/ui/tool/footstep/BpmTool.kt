@@ -1,22 +1,16 @@
 package com.tritiumgaming.feature.investigation.ui.tool.footstep
 
-import androidx.compose.foundation.MarqueeAnimationMode
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SegmentedButton
@@ -24,10 +18,6 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
@@ -42,8 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
-import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -65,8 +53,6 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import kotlin.math.ceil
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -76,7 +62,6 @@ internal fun BpmTool(
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
     ghostSpeedModifier: Float = 1f,
-    weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
     fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     domainMillis: Long = 10.seconds.inWholeMilliseconds,
     domainSampleIntervalMillis: Long = 5.seconds.inWholeMilliseconds,
@@ -102,11 +87,9 @@ internal fun BpmTool(
 
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
         alpha = .5f,
-        range = 300,
         domain = domainMillis,
         range = dynamicRange,
-        domain = 10.seconds.inWholeMilliseconds,
-        domainInterval = 10f,
+        dynamicDomainInterval = 10f,
         rangeInterval = 60f,
         domainSampleInterval = domainSampleIntervalMillis
     )
@@ -658,12 +641,10 @@ internal data class BpmToolUiActions(
 internal data class BpmToolUiState(
     val realtimeState: RealtimeUiState<GraphPoint> = RealtimeUiState(),
     val measurementType: VisualizerMeasurementType = VisualizerMeasurementType.INSTANT,
-    val applyMeasurement: Boolean = false,
     val ghostSpeedModifier: Float = 1f,
-    val weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
     val fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     val domainMillis: Long = 10.seconds.inWholeMilliseconds,
-    val domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds
+    val domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds,
     val applyMeasurement: Boolean = false,
     val ghostSpeed: DifficultySettingResources.GhostSpeed = DifficultySettingResources.GhostSpeed.SPEED_100,
     val weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
