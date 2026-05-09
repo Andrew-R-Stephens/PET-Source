@@ -773,11 +773,15 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Bpm Tool
      */
-    internal val bpmToolUiState = _bpmToolState.map {
-        BpmToolUiState(
-            realtimeState = it.realtimeState,
-            measurementType = it.measurementType,
-            applyMeasurement = it.applyMeasurement
+    internal val bpmToolUiState = combine(
+        _bpmToolState,
+        difficultyState,
+        difficultyOverridesState
+    ) { bpmState, diffState, overridesState ->
+        bpmState.copy(
+            ghostSpeed = diffState.settings.ghostSpeed,
+            weather = overridesState.weather,
+            fuseBox = overridesState.fuseBox
         )
     }.stateIn(
         scope = viewModelScope,

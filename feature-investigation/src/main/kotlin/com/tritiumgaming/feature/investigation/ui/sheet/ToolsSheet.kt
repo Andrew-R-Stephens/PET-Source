@@ -51,6 +51,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
@@ -147,6 +148,7 @@ internal fun ToolsBottomSheetComponent(
     bpmRealtimeState: RealtimeUiState<GraphPoint>,
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
+    bpmGhostSpeed: DifficultySettingResources.GhostSpeed,
     onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
@@ -414,6 +416,9 @@ internal fun ToolsBottomSheetComponent(
                     realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,
                     applyMeasurement = bpmApplyMeasurement,
+                    ghostSpeed = bpmGhostSpeed,
+                    weather = weather,
+                    fuseBox = fuseBoxFlag,
                     onUpdate = onBpmUpdate,
                     onChangeMeasurementType = onBpmChangeMeasurementType,
                     toggleApplyMeasurement = onBpmToggleApplyMeasurement
@@ -514,6 +519,7 @@ internal fun ToolsSideSheetComponent(
     bpmRealtimeState: RealtimeUiState<GraphPoint>,
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
+    bpmGhostSpeed: DifficultySettingResources.GhostSpeed,
     onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
@@ -782,6 +788,9 @@ internal fun ToolsSideSheetComponent(
                     realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,
                     applyMeasurement = bpmApplyMeasurement,
+                    ghostSpeed = bpmGhostSpeed,
+                    weather = weather,
+                    fuseBox = fuseBoxFlag,
                     onUpdate = onBpmUpdate,
                     onChangeMeasurementType = onBpmChangeMeasurementType,
                     toggleApplyMeasurement = onBpmToggleApplyMeasurement

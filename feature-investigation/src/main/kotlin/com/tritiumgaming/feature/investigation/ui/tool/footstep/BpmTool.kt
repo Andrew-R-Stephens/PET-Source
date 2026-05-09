@@ -40,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
@@ -54,11 +55,15 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.Realtime
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -67,6 +72,9 @@ internal fun BpmTool(
     realtimeState: RealtimeUiState<GraphPoint>,
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
+    ghostSpeed: DifficultySettingResources.GhostSpeed = DifficultySettingResources.GhostSpeed.SPEED_100,
+    weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
+    fuseBox: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     toggleApplyMeasurement: () -> Unit
@@ -171,6 +179,71 @@ internal fun BpmTool(
                 color = LocalPalette.current.onSurfaceVariant,
                 thickness = Dp.Hairline
             )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_speed),
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = LocalPalette.current.onSurfaceVariant
+                )
+                Text(
+                    text = ghostSpeed.toFloat().toPercentageString(false),
+                    style = LocalTypography.current.quaternary.regular,
+                    fontSize = 12.sp,
+                    color = LocalPalette.current.onSurfaceVariant
+                )
+            }
+
+            if (weather == DifficultySettingResources.Weather.BLOOD_MOON) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(weather.toDrawable()),
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = Color.Red
+                    )
+                    Text(
+                        text = "+5%",
+                        style = LocalTypography.current.quaternary.regular,
+                        fontSize = 12.sp,
+                        color = Color.Red
+                    )
+                }
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_map_power),
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = if (fuseBox == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED)
+                        LocalPalette.current.primary else LocalPalette.current.onSurfaceVariant
+                )
+                Text(
+                    text = if (fuseBox == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED) "ON" else "OFF",
+                    style = LocalTypography.current.quaternary.regular,
+                    fontSize = 12.sp,
+                    color = LocalPalette.current.onSurfaceVariant
+                )
+            }
         }
 
         val segmentedColors = SegmentedButtonDefaults.colors(
@@ -427,5 +500,8 @@ internal data class BpmToolUiActions(
 internal data class BpmToolUiState(
     val realtimeState: RealtimeUiState<GraphPoint> = RealtimeUiState(),
     val measurementType: VisualizerMeasurementType = VisualizerMeasurementType.INSTANT,
-    val applyMeasurement: Boolean = false
+    val applyMeasurement: Boolean = false,
+    val ghostSpeed: DifficultySettingResources.GhostSpeed = DifficultySettingResources.GhostSpeed.SPEED_100,
+    val weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
+    val fuseBox: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
 )
