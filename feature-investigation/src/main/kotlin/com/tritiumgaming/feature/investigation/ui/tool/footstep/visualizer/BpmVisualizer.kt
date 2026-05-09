@@ -226,7 +226,7 @@ internal fun BpmVisualizer(
 
             GraphLabelsYAxis(
                 modifier = Modifier
-                    .width(24.dp)
+                    .width(32.dp)
                     .fillMaxHeight(),
                 colors = colorBundle.graphLabelsYAxisUiColors,
                 state = stateBundle.graphLabelsYUiState,
@@ -284,7 +284,7 @@ internal fun BpmVisualizer(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(24.dp)
-                .padding(start = 24.dp, end = 12.dp),
+                .padding(start = 32.dp, end = 12.dp),
             colors = colorBundle.graphLabelsXAxisUiColors,
             state = stateBundle.graphLabelsXUiState
         )

@@ -601,8 +601,16 @@ class InvestigationScreenViewModel private constructor(
         difficultyState,
         _bpmToolState,
         _explicitGhostRejects,
-        selectedTraits
-    ) { evidenceStates, difficultyState, bpmToolUiState, explicitRejections, selectedTraits ->
+        selectedTraits,
+        difficultyOverridesState
+    ) { args ->
+        val evidenceStates = args[0] as List<EvidenceState>
+        val difficultyState = args[1] as DifficultyData
+        val bpmToolUiState = args[2] as BpmToolUiState
+        val explicitRejections = args[3] as Set<GhostResources.GhostIdentifier>
+        val selectedTraits = args[4] as List<ValidatedGhostTrait>
+        val overridesState = args[5] as DifficultyOverridesData
+
         ghostEvidences.map { ghostEvidence ->
             val isManuallyRejected = ghostEvidence.ghost.id in explicitRejections
 
@@ -622,7 +630,16 @@ class InvestigationScreenViewModel private constructor(
                     VisualizerMeasurementType.AVERAGED -> bpmToolUiState.realtimeState.average
                     VisualizerMeasurementType.WEIGHTED -> bpmToolUiState.realtimeState.weightedAverage
                 }
-                state.updateBpmValidation(bpmValue)
+
+                val weather = if (difficultyState.settings.weather == Weather.RANDOM)
+                    overridesState.weather else difficultyState.settings.weather
+
+                state.updateBpmValidation(
+                    targetBpm = bpmValue,
+                    ghostSpeed = difficultyState.settings.ghostSpeed,
+                    weather = weather,
+                    fuseBox = overridesState.fuseBox
+                )
             } else {
                 state.resetBpmValidation()
             }
@@ -1024,7 +1041,8 @@ class InvestigationScreenViewModel private constructor(
                             )
                         }
                     }
-                )
+                ),
+                overrides = difficultyOverrideState
             )
         }
         .distinctUntilChanged()

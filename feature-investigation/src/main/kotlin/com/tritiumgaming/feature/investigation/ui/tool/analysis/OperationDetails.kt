@@ -44,6 +44,7 @@ import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Diffi
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
@@ -110,7 +111,9 @@ internal fun OperationDetails(
             weatherDetails = operationDetailsUiState.weatherDetails
         )
         ActiveGhostModifierDetails(
-            state = operationDetailsUiState.ghostDetails
+            state = operationDetailsUiState.ghostDetails,
+            difficultySettings = operationDetailsUiState.difficultyDetails.settings,
+            overrides = operationDetailsUiState.overrides
         )
     }
 }
@@ -268,7 +271,8 @@ internal data class OperationDetailsUiState(
     internal val difficultyDetails: DifficultyDetails = DifficultyDetails(),
     internal val phaseDetails: PhaseDetails = PhaseDetails(),
     internal val ghostDetails: GhostDetails = GhostDetails(),
-    internal val weatherDetails: WeatherDetails = WeatherDetails()
+    internal val weatherDetails: WeatherDetails = WeatherDetails(),
+    internal val overrides: DifficultyOverridesData = DifficultyOverridesData()
 ) {
 
     internal data class WeatherDetails(

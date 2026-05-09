@@ -1,11 +1,16 @@
 package com.tritiumgaming.shared.data.investigation.model
 
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
 import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 
 data class GhostState(
@@ -29,9 +34,12 @@ data class GhostState(
     }
 
     fun updateBpmValidation(
-        targetBpm: Float
+        targetBpm: Float,
+        ghostSpeed: GhostSpeed = GhostSpeed.SPEED_100,
+        weather: Weather = Weather.RANDOM,
+        fuseBox: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED
     ): GhostState {
-        return setBpmValidation(validateBpm(targetBpm))
+        return setBpmValidation(validateBpm(targetBpm, ghostSpeed, weather, fuseBox))
     }
 
     fun toggleManualRejection(): GhostState {
@@ -68,18 +76,34 @@ data class GhostState(
         )
     }
 
-    private fun validateBpm(targetBpm: Float): Boolean {
-        val min = ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
-        var max = ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
-        val losMultiplier = ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
+    private fun validateBpm(
+        targetBpm: Float,
+        ghostSpeed: GhostSpeed,
+        weather: Weather,
+        fuseBox: FuseBoxFlag
+    ): Boolean {
+        val minBase = ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
+        var maxBase = ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
+        val hasLosMultiplier = ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
 
-        if(max == -1f) max = min
+        if(maxBase == -1f) maxBase = minBase
 
-        if(losMultiplier) { max *= 1.65f }
+        // Handle Jinn Fuse Box ability
+        if (ghostEvidence.ghost.id == GhostIdentifier.JINN &&
+            fuseBox == FuseBoxFlag.FUSEBOX_DISABLED) {
+            maxBase = minBase
+        }
 
-        val isInRange = targetBpm in min..max
+        val difficultyMultiplier = ghostSpeed.toFloat()
+        val weatherMultiplier = if (weather == Weather.BLOOD_MOON) 1.15f else 1f
+        val fuseBoxMultiplier = 1f // Placeholder for any general multiplier if needed
 
-        return isInRange
+        val min = minBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
+        var max = maxBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
+
+        if(hasLosMultiplier) { max *= 1.65f }
+
+        return targetBpm in min..max
     }
 
     /**

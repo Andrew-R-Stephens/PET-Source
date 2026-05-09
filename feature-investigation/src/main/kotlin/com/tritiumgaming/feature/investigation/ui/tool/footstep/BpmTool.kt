@@ -64,6 +64,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.Visua
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import kotlin.math.ceil
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -80,9 +81,19 @@ internal fun BpmTool(
     toggleApplyMeasurement: () -> Unit
 ) {
 
+    val difficultyMultiplier = ghostSpeed.toFloat()
+    val weatherMultiplier = if (weather == DifficultySettingResources.Weather.BLOOD_MOON) 1.15f else 1f
+    val fuseBoxMultiplier = 1f // Placeholder for any general fuse box multiplier
+
+    val totalMultiplier = difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
+
+    val baseRange = 300
+    val interval = 60
+    val dynamicRange = (ceil((baseRange * totalMultiplier) / interval) * interval).toInt().coerceAtLeast(baseRange)
+
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
         alpha = .5f,
-        range = 300,
+        range = dynamicRange,
         domain = 10.seconds.inWholeMilliseconds,
         domainInterval = 10f,
         rangeInterval = 60f,
@@ -218,7 +229,7 @@ internal fun BpmTool(
                         tint = Color.Red
                     )
                     Text(
-                        text = "+5%",
+                        text = "+15%",
                         style = LocalTypography.current.quaternary.regular,
                         fontSize = 12.sp,
                         color = Color.Red
