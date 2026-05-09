@@ -108,6 +108,8 @@
     <string name="footstep_label_instant">Instant</string>
     <string name="footstep_label_average">Average</string>
     <string name="footstep_label_weighted">Weighted</string>
+    <string name="footstep_label_domain" translatable="false">Viewport</string>
+    <string name="footstep_label_sample_interval" translatable="false">Sampling</string>
 
     <string name="tool_timer_label_smudge_protection">Smudge Hunt Protection</string>
     <string name="tool_timer_label_hunt_duration">Hunt Duration</string>

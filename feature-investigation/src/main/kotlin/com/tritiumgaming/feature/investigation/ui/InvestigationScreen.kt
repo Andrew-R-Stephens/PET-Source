@@ -54,7 +54,9 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.PlayerDeath
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ResetInvestigation
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmData
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmDomain
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmMeasurementType
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmSampleInterval
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetDifficulty
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetEvidence
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetMap
@@ -269,6 +271,8 @@ private fun InvestigationContent(
     val onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit = { investigationViewModel.onEvent(SetBpmData(it)) }
     val onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) }
     val onBpmToggleApplyMeasurement: () -> Unit = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
+    val onBpmChangeDomain: (Long) -> Unit = { investigationViewModel.onEvent(SetBpmDomain(it)) }
+    val onBpmChangeSampleInterval: (Long) -> Unit = { investigationViewModel.onEvent(SetBpmSampleInterval(it)) }
 
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
         remaining = LocalPalette.current.primary,
@@ -300,6 +304,7 @@ private fun InvestigationContent(
             customDifficultyDropdownOptions = customDifficultyDropdownOptions,
             customDifficultyDropdownLabel = customDifficultyLabel,
             onCustomDifficultyDropdownSelect = onCustomDifficultyDropdownSelect,
+            onNavigateToEditCustomDifficulty = onNavigateToEditCustomDifficulty,
             sanityLevel = sanityLevel,
             insanityLevel = insanityLevel,
             timerRemainingTime = timerRemainingTime,
@@ -337,11 +342,15 @@ private fun InvestigationContent(
             bpmRealtimeState = bpmRealtimeState,
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
+            bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
+            bpmWeather = bpmToolUiState.weather,
+            bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
+            bpmDomainMillis = bpmToolUiState.domainMillis,
+            bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,
             onDifficultyDropdownSelect = onDifficultyDropdownSelect,
-            onNavigateToEditCustomDifficulty = onNavigateToEditCustomDifficulty,
             onSanityChange = onSanityChange,
             onUseSanityMedication = onUseSanityMedication,
             onPlayerDeath = onPlayerDeath,
@@ -349,7 +358,7 @@ private fun InvestigationContent(
             onTimerSkip = onTimerSkip,
             onTogglePower = onTogglePower,
             onSelectTraitCategory = onSelectTraitCategory,
-            onToggleTrait = onToggleTrait,
+            onSelectTrait = onToggleTrait,
             onToggleUniqueOnly = onToggleUniqueOnly,
             onSmudgeToggle = onSmudgeToggle,
             onHuntDurationToggle = onHuntDurationToggle,
@@ -358,6 +367,8 @@ private fun InvestigationContent(
             onBpmUpdate = onBpmUpdate,
             onBpmChangeMeasurementType = onBpmChangeMeasurementType,
             onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
+            onBpmChangeDomain = onBpmChangeDomain,
+            onBpmChangeSampleInterval = onBpmChangeSampleInterval
         )
     }
 
@@ -418,6 +429,11 @@ private fun InvestigationContent(
             bpmRealtimeState = bpmRealtimeState,
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
+            bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
+            bpmWeather = bpmToolUiState.weather,
+            bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
+            bpmDomainMillis = bpmToolUiState.domainMillis,
+            bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,
@@ -438,6 +454,8 @@ private fun InvestigationContent(
             onBpmUpdate = onBpmUpdate,
             onBpmChangeMeasurementType = onBpmChangeMeasurementType,
             onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
+            onBpmChangeDomain = onBpmChangeDomain,
+            onBpmChangeSampleInterval = onBpmChangeSampleInterval
         )
     }
 

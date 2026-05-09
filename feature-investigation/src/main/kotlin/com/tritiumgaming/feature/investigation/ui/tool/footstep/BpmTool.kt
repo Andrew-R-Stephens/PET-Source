@@ -54,11 +54,14 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.Realtime
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -67,18 +70,24 @@ internal fun BpmTool(
     realtimeState: RealtimeUiState<GraphPoint>,
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
+    ghostSpeedModifier: Float = 1f,
+    weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
+    fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
+    domainMillis: Long = 10.seconds.inWholeMilliseconds,
+    domainSampleIntervalMillis: Long = 5.seconds.inWholeMilliseconds,
     onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
-    toggleApplyMeasurement: () -> Unit
+    toggleApplyMeasurement: () -> Unit,
+    onChangeDomain: (Long) -> Unit = {},
+    onChangeDomainSampleInterval: (Long) -> Unit = {}
 ) {
 
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
         alpha = .5f,
         range = 300,
-        domain = 10.seconds.inWholeMilliseconds,
-        domainInterval = 10f,
+        domain = domainMillis,
         rangeInterval = 60f,
-        domainSampleInterval = 3.seconds.inWholeMilliseconds
+        domainSampleInterval = domainSampleIntervalMillis
     )
 
     val alpha: (thisType: VisualizerMeasurementType, testType: VisualizerMeasurementType) -> Float = {
@@ -301,6 +310,140 @@ internal fun BpmTool(
             }
         }
 
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.footstep_label_domain).uppercase(),
+                    color = LocalPalette.current.onSurfaceVariant,
+                    style = LocalTypography.current.quaternary.bold,
+                    fontSize = 12.sp
+                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable { onChangeDomain(domainMillis - 5000L) },
+                        painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
+                        contentDescription = "Decrease Domain",
+                        tint = LocalPalette.current.onSurface
+                    )
+                    Text(
+                        text = "${domainMillis / 1000}s",
+                        color = LocalPalette.current.onSurface,
+                        style = LocalTypography.current.quaternary.bold,
+                        fontSize = 16.sp
+                    )
+                    Icon(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable { onChangeDomain(domainMillis + 5000L) },
+                        painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
+                        contentDescription = "Increase Domain",
+                        tint = LocalPalette.current.onSurface
+                    )
+                }
+            }
+
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.footstep_label_sample_interval).uppercase(),
+                    color = LocalPalette.current.onSurfaceVariant,
+                    style = LocalTypography.current.quaternary.bold,
+                    fontSize = 12.sp
+                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable { onChangeDomainSampleInterval(domainSampleIntervalMillis - 1000L) },
+                        painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
+                        contentDescription = "Decrease Sample Interval",
+                        tint = LocalPalette.current.onSurface
+                    )
+                    Text(
+                        text = "${domainSampleIntervalMillis / 1000}s",
+                        color = LocalPalette.current.onSurface,
+                        style = LocalTypography.current.quaternary.bold,
+                        fontSize = 16.sp
+                    )
+                    Icon(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable { onChangeDomainSampleInterval(domainSampleIntervalMillis + 1000L) },
+                        painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
+                        contentDescription = "Increase Sample Interval",
+                        tint = LocalPalette.current.onSurface
+                    )
+                }
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.Start),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (ghostSpeedModifier != 1f) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    SpeedIcon(
+                        modifier = Modifier.size(16.dp),
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.onSurfaceVariant,
+                            strokeColor = LocalPalette.current.onSurfaceVariant
+                        )
+                    )
+                    Text(
+                        text = "${(ghostSpeedModifier * 100).toInt()}%",
+                        color = LocalPalette.current.onSurfaceVariant,
+                        style = LocalTypography.current.quaternary.bold,
+                        fontSize = 12.sp
+                    )
+                }
+            }
+
+            if (weather == DifficultySettingResources.Weather.BLOOD_MOON) {
+                Icon(
+                    modifier = Modifier.size(16.dp),
+                    painter = painterResource(weather.toDrawable()),
+                    contentDescription = null,
+                    tint = Color.Red // Blood Moon is Red
+                )
+            }
+
+            if (fuseBoxFlag == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_DISABLED) {
+                Icon(
+                    modifier = Modifier.size(16.dp),
+                    painter = painterResource(R.drawable.ic_map_power),
+                    contentDescription = null,
+                    tint = LocalPalette.current.error
+                )
+            }
+        }
+
         BpmVisualizer(
             modifier = Modifier
                 .fillMaxWidth()
@@ -421,11 +564,18 @@ internal fun BpmTool(
 internal data class BpmToolUiActions(
     val onUpdate: (RealtimeUiState<GraphPoint>) -> Unit = {},
     val onChangeMeasurementType: (VisualizerMeasurementType) -> Unit = {},
-    val toggleApplyMeasurement: () -> Unit = {}
+    val toggleApplyMeasurement: () -> Unit = {},
+    val onChangeDomain: (Long) -> Unit = {},
+    val onChangeDomainSampleInterval: (Long) -> Unit = {}
 )
 
 internal data class BpmToolUiState(
     val realtimeState: RealtimeUiState<GraphPoint> = RealtimeUiState(),
     val measurementType: VisualizerMeasurementType = VisualizerMeasurementType.INSTANT,
-    val applyMeasurement: Boolean = false
+    val applyMeasurement: Boolean = false,
+    val ghostSpeedModifier: Float = 1f,
+    val weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
+    val fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
+    val domainMillis: Long = 10.seconds.inWholeMilliseconds,
+    val domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds
 )

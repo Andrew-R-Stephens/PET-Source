@@ -106,7 +106,7 @@ internal fun ToolsBottomSheetComponent(
     traitListOptions: GhostTraitFilterUiOptions,
     traitList: List<ValidatedGhostTrait>,
     onSelectTraitCategory: (TraitCategory) -> Unit,
-    onToggleTrait: (ValidatedGhostTrait) -> Unit,
+    onSelectTrait: (ValidatedGhostTrait) -> Unit,
     onToggleUniqueOnly: () -> Unit,
     // Analyzer state
     operationDetailsUiState: OperationDetailsUiState,
@@ -147,9 +147,16 @@ internal fun ToolsBottomSheetComponent(
     bpmRealtimeState: RealtimeUiState<GraphPoint>,
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
+    bpmGhostSpeedModifier: Float,
+    bpmWeather: Weather,
+    bpmFuseBoxFlag: FuseBoxFlag,
+    bpmDomainMillis: Long,
+    bpmDomainSampleIntervalMillis: Long,
     onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
+    onBpmChangeDomain: (Long) -> Unit,
+    onBpmChangeSampleInterval: (Long) -> Unit,
     // Colors
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
@@ -272,7 +279,7 @@ internal fun ToolsBottomSheetComponent(
                     categories = traitListOptions.category,
                     list = traitList,
                     onSelectCategory = onSelectTraitCategory,
-                    onSelectTrait = onToggleTrait,
+                    onSelectTrait = onSelectTrait,
                     onToggleUniqueOnly = onToggleUniqueOnly,
                     colors = TraitListItemUiColors(
                         unselectedColor = LocalPalette.current.surfaceContainerHigh,
@@ -414,9 +421,16 @@ internal fun ToolsBottomSheetComponent(
                     realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,
                     applyMeasurement = bpmApplyMeasurement,
+                    ghostSpeedModifier = bpmGhostSpeedModifier,
+                    weather = bpmWeather,
+                    fuseBoxFlag = bpmFuseBoxFlag,
+                    domainMillis = bpmDomainMillis,
+                    domainSampleIntervalMillis = bpmDomainSampleIntervalMillis,
                     onUpdate = onBpmUpdate,
                     onChangeMeasurementType = onBpmChangeMeasurementType,
-                    toggleApplyMeasurement = onBpmToggleApplyMeasurement
+                    toggleApplyMeasurement = onBpmToggleApplyMeasurement,
+                    onChangeDomain = onBpmChangeDomain,
+                    onChangeDomainSampleInterval = onBpmChangeSampleInterval
                 )
             }
 
@@ -514,9 +528,16 @@ internal fun ToolsSideSheetComponent(
     bpmRealtimeState: RealtimeUiState<GraphPoint>,
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
+    bpmGhostSpeedModifier: Float,
+    bpmWeather: Weather,
+    bpmFuseBoxFlag: FuseBoxFlag,
+    bpmDomainMillis: Long,
+    bpmDomainSampleIntervalMillis: Long,
     onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
+    onBpmChangeDomain: (Long) -> Unit,
+    onBpmChangeSampleInterval: (Long) -> Unit,
     // Colors
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
@@ -782,9 +803,16 @@ internal fun ToolsSideSheetComponent(
                     realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,
                     applyMeasurement = bpmApplyMeasurement,
+                    ghostSpeedModifier = bpmGhostSpeedModifier,
+                    weather = bpmWeather,
+                    fuseBoxFlag = bpmFuseBoxFlag,
+                    domainMillis = bpmDomainMillis,
+                    domainSampleIntervalMillis = bpmDomainSampleIntervalMillis,
                     onUpdate = onBpmUpdate,
                     onChangeMeasurementType = onBpmChangeMeasurementType,
-                    toggleApplyMeasurement = onBpmToggleApplyMeasurement
+                    toggleApplyMeasurement = onBpmToggleApplyMeasurement,
+                    onChangeDomain = onBpmChangeDomain,
+                    onChangeDomainSampleInterval = onBpmChangeSampleInterval
                 )
             }
 

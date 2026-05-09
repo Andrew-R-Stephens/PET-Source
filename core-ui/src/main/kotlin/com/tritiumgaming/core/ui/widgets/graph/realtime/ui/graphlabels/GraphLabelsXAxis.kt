@@ -28,14 +28,14 @@ fun GraphLabelsXAxis(
             size.width * 1.5f,
             size.height * 1.5f
         ) {
-            val seconds = (state.viewport / 1.seconds.inWholeMilliseconds).toInt()
-            val labelCount = seconds / state.interval
+            val seconds = state.viewport / 1000f
+            val labelStep = seconds / state.interval
 
             for (i in 0..state.interval.toInt()) {
 
-                val time = labelCount * i
+                val time = labelStep * i
 
-                val label = "${time.toInt()}s"
+                val label = if (time % 1.0f == 0f) "${time.toInt()}s" else "${time}s"
                 val x = size.width - (size.width * (time / seconds))
 
                 drawText(

@@ -318,7 +318,6 @@ private fun Preview() {
                 alpha = .01f,
                 range = 360,
                 domain = 10.seconds.inWholeMilliseconds,
-                domainInterval = 10f,
                 rangeInterval = 120f,
                 domainSampleInterval = 3.seconds.inWholeMilliseconds
             )
@@ -438,14 +437,14 @@ internal data class BpmVisualizerStateBundle(
     private val alpha: Float = 0.01f,
     private val range: Int = 360,
     private val domain: Long = 10.seconds.inWholeMilliseconds,
-    private val domainInterval: Float = 10f,
     private val rangeInterval: Float = 120f,
     private val domainSampleInterval: Long = 3.seconds.inWholeMilliseconds,
+    private val dynamicDomainInterval: Float = 10f,
     val visualizerUiState: VisualizerUiState = VisualizerUiState(
         alpha = alpha,
         range = range,
         domain = domain,
-        domainInterval = domainInterval,
+        domainInterval = dynamicDomainInterval,
         rangeInterval = rangeInterval,
         domainSampleInterval = domainSampleInterval
     ),

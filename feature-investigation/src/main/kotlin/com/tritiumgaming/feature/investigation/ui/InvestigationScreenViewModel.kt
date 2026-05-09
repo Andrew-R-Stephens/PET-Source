@@ -773,11 +773,16 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Bpm Tool
      */
-    internal val bpmToolUiState = _bpmToolState.map {
-        BpmToolUiState(
-            realtimeState = it.realtimeState,
-            measurementType = it.measurementType,
-            applyMeasurement = it.applyMeasurement
+    internal val bpmToolUiState = combine(
+        _bpmToolState,
+        difficultyState,
+        _weatherState,
+        difficultyOverridesState
+    ) { bpmState, difficulty, weather, overrides ->
+        bpmState.copy(
+            ghostSpeedModifier = difficulty.settings.ghostSpeed.toFloat(),
+            weather = weather,
+            fuseBoxFlag = overrides.fuseBox
         )
     }.stateIn(
         scope = viewModelScope,
@@ -1438,6 +1443,25 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private fun setBpmDomain(domainMillis: Long) {
+        _bpmToolState.update { state ->
+            val quantizedDomain = (domainMillis / 5000L * 5000L).coerceIn(5000L, 30000L)
+            state.copy(
+                domainMillis = quantizedDomain,
+                domainSampleIntervalMillis = state.domainSampleIntervalMillis.coerceAtMost(quantizedDomain)
+            )
+        }
+    }
+
+    private fun setBpmSampleInterval(intervalMillis: Long) {
+        _bpmToolState.update { state ->
+            val quantizedInterval = (intervalMillis / 1000L * 1000L).coerceIn(3000L, state.domainMillis)
+            state.copy(
+                domainSampleIntervalMillis = quantizedInterval
+            )
+        }
+    }
+
     private fun updateTraitFilter(filter: TraitFilter) {
         _traitFilterUiState.update {
             it.copy(
@@ -1747,6 +1771,8 @@ class InvestigationScreenViewModel private constructor(
             // BPM Ui
             is InvestigationEvent.SetBpmData -> setBpmData(event.data)
             is InvestigationEvent.SetBpmMeasurementType -> setBpmMeasurementType(event.type)
+            is InvestigationEvent.SetBpmDomain -> setBpmDomain(event.domainMillis)
+            is InvestigationEvent.SetBpmSampleInterval -> setBpmSampleInterval(event.intervalMillis)
             is InvestigationEvent.ToggleApplyBpmMeasurement -> toggleApplyBpmMeasurement()
 
             // Timers
@@ -1954,6 +1980,8 @@ class InvestigationScreenViewModel private constructor(
 
         data class SetBpmData(val data: RealtimeUiState<GraphPoint>) : InvestigationEvent()
         data class SetBpmMeasurementType(val type: VisualizerMeasurementType) : InvestigationEvent()
+        data class SetBpmDomain(val domainMillis: Long) : InvestigationEvent()
+        data class SetBpmSampleInterval(val intervalMillis: Long) : InvestigationEvent()
         object ToggleApplyBpmMeasurement : InvestigationEvent()
 
         // Timer Events
