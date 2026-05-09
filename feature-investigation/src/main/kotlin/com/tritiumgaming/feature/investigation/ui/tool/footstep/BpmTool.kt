@@ -300,12 +300,14 @@ internal fun BpmTool(
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Text(
-                        modifier = Modifier,
-                        text = stringResource(R.string.footstep_label_weighted).uppercase(),
-                        fontSize = 12.sp,
-                        maxLines = 1
-                    )
+                    Column() {
+                        Text(
+                            modifier = Modifier,
+                            text = stringResource(R.string.footstep_label_weighted).uppercase(),
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
                 }
             }
         }
