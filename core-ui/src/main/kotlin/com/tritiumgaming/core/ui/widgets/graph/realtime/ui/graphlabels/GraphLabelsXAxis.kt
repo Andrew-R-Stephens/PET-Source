@@ -36,6 +36,14 @@ fun GraphLabelsXAxis(
                 val time = labelStep * i
 
                 val label = if (time % 1.0f == 0f) "${time.toInt()}s" else "${time}s"
+                val textLayoutResult = textMeasurer.measure(
+                    text = label,
+                    style = textStyle,
+                    maxLines = 1,
+                    softWrap = false,
+                    overflow = TextOverflow.Visible
+                )
+
                 val x = size.width - (size.width * (time / seconds))
 
                 drawText(
@@ -43,13 +51,8 @@ fun GraphLabelsXAxis(
                     text = label,
                     style = textStyle,
                     topLeft = Offset(
-                        x - textMeasurer.measure(
-                            text = label,
-                            style = textStyle,
-                            maxLines = 1,
-                            softWrap = false,
-                            overflow = TextOverflow.Visible
-                        ).size.width.toFloat() * .5f,
+                        (x - textLayoutResult.size.width.toFloat() * .5f)
+                            .coerceIn(0f, size.width - textLayoutResult.size.width.toFloat()),
                         y = 0f
                     ),
                     maxLines = 1,

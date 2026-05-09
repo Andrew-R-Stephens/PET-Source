@@ -40,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
@@ -61,6 +62,10 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVi
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import kotlin.math.ceil
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import kotlin.time.Duration.Companion.seconds
 
@@ -75,6 +80,9 @@ internal fun BpmTool(
     fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     domainMillis: Long = 10.seconds.inWholeMilliseconds,
     domainSampleIntervalMillis: Long = 5.seconds.inWholeMilliseconds,
+    ghostSpeed: DifficultySettingResources.GhostSpeed = DifficultySettingResources.GhostSpeed.SPEED_100,
+    weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
+    fuseBox: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     toggleApplyMeasurement: () -> Unit,
@@ -82,10 +90,23 @@ internal fun BpmTool(
     onChangeDomainSampleInterval: (Long) -> Unit = {}
 ) {
 
+    val difficultyMultiplier = ghostSpeed.toFloat()
+    val weatherMultiplier = if (weather == DifficultySettingResources.Weather.BLOOD_MOON) 1.15f else 1f
+    val fuseBoxMultiplier = 1f // Placeholder for any general fuse box multiplier
+
+    val totalMultiplier = difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
+
+    val baseRange = 300
+    val interval = 60
+    val dynamicRange = (ceil((baseRange * totalMultiplier) / interval) * interval).toInt().coerceAtLeast(baseRange)
+
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
         alpha = .5f,
         range = 300,
         domain = domainMillis,
+        range = dynamicRange,
+        domain = 10.seconds.inWholeMilliseconds,
+        domainInterval = 10f,
         rangeInterval = 60f,
         domainSampleInterval = domainSampleIntervalMillis
     )
@@ -180,6 +201,71 @@ internal fun BpmTool(
                 color = LocalPalette.current.onSurfaceVariant,
                 thickness = Dp.Hairline
             )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_speed),
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = LocalPalette.current.onSurfaceVariant
+                )
+                Text(
+                    text = ghostSpeed.toFloat().toPercentageString(false),
+                    style = LocalTypography.current.quaternary.regular,
+                    fontSize = 12.sp,
+                    color = LocalPalette.current.onSurfaceVariant
+                )
+            }
+
+            if (weather == DifficultySettingResources.Weather.BLOOD_MOON) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(weather.toDrawable()),
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = Color.Red
+                    )
+                    Text(
+                        text = "+15%",
+                        style = LocalTypography.current.quaternary.regular,
+                        fontSize = 12.sp,
+                        color = Color.Red
+                    )
+                }
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_map_power),
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = if (fuseBox == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED)
+                        LocalPalette.current.primary else LocalPalette.current.onSurfaceVariant
+                )
+                Text(
+                    text = if (fuseBox == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED) "ON" else "OFF",
+                    style = LocalTypography.current.quaternary.regular,
+                    fontSize = 12.sp,
+                    color = LocalPalette.current.onSurfaceVariant
+                )
+            }
         }
 
         val segmentedColors = SegmentedButtonDefaults.colors(
@@ -300,14 +386,12 @@ internal fun BpmTool(
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Column() {
-                        Text(
-                            modifier = Modifier,
-                            text = stringResource(R.string.footstep_label_weighted).uppercase(),
-                            fontSize = 12.sp,
-                            maxLines = 1
-                        )
-                    }
+                    Text(
+                        modifier = Modifier,
+                        text = stringResource(R.string.footstep_label_weighted).uppercase(),
+                        fontSize = 12.sp,
+                        maxLines = 1
+                    )
                 }
             }
         }
@@ -580,4 +664,8 @@ internal data class BpmToolUiState(
     val fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     val domainMillis: Long = 10.seconds.inWholeMilliseconds,
     val domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds
+    val applyMeasurement: Boolean = false,
+    val ghostSpeed: DifficultySettingResources.GhostSpeed = DifficultySettingResources.GhostSpeed.SPEED_100,
+    val weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
+    val fuseBox: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
 )

@@ -33,12 +33,12 @@ fun GraphLabelsYAxis(
         ) {
             for (step in 0..steps) {
                 val bpm = step * state.interval
-                val yRatio = bpm / quantizedMax
+                val yRatio = bpm / state.viewport.toFloat()
                 val y = size.height - (size.height * yRatio)
 
                 val mps = bpm / 60f
 
-                val label = "${ mps.toInt() } m"
+                val label = "${ if(mps % 1f == 0f) mps.toInt() else mps } m"
 
                 drawLine(
                     color = colors.labelLine,
@@ -46,21 +46,20 @@ fun GraphLabelsYAxis(
                     end = Offset(size.width - 24, y)
                 )
 
+                val textLayoutResult = textMeasurer.measure(
+                    text = label,
+                    style = textStyle,
+                    maxLines = 1
+                )
+
                 drawText(
                     textMeasurer = textMeasurer,
                     text = label,
                     style = textStyle,
                     topLeft = Offset(
-                        size.width - textMeasurer.measure(
-                            text = label,
-                            style = textStyle,
-                            maxLines = 1
-                        ).size.width.toFloat(),
-                        y - (textMeasurer.measure(
-                            text = label,
-                            style = textStyle,
-                            maxLines = 1
-                        ).size.height.toFloat())
+                        size.width - textLayoutResult.size.width.toFloat(),
+                        (y - (textLayoutResult.size.height.toFloat() / 2f))
+                            .coerceIn(0f, size.height - textLayoutResult.size.height.toFloat())
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Visible

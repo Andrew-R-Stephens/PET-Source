@@ -28,15 +28,22 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
+import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
 import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toSanityBounds
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import kotlin.math.max
 
 @Composable
 internal fun ActiveGhostModifierDetails(
     state: OperationDetailsUiState.GhostDetails,
+    difficultySettings: DifficultySettingsModel? = null,
+    overrides: DifficultyOverridesData? = null
 ) {
 
     val rememberGhostDetails = state.activeGhosts
@@ -205,10 +212,20 @@ internal fun ActiveGhostModifierDetails(
                             .padding(start = 16.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        val minSpeed = state.ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
-                        var maxSpeed = state.ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
+                        val minBase = state.ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
+                        var maxBase = state.ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
                         val losMultiplier = state.ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
-                        if(maxSpeed == -1f) maxSpeed = minSpeed
+                        if(maxBase == -1f) maxBase = minBase
+
+                        val difficultyMultiplier = difficultySettings?.ghostSpeed?.toFloat() ?: 1f
+                        val weather = if (difficultySettings?.weather == Weather.RANDOM)
+                            overrides?.weather ?: Weather.RANDOM else difficultySettings?.weather ?: Weather.RANDOM
+                        val weatherMultiplier = if (weather == Weather.BLOOD_MOON) 1.15f else 1f
+                        val fuseBoxMultiplier = 1f // Placeholder
+
+                        val minSpeed = minBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
+                        var maxSpeed = maxBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
+
                         if(losMultiplier) { maxSpeed *= 1.65f }
 
                         val notches = mutableListOf<ProgressBarNotch>()
