@@ -219,7 +219,6 @@ private fun InvestigationContent(
     val fingerprintTimerRunning = fingerprintTimerState.running
     val fingerprintNotches = fingerprintTimerState.notches
 
-    val bpmRealtimeState = bpmToolUiState.realtimeState
     val bpmMeasurementType = bpmToolUiState.measurementType
     val bpmApplyMeasurement = bpmToolUiState.applyMeasurement
 
@@ -339,14 +338,13 @@ private fun InvestigationContent(
             fingerprintTimerTimeText = fingerprintTimerTimeText,
             fingerprintTimerRunning = fingerprintTimerRunning,
             fingerprintNotches = fingerprintNotches,
-            bpmRealtimeState = bpmRealtimeState,
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
             bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
             bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
             bpmDomainMillis = bpmToolUiState.domainMillis,
             bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
-            bpmGhostSpeed = bpmToolUiState.ghostSpeed,
+            bpmRange = bpmToolUiState.range,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,
@@ -426,15 +424,13 @@ private fun InvestigationContent(
             fingerprintTimerTimeText = fingerprintTimerTimeText,
             fingerprintTimerRunning = fingerprintTimerRunning,
             fingerprintNotches = fingerprintNotches,
-            bpmRealtimeState = bpmRealtimeState,
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
             bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
-            bpmWeather = bpmToolUiState.weather,
             bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
             bpmDomainMillis = bpmToolUiState.domainMillis,
             bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
-            bpmGhostSpeed = bpmToolUiState.ghostSpeed,
+            bpmRange = bpmToolUiState.range,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,

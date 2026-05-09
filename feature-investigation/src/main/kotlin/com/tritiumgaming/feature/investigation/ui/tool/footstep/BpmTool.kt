@@ -49,25 +49,22 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVi
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
-import kotlin.math.ceil
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
 internal fun BpmTool(
     modifier: Modifier = Modifier,
-    realtimeState: RealtimeUiState<GraphPoint>,
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
     ghostSpeedModifier: Float = 1f,
-    fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
+    fuseBoxFlag: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED,
     domainMillis: Long = 10.seconds.inWholeMilliseconds,
-    domainSampleIntervalMillis: Long = 5.seconds.inWholeMilliseconds,
-    ghostSpeed: DifficultySettingResources.GhostSpeed = DifficultySettingResources.GhostSpeed.SPEED_100,
-    weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
-    fuseBox: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
+    domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds,
+    weather: Weather = Weather.RANDOM,
+    range: Int = 300,
     onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     toggleApplyMeasurement: () -> Unit,
@@ -75,21 +72,10 @@ internal fun BpmTool(
     onChangeDomainSampleInterval: (Long) -> Unit = {}
 ) {
 
-    val difficultyMultiplier = ghostSpeed.toFloat()
-    val weatherMultiplier = if (weather == DifficultySettingResources.Weather.BLOOD_MOON) 1.15f else 1f
-    val fuseBoxMultiplier = 1f // Placeholder for any general fuse box multiplier
-
-    val totalMultiplier = difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
-
-    val baseRange = 300
-    val interval = 60
-    val dynamicRange = (ceil((baseRange * totalMultiplier) / interval) * interval).toInt().coerceAtLeast(baseRange)
-
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
         alpha = .5f,
         domain = domainMillis,
-        range = dynamicRange,
-        dynamicDomainInterval = 10f,
+        range = range,
         rangeInterval = 60f,
         domainSampleInterval = domainSampleIntervalMillis
     )
@@ -204,14 +190,14 @@ internal fun BpmTool(
                     tint = LocalPalette.current.onSurfaceVariant
                 )
                 Text(
-                    text = ghostSpeed.toFloat().toPercentageString(false),
+                    text = ghostSpeedModifier.toPercentageString(false),
                     style = LocalTypography.current.quaternary.regular,
                     fontSize = 12.sp,
                     color = LocalPalette.current.onSurfaceVariant
                 )
             }
 
-            if (weather == DifficultySettingResources.Weather.BLOOD_MOON) {
+            if (weather == Weather.BLOOD_MOON) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -239,11 +225,11 @@ internal fun BpmTool(
                     painter = painterResource(R.drawable.ic_map_power),
                     contentDescription = null,
                     modifier = Modifier.size(16.dp),
-                    tint = if (fuseBox == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED)
+                    tint = if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED)
                         LocalPalette.current.primary else LocalPalette.current.onSurfaceVariant
                 )
                 Text(
-                    text = if (fuseBox == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED) "ON" else "OFF",
+                    text = if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED) "ON" else "OFF",
                     style = LocalTypography.current.quaternary.regular,
                     fontSize = 12.sp,
                     color = LocalPalette.current.onSurfaceVariant
@@ -494,7 +480,7 @@ internal fun BpmTool(
                 }
             }
 
-            if (weather == DifficultySettingResources.Weather.BLOOD_MOON) {
+            if (weather == Weather.BLOOD_MOON) {
                 Icon(
                     modifier = Modifier.size(16.dp),
                     painter = painterResource(weather.toDrawable()),
@@ -642,11 +628,10 @@ internal data class BpmToolUiState(
     val realtimeState: RealtimeUiState<GraphPoint> = RealtimeUiState(),
     val measurementType: VisualizerMeasurementType = VisualizerMeasurementType.INSTANT,
     val ghostSpeedModifier: Float = 1f,
-    val fuseBoxFlag: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
+    val fuseBoxFlag: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED,
     val domainMillis: Long = 10.seconds.inWholeMilliseconds,
     val domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds,
     val applyMeasurement: Boolean = false,
-    val ghostSpeed: DifficultySettingResources.GhostSpeed = DifficultySettingResources.GhostSpeed.SPEED_100,
-    val weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
-    val fuseBox: DifficultyOverridesData.Companion.FuseBoxFlag = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
+    val weather: Weather = Weather.RANDOM,
+    val range: Int = 300
 )

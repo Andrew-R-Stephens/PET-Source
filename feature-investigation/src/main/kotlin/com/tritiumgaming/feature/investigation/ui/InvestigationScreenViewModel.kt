@@ -57,9 +57,13 @@ import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
+import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
+import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
+import kotlin.math.ceil
 import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 import com.tritiumgaming.shared.data.investigation.model.DifficultyData
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
@@ -796,10 +800,40 @@ class InvestigationScreenViewModel private constructor(
         _weatherState,
         difficultyOverridesState
     ) { bpmState, difficulty, weather, overrides ->
+        val ghostSpeedModifier = difficulty.settings.ghostSpeed.toFloat()
+        val fuseBoxFlag = overrides.fuseBox
+
+        var absoluteMax = 0f
+        GhostResources.GhostSpeed.entries.forEach { speedEnum ->
+            val minBase = speedEnum.toMinimumAsInt().toFloat()
+            var maxBase = speedEnum.toMaximumAsInt().toFloat()
+            if (maxBase == -1f) maxBase = minBase
+
+            if (speedEnum == GhostResources.GhostSpeed.JINN &&
+                fuseBoxFlag == FuseBoxFlag.FUSEBOX_DISABLED
+            ) {
+                maxBase = minBase
+            }
+
+            var currentMax = maxBase
+            if (speedEnum.toHasLosMultiplierBoolean()) {
+                currentMax *= 1.65f
+            }
+
+            absoluteMax = maxOf(absoluteMax, currentMax)
+        }
+
+        val weatherMultiplier = if (weather == Weather.BLOOD_MOON) 1.15f else 1f
+
+        val interval = 60
+        val range = (ceil((absoluteMax * ghostSpeedModifier * weatherMultiplier) / interval) * interval).toInt()
+            .coerceAtLeast(300)
+
         bpmState.copy(
-            ghostSpeedModifier = difficulty.settings.ghostSpeed.toFloat(),
+            ghostSpeedModifier = ghostSpeedModifier,
             weather = weather,
-            fuseBoxFlag = overrides.fuseBox
+            fuseBoxFlag = fuseBoxFlag,
+            range = range
         )
     }.stateIn(
         scope = viewModelScope,
