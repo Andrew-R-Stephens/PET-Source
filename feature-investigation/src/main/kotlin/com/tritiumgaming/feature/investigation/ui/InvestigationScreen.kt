@@ -20,7 +20,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
@@ -340,11 +342,14 @@ private fun InvestigationContent(
             fingerprintNotches = fingerprintNotches,
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
+            bpmRealtimeState = bpmToolUiState.realtimeState,
             bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
             bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
             bpmDomainMillis = bpmToolUiState.domainMillis,
             bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
             bpmRange = bpmToolUiState.range,
+            bpmDomainOptions = bpmToolUiState.domainOptions,
+            bpmSampleIntervalOptions = bpmToolUiState.sampleIntervalOptions,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,
@@ -426,11 +431,14 @@ private fun InvestigationContent(
             fingerprintNotches = fingerprintNotches,
             bpmMeasurementType = bpmMeasurementType,
             bpmApplyMeasurement = bpmApplyMeasurement,
+            bpmRealtimeState = bpmToolUiState.realtimeState,
             bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
             bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
             bpmDomainMillis = bpmToolUiState.domainMillis,
             bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
             bpmRange = bpmToolUiState.range,
+            bpmDomainOptions = bpmToolUiState.domainOptions,
+            bpmSampleIntervalOptions = bpmToolUiState.sampleIntervalOptions,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,
@@ -534,7 +542,7 @@ private fun InvestigationContent(
                             onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
                         )
                     },
-                    sideSheetComponent = sideSheetComponent
+                    sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
                 )
             }
 
@@ -658,6 +666,7 @@ private fun RowScope.Investigation(
                 sideSheetComponent(
                     modifier
                         .fillMaxHeight()
+                        .verticalScroll(rememberScrollState())
                         .animateContentSize()
                         .then(
                             if (!operationToolbarUiState.isCollapsed)

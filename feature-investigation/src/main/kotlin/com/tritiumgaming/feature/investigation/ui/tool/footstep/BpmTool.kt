@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.tool.footstep
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,10 +33,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
+import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
+import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
@@ -49,7 +54,9 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVi
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import kotlin.time.Duration.Companion.seconds
@@ -57,6 +64,7 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 internal fun BpmTool(
     modifier: Modifier = Modifier,
+    realtimeState: RealtimeUiState<GraphPoint>,
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
     ghostSpeedModifier: Float = 1f,
@@ -65,6 +73,8 @@ internal fun BpmTool(
     domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds,
     weather: Weather = Weather.RANDOM,
     range: Int = 300,
+    domainOptions: List<Long> = emptyList(),
+    sampleIntervalOptions: List<Long> = emptyList(),
     onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     toggleApplyMeasurement: () -> Unit,
@@ -130,6 +140,15 @@ internal fun BpmTool(
         )
     )
 
+    val segmentedColors = SegmentedButtonDefaults.colors(
+        activeContainerColor = LocalPalette.current.surfaceContainerLow,
+        activeContentColor = LocalPalette.current.onSurfaceVariant,
+        inactiveContainerColor = LocalPalette.current.surfaceContainer,
+        inactiveContentColor = LocalPalette.current.onSurface,
+        inactiveBorderColor = LocalPalette.current.surfaceContainerHigh,
+        activeBorderColor = LocalPalette.current.onSurfaceVariant
+    )
+
     Column (
         modifier = modifier
             .fillMaxWidth()
@@ -172,79 +191,107 @@ internal fun BpmTool(
             )
         }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_speed),
-                    contentDescription = null,
-                    modifier = Modifier.size(16.dp),
-                    tint = LocalPalette.current.onSurfaceVariant
-                )
-                Text(
-                    text = ghostSpeedModifier.toPercentageString(false),
-                    style = LocalTypography.current.quaternary.regular,
-                    fontSize = 12.sp,
-                    color = LocalPalette.current.onSurfaceVariant
-                )
-            }
+        /*LiveStatsRow(
+            realtimeState = realtimeState,
+            measurementType = measurementType,
+            applyMeasurement = applyMeasurement
+        )*/
 
-            if (weather == Weather.BLOOD_MOON) {
+        if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED || weather == Weather.BLOOD_MOON ||
+            ghostSpeedModifier != DifficultySettingResources.GhostSpeed.SPEED_100.toFloat()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    text = "Modifiers".uppercase(),
+                    color = LocalPalette.current.onSurfaceVariant,
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Start
+                    ),
+                    fontSize = 14.sp,
+                    maxLines = 1
+                )
+
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        painter = painterResource(weather.toDrawable()),
-                        contentDescription = null,
-                        modifier = Modifier.size(16.dp),
-                        tint = Color.Red
-                    )
-                    Text(
-                        text = "+15%",
-                        style = LocalTypography.current.quaternary.regular,
-                        fontSize = 12.sp,
-                        color = Color.Red
-                    )
+
+                    if (ghostSpeedModifier != DifficultySettingResources.GhostSpeed.SPEED_100.toFloat()) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_speed),
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = LocalPalette.current.onSurfaceVariant
+                            )
+                            Text(
+                                text = ghostSpeedModifier.toPercentageString(false),
+                                style = LocalTypography.current.quaternary.regular,
+                                fontSize = 12.sp,
+                                color = LocalPalette.current.onSurfaceVariant
+                            )
+                        }
+                    }
+
+                    if (weather == Weather.BLOOD_MOON) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(weather.toDrawable()),
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = LocalPalette.current.onSurfaceVariant
+                            )
+                            Text(
+                                text = "+15%",
+                                style = LocalTypography.current.quaternary.regular,
+                                fontSize = 12.sp,
+                                color = LocalPalette.current.onSurfaceVariant
+                            )
+                        }
+                    }
+
+                    if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED) {
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_map_power),
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = LocalPalette.current.onSurfaceVariant
+                            )
+                            Text(
+                                text = stringResource(
+                                    DifficultySettingResources.FuseBoxAtStartOfContract.ON
+                                        .toStringResource()
+                                ),
+                                style = LocalTypography.current.quaternary.regular,
+                                fontSize = 12.sp,
+                                color = LocalPalette.current.onSurfaceVariant
+                            )
+                        }
+                    }
+
                 }
             }
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_map_power),
-                    contentDescription = null,
-                    modifier = Modifier.size(16.dp),
-                    tint = if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED)
-                        LocalPalette.current.primary else LocalPalette.current.onSurfaceVariant
-                )
-                Text(
-                    text = if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED) "ON" else "OFF",
-                    style = LocalTypography.current.quaternary.regular,
-                    fontSize = 12.sp,
-                    color = LocalPalette.current.onSurfaceVariant
-                )
-            }
         }
-
-        val segmentedColors = SegmentedButtonDefaults.colors(
-            activeContainerColor = LocalPalette.current.onSurfaceVariant,
-            activeContentColor = LocalPalette.current.surfaceContainer,
-            inactiveContainerColor = LocalPalette.current.surfaceContainer,
-            inactiveContentColor = LocalPalette.current.onSurface,
-            inactiveBorderColor = Transparent,
-            activeBorderColor = Transparent
-        )
 
         Column(
             modifier = Modifier
@@ -309,12 +356,24 @@ internal fun BpmTool(
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Text(
-                        modifier = Modifier,
-                        text = stringResource(R.string.footstep_label_instant).uppercase(),
-                        fontSize = 12.sp,
-                        maxLines = 1
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        SpeedIcon(
+                            modifier = Modifier.size(16.dp),
+                            colors = IconVectorColors(
+                                fillColor = LocalPalette.current.primary,
+                                strokeColor = LocalPalette.current.primary
+                            )
+                        )
+                        Text(
+                            modifier = Modifier,
+                            text = stringResource(R.string.footstep_label_instant).uppercase(),
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
                 }
 
                 SegmentedButton(
@@ -332,12 +391,24 @@ internal fun BpmTool(
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Text(
-                        modifier = Modifier,
-                        text = stringResource(R.string.footstep_label_average).uppercase(),
-                        fontSize = 12.sp,
-                        maxLines = 1
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        SpeedBIcon(
+                            modifier = Modifier.size(16.dp),
+                            colors = IconVectorColors(
+                                fillColor = LocalPalette.current.tertiary,
+                                strokeColor = LocalPalette.current.tertiary
+                            )
+                        )
+                        Text(
+                            modifier = Modifier,
+                            text = stringResource(R.string.footstep_label_average).uppercase(),
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
                 }
 
                 SegmentedButton(
@@ -355,264 +426,221 @@ internal fun BpmTool(
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Text(
-                        modifier = Modifier,
-                        text = stringResource(R.string.footstep_label_weighted).uppercase(),
-                        fontSize = 12.sp,
-                        maxLines = 1
-                    )
-                }
-            }
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Text(
-                    text = stringResource(R.string.footstep_label_domain).uppercase(),
-                    color = LocalPalette.current.onSurfaceVariant,
-                    style = LocalTypography.current.quaternary.bold,
-                    fontSize = 12.sp
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Icon(
-                        modifier = Modifier
-                            .size(24.dp)
-                            .clickable { onChangeDomain(domainMillis - 5000L) },
-                        painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
-                        contentDescription = "Decrease Domain",
-                        tint = LocalPalette.current.onSurface
-                    )
-                    Text(
-                        text = "${domainMillis / 1000}s",
-                        color = LocalPalette.current.onSurface,
-                        style = LocalTypography.current.quaternary.bold,
-                        fontSize = 16.sp
-                    )
-                    Icon(
-                        modifier = Modifier
-                            .size(24.dp)
-                            .clickable { onChangeDomain(domainMillis + 5000L) },
-                        painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
-                        contentDescription = "Increase Domain",
-                        tint = LocalPalette.current.onSurface
-                    )
-                }
-            }
-
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Text(
-                    text = stringResource(R.string.footstep_label_sample_interval).uppercase(),
-                    color = LocalPalette.current.onSurfaceVariant,
-                    style = LocalTypography.current.quaternary.bold,
-                    fontSize = 12.sp
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Icon(
-                        modifier = Modifier
-                            .size(24.dp)
-                            .clickable { onChangeDomainSampleInterval(domainSampleIntervalMillis - 1000L) },
-                        painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
-                        contentDescription = "Decrease Sample Interval",
-                        tint = LocalPalette.current.onSurface
-                    )
-                    Text(
-                        text = "${domainSampleIntervalMillis / 1000}s",
-                        color = LocalPalette.current.onSurface,
-                        style = LocalTypography.current.quaternary.bold,
-                        fontSize = 16.sp
-                    )
-                    Icon(
-                        modifier = Modifier
-                            .size(24.dp)
-                            .clickable { onChangeDomainSampleInterval(domainSampleIntervalMillis + 1000L) },
-                        painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
-                        contentDescription = "Increase Sample Interval",
-                        tint = LocalPalette.current.onSurface
-                    )
-                }
-            }
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 12.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.Start),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            if (ghostSpeedModifier != 1f) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    SpeedIcon(
-                        modifier = Modifier.size(16.dp),
-                        colors = IconVectorColors(
-                            fillColor = LocalPalette.current.onSurfaceVariant,
-                            strokeColor = LocalPalette.current.onSurfaceVariant
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        SpeedBBIcon(
+                            modifier = Modifier.size(16.dp),
+                            colors = IconVectorColors(
+                                fillColor = LocalPalette.current.secondary,
+                                strokeColor = LocalPalette.current.secondary
+                            )
                         )
-                    )
-                    Text(
-                        text = "${(ghostSpeedModifier * 100).toInt()}%",
-                        color = LocalPalette.current.onSurfaceVariant,
-                        style = LocalTypography.current.quaternary.bold,
-                        fontSize = 12.sp
-                    )
+                        Text(
+                            modifier = Modifier,
+                            text = stringResource(R.string.footstep_label_weighted).uppercase(),
+                            fontSize = 12.sp,
+                            maxLines = 1
+                        )
+                    }
                 }
-            }
-
-            if (weather == Weather.BLOOD_MOON) {
-                Icon(
-                    modifier = Modifier.size(16.dp),
-                    painter = painterResource(weather.toDrawable()),
-                    contentDescription = null,
-                    tint = Color.Red // Blood Moon is Red
-                )
-            }
-
-            if (fuseBoxFlag == DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_DISABLED) {
-                Icon(
-                    modifier = Modifier.size(16.dp),
-                    painter = painterResource(R.drawable.ic_map_power),
-                    contentDescription = null,
-                    tint = LocalPalette.current.error
-                )
             }
         }
 
-        BpmVisualizer(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp)
-                .padding(top = 16.dp),
-            stateBundle = bpmVisualizerStateBundle,
-            colorBundle = bpmVisualizerColorBundle,
-            actions = BpmVisualizerUiActions(
-                onUpdate = { newTapUiState ->
-                    onUpdate(newTapUiState) }
+        ) {
+            BpmVisualizer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                stateBundle = bpmVisualizerStateBundle,
+                colorBundle = bpmVisualizerColorBundle,
+                actions = BpmVisualizerUiActions(
+                    onUpdate = { newTapUiState ->
+                        onUpdate(newTapUiState)
+                    }
+                )
             )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Surface(
+                    modifier = Modifier.weight(1f),
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(8.dp),
+                        horizontalAlignment = Alignment.Start,
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.footstep_label_domain).uppercase(),
+                            color = LocalPalette.current.onSurfaceVariant,
+                            style = LocalTypography.current.quaternary.bold,
+                            fontSize = 12.sp
+                        )
+
+                        val domainLabels = domainOptions.map { "${it / 1000}s" }
+
+                        DropdownList(
+                            modifier = Modifier.fillMaxWidth(),
+                            options = domainLabels,
+                            label = "${domainMillis / 1000}s",
+                            onSelect = { onChangeDomain(domainOptions[it]) },
+                            textStyle = LocalTypography.current.quaternary.bold,
+                            onColor = LocalPalette.current.onSurface,
+                            color = LocalPalette.current.surfaceContainerHigh
+                        )
+                    }
+                }
+
+                Surface(
+                    modifier = Modifier.weight(1f),
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(8.dp),
+                        horizontalAlignment = Alignment.Start,
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.footstep_label_sample_interval).uppercase(),
+                            color = LocalPalette.current.onSurfaceVariant,
+                            style = LocalTypography.current.quaternary.bold,
+                            fontSize = 12.sp
+                        )
+
+                        val sampleIntervalLabels = sampleIntervalOptions.map { "${it / 1000}s" }
+
+                        DropdownList(
+                            modifier = Modifier.fillMaxWidth(),
+                            options = sampleIntervalLabels,
+                            label = "${domainSampleIntervalMillis / 1000}s",
+                            onSelect = { onChangeDomainSampleInterval(sampleIntervalOptions[it]) },
+                            textStyle = LocalTypography.current.quaternary.bold,
+                            onColor = LocalPalette.current.onSurface,
+                            color = LocalPalette.current.surfaceContainerHigh
+                        )
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@Composable
+private fun LiveStatsRow(
+    realtimeState: RealtimeUiState<GraphPoint>,
+    measurementType: VisualizerMeasurementType,
+    applyMeasurement: Boolean
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+    ) {
+        LiveStatItem(
+            modifier = Modifier.weight(1f),
+            icon = {
+                SpeedIcon(
+                    modifier = Modifier.size(16.dp),
+                    colors = IconVectorColors(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary
+                    )
+                )
+            },
+            value = realtimeState.smoothed / 60f,
+            label = stringResource(R.string.footstep_label_instant),
+            isActive = applyMeasurement && measurementType == VisualizerMeasurementType.INSTANT,
+            color = LocalPalette.current.primary
         )
-
-        /*
-        Row(
-           modifier = Modifier
-               .fillMaxWidth()
-               .clickable {
-                   onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
-               }
-        ) {
-            SpeedIcon(
-                modifier = Modifier
-                    .size(32.dp)
-                    .padding(8.dp),
-                colors = IconVectorColors(
-                    fillColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(
-                            measurementType,
-                            VisualizerMeasurementType.INSTANT
-                        )
-                    ),
-                    strokeColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(
-                            measurementType,
-                            VisualizerMeasurementType.INSTANT
-                        )
+        LiveStatItem(
+            modifier = Modifier.weight(1f),
+            icon = {
+                SpeedBIcon(
+                    modifier = Modifier.size(16.dp),
+                    colors = IconVectorColors(
+                        fillColor = LocalPalette.current.tertiary,
+                        strokeColor = LocalPalette.current.tertiary
                     )
                 )
-            )
+            },
+            value = realtimeState.average / 60f,
+            label = stringResource(R.string.footstep_label_average),
+            isActive = applyMeasurement && measurementType == VisualizerMeasurementType.AVERAGED,
+            color = LocalPalette.current.tertiary
+        )
+        LiveStatItem(
+            modifier = Modifier.weight(1f),
+            icon = {
+                SpeedBBIcon(
+                    modifier = Modifier.size(16.dp),
+                    colors = IconVectorColors(
+                        fillColor = LocalPalette.current.secondary,
+                        strokeColor = LocalPalette.current.secondary
+                    )
+                )
+            },
+            value = realtimeState.weightedAverage / 60f,
+            label = stringResource(R.string.footstep_label_weighted),
+            isActive = applyMeasurement && measurementType == VisualizerMeasurementType.WEIGHTED,
+            color = LocalPalette.current.secondary
+        )
+    }
+}
 
+@Composable
+private fun LiveStatItem(
+    modifier: Modifier = Modifier,
+    icon: @Composable () -> Unit,
+    value: Float,
+    label: String,
+    isActive: Boolean,
+    color: Color
+) {
+    Column(
+        modifier = modifier
+            .background(
+                if (isActive) color.copy(alpha = 0.15f) else Transparent,
+                RoundedCornerShape(8.dp)
+            )
+            .padding(vertical = 4.dp, horizontal = 2.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            icon()
             Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentHeight(),
-                text = "%.1f".format(realtimeState.smoothed / 60f),
-                color = LocalPalette.current.onSurface
+                text = "%.2f".format(value),
+                style = LocalTypography.current.quaternary.bold,
+                fontSize = 14.sp,
+                color = if (isActive) color else LocalPalette.current.onSurfaceVariant
             )
         }
-
-        Row(
-           modifier = Modifier
-               .fillMaxWidth()
-               .clickable {
-                   onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
-               }
-        ) {
-            SpeedBIcon(
-                modifier = Modifier
-                    .size(32.dp)
-                    .padding(8.dp),
-                colors = IconVectorColors(
-                    fillColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(measurementType,
-                            VisualizerMeasurementType.AVERAGED)
-                    ),
-                    strokeColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(measurementType,
-                            VisualizerMeasurementType.AVERAGED)
-                    )
-                )
-            )
-
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentHeight(),
-                text = "%.1f".format((realtimeState.points.tail?.data?.avg ?: 0f) / 60f),
-                color = LocalPalette.current.onSurface
-            )
-        }
-
-        Row(
-           modifier = Modifier
-               .fillMaxWidth()
-               .clickable {
-                   onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
-               }
-        ) {
-            SpeedBBIcon(
-                modifier = Modifier
-                    .size(32.dp)
-                    .padding(8.dp),
-                colors = IconVectorColors(
-                    fillColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(measurementType,
-                            VisualizerMeasurementType.WEIGHTED)
-                    ),
-                    strokeColor = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(measurementType,
-                            VisualizerMeasurementType.WEIGHTED)
-                    )
-                )
-            )
-
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentHeight(),
-                text = "%.1f".format((realtimeState.points.tail?.data?.weightedAvg?: 0f) / 60f),
-                color = LocalPalette.current.onSurface
-            )
-        }*/
-
+        Text(
+            text = label.uppercase(),
+            style = LocalTypography.current.quaternary.bold,
+            fontSize = 10.sp,
+            color = if (isActive) color.copy(alpha = 0.8f) else LocalPalette.current.onSurfaceVariant.copy(alpha = 0.6f),
+            maxLines = 1,
+            textAlign = TextAlign.Center
+        )
     }
 }
 
@@ -633,5 +661,7 @@ internal data class BpmToolUiState(
     val domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds,
     val applyMeasurement: Boolean = false,
     val weather: Weather = Weather.RANDOM,
-    val range: Int = 300
+    val range: Int = 300,
+    val domainOptions: List<Long> = emptyList(),
+    val sampleIntervalOptions: List<Long> = emptyList()
 )

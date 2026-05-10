@@ -147,11 +147,14 @@ internal fun ToolsBottomSheetComponent(
     // BPM Tool state
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
+    bpmRealtimeState: RealtimeUiState<GraphPoint>,
     bpmGhostSpeedModifier: Float,
     bpmFuseBoxFlag: FuseBoxFlag,
     bpmDomainMillis: Long,
     bpmDomainSampleIntervalMillis: Long,
     bpmRange: Int,
+    bpmDomainOptions: List<Long>,
+    bpmSampleIntervalOptions: List<Long>,
     onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
@@ -418,6 +421,7 @@ internal fun ToolsBottomSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
+                    realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,
                     applyMeasurement = bpmApplyMeasurement,
                     ghostSpeedModifier = bpmGhostSpeedModifier,
@@ -426,6 +430,8 @@ internal fun ToolsBottomSheetComponent(
                     domainSampleIntervalMillis = bpmDomainSampleIntervalMillis,
                     weather = weather,
                     range = bpmRange,
+                    domainOptions = bpmDomainOptions,
+                    sampleIntervalOptions = bpmSampleIntervalOptions,
                     onUpdate = onBpmUpdate,
                     onChangeMeasurementType = onBpmChangeMeasurementType,
                     toggleApplyMeasurement = onBpmToggleApplyMeasurement,
@@ -527,11 +533,14 @@ internal fun ToolsSideSheetComponent(
     // BPM Tool state
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
+    bpmRealtimeState: RealtimeUiState<GraphPoint>,
     bpmGhostSpeedModifier: Float,
     bpmFuseBoxFlag: FuseBoxFlag,
     bpmDomainMillis: Long,
     bpmDomainSampleIntervalMillis: Long,
     bpmRange: Int,
+    bpmDomainOptions: List<Long>,
+    bpmSampleIntervalOptions: List<Long>,
     onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
@@ -799,6 +808,7 @@ internal fun ToolsSideSheetComponent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                         .height(IntrinsicSize.Max),
+                    realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,
                     applyMeasurement = bpmApplyMeasurement,
                     ghostSpeedModifier = bpmGhostSpeedModifier,
@@ -807,6 +817,8 @@ internal fun ToolsSideSheetComponent(
                     domainSampleIntervalMillis = bpmDomainSampleIntervalMillis,
                     weather = weather,
                     range = bpmRange,
+                    domainOptions = bpmDomainOptions,
+                    sampleIntervalOptions = bpmSampleIntervalOptions,
                     onUpdate = onBpmUpdate,
                     onChangeMeasurementType = onBpmChangeMeasurementType,
                     toggleApplyMeasurement = onBpmToggleApplyMeasurement,

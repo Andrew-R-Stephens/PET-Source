@@ -829,11 +829,18 @@ class InvestigationScreenViewModel private constructor(
         val range = (ceil((absoluteMax * ghostSpeedModifier * weatherMultiplier) / interval) * interval).toInt()
             .coerceAtLeast(300)
 
+        val domainOptions = (5..60 step 5).map { it * 1000L }
+        val sampleIntervalOptions = (1..(bpmState.domainMillis / 1000).toInt())
+            .filter { it <= 5 || it % 5 == 0 }
+            .map { it * 1000L }
+
         bpmState.copy(
             ghostSpeedModifier = ghostSpeedModifier,
             weather = weather,
             fuseBoxFlag = fuseBoxFlag,
-            range = range
+            range = range,
+            domainOptions = domainOptions,
+            sampleIntervalOptions = sampleIntervalOptions
         )
     }.stateIn(
         scope = viewModelScope,
