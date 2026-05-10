@@ -666,7 +666,6 @@ private fun RowScope.Investigation(
                 sideSheetComponent(
                     modifier
                         .fillMaxHeight()
-                        .verticalScroll(rememberScrollState())
                         .animateContentSize()
                         .then(
                             if (!operationToolbarUiState.isCollapsed)

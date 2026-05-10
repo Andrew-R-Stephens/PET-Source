@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -562,7 +564,8 @@ internal fun ToolsSideSheetComponent(
                 OperationConfigsSideSheet(
                     modifier = Modifier
                         .padding(top = 8.dp)
-                        .height(IntrinsicSize.Max),
+                        .height(IntrinsicSize.Max)
+                        .verticalScroll(rememberScrollState()),
                     sanityMedicationComponent = { modifier ->
                         SanityMedicationButton(
                             modifier = modifier,
@@ -806,8 +809,9 @@ internal fun ToolsSideSheetComponent(
             OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
                 BpmTool(
                     modifier = Modifier
-                        .padding(top = 8.dp)
-                        .height(IntrinsicSize.Max),
+                        .padding(8.dp)
+                        .height(IntrinsicSize.Max)
+                        .verticalScroll(rememberScrollState()),
                     realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,
                     applyMeasurement = bpmApplyMeasurement,
