@@ -113,8 +113,8 @@ fun InvestigationToolRail(
         ) { modifier ->
             stickyContentStart(
                 modifier
-                    .padding(4.dp)
                     .sizeIn(maxWidth = 48.dp)
+                    .padding(4.dp)
                     .aspectRatio(1f)
             )
         }
@@ -139,8 +139,9 @@ fun InvestigationToolRail(
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             scrollContent(Modifier
+                .sizeIn(maxWidth = 48.dp)
                 .padding(4.dp)
-                .sizeIn(maxWidth = 48.dp))
+            )
         }
 
         StickyItemContainer(
@@ -148,8 +149,8 @@ fun InvestigationToolRail(
         ) {
             stickyContentEnd(
                 modifier
-                    .padding(4.dp)
                     .sizeIn(maxWidth = 48.dp)
+                    .padding(4.dp)
                     .aspectRatio(1f)
             )
         }
