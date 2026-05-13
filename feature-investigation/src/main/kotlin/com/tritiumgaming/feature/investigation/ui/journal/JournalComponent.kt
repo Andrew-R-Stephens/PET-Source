@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
@@ -54,7 +56,7 @@ internal fun JournalComponent(
     onChangeEvidenceRuling: (evidence: EvidenceType, evidenceValidationType: EvidenceValidationType) -> Unit,
     onEvidenceClick: (evidence: EvidenceType) -> Unit,
     onToggleNegateGhost: (Ghost) -> Unit,
-    onRequestToolTip: () -> Unit
+    onRequestToolTip: () -> Unit,
 ) {
 
     val uiIsRtl = LocalUiConfiguration.current.isRtl
@@ -80,31 +82,19 @@ internal fun JournalComponent(
     }
 
     Row(
-        modifier = modifier
-            .fillMaxSize(),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.Top
     ) {
+        val listModifier = Modifier
+            .weight(1f)
+            .fillMaxHeight()
         if(uiIsRtl) {
-            evidenceListComponent(Modifier
-                .weight(1f)
-                .fillMaxSize()
-            )
-            ghostListComponent(Modifier
-                .weight(1f, false)
-                .wrapContentWidth(Alignment.CenterHorizontally)
-                .fillMaxHeight()
-            )
+            evidenceListComponent(listModifier)
+            ghostListComponent(listModifier)
         } else {
-            ghostListComponent(Modifier
-                .weight(1f, false)
-                .wrapContentWidth(Alignment.CenterHorizontally)
-                .fillMaxHeight()
-            )
-            evidenceListComponent(Modifier
-                .weight(1f)
-                .fillMaxSize()
-            )
+            ghostListComponent(listModifier)
+            evidenceListComponent(listModifier)
         }
     }
 
@@ -118,14 +108,14 @@ private fun GhostListColumn(
     ghostEvidenceState: List<EvidenceState>,
     onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit,
     onToggleNegateGhost: (Ghost) -> Unit,
-    onRequestToolTip: () -> Unit
+    onRequestToolTip: () -> Unit,
 ) {
     ListColumn(
         modifier = modifier,
         title = stringResource(R.string.investigation_section_title_ghosts)
     ) {
         GhostList(
-            modifier = Modifier,
+            modifier = modifier,
             ghostOrder = ghostOrder,
             ghostEvidenceState = ghostEvidenceState,
             onGhostNameClick = onGhostNameClick,
@@ -147,6 +137,7 @@ private fun EvidenceListColumn(
         title = stringResource(R.string.investigation_section_title_evidence),
     ) {
         PrimaryEvidenceList(
+            modifier = modifier,
             evidenceStateList = evidenceStateList,
             onChangeEvidenceRuling = onChangeEvidenceRuling,
             onEvidenceClick = onEvidenceClick
@@ -192,7 +183,10 @@ private fun ListColumn(
             }
         }
 
-        listComponent(Modifier)
+        listComponent(
+            Modifier
+                .fillMaxWidth()
+        )
     }
 }
 

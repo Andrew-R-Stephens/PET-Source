@@ -50,11 +50,10 @@ internal fun GhostList(
     }
 
     LazyColumn(
-        modifier = modifier
-            .fillMaxHeight()
-            .wrapContentWidth(Alignment.CenterHorizontally),
+        modifier = modifier,
         state = listState,
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         items(

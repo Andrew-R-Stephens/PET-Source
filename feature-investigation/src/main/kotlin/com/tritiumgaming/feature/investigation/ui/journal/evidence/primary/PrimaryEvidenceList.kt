@@ -19,14 +19,14 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 
 @Composable
 internal fun PrimaryEvidenceList(
+    modifier: Modifier = Modifier,
     evidenceStateList: List<EvidenceState>,
     onChangeEvidenceRuling: (evidence: EvidenceType, evidenceValidationType: EvidenceValidationType) -> Unit,
     onEvidenceClick: (evidence: EvidenceType) -> Unit
 ) {
 
     LazyColumn(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = modifier,
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

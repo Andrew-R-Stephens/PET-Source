@@ -564,7 +564,6 @@ internal fun ToolsSideSheetComponent(
                 OperationConfigsSideSheet(
                     modifier = Modifier
                         .padding(top = 8.dp)
-                        .height(IntrinsicSize.Max)
                         .verticalScroll(rememberScrollState()),
                     sanityMedicationComponent = { modifier ->
                         SanityMedicationButton(
@@ -686,8 +685,7 @@ internal fun ToolsSideSheetComponent(
             OperationToolbarUiState.Category.TOOL_ANALYZER -> {
                 OperationDetails(
                     modifier = Modifier
-                        .padding(top = 8.dp)
-                        .height(IntrinsicSize.Max),
+                        .padding(top = 8.dp),
                     operationDetailsUiState = operationDetailsUiState
                 )
             }
@@ -695,8 +693,7 @@ internal fun ToolsSideSheetComponent(
             OperationToolbarUiState.Category.TOOL_TIMERS -> {
                 TimerTools(
                     modifier = Modifier
-                        .padding(8.dp)
-                        .height(IntrinsicSize.Max),
+                        .padding(8.dp),
                 ) {
 
                     Surface(
@@ -810,7 +807,6 @@ internal fun ToolsSideSheetComponent(
                 BpmTool(
                     modifier = Modifier
                         .padding(8.dp)
-                        .height(IntrinsicSize.Max)
                         .verticalScroll(rememberScrollState()),
                     realtimeState = bpmRealtimeState,
                     measurementType = bpmMeasurementType,

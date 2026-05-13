@@ -644,7 +644,7 @@ private fun RowScope.Investigation(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.Start),
         verticalAlignment = Alignment.CenterVertically
     ) {
         val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
@@ -670,7 +670,8 @@ private fun RowScope.Investigation(
                         .then(
                             if (!operationToolbarUiState.isCollapsed)
                                 Modifier
-                                    .fillMaxWidth(.35f)
+                                    //.fillMaxWidth(.35f)
+                                    .width(IntrinsicSize.Max)
                                     .alpha(1f)
                             else
                                 Modifier
@@ -693,8 +694,10 @@ private fun RowScope.Investigation(
                     .padding(horizontal = 8.dp)
             )
 
-            journalComponent(Modifier
-                .weight(1f)
+            journalComponent(
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
             )
         }
 
@@ -740,7 +743,8 @@ private fun VerticalToolbar(
         )
     ) {
         Row(
-            modifier = modifier
+            modifier = modifier,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             content(Modifier)
 
@@ -1184,15 +1188,13 @@ fun OperationConfigsSideSheet(
 
         Row(
             modifier = Modifier
-                .height(IntrinsicSize.Max)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
         ) {
             Surface(
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
+                    .weight(1f),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
@@ -1216,8 +1218,7 @@ fun OperationConfigsSideSheet(
             }
 
             Surface(
-                modifier = Modifier
-                    .fillMaxHeight(),
+                modifier = Modifier,
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
