@@ -131,17 +131,24 @@ internal fun LazyItemScope.GhostListItem(
                             },
                         contentAlignment = Alignment.Center
                     ) {
-                        Nameplate(
-                            Modifier.fillMaxWidth()
-                                .wrapContentHeight(),
-                            label = stringResource(
-                                ghostState.ghostEvidence.ghost.name.toStringResource()),
-                        )
+                        Box(
+                            modifier = Modifier.wrapContentSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Nameplate(
+                                Modifier
+                                    .wrapContentWidth()
+                                    .wrapContentHeight(),
+                                label = stringResource(
+                                    ghostState.ghostEvidence.ghost.name.toStringResource()
+                                ),
+                            )
 
-                        Strikethrough(
-                            Modifier.fillMaxSize(),
-                            ghostState = ghostState
-                        )
+                            Strikethrough(
+                                Modifier.matchParentSize(),
+                                ghostState = ghostState
+                            )
+                        }
                     }
 
                     EvidenceIconRow(

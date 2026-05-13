@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -120,7 +122,7 @@ private fun EvidenceItem(
             .fillMaxWidth()
             .wrapContentHeight(Alignment.Top),
         itemHorizontalAlignment = Alignment.CenterHorizontally,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.Center,
         verticalArrangement = Arrangement.Center,
     ) {
 
@@ -134,22 +136,28 @@ private fun EvidenceItem(
                 .padding(4.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
-            Text(
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                text = state.label,
-                style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.onSurface,
-                    textAlign = TextAlign.Center
-                ),
-                maxLines = 1,
-                autoSize = TextAutoSize.StepBased(
-                    minFontSize = 1.sp,
-                    //maxFontSize = 48.sp,
-                    stepSize = 8.sp
+                    .wrapContentSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .wrapContentHeight(),
+                    text = state.label,
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.onSurface,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1,
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = 1.sp,
+                        //maxFontSize = 48.sp,
+                        stepSize = 8.sp
+                    )
                 )
-            )
+            }
         }
 
         if(!state.enabled) return@FlowColumn
