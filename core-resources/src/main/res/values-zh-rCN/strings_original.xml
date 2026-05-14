@@ -262,6 +262,7 @@
 
     <!-- Ghost Names -->
 
+    <string name="ghost_type_aswang">阿斯旺</string>
     <string name="ghost_type_banshee">女妖</string>
     <string name="ghost_type_dayan">达彦</string>
     <string name="ghost_type_demon">恶魔</string>
@@ -270,6 +271,7 @@
     <string name="ghost_type_goryo">御灵</string>
     <string name="ghost_type_hantu">寒魔</string>
     <string name="ghost_type_jinn">巨灵</string>
+    <string name="ghost_type_kormos">盲灵</string>
     <string name="ghost_type_mare">梦魇</string>
     <string name="ghost_type_moroi">魔洛伊</string>
     <string name="ghost_type_myling">鬼婴</string>

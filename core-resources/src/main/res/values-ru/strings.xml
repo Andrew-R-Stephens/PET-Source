@@ -124,6 +124,7 @@
     <string name="popup_ghost_huntdata">Данные охоты</string>
 
     <!-- Ghost Names -->
+    <string name="ghost_type_aswang">Асванг</string>
     <string name="ghost_type_banshee">Банши</string>
     <string name="ghost_type_dayan">Дайан</string>
     <string name="ghost_type_demon">Демон</string>
@@ -132,6 +133,7 @@
     <string name="ghost_type_goryo">Горё</string>
     <string name="ghost_type_hantu">Ханту</string>
     <string name="ghost_type_jinn">Джин</string>
+    <string name="ghost_type_kormos">Кормос</string>
     <string name="ghost_type_mare">Мара</string>
     <string name="ghost_type_moroi">Морой</string>
     <string name="ghost_type_myling">Мюлинг</string>

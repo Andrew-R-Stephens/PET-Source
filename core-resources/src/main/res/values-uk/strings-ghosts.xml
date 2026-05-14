@@ -6,6 +6,7 @@
     <string name="popup_ghost_info">Інформація</string>
     <string name="popup_ghost_huntdata">Дані полювання</string>
     <!-- Ghost Names -->
+    <string name="ghost_type_aswang">Асванг</string>
     <string name="ghost_type_banshee">Банші</string>
     <string name="ghost_type_dayan">Даян</string>
     <string name="ghost_type_demon">Демон</string>
@@ -14,6 +15,7 @@
     <string name="ghost_type_goryo">Горьо</string>
     <string name="ghost_type_hantu">Ханту</string>
     <string name="ghost_type_jinn">Джин</string>
+    <string name="ghost_type_kormos">Кормос</string>
     <string name="ghost_type_mare">Мара</string>
     <string name="ghost_type_moroi">Морой</string>
     <string name="ghost_type_myling">Мюлінг</string>

@@ -304,6 +304,7 @@
 
     <!-- Ghost Names -->
 
+    <string name="ghost_type_aswang">アスワン</string>
     <string name="ghost_type_banshee">バンシー</string>
     <string name="ghost_type_dayan">デヤン</string>
     <string name="ghost_type_demon">デーモン</string>
@@ -312,6 +313,7 @@
     <string name="ghost_type_goryo">御霊</string>
     <string name="ghost_type_hantu">ハントゥ</string>
     <string name="ghost_type_jinn">ジン</string>
+    <string name="ghost_type_kormos">"コルモス メアー "</string>
     <string name="ghost_type_mare">メア一</string>
     <string name="ghost_type_moroi">モ一ロイ</string>
     <string name="ghost_type_myling">マイリング</string>
