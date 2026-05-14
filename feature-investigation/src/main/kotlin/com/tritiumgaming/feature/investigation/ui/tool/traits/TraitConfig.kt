@@ -63,8 +63,6 @@ internal fun TraitConfig(
     colors: TraitListItemUiColors = TraitListItemUiColors()
 ) {
 
-    val traits = list
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
@@ -206,14 +204,14 @@ internal fun TraitConfig(
                 item(key = "anchor_spacer") { }
 
                 itemsIndexed(
-                    items = traits,
+                    items = list,
                     key = { index, item -> item.ghostTrait.id }
                 ) { index, trait ->
 
                     TraitListItem(
                         modifier = Modifier
                             .padding(
-                                bottom = if (index < traits.lastIndex) 8.dp else 0.dp
+                                bottom = if (index < list.lastIndex) 8.dp else 0.dp
                             )
                             .animateItem(),
                         item = trait,

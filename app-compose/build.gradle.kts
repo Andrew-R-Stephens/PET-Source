@@ -41,8 +41,8 @@ configure<ApplicationExtension> {
 
         minSdk = 23
         targetSdk = 36
-        versionCode = 135
-        versionName = "10.0.1-compose.a.3"
+        versionCode = 139
+        versionName = "10.4.0-compose.a.3"
 
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
