@@ -37,6 +37,7 @@
     <string name="ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
+    <string name="ghost_info_aswang"><![CDATA[<a>L\'Aswang est un chasseur sauvage qui préfère le frisson de la poursuite à la traque des joueurs cachés. Vous ne pourrez jamais semer ces fantômes\'il vous repère; il est donc conseillé d\'avoir toujours une cachette à portée de main.</a>]]></string>
     <string name="ghost_info_banshee" >
         <![CDATA[
             <a>Les banshees sont décrites comme des chasseurs naturels. Ils tenteront de traquer et d\'éliminer lentement les chasseurs de fantômes un par un en <font color=#ff6161>ciblant sélectivement un investigateur à la fois</font>.</a>
@@ -49,7 +50,7 @@
     </string>
     <string name="ghost_info_deogen" >
         <![CDATA[
-            <a>Le Deogen est un chasseur naturel. Les méthodes de cachette conventionnelles ne fonctionneront pas car il a un sens aigu pour flairer les proies. Vous pouvez courir… mais vous ne pouvez pas vous cacher. Répétez: N\'ESSAYEZ PAS DE VOUS CACHER. Si vous entendez des pas extrêmement rapides, comme un roulement de tambour, sortez IMMÉDIATEMENT de votre cachette.</a>
+            <a>Le Deogen est un chasseur naturel. Les méthodes de cachette conventionnelles ne fonctionneront pas, car il a un sens aigu pour flairer les proies. Vous pouvez courir… mais vous ne pouvez pas vous cacher. Répétez: N\'N\'ESSAYEZ PAS DE VOUS CACHER. Si vous entendez des pas extrêmement rapides, comme un roulement de tambour, sortez IMMÉDIATEMENT de votre cachette.</a>
         ]]>
     </string>
     <string name="ghost_info_goryo">
@@ -161,6 +162,7 @@
     <!--
         Strengths
     -->
+    <string name="ghost_strengths_aswang"><![CDATA[  <a>L\'Aswang possède l\'accélération en ligne de mire la plus rapide de tous les fantômes.</a> <a>Si un joueur utilise une cachette officielle, la prochaine chasse ne bénéficiera d\'aucun délai de grâce.</a>  ]]></string>
     <string name="ghost_strengths_banshee" >
         <![CDATA[
             <a>La Banshee se concentrera sur un joueur et passera à une nouvelle cible si la cible sélectionnée n\'est pas dans la zone de jeu.</a>
@@ -199,6 +201,7 @@
             <a>La vitesse d\'un djinn en fait un fantôme extrêmement difficile à échapper une fois qu\'il commence à chasser. Une fois que le djinn aura rattrapé un joueur, il ralentira progressivement et passera à des vitesses de chasse normales. Un djinn peut retirer instantanément 25 \% de santé mentale à un joueur à proximité si le courant est allumé.</a>
         ]]>
     </string>
+    <string name="ghost_strengths_kormos"><![CDATA[  <a>Bien qu\'aveugle, l\'ouïe d\'un Kormos est sans égale. Les joueurs devront se déplacer avec plus de prudence et de précision pour échapper à ce fantôme.</a>  ]]></string>
     <string name="ghost_strengths_mare" >
         <![CDATA[
             <a>Une jument tentera d\'éteindre les lumières pour se renforcer et chassera à 60\% si l\'alimentation est coupée. Il errera également dans d\'autres pièces ou dans les zones sombres de sa pièce préférée et pourra commencer une chasse à partir de ces endroits. Une jument a une probabilité accrue de détruire la source de lumière d\'une pièce lors d\'un événement.</a>
@@ -208,15 +211,15 @@
         <![CDATA[
             <a>Les Moroï profiteront pleinement de chaque morceau de santé mentale perdu. Moins de santé mentale d\'équipe produira des niveaux d\'agressivité plus élevés. À 0% de santé mentale moyenne, le fantôme deviendra rapide comme l\'éclair pendant une chasse. Sur la base de la santé mentale moyenne de l\'équipe, sa vitesse varie entre 1,5 m/s lorsqu\'elle est la plus lente et 2,25 m/s lorsqu\'elle est la plus rapide.</a>
 			<ul>
-				<li>Santé mentale  0\% \-   5\% : 2,25  m/s</li>
-				<li>Santé mentale  5\% \-  10\% : 2,164 m/s</li>
-				<li>Santé mentale 10\% \-  15\% : 2,081 m/s</li>
-				<li>Santé mentale 15\% \-  20\% : 1,998 m/s</li>
-				<li>Santé mentale 20\% \-  25\% : 1,915 m/s</li>
-				<li>Santé mentale 25\% \-  30\% : 1,832 m/s</li>
-				<li>Santé mentale 30\% \-  35\% : 1,749 m/s</li>
-				<li>Santé mentale 35\% \-  40\% : 1,66  m/s</li>
-				<li>Santé mentale 40\% \-  45\% : 1,583 m/s</li>
+				<li>Santé mentale  0\% \- 5\% : 2,25  m/s</li>
+				<li>Santé mentale  5\% \- 10\% : 2,164 m/s</li>
+				<li>Santé mentale 10\% \- 15\% : 2,081 m/s</li>
+				<li>Santé mentale 15\% \- 20\% : 1,998 m/s</li>
+				<li>Santé mentale 20\% \- 25\% : 1,915 m/s</li>
+				<li>Santé mentale 25\% \- 30\% : 1,832 m/s</li>
+				<li>Santé mentale 30\% \- 35\% : 1,749 m/s</li>
+				<li>Santé mentale 35\% \- 40\% : 1,66  m/s</li>
+				<li>Santé mentale 40\% \- 45\% : 1,583 m/s</li>
 				<li>Santé mentale 45\% \- 100\% : 1,5   m/s</li>
 			</ul>
             <a>Le fantôme a une capacité cachée \-\- une malédiction \-\- qui fait que n\'importe quel joueur perd sa santé mentale à un taux de 0,03\%/sec tant que le joueur affecté est dans la zone de jeu. Cet effet est causé si le joueur utilise et obtient une réponse de la Spirit Box. L\'effet se cumule au rythme normal auquel la santé mentale des joueurs s\'écoule. Les bougies n\'arrêtent pas les effets, mais la malédiction peut être levée en utilisant des pilules de santé mentale.</a>
@@ -304,6 +307,7 @@
     </string>
 
     <!-- Weaknesses -->
+    <string name="ghost_weaknesses_aswang"><![CDATA[  <a>L\'Aswang abandonne la chasse dès qu\'un joueur entre dans une cachette officielle.</a>  ]]></string>
     <string name="ghost_weaknesses_banshee" >
         <![CDATA[
             <a>Une Banshee s\'éloignera de sa chambre juste pour traquer sa cible. Les banshees ne tueront jamais son joueur non ciblé et, lors d\'une chasse, ils traverseront tout enquêteur qui ne les intéresse pas. Ils basent également leur chasse sur la santé mentale de sa cible au lieu de la santé mentale moyenne de l\'équipe. Une Banshee a une interaction spéciale avec le microphone parabolique car elle a une chance d\'émettre un gémissement faible et aigu.</a>
@@ -475,6 +479,7 @@
              </ul>
          ]]>
      </string>
+    <string name="ghost_huntingdata_kormos"><![CDATA[  <a>Pendant une chasse, le Kormos ne détectera les joueurs que par le biais du chat vocal, d\'équipements électroniques actifs ou de leurs mouvements.</a> <a>Sprinter dans la pièce préférée d\'un Kormos le mettra en colère, faisant passer son seuil de chasse de 50\% à 70\% de santé mentale.</a> <a>La portée de détection des mouvements varie selon la posture du joueur.</a>  <ul>  <li>Marcher accroupi: 10 m</li>  <li>Marcher debout: 15 m</li>  <li>Sprinter: 30 m</li>  </ul>  <a>Pour suivre les joueurs, le Kormos utilise les portées de mouvement ci\-dessus afin de placer des points de repère toutes les 5 à 10 secondes après chacune des actions suivantes (par ordre de priorité décroissante):</a>  <ul> <li>Sprinter</li>  <li>Marcher debout</li>  <li>Marcher en accroupi</li>  <li>Voix/Électronique</li>  </ul>  <a>Le Kormos suivra le point de passage le plus proche. Bien qu\'il n\'utilise pas la ligne de visée traditionnelle (LOS), la détection audio est considérée comme une ligne de visée, ce qui entraîne une accélération de la vitesse de poursuite.</a>  ]]></string>
     <string name="ghost_huntingdata_mare" >
          <![CDATA[
              <a>Chasse à 40\% de santé mentale si le courant est allumé.</a><br>
@@ -644,6 +649,7 @@
 </string>
 
 
+    <string name="ghost_huntingdata_aswang"><![CDATA[  <a>Vous ne pourrez pas semer ce fantôme, car il accélérera plus vite que n\'importe quel autre. Restez hors de son champ de vision ou trouvez la cachette la plus proche.</a> <a>Si un joueur utilise une cachette officielle, la chasse prendra fin immédiatement.</a> <a>Une chasse interrompue prématurément supprimera le délai de grâce pour la prochaine chasse de l\'Aswang.</a>  ]]></string>
     <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>Chasse à 50 %</a> La santé mentale est définie par défaut et est modifiée en fonction de la proximité et des mouvements du joueur.</a><br>
@@ -679,5 +685,7 @@ Il existe 3 états pour ce fantôme : Normal, Enragé et Affaibli.</a><br>
 <a>L\'Obambo commence en état Calme pendant 1 minute après l\'entrée initiale du joueur. Ensuite, il alternera entre les états Calme et Agressif toutes les 2 minutes. Cela peut même se produire pendant une chasse.</a>
 ]]>
 </string>
+    <string name="ghost_info_kormos"><![CDATA[  <a>Le Kormos est aveugle, mais utilise son ouïe fine pour traquer ses victimes. Il se montrera plus agressif envers ceux qui ne font pas preuve de prudence.</a>  ]]></string>
+    <string name="ghost_weaknesses_kormos"><![CDATA[  <a>Le Kormos est aveugle, il ne se fie donc pas à la vue pour chasser. Il utilise plutôt son ouïe pour détecter les joueurs.</a>  ]]></string>
 
 </resources>

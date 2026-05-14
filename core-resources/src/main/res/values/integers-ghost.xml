@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <integer name="ghost_hunt_speed_min_aswang">95</integer>
     <integer name="ghost_hunt_speed_min_banshee">102</integer>
     <integer name="ghost_hunt_speed_min_dayan">72</integer>
     <integer name="ghost_hunt_speed_min_demon">24</integer>
@@ -9,6 +10,7 @@
     <integer name="ghost_hunt_speed_min_goryo">102</integer>
     <integer name="ghost_hunt_speed_min_hantu">84</integer>
     <integer name="ghost_hunt_speed_min_jinn">102</integer>
+    <integer name="ghost_hunt_speed_min_kormos">102</integer>
     <integer name="ghost_hunt_speed_min_mare">102</integer>
     <integer name="ghost_hunt_speed_min_moroi">90</integer>
     <integer name="ghost_hunt_speed_min_myling">102</integer>
@@ -29,6 +31,7 @@
     <integer name="ghost_hunt_speed_min_yokai">102</integer>
     <integer name="ghost_hunt_speed_min_yurei">102</integer>
 
+    <integer name="ghost_hunt_speed_max_aswang">0</integer>
     <integer name="ghost_hunt_speed_max_banshee">-1</integer>
     <integer name="ghost_hunt_speed_max_dayan">135</integer>
     <integer name="ghost_hunt_speed_max_demon">180</integer>
@@ -37,6 +40,7 @@
     <integer name="ghost_hunt_speed_max_goryo">-1</integer>
     <integer name="ghost_hunt_speed_max_hantu">162</integer>
     <integer name="ghost_hunt_speed_max_jinn">150</integer>
+    <integer name="ghost_hunt_speed_max_kormos">132</integer>
     <integer name="ghost_hunt_speed_max_mare">-1</integer>
     <integer name="ghost_hunt_speed_max_moroi">135</integer>
     <integer name="ghost_hunt_speed_max_myling">-1</integer>

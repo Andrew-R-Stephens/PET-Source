@@ -37,6 +37,7 @@
     <string name="ghost_type_yurei">Yurei</string>
 
 
+    <string name="ghost_info_aswang"><![CDATA[ <a>Aswang je divoký lovec, který dává přednost vzrušení z honičky před hledáním hráčů z úkrytů. Tomuto duchovi nikdy neutečete, pokud vás uvidí, takže úkryt byste měli mít vždy připravený.</a> ]]></string>
     <string name="ghost_info_banshee" >
          <![CDATA[
              <a>Banshees jsou popisovány jako přirozené lovce. Pokusí se pomalu pronásledovat a sebrat lovce duchů jednoho po druhém <font color=#ff6161>selektivním zaměřením na jednoho vyšetřovatele</font>.</a>
@@ -158,6 +159,7 @@
          ]]>
      </string>
 
+    <string name="ghost_strengths_aswang"><![CDATA[ <a>Aswang má nejrychlejší zrychlení v přímé viditelnosti ze všech duchů.</a> <a>Pokud hráč použije oficiální úkryt, další lov nebude mít lhůtu.</a> ]]></string>
     <string name="ghost_strengths_banshee" >
          <![CDATA[
              <a>Banshee se zaměří na jednoho hráče a vymění se za nový cíl, pokud vybraný cíl není v herní oblasti.</a>
@@ -188,6 +190,7 @@
              <a>Jinnova rychlost z něj činí extrémně obtížného ducha uniknout, jakmile začne lovit. Jakmile Jinn dohoní hráče, postupně zpomalí a přepne na normální rychlost lovu. Jinn může okamžitě odstranit 25 % zdravého rozumu z blízkého hráče, pokud je zapnuté.</a>
          ]]>
      </string>
+    <string name="ghost_strengths_kormos"><![CDATA[ <a>Ačkoli je Kormos slepý, jeho sluch je bezkonkurenční. Hráči se budou muset pohybovat opatrněji a promyšleněji, aby se tomuto duchu vyhnuli.</a> ]]></string>
     <string name="ghost_strengths_mare" >
          <![CDATA[
              <a>Klisna se pokusí vypnout světla, aby se zmocnila, a bude lovit na 60 % v případě, že bude vypnuto. Bude také putovat do jiných místností nebo do tmavých oblastí své oblíbené místnosti a může z těchto míst zahájit lov. Klisna má zvýšenou pravděpodobnost, že zničí světelný zdroj v místnosti prostřednictvím události.</a>
@@ -279,6 +282,7 @@
          ]]>
      </string>
 
+    <string name="ghost_weaknesses_aswang"><![CDATA[ <a>Aswang se vzdá lovu ihned poté, co hráč vstoupí do oficiálního úkrytu.</a> ]]></string>
     <string name="ghost_weaknesses_banshee" >
          <![CDATA[
              <a>Banshee se bude toulat daleko od svého pokoje, jen aby sledoval svůj cíl. Banshees nikdy nezabije svého necílového hráče a během lovu projde přímo skrz každého vyšetřovatele, o kterého nemá zájem. Svůj lov také zakládá na příčetnosti svého cíle místo na průměrné příčetnosti týmu. Banshee má speciální interakci s parabolickým mikrofonem, protože má šanci vydat slabé, vysoké kvílení.</a>
@@ -309,6 +313,7 @@
              <a>Jinnové se při dosahování vysokých rychlostí spoléhají na zdroj energie mapy, takže hráči by měli hledat jistič budovy, aby odstranili Jinnovu schopnost. Jinn nebude schopen sám zapnout napájení.</a>
 ]]>
      </string>
+    <string name="ghost_weaknesses_kormos"><![CDATA[ <a>Kormos je slepý, takže při lovu nereaguje na vizuální prvky. Spoléhá se spíše na sluch, aby detekoval hráče.</a> ]]></string>
     <string name="ghost_weaknesses_mare" >
          <![CDATA[
              <a>Ponecháním rozsvícených světel v oblasti klisny snížíte její příčetnost při lovu z 60 % na 40 % průměrné příčetnosti. Zůstaňte proto v osvětlených prostorách, abyste omezili jeho agresivitu. Mare nemůže vypnout jistič, ale má schopnost okamžitě vypnout spínače světel, když je hráč aktivuje, což je událost, kterou lze velmi snadno rozpoznat.</a>
@@ -448,6 +453,7 @@
              </ul>
          ]]>
      </string>
+    <string name="ghost_huntingdata_kormos"><![CDATA[ <a>Během lovu Kormos detekuje hráče pouze prostřednictvím hlasového chatu, aktivního elektronického vybavení nebo pohybu hráče.</a> <a>Sprint v oblíbené místnosti Kormose ho rozzlobí a zvýší jeho lovecký práh z 50 % příčetnosti na 70 %.</a> <a>Dosah detekce pohybu se liší v závislosti na postoji hráče.</a> <ul> <li>Chůze v podřepu: 10 m</li> <li>Chůze ve stoje: 15 m</li> <li>Sprint: 30 m</li> </ul>  <a>Pro sledování hráčů Kormos používá výše uvedené rozsahy pohybu k umisťování bodů trasy každých 5–10 sekund po kterékoli z následujících akcí hráče (s prioritou odshora dolů):</a> <ul> <li>Sprint</li> <li>Chůze ve stoje</li> <li>Chůze při přikrčený</li> <li>Hlas/Elektronika</li> </ul> <a>Kormos bude sledovat nejbližší bod na trase. Ačkoli nepoužívá tradiční linii viditelnosti (LOS), detekce zvuku se počítá jako LOS, což vede ke zrychlení rychlosti honičky.</a> ]]></string>
     <string name="ghost_huntingdata_mare" >
          <![CDATA[
              <a>Loví při 40\% příčetnosti, pokud je zapnuté napájení.</a><br><br><a>Pokud je vypnuté napájení, loví při 60\% příčetnosti.</a>
@@ -606,6 +612,7 @@
 ]]>
 </string>
 
+    <string name="ghost_huntingdata_aswang"><![CDATA[ <a>Tomuto duchovi nebudete moci utéct, protože bude zrychlovat rychleji než kterýkoli jiný duch. Držte se mimo jeho dohled nebo najděte nejbližší úkryt.</a> <a>Pokud hráč použije oficiální úkryt, lov okamžitě skončí.</a> <a>Předčasně ukončený lov odebere lhůtu pro další lov Aswanga.</a> ]]></string>
     <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>Ve výchozím nastavení loví s 50% příčetností a je upravena kombinací blízkosti hráče a jeho pohybu.</a><br>
@@ -641,5 +648,6 @@
 <a>Obambo začíná v klidném stavu, který trvá 1 minutu po prvním vstupu hráče. Poté se každé 2 minuty přepíná mezi klidným a agresivním stavem. To se může stát i během lovu.</a>
 ]]>
 </string>
+    <string name="ghost_info_kormos"><![CDATA[ <a>Kormos je slepý, ale k lovu obětí využívá svůj zvýšený sluch. Bude agresivnější s těmi, kteří nechodí lehkovážně.</a> ]]></string>
 
 </resources>

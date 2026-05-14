@@ -38,6 +38,7 @@
     <string name="ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
+    <string name="ghost_info_aswang"><![CDATA[ <a>El Aswang es un cazador salvaje que prefiere la emoción de la persecución a buscar jugadores en sus escondites. Nunca podrás escapar de este fantasma si te ve, así que ten siempre un escondite preparado.</a>  ]]></string>
     <string name="ghost_info_banshee" >
         <![CDATA[
             <a>Los Banshees se describen como cazadores naturales. Intentarán acechar lentamente y eliminar a los cazadores de fantasmas uno por uno <font color=#ff6161>dirigiéndose selectivamente a un investigador a la vez</font>.</a>
@@ -68,6 +69,7 @@
             <a>Un Jinn obtiene sus habilidades cuando está encendido. Puede moverse muy rápido durante las cacerías y puede drenar la cordura absurdamente rápido. Los genios eran el depredador ápice en versiones anteriores de Phasmophobia, y hay una buena razón para ello. Se mueve a 2,5 m/s si persigue a un jugador lejano y el generador está encendido, y a 1,7 m/s si el generador está apagado y no persigue a nadie.</a>
         ]]>
     </string>
+    <string name="ghost_info_kormos"><![CDATA[  <a>El Kormos es ciego, pero usa su agudo oído para dar caza a sus víctimas. Será más agresivo con quienes no actúen con cautela.</a>  ]]></string>
     <string name="ghost_info_mare" >
         <![CDATA[
             <a>La Pesadilla es un fantasma que se vuelve <font color=#ff6161>más agresivo en la oscuridad</font>.</a>
@@ -161,6 +163,7 @@
     <!--
         Strengths
     -->
+    <string name="ghost_strengths_aswang"><![CDATA[  <a>El Aswang tiene la aceleración en línea de visión más rápida de todos los fantasmas.</a>  <a>Si un jugador usa un escondite oficial, la siguiente cacería no tendrá un período de gracia.</a>  ]]></string>
     <string name="ghost_strengths_banshee" >
         <![CDATA[
             <a>El Banshee se centrará en un jugador y cambiará a un nuevo objetivo si su objetivo seleccionado no está en el área de juego.</a>
@@ -199,6 +202,7 @@
             <a>La velocidad de un Jinn lo convierte en un fantasma extremadamente difícil de escapar una vez que comienza a cazar. Una vez que Jinn alcance a un jugador, desacelerará gradualmente y cambiará a velocidades de caza normales. Un Jinn puede eliminar instantáneamente un 25\% de cordura de un jugador cercano si está encendido.</a>
         ]]>
     </string>
+    <string name="ghost_strengths_kormos"><![CDATA[  <a>Aunque ciego, el oído de un Kormos es inigualable. Los jugadores deberán moverse con mayor cuidado y deliberación para evadir a este fantasma.</a>  ]]></string>
     <string name="ghost_strengths_mare" >
         <![CDATA[
             <a>Una Pesadilla intentará apagar las luces para potenciarse y cazará al 60\% si no hay electricidad. También deambulará por otras habitaciones o por áreas oscuras de su habitación preferida, y puede comenzar una cacería desde esos lugares. Una Pesadilla tiene una mayor probabilidad de destruir la fuente de luz de una habitación a través de un evento.</a>
@@ -334,6 +338,7 @@
             <a>Los genios dependen de la fuente de energía del mapa para alcanzar sus altas velocidades, por lo que los jugadores deben buscar el disyuntor del edificio para eliminar la habilidad de los genios. Un Jinn no podrá volverse el poder sobre sí mismo.</a>
 		]]>
     </string>
+    <string name="ghost_weaknesses_kormos"><![CDATA[  <a>El Kormos es ciego, por lo que no se guía por la vista al cazar. En cambio, se basa en el oído para detectar a los jugadores.</a>  ]]></string>
     <string name="ghost_weaknesses_mare" >
         <![CDATA[
             <a>Mantener las luces encendidas en el área de una Pesadilla reducirá su preferencia de cordura por la caza del 60\% al 40\% de cordura promedio. Por lo tanto, permanezca en áreas iluminadas para limitar su agresión. Una Pesadilla no puede apagar el interruptor, pero tiene la capacidad de apagar instantáneamente los interruptores de luz cuando los activa un jugador, lo cual es un evento que se puede reconocer muy fácilmente.</a>
@@ -473,6 +478,7 @@
              </ul>
          ]]>
      </string>
+    <string name="ghost_huntingdata_kormos"><![CDATA[  <a>Durante una cacería, el Kormos solo detectará a los jugadores mediante el chat de voz, el equipo electrónico activo o el movimiento del jugador.</a>  <a>Correr dentro de la habitación favorita de un Kormos lo enfurecerá, aumentando su umbral de caza del 50 % al 70 % de cordura.</a>  <a>El rango de detección de movimiento varía según la postura del jugador.</a>  <ul>  <li>Caminar agachado: 10 m</li>  <li>Caminar de pie: 15 m</li>  <li>Correr: 30 m</li>  </ul>  <a>Para rastrear a los jugadores, el Kormos utiliza los rangos de movimiento anteriores para colocar puntos de referencia cada 5-10 segundos después de cualquiera de las siguientes acciones del jugador (con prioridad de arriba a abajo):</a>  <ul> <li>Correr</li>  <li>Caminar de pie</li>  <li>Caminar de pie agachado</li>  <li>Voz/Electrónica</li>  </ul>  <a>El Kormos rastreará el punto de referencia más cercano. Aunque no utiliza la línea de visión (LOS) tradicional, la detección de audio cuenta como LOS, lo que acelera la velocidad de seguimiento.</a>  ]]></string>
     <string name="ghost_huntingdata_mare" >
          <![CDATA[
              <a>Caza al 40\% de cordura si el poder está encendido.</a><br><br><a>Caza al 60\% de cordura si no hay electricidad.</a>
@@ -669,5 +675,7 @@
 <a>El Obambo comienza en estado Tranquilo, que dura 1 minuto después de la entrada inicial del jugador. Luego, alternará entre los estados Tranquilo y Agresivo cada 2 minutos. Esto puede ocurrir incluso durante una caza.</a>
 ]]>
 </string>
+    <string name="ghost_weaknesses_aswang"><![CDATA[ <a>El Aswang abandona la caza inmediatamente después de que un jugador entre en un escondite oficial.</a>  ]]></string>
+    <string name="ghost_huntingdata_aswang"><![CDATA[  <a>No podrás escapar de este fantasma, ya que acelerará más rápido que cualquier otro. Mantente fuera de su línea de visión o busca el escondite más cercano.</a>  <a>Si un jugador usa un escondite oficial, la cacería terminará inmediatamente.</a>  <a>Una cacería que haya terminado prematuramente eliminará el período de gracia para la siguiente cacería del Aswang.</a>  ]]></string>
 
 </resources>

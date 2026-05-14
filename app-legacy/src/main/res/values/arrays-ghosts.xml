@@ -6,6 +6,7 @@
     -->
     <!-- Ghost Names -->
     <string-array name="ghost_names">
+        <item>@string/ghost_type_aswang</item>
         <item>@string/ghost_type_banshee</item>
         <item>@string/ghost_type_dayan</item>
         <item>@string/ghost_type_demon</item>
@@ -14,6 +15,7 @@
         <item>@string/ghost_type_goryo</item>
         <item>@string/ghost_type_hantu</item>
         <item>@string/ghost_type_jinn</item>
+        <item>@string/ghost_type_kormos</item>
         <item>@string/ghost_type_mare</item>
         <item>@string/ghost_type_moroi</item>
         <item>@string/ghost_type_myling</item>
@@ -37,6 +39,7 @@
 
     <!-- Ghost Descriptions -->
     <string-array name="ghost_info_array">
+        <item>@string/ghost_info_aswang</item>
         <item>@string/ghost_info_banshee</item>
         <item>@string/ghost_info_dayan</item>
         <item>@string/ghost_info_demon</item>
@@ -45,6 +48,7 @@
         <item>@string/ghost_info_goryo</item>
         <item>@string/ghost_info_hantu</item>
         <item>@string/ghost_info_jinn</item>
+        <item>@string/ghost_info_kormos</item>
         <item>@string/ghost_info_mare</item>
         <item>@string/ghost_info_moroi</item>
         <item>@string/ghost_info_myling</item>
@@ -68,6 +72,7 @@
 
     <!-- Ghost Strengths -->
     <string-array name="ghost_strengths_array">
+        <item>@string/ghost_strengths_aswang</item>
         <item>@string/ghost_strengths_banshee</item>
         <item>@string/ghost_strengths_dayan</item>
         <item>@string/ghost_strengths_demon</item>
@@ -76,6 +81,7 @@
         <item>@string/ghost_strengths_goryo</item>
         <item>@string/ghost_strengths_hantu</item>
         <item>@string/ghost_strengths_jinn</item>
+        <item>@string/ghost_strengths_kormos</item>
         <item>@string/ghost_strengths_mare</item>
         <item>@string/ghost_strengths_moroi</item>
         <item>@string/ghost_strengths_myling</item>
@@ -99,6 +105,7 @@
 
     <!-- Ghost Weaknesses -->
     <string-array name="ghost_weaknesses_array">
+        <item>@string/ghost_weaknesses_aswang</item>
         <item>@string/ghost_weaknesses_banshee</item>
         <item>@string/ghost_weaknesses_dayan</item>
         <item>@string/ghost_weaknesses_demon</item>
@@ -107,6 +114,7 @@
         <item>@string/ghost_weaknesses_goryo</item>
         <item>@string/ghost_weaknesses_hantu</item>
         <item>@string/ghost_weaknesses_jinn</item>
+        <item>@string/ghost_weaknesses_kormos</item>
         <item>@string/ghost_weaknesses_mare</item>
         <item>@string/ghost_weaknesses_moroi</item>
         <item>@string/ghost_weaknesses_myling</item>
@@ -130,6 +138,7 @@
 
     <!-- Ghost Weaknesses -->
     <string-array name="ghost_huntdata_array">
+        <item>@string/ghost_huntingdata_aswang</item>
         <item>@string/ghost_huntingdata_banshee</item>
         <item>@string/ghost_huntingdata_dayan</item>
         <item>@string/ghost_huntingdata_demon</item>
@@ -138,6 +147,7 @@
         <item>@string/ghost_huntingdata_goryo</item>
         <item>@string/ghost_huntingdata_hantu</item>
         <item>@string/ghost_huntingdata_jinn</item>
+        <item>@string/ghost_huntingdata_kormos</item>
         <item>@string/ghost_huntingdata_mare</item>
         <item>@string/ghost_huntingdata_moroi</item>
         <item>@string/ghost_huntingdata_myling</item>
@@ -161,6 +171,7 @@
 
     <!-- Ghost NORMAL Evidence Arrays -->
     <integer-array name="ghost_evidence_arrays">
+        <item>@array/ghost_evidence_aswang</item>
         <item>@array/ghost_evidence_banshee</item>
         <item>@array/ghost_evidence_dayan</item>
         <item>@array/ghost_evidence_demon</item>
@@ -169,6 +180,7 @@
         <item>@array/ghost_evidence_goryo</item>
         <item>@array/ghost_evidence_hantu</item>
         <item>@array/ghost_evidence_jinn</item>
+        <item>@array/ghost_evidence_kormos</item>
         <item>@array/ghost_evidence_mare</item>
         <item>@array/ghost_evidence_moroi</item>
         <item>@array/ghost_evidence_myling</item>
@@ -192,6 +204,7 @@
 
     <!-- Ghost NORMAL Evidence Arrays -->
     <integer-array name="ghost_requiredevidence_arrays">
+        <item>@array/ghost_requiredevidence_aswang</item>
         <item>@array/ghost_requiredevidence_banshee</item>
         <item>@array/ghost_requiredevidence_dayan</item>
         <item>@array/ghost_requiredevidence_demon</item>
@@ -200,6 +213,7 @@
         <item>@array/ghost_requiredevidence_goryo</item>
         <item>@array/ghost_requiredevidence_hantu</item>
         <item>@array/ghost_requiredevidence_jinn</item>
+        <item>@array/ghost_requiredevidence_kormos</item>
         <item>@array/ghost_requiredevidence_mare</item>
         <item>@array/ghost_requiredevidence_moroi</item>
         <item>@array/ghost_requiredevidence_myling</item>
@@ -224,6 +238,11 @@
     <!--
         All NORMAL Ghost Evidence [BY ID]
     -->
+    <integer-array name="ghost_evidence_aswang">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_book</item>
+    </integer-array>
     <integer-array name="ghost_evidence_banshee">
         <item>@integer/evidence_id_dots</item>
         <item>@integer/evidence_id_ultraviolet</item>
@@ -263,6 +282,11 @@
         <item>@integer/evidence_id_emf</item>
         <item>@integer/evidence_id_ultraviolet</item>
         <item>@integer/evidence_id_temperatures</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_kormos">
+        <item>@integer/evidence_id_orbs</item>
+        <item>@integer/evidence_id_box</item>
+        <item>@integer/evidence_id_ultraviolet</item>
     </integer-array>
     <integer-array name="ghost_evidence_mare">
         <item>@integer/evidence_id_orbs</item>
@@ -424,6 +448,8 @@
     <!--
         All NIGHTMARE Ghost Evidence [BY ID]
     -->
+    <integer-array name="ghost_requiredevidence_aswang">
+    </integer-array>
     <integer-array name="ghost_requiredevidence_banshee">
     </integer-array>
     <integer-array name="ghost_requiredevidence_dayan">
@@ -442,6 +468,8 @@
         <item>@integer/evidence_id_temperatures</item>
     </integer-array>
     <integer-array name="ghost_requiredevidence_jinn">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_kormos">
     </integer-array>
     <integer-array name="ghost_requiredevidence_mare">
     </integer-array>

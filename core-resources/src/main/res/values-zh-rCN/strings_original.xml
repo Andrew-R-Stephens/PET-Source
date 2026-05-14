@@ -292,12 +292,14 @@
 
     <!-- Ghost description -->
 
+    <string name="ghost_info_aswang"><![CDATA[  <a>阿斯旺是野性十足的猎手，比起搜寻藏身之处的玩家，它更喜欢追逐的刺激。一旦被它发现，你永远也跑不掉，所以务必时刻准备好藏身之处。</a>  ]]></string>
     <string name="ghost_info_banshee"><![CDATA[<a>女妖被描述为天生的猎手。他们会尝试通过<font color=#ff6161>一次有选择地针对一名调查员</font>来缓慢地跟踪并逐一抓捕幽灵猎人。</a>]]></string>
     <string name="ghost_info_demon"><![CDATA[<a>恶魔是最难遇到的鬼魂之一。由于具有高度攻击性，它<font color=#ff6161>比其他幽灵更频繁地发起攻击</font>，因此建议使用十字架来防止狩猎。不过，向显灵板向恶魔提出成功的问题并不会耗尽玩家的理智。</a>]]></string>
     <string name="ghost_info_deogen"><![CDATA[<a>德奥根犬是天生的猎手。传统的隐藏方法不起作用，因为它对嗅出猎物有敏锐的感觉。你可以逃跑……但你无法隐藏。重复一遍：不要试图隐藏。如果您听到极快的脚步声（如鼓声），请立即离开藏身之处。</a>]]></string>
     <string name="ghost_info_goryo"><![CDATA[<a>很少有人会在它喜欢的房间之外看到高丽。高丽人还<font color=#ff6161>非常不喜欢在有人在附近时暴露自己</font>。这使得看到 D.O.T.S.如果不通过摄像机远程查看，这是不可能的。</a>]]></string>
     <string name="ghost_info_hantu"><![CDATA[<a>汉图<font color=#ff6161>喜欢较冷的温度</font>，这将使其能够在狩猎过程中快速移动。这意味着必须启用断路器才能提高闹鬼区域外的整体温度，从而降低 Hantu 的移动速度。</a>]]></string>
     <string name="ghost_info_jinn"><![CDATA[<a>精灵通过通电获得能力。它可以在狩猎时移动得非常快，并且可以以惊人的速度耗尽理智。在早期版本的恐惧症中，精灵是顶级掠食者，这是有充分理由的。如果追赶远处的玩家且发电机已打开，则它的移动速度为 2.5 m/s；如果发电机关闭且未追赶某人，则其移动速度为 1.7 m/s。</a>]]></string>
+    <string name="ghost_info_kormos"><![CDATA[  <a>科尔莫斯双目失明，但凭借其敏锐的听觉追捕猎物。对于那些不谨慎行事的人，它会更加咄咄逼人。</a>  ]]></string>
     <string name="ghost_info_mare"><![CDATA[<a>母马是一种<font color=#ff6161>在黑暗中变得更具攻击性</font>的幽灵。</a>]]></string>
     <string name="ghost_info_moroi"><![CDATA[<a>莫里人会夺走生者的理智。当受害者的理智降低时，诸井人就会变得更强大。尽可能保持理智，以避免不必要的攻击行为。</a>]]></string>
     <string name="ghost_info_myling"><![CDATA[<a>Myling 会发出奇怪的声音，抛物面麦克风可以拾取这些声音。在狩猎期间，它的脚步声也只能在电子干扰范围（约 10 米）内听到。</a>]]></string>
@@ -322,6 +324,7 @@
     <string name="ghost_strengths_goryo"><![CDATA[<a>高丽通常只在附近没有人的情况下才会出现在镜头前。这可能会导致收集适当证据时出现问题，因为它可能会导致否定 D.O.T.S。太早了。</a>]]></string>
     <string name="ghost_strengths_hantu"><![CDATA[<a>较低的温度使 Hantu 能够以更快的速度移动。视线不会影响 Hantu 的速度。</a>]]></string>
     <string name="ghost_strengths_jinn"><![CDATA[<a>精灵的速度使其成为一旦开始狩猎就极难逃脱的幽灵。一旦精灵追上玩家，它就会逐渐减速并切换到正常的狩猎速度。如果电源开启，精灵可以立即从附近的玩家身上移除 25\% s 点生命力。</a>]]></string>
+    <string name="ghost_strengths_kormos"><![CDATA[  <a>虽然双目失明，但科尔莫斯的听觉却无人能及。玩家需要更加谨慎、小心地移动才能躲避这个幽灵。</a>  ]]></string>
     <string name="ghost_strengths_mare"><![CDATA[<a>母马会尝试关闭灯来增强自身能量，并在 60 度时捕猎\% s（如果电源关闭）。它也会徘徊到其他房间或它喜欢的房间的黑暗区域，并可能从这些位置开始狩猎。母马通过事件破坏房间光源的可能性更大。</a>]]></string>
     <string name="ghost_strengths_moroi"><![CDATA[<a>诸井人将充分利用失去的每一点理智。团队理智越低，攻击性就会越高。当平均理智值为 0\% a 时，幽灵在狩猎时会变得闪电般快。根据团队理智的平均水平，它的速度范围在最慢 1.5 m/s 到最快 2.25 m/s 之间。</a><br><br><a>幽灵拥有一项隐藏能力 -诅咒——只要受影响的玩家在游戏区域内，就会导致任何玩家以 0.03%/秒的速度消耗理智。如果玩家使用灵盒并得到灵盒的响应，就会产生此效果。该效果会在玩家理智消耗的正常速度之上叠加。蜡烛不会阻止效果，但使用理智药丸可以解除诅咒。</a>]]></string>
     <string name="ghost_strengths_myling"><![CDATA[<a>在狩猎时，狐灵不像其他幽灵那样发声。您只能在电子干扰附近检测到他们的脚步声和声音。</a>]]></string>
@@ -341,12 +344,14 @@
     <string name="ghost_strengths_yokai"><![CDATA[<a>在妖怪附近说话会激怒它，将狩猎时的最低首选理智水平提高到 80%，从而增加其攻击的可能性。</a>]]></string>
     <string name="ghost_strengths_yurei"><![CDATA[<a>尤里的会掉落玩家的当他们看着它时，理智会比任何其他幽灵快得多——但即使玩家被拒绝，也会降低理智。Yurei 还可以立即从附近的任何玩家身上夺走 15\% s 点生命值；当这种情况发生时，房间的门总是会自动关闭（任何鬼魂都可能这样做，但尤丽的可能性更大）。</a>]]></string>
 
+    <string name="ghost_weaknesses_aswang"><![CDATA[  <a>玩家进入官方藏身处后，阿斯旺会立即放弃追捕。</a>  ]]></string>
     <string name="ghost_weaknesses_banshee"><![CDATA[<a>女妖会远离自己的房间，只是为了跟踪目标。女妖永远不会杀死它的非目标玩家，在狩猎过程中它会直接穿过任何它不感兴趣的调查员。它还根据目标的理智程度而不是团队的平均理智程度来进行狩猎。Banshee 与抛物面麦克风有特殊的互动，因为它有机会发出微弱的高音调哀号。</a>]]></string>
     <string name="ghost_weaknesses_demon"><![CDATA[<a>与其他幽灵不同，通过显灵板向恶魔提出成功的问题不会降低玩家的忠诚度。理智。这使得显灵板成为对抗恶魔的非常有用的工具。恶魔<font color=#ff6161>害怕十字架</font>，通过将十字架的有效范围扩大到 5 米（其他幽灵的正常范围为 3 米），提高了其对抗恶魔的有效性。</a>]]></string>
     <string name="ghost_weaknesses_deogen"><![CDATA[<a>德根号会追踪猎物直至精疲力竭，但它永远不会超过猎物。继续前进，对抗这个幽灵，并确保提前计划好你的路线。与这个幽灵保持在视线范围内，你会没事的，因为当它靠近视线范围内最近的玩家时，它只能以 0.4 m/s 的速度移动。只要您在视线范围内，即使您正在走路，它也永远无法抓住您。Deogen 只会在 40\% sanity 时进行狩猎。</a>]]></string>
     <string name="ghost_weaknesses_goryo"><![CDATA[<a>高丽通常会呆在它们出没的地点内或非常靠近它们出没的地点。这样可以更轻松地收集证据。</a>]]></string>
     <string name="ghost_weaknesses_hantu"><![CDATA[<a>在温暖的地区，汉图人的移动速度会比正常情况下慢。狩猎时，如果断路器关闭，Hantu 会像玩家一样产生冰冻气息，但这种效果不仅限于幽灵房间或房间的温度。</a>]]></string>
     <string name="ghost_weaknesses_jinn"><![CDATA[<a>精灵依靠地图的电源来实现高速，因此玩家应该寻找建筑物的断路器以消除精灵的能力。精灵无法自行开启电源。</a>]]></string>
+    <string name="ghost_weaknesses_kormos"><![CDATA[  <a>科尔莫斯是盲的，所以它在狩猎时不会依靠视觉。相反，它依靠听觉来发现玩家。</a>  ]]></string>
     <string name="ghost_weaknesses_mare"><![CDATA[<a>让母马所在区域的灯一直亮着，会将其狩猎时的理智偏好从 60\% to 40\% a 平均理智值降低。因此，留在明亮的地方以限制其攻击性。母马无法关闭断路器，但它确实能够在玩家激活电灯开关时立即关闭电灯开关，这是一个很容易识别的事件。</a>]]></string>
     <string name="ghost_weaknesses_moroi"><![CDATA[<a>诸井人对涂抹棒非常敏感。点燃附近的一个会使诸井失明 12 秒。</a>]]></string>
     <string name="ghost_weaknesses_myling"><![CDATA[<a>Mylings 会更频繁地在抛物面麦克风中发出超自然声音。</a>]]></string>
@@ -374,6 +379,7 @@
     <string name="ghost_huntingdata_goryo"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
     <string name="ghost_huntingdata_hantu"><![CDATA[<a>狩猎温度为 50\% S。</a><ul><li>15°C+ = 1.40 m/s</li><li>12°C  = 1.75 m/s</li><li> 9°C  = 2.10 m/s</li><li> 6°C  = 2.30 m/s</li><li> 3°C  = 2.50 m/s</li><li> 0° C  = 2.70 m/s</li></ul>]]></string>
     <string name="ghost_huntingdata_jinn"><![CDATA[<a>以 50\% S 强度进行狩猎。</a><ul><li>以 2.5 m/s 的速度移动，同时追逐 3 米以上的调查员且保险丝盒已打开。</li><li>如果不追赶任何人，移动速度为 1.7 m/s。</li></ul>]]></string>
+    <string name="ghost_huntingdata_kormos"><![CDATA[  <a>狩猎期间，科尔莫斯只会通过语音聊天、激活的电子设备或玩家移动来探测玩家。</a>  <a>在科尔莫斯最喜欢的房间内奔跑会激怒它，使其狩猎阈值从 50% 理智值提升至 70%。</a>  <a>移动探测范围取决于玩家的姿态。</a>  <ul>  <li>蹲伏行走：10 米</li>  <li>站立行走：15 米</li>  <li>奔跑：30 米</li>  </ul>  <a>为了追踪玩家，科尔莫斯会根据上述移动范围，在玩家执行以下任何动作后（优先级从高到低）每隔 5–10 秒放置一个路点：</a>  <ul>  <li>奔跑</li>  <li>站立行走</li>  <li>蹲伏行走</li>  <li>语音/电子设备</li>  </ul>  <a>科尔莫斯会追踪最近的航点。虽然它不使用传统的视线（LOS），但音频检测也算作视线，从而加快追击速度。</a>  ]]></string>
     <string name="ghost_huntingdata_mare"><![CDATA[<a>如果电源开启，则以 40\% S 强度进行搜寻。</a><br><br><a>如果电源关闭，则以 60\% S强度进行搜寻。</a>]]></string>
     <string name="ghost_huntingdata_moroi"><![CDATA[<a>以 50\% S 理智值进行狩猎。</a><ul><li>理智值 0% - 5% ：2.25 m/s</li><li>理智值 5% - 10% ：2.164 m/s</li><li>健全性 10% - 15%：2.081 m/s</li><li>健全性 15% - 20%：1.998 m/s</li><li>健全性 20% - 25% : 1.915 m/s</li><li>Sanity 25% - 30% : 1.832 m/s</li><li>Sanity 30% - 35% : 1.749 m/s</li><li>Sanity 35% - 40%：1.66 m/s</li><li>健全性 40% - 45%：1.583 m/s</li><li>健全性 45% - 100%：1.5 m/s</li></ul>]]></string>
     <string name="ghost_huntingdata_myling"><![CDATA[<a>狩猎强度为 50\% S。</a>]]></string>
@@ -1020,6 +1026,7 @@
     </string>
 
 
+    <string name="ghost_huntingdata_aswang"><![CDATA[  <a>你无法摆脱这个幽灵，因为它的加速比任何其他幽灵都快。请避开它的视线或找到最近的藏身之处。</a>  <a>如果玩家使用官方提供的藏身之处，狩猎将立即结束。</a>  <a>提前结束的狩猎将取消阿斯旺下次狩猎的宽限期。</a>  ]]></string>
     <string name="ghost_huntingdata_dayan" >
     <![CDATA[
     默认情况下，它在理智值达到 50% 时开始狩猎，并会根据玩家的距离和移动状态进行调整。移动。</a><br>
@@ -1227,5 +1234,6 @@
     <string name="tool_timer_label_uv_lifetime">紫外线持续时间</string>
     <string name="objectives_title_firstname">名字</string>
     <string name="objectives_notice_response_type">注：高于“中等”难度的模式不显示响应类型</string>
+    <string name="ghost_strengths_aswang"><![CDATA[  <a>阿斯旺是所有幽灵中视线加速最快的。</a>  <a>如果玩家使用官方藏身点，下次狩猎将没有宽限期。</a>  ]]></string>
 
 </resources>

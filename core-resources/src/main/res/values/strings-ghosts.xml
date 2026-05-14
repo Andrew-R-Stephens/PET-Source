@@ -8,6 +8,7 @@
     <string name="popup_ghost_huntdata">Hunting Data</string>
 
     <!-- Ghost Names -->
+    <string name="ghost_type_aswang" translatable="false">Aswang</string>
     <string name="ghost_type_banshee">Banshee</string>
     <string name="ghost_type_dayan">Dayan</string>
     <string name="ghost_type_demon">Demon</string>
@@ -16,6 +17,7 @@
     <string name="ghost_type_goryo">Goryo</string>
     <string name="ghost_type_hantu">Hantu</string>
     <string name="ghost_type_jinn">Jinn</string>
+    <string name="ghost_type_kormos" translatable="false">Kormos</string>
     <string name="ghost_type_mare">Mare</string>
     <string name="ghost_type_moroi">Moroi</string>
     <string name="ghost_type_myling">Myling</string>
@@ -37,39 +39,46 @@
     <string name="ghost_type_yurei">Yurei</string>
     
     <!-- Ghost IDs -->
-    <string name="ghost_id_banshee" translatable="false">0</string>
-    <string name="ghost_id_dayan" translatable="false">1</string>
-    <string name="ghost_id_demon" translatable="false">2</string>
-    <string name="ghost_id_deogen" translatable="false">3</string>
-    <string name="ghost_id_gallu" translatable="false">4</string>
-    <string name="ghost_id_goryo" translatable="false">5</string>
-    <string name="ghost_id_hantu" translatable="false">6</string>
-    <string name="ghost_id_jinn" translatable="false">7</string>
-    <string name="ghost_id_mare" translatable="false">8</string>
-    <string name="ghost_id_moroi" translatable="false">9</string>
-    <string name="ghost_id_myling" translatable="false">10</string>
-    <string name="ghost_id_obake" translatable="false">11</string>
-    <string name="ghost_id_obambo" translatable="false">12</string>
-    <string name="ghost_id_oni" translatable="false">13</string>
-    <string name="ghost_id_onryo" translatable="false">14</string>
-    <string name="ghost_id_phantom" translatable="false">15</string>
-    <string name="ghost_id_poltergeist" translatable="false">16</string>
-    <string name="ghost_id_raiju" translatable="false">17</string>
-    <string name="ghost_id_revenant" translatable="false">18</string>
-    <string name="ghost_id_shade" translatable="false">19</string>
-    <string name="ghost_id_spirit" translatable="false">20</string>
-    <string name="ghost_id_thaye" translatable="false">21</string>
-    <string name="ghost_id_thetwins" translatable="false">22</string>
-    <string name="ghost_id_themimic" translatable="false">23</string>
-    <string name="ghost_id_wraith" translatable="false">24</string>
-    <string name="ghost_id_yokai" translatable="false">25</string>
-    <string name="ghost_id_yurei" translatable="false">26</string>
+    <string name="ghost_id_aswang" translatable="false">0</string>
+    <string name="ghost_id_banshee" translatable="false">1</string>
+    <string name="ghost_id_dayan" translatable="false">2</string>
+    <string name="ghost_id_demon" translatable="false">3</string>
+    <string name="ghost_id_deogen" translatable="false">4</string>
+    <string name="ghost_id_gallu" translatable="false">5</string>
+    <string name="ghost_id_goryo" translatable="false">6</string>
+    <string name="ghost_id_hantu" translatable="false">7</string>
+    <string name="ghost_id_jinn" translatable="false">8</string>
+    <string name="ghost_id_kormos" translatable="false">9</string>
+    <string name="ghost_id_mare" translatable="false">10</string>
+    <string name="ghost_id_moroi" translatable="false">11</string>
+    <string name="ghost_id_myling" translatable="false">12</string>
+    <string name="ghost_id_obake" translatable="false">13</string>
+    <string name="ghost_id_obambo" translatable="false">14</string>
+    <string name="ghost_id_oni" translatable="false">15</string>
+    <string name="ghost_id_onryo" translatable="false">16</string>
+    <string name="ghost_id_phantom" translatable="false">17</string>
+    <string name="ghost_id_poltergeist" translatable="false">18</string>
+    <string name="ghost_id_raiju" translatable="false">19</string>
+    <string name="ghost_id_revenant" translatable="false">20</string>
+    <string name="ghost_id_shade" translatable="false">21</string>
+    <string name="ghost_id_spirit" translatable="false">22</string>
+    <string name="ghost_id_thaye" translatable="false">23</string>
+    <string name="ghost_id_thetwins" translatable="false">24</string>
+    <string name="ghost_id_themimic" translatable="false">25</string>
+    <string name="ghost_id_wraith" translatable="false">26</string>
+    <string name="ghost_id_yokai" translatable="false">27</string>
+    <string name="ghost_id_yurei" translatable="false">28</string>
 
 
     <!-- Ghost description -->
+    <string name="ghost_info_aswang" >
+            <![CDATA[
+                <a>The Aswang is a feral hunter, preferring the thrill of a chase over seeking players out of hiding places. You will never outrun this ghost if it sees you, so a hiding spot should be ready at all times.</a>
+            ]]>
+        </string>
     <string name="ghost_info_banshee" >
             <![CDATA[
-                <a>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>.</a>
+                <a>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one\-by\-one by <font color=#ff6161>selectively targeting one investigator at a time</font>.</a>
             ]]>
         </string>
     <string name="ghost_info_dayan">
@@ -105,6 +114,11 @@
     <string name="ghost_info_jinn" >
             <![CDATA[
                 <a>A Jinn gets its abilities from the power being on. It can move very quick huring hunts and it can drain sanity absurdly fast. Jinns were the apex predator back in earlier versions of Phasmophobia, and there\'s good reason for that. It moves at 2.5 m/s if chasing a far away player and the generator is on, and 1.7 m/s if the generator is off and not chasing someone.</a>
+            ]]>
+        </string>
+    <string name="ghost_info_kormos" >
+            <![CDATA[
+                <a>The Kormos is blind but uses its heightened hearing to hunt down victims. It will be more aggressive with those who do not tread lightly.</a>
             ]]>
         </string>
     <string name="ghost_info_mare" >
@@ -206,6 +220,12 @@
     <!--
         Strengths
     -->
+    <string name="ghost_strengths_aswang" >
+            <![CDATA[
+                <a>The Aswang has the fastest line\-of\-sight acceleration of any ghost.</a>
+                <a>If a player uses an official hiding spot, the next hunt will not have a grace period.</a>
+            ]]>
+        </string>
     <string name="ghost_strengths_banshee" >
             <![CDATA[
                 <a>The Banshee will focus on one player, and will swap to a new target if their selected target is not in the play-area.</a>
@@ -244,6 +264,11 @@
     <string name="ghost_strengths_jinn" >
             <![CDATA[
                 <a>A Jinn\'s speed makes it an extremely difficult ghost to escape from once it begins hunting. Once the Jinn catches up to a player, it will deccelerate gradually and switch to normal hunting speeds. A Jinn may instantly remove 25\% sanity from a nearby player if the power is on.</a>
+            ]]>
+        </string>
+    <string name="ghost_strengths_kormos" >
+            <![CDATA[
+                <a>Though blind, the hearing of a Kormos is unmatched. Players will find themselves needing to move with more careful, deliberate movements in order to evade this ghost.</a>
             ]]>
         </string>
     <string name="ghost_strengths_mare" >
@@ -344,6 +369,11 @@
         </string>
 
     <!-- Weaknesses -->
+    <string name="ghost_weaknesses_aswang" >
+            <![CDATA[
+                <a>The Aswang gives up the hunt immediately after a player enters an official hiding spot.</a>
+            ]]>
+        </string>
     <string name="ghost_weaknesses_banshee" >
             <![CDATA[
                 <a>A Banshee will wander far from its room just to stalk its target. Banshees will never kill its non-target player, and during a hunt it will walk straight through any investigator who it isn\'t interested in. It also bases its hunt on the Sanity of its target instead of the average Sanity of the team. A Banshee has a special interaction with the Parabolic Microphone as it has a chance to emmit a faint, high pitched wail.</a>
@@ -382,6 +412,11 @@
     <string name="ghost_weaknesses_jinn" >
             <![CDATA[
                 <a>Jinns rely on the map\'s power source to achieve their high speeds, so players should look for the building\'s circuit breaker in order to remove the Jinn\'s ability. A Jinn will not be able to turn the power on itself.</a>
+            ]]>
+        </string>
+    <string name="ghost_weaknesses_kormos" >
+            <![CDATA[
+                <a>The Kormos is blind, so it does not act on visuals when hunting. Rather, it relies on hearing to detect players.</a>
             ]]>
         </string>
     <string name="ghost_weaknesses_mare" >
@@ -489,6 +524,13 @@
                 <a>Completely ignores Average Sanity.</a>
             ]]>
         </string>
+    <string name="ghost_huntingdata_aswang" >
+            <![CDATA[
+                <a>You will not be able to outrun this ghost, as it will accelerate faster than any other ghost. Stay out of it\'s line\-of\-sight or find the nearest hiding spot.</a>
+                <a>If a player uses an official hiding spot, the hunt will immediately end.</a>
+                <a>A hunt that has been prematurely ended will remove the grace period for the Aswang\'s next hunt.</a>
+            ]]>
+        </string>
     <string name="ghost_huntingdata_dayan">
             <![CDATA[
                 <a>Hunts at 50\% Sanity by default, and is modified with a combination of player proximity and player movement.</a><br>
@@ -553,6 +595,27 @@
                     <li>Moves 2.5 m/s while both chasing an investigator who is 3+ meters away and the Fuse Box is on.</li>
                     <li>Moves 1.7 m/s if not chasing anyone.</li>
                 </ul>
+            ]]>
+        </string>
+    <string name="ghost_huntingdata_kormos" >
+            <![CDATA[
+                <a>During a hunt, the Kormos will only detect players through voice chat, active electronic equipment, or player movement.</a>
+                <a>Sprinting within the favorite room of a Kormos will anger it, raising it\'s hunting threshold from 50% Sanity to 70%.</a>
+                <a>Movement detection range varies depending on a player\'s stance.</a>
+                <ul>
+                    <li>Walking while crouched: 10 m</li>
+                    <li>Walking while standing: 15 m</li>
+                    <li>Sprinting: 30 m</li>
+                </ul>
+
+                <a>To track players, the Kormos uses the above Movement ranges to place waypoints every 5\-10 seconds after any of the following player actions (with top to bottom priority):</a>
+                <ul>
+                    <li>Sprinting</li>
+                    <li>Walking while standing</li>
+                    <li>Walking while crouched</li>
+                    <li>Voice/Electronics</li>
+                </ul>
+                <a>The Kormos will track the nearest waypoint. Though it does not use tradition line\-of\-sight (LOS), audio detection counts as LOS, leading to chase speed acceleration.</a>
             ]]>
         </string>
     <string name="ghost_huntingdata_mare" >

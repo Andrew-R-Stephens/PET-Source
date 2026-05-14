@@ -37,6 +37,7 @@
     <string name="ghost_type_yurei">Yurei</string>
 
     <!-- Ghost description -->
+    <string name="ghost_info_aswang"><![CDATA[  <a>Der Aswang ist ein wilder Jäger, der den Nervenkitzel einer Verfolgungsjagd dem Aufspüren von Spielern in ihren Verstecken vorzieht. Du wirst diesem Geist niemals entkommen, wenn er dich erst einmal sieht. Halte daher stets ein Versteck bereit.</a>  ]]></string>
     <string name="ghost_info_banshee" >
         <![CDATA[
             <a>Banshees werden als natürliche Jäger beschrieben. Sie werden versuchen, Geisterjäger einen nach dem anderen langsam anzupirschen und auszuschalten, indem sie <font color=#ff6161>selektiv jeweils einen Ermittler anvisieren</font>.</a>
@@ -67,6 +68,7 @@
             <a>Ein Dschinn erhält seine Fähigkeiten durch den eingeschalteten Strom. Es kann sich bei der Jagd sehr schnell bewegen und es kann absurd schnell den Verstand verlieren. Dschinn waren in früheren Versionen von Phasmophobia die Spitzenprädatoren, und dafür gibt es einen guten Grund. Es bewegt sich mit 2,5 m/s, wenn es einen weit entfernten Spieler jagt und der Generator eingeschaltet ist, und 1,7 m/s, wenn der Generator ausgeschaltet ist und niemanden verfolgt.</a>
         ]]>
     </string>
+    <string name="ghost_info_kormos"><![CDATA[  <a>Der Kormos ist blind, nutzt aber sein überragendes Gehör, um Opfer aufzuspüren. Er wird aggressiver gegenüber jenen sein, die nicht vorsichtig genug sind.</a>  ]]></string>
     <string name="ghost_info_mare" >
         <![CDATA[
             <a>Die Stute ist ein Geist, der im Dunkeln <font color=#ff6161>aggressiver wird</font>.</a>
@@ -161,6 +163,7 @@
     <!--
         Strengths
     -->
+    <string name="ghost_strengths_aswang"><![CDATA[  <a>Der Aswang hat die schnellste Sichtlinienbeschleunigung aller Geister.</a>  <a>Wenn ein Spieler ein offizielles Versteck benutzt, gibt es bei der nächsten Jagd keine Schonfrist.</a>  ]]></string>
     <string name="ghost_strengths_banshee" >
         <![CDATA[
             <a>Die Banshee konzentriert sich auf einen Spieler und wechselt zu einem neuen Ziel, wenn sich das ausgewählte Ziel nicht im Spielbereich befindet.</a>
@@ -199,6 +202,7 @@
             <a>Die Geschwindigkeit eines Dschinn macht es zu einem äußerst schwierigen Geist, dem man entkommen kann, sobald er mit der Jagd beginnt. Sobald der Dschinn einen Spieler eingeholt hat, wird er allmählich langsamer und wechselt zu normaler Jagdgeschwindigkeit. Ein Dschinn kann einem Spieler in der Nähe sofort 25\% geistige Gesundheit entziehen, wenn der Strom eingeschaltet ist.</a>
         ]]>
     </string>
+    <string name="ghost_strengths_kormos"><![CDATA[ <a>Obwohl blind, ist das Gehör eines Kormos unübertroffen. Spieler müssen sich daher besonders vorsichtig und überlegt bewegen, um diesem Geist zu entkommen.</a>  ]]></string>
     <string name="ghost_strengths_mare" >
         <![CDATA[
             <a>Eine Stute versucht, das Licht auszuschalten, um sich zu stärken, und jagt mit 60 %, wenn der Strom ausgeschaltet ist. Es wandert auch in andere Räume oder in dunkle Bereiche seines bevorzugten Raums und kann von diesen Orten aus eine Jagd starten. Eine Stute hat eine erhöhte Wahrscheinlichkeit, die Lichtquelle eines Raums durch ein Ereignis zu zerstören.</a>
@@ -304,6 +308,7 @@
     </string>
 
     <!-- Weaknesses -->
+    <string name="ghost_weaknesses_aswang"><![CDATA[  <a>Der Aswang gibt die Jagd sofort auf, sobald ein Spieler ein offizielles Versteck betritt.</a>  ]]></string>
     <string name="ghost_weaknesses_banshee" >
         <![CDATA[
             <a>Eine Banshee wird sich weit von ihrem Raum entfernen, nur um ihr Ziel zu verfolgen. Banshees werden niemals ihren Nicht-Zielspieler töten und während einer Jagd gehen sie direkt durch jeden Ermittler, an dem sie nicht interessiert sind. Außerdem basiert ihre Jagd auf der geistigen Gesundheit ihres Ziels und nicht auf der durchschnittlichen geistigen Gesundheit des Teams. Eine Banshee hat eine besondere Interaktion mit dem Parabolmikrofon, da es die Möglichkeit hat, ein leises, hohes Heulen auszustoßen.</a>
@@ -334,6 +339,7 @@
             <a>Dschinn verlassen sich auf die Energiequelle der Karte, um ihre hohen Geschwindigkeiten zu erreichen, daher sollten Spieler nach dem Schutzschalter des Gebäudes suchen, um die Fähigkeit der Dschinn zu entfernen. Ein Dschinn kann den Strom nicht selbst einschalten.</a>
 		]]>
     </string>
+    <string name="ghost_weaknesses_kormos"><![CDATA[  <a>Der Kormos ist blind und reagiert daher bei der Jagd nicht auf visuelle Reize. Er verlässt sich stattdessen auf sein Gehör, um Spieler zu orten.</a>  ]]></string>
     <string name="ghost_weaknesses_mare" >
         <![CDATA[
             <a>Wenn das Licht im Bereich einer Stute eingeschaltet bleibt, sinkt ihre Präferenz für geistige Gesundheit beim Jagen von durchschnittlich 60 % auf 40 %. Bleiben Sie daher in beleuchteten Bereichen, um seine Aggression zu begrenzen. Eine Stute kann den Unterbrecher nicht ausschalten, aber sie hat die Fähigkeit, Lichtschalter sofort auszuschalten, wenn sie von einem Spieler aktiviert werden, was ein Ereignis ist, das sehr leicht erkannt werden kann.</a>
@@ -473,6 +479,31 @@
              </ul>
          ]]>
      </string>
+    <string name="ghost_huntingdata_kormos"><![CDATA[
+        <a>Während einer Jagd ortet der Kormos Spieler nur über Sprachchat, aktive elektronische Geräte oder Spielerbewegungen.</a>
+        <a>Sprinten im Lieblingsraum eines Kormos verärgert ihn und erhöht seine Jagdschwelle von 50 % auf 70 % geistige Gesundheit.</a>
+        <a>Die Bewegungserkennungsreichweite variiert je nach Haltung des Spielers.</a>
+
+        <ul>
+        <li>Gehen in der Hocke: 10 m</li>
+
+        <li>Gehen im Stehen: 15 m</li>
+
+        <li>Sprinten: 30 m</li>
+        </ul>
+
+        <a>Um Spieler zu verfolgen, setzt der Kormos mithilfe der oben genannten Bewegungsreichweiten alle 5–10 Sekunden Wegpunkte nach den folgenden Spieleraktionen (Priorität von oben nach unten):</a>
+
+        <ul>
+            <li>Sprinten</li>
+            <li>Gehen im Stehen</li>
+            <li>Gehen im geduckten Zustand</li>
+            <li>Sprache/Elektronik</li>
+        </ul>
+        <a>Der Kormos verfolgt den nächstgelegenen Wegpunkt. Obwohl er keine herkömmliche Sichtlinie (LOS) verwendet, zählt die Audioerkennung als LOS, was zu einer Beschleunigung der Verfolgungsgeschwindigkeit führt.</a>
+
+    ]]>
+    </string>
     <string name="ghost_huntingdata_mare" >
          <![CDATA[
              <a>Jagt mit 40\% geistiger Gesundheit, wenn die Kraft eingeschaltet ist.</a><br><br><a>Jagt mit 60\% geistiger Gesundheit, wenn der Strom ausgeschaltet ist.</a>
@@ -634,6 +665,7 @@
 </string>
 
 
+    <string name="ghost_huntingdata_aswang"><![CDATA[  <a>Du kannst diesem Geist nicht entkommen, da er schneller beschleunigt als jeder andere Geist. Halte dich außerhalb seines Sichtfelds auf oder suche dir das nächste Versteck.</a>  <a>Wenn ein Spieler ein offizielles Versteck benutzt, wird die Jagd sofort beendet.</a>  <a>Eine vorzeitig beendete Jagd führt dazu, dass die Schonfrist für die nächste Jagd des Aswang abläuft.</a>  ]]></string>
     <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>Jagt ab 50 %</a> Die Standard-Geistesaktivität basiert auf dem geistigen Zustand und wird durch eine Kombination aus Spielernähe und Spielerbewegung beeinflusst.</a><br>
