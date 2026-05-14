@@ -8,6 +8,7 @@ import com.tritiumgaming.shared.data.ghost.model.SanityBounds
 class GhostResources {
 
     enum class GhostIdentifier {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -16,6 +17,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -38,6 +40,7 @@ class GhostResources {
     }
 
     enum class GhostTitle {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -46,6 +49,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -68,6 +72,7 @@ class GhostResources {
     }
 
     enum class GhostIcon {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -76,6 +81,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -98,6 +104,7 @@ class GhostResources {
     }
 
     enum class GhostDescription {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -106,6 +113,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -128,6 +136,7 @@ class GhostResources {
     }
 
     enum class GhostStrength {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -136,6 +145,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -158,6 +168,7 @@ class GhostResources {
     }
 
     enum class GhostWeakness {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -166,6 +177,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -188,6 +200,7 @@ class GhostResources {
     }
 
     enum class GhostHuntInfo {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -196,6 +209,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -218,6 +232,7 @@ class GhostResources {
     }
 
     enum class GhostSpeed {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -226,6 +241,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -248,6 +264,7 @@ class GhostResources {
     }
 
     enum class HuntSanityBounds {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -256,6 +273,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -278,6 +296,7 @@ class GhostResources {
     }
 
     enum class HuntCooldown {
+        ASWANG,
         BANSHEE,
         DAYAN,
         DEMON,
@@ -286,6 +305,7 @@ class GhostResources {
         GORYO,
         HANTU,
         JINN,
+        KORMOS,
         MARE,
         MOROI,
         MYLING,
@@ -311,6 +331,7 @@ class GhostResources {
 
 fun GhostSpeed.toMinimumAsInt(): Int =
     when (this) {
+        GhostSpeed.ASWANG -> 95
         GhostSpeed.BANSHEE -> 102
         GhostSpeed.DAYAN -> 72
         GhostSpeed.DEMON -> 102
@@ -319,6 +340,7 @@ fun GhostSpeed.toMinimumAsInt(): Int =
         GhostSpeed.GORYO -> 102
         GhostSpeed.HANTU -> 84
         GhostSpeed.JINN -> 102
+        GhostSpeed.KORMOS -> 120
         GhostSpeed.MARE -> 102
         GhostSpeed.MOROI -> 90
         GhostSpeed.MYLING -> 102
@@ -342,6 +364,7 @@ fun GhostSpeed.toMinimumAsInt(): Int =
 
 fun GhostSpeed.toMaximumAsInt(): Int =
     when (this) {
+        GhostSpeed.ASWANG -> -1
         GhostSpeed.BANSHEE -> -1
         GhostSpeed.DAYAN -> 135
         GhostSpeed.DEMON -> -1
@@ -350,6 +373,7 @@ fun GhostSpeed.toMaximumAsInt(): Int =
         GhostSpeed.GORYO -> -1
         GhostSpeed.HANTU -> 162
         GhostSpeed.JINN -> 150
+        GhostSpeed.KORMOS -> 132
         GhostSpeed.MARE -> -1
         GhostSpeed.MOROI -> 135
         GhostSpeed.MYLING -> -1
@@ -373,6 +397,7 @@ fun GhostSpeed.toMaximumAsInt(): Int =
 
 fun GhostSpeed.toHasLosMultiplierBoolean(): Boolean =
     when (this) {
+        GhostSpeed.ASWANG -> true
         GhostSpeed.BANSHEE -> true
         GhostSpeed.DAYAN -> false
         GhostSpeed.DEMON -> false
@@ -381,6 +406,7 @@ fun GhostSpeed.toHasLosMultiplierBoolean(): Boolean =
         GhostSpeed.GORYO -> true
         GhostSpeed.HANTU -> false
         GhostSpeed.JINN -> false
+        GhostSpeed.KORMOS -> true
         GhostSpeed.MARE -> true
         GhostSpeed.MOROI -> true
         GhostSpeed.MYLING -> true
@@ -404,6 +430,8 @@ fun GhostSpeed.toHasLosMultiplierBoolean(): Boolean =
 
 fun HuntSanityBounds.toSanityBounds(): SanityBounds =
     when (this) {
+        HuntSanityBounds.ASWANG -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
         HuntSanityBounds.BANSHEE -> SanityBounds(
             normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
         HuntSanityBounds.DAYAN -> SanityBounds(
@@ -420,6 +448,8 @@ fun HuntSanityBounds.toSanityBounds(): SanityBounds =
             normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
         HuntSanityBounds.JINN -> SanityBounds(
             normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.KORMOS -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = 70)
         HuntSanityBounds.MARE -> SanityBounds(
             normal = SanityBounds.STANDARD, suppressed = 40, empowered = 60)
         HuntSanityBounds.MOROI -> SanityBounds(
@@ -462,6 +492,7 @@ fun HuntSanityBounds.toSanityBounds(): SanityBounds =
 
 fun HuntCooldown.toLong(): Long =
     when (this) {
+        HuntCooldown.ASWANG -> 25000L
         HuntCooldown.BANSHEE -> 25000L
         HuntCooldown.DAYAN -> 25000L
         HuntCooldown.DEMON -> 20000L
@@ -470,6 +501,7 @@ fun HuntCooldown.toLong(): Long =
         HuntCooldown.GORYO -> 25000L
         HuntCooldown.HANTU -> 25000L
         HuntCooldown.JINN -> 25000L
+        HuntCooldown.KORMOS -> 25000L
         HuntCooldown.MARE -> 25000L
         HuntCooldown.MOROI -> 25000L
         HuntCooldown.MYLING -> 25000L

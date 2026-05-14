@@ -13,6 +13,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 
 @StringRes fun GhostIdentifier.toStringResource(): Int =
     when (this) {
+        GhostIdentifier.ASWANG -> R.string.ghost_id_aswang
         GhostIdentifier.BANSHEE -> R.string.ghost_id_banshee
         GhostIdentifier.DAYAN -> R.string.ghost_id_dayan
         GhostIdentifier.DEMON -> R.string.ghost_id_demon
@@ -21,6 +22,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostIdentifier.GORYO -> R.string.ghost_id_goryo
         GhostIdentifier.HANTU -> R.string.ghost_id_hantu
         GhostIdentifier.JINN -> R.string.ghost_id_jinn
+        GhostIdentifier.KORMOS -> R.string.ghost_id_kormos
         GhostIdentifier.MARE -> R.string.ghost_id_mare
         GhostIdentifier.MOROI -> R.string.ghost_id_moroi
         GhostIdentifier.MYLING -> R.string.ghost_id_myling
@@ -44,6 +46,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 
 fun GhostIdentifier.toGhostTitle(): GhostTitle =
     when (this) {
+        GhostIdentifier.ASWANG -> GhostTitle.ASWANG
         GhostIdentifier.BANSHEE -> GhostTitle.BANSHEE
         GhostIdentifier.DAYAN -> GhostTitle.DAYAN
         GhostIdentifier.DEMON -> GhostTitle.DEMON
@@ -52,6 +55,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostIdentifier.GORYO -> GhostTitle.GORYO
         GhostIdentifier.HANTU -> GhostTitle.HANTU
         GhostIdentifier.JINN -> GhostTitle.JINN
+        GhostIdentifier.KORMOS -> GhostTitle.KORMOS
         GhostIdentifier.MARE -> GhostTitle.MARE
         GhostIdentifier.MOROI -> GhostTitle.MOROI
         GhostIdentifier.MYLING -> GhostTitle.MYLING
@@ -75,6 +79,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
 
 @StringRes fun GhostTitle.toStringResource(): Int =
     when (this) {
+        GhostTitle.ASWANG -> R.string.ghost_type_aswang
         GhostTitle.BANSHEE -> R.string.ghost_type_banshee
         GhostTitle.DAYAN -> R.string.ghost_type_dayan
         GhostTitle.DEMON -> R.string.ghost_type_demon
@@ -83,6 +88,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostTitle.GORYO -> R.string.ghost_type_goryo
         GhostTitle.HANTU -> R.string.ghost_type_hantu
         GhostTitle.JINN -> R.string.ghost_type_jinn
+        GhostTitle.KORMOS -> R.string.ghost_type_kormos
         GhostTitle.MARE -> R.string.ghost_type_mare
         GhostTitle.MOROI -> R.string.ghost_type_moroi
         GhostTitle.MYLING -> R.string.ghost_type_myling
@@ -106,6 +112,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
 
 @DrawableRes fun GhostIcon.toDrawableResource(): Int =
     when (this) {
+        GhostIcon.ASWANG -> R.drawable.icon_ghost_unknown
         GhostIcon.BANSHEE -> R.drawable.icon_ghost_banshee
         GhostIcon.DAYAN -> R.drawable.icon_ghost_unknown
         GhostIcon.DEMON -> R.drawable.icon_ghost_demon
@@ -114,6 +121,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostIcon.GORYO -> R.drawable.icon_ghost_goryo
         GhostIcon.HANTU -> R.drawable.icon_ghost_hantu
         GhostIcon.JINN -> R.drawable.icon_ghost_jinn
+        GhostIcon.KORMOS -> R.drawable.icon_ghost_unknown
         GhostIcon.MARE -> R.drawable.icon_ghost_mare
         GhostIcon.MOROI -> R.drawable.icon_ghost_moroi
         GhostIcon.MYLING -> R.drawable.icon_ghost_myling
@@ -137,6 +145,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
 
 @StringRes fun GhostDescription.toStringResource(): Int =
     when (this) {
+        GhostDescription.ASWANG -> R.string.ghost_info_aswang
         GhostDescription.BANSHEE -> R.string.ghost_info_banshee
         GhostDescription.DAYAN -> R.string.ghost_info_dayan
         GhostDescription.DEMON -> R.string.ghost_info_demon
@@ -145,6 +154,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostDescription.GORYO -> R.string.ghost_info_goryo
         GhostDescription.HANTU -> R.string.ghost_info_hantu
         GhostDescription.JINN -> R.string.ghost_info_jinn
+        GhostDescription.KORMOS -> R.string.ghost_info_kormos
         GhostDescription.MARE -> R.string.ghost_info_mare
         GhostDescription.MOROI -> R.string.ghost_info_moroi
         GhostDescription.MYLING -> R.string.ghost_info_myling
@@ -168,6 +178,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
 
 @StringRes fun GhostStrength.toStringResource(): Int =
     when (this) {
+        GhostStrength.ASWANG -> R.string.ghost_strengths_aswang
         GhostStrength.BANSHEE -> R.string.ghost_strengths_banshee
         GhostStrength.DAYAN -> R.string.ghost_strengths_dayan
         GhostStrength.DEMON -> R.string.ghost_strengths_demon
@@ -176,6 +187,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostStrength.GORYO -> R.string.ghost_strengths_goryo
         GhostStrength.HANTU -> R.string.ghost_strengths_hantu
         GhostStrength.JINN -> R.string.ghost_strengths_jinn
+        GhostStrength.KORMOS -> R.string.ghost_strengths_kormos
         GhostStrength.MARE -> R.string.ghost_strengths_mare
         GhostStrength.MOROI -> R.string.ghost_strengths_moroi
         GhostStrength.MYLING -> R.string.ghost_strengths_myling
@@ -199,6 +211,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
 
 @StringRes fun GhostWeakness.toStringResource(): Int =
     when (this) {
+        GhostWeakness.ASWANG -> R.string.ghost_weaknesses_aswang
         GhostWeakness.BANSHEE -> R.string.ghost_weaknesses_banshee
         GhostWeakness.DAYAN -> R.string.ghost_weaknesses_dayan
         GhostWeakness.DEMON -> R.string.ghost_weaknesses_demon
@@ -207,6 +220,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostWeakness.GORYO -> R.string.ghost_weaknesses_goryo
         GhostWeakness.HANTU -> R.string.ghost_weaknesses_hantu
         GhostWeakness.JINN -> R.string.ghost_weaknesses_jinn
+        GhostWeakness.KORMOS -> R.string.ghost_weaknesses_kormos
         GhostWeakness.MARE -> R.string.ghost_weaknesses_mare
         GhostWeakness.MOROI -> R.string.ghost_weaknesses_moroi
         GhostWeakness.MYLING -> R.string.ghost_weaknesses_myling
@@ -230,6 +244,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
 
 @StringRes fun GhostHuntInfo.toStringResource(): Int =
     when (this) {
+        GhostHuntInfo.ASWANG -> R.string.ghost_huntingdata_aswang
         GhostHuntInfo.BANSHEE -> R.string.ghost_huntingdata_banshee
         GhostHuntInfo.DAYAN -> R.string.ghost_huntingdata_dayan
         GhostHuntInfo.DEMON -> R.string.ghost_huntingdata_demon
@@ -238,6 +253,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostHuntInfo.GORYO -> R.string.ghost_huntingdata_goryo
         GhostHuntInfo.HANTU -> R.string.ghost_huntingdata_hantu
         GhostHuntInfo.JINN -> R.string.ghost_huntingdata_jinn
+        GhostHuntInfo.KORMOS -> R.string.ghost_huntingdata_kormos
         GhostHuntInfo.MARE -> R.string.ghost_huntingdata_mare
         GhostHuntInfo.MOROI -> R.string.ghost_huntingdata_moroi
         GhostHuntInfo.MYLING -> R.string.ghost_huntingdata_myling

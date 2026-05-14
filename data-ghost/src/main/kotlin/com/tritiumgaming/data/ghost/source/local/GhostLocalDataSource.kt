@@ -19,6 +19,24 @@ class GhostLocalDataSource: GhostDataSource {
     private val ghostResourceDto: List<GhostResourceDto>
         get() = listOf(
             GhostResourceDto(
+                id = GhostIdentifier.ASWANG,
+                name = GhostTitle.ASWANG,
+                icon = GhostIcon.ASWANG,
+                info = GhostDescription.ASWANG,
+                strengthData = GhostStrength.ASWANG,
+                weaknessData = GhostWeakness.ASWANG,
+                huntData = GhostHuntInfo.ASWANG,
+                normalEvidence = listOf(
+                    EvidenceIdentifier.DOTS,
+                    EvidenceIdentifier.FREEZING_TEMPERATURE,
+                    EvidenceIdentifier.GHOST_WRITING,
+                ),
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.ASWANG,
+                sanityBounds = HuntSanityBounds.ASWANG,
+                huntCooldown = HuntCooldown.ASWANG
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.BANSHEE,
                 name = GhostTitle.BANSHEE,
                 icon = GhostIcon.BANSHEE,
@@ -167,6 +185,24 @@ class GhostLocalDataSource: GhostDataSource {
                 speed = GhostSpeed.JINN,
                 sanityBounds = HuntSanityBounds.JINN,
                 huntCooldown = HuntCooldown.JINN
+            ),
+            GhostResourceDto(
+                id = GhostIdentifier.KORMOS,
+                name = GhostTitle.KORMOS,
+                icon = GhostIcon.KORMOS,
+                info = GhostDescription.KORMOS,
+                strengthData = GhostStrength.KORMOS,
+                weaknessData = GhostWeakness.KORMOS,
+                huntData = GhostHuntInfo.KORMOS,
+                normalEvidence = listOf(
+                    EvidenceIdentifier.GHOST_ORBS,
+                    EvidenceIdentifier.SPIRIT_BOX,
+                    EvidenceIdentifier.ULTRAVIOLET_LIGHT,
+                ),
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.KORMOS,
+                sanityBounds = HuntSanityBounds.KORMOS,
+                huntCooldown = HuntCooldown.KORMOS
             ),
             GhostResourceDto(
                 id = GhostIdentifier.MARE,

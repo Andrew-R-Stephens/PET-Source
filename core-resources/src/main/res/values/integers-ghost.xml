@@ -31,7 +31,7 @@
     <integer name="ghost_hunt_speed_min_yokai">102</integer>
     <integer name="ghost_hunt_speed_min_yurei">102</integer>
 
-    <integer name="ghost_hunt_speed_max_aswang">0</integer>
+    <integer name="ghost_hunt_speed_max_aswang">-1</integer>
     <integer name="ghost_hunt_speed_max_banshee">-1</integer>
     <integer name="ghost_hunt_speed_max_dayan">135</integer>
     <integer name="ghost_hunt_speed_max_demon">180</integer>
