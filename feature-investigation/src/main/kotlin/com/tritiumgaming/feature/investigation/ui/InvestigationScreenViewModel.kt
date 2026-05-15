@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.core.common.util.FormatterUtils.roundMillisToDuration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
@@ -1484,7 +1484,7 @@ class InvestigationScreenViewModel private constructor(
      * MVI UI Events
      */
 
-    private fun setBpmData(data: RealtimeUiState<GraphPoint>) {
+    private fun setBpmData(data: RealtimeUiState<BpmPoint>) {
         _bpmToolState.update {
             it.copy(realtimeState = data)
         }
@@ -2040,7 +2040,7 @@ class InvestigationScreenViewModel private constructor(
         data class SetTraitFilter(val filter: TraitFilter) : InvestigationEvent()
         object ToggleUniqueTraitFilter : InvestigationEvent()
 
-        data class SetBpmData(val data: RealtimeUiState<GraphPoint>) : InvestigationEvent()
+        data class SetBpmData(val data: RealtimeUiState<BpmPoint>) : InvestigationEvent()
         data class SetBpmMeasurementType(val type: VisualizerMeasurementType) : InvestigationEvent()
         data class SetBpmDomain(val domainMillis: Long) : InvestigationEvent()
         data class SetBpmSampleInterval(val intervalMillis: Long) : InvestigationEvent()

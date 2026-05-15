@@ -15,8 +15,8 @@ import kotlin.math.ceil
 @Composable
 fun GraphLabelsYAxis(
     modifier: Modifier,
+    state: GraphLabelsUiState,
     colors: GraphLabelsUiColors,
-    state: GraphLabelsUiState
 ) {
     val textMeasurer = rememberTextMeasurer()
     val textStyle = TextStyle(color = colors.label, fontSize = 10.sp)

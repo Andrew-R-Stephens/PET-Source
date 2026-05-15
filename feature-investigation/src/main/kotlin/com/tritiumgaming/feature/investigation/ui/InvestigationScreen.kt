@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,7 +42,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
@@ -271,7 +270,7 @@ private fun InvestigationContent(
     val onHuntCooldownToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) }
     val onFingerprintToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) }
 
-    val onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit = { investigationViewModel.onEvent(SetBpmData(it)) }
+    val onBpmUpdate: (RealtimeUiState<BpmPoint>) -> Unit = { investigationViewModel.onEvent(SetBpmData(it)) }
     val onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) }
     val onBpmToggleApplyMeasurement: () -> Unit = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
     val onBpmChangeDomain: (Long) -> Unit = { investigationViewModel.onEvent(SetBpmDomain(it)) }

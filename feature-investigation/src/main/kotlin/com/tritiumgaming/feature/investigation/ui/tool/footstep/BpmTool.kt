@@ -46,7 +46,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabe
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
@@ -57,14 +57,13 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.Visua
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
 internal fun BpmTool(
     modifier: Modifier = Modifier,
-    realtimeState: RealtimeUiState<GraphPoint>,
+    realtimeState: RealtimeUiState<BpmPoint>,
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
     ghostSpeedModifier: Float = 1f,
@@ -75,7 +74,7 @@ internal fun BpmTool(
     range: Int = 300,
     domainOptions: List<Long> = emptyList(),
     sampleIntervalOptions: List<Long> = emptyList(),
-    onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
+    onUpdate: (RealtimeUiState<BpmPoint>) -> Unit,
     onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     toggleApplyMeasurement: () -> Unit,
     onChangeDomain: (Long) -> Unit = {},
@@ -541,7 +540,7 @@ internal fun BpmTool(
 
 @Composable
 private fun LiveStatsRow(
-    realtimeState: RealtimeUiState<GraphPoint>,
+    realtimeState: RealtimeUiState<BpmPoint>,
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean
 ) {
@@ -645,7 +644,7 @@ private fun LiveStatItem(
 }
 
 internal data class BpmToolUiActions(
-    val onUpdate: (RealtimeUiState<GraphPoint>) -> Unit = {},
+    val onUpdate: (RealtimeUiState<BpmPoint>) -> Unit = {},
     val onChangeMeasurementType: (VisualizerMeasurementType) -> Unit = {},
     val toggleApplyMeasurement: () -> Unit = {},
     val onChangeDomain: (Long) -> Unit = {},
@@ -653,7 +652,7 @@ internal data class BpmToolUiActions(
 )
 
 internal data class BpmToolUiState(
-    val realtimeState: RealtimeUiState<GraphPoint> = RealtimeUiState(),
+    val realtimeState: RealtimeUiState<BpmPoint> = RealtimeUiState(),
     val measurementType: VisualizerMeasurementType = VisualizerMeasurementType.INSTANT,
     val ghostSpeedModifier: Float = 1f,
     val fuseBoxFlag: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED,

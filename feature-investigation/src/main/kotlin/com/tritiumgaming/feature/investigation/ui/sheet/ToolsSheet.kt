@@ -24,7 +24,7 @@ import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
@@ -53,7 +53,6 @@ import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
@@ -149,7 +148,7 @@ internal fun ToolsBottomSheetComponent(
     // BPM Tool state
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
-    bpmRealtimeState: RealtimeUiState<GraphPoint>,
+    bpmRealtimeState: RealtimeUiState<BpmPoint>,
     bpmGhostSpeedModifier: Float,
     bpmFuseBoxFlag: FuseBoxFlag,
     bpmDomainMillis: Long,
@@ -157,7 +156,7 @@ internal fun ToolsBottomSheetComponent(
     bpmRange: Int,
     bpmDomainOptions: List<Long>,
     bpmSampleIntervalOptions: List<Long>,
-    onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
+    onBpmUpdate: (RealtimeUiState<BpmPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
     onBpmChangeDomain: (Long) -> Unit,
@@ -535,7 +534,7 @@ internal fun ToolsSideSheetComponent(
     // BPM Tool state
     bpmMeasurementType: VisualizerMeasurementType,
     bpmApplyMeasurement: Boolean,
-    bpmRealtimeState: RealtimeUiState<GraphPoint>,
+    bpmRealtimeState: RealtimeUiState<BpmPoint>,
     bpmGhostSpeedModifier: Float,
     bpmFuseBoxFlag: FuseBoxFlag,
     bpmDomainMillis: Long,
@@ -543,7 +542,7 @@ internal fun ToolsSideSheetComponent(
     bpmRange: Int,
     bpmDomainOptions: List<Long>,
     bpmSampleIntervalOptions: List<Long>,
-    onBpmUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
+    onBpmUpdate: (RealtimeUiState<BpmPoint>) -> Unit,
     onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     onBpmToggleApplyMeasurement: () -> Unit,
     onBpmChangeDomain: (Long) -> Unit,

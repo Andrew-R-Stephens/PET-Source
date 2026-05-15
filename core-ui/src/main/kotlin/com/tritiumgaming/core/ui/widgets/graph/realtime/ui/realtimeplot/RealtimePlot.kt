@@ -7,12 +7,12 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 
 @Composable
 fun RealtimePlot(
     modifier: Modifier = Modifier,
-    state: RealtimePlotUiState<GraphPoint>,
+    state: RealtimePlotUiState<BpmPoint>,
     colors: RealtimePlotUiColors,
 ) {
 
@@ -56,14 +56,17 @@ fun RealtimePlot(
                     val currTap = taps[i]
 
                     val x1 = size.width - ((now - prevTap.pX) * xPlotRatio)
-                    val y10 = size.height * (1f - (prevTap.pY / viewportY))
-                    val y11 = size.height * (1f - (prevTap.avg / viewportY))
-                    val y12 = size.height * (1f - (prevTap.weightedAvg / viewportY))
                     val x2 = size.width - ((now - currTap.pX) * xPlotRatio)
+                    
+                    val y10 = size.height * (1f - (prevTap.pY / viewportY))
                     val y20 = size.height * (1f - (currTap.pY / viewportY))
-                    val y21 = size.height * (1f - (currTap.avg / viewportY))
-                    val y22 = size.height * (1f - (currTap.weightedAvg / viewportY))
 
+                    val y11 = size.height * (1f - (prevTap.avg / viewportY))
+                    val y21 = size.height * (1f - (currTap.avg / viewportY))
+                    
+                    val y12 = size.height * (1f - (prevTap.weightedAvg / viewportY))
+                    val y22 = size.height * (1f - (currTap.weightedAvg / viewportY))
+                    
                     val midX = (x1 + x2) / 2f
                     val midY1 = (y11 + y21) / 2f
                     val midY2 = (y12 + y22) / 2f

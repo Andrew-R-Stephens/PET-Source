@@ -50,7 +50,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.Realtime
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeter
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterUiState
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.VisualizerUiState
 import kotlin.math.ceil
@@ -62,13 +62,13 @@ internal fun BpmVisualizer(
     modifier: Modifier = Modifier,
     stateBundle: BpmVisualizerStateBundle,
     colorBundle: BpmVisualizerColorBundle,
-    actions: BpmVisualizerUiActions<RealtimeUiState<GraphPoint>>
+    actions: BpmVisualizerUiActions<RealtimeUiState<BpmPoint>>
 ) {
     val state = stateBundle.visualizerUiState
 
     val realtimeUiStateState = remember {
         mutableStateOf(
-            RealtimeUiState<GraphPoint>(
+            RealtimeUiState<BpmPoint>(
                 instant = 0f,
                 smoothed = 0f,
                 potential = 0f,
@@ -85,8 +85,9 @@ internal fun BpmVisualizer(
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(
-                1000,
-                easing = LinearEasing)
+                1.seconds.inWholeMilliseconds.toInt(),
+                easing = LinearEasing
+            )
         ),
         label = "Ticker"
     )
@@ -114,7 +115,7 @@ internal fun BpmVisualizer(
         if (realtimeUiState.recordedTime != 0L) {
             val delta = (currentTime - realtimeUiState.recordedTime).coerceAtLeast(1L)
 
-            val potentialBPM = (60000f / delta)
+            val potentialBPM = (60.seconds.inWholeMilliseconds.toFloat() / delta)
 
             var smoothedBPM = realtimeUiState.smoothed
             if(smoothedBPM > potentialBPM) {
@@ -170,7 +171,7 @@ internal fun BpmVisualizer(
         if (realtimeUiState.recordedTime != 0L) {
             val delta = (eventTime - realtimeUiState.recordedTime).coerceAtLeast(1L)
 
-            val instantBPM = (60000f / delta)
+            val instantBPM = (60.seconds.inWholeMilliseconds.toFloat() / delta)
 
             var smoothedBPM = if (realtimeUiState.smoothed == 0f) { instantBPM }
             else { (state.alpha * instantBPM) + ((1f - state.alpha) * realtimeUiState.smoothed) }
@@ -180,7 +181,7 @@ internal fun BpmVisualizer(
             intervalBpm = calculateSampleIntervalBPM(eventTime)
 
             nextState.points.enqueue(
-                GraphPoint(
+                BpmPoint(
                     pX = eventTime,
                     pY = instantBPM,
                     avg = intervalBpm.first,
@@ -228,8 +229,8 @@ internal fun BpmVisualizer(
                 modifier = Modifier
                     .width(32.dp)
                     .fillMaxHeight(),
-                colors = colorBundle.graphLabelsYAxisUiColors,
                 state = stateBundle.graphLabelsYUiState,
+                colors = colorBundle.graphLabelsYAxisUiColors,
             )
 
             Box(
@@ -361,7 +362,7 @@ private fun Preview() {
                 ) {
 
                     var realtimeUiState by remember{
-                        mutableStateOf(RealtimeUiState<GraphPoint>())
+                        mutableStateOf(RealtimeUiState<BpmPoint>())
                     }
 
                     BpmVisualizer(
