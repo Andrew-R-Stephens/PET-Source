@@ -4,6 +4,6 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 
 class ToolbarUiActions(
     val onToggleCollapseToolbar: () -> Unit = {},
-    val onChangeToolbarCategory: (OperationToolbarUiState.Category) -> Unit = {},
+    val onChangeToolbarCategory: (OperationToolbarUiState.Category) -> Unit = { },
     val onReset: () -> Unit = {}
 )

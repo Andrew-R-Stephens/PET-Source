@@ -1695,17 +1695,20 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun setToolbarCategory(category: OperationToolbarUiState.Category) {
+    private fun setToolbarCategory(category: OperationToolbarUiState.Category, allowCollapse: Boolean) {
         if(operationToolbarUiState.value.category == category) {
             _operationToolbarUiState.update {
-                val isCollapsed = !it.isCollapsed
+                var isCollapsed = !it.isCollapsed
+                if(!allowCollapse) {
+                    isCollapsed = false
+                }
 
                 it.copy(
                     isCollapsed = isCollapsed,
-                    category = if(!isCollapsed)
-                        category
-                    else
+                    category = if(isCollapsed)
                         OperationToolbarUiState.Category.TOOL_NONE
+                    else
+                        category
                 )
             }
         } else {
@@ -1841,7 +1844,7 @@ class InvestigationScreenViewModel private constructor(
 
             // UI Navigation/Popups
             is InvestigationEvent.ToggleToolbar -> toggleToolbarState()
-            is InvestigationEvent.SetToolbarCategory -> setToolbarCategory(event.category)
+            is InvestigationEvent.SetToolbarCategory -> setToolbarCategory(event.category, event.allowCollapse)
             is InvestigationEvent.ShowEvidencePopup -> setPopup(event.type)
             is InvestigationEvent.ShowGhostPopup -> setPopup(event.id)
             is InvestigationEvent.ClearPopup -> clearPopup()
@@ -2050,7 +2053,7 @@ class InvestigationScreenViewModel private constructor(
 
         // UI State Events
         object ToggleToolbar : InvestigationEvent()
-        data class SetToolbarCategory(val category: OperationToolbarUiState.Category) : InvestigationEvent()
+        data class SetToolbarCategory(val category: OperationToolbarUiState.Category, val allowCollapse: Boolean = true) : InvestigationEvent()
         data class ShowEvidencePopup(val type: EvidenceType) : InvestigationEvent()
         data class ShowGhostPopup(val id: GhostResources.GhostIdentifier) : InvestigationEvent()
         object ClearPopup : InvestigationEvent()

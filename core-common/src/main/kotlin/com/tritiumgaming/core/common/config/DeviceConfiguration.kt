@@ -59,12 +59,8 @@ enum class DeviceConfiguration {
 
             return when {
 
-                widthClass <= WidthConfiguration.COMPACT -> {
-                    MOBILE_PORTRAIT
-                }
-                widthClass <= WidthConfiguration.MEDIUM -> {
-                    TABLET_PORTRAIT
-                }
+                widthClass <= WidthConfiguration.COMPACT -> MOBILE_PORTRAIT
+                widthClass <= WidthConfiguration.MEDIUM -> TABLET_PORTRAIT
                 widthClass <= WidthConfiguration.EXPANDED -> TABLET_LANDSCAPE
                 widthClass <= WidthConfiguration.LARGE -> TABLET_PORTRAIT
 

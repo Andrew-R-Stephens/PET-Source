@@ -5,7 +5,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -20,9 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
@@ -78,13 +75,17 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleUniqueTraitFilter
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
+import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
+import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
@@ -95,6 +96,7 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
@@ -467,85 +469,47 @@ private fun InvestigationContent(
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT,
         DeviceConfiguration.TABLET_PORTRAIT -> {
-            Column(
-                modifier = Modifier,
-                verticalArrangement = Arrangement.Top
-            ) {
-                Investigation(
-                    modifier = Modifier.weight(1f, false),
-                    operationToolbarUiState = toolbarUiState,
-                    toolbarUiActions = ToolbarUiActions(
-                        onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
-                        onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
-                        onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-                    ),
-                    statusBarComponent = { modifier ->
-                        OperationStatusBar(
-                            modifier = modifier,
-                            remainingTime = operationTimerUiState.remainingTime,
-                            phaseType = phaseUiState.type,
-                            sanityLevel = sanityUiState.sanityLevel
-                        )
-                    },
-                    journalComponent = { modifier ->
-                        JournalComponent(
-                            modifier = modifier,
-                            evidenceStateList = evidenceListUiStates,
-                            ghostOrder = ghostOrder,
-                            ghostEvidenceState = evidenceStates,
-                            onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
-                            onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
-                            onRequestToolTip = { },
-                            onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
-                            onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
-                        )
-                    },
-                    bottomSheetComponent = bottomSheetComponent
-                )
+            Content_CompactPortrait(
+                toolbarUiState,
+                investigationViewModel,
+                operationTimerUiState,
+                phaseUiState,
+                sanityUiState,
+                evidenceListUiStates,
+                ghostOrder,
+                evidenceStates,
+                bottomSheetComponent
+            )
+        }
 
-            }
+        DeviceConfiguration.MOBILE_LANDSCAPE -> {
+            Content_CompactLandscape(
+                toolbarUiState,
+                investigationViewModel,
+                operationTimerUiState,
+                phaseUiState,
+                sanityUiState,
+                evidenceListUiStates,
+                ghostOrder,
+                evidenceStates,
+                sideSheetComponent
+            )
 
         }
-        DeviceConfiguration.MOBILE_LANDSCAPE,
+
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
-            Row(
-                modifier = Modifier,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Investigation(
-                    modifier = Modifier,
-                    operationToolbarUiState = toolbarUiState,
-                    toolbarUiActions = ToolbarUiActions(
-                        onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
-                        onChangeToolbarCategory = { category -> investigationViewModel.onEvent(SetToolbarCategory(category)) },
-                        onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-                    ),
-                    statusBarComponent = { modifier ->
-                        OperationStatusBar(
-                            modifier = modifier,
-                            remainingTime = operationTimerUiState.remainingTime,
-                            phaseType = phaseUiState.type,
-                            sanityLevel = sanityUiState.sanityLevel
-                        )
-                    },
-                    journalComponent = { modifier ->
-                        JournalComponent(
-                            modifier = modifier,
-                            evidenceStateList = evidenceListUiStates,
-                            ghostOrder = ghostOrder,
-                            ghostEvidenceState = evidenceStates,
-                            onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
-                            onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
-                            onRequestToolTip = { },
-                            onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
-                            onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
-                        )
-                    },
-                    sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
-                )
-            }
-
+            Content_ExpandedLandscape(
+                toolbarUiState,
+                investigationViewModel,
+                operationTimerUiState,
+                phaseUiState,
+                sanityUiState,
+                evidenceListUiStates,
+                ghostOrder,
+                evidenceStates,
+                sideSheetComponent
+            )
         }
     }
 
@@ -571,7 +535,178 @@ private fun InvestigationContent(
 }
 
 @Composable
-private fun ColumnScope.Investigation(
+private fun Content_CompactLandscape(
+    toolbarUiState: OperationToolbarUiState,
+    investigationViewModel: InvestigationScreenViewModel,
+    operationTimerUiState: OperationTimerUiState,
+    phaseUiState: PhaseUiState,
+    sanityUiState: PlayerSanityUiState,
+    evidenceListUiStates: List<EvidenceState>,
+    ghostOrder: List<GhostState>,
+    evidenceStates: List<EvidenceState>,
+    sideSheetComponent: @Composable ((Modifier) -> Unit)
+) {
+    Investigation_CompactLandscape(
+        modifier = Modifier,
+        operationToolbarUiState = toolbarUiState,
+        toolbarUiActions = ToolbarUiActions(
+            onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+            onChangeToolbarCategory = { category ->
+                investigationViewModel.onEvent(
+                    SetToolbarCategory(category)
+                )
+            },
+            onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+        ),
+        statusBarComponent = { modifier ->
+            OperationStatusBar(
+                modifier = modifier,
+                remainingTime = operationTimerUiState.remainingTime,
+                phaseType = phaseUiState.type,
+                sanityLevel = sanityUiState.sanityLevel
+            )
+        },
+        journalComponent = { modifier ->
+            JournalComponent(
+                modifier = modifier,
+                evidenceStateList = evidenceListUiStates,
+                ghostOrder = ghostOrder,
+                ghostEvidenceState = evidenceStates,
+                onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
+                onToggleNegateGhost = {
+                    investigationViewModel.onEvent(
+                        ToggleGhostNegation(it)
+                    )
+                },
+                onRequestToolTip = { },
+                onChangeEvidenceRuling = { e, r ->
+                    investigationViewModel.onEvent(
+                        SetEvidence(e, r)
+                    )
+                },
+                onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
+            )
+        },
+        sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
+    )
+}
+
+@Composable
+private fun Content_ExpandedLandscape(
+    toolbarUiState: OperationToolbarUiState,
+    investigationViewModel: InvestigationScreenViewModel,
+    operationTimerUiState: OperationTimerUiState,
+    phaseUiState: PhaseUiState,
+    sanityUiState: PlayerSanityUiState,
+    evidenceListUiStates: List<EvidenceState>,
+    ghostOrder: List<GhostState>,
+    evidenceStates: List<EvidenceState>,
+    sideSheetComponent: @Composable ((Modifier) -> Unit)
+) {
+    Investigation_ExpandedLandscape(
+        modifier = Modifier,
+        operationToolbarUiState = toolbarUiState,
+        toolbarUiActions = ToolbarUiActions(
+            onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+            onChangeToolbarCategory = { category ->
+                investigationViewModel.onEvent(
+                    SetToolbarCategory(category, false)
+                )
+            },
+            onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+        ),
+        statusBarComponent = { modifier ->
+            OperationStatusBar(
+                modifier = modifier,
+                remainingTime = operationTimerUiState.remainingTime,
+                phaseType = phaseUiState.type,
+                sanityLevel = sanityUiState.sanityLevel
+            )
+        },
+        journalComponent = { modifier ->
+            JournalComponent(
+                modifier = modifier,
+                evidenceStateList = evidenceListUiStates,
+                ghostOrder = ghostOrder,
+                ghostEvidenceState = evidenceStates,
+                onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
+                onToggleNegateGhost = {
+                    investigationViewModel.onEvent(
+                        ToggleGhostNegation(it)
+                    )
+                },
+                onRequestToolTip = { },
+                onChangeEvidenceRuling = { e, r ->
+                    investigationViewModel.onEvent(
+                        SetEvidence(e, r)
+                    )
+                },
+                onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
+            )
+        },
+        sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
+    )
+}
+
+@Composable
+private fun Content_CompactPortrait(
+    toolbarUiState: OperationToolbarUiState,
+    investigationViewModel: InvestigationScreenViewModel,
+    operationTimerUiState: OperationTimerUiState,
+    phaseUiState: PhaseUiState,
+    sanityUiState: PlayerSanityUiState,
+    evidenceListUiStates: List<EvidenceState>,
+    ghostOrder: List<GhostState>,
+    evidenceStates: List<EvidenceState>,
+    bottomSheetComponent: @Composable ((Modifier) -> Unit)
+) {
+    Investigation_CompactPortrait(
+        modifier = Modifier,
+        operationToolbarUiState = toolbarUiState,
+        toolbarUiActions = ToolbarUiActions(
+            onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+            onChangeToolbarCategory = { category ->
+                investigationViewModel.onEvent(
+                    SetToolbarCategory(category)
+                )
+            },
+            onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+        ),
+        statusBarComponent = { modifier ->
+            OperationStatusBar(
+                modifier = modifier,
+                remainingTime = operationTimerUiState.remainingTime,
+                phaseType = phaseUiState.type,
+                sanityLevel = sanityUiState.sanityLevel
+            )
+        },
+        journalComponent = { modifier ->
+            JournalComponent(
+                modifier = modifier,
+                evidenceStateList = evidenceListUiStates,
+                ghostOrder = ghostOrder,
+                ghostEvidenceState = evidenceStates,
+                onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
+                onToggleNegateGhost = {
+                    investigationViewModel.onEvent(
+                        ToggleGhostNegation(it)
+                    )
+                },
+                onRequestToolTip = { },
+                onChangeEvidenceRuling = { e, r ->
+                    investigationViewModel.onEvent(
+                        SetEvidence(e, r)
+                    )
+                },
+                onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
+            )
+        },
+        bottomSheetComponent = bottomSheetComponent
+    )
+}
+
+@Composable
+private fun Investigation_CompactPortrait(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
@@ -634,7 +769,7 @@ private fun ColumnScope.Investigation(
 }
 
 @Composable
-private fun RowScope.Investigation(
+private fun Investigation_CompactLandscape(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
@@ -644,7 +779,7 @@ private fun RowScope.Investigation(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.Start),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
         verticalAlignment = Alignment.CenterVertically
     ) {
         val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
@@ -670,14 +805,73 @@ private fun RowScope.Investigation(
                         .then(
                             if (!operationToolbarUiState.isCollapsed)
                                 Modifier
-                                    //.fillMaxWidth(.35f)
-                                    .width(IntrinsicSize.Max)
+                                    .fillMaxWidth(.35f)
+                                    //.width(IntrinsicSize.Max)
                                     .alpha(1f)
                             else
                                 Modifier
                                     .height(0.dp)
                                     .alpha(0f)
                         )
+                )
+            }
+        )
+
+        Column(
+            modifier = Modifier
+                .weight(1f, false),
+            verticalArrangement = Arrangement.Top
+        ) {
+
+            statusBarComponent(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+            )
+
+            journalComponent(
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+            )
+        }
+
+    }
+}
+
+@Composable
+private fun Investigation_ExpandedLandscape(
+    modifier: Modifier = Modifier,
+    operationToolbarUiState: OperationToolbarUiState,
+    toolbarUiActions: ToolbarUiActions,
+    statusBarComponent: @Composable (Modifier) -> Unit = {},
+    journalComponent: @Composable (Modifier) -> Unit,
+    sideSheetComponent: @Composable (Modifier) -> Unit
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
+            OperationToolRail(
+                modifier = modifier
+                    .widthIn(min = 48.dp),
+                category = operationToolbarUiState.category,
+                onChangeToolbarCategory = toolbarUiActions.onChangeToolbarCategory,
+                onReset = toolbarUiActions.onReset,
+                containerColor = LocalPalette.current.surfaceContainerHigh
+            )
+        }
+
+        VerticalToolbar(
+            modifier = Modifier
+                .weight(1f),
+            selectRailComponent = { modifier -> toolbarContent(modifier) },
+            content = { modifier ->
+                sideSheetComponent(
+                    modifier
+                        .weight(1f)
                 )
             }
         )
@@ -736,17 +930,20 @@ private fun VerticalToolbar(
     content: @Composable (Modifier) -> Unit = {}
 ) {
     Surface(
-        modifier = Modifier,
+        modifier = modifier,
         color = LocalPalette.current.surfaceContainerLow,
         shape = RoundedCornerShape(
             topStart = 0.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 16.dp
         )
     ) {
         Row(
-            modifier = modifier,
+            modifier = Modifier
+                .padding(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            content(Modifier)
+            content(
+                Modifier
+            )
 
             selectRailComponent(
                 Modifier
