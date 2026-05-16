@@ -57,45 +57,24 @@ enum class DeviceConfiguration {
                         HeightConfiguration.EXPANDED
                 }
 
-            return when {
-
-                widthClass <= WidthConfiguration.COMPACT -> MOBILE_PORTRAIT
-                widthClass <= WidthConfiguration.MEDIUM -> TABLET_PORTRAIT
-                widthClass <= WidthConfiguration.EXPANDED -> TABLET_LANDSCAPE
-                widthClass <= WidthConfiguration.LARGE -> TABLET_PORTRAIT
-
-                else -> DESKTOP
-
+            return when (widthClass) {
+                WidthConfiguration.COMPACT -> {
+                    if (heightClass == HeightConfiguration.COMPACT &&
+                        widthSize > heightSize) MOBILE_LANDSCAPE
+                    else MOBILE_PORTRAIT
+                }
+                WidthConfiguration.MEDIUM -> {
+                    if (heightClass == HeightConfiguration.COMPACT) MOBILE_LANDSCAPE
+                    else TABLET_PORTRAIT
+                }
+                WidthConfiguration.EXPANDED -> {
+                    if(heightClass == HeightConfiguration.EXPANDED) DESKTOP
+                    if (heightClass == HeightConfiguration.COMPACT) MOBILE_LANDSCAPE
+                    else TABLET_LANDSCAPE
+                }
+                WidthConfiguration.LARGE, WidthConfiguration.EXTRA_LARGE -> DESKTOP
             }
         }
     }
-
-    /*companion object {
-        fun fromWindowSizeClass(windowSizeClass: WindowSizeClass): DeviceConfiguration {
-            val widthClass = windowSizeClass.windowWidthSizeClass
-            val heightClass = windowSizeClass.windowHeightSizeClass
-
-            return when {
-
-                widthClass == WindowWidthSizeClass.COMPACT &&
-                        heightClass == WindowHeightSizeClass.COMPACT -> MOBILE_PORTRAIT
-
-                widthClass == WindowWidthSizeClass.COMPACT &&
-                        heightClass == WindowHeightSizeClass.EXPANDED -> MOBILE_PORTRAIT
-
-                widthClass == WindowWidthSizeClass.EXPANDED &&
-                        heightClass == WindowHeightSizeClass.COMPACT -> MOBILE_LANDSCAPE
-
-                widthClass == WindowWidthSizeClass.MEDIUM &&
-                        heightClass == WindowHeightSizeClass.EXPANDED -> TABLET_PORTRAIT
-
-                widthClass == WindowWidthSizeClass.EXPANDED &&
-                        heightClass == WindowHeightSizeClass.MEDIUM -> TABLET_LANDSCAPE
-
-                else -> DESKTOP
-
-            }
-        }
-    }*/
 
 }

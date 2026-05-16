@@ -65,6 +65,7 @@ fun OperationNavigationBar(
     Log.d("Device Config", deviceConfiguration.name)
     val bottomNavigationBarEnabled =
         when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_LANDSCAPE,
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> false
