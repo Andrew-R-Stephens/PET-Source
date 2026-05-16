@@ -1965,6 +1965,7 @@ class InvestigationScreenViewModel private constructor(
                 else FuseBoxFlag.FUSEBOX_DISABLED
 
                 setFuseBoxOverride(fuseState)
+                resetJournal()
                 resetOperationTimer()
                 resetTemperature()
 
