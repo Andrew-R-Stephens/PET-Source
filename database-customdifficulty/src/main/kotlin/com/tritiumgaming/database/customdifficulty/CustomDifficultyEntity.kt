@@ -2,8 +2,35 @@ package com.tritiumgaming.database.customdifficulty
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.*
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityLevel
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityMonitor
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossessionsQuantity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DoorsStartingOpen
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EventFrequency
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EvidenceGiven
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintChance
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintDuration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Flashlights
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FriendlyGhost
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxVisibleOnMap
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GracePeriod
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.KillsExtendHunts
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.LoseItemsAndConsumables
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.NumberOfHidingPlaces
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.PlayerSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.RoamingFrequency
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityDrainSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityMonitor
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityPillRestoration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SetupTime
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Sprinting
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 
 @Entity(tableName = "custom_difficulties")
 data class CustomDifficultyEntity(

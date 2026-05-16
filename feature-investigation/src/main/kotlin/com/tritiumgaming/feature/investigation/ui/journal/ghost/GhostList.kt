@@ -2,7 +2,6 @@ package com.tritiumgaming.feature.investigation.ui.journal.ghost
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,14 +17,12 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListItem
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @Composable
 internal fun GhostList(

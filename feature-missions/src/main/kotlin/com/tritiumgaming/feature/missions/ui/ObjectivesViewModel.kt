@@ -11,7 +11,6 @@ import com.tritiumgaming.feature.missions.ui.components.mission.MissionStatus
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
 import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType.*
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase

@@ -22,7 +22,6 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
-import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseComponent
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 

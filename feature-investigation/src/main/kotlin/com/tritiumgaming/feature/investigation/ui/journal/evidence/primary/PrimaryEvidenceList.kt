@@ -1,7 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.journal.evidence.primary
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -12,8 +11,8 @@ import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringReso
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItem
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItemUiAction
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItemUiState
-import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 
 

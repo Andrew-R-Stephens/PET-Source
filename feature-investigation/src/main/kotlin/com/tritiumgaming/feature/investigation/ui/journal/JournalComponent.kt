@@ -5,11 +5,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
@@ -31,13 +29,10 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalUiConfiguration
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.PrimaryEvidenceList
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostList
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources

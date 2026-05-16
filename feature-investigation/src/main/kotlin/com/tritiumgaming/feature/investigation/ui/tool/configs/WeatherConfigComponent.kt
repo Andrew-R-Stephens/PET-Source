@@ -8,14 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import com.tritiumgaming.core.ui.theme.LocalUiConfiguration
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigActionsBundle
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigStateBundle
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.OperationConfigCarousel
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
-import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 
 @Composable

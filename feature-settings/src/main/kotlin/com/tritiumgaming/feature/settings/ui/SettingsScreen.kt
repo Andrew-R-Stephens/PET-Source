@@ -1,8 +1,5 @@
 package com.tritiumgaming.feature.settings.ui
 
-import android.app.Activity
-import android.view.WindowManager
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

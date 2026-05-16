@@ -5,13 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.core.ui.vector.getActionPanVector
-import com.tritiumgaming.core.ui.vector.getBloodFilledVector
 import com.tritiumgaming.core.ui.vector.getBloodMoonFilledVector
 import com.tritiumgaming.core.ui.vector.getBloodMoonVector
-import com.tritiumgaming.core.ui.vector.getBloodVector
-import com.tritiumgaming.core.ui.vector.getHalfMoonFilledVector
-import com.tritiumgaming.core.ui.vector.getHalfMoonVector
 
 @Composable
 fun BloodMoonIcon(

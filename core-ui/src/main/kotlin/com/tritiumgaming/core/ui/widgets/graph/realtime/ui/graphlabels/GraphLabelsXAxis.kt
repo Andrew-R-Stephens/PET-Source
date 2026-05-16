@@ -10,7 +10,6 @@ import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
-import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun GraphLabelsXAxis(

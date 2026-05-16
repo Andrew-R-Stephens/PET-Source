@@ -18,7 +18,6 @@ import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource
 import com.tritiumgaming.data.customdifficulty.repository.CustomDifficultyRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
-import com.tritiumgaming.database.customdifficulty.CustomDifficultyDatabase
 import com.tritiumgaming.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
@@ -39,6 +38,7 @@ import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSo
 import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource
+import com.tritiumgaming.database.customdifficulty.CustomDifficultyDatabase
 import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase

@@ -1,7 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
-import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigActionsBundle
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigStateBundle
@@ -12,6 +11,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiActions
