@@ -5,6 +5,7 @@ import com.tritiumgaming.shared.data.investigation.model.DifficultyData
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.InvestigationData
 import com.tritiumgaming.shared.data.investigation.model.MapData
+import com.tritiumgaming.shared.data.investigation.model.SanityData
 import kotlinx.coroutines.flow.StateFlow
 
 interface InvestigationRepository {
@@ -12,10 +13,10 @@ interface InvestigationRepository {
 
     fun updateMap(map: MapData)
     fun updateSanity(insanity: Float, sanity: Float)
+    fun updateSanity(sanity: SanityData)
     fun updateEvidence(evidence: List<EvidenceState>)
-
-    //fun updateGhostStates(ghosts: List<GhostState>)
     fun updateDifficulty(difficulty: DifficultyData)
     fun toggleGhostRejection(id: GhostResources.GhostIdentifier)
+
     fun reset()
 }

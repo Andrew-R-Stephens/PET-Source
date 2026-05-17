@@ -24,6 +24,10 @@ class InvestigationRepositoryImpl : InvestigationRepository {
         _state.update { it.copy(sanity = SanityData(insanity, sanity)) }
     }
 
+    override fun updateSanity(sanityData: SanityData) {
+        _state.update { it.copy(sanity = sanityData) }
+    }
+
     override fun updateEvidence(evidence: List<EvidenceState>) {
         _state.update { it.copy(evidenceStates = evidence) }
     }

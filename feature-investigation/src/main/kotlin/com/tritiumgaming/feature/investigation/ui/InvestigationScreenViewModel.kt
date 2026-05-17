@@ -76,6 +76,7 @@ import com.tritiumgaming.shared.data.investigation.model.MapData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.shared.data.investigation.model.SanityData
 import com.tritiumgaming.shared.data.investigation.model.SanityTimerData
 import com.tritiumgaming.shared.data.investigation.model.SanityTimerData.Companion.TIME_MIN
 import com.tritiumgaming.shared.data.investigation.model.StateOption
@@ -91,6 +92,7 @@ import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationState
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
@@ -157,6 +159,7 @@ class InvestigationScreenViewModel private constructor(
     private val getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationUseCaseBundle.getInvestigationStateUseCase
     private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase
     private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase
+    private val updateInvestigationSanityUseCase: UpdateInvestigationSanityUseCase = investigationUseCaseBundle.updateInvestigationSanityUseCase
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
     private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase = investigationUseCaseBundle.getCustomDifficultiesUseCase
 
@@ -220,6 +223,7 @@ class InvestigationScreenViewModel private constructor(
     private var operationTimerJob: Job? = null
 
     private var toolTimersJob: Job? = null
+    private val _sanityTickerState = MutableStateFlow(SanityTickerData())
 
     /*
      * Investigation Repository
@@ -235,6 +239,13 @@ class InvestigationScreenViewModel private constructor(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = MapData()
+        )
+
+    private val sanityState = _investigationState.map { it.sanity }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = SanityData()
         )
 
     private fun updateMap(
@@ -323,34 +334,9 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    internal val customDifficultyConfigUiState: StateFlow<CustomDifficultyConfigUiState> = combine(
-        difficultyState,
-        _customDifficulties
-    ) { difficulty, customDifficulties ->
-        val customDifficultyIndex = difficulty.customIndex ?: 0
-
-        CustomDifficultyConfigUiState(
-            selectedDifficulty = customDifficulties.getOrNull(customDifficultyIndex),
-            difficulties = customDifficulties,
-            isVisible = difficulty.type == DifficultyType.CUSTOM
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = CustomDifficultyConfigUiState()
-    )
-
     /*
      * Tool Timers
      */
-
-    private data class NotchedProgressBarData(
-        val max: Long = 0,
-        val origin: Long = 0,
-        val remaining: Long = max,
-        val notches: List<ProgressBarNotch> = listOf(),
-        val running: Boolean = false
-    )
 
     private val smudgeHuntTimerProgressBarNotches = listOf(
         ProgressBarNotch(
@@ -666,16 +652,10 @@ class InvestigationScreenViewModel private constructor(
     )
     private val ghostStates = _ghostStates
 
-    private val _playerSanityState = MutableStateFlow(
-        PlayerSanityData(
-            sanityLevel = difficultyState.value.settings.startingSanity.toFloat(),
-            insanityLevel = 1f - difficultyState.value.settings.startingSanity.toFloat()
-        )
-    )
-
     /**
      * UI States
      */
+
     private val _mapConfigUiState: StateFlow<MapConfigUiState> =
         combine(
             mapState,
@@ -720,6 +700,23 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
 
+    internal val customDifficultyConfigUiState: StateFlow<CustomDifficultyConfigUiState> = combine(
+        difficultyState,
+        _customDifficulties
+    ) { difficulty, customDifficulties ->
+        val customDifficultyIndex = difficulty.customIndex ?: 0
+
+        CustomDifficultyConfigUiState(
+            selectedDifficulty = customDifficulties.getOrNull(customDifficultyIndex),
+            difficulties = customDifficulties,
+            isVisible = difficulty.type == DifficultyType.CUSTOM
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = CustomDifficultyConfigUiState()
+    )
+
     private val _operationTimerUiState: StateFlow<OperationTimerUiState> = _operationTimerState.map {
         sanityTimerState ->
         OperationTimerUiState(
@@ -733,7 +730,7 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val operationTimerUiState = _operationTimerUiState
 
-    val playerSanityUiState = _playerSanityState.map {
+    val playerSanityUiState = sanityState.map {
         val normalizedInsanity = (((it.insanityLevel * 1000).roundToInt()) / 1000f)
         val normalizedSanity = (((it.sanityLevel * 1000).roundToInt()) / 1000f)
 
@@ -741,25 +738,24 @@ class InvestigationScreenViewModel private constructor(
             normalizedInsanity,
             normalizedSanity
         )
-    }.distinctUntilChanged { old, new ->
-        old.insanityLevel == new.insanityLevel || old.sanityLevel == new.sanityLevel
-    }.stateIn(
+    }.distinctUntilChanged()
+    .stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = PlayerSanityUiState()
     )
 
     private val _phaseUiState = combine(
-        phaseState, operationTimerState, _playerSanityState, preferences
-    ) { phaseState, timerUiState, playerSanityState, preferences ->
+        phaseState, operationTimerState, sanityState, preferences
+    ) { phaseState, timerUiState, sanityState, preferences ->
         val type =
             when {
                 timerUiState.remainingTime > TIME_MIN -> PhaseIdentifier.SETUP
-                playerSanityState.sanityLevel < SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
+                sanityState.sanityLevel < SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
                 else -> PhaseIdentifier.ACTION
             }
 
-        val canFlash = playerSanityState.isInsane &&
+        val canFlash = sanityState.sanityLevel < SAFE_MIN_BOUNDS &&
                 phaseState.elapsedFlashTime <= preferences.maxHuntWarnFlashTime
 
         PhaseUiState(
@@ -1172,11 +1168,7 @@ class InvestigationScreenViewModel private constructor(
      */
 
     private fun launchOperationControllerJob() {
-        _playerSanityState.update{
-            it.copy(
-                lastSanityTickTime = System.currentTimeMillis()
-            )
-        }
+        _sanityTickerState.update { it.copy(lastTickTime = System.currentTimeMillis()) }
         _temperatureState.update{
             it.copy(
                 lastUpdate = System.currentTimeMillis()
@@ -1216,30 +1208,27 @@ class InvestigationScreenViewModel private constructor(
     private fun setPlayerSanity(
         value: Float
     ) {
-        _playerSanityState.update {
-            it.copy(
-                insanityLevel = value.coerceIn(SanityLevel.MIN_SANITY, SanityLevel.MAX_SANITY),
-                sanityLevel = (SanityLevel.MAX_SANITY - value)
-                    .coerceIn(SanityLevel.MIN_SANITY, SanityLevel.MAX_SANITY)
-            )
-        }
+        val insanityLevel = value.coerceIn(SanityLevel.MIN_SANITY, SanityLevel.MAX_SANITY)
+        val sanityLevel = (SanityLevel.MAX_SANITY - value)
+            .coerceIn(SanityLevel.MIN_SANITY, SanityLevel.MAX_SANITY)
 
+        updateInvestigationSanityUseCase(SanityData(insanityLevel, sanityLevel))
     }
     private fun addPlayerSanity(
         value: Float
     ) {
-        setPlayerSanity(_playerSanityState.value.insanityLevel - value)
+        setPlayerSanity(sanityState.value.insanityLevel - value)
     }
     private fun removePlayerSanity(
         value: Float
     ) {
-        setPlayerSanity(_playerSanityState.value.insanityLevel + value)
+        setPlayerSanity(sanityState.value.insanityLevel + value)
     }
 
     private fun skipPlayerInsanity(
         newLevel: Float = SanityLevel.HALF_SANITY
     ) {
-        val currentLevel = _playerSanityState.value.insanityLevel
+        val currentLevel = sanityState.value.insanityLevel
 
         val normalizedLevel = newLevel.coerceAtLeast(currentLevel)
 
@@ -1256,14 +1245,10 @@ class InvestigationScreenViewModel private constructor(
      */
     private fun tickSanity() {
         val currentTime = System.currentTimeMillis()
-        val deltaTime = if (_playerSanityState.value.lastSanityTickTime > 0)
-            currentTime - _playerSanityState.value.lastSanityTickTime else 0L
+        val deltaTime = if (_sanityTickerState.value.lastTickTime > 0)
+            currentTime - _sanityTickerState.value.lastTickTime else 0L
 
-        _playerSanityState.update {
-            it.copy(
-                lastSanityTickTime = currentTime
-            )
-        }
+        _sanityTickerState.update { it.copy(lastTickTime = currentTime) }
 
         if (deltaTime > 0) {
             val drainModifier = operationSanityUiState.value.drainModifier
@@ -1272,7 +1257,7 @@ class InvestigationScreenViewModel private constructor(
 
             val deltaDrain = deltaTime * drainModifier * multiplier * bloodMoonMultiplier
 
-            val currentInsanity = _playerSanityState.value.insanityLevel
+            val currentInsanity = sanityState.value.insanityLevel
             setPlayerSanity(currentInsanity + deltaDrain)
         }
     }
@@ -1451,7 +1436,7 @@ class InvestigationScreenViewModel private constructor(
             val startTime =
                 if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
                 else System.currentTimeMillis() -
-                        getDurationByProgress(_playerSanityState.value.insanityLevel)
+                        getDurationByProgress(sanityState.value.insanityLevel)
 
             val remainingTime =
                 if (it.remainingTime == TIME_DEFAULT)
@@ -1660,7 +1645,7 @@ class InvestigationScreenViewModel private constructor(
 
     private fun skipOperationTimer() {
 
-        val currentLevel = _playerSanityState.value.sanityLevel
+        val currentLevel = sanityState.value.sanityLevel
 
         val startingSanity = difficultyState.value.settings.startingSanity.toFloat()
         val huntThreshold = SanityLevel.HALF_SANITY
@@ -1951,12 +1936,10 @@ class InvestigationScreenViewModel private constructor(
         difficultyState
             .onEach { difficulty ->
 
-                _playerSanityState.update {
-                    it.copy(
-                        sanityLevel = difficulty.settings.startingSanity.toFloat(),
-                        insanityLevel = 1f - difficulty.settings.startingSanity.toFloat()
-                    )
-                }
+                val sanityLevel = difficulty.settings.startingSanity.toFloat()
+                val insanityLevel = 1f - difficulty.settings.startingSanity.toFloat()
+
+                updateInvestigationSanityUseCase(SanityData(insanityLevel, sanityLevel))
 
                 _phaseState.update {
                     it.copy(
@@ -2067,19 +2050,22 @@ class InvestigationScreenViewModel private constructor(
         object ResetInvestigation : InvestigationEvent()
     }
 
-    private data class PlayerSanityData(
-        val insanityLevel: Float = 0.0f,
-        val sanityLevel: Float = 1.0f,
-        val lastSanityTickTime: Long = 0L
-    ) {
-        val isInsane: Boolean
-            get() = sanityLevel < SAFE_MIN_BOUNDS
-
-    }
-
     internal data class CustomDifficultyConfigUiState(
         val selectedDifficulty: CustomDifficultyModel? = null,
         val difficulties: List<CustomDifficultyModel> = emptyList(),
         val isVisible: Boolean = false
     )
+
+    private data class NotchedProgressBarData(
+        val max: Long = 0,
+        val origin: Long = 0,
+        val remaining: Long = max,
+        val notches: List<ProgressBarNotch> = listOf(),
+        val running: Boolean = false
+    )
+
+    private data class SanityTickerData(
+        val lastTickTime: Long = 0L
+    )
+
 }
