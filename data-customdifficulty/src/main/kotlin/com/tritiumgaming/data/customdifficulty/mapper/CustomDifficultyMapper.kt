@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.customdifficulty.mapper
 
-import com.tritiumgaming.database.customdifficulty.CustomDifficultyEntity
+import com.tritiumgaming.data.customdifficulty.source.local.CustomDifficultyEntity
 import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 

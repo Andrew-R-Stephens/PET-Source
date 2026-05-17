@@ -60,8 +60,7 @@ include(
     ":data-review",
     ":data-trait",
     ":data-typography",
-    ":database-unknown",
-    ":database-customdifficulty",
+    ":database-local",
 )
 
 include(

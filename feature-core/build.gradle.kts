@@ -74,7 +74,7 @@ dependencies {
     implementation(project(":data-palette"))
     implementation(project(":data-review"))
     implementation(project(":data-customdifficulty"))
-    implementation(project(":database-customdifficulty"))
+    implementation(project(":database-local"))
     // implementation(project(":data-codex"))
     // implementation(project(":data-contributor"))
     // implementation(project(":data-difficulty"))

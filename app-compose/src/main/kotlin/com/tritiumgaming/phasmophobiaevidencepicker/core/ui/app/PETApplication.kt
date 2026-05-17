@@ -9,8 +9,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
-import com.tritiumgaming.database.customdifficulty.CustomDifficultyDatabase
-import com.tritiumgaming.database.unknown.database.AppDatabase
+import com.tritiumgaming.database.LocalDatabase
 import com.tritiumgaming.feature.about.app.container.AboutContainer
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
 import com.tritiumgaming.feature.account.app.container.AccountContainer
@@ -63,17 +62,10 @@ class PETApplication : Application(),
     MapViewerContainerProvider,
     CustomDifficultyContainerProvider {
 
-    val db by lazy {
-        Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "pet-db"
-        ).build()
-    }
-
     val localDatabase by lazy {
         Room.databaseBuilder(
             applicationContext,
-            CustomDifficultyDatabase::class.java, "custom-difficulty-db"
+            LocalDatabase::class.java, "local-db"
         ).build()
     }
 

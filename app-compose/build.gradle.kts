@@ -278,8 +278,7 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":database-unknown"))
-    implementation(project(":database-customdifficulty"))
+    implementation(project(":database-local"))
     implementation(project(":data-customdifficulty"))
 
     implementation(project(":feature-core"))
