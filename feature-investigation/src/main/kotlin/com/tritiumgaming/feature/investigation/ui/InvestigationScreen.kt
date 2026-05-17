@@ -74,17 +74,13 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleUniqueTraitFilter
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
-import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
-import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
-import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
@@ -95,7 +91,6 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
-import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
@@ -465,49 +460,89 @@ private fun InvestigationContent(
         )
     }
 
+    val journalComponent: @Composable (Modifier) -> Unit = { modifier ->
+        JournalComponent(
+            modifier = modifier,
+            evidenceStateList = evidenceListUiStates,
+            ghostOrder = ghostOrder,
+            ghostEvidenceState = evidenceStates,
+            onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
+            onToggleNegateGhost = {
+                investigationViewModel.onEvent(
+                    ToggleGhostNegation(it)
+                )
+            },
+            onRequestToolTip = { },
+            onChangeEvidenceRuling = { e, r ->
+                investigationViewModel.onEvent(
+                    SetEvidence(e, r)
+                )
+            },
+            onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
+        )
+    }
+
+    val statusBarComponent: @Composable (Modifier) -> Unit = { modifier ->
+        OperationStatusBar(
+            modifier = modifier,
+            remainingTime = operationTimerUiState.remainingTime,
+            phaseType = phaseUiState.type,
+            sanityLevel = sanityUiState.sanityLevel
+        )
+    }
+
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT,
         DeviceConfiguration.TABLET_PORTRAIT -> {
-            Content_CompactPortrait(
-                toolbarUiState,
-                investigationViewModel,
-                operationTimerUiState,
-                phaseUiState,
-                sanityUiState,
-                evidenceListUiStates,
-                ghostOrder,
-                evidenceStates,
-                bottomSheetComponent
+            CompactPortraitContent(
+                modifier = Modifier,
+                operationToolbarUiState = toolbarUiState,
+                toolbarUiActions = ToolbarUiActions(
+                    onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                    onChangeToolbarCategory = { category ->
+                        investigationViewModel.onEvent(SetToolbarCategory(category))
+                    },
+                    onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                ),
+                statusBarComponent = { modifier -> statusBarComponent(modifier) },
+                journalComponent = { modifier -> journalComponent(modifier) },
+                bottomSheetComponent = bottomSheetComponent
             )
         }
 
         DeviceConfiguration.MOBILE_LANDSCAPE -> {
-            Content_CompactLandscape(
-                toolbarUiState,
-                investigationViewModel,
-                operationTimerUiState,
-                phaseUiState,
-                sanityUiState,
-                evidenceListUiStates,
-                ghostOrder,
-                evidenceStates,
-                sideSheetComponent
+            CompactLandscapeContent(
+                modifier = Modifier,
+                operationToolbarUiState = toolbarUiState,
+                toolbarUiActions = ToolbarUiActions(
+                    onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                    onChangeToolbarCategory = { category ->
+                        investigationViewModel.onEvent(SetToolbarCategory(category))
+                    },
+                    onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                ),
+                statusBarComponent = { modifier -> statusBarComponent(modifier) },
+                journalComponent = { modifier -> journalComponent(modifier) },
+                sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
             )
-
         }
 
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
-            Content_ExpandedLandscape(
-                toolbarUiState,
-                investigationViewModel,
-                operationTimerUiState,
-                phaseUiState,
-                sanityUiState,
-                evidenceListUiStates,
-                ghostOrder,
-                evidenceStates,
-                sideSheetComponent
+            ExpandedLandscapeContent(
+                modifier = Modifier,
+                operationToolbarUiState = toolbarUiState,
+                toolbarUiActions = ToolbarUiActions(
+                    onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                    onChangeToolbarCategory = { category ->
+                        investigationViewModel.onEvent(
+                            SetToolbarCategory(category, false))
+                    },
+                    onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                ),
+                statusBarComponent = { modifier -> statusBarComponent(modifier) },
+                journalComponent = { modifier -> journalComponent(modifier) },
+                sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
             )
         }
     }
@@ -534,178 +569,7 @@ private fun InvestigationContent(
 }
 
 @Composable
-private fun Content_CompactLandscape(
-    toolbarUiState: OperationToolbarUiState,
-    investigationViewModel: InvestigationScreenViewModel,
-    operationTimerUiState: OperationTimerUiState,
-    phaseUiState: PhaseUiState,
-    sanityUiState: PlayerSanityUiState,
-    evidenceListUiStates: List<EvidenceState>,
-    ghostOrder: List<GhostState>,
-    evidenceStates: List<EvidenceState>,
-    sideSheetComponent: @Composable ((Modifier) -> Unit)
-) {
-    Investigation_CompactLandscape(
-        modifier = Modifier,
-        operationToolbarUiState = toolbarUiState,
-        toolbarUiActions = ToolbarUiActions(
-            onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
-            onChangeToolbarCategory = { category ->
-                investigationViewModel.onEvent(
-                    SetToolbarCategory(category)
-                )
-            },
-            onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-        ),
-        statusBarComponent = { modifier ->
-            OperationStatusBar(
-                modifier = modifier,
-                remainingTime = operationTimerUiState.remainingTime,
-                phaseType = phaseUiState.type,
-                sanityLevel = sanityUiState.sanityLevel
-            )
-        },
-        journalComponent = { modifier ->
-            JournalComponent(
-                modifier = modifier,
-                evidenceStateList = evidenceListUiStates,
-                ghostOrder = ghostOrder,
-                ghostEvidenceState = evidenceStates,
-                onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
-                onToggleNegateGhost = {
-                    investigationViewModel.onEvent(
-                        ToggleGhostNegation(it)
-                    )
-                },
-                onRequestToolTip = { },
-                onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.onEvent(
-                        SetEvidence(e, r)
-                    )
-                },
-                onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
-            )
-        },
-        sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
-    )
-}
-
-@Composable
-private fun Content_ExpandedLandscape(
-    toolbarUiState: OperationToolbarUiState,
-    investigationViewModel: InvestigationScreenViewModel,
-    operationTimerUiState: OperationTimerUiState,
-    phaseUiState: PhaseUiState,
-    sanityUiState: PlayerSanityUiState,
-    evidenceListUiStates: List<EvidenceState>,
-    ghostOrder: List<GhostState>,
-    evidenceStates: List<EvidenceState>,
-    sideSheetComponent: @Composable ((Modifier) -> Unit)
-) {
-    Investigation_ExpandedLandscape(
-        modifier = Modifier,
-        operationToolbarUiState = toolbarUiState,
-        toolbarUiActions = ToolbarUiActions(
-            onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
-            onChangeToolbarCategory = { category ->
-                investigationViewModel.onEvent(
-                    SetToolbarCategory(category, false)
-                )
-            },
-            onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-        ),
-        statusBarComponent = { modifier ->
-            OperationStatusBar(
-                modifier = modifier,
-                remainingTime = operationTimerUiState.remainingTime,
-                phaseType = phaseUiState.type,
-                sanityLevel = sanityUiState.sanityLevel
-            )
-        },
-        journalComponent = { modifier ->
-            JournalComponent(
-                modifier = modifier,
-                evidenceStateList = evidenceListUiStates,
-                ghostOrder = ghostOrder,
-                ghostEvidenceState = evidenceStates,
-                onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
-                onToggleNegateGhost = {
-                    investigationViewModel.onEvent(
-                        ToggleGhostNegation(it)
-                    )
-                },
-                onRequestToolTip = { },
-                onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.onEvent(
-                        SetEvidence(e, r)
-                    )
-                },
-                onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
-            )
-        },
-        sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
-    )
-}
-
-@Composable
-private fun Content_CompactPortrait(
-    toolbarUiState: OperationToolbarUiState,
-    investigationViewModel: InvestigationScreenViewModel,
-    operationTimerUiState: OperationTimerUiState,
-    phaseUiState: PhaseUiState,
-    sanityUiState: PlayerSanityUiState,
-    evidenceListUiStates: List<EvidenceState>,
-    ghostOrder: List<GhostState>,
-    evidenceStates: List<EvidenceState>,
-    bottomSheetComponent: @Composable ((Modifier) -> Unit)
-) {
-    Investigation_CompactPortrait(
-        modifier = Modifier,
-        operationToolbarUiState = toolbarUiState,
-        toolbarUiActions = ToolbarUiActions(
-            onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
-            onChangeToolbarCategory = { category ->
-                investigationViewModel.onEvent(
-                    SetToolbarCategory(category)
-                )
-            },
-            onReset = { investigationViewModel.onEvent(ResetInvestigation) }
-        ),
-        statusBarComponent = { modifier ->
-            OperationStatusBar(
-                modifier = modifier,
-                remainingTime = operationTimerUiState.remainingTime,
-                phaseType = phaseUiState.type,
-                sanityLevel = sanityUiState.sanityLevel
-            )
-        },
-        journalComponent = { modifier ->
-            JournalComponent(
-                modifier = modifier,
-                evidenceStateList = evidenceListUiStates,
-                ghostOrder = ghostOrder,
-                ghostEvidenceState = evidenceStates,
-                onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
-                onToggleNegateGhost = {
-                    investigationViewModel.onEvent(
-                        ToggleGhostNegation(it)
-                    )
-                },
-                onRequestToolTip = { },
-                onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.onEvent(
-                        SetEvidence(e, r)
-                    )
-                },
-                onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
-            )
-        },
-        bottomSheetComponent = bottomSheetComponent
-    )
-}
-
-@Composable
-private fun Investigation_CompactPortrait(
+private fun CompactPortraitContent(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
@@ -745,7 +609,8 @@ private fun Investigation_CompactPortrait(
         HorizontalToolbar(
             modifier = Modifier
                 .padding(8.dp),
-            selectBarComponent = { modifier -> toolbarComponent(modifier) },
+            selectBarComponent = { modifier ->
+                toolbarComponent(modifier) },
             content = { modifier ->
                 bottomSheetComponent(
                     modifier
@@ -768,7 +633,7 @@ private fun Investigation_CompactPortrait(
 }
 
 @Composable
-private fun Investigation_CompactLandscape(
+private fun CompactLandscapeContent(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
@@ -795,7 +660,8 @@ private fun Investigation_CompactLandscape(
         VerticalToolbar(
             modifier = Modifier
                 .padding(8.dp),
-            selectRailComponent = { modifier -> toolbarContent(modifier) },
+            selectRailComponent = { modifier ->
+                toolbarContent(modifier) },
             content = { modifier ->
                 sideSheetComponent(
                     modifier
@@ -839,7 +705,7 @@ private fun Investigation_CompactLandscape(
 }
 
 @Composable
-private fun Investigation_ExpandedLandscape(
+private fun ExpandedLandscapeContent(
     modifier: Modifier = Modifier,
     operationToolbarUiState: OperationToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
@@ -866,7 +732,8 @@ private fun Investigation_ExpandedLandscape(
         VerticalToolbar(
             modifier = Modifier
                 .weight(1f),
-            selectRailComponent = { modifier -> toolbarContent(modifier) },
+            selectRailComponent = { modifier ->
+                toolbarContent(modifier) },
             content = { modifier ->
                 sideSheetComponent(
                     modifier
@@ -1310,29 +1177,49 @@ fun OperationConfigsSideSheet(
 
             }
         }
-
-        Surface(
+        Row(
             modifier = Modifier
-                .fillMaxWidth(),
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
+                .fillMaxWidth()
+                .height(IntrinsicSize.Min),
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
-                Modifier
-                    .padding(8.dp),
-                contentAlignment = Alignment.BottomCenter
+
+            Surface(
+                modifier = Modifier
+                    .weight(1f),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
             ) {
                 timerComponent(
                     Modifier
-                        .fillMaxWidth()
+                        .weight(1f)
+                        .padding(8.dp)
+                )
+
+            }
+
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                fuseBoxControlComponent(
+                    Modifier
+                        .fillMaxHeight()
+                        .width(48.dp)
                 )
             }
-        }
 
+        }
 
         Row(
             modifier = Modifier
@@ -1359,21 +1246,37 @@ fun OperationConfigsSideSheet(
                 )
             }
 
-            Surface(
+            Row(
                 modifier = Modifier,
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
+                Surface(
                     modifier = Modifier,
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = LocalPalette.current.surfaceContainerLow
+                    )
                 ) {
                     sanityMedicationComponent(
+                        Modifier
+                            .size(48.dp)
+                            .fillMaxHeight()
+                    )
+                }
+
+                Surface(
+                    modifier = Modifier,
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = LocalPalette.current.surfaceContainerLow
+                    )
+                ) {
+                    playerDeathButtonComponent(
                         Modifier
                             .size(48.dp)
                     )
@@ -1390,6 +1293,7 @@ fun OperationConfigsSideSheet(
         ) {
             Surface(
                 modifier = Modifier
+                    .width(IntrinsicSize.Min)
                     .weight(1f),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
@@ -1398,38 +1302,28 @@ fun OperationConfigsSideSheet(
                     color = LocalPalette.current.surfaceContainerLow
                 )
             ) {
-                Column(
-                    modifier = Modifier
+                weatherConfigComponent(
+                    Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
                         .padding(8.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
-                    horizontalAlignment = Alignment.Start
-                ) {
-
-                    weatherConfigComponent(
-                        Modifier
-                            .fillMaxWidth()
-                    )
-
-                }
+                )
             }
 
-            Surface(
-                modifier = Modifier,
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                Box(
-                    Modifier
-                        .padding(8.dp),
-                    contentAlignment = Alignment.BottomCenter
+            if(showTemperatureMeterComponent) {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxHeight(),
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = LocalPalette.current.surfaceContainerLow
+                    )
                 ) {
                     temperatureMeterComponent(
                         Modifier
-                            .width(IntrinsicSize.Min)
+                            .padding(8.dp)
                     )
                 }
             }
