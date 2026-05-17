@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [CustomDifficultyEntity::class], version = 2, exportSchema = false)
 @TypeConverters(DifficultyTypeConverters::class)
+
 abstract class CustomDifficultyDatabase : RoomDatabase() {
     abstract fun customDifficultyDao(): CustomDifficultyDao
 

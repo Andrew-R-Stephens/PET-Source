@@ -8,6 +8,7 @@ import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyMode
 import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficultyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -16,8 +17,12 @@ class CustomDifficultyRepositoryImpl(
     scope: CoroutineScope
 ): CustomDifficultyRepository {
 
-    override val allCustomDifficulties: Flow<List<CustomDifficultyModel>> =
-        customDifficultyDao.getAll().map { list -> list.map { it.toDomain() } }
+    override val allCustomDifficulties: Flow<Result<List<CustomDifficultyModel>>> =
+        customDifficultyDao.getAll().map { list ->
+            Result.success(list.map { it.toDomain() })
+        }.catch { e ->
+            emit(Result.failure(e))
+        }
 
     init {
         scope.launch {
@@ -30,7 +35,12 @@ class CustomDifficultyRepositoryImpl(
         }
     }
 
-    override suspend fun update(difficulty: CustomDifficultyModel) {
-        customDifficultyDao.update(difficulty.toEntity())
+    override suspend fun update(difficulty: CustomDifficultyModel): Result<Unit> {
+        return try {
+            customDifficultyDao.update(difficulty.toEntity())
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

@@ -174,6 +174,10 @@ class InvestigationScreenViewModel private constructor(
             initialValue = InvestigationScreenUserPreferences()
         )
 
+    private val _customDifficulties = getCustomDifficultiesUseCase().map {
+        it.getOrDefault(emptyList())
+    }
+
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
         try { it.getOrThrow() }
@@ -291,7 +295,7 @@ class InvestigationScreenViewModel private constructor(
                         }
                     }
                     DifficultyType.CUSTOM -> {
-                        val customDifficulties = getCustomDifficultiesUseCase().first()
+                        val customDifficulties = getCustomDifficultiesUseCase().first().getOrDefault(emptyList())
                         val custom = customIndex?.let { customDifficulties.getOrNull(it) }
                             ?: customDifficulties.firstOrNull()
                         custom?.let {
@@ -321,7 +325,7 @@ class InvestigationScreenViewModel private constructor(
 
     internal val customDifficultyConfigUiState: StateFlow<CustomDifficultyConfigUiState> = combine(
         difficultyState,
-        getCustomDifficultiesUseCase()
+        _customDifficulties
     ) { difficulty, customDifficulties ->
         val customDifficultyIndex = difficulty.customIndex ?: 0
 
@@ -1925,12 +1929,12 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun observeCustomDifficulty() {
-        getCustomDifficultiesUseCase()
+        _customDifficulties
             .onEach { customDifficulties ->
                 val currentDifficulty = difficultyState.value
                 if (currentDifficulty.type == DifficultyType.CUSTOM) {
-                    val custom = currentDifficulty.customIndex?.let { customDifficulties.getOrNull(it) }
-                        ?: customDifficulties.firstOrNull()
+                    val custom = currentDifficulty.customIndex?.let {
+                        customDifficulties.getOrNull(it) } ?: customDifficulties.firstOrNull()
                     custom?.let {
                         if (currentDifficulty.settings != it.settings) {
                             updateInvestigationDifficultyUseCase(

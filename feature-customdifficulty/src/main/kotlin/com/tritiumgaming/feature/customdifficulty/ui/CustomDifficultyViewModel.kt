@@ -13,9 +13,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.collections.emptyList
 
 data class CustomDifficultyUiState(
     val difficulties: List<CustomDifficultyModel> = emptyList(),
@@ -29,14 +31,19 @@ class CustomDifficultyViewModel(
     private val updateCustomDifficultyUseCase: UpdateCustomDifficultyUseCase
 ): ViewModel() {
 
+    private val _customDifficulties = getCustomDifficultiesUseCase().map {
+        it.getOrDefault(emptyList())
+    }
+
     private val _selectedDifficulty = MutableStateFlow<CustomDifficultyModel?>(null)
     private val _isSaving = MutableStateFlow(false)
 
     val uiState: StateFlow<CustomDifficultyUiState> = combine(
-        getCustomDifficultiesUseCase(),
+        _customDifficulties,
         _selectedDifficulty,
         _isSaving
     ) { difficulties, selected, isSaving ->
+
         val currentSelected = selected ?: difficulties.firstOrNull()
         val original = difficulties.find { it.id == currentSelected?.id }
         val hasChanges = currentSelected != null && original != null && currentSelected != original

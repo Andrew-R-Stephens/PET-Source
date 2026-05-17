@@ -6,5 +6,5 @@ import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficult
 class UpdateCustomDifficultyUseCase(
     private val repository: CustomDifficultyRepository
 ) {
-    suspend operator fun invoke(difficulty: CustomDifficultyModel) = repository.update(difficulty)
+    suspend operator fun invoke(difficulty: CustomDifficultyModel): Result<Unit> = repository.update(difficulty)
 }
