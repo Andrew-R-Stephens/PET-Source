@@ -95,6 +95,10 @@ fun LanguageScreen(
         )
 
         LanguageContent(
+            modifier = Modifier
+                .padding(all = 8.dp)
+                .weight(1f)
+                .widthIn(max = 600.dp),
             languages = languages,
             currentLanguageCode = currentLanguageState.languageCode,
             onLanguageClick = { viewModel.setCurrentLanguageCode(it) }
@@ -152,7 +156,8 @@ private fun NavigationHeader(
 }
 
 @Composable
-private fun ColumnScope.LanguageContent(
+private fun LanguageContent(
+    modifier: Modifier = Modifier,
     languages: List<LanguageEntity>,
     currentLanguageCode: String,
     onLanguageClick: (String) -> Unit
@@ -160,10 +165,7 @@ private fun ColumnScope.LanguageContent(
     val columnState = rememberLazyListState()
 
     LazyColumn(
-        modifier = Modifier
-            .padding(all = 8.dp)
-            .weight(1f)
-            .widthIn(max = 600.dp)
+        modifier = modifier
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally,

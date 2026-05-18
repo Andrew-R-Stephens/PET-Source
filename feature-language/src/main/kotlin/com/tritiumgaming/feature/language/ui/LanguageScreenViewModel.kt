@@ -32,23 +32,18 @@ class LanguageScreenViewModel(
     /**
      * Language
      */
-    val languageList: List<LanguageEntity>
-        get() {
-            var languages: List<LanguageEntity> = emptyList()
+    val languageList: List<LanguageEntity> = try {
+        val languages = getAvailableLanguagesUseCase().getOrThrow()
 
-            try {
-                languages = getAvailableLanguagesUseCase().getOrThrow()
-
-                setDefaultLanguageUseCase(
-                    localeLanguage = Locale.getDefault().language,
-                    languages = languages
-                )
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            return languages
-        }
+        setDefaultLanguageUseCase(
+            localeLanguage = Locale.getDefault().language,
+            languages = languages
+        )
+        languages
+    } catch (e: Exception) {
+        e.printStackTrace()
+        emptyList()
+    }
 
     private val _currentLanguageCode : StateFlow<LanguageDatastore.LanguagePreferences> =
         initFlowLanguageUseCase()
@@ -56,11 +51,11 @@ class LanguageScreenViewModel(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
                 initialValue = LanguageDatastore.LanguagePreferences(
-                    languageCode = getDefaultLanguageUseCase().getOrNull()?.code
-                        ?: Locale.ENGLISH.language
+                    languageCode = getDefaultLanguageUseCase().getOrNull()?.code ?: ""
                 )
             )
     val currentLanguageCode = _currentLanguageCode
+
     fun setCurrentLanguageCode(languageCode: String) {
         viewModelScope.launch {
             saveCurrentLanguageUseCase(languageCode)
