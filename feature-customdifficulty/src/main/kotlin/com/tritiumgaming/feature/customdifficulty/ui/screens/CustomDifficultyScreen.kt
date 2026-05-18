@@ -60,6 +60,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -71,6 +72,7 @@ import com.tritiumgaming.core.common.util.ValidationUtils
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.MarkCheckIcon
 import com.tritiumgaming.core.ui.mapper.toStringResource
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
@@ -87,6 +89,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
+import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 
 @Composable
 fun CustomDifficultyScreen(
@@ -1015,4 +1018,56 @@ private fun NavigationHeader(
             )
         }
     )
+}
+
+@Preview(showBackground = true, widthDp = 400, heightDp = 800)
+@Composable
+private fun PortraitContentPreview() {
+    val sampleDifficulty = CustomDifficultyModel(
+        id = 1,
+        name = "Insane Custom",
+        settings = DifficultySettingsModel()
+    )
+    val uiState = CustomDifficultyUiState(
+        difficulties = listOf(sampleDifficulty),
+        selectedDifficulty = sampleDifficulty,
+        hasChanges = true
+    )
+    SelectiveTheme {
+        Surface(color = LocalPalette.current.surface) {
+            PortraitContent(
+                uiState = uiState,
+                onSelectDifficulty = {},
+                onUpdateDifficulty = {},
+                onSave = {},
+                onRevert = {}
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 800, heightDp = 400)
+@Composable
+private fun LandscapeContentPreview() {
+    val sampleDifficulty = CustomDifficultyModel(
+        id = 1,
+        name = "Insane Custom",
+        settings = DifficultySettingsModel()
+    )
+    val uiState = CustomDifficultyUiState(
+        difficulties = listOf(sampleDifficulty),
+        selectedDifficulty = sampleDifficulty,
+        hasChanges = true
+    )
+    SelectiveTheme {
+        Surface(color = LocalPalette.current.surface) {
+            LandscapeContent(
+                uiState = uiState,
+                onSelectDifficulty = {},
+                onUpdateDifficulty = {},
+                onSave = {},
+                onRevert = {}
+            )
+        }
+    }
 }
