@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,7 +63,9 @@ fun AccountBannerExpanded(
             )
         }
 
-        AccountBannerIcon()
+        if (!LocalInspectionMode.current) {
+            AccountBannerIcon()
+        }
     }
 
 }
@@ -79,7 +82,9 @@ fun AccountBannerComposite(
             .wrapContentHeight(),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        AccountBannerIcon()
+        if (!LocalInspectionMode.current) {
+            AccountBannerIcon()
+        }
 
         Box(
             modifier = Modifier

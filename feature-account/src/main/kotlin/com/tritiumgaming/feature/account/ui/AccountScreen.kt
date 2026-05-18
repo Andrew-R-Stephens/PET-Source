@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.account.ui
 
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
@@ -55,7 +54,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
@@ -77,6 +75,7 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.account.ui.component.AccountBannerComposite
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
+import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.SignInOptions
 import kotlinx.coroutines.launch
 
@@ -85,37 +84,233 @@ fun AccountScreen(
     navController: NavController = rememberNavController(),
     accountViewModel: AccountScreenViewModel
 ) {
+    val activity = LocalActivity.current
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+
+    val accountCreditsUiState by accountViewModel.accountCreditsUiState.collectAsStateWithLifecycle()
+    val accountPalettesUiState by accountViewModel.accountUnlockedPalettesUiState.collectAsStateWithLifecycle()
+
+    var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
+    var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
+    var isLoading by remember { mutableStateOf(false) }
+
     AccountContent(
-        navController = navController, // replace with hoisted actions
-        accountViewModel = accountViewModel // replace with hoisted states
+        currentUser = rememberAccount,
+        userName = Firebase.auth.currentUser?.displayName ?: "",
+        userEmail = Firebase.auth.currentUser?.email ?: "",
+        earnedCredits = accountCreditsUiState.earnedCredits,
+        unlockedPalettes = accountPalettesUiState.unlockedPalettes,
+        currentDialog = rememberDialog,
+        isLoading = isLoading,
+        onBack = { navController.popBackStack() },
+        onLogoutRequest = { rememberDialog = AccountOverviewDialog.SIGN_OUT },
+        onDeactivateRequest = { rememberDialog = AccountOverviewDialog.DEACTIVATE_ACCOUNT },
+        onDismissDialog = { rememberDialog = AccountOverviewDialog.NONE },
+        onConfirmSignOut = {
+            accountViewModel.signOutAccount { success ->
+                rememberAccount = Firebase.auth.currentUser?.uid
+                rememberDialog = AccountOverviewDialog.NONE
+                if (success) {
+                    Toast.makeText(activity, activity?.getString(R.string.alert_account_logout_success), Toast.LENGTH_SHORT).show()
+                }
+            }
+        },
+        onConfirmDeactivate = {
+            accountViewModel.deactivateAccount { success ->
+                rememberAccount = Firebase.auth.currentUser?.uid
+                rememberDialog = AccountOverviewDialog.NONE
+                if (success) {
+                    Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_success), Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_failure), Toast.LENGTH_SHORT).show()
+                }
+            }
+        },
+        onSignInRequest = {
+            isLoading = true
+            accountViewModel.getSignInCredentials(SignInOptions.GOOGLE) { credentialOption ->
+                coroutineScope.launch {
+                    try {
+                        accountViewModel.signInWithCredentials(activity!!, context, credentialOption) { result ->
+                            rememberAccount = Firebase.auth.currentUser?.uid
+                            isLoading = false
+                            if (result) {
+                                Toast.makeText(activity, "${activity.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(activity, activity.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    } catch (e: Exception) {
+                        isLoading = false
+                        Toast.makeText(activity, "Sign-in failed.", Toast.LENGTH_SHORT).show()
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
     )
 }
 
 @Composable
 fun AccountContent(
-    navController: NavController = rememberNavController(),
-    accountViewModel: AccountScreenViewModel
+    currentUser: String?,
+    userName: String,
+    userEmail: String,
+    earnedCredits: Int,
+    unlockedPalettes: List<AccountPalette>,
+    currentDialog: AccountOverviewDialog,
+    isLoading: Boolean,
+    onBack: () -> Unit,
+    onLogoutRequest: () -> Unit,
+    onDeactivateRequest: () -> Unit,
+    onDismissDialog: () -> Unit,
+    onConfirmSignOut: () -> Unit,
+    onConfirmDeactivate: () -> Unit,
+    onSignInRequest: () -> Unit
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    when(deviceConfiguration) {
-        DeviceConfiguration.MOBILE_PORTRAIT -> {
-            AccountContentPortrait(
-                navController = navController,
-                accountViewModel = accountViewModel
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+
+            NavigationHeader(
+                onLeftClick = onBack
             )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+
+                if (currentUser == null) {
+                    SignInComponent(
+                        onSignInRequest = onSignInRequest
+                    )
+                } else {
+                    when(deviceConfiguration) {
+                        DeviceConfiguration.MOBILE_PORTRAIT -> {
+                            AccountComponentPortrait(
+                                userName = userName,
+                                userEmail = userEmail,
+                                earnedCredits = earnedCredits,
+                                unlockedPalettes = unlockedPalettes,
+                                onLogoutClicked = onLogoutRequest,
+                                onDeactivateClicked = onDeactivateRequest
+                            )
+                        }
+                        else -> {
+                            AccountComponentLandscape(
+                                userName = userName,
+                                userEmail = userEmail,
+                                earnedCredits = earnedCredits,
+                                onLogoutClicked = onLogoutRequest,
+                                onDeactivateClicked = onDeactivateRequest
+                            )
+                        }
+                    }
+                }
+
+            }
+
         }
-        DeviceConfiguration.MOBILE_LANDSCAPE,
-        DeviceConfiguration.TABLET_PORTRAIT,
-        DeviceConfiguration.TABLET_LANDSCAPE,
-        DeviceConfiguration.DESKTOP -> {
-            AccountContentLandscape(
-                navController = navController,
-                accountViewModel = accountViewModel
-            )
+
+        when(currentDialog) {
+            AccountOverviewDialog.DEACTIVATE_ACCOUNT ->
+                DeactivateAccountDialog(
+                    confirmButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_deactivate_button_confirm),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onErrorContainer
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onErrorContainer,
+                                containerColor = LocalPalette.current.errorContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                            onClick = onConfirmDeactivate
+                        )
+                    },
+                    cancelButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_deactivate_button_cancel),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onSecondaryContainer
+                            ),
+                            buttonColors = ButtonColors(
+                                containerColor = LocalPalette.current.secondaryContainer,
+                                contentColor = LocalPalette.current.onSecondaryContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                            onClick = onDismissDialog
+                        )
+                    }
+                )
+            AccountOverviewDialog.SIGN_OUT ->
+                LogoutDialog(
+                    confirmButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_logout_button_confirm),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onErrorContainer
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onErrorContainer,
+                                containerColor = LocalPalette.current.errorContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                            onClick = onConfirmSignOut
+                        )
+                    },
+                    cancelButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_logout_button_cancel),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onSecondaryContainer
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onSecondaryContainer,
+                                containerColor = LocalPalette.current.secondaryContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                            onClick = onDismissDialog
+                        )
+                    }
+                )
+            AccountOverviewDialog.NONE -> {}
         }
+
+        InfiniteThrobber(
+            color1 = LocalPalette.current.surfaceContainer,
+            color2 = LocalPalette.current.surfaceContainerHigh,
+            isLoading = isLoading
+        )
+
     }
 }
 
@@ -168,392 +363,11 @@ private fun NavigationHeader(
 }
 
 @Composable
-private fun AccountContentPortrait(
-    navController: NavController = rememberNavController(),
-    accountViewModel: AccountScreenViewModel
-) {
-    val activity = LocalActivity.current
-
-    var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
-
-    var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
-
-    var loadingState = false
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
-        ) {
-
-            NavigationHeader(
-                onLeftClick = { navController.popBackStack() }
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
-            ) {
-
-                if (rememberAccount == null) {
-                    SignInComponent(
-                        accountViewModel = accountViewModel,
-                        onClick = {
-                            loadingState = true
-                        },
-                        onFailure = {
-                            loadingState = false
-                        }
-                    ) { result ->
-                        rememberAccount = Firebase.auth.currentUser?.uid
-                        loadingState = false
-
-                        if(result) {
-                            Toast.makeText(activity,
-                                "${activity?.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}",
-                                Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(activity,
-                                activity?.getString(R.string.alert_account_login_failure),
-                                Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
-                } else {
-                    AccountComponentPortrait(
-                        accountViewModel = accountViewModel,
-                        onLogoutClicked = {
-                            rememberDialog = AccountOverviewDialog.SIGN_OUT
-                        },
-                        onDeactivateClicked = {
-                            rememberDialog = AccountOverviewDialog.DEACTIVATE_ACCOUNT
-                        }
-                    )
-                }
-
-            }
-
-        }
-
-        when(rememberDialog) {
-            AccountOverviewDialog.DEACTIVATE_ACCOUNT ->
-                DeactivateAccountDialog(
-                    contentColor = LocalPalette.current.onSurface,
-                    confirmButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_deactivate_button_confirm),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
-                            ),
-                            buttonColors = ButtonColors(
-                                contentColor = LocalPalette.current.onErrorContainer,
-                                containerColor = LocalPalette.current.errorContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            accountViewModel.deactivateAccount { result ->
-
-                                rememberAccount = Firebase.auth.currentUser?.uid
-                                rememberDialog = AccountOverviewDialog.NONE
-
-                                if(result) {
-                                    Toast.makeText(activity,
-                                        activity?.getString(R.string.alert_account_remove_success),
-                                        Toast.LENGTH_SHORT).show()
-                                } else {
-                                    Toast.makeText(activity,
-                                        activity?.getString(R.string.alert_account_remove_failure),
-                                        Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        }
-                    },
-                    cancelButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_deactivate_button_cancel),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
-                            ),
-                            buttonColors = ButtonColors(
-                                containerColor = LocalPalette.current.secondaryContainer,
-                                contentColor = LocalPalette.current.onSecondaryContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            rememberDialog = AccountOverviewDialog.NONE
-                        }
-                    }
-            )
-            AccountOverviewDialog.SIGN_OUT ->
-                LogoutDialog(
-                    contentColor = LocalPalette.current.onSurface,
-                    confirmButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_logout_button_confirm),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
-                            ),
-                            buttonColors = ButtonColors(
-                                contentColor = LocalPalette.current.onErrorContainer,
-                                containerColor = LocalPalette.current.errorContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            accountViewModel.signOutAccount { value ->
-
-                                rememberAccount = Firebase.auth.currentUser?.uid
-                                rememberDialog = AccountOverviewDialog.NONE
-
-                                if(value) {
-                                    Toast.makeText(activity,
-                                        activity?.getString(R.string.alert_account_logout_success),
-                                        Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        }
-                    },
-                    cancelButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_logout_button_cancel),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
-                            ),
-                            buttonColors = ButtonColors(
-                                contentColor = LocalPalette.current.onSecondaryContainer,
-                                containerColor = LocalPalette.current.secondaryContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            rememberDialog = AccountOverviewDialog.NONE
-                        }
-                    }
-                )
-            AccountOverviewDialog.NONE -> {}
-        }
-
-        InfiniteThrobber(
-            color1 = LocalPalette.current.surfaceContainer,
-            color2 = LocalPalette.current.surfaceContainerHigh,
-            isLoading = loadingState
-        )
-
-    }
-}
-
-@Composable
-private fun AccountContentLandscape(
-    navController: NavController = rememberNavController(),
-    accountViewModel: AccountScreenViewModel
-) {
-    val activity = LocalActivity.current
-
-    var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
-
-    var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
-
-    var loadingState = false
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
-        ) {
-
-            NavigationHeader(
-                onLeftClick = { navController.popBackStack() }
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
-            ) {
-
-                if (rememberAccount == null) {
-                    SignInComponent(
-                        accountViewModel = accountViewModel,
-                        onClick = {
-                            loadingState = true
-                        },
-                        onFailure = {
-                            loadingState = false
-                        }
-                    ) { result ->
-                        rememberAccount = Firebase.auth.currentUser?.uid
-                        loadingState = false
-
-                        if(result) {
-                            Toast.makeText(activity,
-                                "${activity?.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}",
-                                Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(activity, activity?.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
-                } else {
-                    AccountComponentLandscape(
-                        accountViewModel = accountViewModel,
-                        onLogoutClicked = {
-                            rememberDialog = AccountOverviewDialog.SIGN_OUT
-                        },
-                        onDeactivateClicked = {
-                            rememberDialog = AccountOverviewDialog.DEACTIVATE_ACCOUNT
-                        }
-                    )
-                }
-
-            }
-
-        }
-
-        when(rememberDialog) {
-            AccountOverviewDialog.DEACTIVATE_ACCOUNT ->
-                DeactivateAccountDialog(
-                    contentColor = LocalPalette.current.onSurface,
-                    containerColor = LocalPalette.current.surfaceContainer,
-                    scrimColor = LocalPalette.current.scrim,
-                    confirmButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_deactivate_button_confirm),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp,
-                                color = LocalPalette.current.onErrorContainer
-                            ),
-                            buttonColors = ButtonColors(
-                                contentColor = LocalPalette.current.onErrorContainer,
-                                containerColor = LocalPalette.current.errorContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            accountViewModel.deactivateAccount { result ->
-
-                                rememberAccount = Firebase.auth.currentUser?.uid
-                                rememberDialog = AccountOverviewDialog.NONE
-
-                                if(result) {
-                                    Toast.makeText(activity,
-                                        activity?.getString(R.string.alert_account_remove_success),
-                                        Toast.LENGTH_SHORT).show()
-                                } else {
-                                    Toast.makeText(activity,
-                                        activity?.getString(R.string.alert_account_remove_failure),
-                                        Toast.LENGTH_SHORT).show()
-                                }
-
-                            }
-                        }
-                    },
-                    cancelButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_deactivate_button_cancel),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp,
-                                color = LocalPalette.current.onSecondaryContainer
-                            ),
-                            buttonColors = ButtonColors(
-                                containerColor = LocalPalette.current.secondaryContainer,
-                                contentColor = LocalPalette.current.onSecondaryContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            rememberDialog = AccountOverviewDialog.NONE
-                        }
-                    }
-                )
-            AccountOverviewDialog.SIGN_OUT ->
-                LogoutDialog(
-                    contentColor = LocalPalette.current.onSurface,
-                    containerColor = LocalPalette.current.surfaceContainer,
-                    scrimColor = LocalPalette.current.scrim,
-                    confirmButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_logout_button_confirm),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp,
-                                color = LocalPalette.current.onErrorContainer
-                            ),
-                            buttonColors = ButtonColors(
-                                contentColor = LocalPalette.current.onErrorContainer,
-                                containerColor = LocalPalette.current.errorContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            accountViewModel.signOutAccount { value ->
-
-                                rememberAccount = Firebase.auth.currentUser?.uid
-                                rememberDialog = AccountOverviewDialog.NONE
-
-                                if(value) {
-                                    Toast.makeText(activity,
-                                        activity?.getString(R.string.alert_account_logout_success),
-                                        Toast.LENGTH_SHORT).show()
-                                }
-
-                            }
-                        }
-                    },
-                    cancelButton = { modifier ->
-                        DialogButton(
-                            modifier = modifier,
-                            text = stringResource(id = R.string.account_logout_button_cancel),
-                            textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp,
-                                color = LocalPalette.current.onSecondaryContainer
-                            ),
-                            buttonColors = ButtonColors(
-                                contentColor = LocalPalette.current.onSecondaryContainer,
-                                containerColor = LocalPalette.current.secondaryContainer,
-                                disabledContentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent
-                            ),
-                        ) {
-                            rememberDialog = AccountOverviewDialog.NONE
-                        }
-                    }
-                )
-            AccountOverviewDialog.NONE -> {}
-        }
-
-        InfiniteThrobber(
-            color1 = LocalPalette.current.surfaceContainer,
-            color2 = LocalPalette.current.surfaceContainerHigh,
-            isLoading = loadingState
-        )
-
-    }
-}
-
-@Composable
 private fun AccountComponentPortrait(
-    accountViewModel: AccountScreenViewModel,
+    userName: String,
+    userEmail: String,
+    earnedCredits: Int,
+    unlockedPalettes: List<AccountPalette>,
     onLogoutClicked: () -> Unit = {},
     onDeactivateClicked: () -> Unit = {}
 ) {
@@ -567,7 +381,9 @@ private fun AccountComponentPortrait(
     ) {
 
         AccountDetailsPortraitComponent(
-            accountViewModel = accountViewModel,
+            userName = userName,
+            userEmail = userEmail,
+            earnedCredits = earnedCredits
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -583,7 +399,7 @@ private fun AccountComponentPortrait(
 
         Column {
             UnlockHistoryPalettesComponent(
-                accountViewModel = accountViewModel
+                unlockedPalettes = unlockedPalettes
             )
         }
     }
@@ -591,7 +407,9 @@ private fun AccountComponentPortrait(
 
 @Composable
 private fun AccountComponentLandscape(
-    accountViewModel: AccountScreenViewModel,
+    userName: String,
+    userEmail: String,
+    earnedCredits: Int,
     onLogoutClicked: () -> Unit = {},
     onDeactivateClicked: () -> Unit = {}
 ) {
@@ -606,7 +424,9 @@ private fun AccountComponentLandscape(
         AccountDetailsLandscapeComponent(
             modifier = Modifier
                 .weight(1f, fill = true),
-            accountViewModel = accountViewModel,
+            userName = userName,
+            userEmail = userEmail,
+            earnedCredits = earnedCredits
         )
 
         SignOutComponent(
@@ -627,7 +447,9 @@ private fun AccountComponentLandscape(
 @Composable
 private fun AccountDetailsPortraitComponent(
     modifier: Modifier = Modifier,
-    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory),
+    userName: String,
+    userEmail: String,
+    earnedCredits: Int,
 ) {
 
     Column (
@@ -636,10 +458,8 @@ private fun AccountDetailsPortraitComponent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        val accountUiState = accountViewModel.accountCreditsUiState.collectAsStateWithLifecycle()
-
         AccountBannerExpanded(
-            credits = accountUiState.value.earnedCredits
+            credits = earnedCredits
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -661,7 +481,7 @@ private fun AccountDetailsPortraitComponent(
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_name)}:",
-            value = Firebase.auth.currentUser?.displayName ?: "",
+            value = userName,
             containerColor = LocalPalette.current.surfaceContainer,
             textColor = LocalPalette.current.onSurface
         )
@@ -670,7 +490,7 @@ private fun AccountDetailsPortraitComponent(
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_email)}:",
-            value = Firebase.auth.currentUser?.email ?: "",
+            value = userEmail,
             containerColor = LocalPalette.current.surfaceContainer,
             textColor = LocalPalette.current.onSurface
         )
@@ -682,7 +502,9 @@ private fun AccountDetailsPortraitComponent(
 @Composable
 private fun AccountDetailsLandscapeComponent(
     modifier: Modifier = Modifier,
-    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory),
+    userName: String,
+    userEmail: String,
+    earnedCredits: Int,
 ) {
 
     Column (
@@ -691,10 +513,8 @@ private fun AccountDetailsLandscapeComponent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        val accountUiState = accountViewModel.accountCreditsUiState.collectAsStateWithLifecycle()
-
         AccountBannerComposite(
-            credits = accountUiState.value.earnedCredits
+            credits = earnedCredits
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -716,7 +536,7 @@ private fun AccountDetailsLandscapeComponent(
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_name)}:",
-            value = Firebase.auth.currentUser?.displayName ?: "",
+            value = userName,
             containerColor = LocalPalette.current.surfaceContainer,
             textColor = LocalPalette.current.onSurface
         )
@@ -725,7 +545,7 @@ private fun AccountDetailsLandscapeComponent(
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_email)}:",
-            value = Firebase.auth.currentUser?.email ?: "",
+            value = userEmail,
             containerColor = LocalPalette.current.surfaceContainer,
             textColor = LocalPalette.current.onSurface
         )
@@ -736,14 +556,12 @@ private fun AccountDetailsLandscapeComponent(
 
 @Composable
 private fun UnlockHistoryPalettesComponent(
-    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory)
+    unlockedPalettes: List<AccountPalette>
 ) {
-
-    val accountPalettes = accountViewModel.accountUnlockedPalettesUiState.collectAsStateWithLifecycle()
 
     LazyColumn {
 
-        items(items = accountPalettes.value.unlockedPalettes) { palette ->
+        items(items = unlockedPalettes) { palette ->
 
             val palette = LocalPalettesMap[palette.uuid]
 
@@ -755,6 +573,81 @@ private fun UnlockHistoryPalettesComponent(
 
     }
 
+}
+
+@Preview(name = "Logged In")
+@Composable
+private fun AccountContentLoggedInPreview() {
+    SelectiveTheme {
+        Surface(color = LocalPalette.current.surface) {
+            AccountContent(
+                currentUser = "uid123",
+                userName = "John Doe",
+                userEmail = "john.doe@example.com",
+                earnedCredits = 250,
+                unlockedPalettes = emptyList(),
+                currentDialog = AccountOverviewDialog.NONE,
+                isLoading = false,
+                onBack = {},
+                onLogoutRequest = {},
+                onDeactivateRequest = {},
+                onDismissDialog = {},
+                onConfirmSignOut = {},
+                onConfirmDeactivate = {},
+                onSignInRequest = {}
+            )
+        }
+    }
+}
+
+@Preview(name = "Logged Out")
+@Composable
+private fun AccountContentLoggedOutPreview() {
+    SelectiveTheme {
+        Surface(color = LocalPalette.current.surface) {
+            AccountContent(
+                currentUser = null,
+                userName = "",
+                userEmail = "",
+                earnedCredits = 0,
+                unlockedPalettes = emptyList(),
+                currentDialog = AccountOverviewDialog.NONE,
+                isLoading = false,
+                onBack = {},
+                onLogoutRequest = {},
+                onDeactivateRequest = {},
+                onDismissDialog = {},
+                onConfirmSignOut = {},
+                onConfirmDeactivate = {},
+                onSignInRequest = {}
+            )
+        }
+    }
+}
+
+@Preview("Sign Out Dialog")
+@Composable
+private fun AccountContentSignOutDialogPreview() {
+    SelectiveTheme {
+        Surface(color = LocalPalette.current.surface) {
+            AccountContent(
+                currentUser = "uid123",
+                userName = "John Doe",
+                userEmail = "john.doe@example.com",
+                earnedCredits = 250,
+                unlockedPalettes = emptyList(),
+                currentDialog = AccountOverviewDialog.SIGN_OUT,
+                isLoading = false,
+                onBack = {},
+                onLogoutRequest = {},
+                onDeactivateRequest = {},
+                onDismissDialog = {},
+                onConfirmSignOut = {},
+                onConfirmDeactivate = {},
+                onSignInRequest = {}
+            )
+        }
+    }
 }
 
 @Preview
@@ -818,16 +711,8 @@ private fun PaletteListItem(
 
 @Composable
 private fun SignInComponent(
-    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory),
-    onClick: () -> Unit = {},
-    onFailure: () -> Unit = {},
-    onSignIn: (result: Boolean) -> Unit = {}
+    onSignInRequest: () -> Unit = {}
 ) {
-
-    val rememberCoroutineScope = rememberCoroutineScope()
-
-    val activity = LocalActivity.current
-    val context = LocalContext.current
 
     Spacer(modifier = Modifier.height(16.dp))
 
@@ -863,41 +748,7 @@ private fun SignInComponent(
             )
 
             SignInWithGoogleButton {
-
-                onClick()
-
-                accountViewModel.getSignInCredentials(
-                    signInOption = SignInOptions.GOOGLE
-                ) { credentialOption ->
-                    Log.d("AccountScreen", "Attempting Sign-in init.")
-
-                    rememberCoroutineScope.launch {
-                        activity ?: return@launch
-
-                        try {
-
-                            accountViewModel.signInWithCredentials(
-                                activity = activity,
-                                context = context,
-                                credentialOption = credentialOption
-                            ) { result ->
-                                onSignIn(result)
-                            }
-
-                        } catch (e: Exception) {
-                            Toast.makeText(activity,
-                                "Sign-in failed.",
-                                Toast.LENGTH_SHORT)
-                                .show()
-                            e.printStackTrace()
-
-                            onFailure()
-                        }
-
-                    }
-
-                }
-
+                onSignInRequest()
             }
 
         }
@@ -1179,7 +1030,7 @@ private fun LogoutDialog(
     )
 }
 
-private enum class AccountOverviewDialog {
+enum class AccountOverviewDialog {
     NONE,
     SIGN_OUT,
     DEACTIVATE_ACCOUNT
