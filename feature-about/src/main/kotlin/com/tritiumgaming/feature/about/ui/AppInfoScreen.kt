@@ -73,21 +73,25 @@ import com.tritiumgaming.shared.data.contributor.model.Contributor
 import org.jetbrains.annotations.TestOnly
 
 @Composable
-private fun InfoScreenPreview() {
+fun InfoScreen(
+    navController: NavController = rememberNavController(),
+    viewModel: AppInfoViewModel
+) {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        InfoScreen(
-            viewModel = viewModel(factory = AppInfoViewModel.Factory)
+        InfoContent(
+            contributors = viewModel.contributorsList,
+            onNavigateBack = { navController.popBackStack() }
         )
     }
 }
 
 @Composable
-fun InfoScreen(
-    navController: NavController = rememberNavController(),
-    viewModel: AppInfoViewModel
+fun InfoContent(
+    contributors: List<Contributor>,
+    onNavigateBack: () -> Unit = {}
 ) {
 
     Column(
@@ -97,7 +101,7 @@ fun InfoScreen(
     ) {
 
         NavigationHeader(
-            onLeftClick = { navController.popBackStack() }
+            onLeftClick = onNavigateBack
         )
 
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -106,7 +110,7 @@ fun InfoScreen(
         when(deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 InfoContentPortrait(
-                    contributors = viewModel.contributorsList
+                    contributors = contributors
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -114,7 +118,7 @@ fun InfoScreen(
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 InfoContentLandscape(
-                    contributors = viewModel.contributorsList
+                    contributors = contributors
                 )
             }
         }

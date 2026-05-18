@@ -85,6 +85,17 @@ fun AccountScreen(
     navController: NavController = rememberNavController(),
     accountViewModel: AccountScreenViewModel
 ) {
+    AccountContent(
+        navController = navController, // replace with hoisted actions
+        accountViewModel = accountViewModel // replace with hoisted states
+    )
+}
+
+@Composable
+fun AccountContent(
+    navController: NavController = rememberNavController(),
+    accountViewModel: AccountScreenViewModel
+) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
