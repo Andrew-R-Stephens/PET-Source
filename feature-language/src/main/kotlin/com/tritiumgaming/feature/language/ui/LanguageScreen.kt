@@ -42,26 +42,46 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentRow
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
+import com.tritiumgaming.shared.data.language.mappers.LanguageResources.LocalizedTitle
+import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTitle
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 
 @Composable
 @Preview
-private fun LanguageScreenPreview() {
-    LanguageScreen(
-        viewModel = viewModel( factory = LanguageScreenViewModel.Factory ))
+private fun LanguageContentPreview() {
+    SelectiveTheme {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            Column {
+                LanguageContent(
+                    languages = listOf(
+                        LanguageEntity(LocalizedTitle.EN, NativeTitle.EN, "en"),
+                        LanguageEntity(LocalizedTitle.DE, NativeTitle.DE, "de"),
+                        LanguageEntity(LocalizedTitle.FR, NativeTitle.FR, "fr")
+                    ),
+                    currentLanguageCode = "en",
+                    onLanguageClick = {}
+                )
+            }
+        }
+    }
 }
 
 @Composable
 fun LanguageScreen(
     navController: NavController = rememberNavController(),
-    viewModel: LanguageScreenViewModel
+    viewModel: LanguageScreenViewModel = viewModel(factory = LanguageScreenViewModel.Factory)
 ) {
+    val currentLanguageState by viewModel.currentLanguageCode.collectAsStateWithLifecycle()
+    val languages = viewModel.languageList
 
     Column(
         modifier = Modifier
@@ -75,7 +95,9 @@ fun LanguageScreen(
         )
 
         LanguageContent(
-            viewModel = viewModel
+            languages = languages,
+            currentLanguageCode = currentLanguageState.languageCode,
+            onLanguageClick = { viewModel.setCurrentLanguageCode(it) }
         )
     }
 
@@ -131,11 +153,10 @@ private fun NavigationHeader(
 
 @Composable
 private fun ColumnScope.LanguageContent(
-    viewModel: LanguageScreenViewModel
+    languages: List<LanguageEntity>,
+    currentLanguageCode: String,
+    onLanguageClick: (String) -> Unit
 ) {
-    val currentLanguageState = viewModel.currentLanguageCode.collectAsStateWithLifecycle()
-    val currentLanguage = currentLanguageState.value.languageCode
-
     val columnState = rememberLazyListState()
 
     LazyColumn(
@@ -149,12 +170,12 @@ private fun ColumnScope.LanguageContent(
         state = columnState
     ){
         items(
-            items = viewModel.languageList.toList(),
+            items = languages,
             key = { it.code }
         ) {
             val languageCode = it.code
 
-            val isSelected = languageCode == currentLanguage
+            val isSelected = languageCode == currentLanguageCode
 
             LanguageItem(
                 language = it,
@@ -167,13 +188,9 @@ private fun ColumnScope.LanguageContent(
                 textContainerUnselected = LocalPalette.current.surfaceContainerHighest,
                 textStyleStartUnselected = LocalTypography.current.quaternary.bold,
                 textStyleEndUnselected = LocalTypography.current.quaternary.regular,
-            ) {
-                    viewModel.setCurrentLanguageCode(languageCode)
-                }
-
-
+                onClick = { onLanguageClick(languageCode) }
+            )
         }
-
     }
 }
 
