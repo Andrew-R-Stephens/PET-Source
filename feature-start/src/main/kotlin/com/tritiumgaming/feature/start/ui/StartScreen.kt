@@ -27,6 +27,7 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,6 +40,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -87,13 +89,21 @@ import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
 
 @Composable
-@Preview(locale = "uk")
+@Preview(device = "id:small_phone")
 private fun StartButtonPreview() {
     SelectiveTheme(
-        palette = Analyst,
+        palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        StartButton()
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            StartContent(
+                newsletterState = NewsletterInboxesUiState(),
+                reviewState = ReviewUiState(0, true),
+                onNavigate = {}
+            )
+        }
     }
 }
 
@@ -113,10 +123,17 @@ fun StartScreen(
     startScreenViewModel: StartScreenViewModel,
     navController: NavHostController
 ) {
+    val newsletterInboxesUiState by startScreenViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val reviewUiState by startScreenViewModel.reviewFlow.collectAsStateWithLifecycle()
+
+    val onNavigate = { route: String ->
+        navController.navigate(route)
+    }
 
     StartContent(
-        startScreenViewModel = startScreenViewModel,
-        navController = navController
+        newsletterState = newsletterInboxesUiState,
+        reviewState = reviewUiState,
+        onNavigate = onNavigate
     )
 
 }
@@ -124,11 +141,10 @@ fun StartScreen(
 
 @Composable
 private fun StartContent(
-    startScreenViewModel: StartScreenViewModel,
-    navController: NavController
+    newsletterState: NewsletterInboxesUiState,
+    reviewState: ReviewUiState,
+    onNavigate: (route: String) -> Unit
 ) {
-    val newsletterInboxesUiState by startScreenViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val reviewUiState by startScreenViewModel.reviewFlow.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -144,9 +160,10 @@ private fun StartContent(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             HeaderNavBar(
-                newsletterInboxesUiState = newsletterInboxesUiState,
-                reviewUiState = reviewUiState,
-                navController = navController)
+                newsletterInboxesUiState = newsletterState,
+                reviewUiState = reviewState,
+                onNavigate = onNavigate
+            )
         }
 
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -154,15 +171,15 @@ private fun StartContent(
 
         when(deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> { StartContentCompactPortrait(
-                navController = navController) }
+                onNavigate = onNavigate) }
             DeviceConfiguration.MOBILE_LANDSCAPE -> { StartContentCompactLandscape(
-                navController = navController) }
+                onNavigate = onNavigate) }
             DeviceConfiguration.TABLET_PORTRAIT -> { StartContentCompactPortrait(
-                navController = navController) }
+                onNavigate = onNavigate) }
             DeviceConfiguration.TABLET_LANDSCAPE -> { StartContentCompactLandscape(
-                navController = navController) }
+                onNavigate = onNavigate) }
             DeviceConfiguration.DESKTOP -> { StartContentCompactLandscape(
-                navController = navController) }
+                onNavigate = onNavigate) }
         }
 
         BannerAd(
@@ -178,7 +195,7 @@ private fun StartContent(
 
 @Composable
 private fun ColumnScope.StartContentCompactPortrait(
-    navController: NavController = rememberNavController()
+    onNavigate: (route: String) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -195,14 +212,14 @@ private fun ColumnScope.StartContentCompactPortrait(
         StartSection(
             modifier = Modifier
                 .weight(.4f, true),
-            navController = navController
+            onNavigate = onNavigate
         )
     }
 }
 
 @Composable
 internal fun ColumnScope.StartContentCompactLandscape(
-    navController: NavController = rememberNavController()
+    onNavigate: (route: String) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -213,13 +230,13 @@ internal fun ColumnScope.StartContentCompactLandscape(
         verticalAlignment = Alignment.CenterVertically
     ) {
         LogoSection()
-        StartSection(navController = navController)
+        StartSection(onNavigate = onNavigate)
     }
 }
 
 @Composable
 private fun ColumnScope.StartContentOther(
-    navController: NavController = rememberNavController()
+    onNavigate: (route: String) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -230,7 +247,7 @@ private fun ColumnScope.StartContentOther(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LogoSection()
-        StartSection(navController = navController,)
+        StartSection(onNavigate = onNavigate)
     }
 }
 
@@ -326,7 +343,7 @@ private fun RowScope.LogoSection(
 @Composable
 private fun ColumnScope.StartSection(
     modifier: Modifier = Modifier,
-    navController: NavController = rememberNavController(),
+    onNavigate: (route: String) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -335,13 +352,13 @@ private fun ColumnScope.StartSection(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         StartButton {
-            navController.navigate(NavRoute.SCREEN_INVESTIGATION.route)
+            onNavigate(NavRoute.SCREEN_INVESTIGATION.route)
         }
 
         Spacer(modifier = Modifier.height(32.dp))
 
         LanguageButton {
-            navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
+            onNavigate(NavRoute.SCREEN_LANGUAGE.route)
         }
 
     }
@@ -350,7 +367,7 @@ private fun ColumnScope.StartSection(
 @Composable
 private fun RowScope.StartSection(
     modifier: Modifier = Modifier,
-    navController: NavController = rememberNavController()
+    onNavigate: (route: String) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -359,13 +376,13 @@ private fun RowScope.StartSection(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         StartButton {
-            navController.navigate(NavRoute.SCREEN_INVESTIGATION.route)
+            onNavigate(NavRoute.SCREEN_INVESTIGATION.route)
         }
 
         Spacer(modifier = Modifier.height(32.dp))
 
         LanguageButton {
-            navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
+            onNavigate(NavRoute.SCREEN_LANGUAGE.route)
         }
 
     }
@@ -486,9 +503,9 @@ private fun StartButton(
 
 @Composable
 private fun HeaderNavBar(
-    navController: NavController,
     newsletterInboxesUiState: NewsletterInboxesUiState,
-    reviewUiState: ReviewUiState
+    reviewUiState: ReviewUiState,
+    onNavigate: (route: String) -> Unit = {}
 ) {
 
     val context = LocalContext.current
@@ -544,7 +561,7 @@ private fun HeaderNavBar(
                 strokeColor = LocalPalette.current.onSurface
             )
         ) {
-            navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
+            onNavigate(NavRoute.SCREEN_LANGUAGE.route)
         }
     }
     val calendarIcon: @Composable () -> Unit = {
@@ -672,15 +689,15 @@ private fun HeaderNavBar(
         primaryContent = menuIcon,
         dropdownContent = @Composable {
             SecondarySelector(
-                onClick = { navController.navigate(NavRoute.SCREEN_APP_INFO.route) }) {
+                onClick = { onNavigate(NavRoute.SCREEN_APP_INFO.route) }) {
                 infoIcon()
             }
             SecondarySelector(
-                onClick = { navController.navigate(NavRoute.SCREEN_SETTINGS.route) }) {
+                onClick = { onNavigate(NavRoute.SCREEN_SETTINGS.route) }) {
                 gearIcon()
             }
             SecondarySelector(
-                onClick = { navController.navigate(NavRoute.SCREEN_LANGUAGE.route) }) {
+                onClick = { onNavigate(NavRoute.SCREEN_LANGUAGE.route) }) {
                 languageIcon()
             }
             SecondarySelector(
@@ -743,7 +760,7 @@ private fun HeaderNavBar(
             )
         },
     ) {
-        navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
+        onNavigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }
 
     if(canRequestReview) {
@@ -751,20 +768,24 @@ private fun HeaderNavBar(
     }
 
     IconDropdownMenu(
-        primaryContent = accountIcon,
+        primaryContent = {
+            if (!LocalInspectionMode.current) {
+                accountIcon()
+            }
+        },
         dropdownContent = @Composable {
             SecondarySelector(
                 modifier = Modifier
                     .size(48.dp)
                     .padding(4.dp),
-                onClick = { navController.navigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }) {
+                onClick = { onNavigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }) {
                 personIcon()
             }
             SecondarySelector(
                 modifier = Modifier
                     .size(48.dp)
                     .padding(4.dp),
-                onClick = { navController.navigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
+                onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
                 storeIcon()
             }
         },
