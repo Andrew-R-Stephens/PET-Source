@@ -50,19 +50,19 @@ fun NewsMessageScreen(
     val newsletterInboxesUiState by newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
 
     NewsMessageContent(
-        navController = navController,
         newsletterInboxesUiState = newsletterInboxesUiState,
         inboxID = inboxID,
-        messageID = messageID
+        messageID = messageID,
+        onNavigateBack = navController::popBackStack
     )
 }
 
 @Composable
 private fun NewsMessageContent(
-    navController: NavHostController = rememberNavController(),
     newsletterInboxesUiState: NewsletterInboxesUiState,
     inboxID: String,
-    messageID: String
+    messageID: String,
+    onNavigateBack: () -> Unit
 ) {
 
     val rememberInboxID by remember { mutableStateOf(inboxID) }
@@ -81,9 +81,7 @@ private fun NewsMessageContent(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
 
-        NavigationHeader(
-            onLeftClick = { navController.popBackStack() }
-        )
+        NavigationHeader(onLeftClick = onNavigateBack)
 
         Surface(
             modifier = Modifier

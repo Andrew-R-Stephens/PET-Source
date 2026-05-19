@@ -111,10 +111,10 @@ fun NewsInboxesScreen(
                     modifier = Modifier
                         .weight(1f)
                         .padding(8.dp),
-                    navController = navController,
                     newsletterInboxesUiState = inboxesUiState,
                     refreshUiState = refreshUiState,
-                    onRefreshInboxes = { onRefreshInboxes() }
+                    onRefreshInboxes = { onRefreshInboxes() },
+                    onNavigate = { route -> navController.navigate(route = route) }
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -126,10 +126,10 @@ fun NewsInboxesScreen(
                         .weight(1f)
                         .widthIn(max = 600.dp)
                         .padding(8.dp),
-                    navController = navController,
                     newsletterInboxesUiState = inboxesUiState,
                     refreshUiState = refreshUiState,
-                    onRefreshInboxes = { onRefreshInboxes() }
+                    onRefreshInboxes = { onRefreshInboxes() },
+                    onNavigate = { route -> navController.navigate(route = route) }
                 )
             }
         }
@@ -196,10 +196,10 @@ private fun NavigationHeader(
 @Composable
 private fun ColumnScope.NewsInboxesContentPortrait(
     modifier: Modifier = Modifier,
-    navController: NavController = rememberNavController(),
     newsletterInboxesUiState: NewsletterInboxesUiState,
     refreshUiState: NewsletterRefreshUiState,
-    onRefreshInboxes: () -> Unit
+    onRefreshInboxes: () -> Unit,
+    onNavigate: (route: String) -> Unit
 ) {
     val inboxes = newsletterInboxesUiState.inboxes
     val isRefreshing = refreshUiState.isRefreshing
@@ -237,9 +237,7 @@ private fun ColumnScope.NewsInboxesContentPortrait(
                     titleColor = LocalPalette.current.primary,
                     isActive = notificationState
                 ) {
-                    navController.navigate(
-                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}"
-                    )
+                    onNavigate("${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
                 }
 
             }
@@ -255,7 +253,8 @@ private fun ColumnScope.NewsInboxesContentLandscape(
     navController: NavController = rememberNavController(),
     newsletterInboxesUiState: NewsletterInboxesUiState,
     refreshUiState: NewsletterRefreshUiState,
-    onRefreshInboxes: () -> Unit
+    onRefreshInboxes: () -> Unit,
+    onNavigate: (route: String) -> Unit
 ) {
     val inboxes = newsletterInboxesUiState.inboxes
     val isRefreshing = refreshUiState.isRefreshing
@@ -294,9 +293,7 @@ private fun ColumnScope.NewsInboxesContentLandscape(
                     titleColor = LocalPalette.current.primary,
                     isActive = notificationState
                 ) {
-                    navController.navigate(
-                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}"
-                    )
+                    onNavigate("${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
                 }
 
             }
