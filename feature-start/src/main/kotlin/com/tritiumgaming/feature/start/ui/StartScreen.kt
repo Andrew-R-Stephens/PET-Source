@@ -31,7 +31,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,10 +48,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
@@ -72,7 +70,6 @@ import com.tritiumgaming.core.ui.icon.impl.composite.LanguageIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.Analyst
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -82,8 +79,6 @@ import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.widgets.menus.SecondarySelector
-import com.tritiumgaming.feature.start.ui.newsletter.NewsletterInboxesUiState
-import com.tritiumgaming.feature.start.ui.reviewpopup.ReviewUiState
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
@@ -99,9 +94,14 @@ private fun StartButtonPreview() {
             color = LocalPalette.current.surface
         ) {
             StartContent(
-                newsletterState = NewsletterInboxesUiState(),
-                reviewState = ReviewUiState(0, true),
-                onNavigate = {}
+                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
+                inboxNotificationState = true,
+                canRequestReview = true,
+                currentLanguage = "English",
+                currentUser = null,
+                onNavigate = {},
+                onOpenPatreon = {},
+                onOpenDiscord = {}
             )
         }
     }
@@ -126,14 +126,69 @@ fun StartScreen(
     val newsletterInboxesUiState by startScreenViewModel.inboxesUiState.collectAsStateWithLifecycle()
     val reviewUiState by startScreenViewModel.reviewFlow.collectAsStateWithLifecycle()
 
+    val context = LocalContext.current
+    val discordInvitation = stringResource(R.string.link_discordInvite)
+    val patreonInvitation = stringResource(R.string.link_patreonInvite)
+
+    val inboxNotificationState = remember(newsletterInboxesUiState) {
+        newsletterInboxesUiState.inboxes
+            .sortedByDescending { it.lastReadDate }
+            .firstOrNull { inboxUiState ->
+                inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
+            } != null
+    }
+
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+    val rememberLocale = remember { Locale.getDefault() }
+    var currentLanguage = rememberLocale.displayLanguage
+    if (currentLanguage.isNotEmpty()) {
+        currentLanguage = currentLanguage.substring(0, 1)
+            .uppercase(rememberLocale) + currentLanguage.substring(1)
+    }
+
+    val currentUser = Firebase.auth.currentUser
+
     val onNavigate = { route: String ->
         navController.navigate(route)
     }
 
+    val onOpenPatreon = {
+        try {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    "https://patreon.com/ $patreonInvitation".toUri()
+                )
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    val onOpenDiscord = {
+        try {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    "https://discord.gg/ $discordInvitation".toUri()
+                )
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     StartContent(
-        newsletterState = newsletterInboxesUiState,
-        reviewState = reviewUiState,
-        onNavigate = onNavigate
+        deviceConfiguration = deviceConfiguration,
+        inboxNotificationState = inboxNotificationState,
+        canRequestReview = reviewUiState.canRequestReview,
+        currentLanguage = currentLanguage,
+        currentUser = currentUser,
+        onNavigate = onNavigate,
+        onOpenPatreon = onOpenPatreon,
+        onOpenDiscord = onOpenDiscord
     )
 
 }
@@ -141,9 +196,14 @@ fun StartScreen(
 
 @Composable
 private fun StartContent(
-    newsletterState: NewsletterInboxesUiState,
-    reviewState: ReviewUiState,
-    onNavigate: (route: String) -> Unit
+    deviceConfiguration: DeviceConfiguration,
+    inboxNotificationState: Boolean,
+    canRequestReview: Boolean,
+    currentLanguage: String,
+    currentUser: FirebaseUser?,
+    onNavigate: (route: String) -> Unit,
+    onOpenPatreon: () -> Unit,
+    onOpenDiscord: () -> Unit
 ) {
 
     Column(
@@ -160,26 +220,46 @@ private fun StartContent(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             HeaderNavBar(
-                newsletterInboxesUiState = newsletterState,
-                reviewUiState = reviewState,
-                onNavigate = onNavigate
+                inboxNotificationState = inboxNotificationState,
+                canRequestReview = canRequestReview,
+                currentUser = currentUser,
+                onNavigate = onNavigate,
+                onOpenPatreon = onOpenPatreon,
+                onOpenDiscord = onOpenDiscord
             )
         }
 
-        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
         when(deviceConfiguration) {
-            DeviceConfiguration.MOBILE_PORTRAIT -> { StartContentCompactPortrait(
-                onNavigate = onNavigate) }
-            DeviceConfiguration.MOBILE_LANDSCAPE -> { StartContentCompactLandscape(
-                onNavigate = onNavigate) }
-            DeviceConfiguration.TABLET_PORTRAIT -> { StartContentCompactPortrait(
-                onNavigate = onNavigate) }
-            DeviceConfiguration.TABLET_LANDSCAPE -> { StartContentCompactLandscape(
-                onNavigate = onNavigate) }
-            DeviceConfiguration.DESKTOP -> { StartContentCompactLandscape(
-                onNavigate = onNavigate) }
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                StartContentCompactPortrait(
+                    currentLanguage = currentLanguage,
+                    onNavigate = onNavigate
+                )
+            }
+            DeviceConfiguration.MOBILE_LANDSCAPE -> {
+                StartContentCompactLandscape(
+                    currentLanguage = currentLanguage,
+                    onNavigate = onNavigate
+                )
+            }
+            DeviceConfiguration.TABLET_PORTRAIT -> {
+                StartContentCompactPortrait(
+                    currentLanguage = currentLanguage,
+                    onNavigate = onNavigate
+                )
+            }
+            DeviceConfiguration.TABLET_LANDSCAPE -> {
+                StartContentCompactLandscape(
+                    currentLanguage = currentLanguage,
+                    onNavigate = onNavigate
+                )
+            }
+            DeviceConfiguration.DESKTOP -> {
+                StartContentCompactLandscape(
+                    currentLanguage = currentLanguage,
+                    onNavigate = onNavigate
+                )
+            }
         }
 
         BannerAd(
@@ -187,14 +267,13 @@ private fun StartContent(
                 .fillMaxWidth(),
             adId = stringResource(R.string.ad_banner_1)
         )
-
-        //AdmobBanner()
     }
 
 }
 
 @Composable
 private fun ColumnScope.StartContentCompactPortrait(
+    currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Column(
@@ -212,6 +291,7 @@ private fun ColumnScope.StartContentCompactPortrait(
         StartSection(
             modifier = Modifier
                 .weight(.4f, true),
+            currentLanguage = currentLanguage,
             onNavigate = onNavigate
         )
     }
@@ -219,6 +299,7 @@ private fun ColumnScope.StartContentCompactPortrait(
 
 @Composable
 internal fun ColumnScope.StartContentCompactLandscape(
+    currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Row(
@@ -230,12 +311,16 @@ internal fun ColumnScope.StartContentCompactLandscape(
         verticalAlignment = Alignment.CenterVertically
     ) {
         LogoSection()
-        StartSection(onNavigate = onNavigate)
+        StartSection(
+            currentLanguage = currentLanguage,
+            onNavigate = onNavigate
+        )
     }
 }
 
 @Composable
 private fun ColumnScope.StartContentOther(
+    currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Column(
@@ -247,7 +332,10 @@ private fun ColumnScope.StartContentOther(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LogoSection()
-        StartSection(onNavigate = onNavigate)
+        StartSection(
+            currentLanguage = currentLanguage,
+            onNavigate = onNavigate
+        )
     }
 }
 
@@ -315,8 +403,6 @@ private fun RowScope.LogoSection(
             colors = IconVectorColors.defaults(
                 fillColor = LocalPalette.current.surfaceContainerLow,
                 strokeColor = LocalPalette.current.onSurface
-                // fillColor = LocalPalette.current.surface,
-                // strokeColor = LocalPalette.current.onSurface
             )
         )
 
@@ -343,6 +429,7 @@ private fun RowScope.LogoSection(
 @Composable
 private fun ColumnScope.StartSection(
     modifier: Modifier = Modifier,
+    currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Column(
@@ -357,7 +444,9 @@ private fun ColumnScope.StartSection(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        LanguageButton {
+        LanguageButton(
+            currentLanguage = currentLanguage
+        ) {
             onNavigate(NavRoute.SCREEN_LANGUAGE.route)
         }
 
@@ -367,6 +456,7 @@ private fun ColumnScope.StartSection(
 @Composable
 private fun RowScope.StartSection(
     modifier: Modifier = Modifier,
+    currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Column(
@@ -381,7 +471,9 @@ private fun RowScope.StartSection(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        LanguageButton {
+        LanguageButton(
+            currentLanguage = currentLanguage
+        ) {
             onNavigate(NavRoute.SCREEN_LANGUAGE.route)
         }
 
@@ -390,6 +482,7 @@ private fun RowScope.StartSection(
 
 @Composable
 private fun LanguageButton(
+    currentLanguage: String,
     onClick: () -> Unit = {}
 ) {
 
@@ -401,22 +494,11 @@ private fun LanguageButton(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                //fillColor = LocalPalette.current.onSecondary,
                 fillColor = LocalPalette.current.surfaceContainerLow,
                 strokeColor = LocalPalette.current.onSurface
             )
         ) {
             onClick()
-        }
-
-        val rememberLocale by remember {
-            mutableStateOf(Locale.getDefault())
-        }
-
-        var currentLanguage = rememberLocale.displayLanguage
-        if (currentLanguage.isNotEmpty()) {
-            currentLanguage = currentLanguage.substring(0, 1)
-                .uppercase(rememberLocale) + currentLanguage.substring(1)
         }
 
         BasicText(
@@ -466,7 +548,6 @@ private fun StartButton(
                     .fillMaxHeight()
                     .width(IntrinsicSize.Max),
                 colors = IconVectorColors.defaults(
-                    //fillColor = LocalPalette.current.onSecondary,
                     fillColor = LocalPalette.current.surfaceContainerLow,
                     strokeColor = LocalPalette.current.onSurface
                 )
@@ -503,22 +584,13 @@ private fun StartButton(
 
 @Composable
 private fun HeaderNavBar(
-    newsletterInboxesUiState: NewsletterInboxesUiState,
-    reviewUiState: ReviewUiState,
-    onNavigate: (route: String) -> Unit = {}
+    inboxNotificationState: Boolean,
+    canRequestReview: Boolean,
+    currentUser: FirebaseUser?,
+    onNavigate: (route: String) -> Unit = {},
+    onOpenPatreon: () -> Unit = {},
+    onOpenDiscord: () -> Unit = {}
 ) {
-
-    val context = LocalContext.current
-    val discordInvitation = stringResource(R.string.link_discordInvite)
-    val patreonInvitation = stringResource(R.string.link_patreonInvite)
-
-    val inboxNotificationState = newsletterInboxesUiState.inboxes
-        .sortedByDescending { it.lastReadDate }
-        .firstOrNull { inboxUiState ->
-            inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
-        } != null
-
-    val canRequestReview = reviewUiState.canRequestReview
 
     val menuIcon: @Composable () -> Unit = {
         HamburgerMenuIcon(
@@ -615,7 +687,6 @@ private fun HeaderNavBar(
             .size(48.dp)
             .padding(4.dp),
         colors = IconVectorColors.defaults(
-            //fillColor = LocalPalette.current.onSecondary,
             fillColor = LocalPalette.current.surfaceContainerLow,
             strokeColor = LocalPalette.current.onSurface
         )
@@ -640,8 +711,7 @@ private fun HeaderNavBar(
                 )
             },
             content = {
-                val authUser = Firebase.auth.currentUser
-                authUser?.let { auth ->
+                currentUser?.let { auth ->
                     val authUserName = auth.displayName ?: ""
 
                     val names: List<String?> = (authUserName).split(" ")
@@ -701,36 +771,15 @@ private fun HeaderNavBar(
                 languageIcon()
             }
             SecondarySelector(
-                onClick = {
-                    try {
-                        context.startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                "https://patreon.com/ $patreonInvitation".toUri()
-                            )
-                        )
-                    } catch (e: IllegalStateException) {
-                        e.printStackTrace()
-                    }
-                }
+                onClick = onOpenPatreon
             ) {
                 patreonIcon()
             }
             SecondarySelector(
-                onClick = {
-                    context.startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            "https://discord.gg/ $discordInvitation".toUri()
-                        )
-                    )
-                }) {
+                onClick = onOpenDiscord
+            ) {
                 discordIcon()
             }
-            /*SecondarySelector(
-                onClick = { navController.navigate(NavRoute.SCREEN_LANGUAGE.route) }) {
-                calendarIcon()
-            }*/
         },
         colors = IconDropdownMenuColors(
             primaryContentBackground = LocalPalette.current.surfaceContainer,
