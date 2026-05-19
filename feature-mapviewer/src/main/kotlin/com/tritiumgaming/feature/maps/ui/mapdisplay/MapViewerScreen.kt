@@ -105,36 +105,33 @@ fun MapViewerScreen(
     mapsScreenViewModel.setCurrentMap(mapId)
 
     MapViewerContent(
-        navController = navController,
         mapsScreenViewModel = mapsScreenViewModel,
         onIncrementFloor = mapsScreenViewModel::incrementFloor,
         onDecrementFloor = mapsScreenViewModel::decrementFloor,
         onSetRoom = mapsScreenViewModel::setCurrentRoom,
-        onSetSelectedRoomAtPoint = mapsScreenViewModel::setSelectedRoomAtPoint
+        onSetSelectedRoomAtPoint = mapsScreenViewModel::setSelectedRoomAtPoint,
+        onNavigateBack = {
+            try { navController.popBackStack() }
+            catch (e: Exception) { e.printStackTrace() }
+        }
     )
-
 }
 
 @Composable
 private fun MapViewerContent(
-    navController: NavHostController = rememberNavController(),
     mapsScreenViewModel: MapsScreenViewModel,
     onIncrementFloor: () -> Unit,
     onDecrementFloor: () -> Unit,
     onSetRoom: (Int) -> Unit,
     onSetSelectedRoomAtPoint: (point: Point2D.Point2DFloat, scaleX: Float, scaleY: Float,
-                               translateX: Float, translateY: Float) -> Unit
+                               translateX: Float, translateY: Float) -> Unit,
+    onNavigateBack: () -> Unit
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val mapDisplayUiState by mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
-
-    val onNavigateBack: () -> Unit = {
-        try { navController.popBackStack() }
-        catch (e: Exception) { e.printStackTrace() }
-    }
 
     Box(
         modifier = Modifier
@@ -538,7 +535,7 @@ private fun UiControllerPortrait(
                     Arrow60LeftIcon(
                         modifier = Modifier
                             .size(48.dp)
-                            .clickable(onClick = onDecrementFloor )
+                            .clickable(onClick = onDecrementFloor)
                             .padding(8.dp),
                         colors = IconVectorColors.defaults(
                             fillColor = LocalPalette.current.onSurface
@@ -565,7 +562,7 @@ private fun UiControllerPortrait(
                     Arrow60RightIcon(
                         modifier = Modifier
                             .size(48.dp)
-                            .clickable(onClick = onIncrementFloor )
+                            .clickable(onClick = onIncrementFloor)
                             .padding(8.dp),
                         colors = IconVectorColors.defaults(
                             fillColor = LocalPalette.current.onSurface
@@ -766,7 +763,7 @@ private fun UiControllerLandscape(
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(1f)
-                        .clickable(onClick = onDecrementFloor )
+                        .clickable(onClick = onDecrementFloor)
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
                         fillColor = LocalPalette.current.onSurface
