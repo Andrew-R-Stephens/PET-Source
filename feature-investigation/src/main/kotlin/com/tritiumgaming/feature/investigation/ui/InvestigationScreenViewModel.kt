@@ -23,7 +23,7 @@ import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseB
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
+import com.tritiumgaming.shared.data.investigation.model.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState

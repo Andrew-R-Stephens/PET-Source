@@ -9,6 +9,8 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
 import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
@@ -18,19 +20,60 @@ data class GhostState(
     val score: Int = 0,
     val manualRejection: Boolean = false,
     val bpmIsValid: Boolean = false,
-    val traits: List<GhostTrait> = emptyList()
+    val traitScore: TraitScore = TraitScore(),
+    val traits: Set<GhostTrait> = emptySet()
 ) {
+
+    fun updateTraits(
+        traits: Set<GhostTrait>
+    ): GhostState {
+
+        //Log.d("Trait", "${ghostEvidence.ghost.id}")
+
+        var confirmedCount = 0
+        var probableConfirmCount = 0
+        var rejectedCount = 0
+        var probableRejectedCount = 0
+
+        traits.forEach { (_, _, state, weight) ->
+            when(state) {
+                TraitState.CONFIRM -> {
+                    when(weight) {
+                        TraitWeight.PROBABLE -> probableConfirmCount++
+                        TraitWeight.DEFINITIVE -> confirmedCount++
+                    }
+                }
+                TraitState.REJECT -> {
+                    when(weight) {
+                        TraitWeight.PROBABLE -> probableRejectedCount++
+                        TraitWeight.DEFINITIVE -> rejectedCount++
+                    }
+                }
+            }
+        }
+
+        /* Log.d("Trait", "${ghostEvidence.ghost.id}: C $confirmedCount - " +
+                 "PC $probableConfirmCount - R $rejectedCount - PR $probableRejectedCount")*/
+
+        val copy = this.copy(
+            traits = traits,
+            traitScore = TraitScore(
+                confirm = confirmedCount,
+                probableConfirm = probableConfirmCount,
+                reject = rejectedCount,
+                probableReject = probableRejectedCount
+            )
+        )
+
+        return copy
+    }
 
     fun updateScore(
         evidenceState: List<EvidenceState>,
         evidenceGiven: DifficultySettingResources.EvidenceGiven
     ): GhostState {
-        return setScore(
-            score = calculateEvidenceScore(
-                evidenceState = evidenceState,
-                evidenceLimit = evidenceGiven.toInt()
-            )
-        )
+        return setScore(score = calculateEvidenceScore(
+            evidenceState, evidenceGiven.toInt()))
     }
 
     fun updateBpmValidation(
@@ -84,7 +127,7 @@ data class GhostState(
     ): Boolean {
         val minBase = ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
         var maxBase = ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
-        val hasLosMultiplier = ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
+        val losMultiplier = ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
 
         if(maxBase == -1f) maxBase = minBase
 
@@ -101,7 +144,7 @@ data class GhostState(
         val min = minBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
         var max = maxBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
 
-        if(hasLosMultiplier) { max *= 1.65f }
+        if(losMultiplier) { max *= 1.65f }
 
         return targetBpm in min..max
     }
@@ -123,16 +166,6 @@ data class GhostState(
         evidenceLimit: Int
     ): Int {
 
-        /*val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
-        val isInsanity = currentDifficulty == DifficultyResources.DifficultyType.INSANITY
-        val isHardcore = isNightmare || isInsanity
-
-        val maxPosScore = when {
-            isInsanity -> 1
-            isNightmare -> 2
-            else -> 3
-        }*/
-
         if(evidenceLimit == 0) return ZERO_EVIDENCE
 
         val isHardcore = evidenceLimit < 3
@@ -143,8 +176,8 @@ data class GhostState(
             ghostEvidence.normalEvidenceList to ghostEvidence.strictEvidenceList
 
         if (evidenceState.any {
-            it.isRuling(EvidenceValidationType.POSITIVE) &&
-                    it.evidence !in normalEvidence }) { return NORMAL_EVIDENCE_NOT_FOUND }
+                it.isRuling(EvidenceValidationType.POSITIVE) &&
+                        it.evidence !in normalEvidence }) { return NORMAL_EVIDENCE_NOT_FOUND }
 
         var posScore = 0
         var negScore = 0
@@ -185,6 +218,7 @@ data class GhostState(
     }
 
     companion object {
+        const val NORMAL_AFFIRM_MINIMUM_REACHED = 3
         const val ZERO_EVIDENCE = 0
         const val NORMAL_EVIDENCE_NOT_FOUND = -5
         const val NORMAL_NEGATION_MINIMUM_REACHED = -6

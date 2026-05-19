@@ -32,7 +32,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
-import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
+import com.tritiumgaming.shared.data.investigation.model.GhostState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.ActiveGhostModifierDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.DifficultyModifierDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.MapModifierDetails
@@ -110,11 +110,11 @@ internal fun OperationDetails(
             mapState = operationDetailsUiState.mapDetails,
             weatherDetails = operationDetailsUiState.weatherDetails
         )
-        ActiveGhostModifierDetails(
+        /*ActiveGhostModifierDetails(
             state = operationDetailsUiState.ghostDetails,
             difficultySettings = operationDetailsUiState.difficultyDetails.settings,
             overrides = operationDetailsUiState.overrides
-        )
+        )*/
     }
 }
 
