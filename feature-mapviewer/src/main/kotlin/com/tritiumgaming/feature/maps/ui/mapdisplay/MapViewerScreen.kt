@@ -122,6 +122,11 @@ private fun MapViewerContent(
 
     val mapDisplayUiState by mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
 
+    val onNavigateBack: () -> Unit = {
+        try { navController.popBackStack() }
+        catch (e: Exception) { e.printStackTrace() }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -141,7 +146,7 @@ private fun MapViewerContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    navController = navController,
+                    onNavigateBack = onNavigateBack,
                     mapDisplayUiState = mapDisplayUiState,
                     onIncrementFloor = {
                         mapsScreenViewModel.incrementFloor()
@@ -161,7 +166,7 @@ private fun MapViewerContent(
                 UiControllerLandscape(
                     modifier = Modifier
                         .fillMaxSize(),
-                    navController = navController,
+                    onNavigateBack = onNavigateBack,
                     mapDisplayUiState = mapDisplayUiState,
                     onIncrementFloor = {
                         mapsScreenViewModel.incrementFloor()
@@ -409,7 +414,7 @@ private fun Modifier.mapControlInput(
 @Composable
 private fun UiControllerPortrait(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
+    onNavigateBack: () -> Unit,
     mapDisplayUiState: InteractiveMapUiState,
     onDecrementFloor: () -> Unit = { },
     onIncrementFloor: () -> Unit = { },
@@ -445,13 +450,7 @@ private fun UiControllerPortrait(
                 modifier = Modifier
                     .fillMaxHeight()
                     .aspectRatio(1f)
-                    .clickable(onClick = {
-                        try {
-                            navController.popBackStack()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    })
+                    .clickable(onClick = onNavigateBack)
                     .padding(8.dp),
                 painter = painterResource(android.R.drawable.ic_menu_revert),
                 contentScale = ContentScale.Fit,
@@ -539,9 +538,7 @@ private fun UiControllerPortrait(
                     Arrow60LeftIcon(
                         modifier = Modifier
                             .size(48.dp)
-                            .clickable(onClick = {
-                                onDecrementFloor()
-                            })
+                            .clickable(onClick = onDecrementFloor )
                             .padding(8.dp),
                         colors = IconVectorColors.defaults(
                             fillColor = LocalPalette.current.onSurface
@@ -568,9 +565,7 @@ private fun UiControllerPortrait(
                     Arrow60RightIcon(
                         modifier = Modifier
                             .size(48.dp)
-                            .clickable(onClick = {
-                                onIncrementFloor()
-                            })
+                            .clickable(onClick = onIncrementFloor )
                             .padding(8.dp),
                         colors = IconVectorColors.defaults(
                             fillColor = LocalPalette.current.onSurface
@@ -604,9 +599,7 @@ private fun UiControllerPortrait(
                     .wrapContentHeight(),
                 roomName = roomName,
                 roomList = roomList,
-                onSetRoom = { id ->
-                    onSetRoom(id)
-                }
+                onSetRoom = { id -> onSetRoom(id) }
             )
 
         }
@@ -618,7 +611,7 @@ private fun UiControllerPortrait(
 @Composable
 private fun UiControllerLandscape(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
+    onNavigateBack: () -> Unit,
     mapDisplayUiState: InteractiveMapUiState,
     onDecrementFloor: () -> Unit = { },
     onIncrementFloor: () -> Unit = { },
@@ -652,13 +645,7 @@ private fun UiControllerLandscape(
                 modifier = Modifier
                     .fillMaxHeight()
                     .aspectRatio(1f)
-                    .clickable(onClick = {
-                        try {
-                            navController.popBackStack()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    })
+                    .clickable(onClick = onNavigateBack)
                     .padding(end = 8.dp),
                 painter = painterResource(android.R.drawable.ic_menu_revert),
                 contentScale = ContentScale.Fit,
@@ -735,9 +722,7 @@ private fun UiControllerLandscape(
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(1f)
-                        .clickable(onClick = {
-                            onIncrementFloor()
-                        })
+                        .clickable(onClick = onIncrementFloor)
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
                         fillColor = LocalPalette.current.onSurface
@@ -781,9 +766,7 @@ private fun UiControllerLandscape(
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(1f)
-                        .clickable(onClick = {
-                            onDecrementFloor()
-                        })
+                        .clickable(onClick = onDecrementFloor )
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
                         fillColor = LocalPalette.current.onSurface
@@ -827,9 +810,7 @@ private fun UiControllerLandscape(
                         .fillMaxWidth(.5f),
                     roomName = roomName,
                     roomList = roomList,
-                    onSetRoom = { id ->
-                        onSetRoom(id)
-                    }
+                    onSetRoom = { id -> onSetRoom(id) }
                 )
 
             }
