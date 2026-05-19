@@ -93,7 +93,7 @@ class InteractiveViewController {
     }
 
     fun postCenterTranslateMatrix(imgW: Float, imgH: Float, viewportW: Float, viewportH: Float) {
-        if (canSetDefaultZoomLevel) {
+        if (canSetDefaultZoomLevel && viewportW > 0f && viewportH > 0f) {
             val zoomW = viewportW / imgW
             val zoomH = viewportH / imgH
             zoom = min(zoomW.toDouble(), zoomH.toDouble()).toFloat()

@@ -90,10 +90,12 @@ import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.model.InteractiveViewController
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloor
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import kotlin.math.floor
 
 
 @Composable
@@ -101,37 +103,61 @@ fun MapViewerScreen(
     navController: NavHostController = rememberNavController(),
     mapsScreenViewModel: MapsScreenViewModel,
     mapId: String,
+    onIncrementFloor: () -> Unit = { mapsScreenViewModel.incrementFloor() },
+    onDecrementFloor: () -> Unit = { mapsScreenViewModel.decrementFloor() },
+    onSetRoom: (Int) -> Unit = { id -> mapsScreenViewModel.setCurrentRoom(id) }
 ) {
-    mapsScreenViewModel.setCurrentMap(mapId)
+    LaunchedEffect(mapId) {
+        mapsScreenViewModel.setCurrentMap(mapId)
+    }
+
+    val mapDisplayUiState by mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
 
     MapViewerContent(
-        mapsScreenViewModel = mapsScreenViewModel,
-        onIncrementFloor = mapsScreenViewModel::incrementFloor,
-        onDecrementFloor = mapsScreenViewModel::decrementFloor,
-        onSetRoom = mapsScreenViewModel::setCurrentRoom,
+        mapDisplayUiState = mapDisplayUiState,
+        onIncrementFloor = onIncrementFloor,
+        onDecrementFloor = onDecrementFloor,
+        onSetRoom = onSetRoom,
         onSetSelectedRoomAtPoint = mapsScreenViewModel::setSelectedRoomAtPoint,
+        onGetFloorByIndex = mapsScreenViewModel::getFloorByIndex,
+        onGetRoomById = mapsScreenViewModel::getRoomById,
+        onGetFloorImage = mapsScreenViewModel::getFloorImage,
         onNavigateBack = {
             try { navController.popBackStack() }
             catch (e: Exception) { e.printStackTrace() }
-        }
+        },
     )
 }
 
 @Composable
 private fun MapViewerContent(
-    mapsScreenViewModel: MapsScreenViewModel,
+    mapDisplayUiState: InteractiveMapUiState,
     onIncrementFloor: () -> Unit,
     onDecrementFloor: () -> Unit,
     onSetRoom: (Int) -> Unit,
     onSetSelectedRoomAtPoint: (point: Point2D.Point2DFloat, scaleX: Float, scaleY: Float,
                                translateX: Float, translateY: Float) -> Unit,
+    onGetFloorByIndex: (Int) -> ComplexWorldMapFloor?,
+    onGetRoomById: (Int) -> ComplexWorldRoom?,
+    onGetFloorImage: () -> SimpleMapResources.MapFloorImage?,
     onNavigateBack: () -> Unit
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    val mapDisplayUiState by mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
+    val mapTransformationManager = remember(mapDisplayUiState.mapId) { InteractiveViewController() }
+    val poiTransformationManager = remember(mapDisplayUiState.mapId) { InteractiveViewController() }
+
+    var interactionSourceMillis by remember {
+        mutableLongStateOf(System.currentTimeMillis())
+    }
+    var displayWidth by remember {
+        mutableIntStateOf(0)
+    }
+    var displayHeight by remember {
+        mutableIntStateOf(0)
+    }
 
     Box(
         modifier = Modifier
@@ -143,8 +169,21 @@ private fun MapViewerContent(
         )
 
         MapCanvas(
-            mapsScreenViewModel = mapsScreenViewModel,
-            onSetSelectedRoomAtPoint = onSetSelectedRoomAtPoint
+            mapDisplayUiState = mapDisplayUiState,
+            mapTransformationManager = mapTransformationManager,
+            poiTransformationManager = poiTransformationManager,
+            interactionSourceMillis = interactionSourceMillis,
+            displayWidth = displayWidth,
+            displayHeight = displayHeight,
+            onSetInteractionMillis = { interactionSourceMillis = it },
+            onSetDisplaySize = { width, height ->
+                displayWidth = width
+                displayHeight = height
+            },
+            onSetSelectedRoomAtPoint = onSetSelectedRoomAtPoint,
+            onGetFloorByIndex = onGetFloorByIndex,
+            onGetRoomById = onGetRoomById,
+            onGetFloorImage = onGetFloorImage,
         )
 
         when(deviceConfiguration) {
@@ -182,29 +221,36 @@ private fun MapViewerContent(
 
 @Composable
 private fun MapCanvas(
-    mapsScreenViewModel: MapsScreenViewModel,
+    mapDisplayUiState: InteractiveMapUiState,
+    mapTransformationManager: InteractiveViewController,
+    poiTransformationManager: InteractiveViewController,
+    interactionSourceMillis: Long,
+    displayWidth: Int,
+    displayHeight: Int,
+    onSetInteractionMillis: (Long) -> Unit,
+    onSetDisplaySize: (Int, Int) -> Unit,
     onSetSelectedRoomAtPoint: (point: Point2D.Point2DFloat, scaleX: Float, scaleY: Float,
-        translateX: Float, translateY: Float) -> Unit
+        translateX: Float, translateY: Float) -> Unit,
+    onGetFloorByIndex: (Int) -> ComplexWorldMapFloor?,
+    onGetRoomById: (Int) -> ComplexWorldRoom?,
+    onGetFloorImage: () -> SimpleMapResources.MapFloorImage?
 ) {
     val context = LocalContext.current
     val resources = LocalResources.current
 
     val poiFillColor = LocalPalette.current.primary
 
-    val mapDisplayUiState = mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
-    val selectedFloor = mapDisplayUiState.value.floorIndex.let { floorIndex ->
-        mapsScreenViewModel.getFloorByIndex(floorIndex)
-    }
-    val selectedRoom = mapDisplayUiState.value.roomId.let { roomId ->
-        mapsScreenViewModel.getRoomById(roomId)
-    }
+    val selectedFloor = onGetFloorByIndex(mapDisplayUiState.floorIndex)
+    val selectedRoom = onGetRoomById(mapDisplayUiState.roomId)
 
-    val floorImageRef: SimpleMapResources.MapFloorImage = mapsScreenViewModel.getFloorImage()
+    val floorImageRef: SimpleMapResources.MapFloorImage = onGetFloorImage() ?: return
+
     @DrawableRes val floorImageRes: Int = floorImageRef.toDrawableResource()
-    val floorImage: ImageBitmap =
+    val floorImage: ImageBitmap = remember(floorImageRes) {
         BitmapFactory.decodeResource(resources, floorImageRes).asImageBitmap()
+    }
 
-    val poiImages: Map<MapPoiResources.Poi, ImageBitmap?> =
+    val poiImages: Map<MapPoiResources.Poi, ImageBitmap?> = remember {
         MapPoiResources.Poi.entries.associateWith { type ->
             val res = type.toDrawableResource()
             val bitmap = resources.let { resources ->
@@ -213,24 +259,13 @@ private fun MapCanvas(
             }
             bitmap
         }
+    }
 
-    val mapTransformationManager by remember{ mutableStateOf(InteractiveViewController()) }
     mapTransformationManager.setImageSize(floorImage.width, floorImage.height)
     mapTransformationManager.updateMatrix()
 
-    val poiTransformationManager by remember{ mutableStateOf(InteractiveViewController()) }
-    mapTransformationManager.setImageSize(floorImage.width, floorImage.height)
-    mapTransformationManager.updateMatrix()
-
-    var interactionSourceMillis by remember {
-        mutableLongStateOf(System.currentTimeMillis())
-    }
-    var displayWidth by remember {
-        mutableIntStateOf(0)
-    }
-    var displayHeight by remember {
-        mutableIntStateOf(0)
-    }
+    poiTransformationManager.setImageSize(floorImage.width, floorImage.height)
+    poiTransformationManager.updateMatrix()
 
     val wallPath = Path()
     val wallPathColor = LocalPalette.current.primary
@@ -240,8 +275,7 @@ private fun MapCanvas(
         modifier = Modifier
             .fillMaxSize()
             .onSizeChanged {
-                displayWidth = it.width
-                displayHeight = it.height
+                onSetDisplaySize(it.width, it.height)
                 mapTransformationManager.setContainerSize(it.width, it.height)
             }
             .mapControlInput(
@@ -264,9 +298,11 @@ private fun MapCanvas(
 
                 }
             ) {
-                interactionSourceMillis = System.currentTimeMillis()
+                onSetInteractionMillis(System.currentTimeMillis())
             }
     ) {
+        if (displayWidth <= 0 || displayHeight <= 0) return@Canvas
+
         Log.d("MapCanvas", "$interactionSourceMillis")
 
         mapTransformationManager.postCenterTranslateMatrix(

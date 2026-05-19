@@ -52,14 +52,14 @@ class MapsScreenViewModel(
     val currentComplexMap: ComplexWorldMap?
         get() = complexMaps?.getMapById(interactiveMapUiState.value.mapId)
 
-    fun getSimpleMap(): SimpleWorldMap = simpleMaps
-        .first { map -> map.mapId == interactiveMapUiState.value.mapId }
+    fun getSimpleMap(): SimpleWorldMap? = simpleMaps
+        .find { map -> map.mapId == interactiveMapUiState.value.mapId }
 
     fun getFloorByIndex(index: Int): ComplexWorldMapFloor? =
         currentComplexMap?.mapFloors?.get(interactiveMapUiState.value.floorIndex)
 
-    fun getFloorImage(): SimpleMapResources.MapFloorImage = getSimpleMap()
-        .getFloorImage(interactiveMapUiState.value.floorIndex)
+    fun getFloorImage(): SimpleMapResources.MapFloorImage? = getSimpleMap()
+        ?.getFloorImage(interactiveMapUiState.value.floorIndex)
 
     fun getSelectedRoom(): ComplexWorldRoom? {
         return currentComplexMap?.let { map: ComplexWorldMap ->
