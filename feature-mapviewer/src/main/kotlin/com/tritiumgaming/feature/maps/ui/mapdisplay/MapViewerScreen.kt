@@ -100,13 +100,17 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 fun MapViewerScreen(
     navController: NavHostController = rememberNavController(),
     mapsScreenViewModel: MapsScreenViewModel,
-    mapId: String
+    mapId: String,
 ) {
     mapsScreenViewModel.setCurrentMap(mapId)
 
     MapViewerContent(
         navController = navController,
-        mapsScreenViewModel = mapsScreenViewModel
+        mapsScreenViewModel = mapsScreenViewModel,
+        onIncrementFloor = mapsScreenViewModel::incrementFloor,
+        onDecrementFloor = mapsScreenViewModel::decrementFloor,
+        onSetRoom = mapsScreenViewModel::setCurrentRoom,
+        onSetSelectedRoomAtPoint = mapsScreenViewModel::setSelectedRoomAtPoint
     )
 
 }
@@ -114,7 +118,12 @@ fun MapViewerScreen(
 @Composable
 private fun MapViewerContent(
     navController: NavHostController = rememberNavController(),
-    mapsScreenViewModel: MapsScreenViewModel
+    mapsScreenViewModel: MapsScreenViewModel,
+    onIncrementFloor: () -> Unit,
+    onDecrementFloor: () -> Unit,
+    onSetRoom: (Int) -> Unit,
+    onSetSelectedRoomAtPoint: (point: Point2D.Point2DFloat, scaleX: Float, scaleY: Float,
+                               translateX: Float, translateY: Float) -> Unit
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -137,7 +146,8 @@ private fun MapViewerContent(
         )
 
         MapCanvas(
-            mapsScreenViewModel = mapsScreenViewModel
+            mapsScreenViewModel = mapsScreenViewModel,
+            onSetSelectedRoomAtPoint = onSetSelectedRoomAtPoint
         )
 
         when(deviceConfiguration) {
@@ -148,15 +158,9 @@ private fun MapViewerContent(
                         .wrapContentHeight(),
                     onNavigateBack = onNavigateBack,
                     mapDisplayUiState = mapDisplayUiState,
-                    onIncrementFloor = {
-                        mapsScreenViewModel.incrementFloor()
-                    },
-                    onDecrementFloor = {
-                        mapsScreenViewModel.decrementFloor()
-                    },
-                    onSetRoom = { id ->
-                        mapsScreenViewModel.setCurrentRoom(id)
-                    }
+                    onIncrementFloor = onIncrementFloor,
+                    onDecrementFloor = onDecrementFloor,
+                    onSetRoom = onSetRoom
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -168,15 +172,9 @@ private fun MapViewerContent(
                         .fillMaxSize(),
                     onNavigateBack = onNavigateBack,
                     mapDisplayUiState = mapDisplayUiState,
-                    onIncrementFloor = {
-                        mapsScreenViewModel.incrementFloor()
-                    },
-                    onDecrementFloor = {
-                        mapsScreenViewModel.decrementFloor()
-                    },
-                    onSetRoom = { id ->
-                        mapsScreenViewModel.setCurrentRoom(id)
-                    }
+                    onIncrementFloor = onIncrementFloor,
+                    onDecrementFloor = onDecrementFloor,
+                    onSetRoom = onSetRoom
                 )
             }
         }
@@ -187,7 +185,9 @@ private fun MapViewerContent(
 
 @Composable
 private fun MapCanvas(
-    mapsScreenViewModel: MapsScreenViewModel
+    mapsScreenViewModel: MapsScreenViewModel,
+    onSetSelectedRoomAtPoint: (point: Point2D.Point2DFloat, scaleX: Float, scaleY: Float,
+        translateX: Float, translateY: Float) -> Unit
 ) {
     val context = LocalContext.current
     val resources = LocalResources.current
@@ -257,12 +257,12 @@ private fun MapCanvas(
                     val translateX = matrix[Matrix.MTRANS_X]
                     val translateY = matrix[Matrix.MTRANS_Y]
 
-                    mapsScreenViewModel.setSelectedRoomAtPoint(
-                        point = Point2D.Point2DFloat(x, y),
-                        scaleX = scaleX,
-                        scaleY = scaleY,
-                        translateX = translateX,
-                        translateY = translateY
+                    onSetSelectedRoomAtPoint(
+                        Point2D.Point2DFloat(x, y),
+                        scaleX,
+                        scaleY,
+                        translateX,
+                        translateY
                     )
 
                 }
