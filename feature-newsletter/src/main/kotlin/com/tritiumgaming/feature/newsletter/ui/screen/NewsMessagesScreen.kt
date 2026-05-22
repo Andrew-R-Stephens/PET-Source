@@ -43,6 +43,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -52,7 +53,10 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
@@ -63,8 +67,108 @@ import com.tritiumgaming.feature.newsletter.app.mappers.toStringResource
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources
+import com.tritiumgaming.shared.data.newsletter.model.NewsletterChannel
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
+
+@Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun NewsMessagesScreenPreview_SmallPhone_Portrait() {
+    NewsMessagesPreview()
+}
+
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun NewsMessagesScreenPreview_SmallPhone_Landscape() {
+    NewsMessagesPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun NewsMessagesScreenPreview_MediumPhone_Portrait() {
+    NewsMessagesPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun NewsMessagesScreenPreview_MediumPhone_Landscape() {
+    NewsMessagesPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun NewsMessagesScreenPreview_MediumTablet_Portrait() {
+    NewsMessagesPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun NewsMessagesScreenPreview_MediumTablet_Landscape() {
+    NewsMessagesPreview()
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun NewsMessagesScreenPreview_Foldable() {
+    NewsMessagesPreview()
+}
+
+@Composable
+private fun NewsMessagesPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            val inbox = NewsletterInbox(
+                id = "1",
+                title = NewsletterResources.NewsletterTitle.GENERAL_NEWS,
+                channel = NewsletterChannel(
+                    language = "en",
+                    messages = listOf(
+                        NewsletterMessage(
+                            id = "1",
+                            title = "Message 1",
+                            description = "Description 1",
+                            dateEpoch = 1000L
+                        ),
+                        NewsletterMessage(
+                            id = "2",
+                            title = "Message 2",
+                            description = "Description 2",
+                            dateEpoch = 500L
+                        )
+                    )
+                )
+            )
+            NewsMessagesContent(
+                inbox = inbox,
+                newsletterInboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = inbox,
+                            lastReadDate = 750L
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onMarkAllRead = {},
+                onReadMessage = {},
+                onRefresh = {},
+                onNavigateBack = {}
+            )
+        }
+    }
+}
 
 @Composable
 fun NewsMessagesScreen(
@@ -112,6 +216,29 @@ fun NewsMessagesScreen(
         )
     }
 
+    NewsMessagesContent(
+        inbox,
+        newsletterInboxesUiState,
+        refreshUiState,
+        onMarkAllRead,
+        onReadMessage,
+        onRefresh,
+        navController::popBackStack
+    )
+
+
+}
+
+@Composable
+private fun NewsMessagesContent(
+    inbox: NewsletterInbox,
+    newsletterInboxesUiState: NewsletterInboxesUiState,
+    refreshUiState: NewsletterRefreshUiState,
+    onMarkAllRead: (NewsletterInbox) -> Unit,
+    onReadMessage: (NewsletterMessage) -> Unit,
+    onRefresh: () -> Unit,
+    onNavigateBack: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -120,7 +247,7 @@ fun NewsMessagesScreen(
 
         NavigationHeader(
             title = stringResource(inbox.title.toStringResource()),
-            onLeftClick = { navController.popBackStack() }
+            onLeftClick = onNavigateBack
         )
 
         Spacer(
@@ -169,8 +296,6 @@ fun NewsMessagesScreen(
 
         //AdmobBanner()
     }
-
-
 }
 
 @Composable

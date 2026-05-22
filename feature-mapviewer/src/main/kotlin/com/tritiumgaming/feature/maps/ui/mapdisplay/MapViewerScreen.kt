@@ -37,6 +37,7 @@ import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -69,6 +70,7 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -81,7 +83,10 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.icon.impl.base.Arrow60RightIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentAlignmentPercentage
@@ -95,8 +100,87 @@ import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import kotlin.math.floor
 
+@Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun MapViewerScreenPreview_SmallPhone_Portrait() {
+    MapViewerPreview()
+}
+
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun MapViewerScreenPreview_SmallPhone_Landscape() {
+    MapViewerPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun MapViewerScreenPreview_MediumPhone_Portrait() {
+    MapViewerPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun MapViewerScreenPreview_MediumPhone_Landscape() {
+    MapViewerPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun MapViewerScreenPreview_MediumTablet_Portrait() {
+    MapViewerPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun MapViewerScreenPreview_MediumTablet_Landscape() {
+    MapViewerPreview()
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun MapViewerScreenPreview_Foldable() {
+    MapViewerPreview()
+}
+
+@Composable
+private fun MapViewerPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            MapViewerContent(
+                mapDisplayUiState = InteractiveMapUiState(
+                    mapId = "tanglewood",
+                    mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
+                    floorIndex = 0,
+                    floorTitle = SimpleMapResources.MapFloorTitle.FIRST_FLOOR,
+                    floorCount = 2,
+                    roomId = 0,
+                    roomName = "Living Room",
+                    roomDropdownList = emptyList()
+                ),
+                onIncrementFloor = {},
+                onDecrementFloor = {},
+                onSetRoom = {},
+                onSetSelectedRoomAtPoint = { _, _, _, _, _ -> },
+                onGetFloorByIndex = { _ -> null },
+                onGetRoomById = { _ -> null },
+                onGetFloorImage = { SimpleMapResources.MapFloorImage.TANGLEWOOD_FIRST_FLOOR },
+                onNavigateBack = {}
+            )
+        }
+    }
+}
 
 @Composable
 fun MapViewerScreen(

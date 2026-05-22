@@ -73,7 +73,9 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.MarkCheckIcon
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
@@ -92,6 +94,80 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 
 @Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun CustomDifficultyScreenPreview_SmallPhone_Portrait() {
+    CustomDifficultyPreview(DeviceConfiguration.MOBILE_PORTRAIT)
+}
+
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun CustomDifficultyScreenPreview_SmallPhone_Landscape() {
+    CustomDifficultyPreview(DeviceConfiguration.MOBILE_LANDSCAPE)
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+private fun CustomDifficultyScreenPreview_MediumPhone_Portrait() {
+    CustomDifficultyPreview(DeviceConfiguration.MOBILE_PORTRAIT)
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun CustomDifficultyScreenPreview_MediumPhone_Landscape() {
+    CustomDifficultyPreview(DeviceConfiguration.MOBILE_LANDSCAPE)
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
+private fun CustomDifficultyScreenPreview_MediumTablet_Portrait() {
+    CustomDifficultyPreview(DeviceConfiguration.TABLET_PORTRAIT)
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun CustomDifficultyScreenPreview_MediumTablet_Landscape() {
+    CustomDifficultyPreview(DeviceConfiguration.TABLET_LANDSCAPE)
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun CustomDifficultyScreenPreview_Foldable() {
+    CustomDifficultyPreview(DeviceConfiguration.MOBILE_PORTRAIT)
+}
+
+@Composable
+private fun CustomDifficultyPreview(deviceConfiguration: DeviceConfiguration) {
+    val sampleDifficulty = CustomDifficultyModel(
+        id = 1,
+        name = "Insane Custom",
+        settings = DifficultySettingsModel()
+    )
+    val uiState = CustomDifficultyUiState(
+        difficulties = listOf(sampleDifficulty),
+        selectedDifficulty = sampleDifficulty,
+        hasChanges = true
+    )
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(color = LocalPalette.current.surface) {
+            CustomDifficultyContent(
+                uiState = uiState,
+                deviceConfiguration = deviceConfiguration,
+                onSelectDifficulty = {},
+                onUpdateDifficulty = {},
+                onSave = {},
+                onRevert = {},
+                onNavigateBack = {}
+            )
+        }
+    }
+}
+
+@Composable
 fun CustomDifficultyScreen(
     navController: NavController,
     viewModel: CustomDifficultyViewModel = viewModel(factory = CustomDifficultyViewModel.Factory),
@@ -101,10 +177,27 @@ fun CustomDifficultyScreen(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    val onNavigateBack = {
-        navController.popBackStack()
-    }
+    CustomDifficultyContent(
+        uiState = uiState,
+        deviceConfiguration = deviceConfiguration,
+        onSelectDifficulty = viewModel::selectDifficulty,
+        onUpdateDifficulty = viewModel::updateSelectedDifficulty,
+        onSave = viewModel::saveChanges,
+        onRevert = viewModel::revertChanges,
+        onNavigateBack = { navController.popBackStack() }
+    )
+}
 
+@Composable
+private fun CustomDifficultyContent(
+    uiState: CustomDifficultyUiState,
+    deviceConfiguration: DeviceConfiguration,
+    onSelectDifficulty: (CustomDifficultyModel) -> Unit,
+    onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
+    onSave: () -> Unit,
+    onRevert: () -> Unit,
+    onNavigateBack: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -114,26 +207,27 @@ fun CustomDifficultyScreen(
     ) {
 
         NavigationHeader(
-            onLeftClick = { onNavigateBack() }
+            onLeftClick = onNavigateBack
         )
 
         when (deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 PortraitContent(
                     uiState = uiState,
-                    onSelectDifficulty = viewModel::selectDifficulty,
-                    onUpdateDifficulty = viewModel::updateSelectedDifficulty,
-                    onSave = viewModel::saveChanges,
-                    onRevert = viewModel::revertChanges
+                    onSelectDifficulty = onSelectDifficulty,
+                    onUpdateDifficulty = onUpdateDifficulty,
+                    onSave = onSave,
+                    onRevert = onRevert
                 )
             }
+
             else -> {
                 LandscapeContent(
                     uiState = uiState,
-                    onSelectDifficulty = viewModel::selectDifficulty,
-                    onUpdateDifficulty = viewModel::updateSelectedDifficulty,
-                    onSave = viewModel::saveChanges,
-                    onRevert = viewModel::revertChanges
+                    onSelectDifficulty = onSelectDifficulty,
+                    onUpdateDifficulty = onUpdateDifficulty,
+                    onSave = onSave,
+                    onRevert = onRevert
                 )
             }
         }
@@ -974,8 +1068,7 @@ private fun SettingDropdown(
 
 @Composable
 private fun NavigationHeader(
-    onLeftClick: () -> Unit = {},
-    onRightClick: () -> Unit = {}
+    onLeftClick: () -> Unit = {}
 ) {
     NavigationHeaderComposable(
         modifier = Modifier

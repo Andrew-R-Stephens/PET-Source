@@ -157,7 +157,7 @@ private fun StartScreenPreview_MediumPhone_Portrait() {
 
 @Composable
 @Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp"
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
 )
 private fun StartScreenPreview_MediumPhone_Landscape() {
     SelectiveTheme(

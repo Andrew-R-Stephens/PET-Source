@@ -29,6 +29,7 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -49,7 +50,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.window.core.layout.WindowSizeClass
@@ -71,6 +71,75 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
 import com.tritiumgaming.shared.data.contributor.model.Contributor
 import org.jetbrains.annotations.TestOnly
+
+@Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun InfoScreenPreview_SmallPhone_Portrait() {
+    InfoScreenPreview()
+}
+
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun InfoScreenPreview_SmallPhone_Landscape() {
+    InfoScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun InfoScreenPreview_MediumPhone_Portrait() {
+    InfoScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun InfoScreenPreview_MediumPhone_Landscape() {
+    InfoScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun InfoScreenPreview_MediumTablet_Portrait() {
+    InfoScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun InfoScreenPreview_MediumTablet_Landscape() {
+    InfoScreenPreview()
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun InfoScreenPreview_Foldable() {
+    InfoScreenPreview()
+}
+
+@Composable
+private fun InfoScreenPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InfoContent(
+                contributors = listOf(
+                    Contributor("Contributor 1"),
+                    Contributor("Contributor 2"),
+                    Contributor("Contributor 3")
+                ),
+                onNavigateBack = {}
+            )
+        }
+    }
+}
 
 @Composable
 fun InfoScreen(
@@ -128,8 +197,7 @@ fun InfoContent(
 
 @Composable
 private fun NavigationHeader(
-    onLeftClick: () -> Unit = {},
-    onRightClick: () -> Unit = {}
+    onLeftClick: () -> Unit = {}
 ) {
     NavigationHeaderComposable(
         modifier = Modifier
@@ -674,7 +742,6 @@ private fun VisitDiscordButton(
 
 @Composable
 @Preview
-@TestOnly
 private fun VisitDiscordButtonPreview() {
 
     SelectiveTheme(
@@ -682,34 +749,6 @@ private fun VisitDiscordButtonPreview() {
         typography = ClassicTypography
     ) {
         VisitDiscordButton()
-    }
-
-}
-
-@Composable
-@Preview(showSystemUi = false, apiLevel = 35, device = "spec:parent=pixel_5,orientation=landscape")
-@TestOnly
-private fun LandscapePreview() {
-
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Column {
-            InfoContentLandscape(
-                listOf(
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA"),
-                    Contributor("AAAAAA")
-                )
-            )
-        }
     }
 
 }

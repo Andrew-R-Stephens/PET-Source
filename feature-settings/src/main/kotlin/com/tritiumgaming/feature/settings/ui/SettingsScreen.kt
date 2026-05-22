@@ -21,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -45,7 +46,9 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
@@ -57,13 +60,130 @@ import com.tritiumgaming.feature.settings.ui.components.CarouselUiActions
 import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSeekbar
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
-import org.jetbrains.annotations.TestOnly
 
-@Preview
-@TestOnly
 @Composable
-private fun SettingsScreenPreview() {
-    SettingsScreen()
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun SettingsScreenPreview_SmallPhone_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            SettingsContent(
+                settingsScreenUiState = SettingsScreenUiState()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
+private fun SettingsScreenPreview_SmallPhone_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            SettingsContent(
+                settingsScreenUiState = SettingsScreenUiState()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun SettingsScreenPreview_MediumPhone_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            SettingsContent(
+                settingsScreenUiState = SettingsScreenUiState()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun SettingsScreenPreview_MediumPhone_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            SettingsContent(
+                settingsScreenUiState = SettingsScreenUiState()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun SettingsScreenPreview_MediumTablet_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            SettingsContent(
+                settingsScreenUiState = SettingsScreenUiState()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun SettingsScreenPreview_MediumTablet_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            SettingsContent(
+                settingsScreenUiState = SettingsScreenUiState()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun SettingsScreenPreview_Foldable() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            SettingsContent(
+                settingsScreenUiState = SettingsScreenUiState()
+            )
+        }
+    }
 }
 
 @Composable
@@ -75,6 +195,39 @@ fun SettingsScreen(
     val settingsScreenUiState by
         settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
 
+    SettingsContent(
+        settingsScreenUiState = settingsScreenUiState,
+        onBack = { navController.popBackStack() },
+        onScreenSaverPreferenceChange = { settingsViewModel.setScreenSaverPreference(it) },
+        onNetworkPreferenceChange = { settingsViewModel.setNetworkPreference(it) },
+        onRTLPreferenceChange = { settingsViewModel.setRTLPreference(it) },
+        onUiDensityPreferenceChange = { settingsViewModel.setUiDensityPreference(it) },
+        onHuntWarningAudioPreferenceChange = { settingsViewModel.setHuntWarningAudioPreference(it) },
+        onGhostReorderPreferenceChange = { settingsViewModel.setGhostReorderPreference(it) },
+        onHuntWarnDurationPreferenceChange = { settingsViewModel.setHuntWarnDurationPreference(it) },
+        onPalettePrevious = { settingsViewModel.setNextAvailablePalette(IncrementDirection.BACKWARD) },
+        onPaletteNext = { settingsViewModel.setNextAvailablePalette(IncrementDirection.FORWARD) },
+        onTypographyPrevious = { settingsViewModel.setNextAvailableTypography(IncrementDirection.BACKWARD) },
+        onTypographyNext = { settingsViewModel.setNextAvailableTypography(IncrementDirection.FORWARD) }
+    )
+}
+
+@Composable
+private fun SettingsContent(
+    settingsScreenUiState: SettingsScreenUiState,
+    onBack: () -> Unit = {},
+    onScreenSaverPreferenceChange: (Boolean) -> Unit = {},
+    onNetworkPreferenceChange: (Boolean) -> Unit = {},
+    onRTLPreferenceChange: (Boolean) -> Unit = {},
+    onUiDensityPreferenceChange: (Boolean) -> Unit = {},
+    onHuntWarningAudioPreferenceChange: (Boolean) -> Unit = {},
+    onGhostReorderPreferenceChange: (Boolean) -> Unit = {},
+    onHuntWarnDurationPreferenceChange: (Long) -> Unit = {},
+    onPalettePrevious: () -> Unit = {},
+    onPaletteNext: () -> Unit = {},
+    onTypographyPrevious: () -> Unit = {},
+    onTypographyNext: () -> Unit = {}
+) {
     val navigationHeader: @Composable (Modifier) -> Unit = @Composable { modifier ->
         NavigationHeaderComposable(
             modifier = modifier,
@@ -89,7 +242,7 @@ fun SettingsScreen(
                             )
                         )
                     }
-                ) { navController.popBackStack() }
+                ) { onBack() }
             },
             rightContent = { outerModifier ->
                 NavigationHeaderSideButton(
@@ -135,7 +288,7 @@ fun SettingsScreen(
             state = settingsScreenUiState.screensaverPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            onChange = { state -> settingsViewModel.setScreenSaverPreference(state) }
+            onChange = { state -> onScreenSaverPreferenceChange(state) }
         )
     }
 
@@ -147,7 +300,7 @@ fun SettingsScreen(
             state = settingsScreenUiState.networkPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            onChange = { state -> settingsViewModel.setNetworkPreference(state) }
+            onChange = { state -> onNetworkPreferenceChange(state) }
         )
     }
 
@@ -159,7 +312,7 @@ fun SettingsScreen(
             state = settingsScreenUiState.rTLPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            onChange = { state -> settingsViewModel.setRTLPreference(state) }
+            onChange = { state -> onRTLPreferenceChange(state) }
         )
     }
 
@@ -171,7 +324,7 @@ fun SettingsScreen(
             state = settingsScreenUiState.uiDensityType == DensityType.COMPACT,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            onChange = { state -> settingsViewModel.setUiDensityPreference(state) }
+            onChange = { state -> onUiDensityPreferenceChange(state) }
         )
     }
 
@@ -183,7 +336,7 @@ fun SettingsScreen(
             state = settingsScreenUiState.huntWarningAudioPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            onChange = { state -> settingsViewModel.setHuntWarningAudioPreference(state) }
+            onChange = { state -> onHuntWarningAudioPreferenceChange(state) }
         )
     }
 
@@ -195,7 +348,7 @@ fun SettingsScreen(
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
             state = settingsScreenUiState.ghostReorderPreference,
-            onChange = { state -> settingsViewModel.setGhostReorderPreference(state) }
+            onChange = { state -> onGhostReorderPreferenceChange(state) }
         )
 
     }
@@ -212,7 +365,7 @@ fun SettingsScreen(
             thumbOutlineColor = LocalPalette.current.primary,
             thumbInnerColor = LocalPalette.current.onSurface,
             onValueChange = { millis ->
-                settingsViewModel.setHuntWarnDurationPreference(millis) }
+                onHuntWarnDurationPreferenceChange(millis) }
         )
     }
 
@@ -239,12 +392,8 @@ fun SettingsScreen(
             primaryTextColor = LocalPalette.current.onSurface,
             secondaryTextColor = LocalPalette.current.onSurfaceVariant,
             actions = CarouselUiActions(
-                onPrevious = {
-                    settingsViewModel.setNextAvailablePalette(IncrementDirection.BACKWARD)
-                },
-                onNext = {
-                    settingsViewModel.setNextAvailablePalette(IncrementDirection.FORWARD)
-                }
+                onPrevious = onPalettePrevious,
+                onNext = onPaletteNext
             )
         )
     }
@@ -272,17 +421,13 @@ fun SettingsScreen(
             primaryTextColor = LocalPalette.current.onSurface,
             secondaryTextColor = LocalPalette.current.onSurfaceVariant,
             actions = CarouselUiActions(
-                onPrevious = {
-                    settingsViewModel.setNextAvailableTypography(IncrementDirection.BACKWARD)
-                },
-                onNext = {
-                    settingsViewModel.setNextAvailableTypography(IncrementDirection.FORWARD)
-                }
+                onPrevious = onTypographyPrevious,
+                onNext = onTypographyNext
             )
         )
     }
 
-    val privacyPolicyPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+    val privacyPolicyPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { _ ->
 
         //TODO
         /*if(permissionsUiState.value.isPrivacyOptionsRequired) {
@@ -320,15 +465,45 @@ fun SettingsScreen(
         }*/
     }
 
+    SettingsScreenLayout(
+        navigationHeader,
+        screenPreferenceComponent,
+        dataUsagePreferenceComponent,
+        leftHandedPreferenceComponent,
+        uiDensityPreferenceComponent,
+        audioWarningPreferenceComponent,
+        ghostReorderPreferenceComponent,
+        huntWarningTimeoutPreferenceComponent,
+        palettePreferenceComponent,
+        typographyPreferenceComponent,
+        privacyPolicyPreferenceComponent
+    )
+}
+
+@Composable
+private fun SettingsScreenLayout(
+    navigationHeader: @Composable ((Modifier) -> Unit),
+    screenPreferenceComponent: @Composable ((Modifier) -> Unit),
+    dataUsagePreferenceComponent: @Composable ((Modifier) -> Unit),
+    leftHandedPreferenceComponent: @Composable ((Modifier) -> Unit),
+    uiDensityPreferenceComponent: @Composable ((Modifier) -> Unit),
+    audioWarningPreferenceComponent: @Composable ((Modifier) -> Unit),
+    ghostReorderPreferenceComponent: @Composable ((Modifier) -> Unit),
+    huntWarningTimeoutPreferenceComponent: @Composable ((Modifier) -> Unit),
+    palettePreferenceComponent: @Composable ((Modifier) -> Unit),
+    typographyPreferenceComponent: @Composable ((Modifier) -> Unit),
+    privacyPolicyPreferenceComponent: @Composable ((Modifier) -> Unit)
+) {
     Column(
         modifier = Modifier
             .fillMaxHeight(),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
 
-        navigationHeader(Modifier
-            .fillMaxWidth()
-            .heightIn(max = 64.dp)
+        navigationHeader(
+            Modifier
+                .fillMaxWidth()
+                .heightIn(max = 64.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -336,7 +511,7 @@ fun SettingsScreen(
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
         val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-        when(deviceConfiguration) {
+        when (deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 SettingsContentPortrait(
                     modifier = Modifier,
@@ -352,6 +527,7 @@ fun SettingsScreen(
                     privacyPolicyPreferenceComponent = privacyPolicyPreferenceComponent
                 )
             }
+
             DeviceConfiguration.MOBILE_LANDSCAPE,
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
@@ -587,7 +763,7 @@ fun GDPRButton(
         modifier = modifier
             .height(48.dp)
             .padding(4.dp),
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.buttonColors(
             contentColor = LocalPalette.current.primary,

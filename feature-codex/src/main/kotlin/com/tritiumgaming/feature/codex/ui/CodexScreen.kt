@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,7 +31,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
@@ -159,7 +163,82 @@ private fun CodexScreenContent(
 }
 
 @Composable
-@Preview
-private fun TestDisplay() {
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun CodexScreenPreview_SmallPhone_Portrait() {
+    CodexScreenPreview()
+}
 
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun CodexScreenPreview_SmallPhone_Landscape() {
+    CodexScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun CodexScreenPreview_MediumPhone_Portrait() {
+    CodexScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun CodexScreenPreview_MediumPhone_Landscape() {
+    CodexScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun CodexScreenPreview_MediumTablet_Portrait() {
+    CodexScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun CodexScreenPreview_MediumTablet_Landscape() {
+    CodexScreenPreview()
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun CodexScreenPreview_Foldable() {
+    CodexScreenPreview()
+}
+
+@Composable
+private fun CodexScreenPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            CodexScreenContent(
+                codexScreenUiState = CodexScreenUiState(
+                    headerTitle = "Codex Header",
+                    showBackButton = true
+                ),
+                codexScreenUiActions = CodexScreenUiActions(
+                    onBackClicked = {}
+                )
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Codex Content",
+                        style = LocalTypography.current.primary.regular,
+                        color = LocalPalette.current.onSurface
+                    )
+                }
+            }
+        }
+    }
 }

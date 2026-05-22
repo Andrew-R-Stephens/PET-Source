@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -43,7 +42,9 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentRow
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
@@ -54,23 +55,72 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTi
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 
 @Composable
-@Preview
-private fun LanguageContentPreview() {
-    SelectiveTheme {
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun LanguageScreenPreview_SmallPhone_Portrait() {
+    LanguageScreenPreview()
+}
+
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun LanguageScreenPreview_SmallPhone_Landscape() {
+    LanguageScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun LanguageScreenPreview_MediumPhone_Portrait() {
+    LanguageScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun LanguageScreenPreview_MediumPhone_Landscape() {
+    LanguageScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun LanguageScreenPreview_MediumTablet_Portrait() {
+    LanguageScreenPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun LanguageScreenPreview_MediumTablet_Landscape() {
+    LanguageScreenPreview()
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun LanguageScreenPreview_Foldable() {
+    LanguageScreenPreview()
+}
+
+@Composable
+private fun LanguageScreenPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
         Surface(
             color = LocalPalette.current.surface
         ) {
-            Column {
-                LanguageContent(
-                    languages = listOf(
-                        LanguageEntity(LocalizedTitle.EN, NativeTitle.EN, "en"),
-                        LanguageEntity(LocalizedTitle.DE, NativeTitle.DE, "de"),
-                        LanguageEntity(LocalizedTitle.FR, NativeTitle.FR, "fr")
-                    ),
-                    currentLanguageCode = "en",
-                    onLanguageClick = {}
-                )
-            }
+            LanguageScreenContent(
+                languages = listOf(
+                    LanguageEntity(LocalizedTitle.EN, NativeTitle.EN, "en"),
+                    LanguageEntity(LocalizedTitle.DE, NativeTitle.DE, "de"),
+                    LanguageEntity(LocalizedTitle.FR, NativeTitle.FR, "fr")
+                ),
+                currentLanguageCode = "en",
+                onLanguageClick = {},
+                onNavigateBack = {}
+            )
         }
     }
 }
@@ -83,6 +133,22 @@ fun LanguageScreen(
     val currentLanguageState by viewModel.currentLanguageCode.collectAsStateWithLifecycle()
     val languages = viewModel.languageList
 
+    LanguageScreenContent(
+        languages = languages,
+        currentLanguageCode = currentLanguageState.languageCode,
+        onLanguageClick = viewModel::setCurrentLanguageCode,
+        onNavigateBack = navController::popBackStack
+    )
+
+}
+
+@Composable
+private fun LanguageScreenContent(
+    languages: List<LanguageEntity>,
+    currentLanguageCode: String,
+    onLanguageClick: (String) -> Unit,
+    onNavigateBack: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxHeight(),
@@ -91,26 +157,49 @@ fun LanguageScreen(
     ) {
 
         NavigationHeader(
-            onLeftClick = { navController.popBackStack() }
+            onLeftClick = onNavigateBack
         )
 
-        LanguageContent(
+        val columnState = rememberLazyListState()
+
+        LazyColumn(
             modifier = Modifier
-                .padding(all = 8.dp)
+                .padding(all = 24.dp)
                 .weight(1f)
                 .widthIn(max = 600.dp),
-            languages = languages,
-            currentLanguageCode = currentLanguageState.languageCode,
-            onLanguageClick = { viewModel.setCurrentLanguageCode(it) }
-        )
-    }
+            verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            state = columnState
+        ){
+            items(
+                items = languages,
+                key = { it.code }
+            ) {
+                val languageCode = it.code
 
+                val isSelected = languageCode == currentLanguageCode
+
+                LanguageItem(
+                    language = it,
+                    isSelected = isSelected,
+                    textColorSelected = LocalPalette.current.onPrimaryContainer,
+                    textContainerSelected = LocalPalette.current.primaryContainer,
+                    textStyleStartSelected = LocalTypography.current.quaternary.bold,
+                    textStyleEndSelected = LocalTypography.current.quaternary.bold,
+                    textColorUnselected = LocalPalette.current.onSurface,
+                    textContainerUnselected = LocalPalette.current.surfaceContainerHighest,
+                    textStyleStartUnselected = LocalTypography.current.quaternary.bold,
+                    textStyleEndUnselected = LocalTypography.current.quaternary.regular,
+                    onClick = { onLanguageClick(languageCode) }
+                )
+            }
+        }
+    }
 }
 
 @Composable
 private fun NavigationHeader(
-    onLeftClick: () -> Unit = {},
-    onRightClick: () -> Unit = {}
+    onLeftClick: () -> Unit = {}
 ) {
     NavigationHeaderComposable(
         modifier = Modifier
@@ -153,47 +242,6 @@ private fun NavigationHeader(
             )
         }
     )
-}
-
-@Composable
-private fun LanguageContent(
-    modifier: Modifier = Modifier,
-    languages: List<LanguageEntity>,
-    currentLanguageCode: String,
-    onLanguageClick: (String) -> Unit
-) {
-    val columnState = rememberLazyListState()
-
-    LazyColumn(
-        modifier = modifier
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        state = columnState
-    ){
-        items(
-            items = languages,
-            key = { it.code }
-        ) {
-            val languageCode = it.code
-
-            val isSelected = languageCode == currentLanguageCode
-
-            LanguageItem(
-                language = it,
-                isSelected = isSelected,
-                textColorSelected = LocalPalette.current.onPrimaryContainer,
-                textContainerSelected = LocalPalette.current.primaryContainer,
-                textStyleStartSelected = LocalTypography.current.quaternary.bold,
-                textStyleEndSelected = LocalTypography.current.quaternary.bold,
-                textColorUnselected = LocalPalette.current.onSurface,
-                textContainerUnselected = LocalPalette.current.surfaceContainerHighest,
-                textStyleStartUnselected = LocalTypography.current.quaternary.bold,
-                textStyleEndUnselected = LocalTypography.current.quaternary.regular,
-                onClick = { onLanguageClick(languageCode) }
-            )
-        }
-    }
 }
 
 @Composable

@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Card
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -32,6 +33,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -39,8 +41,11 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.black
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.theme.white
@@ -52,19 +57,95 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun CodexMenuScreenPreview_SmallPhone_Portrait() {
+    CodexMenuPreview(DeviceConfiguration.MOBILE_PORTRAIT)
+}
+
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun CodexMenuScreenPreview_SmallPhone_Landscape() {
+    CodexMenuPreview(DeviceConfiguration.MOBILE_LANDSCAPE)
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun CodexMenuScreenPreview_MediumPhone_Portrait() {
+    CodexMenuPreview(DeviceConfiguration.MOBILE_PORTRAIT)
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun CodexMenuScreenPreview_MediumPhone_Landscape() {
+    CodexMenuPreview(DeviceConfiguration.MOBILE_LANDSCAPE)
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun CodexMenuScreenPreview_MediumTablet_Portrait() {
+    CodexMenuPreview(DeviceConfiguration.TABLET_PORTRAIT)
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun CodexMenuScreenPreview_MediumTablet_Landscape() {
+    CodexMenuPreview(DeviceConfiguration.TABLET_LANDSCAPE)
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun CodexMenuScreenPreview_Foldable() {
+    CodexMenuPreview(DeviceConfiguration.MOBILE_PORTRAIT)
+}
+
+@Composable
+private fun CodexMenuPreview(deviceConfiguration: DeviceConfiguration) {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            CodexScreen(
+                codexScreenUiState = CodexScreenUiState(
+                    headerTitle = "",
+                    showBackButton = false
+                ),
+                codexScreenUiActions = CodexScreenUiActions(
+                    onBackClicked = {}
+                )
+            ) {
+                CodexMenuContent(
+                    deviceConfiguration = deviceConfiguration,
+                    onNavigate = {}
+                )
+            }
+        }
+    }
+}
+
+@Composable
 fun CodexMenuScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     val codexScreenUiState = CodexScreenUiState(
         headerTitle = "",
         showBackButton = false
     )
 
     val codexScreenUiActions = CodexScreenUiActions(
-        onBackClicked = {
-            navController.popBackStack()
-        }
+        onBackClicked = navController::popBackStack
     )
 
     CodexScreen(
@@ -73,42 +154,50 @@ fun CodexMenuScreen(
         codexScreenUiActions = codexScreenUiActions
     ) {
 
-        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
-        val codexMenuItemUiActions = CodexMenuItemUiActions(
-            onNavigate = { route -> navController.navigate(route) }
+        CodexMenuContent(
+            deviceConfiguration = deviceConfiguration,
+            onNavigate = navController::navigate
         )
-
-        when (deviceConfiguration) {
-            DeviceConfiguration.MOBILE_PORTRAIT -> {
-                CodexMenuContentPortrait(
-                    codexMenuItemUiActions = codexMenuItemUiActions
-                )
-            }
-
-            DeviceConfiguration.MOBILE_LANDSCAPE -> {
-                CodexMenuContentLandscape(
-                    codexMenuItemUiActions = codexMenuItemUiActions
-                )
-            }
-
-            DeviceConfiguration.TABLET_PORTRAIT,
-            DeviceConfiguration.TABLET_LANDSCAPE -> {
-                CodexMenuContentLandscape(
-                    codexMenuItemUiActions = codexMenuItemUiActions
-                )
-            }
-
-            DeviceConfiguration.DESKTOP -> {
-                CodexMenuContentLandscape(
-                    codexMenuItemUiActions = codexMenuItemUiActions
-                )
-            }
-        }
 
     }
 
+}
+
+@Composable
+private fun CodexMenuContent(
+    deviceConfiguration: DeviceConfiguration,
+    onNavigate: (String) -> Unit
+) {
+    val codexMenuItemUiActions = CodexMenuItemUiActions(
+        onNavigate = onNavigate
+    )
+
+    when (deviceConfiguration) {
+        DeviceConfiguration.MOBILE_PORTRAIT -> {
+            CodexMenuContentPortrait(
+                codexMenuItemUiActions = codexMenuItemUiActions
+            )
+        }
+
+        DeviceConfiguration.MOBILE_LANDSCAPE -> {
+            CodexMenuContentLandscape(
+                codexMenuItemUiActions = codexMenuItemUiActions
+            )
+        }
+
+        DeviceConfiguration.TABLET_PORTRAIT,
+        DeviceConfiguration.TABLET_LANDSCAPE -> {
+            CodexMenuContentLandscape(
+                codexMenuItemUiActions = codexMenuItemUiActions
+            )
+        }
+
+        DeviceConfiguration.DESKTOP -> {
+            CodexMenuContentLandscape(
+                codexMenuItemUiActions = codexMenuItemUiActions
+            )
+        }
+    }
 }
 
 @Composable

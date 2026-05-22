@@ -80,6 +80,77 @@ import com.tritiumgaming.shared.data.account.model.SignInOptions
 import kotlinx.coroutines.launch
 
 @Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun AccountScreenPreview_SmallPhone_Portrait() {
+    AccountPreview()
+}
+
+@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+private fun AccountScreenPreview_SmallPhone_Landscape() {
+    AccountPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+private fun AccountScreenPreview_MediumPhone_Portrait() {
+    AccountPreview()
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun AccountScreenPreview_MediumPhone_Landscape() {
+    AccountPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
+private fun AccountScreenPreview_MediumTablet_Portrait() {
+    AccountPreview()
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun AccountScreenPreview_MediumTablet_Landscape() {
+    AccountPreview()
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun AccountScreenPreview_Foldable() {
+    AccountPreview()
+}
+
+@Composable
+private fun AccountPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(color = LocalPalette.current.surface) {
+            AccountContent(
+                currentUser = "uid123",
+                userName = "John Doe",
+                userEmail = "john.doe@example.com",
+                earnedCredits = 250,
+                unlockedPalettes = emptyList(),
+                currentDialog = AccountOverviewDialog.NONE,
+                isLoading = false,
+                onBack = {},
+                onLogoutRequest = {},
+                onDeactivateRequest = {},
+                onDismissDialog = {},
+                onConfirmSignOut = {},
+                onConfirmDeactivate = {},
+                onSignInRequest = {}
+            )
+        }
+    }
+}
+
+@Composable
 fun AccountScreen(
     navController: NavController = rememberNavController(),
     accountViewModel: AccountScreenViewModel
@@ -316,8 +387,7 @@ fun AccountContent(
 
 @Composable
 private fun NavigationHeader(
-    onLeftClick: () -> Unit = {},
-    onRightClick: () -> Unit = {}
+    onLeftClick: () -> Unit = {}
 ) {
     NavigationHeaderComposable(
         modifier = Modifier
@@ -571,93 +641,6 @@ private fun UnlockHistoryPalettesComponent(
 
         }
 
-    }
-
-}
-
-@Preview(name = "Logged In")
-@Composable
-private fun AccountContentLoggedInPreview() {
-    SelectiveTheme {
-        Surface(color = LocalPalette.current.surface) {
-            AccountContent(
-                currentUser = "uid123",
-                userName = "John Doe",
-                userEmail = "john.doe@example.com",
-                earnedCredits = 250,
-                unlockedPalettes = emptyList(),
-                currentDialog = AccountOverviewDialog.NONE,
-                isLoading = false,
-                onBack = {},
-                onLogoutRequest = {},
-                onDeactivateRequest = {},
-                onDismissDialog = {},
-                onConfirmSignOut = {},
-                onConfirmDeactivate = {},
-                onSignInRequest = {}
-            )
-        }
-    }
-}
-
-@Preview(name = "Logged Out")
-@Composable
-private fun AccountContentLoggedOutPreview() {
-    SelectiveTheme {
-        Surface(color = LocalPalette.current.surface) {
-            AccountContent(
-                currentUser = null,
-                userName = "",
-                userEmail = "",
-                earnedCredits = 0,
-                unlockedPalettes = emptyList(),
-                currentDialog = AccountOverviewDialog.NONE,
-                isLoading = false,
-                onBack = {},
-                onLogoutRequest = {},
-                onDeactivateRequest = {},
-                onDismissDialog = {},
-                onConfirmSignOut = {},
-                onConfirmDeactivate = {},
-                onSignInRequest = {}
-            )
-        }
-    }
-}
-
-@Preview("Sign Out Dialog")
-@Composable
-private fun AccountContentSignOutDialogPreview() {
-    SelectiveTheme {
-        Surface(color = LocalPalette.current.surface) {
-            AccountContent(
-                currentUser = "uid123",
-                userName = "John Doe",
-                userEmail = "john.doe@example.com",
-                earnedCredits = 250,
-                unlockedPalettes = emptyList(),
-                currentDialog = AccountOverviewDialog.SIGN_OUT,
-                isLoading = false,
-                onBack = {},
-                onLogoutRequest = {},
-                onDeactivateRequest = {},
-                onDismissDialog = {},
-                onConfirmSignOut = {},
-                onConfirmDeactivate = {},
-                onSignInRequest = {}
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun AccountDetailsComponentPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        PaletteListItem(ClassicPalette)
     }
 
 }

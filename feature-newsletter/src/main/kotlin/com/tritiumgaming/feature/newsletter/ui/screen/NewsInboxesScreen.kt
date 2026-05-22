@@ -67,15 +67,336 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
 
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle
+import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
+
+@Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun NewsInboxesScreenPreview_SmallPhone_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            NewsInboxesContent(
+                inboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "1",
+                                title = NewsletterTitle.GENERAL_NEWS,
+                                icon = NewsletterIcon.GENERAL_NEWS
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "2",
+                                title = NewsletterTitle.PET_CHANGELOG,
+                                icon = NewsletterIcon.PET_CHANGELOG
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "3",
+                                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
+                                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                            )
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onRefreshInboxes = {},
+                onNavigate = {},
+                onBack = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
+private fun NewsInboxesScreenPreview_SmallPhone_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            NewsInboxesContent(
+                inboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "1",
+                                title = NewsletterTitle.GENERAL_NEWS,
+                                icon = NewsletterIcon.GENERAL_NEWS
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "2",
+                                title = NewsletterTitle.PET_CHANGELOG,
+                                icon = NewsletterIcon.PET_CHANGELOG
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "3",
+                                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
+                                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                            )
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onRefreshInboxes = {},
+                onNavigate = {},
+                onBack = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun NewsInboxesScreenPreview_MediumPhone_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            NewsInboxesContent(
+                inboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "1",
+                                title = NewsletterTitle.GENERAL_NEWS,
+                                icon = NewsletterIcon.GENERAL_NEWS
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "2",
+                                title = NewsletterTitle.PET_CHANGELOG,
+                                icon = NewsletterIcon.PET_CHANGELOG
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "3",
+                                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
+                                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                            )
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onRefreshInboxes = {},
+                onNavigate = {},
+                onBack = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape"
+)
+private fun NewsInboxesScreenPreview_MediumPhone_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            NewsInboxesContent(
+                inboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "1",
+                                title = NewsletterTitle.GENERAL_NEWS,
+                                icon = NewsletterIcon.GENERAL_NEWS
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "2",
+                                title = NewsletterTitle.PET_CHANGELOG,
+                                icon = NewsletterIcon.PET_CHANGELOG
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "3",
+                                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
+                                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                            )
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onRefreshInboxes = {},
+                onNavigate = {},
+                onBack = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun NewsInboxesScreenPreview_MediumTablet_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            NewsInboxesContent(
+                inboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "1",
+                                title = NewsletterTitle.GENERAL_NEWS,
+                                icon = NewsletterIcon.GENERAL_NEWS
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "2",
+                                title = NewsletterTitle.PET_CHANGELOG,
+                                icon = NewsletterIcon.PET_CHANGELOG
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "3",
+                                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
+                                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                            )
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onRefreshInboxes = {},
+                onNavigate = {},
+                onBack = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun NewsInboxesScreenPreview_MediumTablet_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            NewsInboxesContent(
+                inboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "1",
+                                title = NewsletterTitle.GENERAL_NEWS,
+                                icon = NewsletterIcon.GENERAL_NEWS
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "2",
+                                title = NewsletterTitle.PET_CHANGELOG,
+                                icon = NewsletterIcon.PET_CHANGELOG
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "3",
+                                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
+                                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                            )
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onRefreshInboxes = {},
+                onNavigate = {},
+                onBack = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun NewsInboxesScreenPreview_Foldable() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            NewsInboxesContent(
+                inboxesUiState = NewsletterInboxesUiState(
+                    inboxes = listOf(
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "1",
+                                title = NewsletterTitle.GENERAL_NEWS,
+                                icon = NewsletterIcon.GENERAL_NEWS
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "2",
+                                title = NewsletterTitle.PET_CHANGELOG,
+                                icon = NewsletterIcon.PET_CHANGELOG
+                            )
+                        ),
+                        NewsletterInboxUiState(
+                            inbox = NewsletterInbox(
+                                id = "3",
+                                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
+                                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                            )
+                        )
+                    )
+                ),
+                refreshUiState = NewsletterRefreshUiState(),
+                onRefreshInboxes = {},
+                onNavigate = {},
+                onBack = {}
+            )
+        }
+    }
+}
+
 @Composable
 fun NewsInboxesScreen(
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel
 ) {
     val context = LocalContext.current
-
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val inboxesUiState by newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
     val refreshUiState by newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
@@ -89,6 +410,27 @@ fun NewsInboxesScreen(
         )
     }
 
+    NewsInboxesContent(
+        inboxesUiState = inboxesUiState,
+        refreshUiState = refreshUiState,
+        onRefreshInboxes = onRefreshInboxes,
+        onNavigate = { route -> navController.navigate(route) },
+        onBack = { navController.popBackStack() }
+    )
+
+}
+
+@Composable
+private fun NewsInboxesContent(
+    inboxesUiState: NewsletterInboxesUiState,
+    refreshUiState: NewsletterRefreshUiState,
+    onRefreshInboxes: () -> Unit,
+    onNavigate: (route: String) -> Unit,
+    onBack: () -> Unit
+) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -97,7 +439,7 @@ fun NewsInboxesScreen(
     ) {
 
         NavigationHeader(
-            onLeftClick = { navController.popBackStack() }
+            onLeftClick = onBack
         )
 
         Spacer(
@@ -105,7 +447,7 @@ fun NewsInboxesScreen(
                 .height(8.dp)
         )
 
-        when(deviceConfiguration) {
+        when (deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 NewsInboxesContentPortrait(
                     modifier = Modifier
@@ -114,9 +456,10 @@ fun NewsInboxesScreen(
                     newsletterInboxesUiState = inboxesUiState,
                     refreshUiState = refreshUiState,
                     onRefreshInboxes = { onRefreshInboxes() },
-                    onNavigate = { route -> navController.navigate(route = route) }
+                    onNavigate = onNavigate
                 )
             }
+
             DeviceConfiguration.MOBILE_LANDSCAPE,
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
@@ -129,7 +472,7 @@ fun NewsInboxesScreen(
                     newsletterInboxesUiState = inboxesUiState,
                     refreshUiState = refreshUiState,
                     onRefreshInboxes = { onRefreshInboxes() },
-                    onNavigate = { route -> navController.navigate(route = route) }
+                    onNavigate = onNavigate
                 )
             }
         }
@@ -142,7 +485,6 @@ fun NewsInboxesScreen(
 
         // AdmobBanner()
     }
-
 }
 
 @Composable
