@@ -3,7 +3,6 @@ package com.tritiumgaming.feature.investigation.ui
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -45,6 +44,7 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
@@ -55,6 +55,7 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmDomain
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmMeasurementType
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmSampleInterval
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetCustomDifficulty
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetDifficulty
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetEvidence
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetMap
@@ -74,15 +75,25 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleUniqueTraitFilter
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
+import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
+import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherUiState
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
+import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
+import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
@@ -90,7 +101,15 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.investigation.model.GhostState
+import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
@@ -103,23 +122,8 @@ fun InvestigationSoloScreen(
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
-    InvestigationContent(
-        navController = navController,
-        investigationViewModel = investigationViewModel
-    )
-
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun InvestigationContent(
-    navController: NavHostController,
-    investigationViewModel: InvestigationScreenViewModel
-) {
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
-
     val toolbarUiState by investigationViewModel.operationToolbarUiState.collectAsStateWithLifecycle()
-
     val operationTimerUiState by investigationViewModel.operationTimerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
@@ -131,18 +135,162 @@ private fun InvestigationContent(
     val difficultyOverrideUiState by investigationViewModel.difficultyOverridesState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
-
     val traitFilterOptions by investigationViewModel.traitFilterOptionsUiState.collectAsStateWithLifecycle()
     val traitListUiStates by investigationViewModel.traitListUiState.collectAsStateWithLifecycle()
     val ghostOrder by investigationViewModel.ghostsSortedUiState.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
-
     val smudgeHuntProtectionTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
     val huntDurationTimerState by investigationViewModel.huntDurationTimerUiState.collectAsStateWithLifecycle()
     val huntGapTimerState by investigationViewModel.huntCooldownTimerUiState.collectAsStateWithLifecycle()
     val fingerprintTimerState by investigationViewModel.fingerprintTimerUiState.collectAsStateWithLifecycle()
-
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
+
+    val uiState = InvestigationUiState(
+        popup = popupUiState,
+        toolbar = toolbarUiState,
+        operationTimer = operationTimerUiState,
+        phase = phaseUiState,
+        mapConfig = mapConfigUiState,
+        operationDetails = operationDetailsUiState,
+        difficultyConfig = difficultyUiState,
+        customDifficultyConfig = customDifficultyConfigUiState,
+        weather = weatherUiState,
+        temperature = temperatureUiState,
+        difficultyOverrides = difficultyOverrideUiState,
+        playerSanity = sanityUiState,
+        evidenceList = evidenceListUiStates,
+        traitFilterOptions = traitFilterOptions,
+        traitList = traitListUiStates,
+        ghostsSorted = ghostOrder,
+        ghostEvidenceStates = evidenceStates,
+        smudgeHuntProtectionTimer = smudgeHuntProtectionTimerState,
+        huntDurationTimer = huntDurationTimerState,
+        huntCooldownTimer = huntGapTimerState,
+        fingerprintTimer = fingerprintTimerState,
+        bpmTool = bpmToolUiState
+    )
+
+    val uiActions = InvestigationUiActions(
+        onWeatherDropdownSelect = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) },
+        onMapDropdownSelect = { investigationViewModel.onEvent(SetMap(it)) },
+        onDifficultyDropdownSelect = { investigationViewModel.onEvent(SetDifficulty(it)) },
+        onCustomDifficultyDropdownSelect = { investigationViewModel.onEvent(SetCustomDifficulty(it)) },
+        onNavigateToEditCustomDifficulty = {
+            navController.navigate(
+                route = NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route,
+                navOptions = NavOptions.Builder()
+                    .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = false)
+                    .setLaunchSingleTop(true)
+                    .setEnterAnim(0).setExitAnim(0).setPopEnterAnim(0).setPopExitAnim(0)
+                    .build()
+            )
+        },
+        onSanityChange = { investigationViewModel.onEvent(SetPlayerSanity(it)) },
+        onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) },
+        onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) },
+        onTimerToggle = { investigationViewModel.onEvent(ToggleOperationTimer) },
+        onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) },
+        onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) },
+        onSelectTraitCategory = { category ->
+            investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category)))
+        },
+        onToggleTrait = { trait ->
+            investigationViewModel.onEvent(ToggleTrait(trait))
+        },
+        onToggleUniqueOnly = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) },
+        onSmudgeToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) },
+        onHuntDurationToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) },
+        onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
+        onFingerprintToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) },
+        onBpmUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
+        onBpmChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
+        onBpmToggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) },
+        onBpmChangeDomain = { investigationViewModel.onEvent(SetBpmDomain(it)) },
+        onBpmChangeSampleInterval = { investigationViewModel.onEvent(SetBpmSampleInterval(it)) },
+        onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+        onChangeToolbarCategory = { category, allowCollapse ->
+            investigationViewModel.onEvent(SetToolbarCategory(category, allowCollapse))
+        },
+        onReset = { investigationViewModel.onEvent(ResetInvestigation) },
+        onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
+        onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
+        onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
+        onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) },
+        onClearPopup = { investigationViewModel.onEvent(ClearPopup) }
+    )
+
+    InvestigationContent(
+        uiState = uiState,
+        uiActions = uiActions
+    )
+
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun InvestigationContent(
+    uiState: InvestigationUiState,
+    uiActions: InvestigationUiActions
+) {
+    val popupUiState = uiState.popup
+
+    val toolbarUiState = uiState.toolbar
+
+    val operationTimerUiState = uiState.operationTimer
+    val phaseUiState = uiState.phase
+    val mapConfigUiState = uiState.mapConfig
+    val operationDetailsUiState = uiState.operationDetails
+    val difficultyUiState = uiState.difficultyConfig
+    val customDifficultyConfigUiState = uiState.customDifficultyConfig
+    val weatherUiState = uiState.weather
+    val temperatureUiState = uiState.temperature
+    val difficultyOverrideUiState = uiState.difficultyOverrides
+    val sanityUiState = uiState.playerSanity
+    val evidenceListUiStates = uiState.evidenceList
+
+    val traitFilterOptions = uiState.traitFilterOptions
+    val traitListUiStates = uiState.traitList
+    val ghostOrder = uiState.ghostsSorted
+    val evidenceStates = uiState.ghostEvidenceStates
+
+    val smudgeHuntProtectionTimerState = uiState.smudgeHuntProtectionTimer
+    val huntDurationTimerState = uiState.huntDurationTimer
+    val huntGapTimerState = uiState.huntCooldownTimer
+    val fingerprintTimerState = uiState.fingerprintTimer
+
+    val bpmToolUiState = uiState.bpmTool
+
+    val onWeatherDropdownSelect = uiActions.onWeatherDropdownSelect
+    val onMapDropdownSelect = uiActions.onMapDropdownSelect
+    val onDifficultyDropdownSelect = uiActions.onDifficultyDropdownSelect
+    val onCustomDifficultyDropdownSelect = uiActions.onCustomDifficultyDropdownSelect
+    val onNavigateToEditCustomDifficulty = uiActions.onNavigateToEditCustomDifficulty
+    val onSanityChange = uiActions.onSanityChange
+    val onUseSanityMedication = uiActions.onUseSanityMedication
+    val onPlayerDeath = uiActions.onPlayerDeath
+    val onTimerToggle = uiActions.onTimerToggle
+    val onTimerSkip = uiActions.onTimerSkip
+    val onTogglePower = uiActions.onTogglePower
+    val onSelectTraitCategory = uiActions.onSelectTraitCategory
+    val onToggleTrait = uiActions.onToggleTrait
+    val onToggleUniqueOnly = uiActions.onToggleUniqueOnly
+    val onSmudgeToggle = uiActions.onSmudgeToggle
+    val onHuntDurationToggle = uiActions.onHuntDurationToggle
+    val onHuntCooldownToggle = uiActions.onHuntCooldownToggle
+    val onFingerprintToggle = uiActions.onFingerprintToggle
+    val onBpmUpdate = uiActions.onBpmUpdate
+    val onBpmChangeMeasurementType = uiActions.onBpmChangeMeasurementType
+    val onBpmToggleApplyMeasurement = uiActions.onBpmToggleApplyMeasurement
+    val onBpmChangeDomain = uiActions.onBpmChangeDomain
+    val onBpmChangeSampleInterval = uiActions.onBpmChangeSampleInterval
+    val onToggleCollapseToolbar = uiActions.onToggleCollapseToolbar
+    val onChangeToolbarCategory = uiActions.onChangeToolbarCategory
+    val onReset = uiActions.onReset
+    val onGhostNameClick = uiActions.onGhostNameClick
+    val onToggleNegateGhost = uiActions.onToggleNegateGhost
+    val onChangeEvidenceRuling = uiActions.onChangeEvidenceRuling
+    val onEvidenceClick = uiActions.onEvidenceClick
+    val onClearPopup = uiActions.onClearPopup
 
     val toolbarCategory = toolbarUiState.category
 
@@ -219,57 +367,6 @@ private fun InvestigationContent(
 
     val bpmMeasurementType = bpmToolUiState.measurementType
     val bpmApplyMeasurement = bpmToolUiState.applyMeasurement
-
-    val onWeatherDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) }
-
-    val onMapDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetMap(it)) }
-
-    val onDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(SetDifficulty(it)) }
-
-    val onCustomDifficultyDropdownSelect: (Int) -> Unit = { investigationViewModel.onEvent(
-        InvestigationScreenViewModel.InvestigationEvent.SetCustomDifficulty(it)) }
-
-    val onNavigateToEditCustomDifficulty: () -> Unit = {
-        navController.navigate(
-            route = NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route,
-            navOptions = NavOptions.Builder()
-                .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = false)
-                .setLaunchSingleTop(true)
-                .setEnterAnim(0)
-                .setExitAnim(0)
-                .setPopEnterAnim(0)
-                .setPopExitAnim(0)
-                .build()
-        )
-    }
-
-    val onSanityChange: (Float) -> Unit = { investigationViewModel.onEvent(SetPlayerSanity(it)) }
-    val onUseSanityMedication = { investigationViewModel.onEvent(UseSanityMedication) }
-    val onPlayerDeath = { investigationViewModel.onEvent(PlayerDeath) }
-
-    val onTimerToggle = { investigationViewModel.onEvent(ToggleOperationTimer) }
-    val onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) }
-
-    val onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) }
-
-    val onSelectTraitCategory: (TraitCategory) -> Unit = { category ->
-        investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category)))
-    }
-    val onToggleTrait: (ValidatedGhostTrait) -> Unit = { trait ->
-        investigationViewModel.onEvent(ToggleTrait(trait))
-    }
-    val onToggleUniqueOnly: () -> Unit = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) }
-
-    val onSmudgeToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) }
-    val onHuntDurationToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) }
-    val onHuntCooldownToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) }
-    val onFingerprintToggle: () -> Unit = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) }
-
-    val onBpmUpdate: (RealtimeUiState<BpmPoint>) -> Unit = { investigationViewModel.onEvent(SetBpmData(it)) }
-    val onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) }
-    val onBpmToggleApplyMeasurement: () -> Unit = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) }
-    val onBpmChangeDomain: (Long) -> Unit = { investigationViewModel.onEvent(SetBpmDomain(it)) }
-    val onBpmChangeSampleInterval: (Long) -> Unit = { investigationViewModel.onEvent(SetBpmSampleInterval(it)) }
 
     val notchedProgressBarUiColors = NotchedProgressBarUiColors(
         remaining = LocalPalette.current.primary,
@@ -466,19 +563,11 @@ private fun InvestigationContent(
             evidenceStateList = evidenceListUiStates,
             ghostOrder = ghostOrder,
             ghostEvidenceState = evidenceStates,
-            onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
-            onToggleNegateGhost = {
-                investigationViewModel.onEvent(
-                    ToggleGhostNegation(it)
-                )
-            },
+            onGhostNameClick = onGhostNameClick,
+            onToggleNegateGhost = onToggleNegateGhost,
             onRequestToolTip = { },
-            onChangeEvidenceRuling = { e, r ->
-                investigationViewModel.onEvent(
-                    SetEvidence(e, r)
-                )
-            },
-            onEvidenceClick = { investigationViewModel.onEvent(ShowEvidencePopup(it)) }
+            onChangeEvidenceRuling = onChangeEvidenceRuling,
+            onEvidenceClick = onEvidenceClick
         )
     }
 
@@ -496,13 +585,13 @@ private fun InvestigationContent(
         DeviceConfiguration.TABLET_PORTRAIT -> {
             CompactPortraitContent(
                 modifier = Modifier,
-                operationToolbarUiState = toolbarUiState,
-                toolbarUiActions = ToolbarUiActions(
-                    onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                toolbarState = toolbarUiState,
+                toolbarActions = ToolbarUiActions(
+                    onToggleCollapseToolbar = onToggleCollapseToolbar,
                     onChangeToolbarCategory = { category ->
-                        investigationViewModel.onEvent(SetToolbarCategory(category))
+                        onChangeToolbarCategory(category, true)
                     },
-                    onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                    onReset = onReset
                 ),
                 statusBarComponent = { modifier -> statusBarComponent(modifier) },
                 journalComponent = { modifier -> journalComponent(modifier) },
@@ -515,11 +604,11 @@ private fun InvestigationContent(
                 modifier = Modifier,
                 operationToolbarUiState = toolbarUiState,
                 toolbarUiActions = ToolbarUiActions(
-                    onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                    onToggleCollapseToolbar = onToggleCollapseToolbar,
                     onChangeToolbarCategory = { category ->
-                        investigationViewModel.onEvent(SetToolbarCategory(category))
+                        onChangeToolbarCategory(category, true)
                     },
-                    onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                    onReset = onReset
                 ),
                 statusBarComponent = { modifier -> statusBarComponent(modifier) },
                 journalComponent = { modifier -> journalComponent(modifier) },
@@ -533,12 +622,11 @@ private fun InvestigationContent(
                 modifier = Modifier,
                 operationToolbarUiState = toolbarUiState,
                 toolbarUiActions = ToolbarUiActions(
-                    onToggleCollapseToolbar = { investigationViewModel.onEvent(ToggleToolbar) },
+                    onToggleCollapseToolbar = onToggleCollapseToolbar,
                     onChangeToolbarCategory = { category ->
-                        investigationViewModel.onEvent(
-                            SetToolbarCategory(category, false))
+                        onChangeToolbarCategory(category, false)
                     },
-                    onReset = { investigationViewModel.onEvent(ResetInvestigation) }
+                    onReset = onReset
                 ),
                 statusBarComponent = { modifier -> statusBarComponent(modifier) },
                 journalComponent = { modifier -> journalComponent(modifier) },
@@ -557,13 +645,13 @@ private fun InvestigationContent(
             GhostPopup(
                 modifier = modifier,
                 record = record,
-            ) { investigationViewModel.onEvent(ClearPopup) }
+            ) { onClearPopup() }
         }
         popupUiState.evidencePopupRecord?.let { record ->
             EvidencePopup(
                 modifier = modifier,
                 record = record
-            ) { investigationViewModel.onEvent(ClearPopup) }
+            ) { onClearPopup() }
         }
     }
 }
@@ -571,8 +659,8 @@ private fun InvestigationContent(
 @Composable
 private fun CompactPortraitContent(
     modifier: Modifier = Modifier,
-    operationToolbarUiState: OperationToolbarUiState,
-    toolbarUiActions: ToolbarUiActions,
+    toolbarState: OperationToolbarUiState,
+    toolbarActions: ToolbarUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
     bottomSheetComponent: @Composable (Modifier) -> Unit,
     journalComponent: @Composable (Modifier) -> Unit
@@ -582,9 +670,9 @@ private fun CompactPortraitContent(
         OperationToolbar(
             modifier = modifier
                 .heightIn(min = 48.dp),
-            category = operationToolbarUiState.category,
-            onChangeToolbarCategory = toolbarUiActions.onChangeToolbarCategory,
-            onReset = toolbarUiActions.onReset,
+            category = toolbarState.category,
+            onChangeToolbarCategory = toolbarActions.onChangeToolbarCategory,
+            onReset = toolbarActions.onReset,
             containerColor = LocalPalette.current.surfaceContainerHigh
         )
     }
@@ -617,7 +705,7 @@ private fun CompactPortraitContent(
                         .fillMaxWidth()
                         .animateContentSize()
                         .then(
-                            if (!operationToolbarUiState.isCollapsed)
+                            if (!toolbarState.isCollapsed)
                                 Modifier
                                     .alpha(1f)
                                     .wrapContentHeight()
@@ -1333,3 +1421,62 @@ fun OperationConfigsSideSheet(
     }
 
 }
+
+internal data class InvestigationUiState(
+    val popup: JournalPopupUiState = JournalPopupUiState(),
+    val toolbar: OperationToolbarUiState = OperationToolbarUiState(),
+    val operationTimer: OperationTimerUiState = OperationTimerUiState(),
+    val phase: PhaseUiState = PhaseUiState(),
+    val mapConfig: MapConfigUiState = MapConfigUiState(),
+    val operationDetails: OperationDetailsUiState = OperationDetailsUiState(),
+    val difficultyConfig: DifficultyConfigUiState = DifficultyConfigUiState(),
+    val customDifficultyConfig: InvestigationScreenViewModel.CustomDifficultyConfigUiState = InvestigationScreenViewModel.CustomDifficultyConfigUiState(),
+    val weather: WeatherUiState = WeatherUiState(),
+    val temperature: TemperatureUiState = TemperatureUiState(),
+    val difficultyOverrides: DifficultyOverridesData = DifficultyOverridesData(),
+    val playerSanity: PlayerSanityUiState = PlayerSanityUiState(),
+    val evidenceList: List<EvidenceState> = emptyList(),
+    val traitFilterOptions: GhostTraitFilterUiOptions = GhostTraitFilterUiOptions(),
+    val traitList: List<ValidatedGhostTrait> = emptyList(),
+    val ghostsSorted: List<GhostState> = emptyList(),
+    val ghostEvidenceStates: List<EvidenceState> = emptyList(),
+    val smudgeHuntProtectionTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
+    val huntDurationTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
+    val huntCooldownTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
+    val fingerprintTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
+    val bpmTool: BpmToolUiState = BpmToolUiState(),
+)
+
+internal data class InvestigationUiActions(
+    val onWeatherDropdownSelect: (Int) -> Unit = {},
+    val onMapDropdownSelect: (Int) -> Unit = {},
+    val onDifficultyDropdownSelect: (Int) -> Unit = {},
+    val onCustomDifficultyDropdownSelect: (Int) -> Unit = {},
+    val onNavigateToEditCustomDifficulty: () -> Unit = {},
+    val onSanityChange: (Float) -> Unit = {},
+    val onUseSanityMedication: () -> Unit = {},
+    val onPlayerDeath: () -> Unit = {},
+    val onTimerToggle: () -> Unit = {},
+    val onTimerSkip: () -> Unit = {},
+    val onTogglePower: () -> Unit = {},
+    val onSelectTraitCategory: (TraitCategory) -> Unit = {},
+    val onToggleTrait: (ValidatedGhostTrait) -> Unit = {},
+    val onToggleUniqueOnly: () -> Unit = {},
+    val onSmudgeToggle: () -> Unit = {},
+    val onHuntDurationToggle: () -> Unit = {},
+    val onHuntCooldownToggle: () -> Unit = {},
+    val onFingerprintToggle: () -> Unit = {},
+    val onBpmUpdate: (RealtimeUiState<BpmPoint>) -> Unit = {},
+    val onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit = {},
+    val onBpmToggleApplyMeasurement: () -> Unit = {},
+    val onBpmChangeDomain: (Long) -> Unit = {},
+    val onBpmChangeSampleInterval: (Long) -> Unit = {},
+    val onToggleCollapseToolbar: () -> Unit = {},
+    val onChangeToolbarCategory: (OperationToolbarUiState.Category, Boolean) -> Unit = { _, _ -> },
+    val onReset: () -> Unit = {},
+    val onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit = {},
+    val onToggleNegateGhost: (Ghost) -> Unit = {},
+    val onChangeEvidenceRuling: (EvidenceType, EvidenceValidationType) -> Unit = { _, _ -> },
+    val onEvidenceClick: (EvidenceType) -> Unit = {},
+    val onClearPopup: () -> Unit = {}
+)
