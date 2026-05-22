@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,7 +40,10 @@ import androidx.navigation.NavOptions
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
@@ -115,6 +119,138 @@ import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
+
+@Composable
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun InvestigationScreenPreview_SmallPhone_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InvestigationContent(
+                uiState = InvestigationUiState(),
+                uiActions = InvestigationUiActions()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
+private fun InvestigationScreenPreview_SmallPhone_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InvestigationContent(
+                uiState = InvestigationUiState(),
+                uiActions = InvestigationUiActions()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun InvestigationScreenPreview_MediumPhone_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InvestigationContent(
+                uiState = InvestigationUiState(),
+                uiActions = InvestigationUiActions()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun InvestigationScreenPreview_MediumPhone_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InvestigationContent(
+                uiState = InvestigationUiState(),
+                uiActions = InvestigationUiActions()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun InvestigationScreenPreview_MediumTablet_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InvestigationContent(
+                uiState = InvestigationUiState(),
+                uiActions = InvestigationUiActions()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun InvestigationScreenPreview_MediumTablet_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InvestigationContent(
+                uiState = InvestigationUiState(),
+                uiActions = InvestigationUiActions()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun InvestigationScreenPreview_Foldable() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            InvestigationContent(
+                uiState = InvestigationUiState(),
+                uiActions = InvestigationUiActions()
+            )
+        }
+    }
+}
 
 @Composable
 fun InvestigationSoloScreen(
