@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -84,8 +85,8 @@ import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
 
 @Composable
-@Preview(device = "id:small_phone")
-private fun StartButtonPreview() {
+@Preview(name = "Small Phone", device = "id:small_phone")
+private fun StartScreenPreview_SmallPhone_Portrait() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
@@ -94,7 +95,6 @@ private fun StartButtonPreview() {
             color = LocalPalette.current.surface
         ) {
             StartContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
                 inboxNotificationState = true,
                 canRequestReview = true,
                 currentLanguage = "English",
@@ -108,13 +108,146 @@ private fun StartButtonPreview() {
 }
 
 @Composable
-@Preview
-private fun StartButtonPreview2() {
+@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
+private fun StartScreenPreview_SmallPhone_Landscape() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        StartButton()
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            StartContent(
+                inboxNotificationState = true,
+                canRequestReview = true,
+                currentLanguage = "English",
+                currentUser = null,
+                onNavigate = {},
+                onOpenPatreon = {},
+                onOpenDiscord = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Portrait",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun StartScreenPreview_MediumPhone_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            StartContent(
+                inboxNotificationState = true,
+                canRequestReview = true,
+                currentLanguage = "English",
+                currentUser = null,
+                onNavigate = {},
+                onOpenPatreon = {},
+                onOpenDiscord = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Phone Landscape",
+    device = "spec:width=411dp,height=891dp"
+)
+private fun StartScreenPreview_MediumPhone_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            StartContent(
+                inboxNotificationState = true,
+                canRequestReview = true,
+                currentLanguage = "English",
+                currentUser = null,
+                onNavigate = {},
+                onOpenPatreon = {},
+                onOpenDiscord = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Portrait",
+    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
+)
+private fun StartScreenPreview_MediumTablet_Portrait() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            StartContent(
+                inboxNotificationState = true,
+                canRequestReview = true,
+                currentLanguage = "English",
+                currentUser = null,
+                onNavigate = {},
+                onOpenPatreon = {},
+                onOpenDiscord = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+private fun StartScreenPreview_MediumTablet_Landscape() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            StartContent(
+                inboxNotificationState = true,
+                canRequestReview = true,
+                currentLanguage = "English",
+                currentUser = null,
+                onNavigate = {},
+                onOpenPatreon = {},
+                onOpenDiscord = {}
+            )
+        }
+    }
+}
+
+@Composable
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private fun StartScreenPreview_Foldable() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            StartContent(
+                inboxNotificationState = true,
+                canRequestReview = true,
+                currentLanguage = "English",
+                currentUser = null,
+                onNavigate = {},
+                onOpenPatreon = {},
+                onOpenDiscord = {}
+            )
+        }
     }
 }
 
@@ -137,9 +270,6 @@ fun StartScreen(
                 inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
             } != null
     }
-
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val rememberLocale = remember { Locale.getDefault() }
     var currentLanguage = rememberLocale.displayLanguage
@@ -181,7 +311,6 @@ fun StartScreen(
     }
 
     StartContent(
-        deviceConfiguration = deviceConfiguration,
         inboxNotificationState = inboxNotificationState,
         canRequestReview = reviewUiState.canRequestReview,
         currentLanguage = currentLanguage,
@@ -196,7 +325,6 @@ fun StartScreen(
 
 @Composable
 private fun StartContent(
-    deviceConfiguration: DeviceConfiguration,
     inboxNotificationState: Boolean,
     canRequestReview: Boolean,
     currentLanguage: String,
@@ -205,6 +333,9 @@ private fun StartContent(
     onOpenPatreon: () -> Unit,
     onOpenDiscord: () -> Unit
 ) {
+
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     Column(
         modifier = Modifier
@@ -232,30 +363,40 @@ private fun StartContent(
         when(deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 StartContentCompactPortrait(
+                    modifier = Modifier
+                        .weight(1f),
                     currentLanguage = currentLanguage,
                     onNavigate = onNavigate
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE -> {
                 StartContentCompactLandscape(
+                    modifier = Modifier
+                        .weight(1f),
                     currentLanguage = currentLanguage,
                     onNavigate = onNavigate
                 )
             }
             DeviceConfiguration.TABLET_PORTRAIT -> {
                 StartContentCompactPortrait(
+                    modifier = Modifier
+                        .weight(1f),
                     currentLanguage = currentLanguage,
                     onNavigate = onNavigate
                 )
             }
             DeviceConfiguration.TABLET_LANDSCAPE -> {
                 StartContentCompactLandscape(
+                    modifier = Modifier
+                        .weight(1f),
                     currentLanguage = currentLanguage,
                     onNavigate = onNavigate
                 )
             }
             DeviceConfiguration.DESKTOP -> {
                 StartContentCompactLandscape(
+                    modifier = Modifier
+                        .weight(1f),
                     currentLanguage = currentLanguage,
                     onNavigate = onNavigate
                 )
@@ -272,25 +413,25 @@ private fun StartContent(
 }
 
 @Composable
-private fun ColumnScope.StartContentCompactPortrait(
+private fun StartContentCompactPortrait(
+    modifier: Modifier = Modifier,
     currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .weight(1f)
+        modifier = modifier
             .fillMaxSize(1f)
             .padding(PaddingValues(vertical = 16.dp)),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
     ) {
         LogoSection(
             modifier = Modifier
-                .weight(.6f, false)
+                .weight(1f, false)
         )
         StartSection(
             modifier = Modifier
-                .weight(.4f, true),
+                .weight(1f, false),
             currentLanguage = currentLanguage,
             onNavigate = onNavigate
         )
@@ -298,20 +439,27 @@ private fun ColumnScope.StartContentCompactPortrait(
 }
 
 @Composable
-internal fun ColumnScope.StartContentCompactLandscape(
+internal fun StartContentCompactLandscape(
+    modifier: Modifier = Modifier,
     currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Row(
-        modifier = Modifier
-            .weight(1f)
+        modifier = modifier
             .fillMaxSize()
             .padding(PaddingValues(vertical = 16.dp)),
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        LogoSection()
+        LogoSection(
+            modifier = Modifier
+                .weight(1f, false)
+                .width(IntrinsicSize.Max)
+        )
+
         StartSection(
+            modifier = Modifier
+                .weight(1f),
             currentLanguage = currentLanguage,
             onNavigate = onNavigate
         )
@@ -331,8 +479,12 @@ private fun ColumnScope.StartContentOther(
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LogoSection()
+        LogoSection(
+            modifier = Modifier.weight(1f)
+        )
         StartSection(
+            modifier = Modifier
+                .weight(1f),
             currentLanguage = currentLanguage,
             onNavigate = onNavigate
         )
@@ -340,23 +492,20 @@ private fun ColumnScope.StartContentOther(
 }
 
 @Composable
-private fun ColumnScope.LogoSection(
+private fun LogoSection(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
-            .weight(1f)
-            .fillMaxWidth(.75f)
-            .padding(16.dp),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
 
         IconResource.ICON_LOGO_APP.ToComposable(
             modifier = Modifier
-                .heightIn(max = 256.dp)
+                .widthIn(max = 256.dp)
                 .aspectRatio(1f)
-                .weight(1f),
+                .weight(1f, false),
 
             colors = IconVectorColors.defaults(
                 fillColor = LocalPalette.current.surfaceContainerLow,
@@ -364,8 +513,11 @@ private fun ColumnScope.LogoSection(
             )
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         BasicText(
             modifier = Modifier
+                .widthIn(max = 256.dp)
                 .fillMaxWidth()
                 .height(48.dp),
             text = stringResource(R.string.titlescreen_description).uppercase(),
@@ -382,87 +534,14 @@ private fun ColumnScope.LogoSection(
 }
 
 @Composable
-private fun RowScope.LogoSection(
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier
-            .weight(1f)
-            .fillMaxSize(.9f)
-            .padding(vertical = 8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-
-        IconResource.ICON_LOGO_APP.ToComposable(
-            modifier = Modifier
-                .heightIn(max = 256.dp)
-                .aspectRatio(1f, false)
-                .weight(1f, false),
-
-            colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surfaceContainerLow,
-                strokeColor = LocalPalette.current.onSurface
-            )
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth(.75f)
-                .wrapContentWidth()
-                .heightIn(max = 48.dp)
-                .wrapContentHeight(),
-            text = stringResource(R.string.titlescreen_description),
-            style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.primary,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 2,
-            autoSize = TextAutoSize.StepBased(minFontSize = 14.sp, maxFontSize = 36.sp, stepSize = 2.sp)
-        )
-
-    }
-}
-
-@Composable
-private fun ColumnScope.StartSection(
+private fun StartSection(
     modifier: Modifier = Modifier,
     currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Column(
-        modifier = modifier
-            .weight(1f, false),
+        modifier = modifier,
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        StartButton {
-            onNavigate(NavRoute.SCREEN_INVESTIGATION.route)
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        LanguageButton(
-            currentLanguage = currentLanguage
-        ) {
-            onNavigate(NavRoute.SCREEN_LANGUAGE.route)
-        }
-
-    }
-}
-
-@Composable
-private fun RowScope.StartSection(
-    modifier: Modifier = Modifier,
-    currentLanguage: String,
-    onNavigate: (route: String) -> Unit
-) {
-    Column(
-        modifier = modifier
-            .weight(1f),
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         StartButton {

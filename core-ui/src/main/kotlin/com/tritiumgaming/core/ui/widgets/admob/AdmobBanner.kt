@@ -1,6 +1,7 @@
 package com.tritiumgaming.core.ui.widgets.admob
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,8 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -70,6 +74,65 @@ fun BannerAd(
     modifier: Modifier = Modifier,
     adId: String
 ) {
+    val localContext = LocalContext.current
+
+
+    if (LocalInspectionMode.current) {
+        // Formula mirrors Google's internal scaling (~14.5% of width, min 50dp, max 120dp)
+        val adWidth = LocalConfiguration.current.screenWidthDp
+        val simulatedHeight = remember(adWidth) {
+            val calculatedHeight = (adWidth / 6.82f).toInt()
+            calculatedHeight.coerceIn(50, 120).dp
+        }
+        // Render a placeholder box that takes up the exact dimension of the actual ad
+        Box(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(simulatedHeight)
+                .background(Color.LightGray), // Visual cue for previewing layout flow
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "Google Mobile Ads preview banner (${adWidth}x${simulatedHeight.value.toInt()}dp)")
+        }
+        return // Short-circuit so we don't accidentally initialize the live AdView in preview
+    }
+
+    // 3. Live production flow
+    val adView = remember {
+        AdView(localContext).apply {
+            adUnitId = adId
+
+            val displayMetrics = context.resources.displayMetrics
+            val adWidthPixels = displayMetrics.widthPixels.toFloat()
+            val density = displayMetrics.density
+            val adWidth = (adWidthPixels / density).toInt()
+
+            setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
+            loadAd(AdRequest.Builder().build())
+        }
+    }
+
+    Log.d("TAG", "BannerAd Loaded: $adView")
+
+    LifecycleResumeEffect(adView) {
+        adView.resume()
+        onPauseOrDispose { adView.pause() }
+    }
+
+    AndroidView(
+        modifier = modifier.wrapContentSize(),
+        factory = { adView },
+        onRelease = { it.destroy() }
+    )
+}
+
+@Composable
+fun BannerAd2(
+    modifier: Modifier = Modifier,
+    adId: String
+) {
+    val localContext = LocalContext.current
+
     // Ad load does not work in preview mode because it requires a network connection.
     if (LocalInspectionMode.current) {
         Box {
@@ -79,10 +142,9 @@ fun BannerAd(
                 text = "Google Mobile Ads preview banner."
             )
         }
-        return
     }
 
-    val adView = AdView(LocalContext.current).apply {
+    val adView = AdView(localContext).apply {
         //setAdSize(AdSize.BANNER)
         adUnitId = adId
 
@@ -92,7 +154,8 @@ fun BannerAd(
         val density = displayMetrics.density
         val adWidth = (adWidthPixels / density).toInt()
 
-        setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
+        //setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
+        setAdSize(AdSize.getLargeAnchoredAdaptiveBannerAdSize(context, adWidth))
         loadAd(AdRequest.Builder().build())
 
         /*val adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width)
