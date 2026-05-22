@@ -31,6 +31,10 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import kotlin.annotation.AnnotationRetention
+import kotlin.annotation.AnnotationTarget
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -120,123 +124,33 @@ import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun InvestigationScreenPreview_SmallPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            InvestigationContent(
-                uiState = InvestigationUiState(),
-                uiActions = InvestigationUiActions()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
-private fun InvestigationScreenPreview_SmallPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            InvestigationContent(
-                uiState = InvestigationUiState(),
-                uiActions = InvestigationUiActions()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun InvestigationScreenPreview_MediumPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            InvestigationContent(
-                uiState = InvestigationUiState(),
-                uiActions = InvestigationUiActions()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun InvestigationScreenPreview_MediumPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            InvestigationContent(
-                uiState = InvestigationUiState(),
-                uiActions = InvestigationUiActions()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun InvestigationScreenPreview_MediumTablet_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            InvestigationContent(
-                uiState = InvestigationUiState(),
-                uiActions = InvestigationUiActions()
-            )
-        }
-    }
-}
-
-@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun InvestigationScreenPreview_MediumTablet_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            InvestigationContent(
-                uiState = InvestigationUiState(),
-                uiActions = InvestigationUiActions()
-            )
-        }
-    }
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private annotation class InvestigationDevicePreviews
+
+private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
+    override val values = sequenceOf(
+        OperationToolbarUiState.Category.TOOL_CONFIG,
+        OperationToolbarUiState.Category.TOOL_TRAITS,
+        OperationToolbarUiState.Category.TOOL_ANALYZER,
+        OperationToolbarUiState.Category.TOOL_FOOTSTEP,
+        OperationToolbarUiState.Category.TOOL_TIMERS
+    )
 }
 
+@InvestigationDevicePreviews
 @Composable
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun InvestigationScreenPreview_Foldable() {
+private fun InvestigationScreenPreview(
+    @PreviewParameter(ToolbarCategoryProvider::class)
+    category: OperationToolbarUiState.Category
+) {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
@@ -245,7 +159,9 @@ private fun InvestigationScreenPreview_Foldable() {
             color = LocalPalette.current.surface
         ) {
             InvestigationContent(
-                uiState = InvestigationUiState(),
+                uiState = InvestigationUiState(
+                    toolbar = OperationToolbarUiState(category = category)
+                ),
                 uiActions = InvestigationUiActions()
             )
         }
@@ -883,7 +799,7 @@ private fun CompactLandscapeContent(
 
         VerticalToolbar(
             modifier = Modifier
-                .padding(8.dp),
+                /*.padding(8.dp)*/,
             selectRailComponent = { modifier ->
                 toolbarContent(modifier) },
             content = { modifier ->
