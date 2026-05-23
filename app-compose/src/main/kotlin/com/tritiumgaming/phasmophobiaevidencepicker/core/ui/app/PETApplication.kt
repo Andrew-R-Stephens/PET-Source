@@ -67,6 +67,8 @@ class PETApplication : Application(),
             applicationContext,
             LocalDatabase::class.java, "local-db"
         ).build()
+        /*).addMigrations(LocalDatabase.MIGRATION_1_2)
+            .build()*/
     }
 
     private val firestore: FirebaseFirestore by lazy {
