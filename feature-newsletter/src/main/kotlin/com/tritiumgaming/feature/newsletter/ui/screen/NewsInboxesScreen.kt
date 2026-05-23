@@ -72,7 +72,6 @@ import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 
 @DevicePreviews
 @Composable
-@Preview
 private fun NewsInboxesScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
@@ -469,71 +468,5 @@ fun PullToRefresh(
         contentAlignment = contentAlignment
     ) {
         content()
-    }
-}
-
-@Composable
-@Preview(locale = "de")
-private fun InboxButtonPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-
-            InboxCard(
-                modifier = Modifier
-                    .padding(vertical = 4.dp),
-                title = R.string.newsletter_inbox_title_general,
-                containerColor = LocalPalette.current.surfaceContainer,
-                titleColor = LocalPalette.current.primary,
-                iconContent = { modifier ->
-                    NewsletterIcon.GENERAL_NEWS.toIconResource().ToComposable(
-                        modifier = modifier,
-                        colors = IconVectorColors(
-                            fillColor = LocalPalette.current.surface,
-                            strokeColor = LocalPalette.current.onSurface
-                        ),
-                    )
-                },
-            )
-
-            InboxCard(
-                modifier = Modifier
-                    .padding(vertical = 4.dp),
-                title = R.string.newsletter_inbox_title_phasmophobia,
-                containerColor = LocalPalette.current.surfaceContainer,
-                titleColor = LocalPalette.current.primary,
-                iconContent = { modifier ->
-                    NewsletterIcon.PET_CHANGELOG.toIconResource().ToComposable(
-                        modifier = modifier,
-                        colors = IconVectorColors(
-                            fillColor = LocalPalette.current.surface,
-                            strokeColor = LocalPalette.current.onSurface
-                        ),
-                    )
-                },
-            )
-
-            InboxCard(
-                modifier = Modifier
-                    .padding(vertical = 4.dp),
-                title = R.string.newsletter_inbox_title_pet,
-                containerColor = LocalPalette.current.surfaceContainer,
-                titleColor = LocalPalette.current.primary,
-                iconContent = { modifier ->
-                    NewsletterIcon.PHASMOPHOBIA_CHANGELOG.toIconResource().ToComposable(
-                        modifier = modifier,
-                        colors = IconVectorColors(
-                            fillColor = LocalPalette.current.surface,
-                            strokeColor = LocalPalette.current.onSurface
-                        ),
-                    )
-                },
-            )
-
-        }
     }
 }
