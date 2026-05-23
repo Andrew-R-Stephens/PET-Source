@@ -33,6 +33,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -54,56 +56,21 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.Localize
 import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTitle
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 
-@Composable
+
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun LanguageScreenPreview_SmallPhone_Portrait() {
-    LanguageScreenPreview()
-}
-
-@Composable
 @Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-private fun LanguageScreenPreview_SmallPhone_Landscape() {
-    LanguageScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun LanguageScreenPreview_MediumPhone_Portrait() {
-    LanguageScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun LanguageScreenPreview_MediumPhone_Landscape() {
-    LanguageScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun LanguageScreenPreview_MediumTablet_Portrait() {
-    LanguageScreenPreview()
-}
-
-@Composable
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun LanguageScreenPreview_MediumTablet_Landscape() {
-    LanguageScreenPreview()
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun LanguageScreenPreview_Foldable() {
-    LanguageScreenPreview()
-}
+private annotation class DevicePreviews
 
+@DevicePreviews
 @Composable
-private fun LanguageScreenPreview() {
+private fun InvestigationScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography

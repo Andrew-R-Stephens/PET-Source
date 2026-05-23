@@ -133,7 +133,7 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 @Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private annotation class InvestigationDevicePreviews
+private annotation class DevicePreviews
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
     override val values = sequenceOf(
@@ -145,7 +145,7 @@ private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolba
     )
 }
 
-@InvestigationDevicePreviews
+@DevicePreviews
 @Composable
 private fun InvestigationScreenPreview(
     @PreviewParameter(ToolbarCategoryProvider::class)

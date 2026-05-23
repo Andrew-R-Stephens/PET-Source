@@ -3,12 +3,11 @@ package com.tritiumgaming.feature.maps.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
@@ -22,20 +21,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -53,9 +45,20 @@ import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun MapMenuScreenPreview_SmallPhone_Portrait() {
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private annotation class DevicePreviews
+
+@DevicePreviews
+@Composable
+private fun MapMenuScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
@@ -64,9 +67,56 @@ private fun MapMenuScreenPreview_SmallPhone_Portrait() {
             color = LocalPalette.current.surface
         ) {
             MapMenuContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
                 mapMenuUiState = MapMenuUiState(
                     maps = listOf(
+                        SimpleWorldMap(
+                            mapId = "tanglewood",
+                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
+                            mapSize = MapModifierResources.MapSize.SMALL,
+                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
+                            mapFloors = emptyList(),
+                            defaultFloor = 0
+                        ),
+                        SimpleWorldMap(
+                            mapId = "prison",
+                            mapName = SimpleMapResources.MapTitle.PRISON,
+                            mapSize = MapModifierResources.MapSize.LARGE,
+                            thumbnailImage = SimpleMapResources.MapThumbnail.PRISON,
+                            mapFloors = emptyList(),
+                            defaultFloor = 0
+                        ),
+                        SimpleWorldMap(
+                            mapId = "tanglewood",
+                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
+                            mapSize = MapModifierResources.MapSize.SMALL,
+                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
+                            mapFloors = emptyList(),
+                            defaultFloor = 0
+                        ),
+                        SimpleWorldMap(
+                            mapId = "prison",
+                            mapName = SimpleMapResources.MapTitle.PRISON,
+                            mapSize = MapModifierResources.MapSize.LARGE,
+                            thumbnailImage = SimpleMapResources.MapThumbnail.PRISON,
+                            mapFloors = emptyList(),
+                            defaultFloor = 0
+                        ),
+                        SimpleWorldMap(
+                            mapId = "tanglewood",
+                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
+                            mapSize = MapModifierResources.MapSize.SMALL,
+                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
+                            mapFloors = emptyList(),
+                            defaultFloor = 0
+                        ),
+                        SimpleWorldMap(
+                            mapId = "prison",
+                            mapName = SimpleMapResources.MapTitle.PRISON,
+                            mapSize = MapModifierResources.MapSize.LARGE,
+                            thumbnailImage = SimpleMapResources.MapThumbnail.PRISON,
+                            mapFloors = emptyList(),
+                            defaultFloor = 0
+                        ),
                         SimpleWorldMap(
                             mapId = "tanglewood",
                             mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
@@ -92,199 +142,10 @@ private fun MapMenuScreenPreview_SmallPhone_Portrait() {
 }
 
 @Composable
-@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
-private fun MapMenuScreenPreview_SmallPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            MapMenuContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_LANDSCAPE,
-                mapMenuUiState = MapMenuUiState(
-                    maps = listOf(
-                        SimpleWorldMap(
-                            mapId = "tanglewood",
-                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
-                            mapSize = MapModifierResources.MapSize.SMALL,
-                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
-                            mapFloors = emptyList(),
-                            defaultFloor = 0
-                        )
-                    )
-                ),
-                onSelect = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun MapMenuScreenPreview_MediumPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            MapMenuContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
-                mapMenuUiState = MapMenuUiState(
-                    maps = listOf(
-                        SimpleWorldMap(
-                            mapId = "tanglewood",
-                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
-                            mapSize = MapModifierResources.MapSize.SMALL,
-                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
-                            mapFloors = emptyList(),
-                            defaultFloor = 0
-                        )
-                    )
-                ),
-                onSelect = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun MapMenuScreenPreview_MediumPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            MapMenuContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_LANDSCAPE,
-                mapMenuUiState = MapMenuUiState(
-                    maps = listOf(
-                        SimpleWorldMap(
-                            mapId = "tanglewood",
-                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
-                            mapSize = MapModifierResources.MapSize.SMALL,
-                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
-                            mapFloors = emptyList(),
-                            defaultFloor = 0
-                        )
-                    )
-                ),
-                onSelect = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun MapMenuScreenPreview_MediumTablet_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            MapMenuContent(
-                deviceConfiguration = DeviceConfiguration.TABLET_PORTRAIT,
-                mapMenuUiState = MapMenuUiState(
-                    maps = listOf(
-                        SimpleWorldMap(
-                            mapId = "tanglewood",
-                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
-                            mapSize = MapModifierResources.MapSize.SMALL,
-                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
-                            mapFloors = emptyList(),
-                            defaultFloor = 0
-                        )
-                    )
-                ),
-                onSelect = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun MapMenuScreenPreview_MediumTablet_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            MapMenuContent(
-                deviceConfiguration = DeviceConfiguration.TABLET_LANDSCAPE,
-                mapMenuUiState = MapMenuUiState(
-                    maps = listOf(
-                        SimpleWorldMap(
-                            mapId = "tanglewood",
-                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
-                            mapSize = MapModifierResources.MapSize.SMALL,
-                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
-                            mapFloors = emptyList(),
-                            defaultFloor = 0
-                        )
-                    )
-                ),
-                onSelect = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun MapMenuScreenPreview_Foldable() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            MapMenuContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
-                mapMenuUiState = MapMenuUiState(
-                    maps = listOf(
-                        SimpleWorldMap(
-                            mapId = "tanglewood",
-                            mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
-                            mapSize = MapModifierResources.MapSize.SMALL,
-                            thumbnailImage = SimpleMapResources.MapThumbnail.TANGLEWOOD,
-                            mapFloors = emptyList(),
-                            defaultFloor = 0
-                        )
-                    )
-                ),
-                onSelect = {}
-            )
-        }
-    }
-}
-
-@Composable
 fun MapMenuScreen(
     navController: NavHostController = rememberNavController(),
     mapsScreenViewModel: MapsScreenViewModel
 ) {
-
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val mapMenuUiState = MapMenuUiState(
         maps = mapsScreenViewModel.simpleMaps
@@ -294,19 +155,22 @@ fun MapMenuScreen(
             navController.navigate(
                 route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}") }
 
-    MapMenuContent(deviceConfiguration, mapMenuUiState, onSelect)
+    MapMenuContent(mapMenuUiState, onSelect)
 
 }
 
 @Composable
 private fun MapMenuContent(
-    deviceConfiguration: DeviceConfiguration,
     mapMenuUiState: MapMenuUiState,
     onSelect: (SimpleWorldMap) -> Unit
 ) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     when (deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             MapMenuContentPortrait(
+                modifier = Modifier,
                 mapMenuUiState = mapMenuUiState,
                 rows = 2,
                 onSelect = { map -> onSelect(map) }
@@ -315,15 +179,25 @@ private fun MapMenuContent(
 
         DeviceConfiguration.MOBILE_LANDSCAPE -> {
             MapMenuContentLandscape(
+                modifier = Modifier,
                 mapMenuUiState = mapMenuUiState,
                 columns = 2,
                 onSelect = { map -> onSelect(map) }
             )
         }
 
-        DeviceConfiguration.TABLET_PORTRAIT,
+        DeviceConfiguration.TABLET_PORTRAIT -> {
+            MapMenuContentPortrait(
+                modifier = Modifier,
+                mapMenuUiState = mapMenuUiState,
+                rows = 4,
+                onSelect = { map -> onSelect(map) }
+            )
+        }
+
         DeviceConfiguration.TABLET_LANDSCAPE -> {
             MapMenuContentLandscape(
+                modifier = Modifier,
                 mapMenuUiState = mapMenuUiState,
                 columns = 3,
                 onSelect = { map -> onSelect(map) }
@@ -332,6 +206,7 @@ private fun MapMenuContent(
 
         DeviceConfiguration.DESKTOP -> {
             MapMenuContentLandscape(
+                modifier = Modifier,
                 mapMenuUiState = mapMenuUiState,
                 columns = 4,
                 onSelect = { map -> onSelect(map) }
@@ -342,6 +217,7 @@ private fun MapMenuContent(
 
 @Composable
 private fun MapMenuContentPortrait(
+    modifier: Modifier = Modifier,
     mapMenuUiState: MapMenuUiState,
     rows: Int = 2,
     onSelect: (SimpleWorldMap) -> Unit
@@ -349,13 +225,13 @@ private fun MapMenuContentPortrait(
     val rememberLazyGridState = rememberLazyGridState()
 
     LazyVerticalGrid(
+        modifier = modifier,
         state = rememberLazyGridState,
         columns = GridCells.Fixed(rows)
     ) {
-        mapCardGrid(
+        mapCardGrids(
+            modifier = Modifier.fillMaxWidth(),
             mapMenuUiState = mapMenuUiState,
-            maxWidth = Dp.Unspecified,
-            maxHeight = Dp.Unspecified,
             onClick = { map -> onSelect(map) }
         )
     }
@@ -364,46 +240,37 @@ private fun MapMenuContentPortrait(
 
 @Composable
 private fun MapMenuContentLandscape(
+    modifier: Modifier = Modifier,
     mapMenuUiState: MapMenuUiState,
     columns: Int = 2,
     onSelect: (SimpleWorldMap) -> Unit,
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
-    var maxWidth by remember { mutableStateOf(Dp.Unspecified) }
-    val density = LocalDensity.current
-
     LazyHorizontalGrid(
+        modifier = modifier,
         state = rememberLazyGridState,
         rows = GridCells.Fixed(count = columns)
     ) {
-        mapCardGrid(
+        mapCardGrids(
+            modifier = Modifier,
             mapMenuUiState = mapMenuUiState,
-            maxWidth = maxWidth,
-            maxHeight = Dp.Unspecified,
-            onClick = { map -> onSelect(map) },
-            onCardSizeChanged = { width, _ ->
-                maxWidth = with(density) { width.toDp() } }
+            onClick = { map -> onSelect(map) }
         )
     }
 
 }
 
-private fun LazyGridScope.mapCardGrid(
+private fun LazyGridScope.mapCardGrids(
+    modifier: Modifier = Modifier,
     mapMenuUiState: MapMenuUiState,
-    maxWidth: Dp = Dp.Unspecified,
-    maxHeight: Dp = Dp.Unspecified,
-    onClick: (SimpleWorldMap) -> Unit = {},
-    onCardSizeChanged: (Int, Int) -> Unit = { _, _ -> }
+    onClick: (SimpleWorldMap) -> Unit = {}
 ) {
     items(items = mapMenuUiState.maps) { map ->
         MapCard(
+            modifier = modifier,
             title = map.mapName,
             thumbnail = map.thumbnailImage,
-            onCardSizeChanged = { width, height ->
-                onCardSizeChanged(width, height) },
-            maxWidth = maxWidth,
-            maxHeight = maxHeight,
             onClick = { onClick(map) }
         )
     }
@@ -414,23 +281,13 @@ private fun MapCard(
     modifier: Modifier = Modifier,
     title: SimpleMapResources.MapTitle,
     thumbnail: SimpleMapResources.MapThumbnail,
-    onCardSizeChanged: (Int, Int) -> Unit = { _, _ -> },
-    maxWidth: Dp = Dp.Unspecified,
-    maxHeight: Dp = Dp.Unspecified,
     onClick: () -> Unit = {}
 ) {
 
     Card (
         modifier = modifier
             .padding(8.dp)
-            .then(
-                if (maxWidth == Dp.Unspecified) Modifier
-                else Modifier.width(maxWidth)
-            )
-            .then(
-                if (maxHeight == Dp.Unspecified) Modifier
-                else Modifier.height(maxHeight)
-            ),
+            .aspectRatio(1.5f),
         onClick = {
             onClick()
         },
@@ -439,40 +296,36 @@ private fun MapCard(
             containerColor = LocalPalette.current.surfaceContainerHigh
         )
     ) {
-        Image(
-            modifier = Modifier
-                .fillMaxSize()
-                .then(
-                    if (maxWidth == Dp.Unspecified) Modifier
-                    else Modifier.weight(1f, true)
-                )
-                .onSizeChanged { newSize ->
-                    onCardSizeChanged(newSize.width, newSize.height)
-                },
-            painter = painterResource(thumbnail.toDrawableResource()),
-            contentDescription = null,
-            contentScale = ContentScale.Crop
-        )
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .background(LocalPalette.current.surfaceContainerHigh)
-                .padding(8.dp)
-                .basicMarquee(
-                    iterations = Int.MAX_VALUE,
-                    initialDelayMillis = 1000,
-                    repeatDelayMillis = 1000,
-                )
-                .align(Alignment.CenterHorizontally),
-            text = stringResource(title.toStringResource()),
-            style = LocalTypography.current.primary.bold.copy(
-                textAlign = TextAlign.Center
-            ),
-            color = LocalPalette.current.onSurface,
-            fontSize = 24.sp,
-            maxLines = 1
-        )
+        Box(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Image(
+                modifier = Modifier.fillMaxSize(),
+                painter = painterResource(thumbnail.toDrawableResource()),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.TopCenter
+            )
+            Text(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .background(LocalPalette.current.surfaceContainerHigh)
+                    .padding(8.dp)
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        initialDelayMillis = 1000,
+                        repeatDelayMillis = 1000,
+                    ),
+                text = stringResource(title.toStringResource()),
+                style = LocalTypography.current.primary.bold.copy(
+                    textAlign = TextAlign.Center
+                ),
+                color = LocalPalette.current.onSurface,
+                fontSize = 24.sp,
+                maxLines = 1
+            )
+        }
     }
 
 }
