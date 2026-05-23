@@ -21,171 +21,21 @@ import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentPortrait
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun ObjectivesScreenPreview_SmallPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            ObjectivesScreenContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
-                objectivesContentUiState = ObjectivesContentUiState(
-                    ghostResponseUiState = DifficultyResponseType.KNOWN,
-                    missionSpinnerUiState = MissionSpinnerUiState(),
-                    ghostDetailsUiState = GhostDetailsUiState(),
-                    namesSpinnerUiState = NamesSpinnerUiState()
-                ),
-                ghostNameUiActions = GhostNameUiActions({}, {}),
-                ghostResponseUiActions = GhostResponseUiActions({}),
-                missionWrapperActions = MissionWrapperActions({ _, _ -> }, { _, _ -> })
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
-private fun ObjectivesScreenPreview_SmallPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            ObjectivesScreenContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_LANDSCAPE,
-                objectivesContentUiState = ObjectivesContentUiState(
-                    ghostResponseUiState = DifficultyResponseType.KNOWN,
-                    missionSpinnerUiState = MissionSpinnerUiState(),
-                    ghostDetailsUiState = GhostDetailsUiState(),
-                    namesSpinnerUiState = NamesSpinnerUiState()
-                ),
-                ghostNameUiActions = GhostNameUiActions({}, {}),
-                ghostResponseUiActions = GhostResponseUiActions({}),
-                missionWrapperActions = MissionWrapperActions({ _, _ -> }, { _, _ -> })
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun ObjectivesScreenPreview_MediumPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            ObjectivesScreenContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
-                objectivesContentUiState = ObjectivesContentUiState(
-                    ghostResponseUiState = DifficultyResponseType.KNOWN,
-                    missionSpinnerUiState = MissionSpinnerUiState(),
-                    ghostDetailsUiState = GhostDetailsUiState(),
-                    namesSpinnerUiState = NamesSpinnerUiState()
-                ),
-                ghostNameUiActions = GhostNameUiActions({}, {}),
-                ghostResponseUiActions = GhostResponseUiActions({}),
-                missionWrapperActions = MissionWrapperActions({ _, _ -> }, { _, _ -> })
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun ObjectivesScreenPreview_MediumPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            ObjectivesScreenContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_LANDSCAPE,
-                objectivesContentUiState = ObjectivesContentUiState(
-                    ghostResponseUiState = DifficultyResponseType.KNOWN,
-                    missionSpinnerUiState = MissionSpinnerUiState(),
-                    ghostDetailsUiState = GhostDetailsUiState(),
-                    namesSpinnerUiState = NamesSpinnerUiState()
-                ),
-                ghostNameUiActions = GhostNameUiActions({}, {}),
-                ghostResponseUiActions = GhostResponseUiActions({}),
-                missionWrapperActions = MissionWrapperActions({ _, _ -> }, { _, _ -> })
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun ObjectivesScreenPreview_MediumTablet_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            ObjectivesScreenContent(
-                deviceConfiguration = DeviceConfiguration.TABLET_PORTRAIT,
-                objectivesContentUiState = ObjectivesContentUiState(
-                    ghostResponseUiState = DifficultyResponseType.KNOWN,
-                    missionSpinnerUiState = MissionSpinnerUiState(),
-                    ghostDetailsUiState = GhostDetailsUiState(),
-                    namesSpinnerUiState = NamesSpinnerUiState()
-                ),
-                ghostNameUiActions = GhostNameUiActions({}, {}),
-                ghostResponseUiActions = GhostResponseUiActions({}),
-                missionWrapperActions = MissionWrapperActions({ _, _ -> }, { _, _ -> })
-            )
-        }
-    }
-}
-
-@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun ObjectivesScreenPreview_MediumTablet_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            ObjectivesScreenContent(
-                deviceConfiguration = DeviceConfiguration.TABLET_LANDSCAPE,
-                objectivesContentUiState = ObjectivesContentUiState(
-                    ghostResponseUiState = DifficultyResponseType.KNOWN,
-                    missionSpinnerUiState = MissionSpinnerUiState(),
-                    ghostDetailsUiState = GhostDetailsUiState(),
-                    namesSpinnerUiState = NamesSpinnerUiState()
-                ),
-                ghostNameUiActions = GhostNameUiActions({}, {}),
-                ghostResponseUiActions = GhostResponseUiActions({}),
-                missionWrapperActions = MissionWrapperActions({ _, _ -> }, { _, _ -> })
-            )
-        }
-    }
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun ObjectivesScreenPreview_Foldable() {
+private annotation class DevicePreviews
+
+@DevicePreviews
+@Composable
+@Preview
+private fun ObjectivesScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
@@ -194,7 +44,6 @@ private fun ObjectivesScreenPreview_Foldable() {
             color = LocalPalette.current.surface
         ) {
             ObjectivesScreenContent(
-                deviceConfiguration = DeviceConfiguration.MOBILE_PORTRAIT,
                 objectivesContentUiState = ObjectivesContentUiState(
                     ghostResponseUiState = DifficultyResponseType.KNOWN,
                     missionSpinnerUiState = MissionSpinnerUiState(),
@@ -213,9 +62,6 @@ private fun ObjectivesScreenPreview_Foldable() {
 fun ObjectivesScreen(
     objectivesViewModel: ObjectivesViewModel
 ) {
-
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val namesSpinnerUiState by objectivesViewModel.namesSpinnerUiState.collectAsStateWithLifecycle()
     val ghostDetailsUiState by objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
@@ -254,7 +100,6 @@ fun ObjectivesScreen(
     )
 
     ObjectivesScreenContent(
-        deviceConfiguration,
         objectivesContentUiState,
         ghostNameUiActions,
         ghostResponseUiActions,
@@ -265,12 +110,14 @@ fun ObjectivesScreen(
 
 @Composable
 private fun ObjectivesScreenContent(
-    deviceConfiguration: DeviceConfiguration,
     objectivesContentUiState: ObjectivesContentUiState,
     ghostNameUiActions: GhostNameUiActions,
     ghostResponseUiActions: GhostResponseUiActions,
     missionWrapperActions: MissionWrapperActions
 ) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     when (deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             ObjectivesContentPortrait(

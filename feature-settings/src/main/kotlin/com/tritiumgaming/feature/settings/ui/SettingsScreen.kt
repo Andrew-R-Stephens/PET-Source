@@ -61,117 +61,21 @@ import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSee
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun SettingsScreenPreview_SmallPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            SettingsContent(
-                settingsScreenUiState = SettingsScreenUiState()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
-private fun SettingsScreenPreview_SmallPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            SettingsContent(
-                settingsScreenUiState = SettingsScreenUiState()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun SettingsScreenPreview_MediumPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            SettingsContent(
-                settingsScreenUiState = SettingsScreenUiState()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun SettingsScreenPreview_MediumPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            SettingsContent(
-                settingsScreenUiState = SettingsScreenUiState()
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun SettingsScreenPreview_MediumTablet_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            SettingsContent(
-                settingsScreenUiState = SettingsScreenUiState()
-            )
-        }
-    }
-}
-
-@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun SettingsScreenPreview_MediumTablet_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            SettingsContent(
-                settingsScreenUiState = SettingsScreenUiState()
-            )
-        }
-    }
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun SettingsScreenPreview_Foldable() {
+private annotation class DevicePreviews
+
+@DevicePreviews
+@Composable
+@Preview
+private fun SettingsScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography

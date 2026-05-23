@@ -46,56 +46,10 @@ import com.tritiumgaming.shared.data.newsletter.model.NewsletterChannel
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
 
+@DevicePreviews
 @Composable
-@Preview(name = "Small Phone", device = "id:small_phone")
-private fun NewsMessageScreenPreview_SmallPhone_Portrait() {
-    NewsMessagePreview()
-}
-
-@Composable
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-private fun NewsMessageScreenPreview_SmallPhone_Landscape() {
-    NewsMessagePreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun NewsMessageScreenPreview_MediumPhone_Portrait() {
-    NewsMessagePreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun NewsMessageScreenPreview_MediumPhone_Landscape() {
-    NewsMessagePreview()
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun NewsMessageScreenPreview_MediumTablet_Portrait() {
-    NewsMessagePreview()
-}
-
-@Composable
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun NewsMessageScreenPreview_MediumTablet_Landscape() {
-    NewsMessagePreview()
-}
-
-@Composable
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun NewsMessageScreenPreview_Foldable() {
-    NewsMessagePreview()
-}
-
-@Composable
-private fun NewsMessagePreview() {
+@Preview
+private fun NewsMessageScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography

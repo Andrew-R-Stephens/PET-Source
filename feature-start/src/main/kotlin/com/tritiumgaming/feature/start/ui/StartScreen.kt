@@ -84,153 +84,21 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun StartScreenPreview_SmallPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            StartContent(
-                inboxNotificationState = true,
-                canRequestReview = true,
-                currentLanguage = "English",
-                currentUser = null,
-                onNavigate = {},
-                onOpenPatreon = {},
-                onOpenDiscord = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Small Phone", device = "spec:parent=small_phone,orientation=landscape")
-private fun StartScreenPreview_SmallPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            StartContent(
-                inboxNotificationState = true,
-                canRequestReview = true,
-                currentLanguage = "English",
-                currentUser = null,
-                onNavigate = {},
-                onOpenPatreon = {},
-                onOpenDiscord = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun StartScreenPreview_MediumPhone_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            StartContent(
-                inboxNotificationState = true,
-                canRequestReview = true,
-                currentLanguage = "English",
-                currentUser = null,
-                onNavigate = {},
-                onOpenPatreon = {},
-                onOpenDiscord = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun StartScreenPreview_MediumPhone_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            StartContent(
-                inboxNotificationState = true,
-                canRequestReview = true,
-                currentLanguage = "English",
-                currentUser = null,
-                onNavigate = {},
-                onOpenPatreon = {},
-                onOpenDiscord = {}
-            )
-        }
-    }
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun StartScreenPreview_MediumTablet_Portrait() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            StartContent(
-                inboxNotificationState = true,
-                canRequestReview = true,
-                currentLanguage = "English",
-                currentUser = null,
-                onNavigate = {},
-                onOpenPatreon = {},
-                onOpenDiscord = {}
-            )
-        }
-    }
-}
-
-@Composable
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun StartScreenPreview_MediumTablet_Landscape() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            StartContent(
-                inboxNotificationState = true,
-                canRequestReview = true,
-                currentLanguage = "English",
-                currentUser = null,
-                onNavigate = {},
-                onOpenPatreon = {},
-                onOpenDiscord = {}
-            )
-        }
-    }
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun StartScreenPreview_Foldable() {
+private annotation class DevicePreviews
+
+@DevicePreviews
+@Composable
+@Preview
+private fun StartScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography

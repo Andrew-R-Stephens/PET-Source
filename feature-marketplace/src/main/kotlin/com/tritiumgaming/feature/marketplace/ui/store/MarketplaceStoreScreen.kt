@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,10 +21,36 @@ import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.store.components.PaletteCard
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
+@Preview(name = "Small Phone", device = "id:small_phone")
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+private annotation class DevicePreviews
+
+@DevicePreviews
 @Composable
 @Preview
 private fun MarketplaceStoreScreenPreview() {
-    MarketplaceStoreScreen()
+    MarketplaceStoreContent(
+        MarketCatalogPalettesUiState(
+            listOf(
+                MarketPalette(
+                    ""
+                ),
+                MarketPalette(
+                    "1"
+                ),
+                MarketPalette(
+                    "2"
+                )
+            )
+        )
+    )
 }
 
 @Composable
@@ -31,9 +58,10 @@ fun MarketplaceStoreScreen(
     navController: NavHostController = rememberNavController(),
     marketplaceViewModel: MarketplaceViewModel = viewModel(factory = MarketplaceViewModel.Factory)
 ) {
+    val paletteUnlocks by marketplaceViewModel.marketCatalogPalettesUiState.collectAsStateWithLifecycle()
 
     MarketplaceStoreContent(
-        marketplaceViewModel = marketplaceViewModel
+        unlocks = paletteUnlocks
     )
 
 }
@@ -41,7 +69,7 @@ fun MarketplaceStoreScreen(
 
 @Composable
 private fun MarketplaceStoreContent(
-    marketplaceViewModel: MarketplaceViewModel
+    unlocks: MarketCatalogPalettesUiState
 ) {
 
     Column(
@@ -52,7 +80,7 @@ private fun MarketplaceStoreContent(
         AccountDetails()
 
         Storefront(
-            marketplaceViewModel = marketplaceViewModel
+            unlocks = unlocks
         )
 
     }
@@ -78,10 +106,8 @@ private fun AccountDetails() {
 @Composable
 private fun Storefront(
     modifier: Modifier = Modifier,
-    marketplaceViewModel: MarketplaceViewModel
-
+    unlocks: MarketCatalogPalettesUiState
 ) {
-    val unlocks = marketplaceViewModel.marketCatalogPalettesUiState.collectAsStateWithLifecycle()
 
     LazyColumn (
         modifier = modifier
@@ -91,7 +117,7 @@ private fun Storefront(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        items(items = unlocks.value.palettes, key = { it.uuid }) { marketCatalogEntry ->
+        items(items = unlocks.palettes, key = { it.uuid }) { marketCatalogEntry ->
 
             val uuid = marketCatalogEntry.uuid
 

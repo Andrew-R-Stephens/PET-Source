@@ -93,52 +93,21 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun CustomDifficultyScreenPreview_SmallPhone_Portrait() {
-    CustomDifficultyPreview(DeviceConfiguration.MOBILE_PORTRAIT)
-}
-
-@Composable
 @Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-private fun CustomDifficultyScreenPreview_SmallPhone_Landscape() {
-    CustomDifficultyPreview(DeviceConfiguration.MOBILE_LANDSCAPE)
-}
-
-@Composable
 @Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-private fun CustomDifficultyScreenPreview_MediumPhone_Portrait() {
-    CustomDifficultyPreview(DeviceConfiguration.MOBILE_PORTRAIT)
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun CustomDifficultyScreenPreview_MediumPhone_Landscape() {
-    CustomDifficultyPreview(DeviceConfiguration.MOBILE_LANDSCAPE)
-}
-
-@Composable
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
 @Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-private fun CustomDifficultyScreenPreview_MediumTablet_Portrait() {
-    CustomDifficultyPreview(DeviceConfiguration.TABLET_PORTRAIT)
-}
-
-@Composable
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun CustomDifficultyScreenPreview_MediumTablet_Landscape() {
-    CustomDifficultyPreview(DeviceConfiguration.TABLET_LANDSCAPE)
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun CustomDifficultyScreenPreview_Foldable() {
-    CustomDifficultyPreview(DeviceConfiguration.MOBILE_PORTRAIT)
-}
+private annotation class DevicePreviews
 
+@DevicePreviews
 @Composable
-private fun CustomDifficultyPreview(deviceConfiguration: DeviceConfiguration) {
+@Preview
+private fun CustomDifficultyPreview() {
     val sampleDifficulty = CustomDifficultyModel(
         id = 1,
         name = "Insane Custom",
@@ -156,7 +125,6 @@ private fun CustomDifficultyPreview(deviceConfiguration: DeviceConfiguration) {
         Surface(color = LocalPalette.current.surface) {
             CustomDifficultyContent(
                 uiState = uiState,
-                deviceConfiguration = deviceConfiguration,
                 onSelectDifficulty = {},
                 onUpdateDifficulty = {},
                 onSave = {},
@@ -174,12 +142,8 @@ fun CustomDifficultyScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
     CustomDifficultyContent(
         uiState = uiState,
-        deviceConfiguration = deviceConfiguration,
         onSelectDifficulty = viewModel::selectDifficulty,
         onUpdateDifficulty = viewModel::updateSelectedDifficulty,
         onSave = viewModel::saveChanges,
@@ -191,13 +155,15 @@ fun CustomDifficultyScreen(
 @Composable
 private fun CustomDifficultyContent(
     uiState: CustomDifficultyUiState,
-    deviceConfiguration: DeviceConfiguration,
     onSelectDifficulty: (CustomDifficultyModel) -> Unit,
     onUpdateDifficulty: ((CustomDifficultyModel) -> CustomDifficultyModel) -> Unit,
     onSave: () -> Unit,
     onRevert: () -> Unit,
     onNavigateBack: () -> Unit
 ) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     Column(
         modifier = Modifier
             .fillMaxSize()

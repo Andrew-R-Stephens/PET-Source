@@ -72,55 +72,20 @@ import com.tritiumgaming.shared.core.ui.mappers.IconResources
 import com.tritiumgaming.shared.data.contributor.model.Contributor
 import org.jetbrains.annotations.TestOnly
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun InfoScreenPreview_SmallPhone_Portrait() {
-    InfoScreenPreview()
-}
-
-@Composable
 @Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-private fun InfoScreenPreview_SmallPhone_Landscape() {
-    InfoScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun InfoScreenPreview_MediumPhone_Portrait() {
-    InfoScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun InfoScreenPreview_MediumPhone_Landscape() {
-    InfoScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun InfoScreenPreview_MediumTablet_Portrait() {
-    InfoScreenPreview()
-}
-
-@Composable
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun InfoScreenPreview_MediumTablet_Landscape() {
-    InfoScreenPreview()
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun InfoScreenPreview_Foldable() {
-    InfoScreenPreview()
-}
+private annotation class DevicePreviews
 
+@DevicePreviews
 @Composable
+@Preview
 private fun InfoScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,

@@ -79,51 +79,20 @@ import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.SignInOptions
 import kotlinx.coroutines.launch
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun AccountScreenPreview_SmallPhone_Portrait() {
-    AccountPreview()
-}
-
-@Composable
 @Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-private fun AccountScreenPreview_SmallPhone_Landscape() {
-    AccountPreview()
-}
-
-@Composable
 @Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-private fun AccountScreenPreview_MediumPhone_Portrait() {
-    AccountPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun AccountScreenPreview_MediumPhone_Landscape() {
-    AccountPreview()
-}
-
-@Composable
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
 @Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-private fun AccountScreenPreview_MediumTablet_Portrait() {
-    AccountPreview()
-}
-
-@Composable
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun AccountScreenPreview_MediumTablet_Landscape() {
-    AccountPreview()
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun AccountScreenPreview_Foldable() {
-    AccountPreview()
-}
+private annotation class DevicePreviews
 
+@DevicePreviews
 @Composable
+@Preview
 private fun AccountPreview() {
     SelectiveTheme(
         palette = ClassicPalette,

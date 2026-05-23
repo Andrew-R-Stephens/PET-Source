@@ -162,55 +162,20 @@ private fun CodexScreenContent(
 
 }
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun CodexScreenPreview_SmallPhone_Portrait() {
-    CodexScreenPreview()
-}
-
-@Composable
 @Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-private fun CodexScreenPreview_SmallPhone_Landscape() {
-    CodexScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun CodexScreenPreview_MediumPhone_Portrait() {
-    CodexScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun CodexScreenPreview_MediumPhone_Landscape() {
-    CodexScreenPreview()
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun CodexScreenPreview_MediumTablet_Portrait() {
-    CodexScreenPreview()
-}
-
-@Composable
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun CodexScreenPreview_MediumTablet_Landscape() {
-    CodexScreenPreview()
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun CodexScreenPreview_Foldable() {
-    CodexScreenPreview()
-}
+private annotation class DevicePreviews
 
+@DevicePreviews
 @Composable
+@Preview
 private fun CodexScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,

@@ -101,54 +101,18 @@ import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
-@Composable
+@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
-private fun MapViewerScreenPreview_SmallPhone_Portrait() {
-    MapViewerPreview()
-}
-
-@Composable
 @Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-private fun MapViewerScreenPreview_SmallPhone_Landscape() {
-    MapViewerPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Portrait",
-    device = "spec:width=411dp,height=891dp"
-)
-private fun MapViewerScreenPreview_MediumPhone_Portrait() {
-    MapViewerPreview()
-}
-
-@Composable
-@Preview(name = "Medium Phone Landscape",
-    device = "spec:width=411dp,height=891dp,orientation=landscape"
-)
-private fun MapViewerScreenPreview_MediumPhone_Landscape() {
-    MapViewerPreview()
-}
-
-@Composable
-@Preview(name = "Medium Tablet Portrait",
-    device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait"
-)
-private fun MapViewerScreenPreview_MediumTablet_Portrait() {
-    MapViewerPreview()
-}
-
-@Composable
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-private fun MapViewerScreenPreview_MediumTablet_Landscape() {
-    MapViewerPreview()
-}
-
-@Composable
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private fun MapViewerScreenPreview_Foldable() {
-    MapViewerPreview()
-}
+private annotation class DevicePreviews
 
+@DevicePreviews
 @Composable
 private fun MapViewerPreview() {
     SelectiveTheme(
