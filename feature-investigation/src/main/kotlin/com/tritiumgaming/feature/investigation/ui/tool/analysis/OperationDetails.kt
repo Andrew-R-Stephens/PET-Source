@@ -32,8 +32,6 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
-import com.tritiumgaming.shared.data.investigation.model.GhostState
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.ActiveGhostModifierDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.DifficultyModifierDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.MapModifierDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.PhaseModifierDetails
@@ -45,6 +43,7 @@ import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Diffi
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import com.tritiumgaming.shared.data.investigation.model.GhostState
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize

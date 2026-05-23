@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.collections.emptyList
 
 data class CustomDifficultyUiState(
     val difficulties: List<CustomDifficultyModel> = emptyList(),

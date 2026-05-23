@@ -17,10 +17,10 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListItem
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
-import com.tritiumgaming.shared.data.investigation.model.GhostState
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
+import com.tritiumgaming.shared.data.investigation.model.GhostState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

@@ -51,8 +51,6 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.shared.data.investigation.model.GhostState.Companion.NORMAL_AFFIRM_MINIMUM_REACHED
-import com.tritiumgaming.shared.data.investigation.model.GhostState.Companion.ZERO_EVIDENCE
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
@@ -60,6 +58,8 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEUTRAL
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.POSITIVE
 import com.tritiumgaming.shared.data.investigation.model.GhostState
+import com.tritiumgaming.shared.data.investigation.model.GhostState.Companion.NORMAL_AFFIRM_MINIMUM_REACHED
+import com.tritiumgaming.shared.data.investigation.model.GhostState.Companion.ZERO_EVIDENCE
 
 
 @Composable

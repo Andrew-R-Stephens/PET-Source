@@ -70,7 +70,6 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
 import com.tritiumgaming.shared.data.contributor.model.Contributor
-import org.jetbrains.annotations.TestOnly
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
