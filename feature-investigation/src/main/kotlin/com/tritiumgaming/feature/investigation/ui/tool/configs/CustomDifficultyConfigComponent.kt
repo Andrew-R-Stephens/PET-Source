@@ -10,9 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 
 @Composable
 internal fun CustomDifficultyConfigControl(
@@ -20,12 +20,11 @@ internal fun CustomDifficultyConfigControl(
     dropdownOptions: List<Int>,
     isDropdownEnabled: Boolean,
     dropdownLabel: Int,
+    colors: OperationConfigUiColors,
     onDropdownSelect: (Int) -> Unit,
     editButtonComponent: @Composable (Modifier) -> Unit
 ) {
     val textStyle = LocalTypography.current.quaternary.regular
-    val color = LocalPalette.current.surfaceContainer
-    val onColor = LocalPalette.current.onSurface
 
     Row(
         modifier = modifier,
@@ -43,8 +42,8 @@ internal fun CustomDifficultyConfigControl(
             label = dropdownLabel,
             onSelect = onDropdownSelect,
             textStyle = textStyle,
-            color = color,
-            onColor = onColor
+            color = colors.color,
+            onColor = colors.onColor
         )
 
         editButtonComponent(
@@ -62,12 +61,11 @@ internal fun CustomDifficultyConfigControl(
     dropdownOptions: List<String>,
     isDropdownEnabled: Boolean,
     dropdownLabel: String,
+    colors: OperationConfigUiColors,
     onDropdownSelect: (Int) -> Unit,
     editButtonComponent: @Composable (Modifier) -> Unit
 ) {
     val textStyle = LocalTypography.current.quaternary.regular
-    val color = LocalPalette.current.surfaceContainer
-    val onColor = LocalPalette.current.onSurface
 
     Row(
         modifier = modifier,
@@ -85,8 +83,8 @@ internal fun CustomDifficultyConfigControl(
             label = dropdownLabel,
             onSelect = onDropdownSelect,
             textStyle = textStyle,
-            color = color,
-            onColor = onColor,
+            color = colors.color,
+            onColor = colors.onColor,
             selectionFontSize = 18.sp,
             optionsFontSize = 14.sp
         )

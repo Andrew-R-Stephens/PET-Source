@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
@@ -19,11 +19,10 @@ internal fun MapConfigControl(
     dropdownOptions: List<Int>,
     isDropdownEnabled: Boolean,
     dropdownLabel: Int,
+    colors: OperationConfigUiColors,
     onDropdownSelect: (Int) -> Unit
 ) {
     val textStyle = LocalTypography.current.quaternary.regular
-    val color = LocalPalette.current.surfaceContainer
-    val onColor = LocalPalette.current.onSurface
 
     val icon: @Composable (Modifier) -> Unit = { modifier ->
         Image(
@@ -31,7 +30,7 @@ internal fun MapConfigControl(
             contentScale = ContentScale.Inside,
             alignment = Alignment.Center,
             painter = painterResource(R.drawable.icon_nav_mapmenu2),
-            colorFilter = ColorFilter.tint(onColor),
+            colorFilter = ColorFilter.tint(colors.onColor),
             contentDescription = ""
         )
     }
@@ -44,8 +43,8 @@ internal fun MapConfigControl(
         label = dropdownLabel,
         onSelect = onDropdownSelect,
         textStyle = textStyle,
-        onColor = onColor,
-        expandedColor = color,
+        onColor = colors.onColor,
+        expandedColor = colors.color,
     )
 }
 

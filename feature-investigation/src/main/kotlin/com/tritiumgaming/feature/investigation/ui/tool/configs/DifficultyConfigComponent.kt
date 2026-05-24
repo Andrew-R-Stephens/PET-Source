@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
@@ -21,11 +21,10 @@ internal fun DifficultyConfigControl(
     dropdownOptions: List<Int>,
     isDropdownEnabled: Boolean,
     dropdownLabel: Int,
+    colors: OperationConfigUiColors,
     onDropdownSelect: (Int) -> Unit
 ) {
     val textStyle = LocalTypography.current.quaternary.regular
-    val color = LocalPalette.current.surfaceContainer
-    val onColor = LocalPalette.current.onSurface
 
     val icon: @Composable (Modifier) -> Unit = { modifier ->
         Image(
@@ -33,7 +32,7 @@ internal fun DifficultyConfigControl(
             contentScale = ContentScale.Inside,
             alignment = Alignment.Center,
             painter = painterResource(R.drawable.ic_puzzle),
-            colorFilter = ColorFilter.tint(onColor),
+            colorFilter = ColorFilter.tint(colors.onColor),
             contentDescription = ""
         )
     }
@@ -46,8 +45,8 @@ internal fun DifficultyConfigControl(
         onSelect = onDropdownSelect,
         icon = { icon(it) },
         textStyle = textStyle,
-        expandedColor = color,
-        onColor = onColor,
+        expandedColor = colors.color,
+        onColor = colors.onColor,
     )
 }
 
