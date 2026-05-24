@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.missions.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -38,18 +39,17 @@ internal fun ObjectivesContentLandscape(
     ghostResponseUiActions: GhostResponseUiActions
 ) {
     Row(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(start = 8.dp),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.Top
     ) {
 
         Column(
             modifier = Modifier
-                .weight(1f, false)
-                .wrapContentHeight()
+                .weight(1f)
+                .fillMaxHeight()
                 .verticalScroll(state = rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
@@ -69,7 +69,7 @@ internal fun ObjectivesContentLandscape(
             MissionsContent(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top)
-                    .padding(8.dp),
+                    .fillMaxWidth(),
                 missionSpinnerUiState = objectivesContentUiState.missionSpinnerUiState,
                 missionWrapperActions = missionWrapperActions
             )
@@ -78,10 +78,10 @@ internal fun ObjectivesContentLandscape(
 
         Column(
             modifier = Modifier
-                .weight(1f, false)
-                .wrapContentHeight()
+                .weight(1f)
+                .fillMaxHeight()
                 .verticalScroll(state = rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 

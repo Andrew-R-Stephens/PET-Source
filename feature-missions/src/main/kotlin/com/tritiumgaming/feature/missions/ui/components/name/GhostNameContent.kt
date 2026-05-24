@@ -47,18 +47,14 @@ fun GhostNameContent(
     ghostNameUiActions: GhostNameUiActions
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(vertical = 8.dp, horizontal = 12.dp),
-        verticalArrangement = Arrangement.Top
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
     ) {
 
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(8.dp),
+                .wrapContentHeight(),
             text = stringResource(R.string.objectives_title_ghost_name),
             style = LocalTypography.current.quaternary.regular,
             color = LocalPalette.current.onSurface,
@@ -133,7 +129,6 @@ fun NameWrapper(
             TextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 4.dp)
                     .wrapContentHeight()
                     .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, true),
                 value = name,
@@ -179,7 +174,7 @@ fun NameWrapper(
                     .padding(horizontal = 8.dp, vertical = 4.dp),
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
-                containerColor = LocalPalette.current.surfaceContainer,
+                containerColor = LocalPalette.current.surfaceContainerHigh,
                 shape = RoundedCornerShape(
                     bottomStart = 8.dp,
                     bottomEnd = 8.dp

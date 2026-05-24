@@ -42,18 +42,15 @@ fun GhostResponseContent(
     val isResponseKnown = ghostResponseUiState == DifficultyResponseType.KNOWN
 
     Column(
-        modifier = modifier
-            .wrapContentHeight()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(8.dp),
+                .wrapContentHeight(),
             text = stringResource(R.string.objectives_title_response),
             style = LocalTypography.current.quaternary.regular.copy(
                 textAlign = TextAlign.Center
@@ -160,8 +157,7 @@ fun ResponseItem(
         Image(
             modifier = Modifier
                 .fillMaxSize()
-                .size(48.dp)
-                .padding(4.dp),
+                .size(48.dp),
             painter = painterResource(icon),
             contentDescription = "",
             colorFilter = ColorFilter.tint(

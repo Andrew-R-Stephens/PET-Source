@@ -53,9 +53,7 @@ fun MissionsContent(
 ) {
 
     Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
+        modifier = Modifier,
         shape = RoundedCornerShape(16.dp),
         color = LocalPalette.current.surfaceContainer
     ) {
@@ -66,7 +64,10 @@ fun MissionsContent(
         ) {
             missionSpinnerUiState.selectedMissions.forEachIndexed { index, _ ->
                 MissionWrapper(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(vertical = 8.dp, horizontal = 12.dp),
                     missionSpinnerUiState = missionSpinnerUiState,
                     missionWrapperActions = missionWrapperActions,
                     index = index,
@@ -99,9 +100,6 @@ fun MissionWrapper(
 
     Column(
         modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(vertical = 8.dp, horizontal = 12.dp)
     ) {
 
         Text(
@@ -152,7 +150,6 @@ fun MissionWrapper(
                             Text(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(24.dp)
                                     .wrapContentHeight(),
                                 text = title,
                                 style = LocalTypography.current.quaternary.regular,
@@ -201,7 +198,7 @@ fun MissionWrapper(
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                     expanded = expanded,
                     onDismissRequest = { expanded = false },
-                    containerColor = LocalPalette.current.surfaceContainer,
+                    containerColor = LocalPalette.current.surfaceContainerHigh,
                     shape = RoundedCornerShape(
                         bottomStart = 8.dp,
                         bottomEnd = 8.dp
