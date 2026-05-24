@@ -39,7 +39,6 @@ internal fun ObjectivesContentPortrait(
 
     Column(
         modifier = modifier
-            .wrapContentHeight()
             .verticalScroll(state = rememberScrollState),
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -47,8 +46,8 @@ internal fun ObjectivesContentPortrait(
 
         Column(
             modifier = Modifier
-                .wrapContentHeight()
-                .padding(8.dp)
+                .wrapContentHeight(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
 
             BasicText(
@@ -66,7 +65,8 @@ internal fun ObjectivesContentPortrait(
 
             MissionsContent(
                 modifier = Modifier
-                    .wrapContentHeight(Alignment.Top),
+                    .wrapContentHeight(Alignment.Top)
+                    .fillMaxWidth(),
                 missionSpinnerUiState = objectivesContentUiState.missionSpinnerUiState,
                 missionWrapperActions = missionWrapperActions
             )
@@ -94,6 +94,9 @@ internal fun ObjectivesContentPortrait(
             )
 
             GhostNameContent(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
                 namesSpinnerUiState = objectivesContentUiState.namesSpinnerUiState,
                 ghostDetailsUiState = objectivesContentUiState.ghostDetailsUiState,
                 ghostNameUiActions = ghostNameUiActions
@@ -101,6 +104,7 @@ internal fun ObjectivesContentPortrait(
 
             GhostResponseContent(
                 modifier = Modifier
+                    .padding(16.dp)
                     .wrapContentHeight(Alignment.Top),
                 ghostResponseUiState = objectivesContentUiState.ghostResponseUiState,
                 ghostDetailsUiState = objectivesContentUiState.ghostDetailsUiState,

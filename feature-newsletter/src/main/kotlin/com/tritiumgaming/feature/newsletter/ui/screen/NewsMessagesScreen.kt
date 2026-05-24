@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -74,7 +75,6 @@ import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
 
 @DevicePreviews
 @Composable
-@Preview
 private fun NewsMessagesPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
@@ -171,6 +171,7 @@ fun NewsMessagesScreen(
     }
 
     NewsMessagesContent(
+        modifier = Modifier,
         inbox,
         newsletterInboxesUiState,
         refreshUiState,
@@ -185,6 +186,7 @@ fun NewsMessagesScreen(
 
 @Composable
 private fun NewsMessagesContent(
+    modifier: Modifier = Modifier,
     inbox: NewsletterInbox,
     newsletterInboxesUiState: NewsletterInboxesUiState,
     refreshUiState: NewsletterRefreshUiState,
@@ -216,6 +218,9 @@ private fun NewsMessagesContent(
             DeviceConfiguration.MOBILE_PORTRAIT -> {
 
                 NewsMessagesContentCompactPortrait(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .fillMaxSize(),
                     newsletterInboxesUiState = newsletterInboxesUiState,
                     refreshUiState = refreshUiState,
                     inbox = inbox,
@@ -231,6 +236,9 @@ private fun NewsMessagesContent(
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 NewsMessagesContentCompactLandscape(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .fillMaxSize(),
                     newsletterInboxesUiState = newsletterInboxesUiState,
                     refreshUiState = refreshUiState,
                     inbox = inbox,
@@ -271,46 +279,57 @@ fun ColumnScope.NewsMessagesContentCompactPortrait(
     val isRefreshing = refreshUiState.isRefreshing
     val messages = inbox.channel?.messages
 
-    messages?.get(0)?.dateEpoch?.let { newestDate ->
-        if(newestDate > lastReadDate) {
-            Box(
-                modifier = modifier
-                    .padding(PaddingValues(top = 8.dp, bottom = 8.dp, start = 16.dp, end = 16.dp))
-                    .align(Alignment.End)
-            ) {
-                MarkAsReadButton(
-                    onClick = { onMarkAllRead(inbox) }
-                )
+    Column(
+        modifier = modifier
+    ) {
+        messages?.get(0)?.dateEpoch?.let { newestDate ->
+            if (newestDate > lastReadDate) {
+                Box(
+                    modifier = Modifier
+                        .padding(
+                            PaddingValues(
+                                top = 8.dp,
+                                bottom = 8.dp,
+                                start = 16.dp,
+                                end = 16.dp
+                            )
+                        )
+                        .align(Alignment.End)
+                ) {
+                    MarkAsReadButton(
+                        onClick = { onMarkAllRead(inbox) }
+                    )
+                }
             }
         }
-    }
 
-    PullToRefresh(
-        modifier = Modifier
-            .weight(1f)
-            .padding(8.dp),
-        onRefresh = { onRefresh() },
-        isRefreshing = isRefreshing
-    ) {
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-            state = rememberListState
+        PullToRefresh(
+            modifier = Modifier
+                .weight(1f)
+                .padding(8.dp),
+            onRefresh = { onRefresh() },
+            isRefreshing = isRefreshing
         ) {
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+                state = rememberListState
+            ) {
 
-            items(items = messages ?: listOf()) { message ->
+                items(items = messages ?: listOf()) { message ->
 
-                val rememberMessage by remember { mutableStateOf(message) }
+                    val rememberMessage by remember { mutableStateOf(message) }
 
-                MessageCard(
-                    message = rememberMessage,
-                    isActive = rememberMessage.compareDate(lastReadDate) > 0,
-                    onClick = { onReadMessage(rememberMessage) },
-                    modifier = Modifier
-                        .padding(vertical = 4.dp)
-                )
+                    MessageCard(
+                        message = rememberMessage,
+                        isActive = rememberMessage.compareDate(lastReadDate) > 0,
+                        onClick = { onReadMessage(rememberMessage) },
+                        modifier = Modifier
+                            .padding(vertical = 4.dp)
+                    )
+
+                }
 
             }
-
         }
     }
 
@@ -336,10 +355,8 @@ fun NewsMessagesContentCompactLandscape(
     val messages = inbox.channel?.messages
 
     Row (
-        modifier = modifier
-            .padding(8.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
     ) {
 
         PullToRefresh(
@@ -351,7 +368,10 @@ fun NewsMessagesContentCompactLandscape(
             isRefreshing = isRefreshing
         ) {
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Top),
                 state = rememberListState
             ) {
 
@@ -360,11 +380,10 @@ fun NewsMessagesContentCompactLandscape(
                     val rememberMessage by remember { mutableStateOf(message) }
 
                     MessageCard(
+                        modifier = Modifier,
                         message = rememberMessage,
                         isActive = rememberMessage.compareDate(lastReadDate) > 0,
                         onClick = { onReadMessage(rememberMessage) },
-                        modifier = Modifier
-                            .padding(vertical = 4.dp)
                     )
 
                 }
@@ -374,14 +393,14 @@ fun NewsMessagesContentCompactLandscape(
 
         messages?.get(0)?.dateEpoch?.let { newestDate ->
             if(newestDate > lastReadDate) {
-                Row(
+                Box(
                     modifier = Modifier
-                        .padding(horizontal = 16.dp)
                         .align(Alignment.Top)
                         .wrapContentWidth(),
-                    horizontalArrangement = Arrangement.End
                 ) {
                     MarkAsReadButton(
+                        modifier = Modifier
+                            .align(Alignment.TopCenter),
                         onClick = {
                             onMarkAllRead(inbox)
                         }

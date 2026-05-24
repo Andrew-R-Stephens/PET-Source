@@ -30,6 +30,7 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsBottomSheet
 import com.tritiumgaming.feature.investigation.ui.OperationConfigsSideSheet
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.CustomDifficultyConfigControl
@@ -162,6 +163,7 @@ internal fun ToolsBottomSheetComponent(
     onBpmChangeDomain: (Long) -> Unit,
     onBpmChangeSampleInterval: (Long) -> Unit,
     // Colors
+    operationConfigUiColors: OperationConfigUiColors,
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
 
@@ -183,6 +185,7 @@ internal fun ToolsBottomSheetComponent(
                             dropdownOptions = mapDropdownOptions,
                             isDropdownEnabled = isMapDropdownEnabled,
                             dropdownLabel = mapDropdownLabel,
+                            colors = operationConfigUiColors,
                             onDropdownSelect = onMapDropdownSelect
                         )
                     },
@@ -192,6 +195,7 @@ internal fun ToolsBottomSheetComponent(
                             dropdownOptions = difficultyDropdownOptions,
                             isDropdownEnabled = isDifficultyDropdownEnabled,
                             dropdownLabel = difficultyDropdownLabel,
+                            colors = operationConfigUiColors,
                             onDropdownSelect = onDifficultyDropdownSelect
                         )
                     },
@@ -201,6 +205,7 @@ internal fun ToolsBottomSheetComponent(
                             dropdownOptions = customDifficultyDropdownOptions,
                             isDropdownEnabled = isDifficultyDropdownEnabled,
                             dropdownLabel = customDifficultyDropdownLabel,
+                            colors = operationConfigUiColors,
                             onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
                         ) { modifier ->
                             IconButton(
@@ -548,6 +553,7 @@ internal fun ToolsSideSheetComponent(
     onBpmChangeDomain: (Long) -> Unit,
     onBpmChangeSampleInterval: (Long) -> Unit,
     // Colors
+    operationConfigUiColors: OperationConfigUiColors,
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
 
@@ -576,6 +582,7 @@ internal fun ToolsSideSheetComponent(
                             dropdownOptions = mapDropdownOptions,
                             isDropdownEnabled = isMapDropdownEnabled,
                             dropdownLabel = mapDropdownLabel,
+                            colors = operationConfigUiColors,
                             onDropdownSelect = onMapDropdownSelect
                         )
                     },
@@ -585,6 +592,7 @@ internal fun ToolsSideSheetComponent(
                             dropdownOptions = difficultyDropdownOptions,
                             isDropdownEnabled = isDifficultyDropdownEnabled,
                             dropdownLabel = difficultyDropdownLabel,
+                            colors = operationConfigUiColors,
                             onDropdownSelect = onDifficultyDropdownSelect
                         )
                     },
@@ -594,6 +602,7 @@ internal fun ToolsSideSheetComponent(
                             dropdownOptions = customDifficultyDropdownOptions,
                             isDropdownEnabled = isDifficultyDropdownEnabled,
                             dropdownLabel = customDifficultyDropdownLabel,
+                            colors = operationConfigUiColors,
                             onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
                         ) { modifier ->
                             IconButton(

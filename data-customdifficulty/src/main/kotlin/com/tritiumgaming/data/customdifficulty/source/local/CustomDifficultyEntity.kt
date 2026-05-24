@@ -32,7 +32,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 
-@Entity(tableName = "custom_difficulties")
+@Entity(tableName = "CustomDifficulty")
 data class CustomDifficultyEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.newsletter.ui.screen
+package com.tritiumgaming.feature.missions.ui
 
 import androidx.compose.ui.tooling.preview.Preview
 

@@ -81,6 +81,7 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleUniqueTraitFilter
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
@@ -120,6 +121,7 @@ import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
@@ -158,7 +160,13 @@ private fun InvestigationScreenPreview(
         ) {
             InvestigationContent(
                 uiState = InvestigationUiState(
-                    toolbar = OperationToolbarUiState(category = category)
+                    toolbar = OperationToolbarUiState(category = category),
+                    mapConfig = MapConfigUiState(
+                        allMaps = listOf(
+                            MapTitle.BLEASDALE_FARMHOUSE,
+                            MapTitle.CAMP_WOODWIND
+                        )
+                    )
                 ),
                 uiActions = InvestigationUiActions()
             )
@@ -426,6 +434,11 @@ private fun InvestigationContent(
         label = LocalPalette.current.onSurface,
     )
 
+    val operationConfigUiColors = OperationConfigUiColors(
+        color = LocalPalette.current.surfaceContainerHigh,
+        onColor = LocalPalette.current.onSurface
+    )
+
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
@@ -493,6 +506,7 @@ private fun InvestigationContent(
             bpmRange = bpmToolUiState.range,
             bpmDomainOptions = bpmToolUiState.domainOptions,
             bpmSampleIntervalOptions = bpmToolUiState.sampleIntervalOptions,
+            operationConfigUiColors = operationConfigUiColors,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,
@@ -582,6 +596,7 @@ private fun InvestigationContent(
             bpmRange = bpmToolUiState.range,
             bpmDomainOptions = bpmToolUiState.domainOptions,
             bpmSampleIntervalOptions = bpmToolUiState.sampleIntervalOptions,
+            operationConfigUiColors = operationConfigUiColors,
             notchedProgressBarUiColors = notchedProgressBarUiColors,
             onWeatherDropdownSelect = onWeatherDropdownSelect,
             onMapDropdownSelect = onMapDropdownSelect,

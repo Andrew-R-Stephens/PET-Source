@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CustomDifficultyDao {
-    @Query("SELECT * FROM custom_difficulties")
+    @Query("SELECT * FROM CustomDifficulty")
     fun getAll(): Flow<List<CustomDifficultyEntity>>
 
-    @Query("SELECT * FROM custom_difficulties WHERE id = :id")
+    @Query("SELECT * FROM CustomDifficulty WHERE id = :id")
     suspend fun getById(id: Int): CustomDifficultyEntity?
 
-    @Query("SELECT COUNT(*) FROM custom_difficulties")
+    @Query("SELECT COUNT(*) FROM CustomDifficulty")
     suspend fun getCount(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -29,7 +29,7 @@ interface CustomDifficultyDao {
     @Transaction
     suspend fun insertWithLimit(difficulty: CustomDifficultyEntity): Boolean {
         return if (difficulty.id == 0) {
-            if (getCount() < 5) {
+            if (getCount() < MAX_ITEMS) {
                 insert(difficulty)
                 true
             } else {
@@ -46,4 +46,8 @@ interface CustomDifficultyDao {
 
     @Delete
     suspend fun delete(difficulty: CustomDifficultyEntity)
+
+    companion object {
+        const val MAX_ITEMS = 3
+    }
 }

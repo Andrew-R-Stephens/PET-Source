@@ -1,10 +1,15 @@
 package com.tritiumgaming.feature.missions.ui
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
@@ -12,6 +17,8 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUiState
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionStatus
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
 import com.tritiumgaming.feature.missions.ui.components.name.GhostNameUiActions
 import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
@@ -20,21 +27,11 @@ import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentLandscape
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentPortrait
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
-
-@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
-@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private annotation class DevicePreviews
+import com.tritiumgaming.shared.data.mission.mappers.MissionResources
+import com.tritiumgaming.shared.data.mission.model.Mission
 
 @DevicePreviews
 @Composable
-@Preview
 private fun ObjectivesScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
@@ -46,7 +43,49 @@ private fun ObjectivesScreenPreview() {
             ObjectivesScreenContent(
                 objectivesContentUiState = ObjectivesContentUiState(
                     ghostResponseUiState = DifficultyResponseType.KNOWN,
-                    missionSpinnerUiState = MissionSpinnerUiState(),
+                    missionSpinnerUiState = MissionSpinnerUiState(
+                        selectedMissions = listOf(
+                            MissionUiState(
+                                Mission(
+                                    MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                    "4"
+                                ),
+                                false
+                            ),
+                            MissionUiState(
+                                Mission(
+                                    MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                    "5"
+                                ),
+                                false
+                            ),
+                            MissionUiState(
+                                Mission(
+                                    MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                    "6"
+                                ),
+                                false
+                            ),
+                        ),
+                        availableMissions = listOf(
+                            Mission(
+                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                "0"
+                            ),
+                            Mission(
+                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                "1"
+                            ),
+                            Mission(
+                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                "2"
+                            ),
+                            Mission(
+                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                "3"
+                            )
+                        )
+                    ),
                     ghostDetailsUiState = GhostDetailsUiState(),
                     namesSpinnerUiState = NamesSpinnerUiState()
                 ),
@@ -121,6 +160,9 @@ private fun ObjectivesScreenContent(
     when (deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             ObjectivesContentPortrait(
+                modifier = Modifier
+                    .wrapContentHeight()
+                    .padding(8.dp),
                 objectivesContentUiState = objectivesContentUiState,
                 ghostNameUiActions = ghostNameUiActions,
                 ghostResponseUiActions = ghostResponseUiActions,
@@ -133,6 +175,9 @@ private fun ObjectivesScreenContent(
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
             ObjectivesContentLandscape(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
                 objectivesContentUiState = objectivesContentUiState,
                 ghostNameUiActions = ghostNameUiActions,
                 ghostResponseUiActions = ghostResponseUiActions,

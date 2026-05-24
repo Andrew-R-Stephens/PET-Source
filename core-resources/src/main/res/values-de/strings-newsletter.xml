@@ -8,4 +8,6 @@
     <string name="newsletter_inbox_title_phasmophobia">Phasmophobia-Änderungsprotokoll</string>
     <string name="newsletter_inbox_title_general">Allgemeine Nachrichten</string>
 
+    <string name="newsletter_markallread">Gelesen</string>
+
 </resources>
