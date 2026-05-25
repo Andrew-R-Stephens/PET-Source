@@ -24,7 +24,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -226,17 +229,25 @@ internal fun ExpandableCategoryRow(
 }
 
 @Composable
-internal fun SubRow(
+internal fun TextDataRow(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit = {}
+    title: String,
+    titleColor: Color = LocalPalette.current.onSurface,
+    data: String,
+    dataColor: Color = LocalPalette.current.onSurfaceVariant
 ) {
-    Row(
-        modifier = modifier
-            .wrapContentWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        content()
-    }
+    Text(
+        modifier = modifier,
+        text = buildAnnotatedString {
+            withStyle(style = SpanStyle(color = titleColor)) {
+                append(title)
+            }
+            append(" ")
+            withStyle(style = SpanStyle(color = dataColor)) {
+                append(data)
+            }
+        }
+    )
 }
 
 @Composable

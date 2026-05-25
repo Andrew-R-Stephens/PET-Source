@@ -22,8 +22,8 @@ import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResourc
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
@@ -41,7 +41,6 @@ internal fun ActiveGhostModifierDetails(
     difficultySettings: DifficultySettingsModel? = null,
     overrides: DifficultyOverridesData? = null
 ) {
-
     val rememberGhostDetails = state.activeGhosts
 
     ExpandableCategoryColumn(
@@ -51,21 +50,12 @@ internal fun ActiveGhostModifierDetails(
             ExpandableCategoryRow(
                 modifier = modifier,
                 isExpanded = expanded
-            ) {
-                Row(
-                    modifier = Modifier,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    TextCategoryTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(R.string.investigation_section_title_active_ghosts)}:"
-                    )
-                    TextSubTitle(
-                        modifier = Modifier.padding(start= 8.dp),
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${rememberGhostDetails.size}"
-                    )
-                }
+            ) { rowModifier ->
+                TextDataRow(
+                    modifier = rowModifier,
+                    title = "${stringResource(R.string.investigation_section_title_active_ghosts)}:",
+                    data = "${rememberGhostDetails.size}"
+                )
             }
         }
     ) {
@@ -75,9 +65,9 @@ internal fun ActiveGhostModifierDetails(
         ) {
             rememberGhostDetails.forEach { ghostDetail ->
 
-                val state = ghostDetail.state
+                val ghostState = ghostDetail.state
 
-                val sanityBounds = state.ghostEvidence.ghost.huntSanityBounds.toSanityBounds()
+                val sanityBounds = ghostState.ghostEvidence.ghost.huntSanityBounds.toSanityBounds()
 
                 ExpandableCategoryColumn(
                     expanded = false,
@@ -86,17 +76,12 @@ internal fun ActiveGhostModifierDetails(
                         ExpandableCategoryRow(
                             modifier = modifier,
                             isExpanded = expanded
-                        ) {
-                            Row(
-                                modifier = Modifier,
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                TextCategoryTitle(
-                                    modifier = Modifier,
-                                    color = LocalPalette.current.onSurface,
-                                    text = stringResource(state.ghostEvidence.ghost.name.toStringResource())
-                                )
-                            }
+                        ) { rowModifier ->
+                            TextCategoryTitle(
+                                modifier = rowModifier,
+                                color = LocalPalette.current.onSurface,
+                                text = stringResource(ghostState.ghostEvidence.ghost.name.toStringResource())
+                            )
                         }
                     }
                 ) {
@@ -107,24 +92,25 @@ internal fun ActiveGhostModifierDetails(
                         TextSubTitle(
                             modifier = Modifier,
                             color = LocalPalette.current.onSurface,
-                            text = "${stringResource(R.string.investigation_section_title_evidence) }:"
+                            text = "${stringResource(R.string.investigation_section_title_evidence)}:"
                         )
                     }
                     Column(
                         modifier = Modifier.padding(start = 16.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        SubRow(
-                            modifier = Modifier
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            state.ghostEvidence.normalEvidenceList.forEach { evidence ->
-                                val isStrict = state.ghostEvidence.strictEvidenceList.find {
-                                    it.id == evidence.id }
+                            ghostState.ghostEvidence.normalEvidenceList.forEach { evidence ->
+                                val isStrict = ghostState.ghostEvidence.strictEvidenceList.find {
+                                    it.id == evidence.id
+                                }
                                 TextSubTitle(
                                     modifier = Modifier,
                                     color = LocalPalette.current.onSurface,
                                     text = stringResource(evidence.name.toStringResource()) +
-                                            if(isStrict != null) " *" else ""
+                                            if (isStrict != null) " *" else ""
                                 )
                             }
                         }
@@ -137,7 +123,7 @@ internal fun ActiveGhostModifierDetails(
                         TextSubTitle(
                             modifier = Modifier,
                             color = LocalPalette.current.onSurface,
-                            text = "${stringResource(R.string.investigation_section_title_hunt_sanity) }:"
+                            text = "${stringResource(R.string.investigation_section_title_hunt_sanity)}:"
                         )
                     }
 
@@ -152,24 +138,30 @@ internal fun ActiveGhostModifierDetails(
 
                         val notches = mutableListOf<ProgressBarNotch>()
                         sanityBounds.suppressed?.let {
-                            notches.add(ProgressBarNotch(
-                                label = UiText.DynamicString("${it.toLong()}"),
-                                xPos = 100-it.toLong()
-                            ))
+                            notches.add(
+                                ProgressBarNotch(
+                                    label = UiText.DynamicString("${it.toLong()}"),
+                                    xPos = 100 - it.toLong()
+                                )
+                            )
                             highest = max(highest, it.toLong())
                         }
                         sanityBounds.normal?.let {
-                            notches.add(ProgressBarNotch(
-                                label = UiText.DynamicString("${it.toLong()}"),
-                                xPos = 100-it.toLong()
-                            ))
+                            notches.add(
+                                ProgressBarNotch(
+                                    label = UiText.DynamicString("${it.toLong()}"),
+                                    xPos = 100 - it.toLong()
+                                )
+                            )
                             highest = max(highest, it.toLong())
                         }
                         sanityBounds.empowered?.let {
-                            notches.add(ProgressBarNotch(
-                                label = UiText.DynamicString("${it.toLong()}"),
-                                xPos = 100-it.toLong()
-                            ))
+                            notches.add(
+                                ProgressBarNotch(
+                                    label = UiText.DynamicString("${it.toLong()}"),
+                                    xPos = 100 - it.toLong()
+                                )
+                            )
                             highest = max(highest, it.toLong())
                         }
 
@@ -197,7 +189,7 @@ internal fun ActiveGhostModifierDetails(
                         TextSubTitle(
                             modifier = Modifier,
                             color = LocalPalette.current.onSurface,
-                            text = "${stringResource(R.string.investigation_section_title_movement_speed) }:"
+                            text = "${stringResource(R.string.investigation_section_title_movement_speed)}:"
                         )
                     }
 
@@ -208,34 +200,41 @@ internal fun ActiveGhostModifierDetails(
                             .padding(start = 16.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        val minBase = state.ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
-                        var maxBase = state.ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
-                        val losMultiplier = state.ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
-                        if(maxBase == -1f) maxBase = minBase
+                        val minBase = ghostState.ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
+                        var maxBase = ghostState.ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
+                        val losMultiplier = ghostState.ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
+                        if (maxBase == -1f) maxBase = minBase
 
                         val difficultyMultiplier = difficultySettings?.ghostSpeed?.toFloat() ?: 1f
                         val weather = if (difficultySettings?.weather == Weather.RANDOM)
-                            overrides?.weather ?: Weather.RANDOM else difficultySettings?.weather ?: Weather.RANDOM
+                            overrides?.weather ?: Weather.RANDOM else difficultySettings?.weather
+                            ?: Weather.RANDOM
                         val weatherMultiplier = if (weather == Weather.BLOOD_MOON) 1.15f else 1f
                         val fuseBoxMultiplier = 1f // Placeholder
 
                         val minSpeed = minBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
                         var maxSpeed = maxBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier
 
-                        if(losMultiplier) { maxSpeed *= 1.65f }
+                        if (losMultiplier) {
+                            maxSpeed *= 1.65f
+                        }
 
                         val notches = mutableListOf<ProgressBarNotch>()
                         minSpeed.let {
-                            notches.add(ProgressBarNotch(
-                                label = UiText.DynamicString("%.1f".format(it / 60f)),
-                                xPos = 360L-it.toLong()
-                            ))
+                            notches.add(
+                                ProgressBarNotch(
+                                    label = UiText.DynamicString("%.1f".format(it / 60f)),
+                                    xPos = 360L - it.toLong()
+                                )
+                            )
                         }
                         maxSpeed.let {
-                            notches.add(ProgressBarNotch(
-                                label = UiText.DynamicString("%.1f".format(it / 60f)),
-                                xPos = 360L-it.toLong()
-                            ))
+                            notches.add(
+                                ProgressBarNotch(
+                                    label = UiText.DynamicString("%.1f".format(it / 60f)),
+                                    xPos = 360L - it.toLong()
+                                )
+                            )
                         }
 
                         NotchedProgressBar(
@@ -257,13 +256,12 @@ internal fun ActiveGhostModifierDetails(
                 }
             }
 
-            if(rememberGhostDetails.isEmpty()) {
+            if (rememberGhostDetails.isEmpty()) {
                 TextCategoryTitle(
                     color = LocalPalette.current.onSurface,
                     text = "Empty"
                 )
             }
         }
-
     }
 }

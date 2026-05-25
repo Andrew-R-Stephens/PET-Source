@@ -18,7 +18,7 @@ import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringRe
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 import com.tritiumgaming.shared.data.codex.mappers.toEquipmentTitle
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
@@ -37,7 +37,6 @@ internal fun DifficultyModifierDetails(
     mapState: OperationDetailsUiState.MapDetails,
     weatherDetails: OperationDetailsUiState.WeatherDetails
 ) {
-
     ExpandableCategoryColumn(
         expanded = false,
         containerColor = LocalPalette.current.surfaceContainer,
@@ -45,9 +44,9 @@ internal fun DifficultyModifierDetails(
             ExpandableCategoryRow(
                 modifier = modifier,
                 isExpanded = expanded
-            ) {
+            ) { rowModifier ->
                 Row(
-                    modifier = modifier,
+                    modifier = rowModifier,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     TextSubTitle(
@@ -68,482 +67,248 @@ internal fun DifficultyModifierDetails(
             }
         }
     ) {
-        Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ExpandableCategoryColumn(
+            expanded = false,
+            containerColor = LocalPalette.current.surfaceContainerHigh,
+            defaultContent = { modifier, expanded ->
+                ExpandableCategoryRow(
+                    modifier = modifier,
+                    isExpanded = expanded
+                ) { rowModifier ->
+                    TextSubTitle(
+                        modifier = rowModifier,
+                        color = LocalPalette.current.primary,
+                        text = stringResource(R.string.difficulty_category_player)
+                    )
+                }
+            }
         ) {
-            ExpandableCategoryColumn(
-                expanded = false,
-                containerColor = LocalPalette.current.surfaceContainerHigh,
-                defaultContent = { modifier, expanded ->
-                    ExpandableCategoryRow(
-                        modifier = modifier,
-                        isExpanded = expanded
-                    ) {
-                        Row(
-                            modifier = modifier,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            TextSubTitle(
-                                color = LocalPalette.current.primary,
-                                text = stringResource(R.string.difficulty_category_player)
-                            )
-                        }
-                    }
-                }
-            ) {
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.STARTING_SANITY.toStringResource())}:",
+                data = difficultyState.settings.startingSanity.toFloat().toPercentageString(false)
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.SANITY_PILL_RESTORATION.toStringResource())}:",
+                data = difficultyState.settings.sanityPillRestoration.toFloat().toPercentageString(false)
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.SANITY_DRAIN_SPEED.toStringResource())}:",
+                data = difficultyState.settings.sanityDrainSpeed.toFloat().toPercentageString(false)
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.SPRINTING.toStringResource())}:",
+                data = stringResource(difficultyState.settings.sprinting.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.PLAYER_SPEED.toStringResource())}:",
+                data = difficultyState.settings.playerSpeed.toFloat().toPercentageString(false)
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.FLASHLIGHTS.toStringResource())}:",
+                data = stringResource(difficultyState.settings.flashlights.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.LOSE_ITEMS_AND_CONSUMABLES.toStringResource())}:",
+                data = stringResource(difficultyState.settings.loseItemsAndConsumables.toStringResource())
+            )
+        }
 
-                SubRow {
+        ExpandableCategoryColumn(
+            expanded = false,
+            containerColor = LocalPalette.current.surfaceContainerHigh,
+            defaultContent = { modifier, expanded ->
+                ExpandableCategoryRow(
+                    modifier = modifier,
+                    isExpanded = expanded
+                ) { rowModifier ->
                     TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .STARTING_SANITY.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = difficultyState.settings.startingSanity.toFloat().toPercentageString(false)
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .SANITY_PILL_RESTORATION.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = difficultyState.settings.sanityPillRestoration.toFloat().toPercentageString(false)
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .SANITY_DRAIN_SPEED.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = difficultyState.settings.sanityDrainSpeed.toFloat().toPercentageString(false)
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .SPRINTING.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.sprinting.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .PLAYER_SPEED.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = difficultyState.settings.playerSpeed.toFloat().toPercentageString(false)
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .FLASHLIGHTS.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.flashlights.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .LOSE_ITEMS_AND_CONSUMABLES.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.loseItemsAndConsumables.toStringResource())
+                        modifier = rowModifier,
+                        color = LocalPalette.current.primary,
+                        text = stringResource(R.string.difficulty_category_ghost)
                     )
                 }
             }
+        ) {
+            TextDataRow(
+                title = "${stringResource(R.string.objectives_title_response_type)}:",
+                data = stringResource(difficultyState.responseType.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.GHOST_SPEED.toStringResource())}:",
+                data = difficultyState.settings.ghostSpeed.toFloat().toPercentageString(false)
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.ROAMING_FREQUENCY.toStringResource())}:",
+                data = stringResource(difficultyState.settings.roamingFrequency.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.CHANGING_FAVOURITE_ROOM.toStringResource())}:",
+                data = stringResource(difficultyState.settings.changingFavouriteRoom.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.ACTIVITY_LEVEL.toStringResource())}:",
+                data = stringResource(difficultyState.settings.activityLevel.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.EVENT_FREQUENCY.toStringResource())}:",
+                data = stringResource(difficultyState.settings.eventFrequency.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.FRIENDLY_GHOST.toStringResource())}:",
+                data = stringResource(difficultyState.settings.friendlyGhost.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.GRACE_PERIOD.toStringResource())}:",
+                data = "${(difficultyState.settings.gracePeriod.toLong() / 1000f).toLong()}s"
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.HUNT_DURATION.toStringResource())}:",
+                data = "${stringResource(difficultyState.settings.huntDuration.toStringResource())} " +
+                        "( ${(difficultyState.settings.huntDuration.toLong(mapState.size) / 1000f).toLong()}s )"
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.KILLS_EXTEND_HUNTS.toStringResource())}:",
+                data = "${stringResource(difficultyState.settings.killsExtendHunts.toStringResource())} " +
+                        "( +${(difficultyState.settings.killsExtendHunts.toLong(mapState.size) / 1000f).toLong()}s )"
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.EVIDENCE_GIVEN.toStringResource())}:",
+                data = "${difficultyState.settings.evidenceGiven.toInt()}"
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.FINGERPRINT_CHANCE.toStringResource())}:",
+                data = difficultyState.settings.fingerprintChance.toFloat().toPercentageString(false)
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.FINGERPRINT_DURATION.toStringResource())}:",
+                data = "${(difficultyState.settings.fingerprintDuration.toLong() / 1000f).toLong()}s"
+            )
+        }
 
-            ExpandableCategoryColumn(
-                expanded = false,
-                containerColor = LocalPalette.current.surfaceContainerHigh,
-                defaultContent = { modifier, expanded ->
-                    ExpandableCategoryRow(
-                        modifier = modifier,
-                        isExpanded = expanded
-                    ) {
-                        Row(
-                            modifier = modifier,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            TextSubTitle(
-                                color = LocalPalette.current.primary,
-                                text = stringResource(R.string.difficulty_category_ghost)
-                            )
-                        }
-                    }
-                }
-            ) {
-
-                SubRow {
+        ExpandableCategoryColumn(
+            expanded = false,
+            containerColor = LocalPalette.current.surfaceContainerHigh,
+            defaultContent = { modifier, expanded ->
+                ExpandableCategoryRow(
+                    modifier = modifier,
+                    isExpanded = expanded
+                ) { rowModifier ->
                     TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(R.string.objectives_title_response_type)}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.responseType.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .GHOST_SPEED.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = difficultyState.settings.ghostSpeed.toFloat().toPercentageString(false)
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .ROAMING_FREQUENCY.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.roamingFrequency.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .CHANGING_FAVOURITE_ROOM.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.changingFavouriteRoom.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .ACTIVITY_LEVEL.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.activityLevel.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .EVENT_FREQUENCY.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.eventFrequency.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .FRIENDLY_GHOST.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.friendlyGhost.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .GRACE_PERIOD.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ (difficultyState.settings.gracePeriod.toLong() / 1000f).toLong() }s"
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .HUNT_DURATION.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${stringResource(difficultyState.settings.huntDuration.toStringResource())} " +
-                                "( ${(difficultyState.settings.huntDuration.toLong(mapState.size)/1000f).toLong()}s )"
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .KILLS_EXTEND_HUNTS.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${stringResource(difficultyState.settings.killsExtendHunts.toStringResource())} " +
-                                "( +${(difficultyState.settings.killsExtendHunts.toLong(mapState.size)/1000f).toLong()}s )"
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .EVIDENCE_GIVEN.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.evidenceGiven.toInt() }"
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .FINGERPRINT_CHANCE.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = difficultyState.settings.fingerprintChance.toFloat().toPercentageString(false)
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .FINGERPRINT_DURATION.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ (difficultyState.settings.fingerprintDuration.toLong() / 1000f).toLong() }s"
+                        modifier = rowModifier,
+                        color = LocalPalette.current.primary,
+                        text = stringResource(R.string.difficulty_category_contract)
                     )
                 }
             }
+        ) {
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.SETUP_TIME.toStringResource())}:",
+                data = "${(difficultyState.settings.setupTime.toLong() / 1000f).toLong()}s"
+            )
 
-            ExpandableCategoryColumn(
-                expanded = false,
-                containerColor = LocalPalette.current.surfaceContainerHigh,
-                defaultContent = { modifier, expanded ->
-                    ExpandableCategoryRow(
-                        modifier = modifier,
-                        isExpanded = expanded
-                    ) {
-                        Row(
-                            modifier = modifier,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            TextSubTitle(
-                                color = LocalPalette.current.primary,
-                                text = stringResource(R.string.difficulty_category_contract)
-                            )
-                        }
-                    }
-                }
+            val difficultyWeather = difficultyState.settings.weather
+            val overrideWeather = weatherDetails.weather
+            val weatherActual = if (overrideWeather != Weather.RANDOM) overrideWeather
+            else difficultyWeather
+
+            val weatherActualText = stringResource(difficultyWeather.toStringResource())
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.WEATHER.toStringResource())}:",
+                data = "$weatherActualText${
+                    if (difficultyWeather == Weather.RANDOM && overrideWeather != Weather.RANDOM)
+                        " [${stringResource(overrideWeather.toStringResource())}]"
+                    else ""
+                }"
+            )
+
+            if (weatherActual != Weather.RANDOM) {
+                val range = weatherActual.toTemperatureRange()
+                val celsius = range.celsius()
+                val fahrenheit = range.fahrenheit()
+                TextDataRow(
+                    title = "${stringResource(R.string.difficulty_setting_title_weather_temperature_range)}:",
+                    data = "${celsius.low.toInt()}°C - ${celsius.high.toInt()}°C" +
+                            " [${fahrenheit.low}°F - ${fahrenheit.high}°F]"
+                )
+            }
+
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.DOORS_STARTING_OPEN.toStringResource())}:",
+                data = stringResource(difficultyState.settings.doorsStartingOpen.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.NUMBER_OF_HIDING_PLACES.toStringResource())}:",
+                data = stringResource(difficultyState.settings.numberOfHidingPlaces.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.SANITY_MONITOR.toStringResource())}:",
+                data = stringResource(difficultyState.settings.sanityMonitor.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.ACTIVITY_MONITOR.toStringResource())}:",
+                data = stringResource(difficultyState.settings.activityMonitor.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.FUSE_BOX_AT_START_OF_CONTRACT.toStringResource())}:",
+                data = stringResource(difficultyState.settings.fuseBoxAtStartOfContract.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.FUSE_BOX_VISIBLE_ON_MAP.toStringResource())}:",
+                data = stringResource(difficultyState.settings.fuseBoxVisibleOnMap.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(DifficultySettingResources.DifficultySetting.CURSED_POSSESSIONS_QUANTITY.toStringResource())}:",
+                data = "${difficultyState.settings.cursedPossessionsQuantity.toInt()}"
+            )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "${stringResource(DifficultySettingResources.DifficultySetting.CURSED_POSSESSIONS.toStringResource())}:"
+                )
 
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .SETUP_TIME.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ (difficultyState.settings.setupTime.toLong() / 1000f).toLong() }s"
-                    )
-                }
-
-                val difficultyWeather = difficultyState.settings.weather
-                val overrideWeather = weatherDetails.weather
-                val weatherActual = if(overrideWeather != Weather.RANDOM) overrideWeather
-                    else difficultyWeather
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .WEATHER.toStringResource())}:"
-                    )
-
-                    val weatherActualText = stringResource(difficultyWeather.toStringResource())
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "$weatherActualText${
-                            if(difficultyWeather == Weather.RANDOM && overrideWeather != Weather.RANDOM) 
-                                " [${stringResource(overrideWeather.toStringResource())}]" 
-                            else ""
-                        }"
-                    )
-                }
-                if(weatherActual != Weather.RANDOM) {
-                    SubRow {
+                difficultyState.settings.cursedPossessions.forEachIndexed { index, possession ->
+                    if (index == 0 ||
+                        possession != DifficultySettingResources.CursedPossession.RANDOM
+                    ) {
                         TextSubTitle(
-                            color = LocalPalette.current.onSurface,
-                            text = "${stringResource(R.string.difficulty_setting_title_weather_temperature_range)}:"
-                        )
-                        val range = weatherActual.toTemperatureRange()
-                        val celsius = range.celsius()
-                        val fahrenheit = range.fahrenheit()
-                        TextSubTitle(
+                            modifier = Modifier.padding(horizontal = 8.dp),
                             color = LocalPalette.current.onSurfaceVariant,
-                            text = "${celsius.low.toInt()}°C - ${celsius.high.toInt()}°C" +
-                                    " [${fahrenheit.low}°F - ${fahrenheit.high}°F]"
+                            text = stringResource(possession.toStringResource())
                         )
-                    }
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .DOORS_STARTING_OPEN.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.doorsStartingOpen.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .NUMBER_OF_HIDING_PLACES.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.numberOfHidingPlaces.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .SANITY_MONITOR.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.sanityMonitor.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .ACTIVITY_MONITOR.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.activityMonitor.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .FUSE_BOX_AT_START_OF_CONTRACT.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.fuseBoxAtStartOfContract.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .FUSE_BOX_VISIBLE_ON_MAP.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(difficultyState.settings.fuseBoxVisibleOnMap.toStringResource())
-                    )
-                }
-                SubRow {
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurface,
-                        text = "${stringResource(DifficultySettingResources.DifficultySetting
-                            .CURSED_POSSESSIONS_QUANTITY.toStringResource())}:"
-                    )
-                    TextSubTitle(
-                        color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ difficultyState.settings.cursedPossessionsQuantity.toInt() }"
-                    )
-                }
-                SubRow {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        TextSubTitle(
-                            color = LocalPalette.current.onSurface,
-                            text = "${stringResource(DifficultySettingResources.DifficultySetting
-                                .CURSED_POSSESSIONS.toStringResource())}:"
-                        )
-
-                        difficultyState.settings.cursedPossessions.forEachIndexed { index, possession ->
-                            if(index == 0 ||
-                                possession != DifficultySettingResources.CursedPossession.RANDOM) {
-
-                                TextSubTitle(
-                                    modifier = Modifier.padding(horizontal = 8.dp),
-                                    color = LocalPalette.current.onSurfaceVariant,
-                                    text = stringResource(possession.toStringResource())
-                                )
-                            }
-                        }
-                    }
-                }
-                SubRow {
-
-                    Column(
-                        modifier = Modifier.padding(horizontal = 4.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        if(difficultyState.settings.equipmentPermission.isEmpty()) return@SubRow
-
-                        TextSubTitle(
-                            color = LocalPalette.current.onSurface,
-                            text = "Equipment Restrictions:"
-                        )
-
-                        difficultyState.settings.equipmentPermission.forEachIndexed { index, permission ->
-                            val perm =
-                                if(permission.permission == EquipmentPermission.Permission.REVOKED)
-                                    stringResource(R.string.difficulty_permission_revoked)
-                                else stringResource(R.string.difficulty_permission_permitted)
-                            val quantity =
-                                if(permission.quantity == EquipmentPermission.ALL)
-                                    stringResource(R.string.difficulty_permission_quantity_all)
-                                else permission.quantity
-                            val item = stringResource(permission.identifier.toEquipmentTitle().toStringResource())
-
-                            TextSubTitle(
-                                modifier = Modifier.padding(horizontal = 8.dp),
-                                color = LocalPalette.current.onSurfaceVariant,
-                                text = "$item [ $quantity $perm ]"
-                            )
-                        }
-
                     }
                 }
             }
+            if (difficultyState.settings.equipmentPermission.isNotEmpty()) {
+                Column(
+                    modifier = Modifier.padding(horizontal = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    TextSubTitle(
+                        color = LocalPalette.current.onSurface,
+                        text = "Equipment Restrictions:"
+                    )
 
+                    difficultyState.settings.equipmentPermission.forEach { permission ->
+                        val perm =
+                            if (permission.permission == EquipmentPermission.Permission.REVOKED)
+                                stringResource(R.string.difficulty_permission_revoked)
+                            else stringResource(R.string.difficulty_permission_permitted)
+                        val quantity =
+                            if (permission.quantity == EquipmentPermission.ALL)
+                                stringResource(R.string.difficulty_permission_quantity_all)
+                            else permission.quantity
+                        val item = stringResource(permission.identifier.toEquipmentTitle().toStringResource())
+
+                        TextSubTitle(
+                            modifier = Modifier.padding(horizontal = 8.dp),
+                            color = LocalPalette.current.onSurfaceVariant,
+                            text = "$item [ $quantity $perm ]"
+                        )
+                    }
+                }
+            }
         }
     }
 }
