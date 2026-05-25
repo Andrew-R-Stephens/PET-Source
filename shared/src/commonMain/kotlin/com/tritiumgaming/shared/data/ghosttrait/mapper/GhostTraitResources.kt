@@ -123,6 +123,7 @@ class GhostTraitResources {
     }
 
     enum class TraitCategory {
+        ALL,
         BEHAVIOR,
         CHARACTERISTIC,
         HUNT,

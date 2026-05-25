@@ -60,6 +60,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
 import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
 import com.tritiumgaming.shared.data.ghost.model.Ghost
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
 import com.tritiumgaming.shared.data.investigation.model.CategoryOption
@@ -525,7 +526,7 @@ class InvestigationScreenViewModel private constructor(
      * Trait Filter
      */
     private val _traitFilterOptions = traitData.map { traits ->
-        val categories = traits.map {it.category }.distinct().sortedBy { it }
+        val categories = GhostTraitResources.TraitCategory.entries
         val weights = traits.map { it.weight }.distinct().sortedBy { it }
         val states = traits.map { it.state }.distinct().sortedBy { it }
         val tags = traits.flatMap { it.tags }.distinct().sortedBy { it }
@@ -930,7 +931,7 @@ class InvestigationScreenViewModel private constructor(
     private val _traitListUiState: StateFlow<List<ValidatedGhostTrait>> =
         combine(selectedTraits, traitFilterUiState) { traits, filter ->
             traits.asSequence().filter { (trait, _) ->
-                val matchesCategory = filter.category == null || trait.category == filter.category
+                val matchesCategory = filter.category == GhostTraitResources.TraitCategory.ALL || trait.category == filter.category
                 val matchesWeight = filter.weight == null || trait.weight == filter.weight
                 val matchesState = filter.state == null || trait.state == filter.state
                 val matchesUnique = !filter.uniqueOnly || trait.isUnique
@@ -1513,13 +1514,24 @@ class InvestigationScreenViewModel private constructor(
     private fun updateTraitFilter(filter: TraitFilter) {
         _traitFilterUiState.update {
             it.copy(
-                category = if(it.category == filter.category) null else filter.category,
+                category = filter.category,
                 weight = if(it.weight == filter.weight) null else filter.weight,
                 state = if(it.state == filter.state) null else filter.state,
                 tags = if(it.tags == filter.tags) emptyList() else filter.tags
             )
         }
     }
+
+    /*private fun updateTraitFilter(filter: TraitFilter) {
+        _traitFilterUiState.update {
+            it.copy(
+                category = if(it.category == filter.category) null else filter.category,
+                weight = if(it.weight == filter.weight) null else filter.weight,
+                state = if(it.state == filter.state) null else filter.state,
+                tags = if(it.tags == filter.tags) emptyList() else filter.tags
+            )
+        }
+    }*/
 
     private fun toggleUniqueOnly() {
         _traitFilterUiState.update {

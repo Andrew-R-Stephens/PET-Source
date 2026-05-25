@@ -39,6 +39,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toGhostTitle
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
@@ -114,7 +115,7 @@ internal fun TraitConfig(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Surface(
@@ -136,7 +137,7 @@ internal fun TraitConfig(
                             .padding(8.dp)
                             .align(Alignment.CenterVertically),
                         text = stringResource(R.string.evidence_trait_category_unique).uppercase(),
-                        color = if (uniqueOnly == true) colors.selectedOnColor else
+                        color = if (uniqueOnly) colors.selectedOnColor else
                             colors.unselectedOnColor,
                         style = LocalTypography.current.quaternary.bold.copy(
                             textAlign = TextAlign.Center
@@ -146,14 +147,36 @@ internal fun TraitConfig(
                     )
                 }
 
-                VerticalDivider(
+                Surface(
                     modifier = Modifier
-                        .height(36.dp),
-                    thickness = 2.dp,
-                    color = LocalPalette.current.surfaceContainerHighest
-                )
+                        .weight(1f)
+                        .wrapContentHeight()
+                        .heightIn(min = 36.dp),
+                    color = LocalPalette.current.surfaceContainerHigh,
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    DropdownList(
+                        modifier = Modifier
+                            .padding(4.dp),
+                        options = categories.map { it.data }.map {
+                            stringResource(it.toStringResource()).uppercase()
+                        },
+                        true,
+                        label = categories.find { it.state }?.data?.let { stringResource(it.toStringResource()) }
+                            ?: "",
+                        onSelect = { onSelectCategory(categories[it].data) },
+                        color = LocalPalette.current.surfaceContainerHighest,
+                        onColor = LocalPalette.current.onSurface,
+                        textStyle = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center,
+                            fontSize = 14.sp
+                        ),
+                        selectionFontSize = 14.sp,
+                        optionsFontSize = 14.sp
+                    )
+                }
 
-                categories.forEach { option ->
+                /*categories.forEach { option ->
                     Surface(
                         modifier = Modifier
                             .wrapContentHeight()
@@ -184,7 +207,7 @@ internal fun TraitConfig(
                             )
                         }
                     }
-                }
+                }*/
             }
         }
 

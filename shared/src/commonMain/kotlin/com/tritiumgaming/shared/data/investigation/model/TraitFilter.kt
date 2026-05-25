@@ -6,7 +6,7 @@ import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.Trait
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight
 
 data class TraitFilter(
-    val category: TraitCategory? = null,
+    val category: TraitCategory = TraitCategory.ALL,
     val weight: TraitWeight? = null,
     val state: TraitState? = null,
     val tags: List<TraitTag> = emptyList(),

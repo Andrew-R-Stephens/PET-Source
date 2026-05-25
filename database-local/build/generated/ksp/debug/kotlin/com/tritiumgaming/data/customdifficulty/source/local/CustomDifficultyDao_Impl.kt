@@ -41,7 +41,7 @@ public class CustomDifficultyDao_Impl(
   init {
     this.__db = __db
     this.__insertAdapterOfCustomDifficultyEntity = object : EntityInsertAdapter<CustomDifficultyEntity>() {
-      protected override fun createQuery(): String = "INSERT OR REPLACE INTO `custom_difficulties` (`id`,`name`,`startingSanity`,`sanityPillRestoration`,`sanityDrainSpeed`,`sprinting`,`playerSpeed`,`flashlights`,`loseItemsAndConsumables`,`ghostSpeed`,`roamingFrequency`,`changingFavouriteRoom`,`activityLevel`,`eventFrequency`,`friendlyGhost`,`gracePeriod`,`huntDuration`,`killsExtendHunts`,`evidenceGiven`,`fingerprintChance`,`fingerprintDuration`,`setupTime`,`weather`,`doorsStartingOpen`,`numberOfHidingPlaces`,`sanityMonitor`,`activityMonitor`,`fuseBoxAtStartOfContract`,`fuseBoxVisibleOnMap`,`cursedPossessionsQuantity`,`cursedPossessions`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+      protected override fun createQuery(): String = "INSERT OR REPLACE INTO `CustomDifficulty` (`id`,`name`,`startingSanity`,`sanityPillRestoration`,`sanityDrainSpeed`,`sprinting`,`playerSpeed`,`flashlights`,`loseItemsAndConsumables`,`ghostSpeed`,`roamingFrequency`,`changingFavouriteRoom`,`activityLevel`,`eventFrequency`,`friendlyGhost`,`gracePeriod`,`huntDuration`,`killsExtendHunts`,`evidenceGiven`,`fingerprintChance`,`fingerprintDuration`,`setupTime`,`weather`,`doorsStartingOpen`,`numberOfHidingPlaces`,`sanityMonitor`,`activityMonitor`,`fuseBoxAtStartOfContract`,`fuseBoxVisibleOnMap`,`cursedPossessionsQuantity`,`cursedPossessions`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 
       protected override fun bind(statement: SQLiteStatement, entity: CustomDifficultyEntity) {
         statement.bindLong(1, entity.id.toLong())
@@ -88,14 +88,14 @@ public class CustomDifficultyDao_Impl(
       }
     }
     this.__deleteAdapterOfCustomDifficultyEntity = object : EntityDeleteOrUpdateAdapter<CustomDifficultyEntity>() {
-      protected override fun createQuery(): String = "DELETE FROM `custom_difficulties` WHERE `id` = ?"
+      protected override fun createQuery(): String = "DELETE FROM `CustomDifficulty` WHERE `id` = ?"
 
       protected override fun bind(statement: SQLiteStatement, entity: CustomDifficultyEntity) {
         statement.bindLong(1, entity.id.toLong())
       }
     }
     this.__updateAdapterOfCustomDifficultyEntity = object : EntityDeleteOrUpdateAdapter<CustomDifficultyEntity>() {
-      protected override fun createQuery(): String = "UPDATE OR ABORT `custom_difficulties` SET `id` = ?,`name` = ?,`startingSanity` = ?,`sanityPillRestoration` = ?,`sanityDrainSpeed` = ?,`sprinting` = ?,`playerSpeed` = ?,`flashlights` = ?,`loseItemsAndConsumables` = ?,`ghostSpeed` = ?,`roamingFrequency` = ?,`changingFavouriteRoom` = ?,`activityLevel` = ?,`eventFrequency` = ?,`friendlyGhost` = ?,`gracePeriod` = ?,`huntDuration` = ?,`killsExtendHunts` = ?,`evidenceGiven` = ?,`fingerprintChance` = ?,`fingerprintDuration` = ?,`setupTime` = ?,`weather` = ?,`doorsStartingOpen` = ?,`numberOfHidingPlaces` = ?,`sanityMonitor` = ?,`activityMonitor` = ?,`fuseBoxAtStartOfContract` = ?,`fuseBoxVisibleOnMap` = ?,`cursedPossessionsQuantity` = ?,`cursedPossessions` = ? WHERE `id` = ?"
+      protected override fun createQuery(): String = "UPDATE OR ABORT `CustomDifficulty` SET `id` = ?,`name` = ?,`startingSanity` = ?,`sanityPillRestoration` = ?,`sanityDrainSpeed` = ?,`sprinting` = ?,`playerSpeed` = ?,`flashlights` = ?,`loseItemsAndConsumables` = ?,`ghostSpeed` = ?,`roamingFrequency` = ?,`changingFavouriteRoom` = ?,`activityLevel` = ?,`eventFrequency` = ?,`friendlyGhost` = ?,`gracePeriod` = ?,`huntDuration` = ?,`killsExtendHunts` = ?,`evidenceGiven` = ?,`fingerprintChance` = ?,`fingerprintDuration` = ?,`setupTime` = ?,`weather` = ?,`doorsStartingOpen` = ?,`numberOfHidingPlaces` = ?,`sanityMonitor` = ?,`activityMonitor` = ?,`fuseBoxAtStartOfContract` = ?,`fuseBoxVisibleOnMap` = ?,`cursedPossessionsQuantity` = ?,`cursedPossessions` = ? WHERE `id` = ?"
 
       protected override fun bind(statement: SQLiteStatement, entity: CustomDifficultyEntity) {
         statement.bindLong(1, entity.id.toLong())
@@ -165,8 +165,8 @@ public class CustomDifficultyDao_Impl(
   }
 
   public override fun getAll(): Flow<List<CustomDifficultyEntity>> {
-    val _sql: String = "SELECT * FROM custom_difficulties"
-    return createFlow(__db, false, arrayOf("custom_difficulties")) { _connection ->
+    val _sql: String = "SELECT * FROM CustomDifficulty"
+    return createFlow(__db, false, arrayOf("CustomDifficulty")) { _connection ->
       val _stmt: SQLiteStatement = _connection.prepare(_sql)
       try {
         val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
@@ -291,7 +291,7 @@ public class CustomDifficultyDao_Impl(
   }
 
   public override suspend fun getById(id: Int): CustomDifficultyEntity? {
-    val _sql: String = "SELECT * FROM custom_difficulties WHERE id = ?"
+    val _sql: String = "SELECT * FROM CustomDifficulty WHERE id = ?"
     return performSuspending(__db, true, false) { _connection ->
       val _stmt: SQLiteStatement = _connection.prepare(_sql)
       try {
@@ -419,7 +419,7 @@ public class CustomDifficultyDao_Impl(
   }
 
   public override suspend fun getCount(): Int {
-    val _sql: String = "SELECT COUNT(*) FROM custom_difficulties"
+    val _sql: String = "SELECT COUNT(*) FROM CustomDifficulty"
     return performSuspending(__db, true, false) { _connection ->
       val _stmt: SQLiteStatement = _connection.prepare(_sql)
       try {

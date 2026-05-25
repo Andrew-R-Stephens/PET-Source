@@ -69,6 +69,7 @@ import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.Trait
 
 
 @StringRes fun TraitCategory.toStringResource() = when(this) {
+    TraitCategory.ALL -> R.string.difficulty_permission_quantity_all
     TraitCategory.BEHAVIOR -> R.string.evidence_trait_category_behavior
     TraitCategory.CHARACTERISTIC -> R.string.evidence_trait_category_characteristic
     TraitCategory.HUNT -> R.string.evidence_trait_category_hunt

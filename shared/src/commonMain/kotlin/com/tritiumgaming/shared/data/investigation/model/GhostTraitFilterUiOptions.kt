@@ -14,8 +14,8 @@ data class GhostTraitFilterUiOptions(
 )
 
 data class CategoryOption(
-    val data: TraitCategory? = null,
-    val state: Boolean = false
+    val data: TraitCategory = TraitCategory.ALL,
+    val state: Boolean = true
 )
 
 data class WeightOption(

@@ -112,6 +112,7 @@ import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
@@ -160,6 +161,25 @@ private fun InvestigationScreenPreview(
         ) {
             InvestigationContent(
                 uiState = InvestigationUiState(
+                    operationTimer = OperationTimerUiState(
+                        remainingTime = "0:00"
+                    ),
+                    traitFilterOptions = GhostTraitFilterUiOptions(
+                        category = listOf(
+                            CategoryOption(
+                                data = TraitCategory.ALL
+                            ),
+                            CategoryOption(
+                                data = TraitCategory.BEHAVIOR
+                            ),
+                            CategoryOption(
+                                data = TraitCategory.CHARACTERISTIC
+                            ),
+                            CategoryOption(
+                                data = TraitCategory.INTERACTION
+                            )
+                        )
+                    ),
                     toolbar = OperationToolbarUiState(category = category),
                     mapConfig = MapConfigUiState(
                         allMaps = listOf(
@@ -250,7 +270,9 @@ fun InvestigationSoloScreen(
         onTimerSkip = { investigationViewModel.onEvent(SkipOperationTimer) },
         onTogglePower = { investigationViewModel.onEvent(ToggleFuseBoxOverride) },
         onSelectTraitCategory = { category ->
-            investigationViewModel.onEvent(SetTraitFilter(TraitFilter(category = category)))
+            investigationViewModel.onEvent(SetTraitFilter(
+                TraitFilter(category = category)
+            ))
         },
         onToggleTrait = { trait ->
             investigationViewModel.onEvent(ToggleTrait(trait))
