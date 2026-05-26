@@ -34,8 +34,10 @@ import com.tritiumgaming.feature.language.ui.LanguageScreenViewModel
 import com.tritiumgaming.feature.maps.ui.MapMenuScreen
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
+import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceHomeScreen
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
 import com.tritiumgaming.feature.marketplace.ui.store.MarketplaceStoreScreen
+import com.tritiumgaming.feature.marketplace.ui.store.MarketplaceTypographyScreen
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
@@ -200,6 +202,14 @@ private fun NavGraphBuilder.homeNavigation(
             startDestination = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route
         ) {
 
+            composable(route = NavRoute.SCREEN_MARKETPLACE_HOME.route) {
+                HomeScreen {
+                    MarketplaceHomeScreen(
+                        navController = navController
+                    )
+                }
+            }
+
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
                 HomeScreen {
                     AccountScreen(
@@ -219,7 +229,17 @@ private fun NavGraphBuilder.homeNavigation(
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) {
                 HomeScreen {
-                    MarketplaceBillingScreen()
+                    MarketplaceBillingScreen(
+                        navController = navController
+                    )
+                }
+            }
+
+            composable(route = NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) {
+                HomeScreen {
+                    MarketplaceTypographyScreen(
+                        navController = navController
+                    )
                 }
             }
 

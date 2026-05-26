@@ -17,7 +17,9 @@ enum class NavRoute(val route: String) {
     SCREEN_NEWSLETTER_MESSAGES(route = "NewsMessagesScreen"),
     SCREEN_NEWSLETTER_MESSAGE(route = "NewsMessageScreen"),
 
+    SCREEN_MARKETPLACE_HOME(route = "MarketplaceHomeScreen"),
     SCREEN_MARKETPLACE_UNLOCKS(route = "MarketplaceUnlocksScreen"),
+    SCREEN_MARKETPLACE_TYPOGRAPHY(route = "MarketplaceTypographyScreen"),
     SCREEN_MARKETPLACE_BILLABLE(route = "MarketplaceBillableScreen"),
 
     // Operation Navigation

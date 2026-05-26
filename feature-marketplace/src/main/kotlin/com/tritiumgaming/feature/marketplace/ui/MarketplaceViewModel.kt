@@ -9,7 +9,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState
+import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogBillablesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
+import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogTypographiesUiState
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
@@ -64,6 +66,32 @@ class MarketplaceViewModel(
                 e.printStackTrace()
             }
         }
+    }
+
+    private val _marketCatalogTypographiesUiState = MutableStateFlow(MarketCatalogTypographiesUiState())
+    val marketCatalogTypographiesUiState = _marketCatalogTypographiesUiState.asStateFlow()
+
+    private fun initMarketCatalogTypographies() {
+        viewModelScope.launch {
+            try {
+                val result = getMarketCatalogTypographiesUseCase()
+
+                _marketCatalogTypographiesUiState.update {
+                    it.copy(
+                        typographies = result
+                    )
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private val _marketCatalogBillablesUiState = MutableStateFlow(MarketCatalogBillablesUiState())
+    val marketCatalogBillablesUiState = _marketCatalogBillablesUiState.asStateFlow()
+
+    private fun initMarketCatalogBillables() {
+        // TODO
     }
 
     private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
@@ -185,6 +213,8 @@ class MarketplaceViewModel(
         startObservingAccount()
 
         initMarketCatalogPalettes()
+        initMarketCatalogTypographies()
+        initMarketCatalogBillables()
     }
 
     companion object {
