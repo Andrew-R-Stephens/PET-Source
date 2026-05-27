@@ -1078,11 +1078,12 @@ fun OperationConfigsBottomSheet(
                     mapConfigComponent(
                         Modifier
                             .fillMaxWidth()
+                            .widthIn(max = 400.dp)
                     )
 
                     Row(
-                        modifier = Modifier.
-                            fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -1102,8 +1103,7 @@ fun OperationConfigsBottomSheet(
 
                     weatherConfigComponent(
                         Modifier
-                            .fillMaxWidth()
-                    )
+                            .fillMaxWidth()                    )
                 }
             }
 
