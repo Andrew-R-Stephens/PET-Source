@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.home
+package com.tritiumgaming.feature.marketplace.ui.store.palettes
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,8 +18,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
+import com.tritiumgaming.feature.marketplace.ui.common.components.PaletteCard
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
-import com.tritiumgaming.feature.marketplace.ui.store.components.PaletteCard
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
@@ -36,26 +36,41 @@ private annotation class DevicePreviews
 @DevicePreviews
 @Composable
 @Preview
-private fun MarketplaceHomeScreenPreview() {
-    MarketplaceHomeContent(
-
+private fun MarketplaceStoreScreenPreview() {
+    MarketplaceStoreContent(
+        MarketCatalogPalettesUiState(
+            listOf(
+                MarketPalette(
+                    ""
+                ),
+                MarketPalette(
+                    "1"
+                ),
+                MarketPalette(
+                    "2"
+                )
+            )
+        )
     )
 }
 
 @Composable
-fun MarketplaceHomeScreen(
+fun MarketplaceStoreScreen(
     navController: NavHostController = rememberNavController(),
     marketplaceViewModel: MarketplaceViewModel = viewModel(factory = MarketplaceViewModel.Factory)
 ) {
+    val paletteUnlocks by marketplaceViewModel.marketCatalogPalettesUiState.collectAsStateWithLifecycle()
 
-    MarketplaceHomeContent(
+    MarketplaceStoreContent(
+        unlocks = paletteUnlocks
     )
 
 }
 
 
 @Composable
-private fun MarketplaceHomeContent(
+private fun MarketplaceStoreContent(
+    unlocks: MarketCatalogPalettesUiState
 ) {
 
     Column(
@@ -64,6 +79,10 @@ private fun MarketplaceHomeContent(
     ) {
 
         AccountDetails()
+
+        Storefront(
+            unlocks = unlocks
+        )
 
     }
 

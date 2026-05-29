@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.store
+package com.tritiumgaming.feature.marketplace.ui.store.typographies
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

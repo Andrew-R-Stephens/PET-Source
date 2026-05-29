@@ -230,7 +230,7 @@ private fun StartContent(
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 StartContentCompactPortrait(
                     modifier = Modifier
-                        .weight(1f),
+                        .weight(1f, false),
                     currentLanguage = currentLanguage,
                     onNavigate = onNavigate
                 )
@@ -286,14 +286,13 @@ private fun StartContentCompactPortrait(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize(1f)
             .padding(PaddingValues(vertical = 16.dp)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
     ) {
         LogoSection(
             modifier = Modifier
-                .weight(1f, false)
+                .weight(1f)
         )
         StartSection(
             modifier = Modifier
@@ -312,7 +311,6 @@ internal fun StartContentCompactLandscape(
 ) {
     Row(
         modifier = modifier
-            .fillMaxSize()
             .padding(PaddingValues(vertical = 16.dp)),
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically
@@ -364,7 +362,7 @@ private fun LogoSection(
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
 
         IconResource.ICON_LOGO_APP.ToComposable(
@@ -407,14 +405,12 @@ private fun StartSection(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.spacedBy(32.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         StartButton {
             onNavigate(NavRoute.SCREEN_INVESTIGATION.route)
         }
-
-        Spacer(modifier = Modifier.height(32.dp))
 
         LanguageButton(
             currentLanguage = currentLanguage
