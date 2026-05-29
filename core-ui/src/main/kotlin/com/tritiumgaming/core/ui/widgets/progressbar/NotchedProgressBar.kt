@@ -88,8 +88,24 @@ fun NotchedProgressBar(
             style = Stroke(width = 3f * scale)
         )
 
+        val elapsedTime = max - remaining
+        val focusedNotch = if (remaining <= 0) {
+            notches.maxByOrNull { it.xPos }
+        } else {
+            val surpassedNotches = notches.filter { it.xPos <= elapsedTime }
+            if (surpassedNotches.isNotEmpty()) {
+                surpassedNotches.maxByOrNull { it.xPos }
+            } else {
+                notches.minByOrNull { it.xPos }
+            }
+        }
+
         // --- Draw Labels ---
         notches.forEachIndexed { index, notch ->
+            val isFocused = notch == focusedNotch
+            val alpha = if (isFocused) 1f else .2f
+            val labelColor = colors.label.copy(alpha = alpha)
+
             val inverseNotch = (max.coerceAtLeast(1) - notch.xPos).toFloat()
             val progressAreaWidth = size.width - 24f * scale
             val notchX = 12f * scale +
@@ -99,20 +115,21 @@ fun NotchedProgressBar(
             val textLayoutResult = textMeasurer.measure(
                 text = labels[index],
                 style = TextStyle(
-                    color = colors.label,
+                    color = labelColor,
                     fontSize = (labelsHeight * .9f).toSp(),
                     fontWeight = FontWeight.Normal
                 )
             )
 
             val textWidth = textLayoutResult.size.width.toFloat()
-            val xPos = (notchX - textWidth / 2f).coerceIn(0f,
+            val xPos = (notchX - textWidth / 2f).coerceIn(
+                0f,
                 0f.coerceAtLeast(size.width - textWidth)
             )
 
             drawText(
                 textLayoutResult = textLayoutResult,
-                color = colors.label,
+                color = labelColor,
                 topLeft = Offset(
                     x = xPos,
                     y = size.height - textLayoutResult.size.height + (labelsHeight * .1f)
