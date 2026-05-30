@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.common.components
+package com.tritiumgaming.feature.marketplace.ui.store.palettes
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

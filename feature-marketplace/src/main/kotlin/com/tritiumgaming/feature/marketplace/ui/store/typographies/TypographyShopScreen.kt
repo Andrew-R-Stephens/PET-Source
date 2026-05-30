@@ -1,7 +1,8 @@
-package com.tritiumgaming.feature.marketplace.ui.store.palettes
+package com.tritiumgaming.feature.marketplace.ui.store.typographies
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.widthIn
@@ -11,16 +12,20 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
-import com.tritiumgaming.feature.marketplace.ui.common.components.PaletteCard
+import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteCard
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
+import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogTypographiesUiState
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
@@ -36,17 +41,17 @@ private annotation class DevicePreviews
 @DevicePreviews
 @Composable
 @Preview
-private fun MarketplaceStoreScreenPreview() {
-    MarketplaceStoreContent(
-        MarketCatalogPalettesUiState(
-            listOf(
-                MarketPalette(
+private fun TypographyShopPreview() {
+    TypographyShopContent(
+        MarketCatalogTypographiesUiState(
+            typographies = listOf(
+                MarketTypography(
                     ""
                 ),
-                MarketPalette(
+                MarketTypography(
                     "1"
                 ),
-                MarketPalette(
+                MarketTypography(
                     "2"
                 )
             )
@@ -55,59 +60,34 @@ private fun MarketplaceStoreScreenPreview() {
 }
 
 @Composable
-fun MarketplaceStoreScreen(
+fun TypographyShopScreen(
     navController: NavHostController = rememberNavController(),
     marketplaceViewModel: MarketplaceViewModel = viewModel(factory = MarketplaceViewModel.Factory)
 ) {
-    val paletteUnlocks by marketplaceViewModel.marketCatalogPalettesUiState.collectAsStateWithLifecycle()
+    val unlocks by marketplaceViewModel.marketCatalogTypographiesUiState.collectAsStateWithLifecycle()
 
-    MarketplaceStoreContent(
-        unlocks = paletteUnlocks
+    TypographyShopContent(
+        unlocks = unlocks
     )
 
 }
 
 
 @Composable
-private fun MarketplaceStoreContent(
-    unlocks: MarketCatalogPalettesUiState
+private fun TypographyShopContent(
+    unlocks: MarketCatalogTypographiesUiState
 ) {
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-
-        AccountDetails()
-
-        Storefront(
-            unlocks = unlocks
-        )
-
-    }
-
-}
-
-
-@Composable
-private fun AccountDetails() {
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-    ) {
-
-
-
-    }
-
+    CategoryList(
+        modifier = Modifier,
+        unlocks = unlocks.typographies
+    )
 }
 
 @Composable
-private fun Storefront(
+private fun CategoryList(
     modifier: Modifier = Modifier,
-    unlocks: MarketCatalogPalettesUiState
+    unlocks: List<MarketTypography> = emptyList()
 ) {
 
     LazyColumn (
@@ -118,25 +98,19 @@ private fun Storefront(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        items(items = unlocks.palettes, key = { it.uuid }) { marketCatalogEntry ->
+        items(items = unlocks, key = { it.uuid })  { marketCatalogEntry ->
 
-            val uuid = marketCatalogEntry.uuid
+            marketCatalogEntry.typography?.toTypographyResource()?.let { typography ->
 
-            val palette = marketCatalogEntry.palette
-            val cost = marketCatalogEntry.buyCredits
-            val name = marketCatalogEntry.name
-
-            PaletteCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                marketPalette = MarketPalette(
-                    uuid = uuid,
-                    name = name,
-                    palette = palette,
-                    buyCredits = cost
+                TypographyCard(
+                    modifier = Modifier,
+                    typography = typography,
+                    title = marketCatalogEntry.name ?: "Error",
+                    buyCredits = marketCatalogEntry.buyCredits,
+                    onBuyClick = { }
                 )
-            )
+
+            }
 
         }
 

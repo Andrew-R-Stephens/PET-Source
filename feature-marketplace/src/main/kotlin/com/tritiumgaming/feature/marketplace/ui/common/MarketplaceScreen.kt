@@ -1,24 +1,16 @@
 package com.tritiumgaming.feature.marketplace.ui.common
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
-import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
-import com.tritiumgaming.feature.marketplace.ui.common.components.PaletteCard
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
@@ -34,26 +26,26 @@ private annotation class DevicePreviews
 @DevicePreviews
 @Composable
 @Preview
-private fun MarketplaceHomeScreenPreview() {
-    MarketplaceHomeContent(
+private fun MarketplaceScreenPreview() {
+    MarketplaceContent(
 
     )
 }
 
 @Composable
-fun MarketplaceHomeScreen(
+internal fun MarketplaceScreen(
     navController: NavHostController = rememberNavController(),
     marketplaceViewModel: MarketplaceViewModel = viewModel(factory = MarketplaceViewModel.Factory)
 ) {
 
-    MarketplaceHomeContent(
+    MarketplaceContent(
     )
 
 }
 
 
 @Composable
-private fun MarketplaceHomeContent(
+private fun MarketplaceContent(
     content: @Composable () -> Unit = {}
 ) {
     Column(

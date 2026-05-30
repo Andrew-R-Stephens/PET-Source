@@ -331,38 +331,13 @@ internal fun StartContentCompactLandscape(
 }
 
 @Composable
-private fun ColumnScope.StartContentOther(
-    currentLanguage: String,
-    onNavigate: (route: String) -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .weight(1f)
-            .fillMaxSize(1f)
-            .padding(PaddingValues(vertical = 16.dp)),
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        LogoSection(
-            modifier = Modifier.weight(1f)
-        )
-        StartSection(
-            modifier = Modifier
-                .weight(1f),
-            currentLanguage = currentLanguage,
-            onNavigate = onNavigate
-        )
-    }
-}
-
-@Composable
 private fun LogoSection(
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
     ) {
 
         IconResource.ICON_LOGO_APP.ToComposable(
@@ -377,13 +352,11 @@ private fun LogoSection(
             )
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
         BasicText(
             modifier = Modifier
                 .widthIn(max = 256.dp)
                 .fillMaxWidth()
-                .height(48.dp),
+                .height(36.dp),
             text = stringResource(R.string.titlescreen_description).uppercase(),
             style = LocalTypography.current.primary.regular.copy(
                 color = LocalPalette.current.primary,
