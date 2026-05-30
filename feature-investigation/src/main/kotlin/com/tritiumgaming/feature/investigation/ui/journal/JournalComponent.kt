@@ -108,9 +108,9 @@ private fun GhostListColumn(
     ListColumn(
         modifier = modifier,
         title = stringResource(R.string.investigation_section_title_ghosts)
-    ) {
+    ) { listModifier ->
         GhostList(
-            modifier = modifier,
+            modifier = listModifier,
             ghostOrder = ghostOrder,
             ghostEvidenceState = ghostEvidenceState,
             onGhostNameClick = onGhostNameClick,
@@ -130,9 +130,9 @@ private fun EvidenceListColumn(
     ListColumn(
         modifier = modifier,
         title = stringResource(R.string.investigation_section_title_evidence),
-    ) {
+    ) { listModifier ->
         PrimaryEvidenceList(
-            modifier = modifier,
+            modifier = listModifier,
             evidenceStateList = evidenceStateList,
             onChangeEvidenceRuling = onChangeEvidenceRuling,
             onEvidenceClick = onEvidenceClick
@@ -158,7 +158,7 @@ private fun ListColumn(
         Box(
             modifier = Modifier
                 .height(36.dp)
-                .wrapContentWidth(Alignment.CenterHorizontally)
+                .fillMaxWidth()
                 .padding(2.dp)
                 .onSizeChanged { size = it },
             contentAlignment = Alignment.Center
@@ -181,6 +181,7 @@ private fun ListColumn(
         listComponent(
             Modifier
                 .fillMaxWidth()
+                .fillMaxHeight()
         )
     }
 }

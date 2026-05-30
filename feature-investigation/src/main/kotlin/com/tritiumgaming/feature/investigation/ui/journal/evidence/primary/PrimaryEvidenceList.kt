@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal.evidence.primary
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -36,7 +37,8 @@ internal fun PrimaryEvidenceList(
         ) { ruledEvidence ->
 
             EvidenceListItem(
-                modifier = Modifier,
+                modifier = Modifier
+                    .fillMaxWidth(),
                 state = EvidenceListItemUiState(
                     state = ruledEvidence.state,
                     label = stringResource(ruledEvidence.evidence.name.toStringResource()),

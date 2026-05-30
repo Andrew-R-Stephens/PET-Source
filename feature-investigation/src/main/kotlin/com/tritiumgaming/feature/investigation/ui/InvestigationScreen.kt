@@ -108,6 +108,8 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.evidence.model.Evidence
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
@@ -120,17 +122,19 @@ import com.tritiumgaming.shared.data.investigation.model.GhostState
 import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
 import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
+import com.tritiumgaming.shared.data.investigation.model.TraitScore
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
+import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+//@Preview(name = "Small Phone", device = "id:small_phone")
+//@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+//@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+//@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
 @Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
 @Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
@@ -163,6 +167,88 @@ private fun InvestigationScreenPreview(
                 uiState = InvestigationUiState(
                     operationTimer = OperationTimerUiState(
                         remainingTime = "0:00"
+                    ),
+                    ghostsSorted = GhostResources.GhostIdentifier.entries.take(10).map { identifier ->
+                        GhostState(
+                            ghostEvidence = GhostEvidence(
+                                ghost = Ghost(
+                                    id = identifier,
+                                    name = GhostResources.GhostTitle.valueOf(identifier.name),
+                                    icon = GhostResources.GhostIcon.valueOf(identifier.name),
+                                    info = GhostResources.GhostDescription.valueOf(identifier.name),
+                                    strengthData = GhostResources.GhostStrength.valueOf(identifier.name),
+                                    weaknessData = GhostResources.GhostWeakness.valueOf(identifier.name),
+                                    huntData = GhostResources.GhostHuntInfo.valueOf(identifier.name),
+                                    normalEvidence = listOf(
+                                        EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
+                                        EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
+                                        EvidenceResources.EvidenceIdentifier.DOTS,
+                                    ),
+                                    strictEvidence = listOf(
+                                        EvidenceResources.EvidenceIdentifier.EMF_5
+                                    ),
+                                    speed = GhostResources.GhostSpeed.valueOf(identifier.name),
+                                    huntSanityBounds = GhostResources.HuntSanityBounds.valueOf(identifier.name),
+                                    huntCooldown = GhostResources.HuntCooldown.valueOf(identifier.name)
+                                ),
+                                normalEvidenceList = listOf(
+                                    EvidenceType(
+                                            id = EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
+                                            name = EvidenceResources.EvidenceTitle.GHOST_WRITING,
+                                            icon = EvidenceResources.EvidenceIcon.GHOST_WRITING
+
+                                    ),
+                                    EvidenceType(
+                                            id = EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
+                                            name = EvidenceResources.EvidenceTitle.FREEZING_TEMPERATURE,
+                                            icon = EvidenceResources.EvidenceIcon.FREEZING_TEMPERATURE
+
+                                    ),
+                                    EvidenceType(
+                                            id = EvidenceResources.EvidenceIdentifier.DOTS,
+                                            name = EvidenceResources.EvidenceTitle.DOTS,
+                                            icon = EvidenceResources.EvidenceIcon.DOTS
+                                    ),
+                                ),
+                                strictEvidenceList = listOf(
+                                    EvidenceType(
+                                        id = EvidenceResources.EvidenceIdentifier.DOTS,
+                                        name = EvidenceResources.EvidenceTitle.DOTS,
+                                        icon = EvidenceResources.EvidenceIcon.DOTS
+
+                                    ),
+                                ),
+                            ),
+                            score = 0,
+                            manualRejection = false,
+                            bpmIsValid = false,
+                            traitScore = TraitScore(),
+                            traits = emptySet()
+                        )
+                    },
+                    evidenceList = listOf(
+                        EvidenceState(
+                            evidence = EvidenceType(
+                                id = EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
+                                name = EvidenceResources.EvidenceTitle.GHOST_WRITING,
+                                icon = EvidenceResources.EvidenceIcon.GHOST_WRITING
+                            )
+                        ),
+                        EvidenceState(
+                            evidence = EvidenceType(
+                                id = EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
+                                name = EvidenceResources.EvidenceTitle.FREEZING_TEMPERATURE,
+                                icon = EvidenceResources.EvidenceIcon.FREEZING_TEMPERATURE
+                            )
+                        ),
+                        EvidenceState(
+                            evidence = EvidenceType(
+                                id = EvidenceResources.EvidenceIdentifier.DOTS,
+                                name = EvidenceResources.EvidenceTitle.DOTS,
+                                icon = EvidenceResources.EvidenceIcon.DOTS
+                            )
+                        ),
+
                     ),
                     traitFilterOptions = GhostTraitFilterUiOptions(
                         category = listOf(

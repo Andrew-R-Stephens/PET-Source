@@ -136,28 +136,22 @@ private fun EvidenceItem(
                 .padding(4.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
-            Box(
+            Text(
                 modifier = Modifier
-                    .wrapContentSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    modifier = Modifier
-                        .wrapContentWidth()
-                        .wrapContentHeight(),
-                    text = state.label,
-                    style = LocalTypography.current.primary.regular.copy(
-                        color = LocalPalette.current.onSurface,
-                        textAlign = TextAlign.Center
-                    ),
-                    maxLines = 1,
-                    autoSize = TextAutoSize.StepBased(
-                        minFontSize = 1.sp,
-                        //maxFontSize = 48.sp,
-                        stepSize = 8.sp
-                    )
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                text = state.label,
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.onSurface,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(
+                    minFontSize = 1.sp,
+                    //maxFontSize = 48.sp,
+                    stepSize = 8.sp
                 )
-            }
+            )
         }
 
         if(!state.enabled) return@FlowColumn
@@ -165,7 +159,6 @@ private fun EvidenceItem(
         Row(
             modifier = Modifier
                 .wrapContentHeight()
-                //.fillMaxWidth()
                 .weight(1f, true),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
@@ -293,7 +286,7 @@ private fun RulingIconPreview() {
 }
 
 @Composable
-@Preview(device = "spec:width=411dp,height=891dp")
+@Preview(device = "spec:width=150dp,height=891dp")
 @TestOnly
 private fun EvidenceItemPreview() {
     Column(
