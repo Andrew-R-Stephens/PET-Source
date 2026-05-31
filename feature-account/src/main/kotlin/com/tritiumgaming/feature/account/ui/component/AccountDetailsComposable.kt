@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -33,12 +34,46 @@ import com.tritiumgaming.shared.core.ui.mappers.IconResources
 
 @Composable
 @Preview
-private fun AccountDetailsPreview() {
+private fun AccountBannerExpandedPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
         AccountBannerExpanded()
+    }
+}
+
+@Composable
+@Preview
+private fun AccountBannerCompositePreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        AccountBannerComposite()
+    }
+}
+
+@Composable
+@Preview
+private fun AccountBannerIconPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        AccountBannerIcon(
+            modifier = Modifier,
+            name = "A S",
+            icon = { modifier ->
+                Image(
+                    modifier = modifier,
+                    painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                    contentDescription = "",
+                    contentScale = ContentScale.Inside,
+                    alpha = .75f
+                )
+            }
+        )
     }
 }
 
@@ -83,7 +118,21 @@ fun AccountBannerComposite(
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         if (!LocalInspectionMode.current) {
-            AccountBannerIcon()
+            val user = Firebase.auth.currentUser
+            
+            AccountBannerIcon(
+                modifier = Modifier,
+                name = user?.displayName,
+                icon = { modifier ->
+                    Image(
+                        modifier = modifier,
+                        painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                        contentDescription = "",
+                        contentScale = ContentScale.Inside,
+                        alpha = .75f
+                    )
+                }
+            )
         }
 
         Box(
@@ -101,7 +150,9 @@ fun AccountBannerComposite(
 
 @Composable
 private fun AccountBannerIcon(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    name: String? = null,
+    icon: @Composable (Modifier) -> Unit = {}
 ) {
     AccountIcon(
         modifier = modifier
@@ -109,21 +160,20 @@ private fun AccountBannerIcon(
         borderColor = LocalPalette.current.onSurface,
         backgroundColor = LocalPalette.current.surfaceContainer,
         placeholder = {
-            IconResources.IconResource.PERSON.ToComposable(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                colors = IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.surface,
-                    strokeColor = LocalPalette.current.onSurface
+            if(name == null) {
+                IconResources.IconResource.PERSON.ToComposable(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(8.dp),
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.surface,
+                        strokeColor = LocalPalette.current.onSurface
+                    )
                 )
-            )
+            }
         },
         content = {
-            val authUser = Firebase.auth.currentUser
-            val authUserName = authUser?.displayName ?: ""
-
-            val names: List<String?> = (authUserName).split(" ")
+            val names: List<String?> = (name)?.split(" ") ?: emptyList()
 
             AccountIconPrimaryContent(
                 firstName = names.getOrNull(0) ?: "",
@@ -137,12 +187,7 @@ private fun AccountBannerIcon(
                     ),
                 )
             ) {
-                Image(
-                    painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
-                    contentDescription = "",
-                    contentScale = ContentScale.Inside,
-                    alpha = .75f
-                )
+                icon(Modifier.alpha(.7f))
             }
         }
     )
