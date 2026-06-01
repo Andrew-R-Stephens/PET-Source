@@ -34,10 +34,7 @@ import com.tritiumgaming.feature.language.ui.LanguageScreenViewModel
 import com.tritiumgaming.feature.maps.ui.MapMenuScreen
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
-import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceHomeScreen
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
-import com.tritiumgaming.feature.marketplace.ui.store.palettes.MarketplaceStoreScreen
-import com.tritiumgaming.feature.marketplace.ui.store.typographies.MarketplaceTypographyScreen
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
@@ -203,11 +200,11 @@ private fun NavGraphBuilder.homeNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_HOME.route) {
-                HomeScreen {
+                /*HomeScreen {
                     MarketplaceHomeScreen(
                         navController = navController
                     )
-                }
+                }*/
             }
 
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
@@ -220,11 +217,11 @@ private fun NavGraphBuilder.homeNavigation(
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
-                HomeScreen {
+                /*HomeScreen {
                     MarketplaceStoreScreen(
                         navController = navController
                     )
-                }
+                }*/
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) {
@@ -236,11 +233,11 @@ private fun NavGraphBuilder.homeNavigation(
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) {
-                HomeScreen {
+                /*HomeScreen {
                     MarketplaceTypographyScreen(
                         navController = navController
                     )
-                }
+                }*/
             }
 
         }
