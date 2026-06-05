@@ -77,29 +77,3 @@ internal fun TimerTools(
     }
 }
 
-@Composable
-fun ProgressBarTimer(
-    modifier: Modifier = Modifier,
-    title: String,
-    max: Long,
-    remaining: Long,
-    timeText: String,
-    running: Boolean,
-    onToggle: () -> Unit,
-    notches: List<ProgressBarNotch>,
-    colors: NotchedProgressBarUiColors,
-    iconComponent: @Composable (Modifier) -> Unit = {}
-) {
-    NotchedProgressBarTimer(
-        modifier = modifier,
-        title = title,
-        max = max,
-        remaining = remaining,
-        timeText = timeText,
-        running = running,
-        onToggle = onToggle,
-        notches = notches,
-        colors = colors,
-        icon = { modifier -> iconComponent(modifier) }
-    )
-}

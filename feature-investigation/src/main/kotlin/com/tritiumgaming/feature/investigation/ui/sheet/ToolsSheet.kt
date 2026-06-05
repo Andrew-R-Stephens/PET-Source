@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.investigation.ui.sheet
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -19,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.impl.composite.FingerprintDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
@@ -48,7 +52,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationBu
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeterComponent
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
-import com.tritiumgaming.feature.investigation.ui.tool.timers.ProgressBarTimer
+import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarTimer
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
@@ -113,7 +117,7 @@ internal fun ToolsBottomSheetComponent(
     onToggleUniqueOnly: () -> Unit,
     // Analyzer state
     operationDetailsUiState: OperationDetailsUiState,
-    // Timers state
+    // Timers state SMUDGE
     smudgeHuntPreventionTitle: String,
     smudgeHuntPreventionMax: Long,
     smudgeHuntPreventionRemaining: Long,
@@ -121,7 +125,7 @@ internal fun ToolsBottomSheetComponent(
     smudgeHuntPreventionRunning: Boolean,
     onSmudgeToggle: () -> Unit,
     smudgeNotches: List<ProgressBarNotch>,
-
+    // Timers state HUNT DURATION
     huntDurationTitle: String,
     huntDurationMax: Long,
     huntDurationRemaining: Long,
@@ -129,7 +133,7 @@ internal fun ToolsBottomSheetComponent(
     huntDurationRunning: Boolean,
     onHuntDurationToggle: () -> Unit,
     huntDurationNotches: List<ProgressBarNotch>,
-
+    // Timers state HUNT COOLDOWN
     huntCooldownTitle: String,
     huntCooldownMax: Long,
     huntCooldownRemaining: Long,
@@ -137,7 +141,7 @@ internal fun ToolsBottomSheetComponent(
     huntCooldownRunning: Boolean,
     onHuntCooldownToggle: () -> Unit,
     huntCooldownNotches: List<ProgressBarNotch>,
-
+    // Timers state FINGERPRINT
     fingerprintTimerTitle: String,
     fingerprintTimerMax: Long,
     fingerprintTimerRemaining: Long,
@@ -320,7 +324,7 @@ internal fun ToolsBottomSheetComponent(
                         color = LocalPalette.current.surfaceContainer,
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        ProgressBarTimer(
+                        NotchedProgressBarTimer(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(8.dp),
@@ -342,30 +346,84 @@ internal fun ToolsBottomSheetComponent(
                         }
                     }
 
-                    Surface(
-                        modifier = Modifier,
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(8.dp)
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(IntrinsicSize.Min),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+                        verticalAlignment = Alignment.Top
                     ) {
-                        ProgressBarTimer(
+                        Column(
                             modifier = Modifier
-                                .padding(8.dp),
-                            title = huntDurationTitle,
-                            max = huntDurationMax,
-                            remaining = huntDurationRemaining,
-                            timeText = huntDurationTimeText,
-                            running = huntDurationRunning,
-                            onToggle = onHuntDurationToggle,
-                            notches = huntDurationNotches,
-                            colors = notchedProgressBarUiColors
-                        ) { modifier ->
-                            HuntDurationIcon(
-                                modifier = modifier,
-                                colors = IconVectorColors.defaults().copy(
-                                    fillColor = LocalPalette.current.onSurface
-                                )
-                            )
+                                .fillMaxWidth(),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Surface(
+                                modifier = Modifier,
+                                color = LocalPalette.current.surfaceContainer,
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    verticalArrangement = Arrangement.Top
+                                ) {
+                                    NotchedProgressBarTimer(
+                                        modifier = Modifier
+                                            .padding(8.dp),
+                                        title = huntDurationTitle,
+                                        max = huntDurationMax,
+                                        remaining = huntDurationRemaining,
+                                        timeText = huntDurationTimeText,
+                                        running = huntDurationRunning,
+                                        onToggle = onHuntDurationToggle,
+                                        notches = huntDurationNotches,
+                                        colors = notchedProgressBarUiColors
+                                    ) { modifier ->
+                                        HuntDurationIcon(
+                                            modifier = modifier,
+                                            colors = IconVectorColors.defaults().copy(
+                                                fillColor = LocalPalette.current.onSurface
+                                            )
+                                        )
+                                    }
+
+                                    Checkbox(
+                                        modifier = Modifier,
+                                        checked = false,
+                                        onCheckedChange = {},
+                                        colors = CheckboxDefaults.colors(),
+                                    )
+                                }
+                            }
+
+                            Surface(
+                                modifier = Modifier,
+                                color = LocalPalette.current.surfaceContainer,
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
+                                NotchedProgressBarTimer(
+                                    modifier = Modifier
+                                        .padding(8.dp),
+                                    title = huntCooldownTitle,
+                                    max = huntCooldownMax,
+                                    remaining = huntCooldownRemaining,
+                                    timeText = huntCooldownTimeText,
+                                    running = huntCooldownRunning,
+                                    onToggle = onHuntCooldownToggle,
+                                    notches = huntCooldownNotches,
+                                    colors = notchedProgressBarUiColors
+                                ) { modifier ->
+                                    HuntCooldownDurationIcon(
+                                        modifier = modifier,
+                                        colors = IconVectorColors.defaults().copy(
+                                            fillColor = LocalPalette.current.onSurface
+                                        )
+                                    )
+                                }
+                            }
                         }
+
                     }
 
                     Surface(
@@ -373,33 +431,7 @@ internal fun ToolsBottomSheetComponent(
                         color = LocalPalette.current.surfaceContainer,
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        ProgressBarTimer(
-                            modifier = Modifier
-                                .padding(8.dp),
-                            title = huntCooldownTitle,
-                            max = huntCooldownMax,
-                            remaining = huntCooldownRemaining,
-                            timeText = huntCooldownTimeText,
-                            running = huntCooldownRunning,
-                            onToggle = onHuntCooldownToggle,
-                            notches = huntCooldownNotches,
-                            colors = notchedProgressBarUiColors
-                        ) { modifier ->
-                            HuntCooldownDurationIcon(
-                                modifier = modifier,
-                                colors = IconVectorColors.defaults().copy(
-                                    fillColor = LocalPalette.current.onSurface
-                                )
-                            )
-                        }
-                    }
-
-                    Surface(
-                        modifier = Modifier,
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        ProgressBarTimer(
+                        NotchedProgressBarTimer(
                             modifier = Modifier
                                 .padding(8.dp),
                             title = fingerprintTimerTitle,
@@ -411,7 +443,7 @@ internal fun ToolsBottomSheetComponent(
                             notches = fingerprintNotches,
                             colors = notchedProgressBarUiColors
                         ) { modifier ->
-                            HuntCooldownDurationIcon(
+                            FingerprintDurationIcon(
                                 modifier = modifier,
                                 colors = IconVectorColors.defaults().copy(
                                     fillColor = LocalPalette.current.onSurface
@@ -701,6 +733,146 @@ internal fun ToolsSideSheetComponent(
             OperationToolbarUiState.Category.TOOL_TIMERS -> {
                 TimerTools(
                     modifier = Modifier
+                        .padding(8.dp)
+                        .height(IntrinsicSize.Max),
+                ) {
+
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        NotchedProgressBarTimer(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                            title = smudgeHuntPreventionTitle,
+                            max = smudgeHuntPreventionMax,
+                            remaining = smudgeHuntPreventionRemaining,
+                            timeText = smudgeHuntPreventionTimeText,
+                            running = smudgeHuntPreventionRunning,
+                            onToggle = onSmudgeToggle,
+                            notches = smudgeNotches,
+                            colors = notchedProgressBarUiColors
+                        ) { modifier ->
+                            PreventHuntIcon(
+                                modifier = modifier,
+                                colors = IconVectorColors.defaults().copy(
+                                    fillColor = LocalPalette.current.onSurface
+                                )
+                            )
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(IntrinsicSize.Min),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+                        verticalAlignment = Alignment.Top
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Surface(
+                                modifier = Modifier,
+                                color = LocalPalette.current.surfaceContainer,
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    verticalArrangement = Arrangement.Top
+                                ) {
+                                    NotchedProgressBarTimer(
+                                        modifier = Modifier
+                                            .padding(8.dp),
+                                        title = huntDurationTitle,
+                                        max = huntDurationMax,
+                                        remaining = huntDurationRemaining,
+                                        timeText = huntDurationTimeText,
+                                        running = huntDurationRunning,
+                                        onToggle = onHuntDurationToggle,
+                                        notches = huntDurationNotches,
+                                        colors = notchedProgressBarUiColors
+                                    ) { modifier ->
+                                        HuntDurationIcon(
+                                            modifier = modifier,
+                                            colors = IconVectorColors.defaults().copy(
+                                                fillColor = LocalPalette.current.onSurface
+                                            )
+                                        )
+                                    }
+
+                                    Checkbox(
+                                        modifier = Modifier,
+                                        checked = false,
+                                        onCheckedChange = {},
+                                        colors = CheckboxDefaults.colors(),
+                                    )
+                                }
+                            }
+
+                            Surface(
+                                modifier = Modifier,
+                                color = LocalPalette.current.surfaceContainer,
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
+                                NotchedProgressBarTimer(
+                                    modifier = Modifier
+                                        .padding(8.dp),
+                                    title = huntCooldownTitle,
+                                    max = huntCooldownMax,
+                                    remaining = huntCooldownRemaining,
+                                    timeText = huntCooldownTimeText,
+                                    running = huntCooldownRunning,
+                                    onToggle = onHuntCooldownToggle,
+                                    notches = huntCooldownNotches,
+                                    colors = notchedProgressBarUiColors
+                                ) { modifier ->
+                                    HuntCooldownDurationIcon(
+                                        modifier = modifier,
+                                        colors = IconVectorColors.defaults().copy(
+                                            fillColor = LocalPalette.current.onSurface
+                                        )
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        NotchedProgressBarTimer(
+                            modifier = Modifier
+                                .padding(8.dp),
+                            title = fingerprintTimerTitle,
+                            max = fingerprintTimerMax,
+                            remaining = fingerprintTimerRemaining,
+                            timeText = fingerprintTimerTimeText,
+                            running = fingerprintTimerRunning,
+                            onToggle = onFingerprintToggle,
+                            notches = fingerprintNotches,
+                            colors = notchedProgressBarUiColors
+                        ) { modifier ->
+                            FingerprintDurationIcon(
+                                modifier = modifier,
+                                colors = IconVectorColors.defaults().copy(
+                                    fillColor = LocalPalette.current.onSurface
+                                )
+                            )
+                        }
+                    }
+                }
+
+                /*
+                TimerTools(
+                    modifier = Modifier
                         .padding(8.dp),
                 ) {
 
@@ -809,6 +981,7 @@ internal fun ToolsSideSheetComponent(
                         }
                     }
                 }
+                */
             }
 
             OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
