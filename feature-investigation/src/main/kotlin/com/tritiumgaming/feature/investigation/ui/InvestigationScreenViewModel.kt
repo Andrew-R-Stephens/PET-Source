@@ -415,6 +415,10 @@ class InvestigationScreenViewModel private constructor(
     )
 
     private val _toolsTimerState = MutableStateFlow(ToolTimerData())
+
+    private val _timersLinked = MutableStateFlow(false)
+    val timersLinked = _timersLinked.asStateFlow()
+
     private fun MutableStateFlow<NotchedProgressBarData>.toggleTimer() {
         update { state ->
             if (!state.running) state.copy(running = true)
@@ -1366,33 +1370,43 @@ class InvestigationScreenViewModel private constructor(
     private fun tickToolTimers(delay: Long) {
         if(_huntDurationTimerState.value.running) {
             _huntDurationTimerState.update {
+                val nextRemaining = (it.remaining - delay).coerceAtLeast(0L)
+                val isFinishing = it.running && nextRemaining == 0L
+
+                if (isFinishing && _timersLinked.value) {
+                    _huntCooldownTimerState.update { cd -> cd.copy(running = true) }
+                }
+
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining) >= 0L
+                    remaining = nextRemaining,
+                    running = nextRemaining > 0L
                 )
             }
         }
         if(_huntCooldownTimerState.value.running) {
             _huntCooldownTimerState.update {
+                val nextRemaining = (it.remaining - delay).coerceAtLeast(0L)
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining) >= 0L
+                    remaining = nextRemaining,
+                    running = nextRemaining > 0L
                 )
             }
         }
         if(_smudgeHuntProtectionTimerState.value.running) {
             _smudgeHuntProtectionTimerState.update {
+                val nextRemaining = (it.remaining - delay).coerceAtLeast(0L)
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining) >= 0L
+                    remaining = nextRemaining,
+                    running = nextRemaining > 0L
                 )
             }
         }
         if(_fingerprintTimerState.value.running) {
             _fingerprintTimerState.update {
+                val nextRemaining = (it.remaining - delay).coerceAtLeast(0L)
                 it.copy(
-                    remaining = (it.remaining - delay).coerceAtLeast(0L),
-                    running = (it.remaining) >= 0L
+                    remaining = nextRemaining,
+                    running = nextRemaining > 0L
                 )
             }
         }
@@ -1681,7 +1695,12 @@ class InvestigationScreenViewModel private constructor(
 
     private fun triggerToolTimer(type: ToolTimerType) {
         when(type) {
-            ToolTimerType.HUNT_DURATION -> _huntDurationTimerState.toggleTimer()
+            ToolTimerType.HUNT_DURATION -> {
+                _huntDurationTimerState.toggleTimer()
+                if (_timersLinked.value && !_huntDurationTimerState.value.running) {
+                    _huntCooldownTimerState.update { it.copy(remaining = it.max, running = false) }
+                }
+            }
             ToolTimerType.HUNT_COOLDOWN -> _huntCooldownTimerState.toggleTimer()
             ToolTimerType.SMUDGE_TIMER -> _smudgeHuntProtectionTimerState.toggleTimer()
             ToolTimerType.UV_EVIDENCE_DURATION -> _fingerprintTimerState.toggleTimer()
@@ -1841,6 +1860,7 @@ class InvestigationScreenViewModel private constructor(
             // Timers
             is InvestigationEvent.ToggleOperationTimer -> toggleOperationTimer()
             is InvestigationEvent.SkipOperationTimer -> skipOperationTimer()
+            is InvestigationEvent.ToggleTimerLinking -> _timersLinked.update { !it }
             is InvestigationEvent.TriggerToolTimer -> triggerToolTimer(event.type)
 
             // UI Navigation/Popups
@@ -2049,6 +2069,7 @@ class InvestigationScreenViewModel private constructor(
         // Timer Events
         object ToggleOperationTimer : InvestigationEvent()
         object SkipOperationTimer : InvestigationEvent()
+        object ToggleTimerLinking : InvestigationEvent()
         data class TriggerToolTimer(val type: ToolTimerType) : InvestigationEvent()
 
         // UI State Events

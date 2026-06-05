@@ -303,6 +303,7 @@ fun InvestigationSoloScreen(
     val traitListUiStates by investigationViewModel.traitListUiState.collectAsStateWithLifecycle()
     val ghostOrder by investigationViewModel.ghostsSortedUiState.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
+    val timersLinkedUiState by investigationViewModel.timersLinked.collectAsStateWithLifecycle()
     val smudgeHuntProtectionTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
     val huntDurationTimerState by investigationViewModel.huntDurationTimerUiState.collectAsStateWithLifecycle()
     val huntGapTimerState by investigationViewModel.huntCooldownTimerUiState.collectAsStateWithLifecycle()
@@ -327,6 +328,7 @@ fun InvestigationSoloScreen(
         traitList = traitListUiStates,
         ghostsSorted = ghostOrder,
         ghostEvidenceStates = evidenceStates,
+        timersLinked = timersLinkedUiState,
         smudgeHuntProtectionTimer = smudgeHuntProtectionTimerState,
         huntDurationTimer = huntDurationTimerState,
         huntCooldownTimer = huntGapTimerState,
@@ -419,6 +421,7 @@ private fun InvestigationContent(
     val ghostOrder = uiState.ghostsSorted
     val evidenceStates = uiState.ghostEvidenceStates
 
+    val timersLinked = uiState.timersLinked
     val smudgeHuntProtectionTimerState = uiState.smudgeHuntProtectionTimer
     val huntDurationTimerState = uiState.huntDurationTimer
     val huntGapTimerState = uiState.huntCooldownTimer
@@ -1592,6 +1595,7 @@ internal data class InvestigationUiState(
     val traitList: List<ValidatedGhostTrait> = emptyList(),
     val ghostsSorted: List<GhostState> = emptyList(),
     val ghostEvidenceStates: List<EvidenceState> = emptyList(),
+    val timersLinked: Boolean = false,
     val smudgeHuntProtectionTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
     val huntDurationTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
     val huntCooldownTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
