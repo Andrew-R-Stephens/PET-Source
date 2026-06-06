@@ -4,6 +4,7 @@ package com.tritiumgaming.feature.investigation.ui.tool.sanity
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -50,7 +51,8 @@ internal fun SanityMeterComponent(
     modifier: Modifier = Modifier,
     sanityLevel: Float,
     insanityLevel: Float,
-    onSanityChange: (Float) -> Unit
+    onSanityChange: (Float) -> Unit,
+    onHeadClick: (() -> Unit)? = null
 ) {
     val sanityPercentString = sanityLevel.toPercentageString()
 
@@ -61,7 +63,15 @@ internal fun SanityMeterComponent(
     ) {
         SanityMeter(
             modifier = Modifier
-                .aspectRatio(1f),
+                .aspectRatio(1f)
+                .then(
+                    if (onHeadClick != null) {
+                        Modifier.clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) { onHeadClick() }
+                    } else Modifier
+                ),
             sanityLevel = sanityLevel,
             showText = false,
             showProgress = false

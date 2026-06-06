@@ -234,12 +234,13 @@ internal fun ToolsBottomSheetComponent(
                             onDropdownSelect = onWeatherDropdownSelect
                         )
                     },
-                    sanityMeterComponent = { modifier ->
+                    sanityMeterComponent = { modifier, onHeadClick ->
                         SanityMeterComponent(
                             modifier = modifier,
                             sanityLevel = sanityLevel,
                             insanityLevel = insanityLevel,
-                            onSanityChange = onSanityChange
+                            onSanityChange = onSanityChange,
+                            onHeadClick = onHeadClick
                         )
                     },
                     timerComponent = { modifier ->
@@ -659,12 +660,13 @@ internal fun ToolsSideSheetComponent(
                             onDropdownSelect = onWeatherDropdownSelect
                         )
                     },
-                    sanityMeterComponent = { modifier ->
+                    sanityMeterComponent = { modifier, onHeadClick ->
                         SanityMeterComponent(
                             modifier = modifier,
                             sanityLevel = sanityLevel,
                             insanityLevel = insanityLevel,
-                            onSanityChange = onSanityChange
+                            onSanityChange = onSanityChange,
+                            onHeadClick = onHeadClick
                         )
                     },
                     timerComponent = { modifier ->

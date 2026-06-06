@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -25,6 +26,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -49,6 +53,7 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
@@ -1103,7 +1108,7 @@ fun OperationConfigsBottomSheet(
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
-    sanityMeterComponent: @Composable (Modifier) -> Unit = {},
+    sanityMeterComponent: @Composable (Modifier, onHeadClick: () -> Unit) -> Unit = { _, _ -> },
     showTemperatureMeterComponent: Boolean,
     showEditCustomDifficultyComponent: Boolean
 ) {
@@ -1290,7 +1295,8 @@ fun OperationConfigsBottomSheet(
                     Modifier
                         .height(48.dp)
                         .weight(1f)
-                        .padding(8.dp)
+                        .padding(8.dp),
+                    {}
                 )
             }
 
@@ -1350,10 +1356,13 @@ fun OperationConfigsSideSheet(
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
-    sanityMeterComponent: @Composable (Modifier) -> Unit = {},
+    sanityMeterComponent: @Composable (Modifier, onHeadClick: () -> Unit) -> Unit = { _, _ -> },
     showTemperatureMeterComponent: Boolean,
     showEditCustomDifficultyComponent: Boolean
 ) {
+    var isSanityExpanded by rememberSaveable { mutableStateOf(false) }
+    val toggleSanityExpansion = { isSanityExpanded = !isSanityExpanded }
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
@@ -1472,68 +1481,86 @@ fun OperationConfigsSideSheet(
 
         }
 
-        Row(
+        Surface(
             modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxWidth()
+                .animateContentSize(),
+            color = LocalPalette.current.surfaceContainer,
+            shape = RoundedCornerShape(8.dp),
+            border = BorderStroke(
+                width = 2.dp,
+                color = LocalPalette.current.surfaceContainerLow
+            )
         ) {
-
-            Surface(
+            Column(
                 modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                sanityMeterComponent(
-                    Modifier
-                        .height(48.dp)
-                        .weight(1f)
-                        .padding(8.dp)
-                )
-            }
-
-            Row(
-                modifier = Modifier,
-                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Surface(
-                    modifier = Modifier,
-                    color = LocalPalette.current.surfaceContainer,
-                    shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(
-                        width = 2.dp,
-                        color = LocalPalette.current.surfaceContainerLow
-                    )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    sanityMedicationComponent(
+                    CollapseButton(
+                        modifier = Modifier.size(24.dp),
+                        isCollapsed = !isSanityExpanded,
+                        onClick = toggleSanityExpansion,
+                        enabledRotationAddition = 90
+                    )
+
+                    sanityMeterComponent(
                         Modifier
-                            .size(48.dp)
-                            .fillMaxHeight()
+                            .height(48.dp)
+                            .weight(1f)
+                            .padding(8.dp),
+                        toggleSanityExpansion
                     )
                 }
 
-                Surface(
-                    modifier = Modifier,
-                    color = LocalPalette.current.surfaceContainer,
-                    shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(
-                        width = 2.dp,
-                        color = LocalPalette.current.surfaceContainerLow
-                    )
-                ) {
-                    playerDeathButtonComponent(
-                        Modifier
-                            .size(48.dp)
-                    )
+                AnimatedVisibility(visible = isSanityExpanded) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(
+                            8.dp,
+                            Alignment.CenterHorizontally
+                        ),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            modifier = Modifier,
+                            color = LocalPalette.current.surfaceContainerLow,
+                            shape = RoundedCornerShape(8.dp),
+                            border = BorderStroke(
+                                width = 2.dp,
+                                color = LocalPalette.current.surfaceContainer
+                            )
+                        ) {
+                            sanityMedicationComponent(
+                                Modifier
+                                    .size(48.dp)
+                                    .fillMaxHeight()
+                            )
+                        }
+
+                        Surface(
+                            modifier = Modifier,
+                            color = LocalPalette.current.surfaceContainerLow,
+                            shape = RoundedCornerShape(8.dp),
+                            border = BorderStroke(
+                                width = 2.dp,
+                                color = LocalPalette.current.surfaceContainer
+                            )
+                        ) {
+                            playerDeathButtonComponent(
+                                Modifier
+                                    .size(48.dp)
+                            )
+                        }
+                    }
                 }
             }
-
         }
 
         Row(
