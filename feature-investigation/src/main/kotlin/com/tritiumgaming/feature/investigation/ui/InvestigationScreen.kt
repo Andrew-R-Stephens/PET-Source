@@ -4,7 +4,9 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -138,7 +140,7 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTi
 @Retention(AnnotationRetention.BINARY)
 //@Preview(name = "Small Phone", device = "id:small_phone")
 @Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape",
-    locale = "de"
+    locale = "en"
 )
 //@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
 @Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp",
@@ -1563,35 +1565,21 @@ fun OperationConfigsSideSheet(
             }
         }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+        BoxWithConstraints(
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Surface(
-                modifier = Modifier
-                    .width(IntrinsicSize.Min)
-                    .weight(1f),
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ) {
-                weatherConfigComponent(
-                    Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(8.dp),
-                )
-            }
+            val isStacked = maxWidth < 300.dp
 
-            if(showTemperatureMeterComponent) {
+            FlowRow(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
+                itemVerticalAlignment = Alignment.CenterVertically
+            ) {
                 Surface(
                     modifier = Modifier
-                        .fillMaxHeight(),
+                        .then(if (isStacked) Modifier.fillMaxWidth() else Modifier.weight(1f)),
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp),
                     border = BorderStroke(
@@ -1599,13 +1587,35 @@ fun OperationConfigsSideSheet(
                         color = LocalPalette.current.surfaceContainerLow
                     )
                 ) {
-                    temperatureMeterComponent(
+                    weatherConfigComponent(
                         Modifier
+                            .fillMaxWidth()
                             .padding(8.dp)
+                            //.then(if (isStacked) Modifier.height(36.dp) else Modifier)
                     )
                 }
-            }
 
+                if (showTemperatureMeterComponent) {
+                    Surface(
+                        modifier = Modifier
+                            .then(if (isStacked) Modifier.fillMaxWidth()
+                                else Modifier.wrapContentWidth()),
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp),
+                        border = BorderStroke(
+                            width = 2.dp,
+                            color = LocalPalette.current.surfaceContainerLow
+                        )
+                    ) {
+                        temperatureMeterComponent(
+                            Modifier
+                                .padding(8.dp)
+                                .then(if (isStacked) Modifier.fillMaxWidth()
+                                    else Modifier.wrapContentWidth())
+                        )
+                    }
+                }
+            }
         }
 
     }

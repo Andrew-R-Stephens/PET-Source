@@ -57,6 +57,7 @@ fun OperationConfigDropdown(
                 enabled = enabled,
                 label = label,
                 onSelect = onSelect,
+                singleLine = true,
                 textStyle = textStyle,
                 color = expandedColor,
                 onColor = onColor

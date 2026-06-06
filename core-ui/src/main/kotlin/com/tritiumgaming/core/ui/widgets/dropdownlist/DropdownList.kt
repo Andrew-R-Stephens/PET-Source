@@ -44,7 +44,8 @@ fun DropdownList(
     onSelect: (Int) -> Unit,
     textStyle: TextStyle = TextStyle.Default,
     color: Color = Color.Unspecified,
-    onColor: Color = Color.Unspecified
+    onColor: Color = Color.Unspecified,
+    singleLine: Boolean = false
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -77,6 +78,7 @@ fun DropdownList(
                             enabled = true
                         ),
                     value = stringResource(label),
+                    singleLine = singleLine,
                     onValueChange = {},
                     readOnly = true,
                     textStyle = textStyle.copy(

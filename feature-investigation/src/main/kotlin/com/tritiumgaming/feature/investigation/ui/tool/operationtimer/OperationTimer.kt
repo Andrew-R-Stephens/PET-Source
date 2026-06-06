@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.investigation.ui.tool.operationtimer
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -54,6 +55,20 @@ internal fun OperationTimerColumn(
             )
         }
 
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth(),
+            color = LocalPalette.current.surfaceContainerLowest,
+            shape = RoundedCornerShape(8.dp),
+        ) {
+            PhaseComponent(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                state = phaseUiState
+            )
+        }
+
         Row (
             modifier = Modifier,
             horizontalArrangement = Arrangement.Center,
@@ -96,20 +111,6 @@ internal fun OperationTimerColumn(
                 },
             )
         }
-
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth(),
-            color = LocalPalette.current.surfaceContainerLowest,
-            shape = RoundedCornerShape(8.dp),
-        ) {
-            PhaseComponent(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                state = phaseUiState
-            )
-        }
     }
 }
 
@@ -123,10 +124,11 @@ internal fun OperationTimerRow(
     phaseUiState: PhaseUiState
 ) {
 
-    Row(
+    FlowRow(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalArrangement = Arrangement.Center,
+        itemVerticalAlignment = Alignment.CenterVertically
     ) {
 
         Column(
