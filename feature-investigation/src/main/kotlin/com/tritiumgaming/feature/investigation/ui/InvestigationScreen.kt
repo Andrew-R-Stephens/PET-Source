@@ -1444,7 +1444,7 @@ fun OperationConfigsSideSheet(
 
             Surface(
                 modifier = Modifier
-                    .weight(1f),
+                    .width(IntrinsicSize.Min),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
@@ -1454,7 +1454,7 @@ fun OperationConfigsSideSheet(
             ) {
                 timerComponent(
                     Modifier
-                        .weight(1f)
+                        .width(IntrinsicSize.Min)
                         .padding(8.dp)
                 )
 
@@ -1651,7 +1651,7 @@ fun OperationConfigsSideSheet(
                         modifier = Modifier
                             .then(
                                 if (shouldFillWidth) Modifier.fillMaxWidth()
-                                else Modifier.weight(1f).widthIn(max = 140.dp)
+                                else Modifier.width(IntrinsicSize.Min)
                             ),
                         color = LocalPalette.current.surfaceContainer,
                         shape = RoundedCornerShape(8.dp),
@@ -1663,7 +1663,7 @@ fun OperationConfigsSideSheet(
                         temperatureMeterComponent(
                             Modifier
                                 .padding(8.dp)
-                                .fillMaxWidth()
+                                .wrapContentWidth()
                         )
                     }
                 }
