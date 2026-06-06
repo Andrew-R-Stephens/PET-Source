@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -34,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -97,17 +100,34 @@ import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
+import com.tritiumgaming.feature.investigation.ui.sheet.ToolsTimerComponent
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.CustomDifficultyConfigControl
+import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxButton
+import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherConfigComponent
 import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherUiState
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerColumn
+import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerRow
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
+import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButton
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationButton
+import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeterComponent
+import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
+import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
@@ -150,10 +170,10 @@ private annotation class DevicePreviews
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
     override val values = sequenceOf(
         OperationToolbarUiState.Category.TOOL_CONFIG,
-        //OperationToolbarUiState.Category.TOOL_TRAITS,
-        //OperationToolbarUiState.Category.TOOL_ANALYZER,
-        //OperationToolbarUiState.Category.TOOL_FOOTSTEP,
-        //OperationToolbarUiState.Category.TOOL_TIMERS
+        OperationToolbarUiState.Category.TOOL_TRAITS,
+        OperationToolbarUiState.Category.TOOL_ANALYZER,
+        OperationToolbarUiState.Category.TOOL_FOOTSTEP,
+        OperationToolbarUiState.Category.TOOL_TIMERS
     )
 }
 
@@ -410,6 +430,9 @@ private fun InvestigationContent(
     uiState: InvestigationUiState,
     uiActions: InvestigationUiActions
 ) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     val popupUiState = uiState.popup
 
     val toolbarUiState = uiState.toolbar
@@ -560,96 +583,303 @@ private fun InvestigationContent(
         onColor = LocalPalette.current.onSurface
     )
 
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
-    val bottomSheetComponent: @Composable (Modifier) -> Unit = { modifier ->
-        ToolsBottomSheetComponent(
+    val traitsComponent: @Composable (Modifier) -> Unit = { modifier ->
+        TraitConfig(
             modifier = modifier,
-            toolbarCategory = toolbarCategory,
+            uniqueOnly = traitFilterOptions.uniqueOnly ?: false,
+            categories = traitFilterOptions.category,
+            list = traitListUiStates,
+            onSelectCategory = onSelectTraitCategory,
+            onSelectTrait = onToggleTrait,
+            onToggleUniqueOnly = onToggleUniqueOnly,
+            colors = TraitListItemUiColors(
+                unselectedColor = LocalPalette.current.surfaceContainerHigh,
+                unselectedOnColor = LocalPalette.current.onSurface,
+                selectedColor = LocalPalette.current.surfaceContainerLow,
+                selectedOnColor = LocalPalette.current.onSurfaceVariant,
+            )
+        )
+    }
+
+    val analyzerComponent: @Composable (Modifier) -> Unit = { modifier ->
+        OperationDetails(
+            modifier = modifier,
+            operationDetailsUiState = operationDetailsUiState
+        )
+    }
+
+    val footstepComponent: @Composable (Modifier) -> Unit = { modifier ->
+        BpmTool(
+            modifier = modifier,
+            realtimeState = bpmToolUiState.realtimeState,
+            measurementType = bpmMeasurementType,
+            applyMeasurement = bpmApplyMeasurement,
+            ghostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
+            fuseBoxFlag = bpmToolUiState.fuseBoxFlag,
+            domainMillis = bpmToolUiState.domainMillis,
+            domainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
             weather = weather,
-            weatherIcon = weatherIcon,
-            weatherDropdownOptions = weatherDropdownOptions,
-            isWeatherDropdownEnabled = isWeatherEnabled,
-            weatherDropdownLabel = weatherLabel,
-            mapDropdownOptions = mapDropdownOptions,
-            isMapDropdownEnabled = isMapEnabled,
-            mapDropdownLabel = mapLabel,
-            difficulty = difficultyUiState.type,
-            difficultyDropdownOptions = difficultyDropdownOptions,
-            isDifficultyDropdownEnabled = isDifficultyEnabled,
-            difficultyDropdownLabel = difficultyLabel,
-            customDifficultyDropdownOptions = customDifficultyDropdownOptions,
-            customDifficultyDropdownLabel = customDifficultyLabel,
-            onCustomDifficultyDropdownSelect = onCustomDifficultyDropdownSelect,
-            onNavigateToEditCustomDifficulty = onNavigateToEditCustomDifficulty,
-            sanityLevel = sanityLevel,
-            insanityLevel = insanityLevel,
-            timerRemainingTime = timerRemainingTime,
-            timerPaused = timerPaused,
-            phaseUiState = phaseUiState,
-            temperatureStateBundle = temperatureStateBundle,
-            fuseBoxFlag = fuseBoxFlag,
-            traitListOptions = traitFilterOptions,
-            traitList = traitListUiStates,
-            operationDetailsUiState = operationDetailsUiState,
+            range = bpmToolUiState.range,
+            domainOptions = bpmToolUiState.domainOptions,
+            sampleIntervalOptions = bpmToolUiState.sampleIntervalOptions,
+            onUpdate = onBpmUpdate,
+            onChangeMeasurementType = onBpmChangeMeasurementType,
+            toggleApplyMeasurement = onBpmToggleApplyMeasurement,
+            onChangeDomain = onBpmChangeDomain,
+            onChangeDomainSampleInterval = onBpmChangeSampleInterval
+        )
+    }
+
+    val timersComponent: @Composable (Modifier) -> Unit = { modifier ->
+        ToolsTimerComponent(
+            modifier = modifier,
             smudgeHuntPreventionTitle = smudgeHuntPreventionTitle,
             smudgeHuntPreventionMax = smudgeHuntPreventionMax,
             smudgeHuntPreventionRemaining = smudgeHuntPreventionRemaining,
             smudgeHuntPreventionTimeText = smudgeHuntPreventionTimeText,
             smudgeHuntPreventionRunning = smudgeHuntPreventionRunning,
+            onSmudgeToggle = onSmudgeToggle,
             smudgeNotches = smudgeNotches,
             huntDurationTitle = huntDurationTitle,
             huntDurationMax = huntDurationMax,
             huntDurationRemaining = huntDurationRemaining,
             huntDurationTimeText = huntDurationTimeText,
             huntDurationRunning = huntDurationRunning,
+            onHuntDurationToggle = onHuntDurationToggle,
             huntDurationNotches = huntDurationNotches,
             huntCooldownTitle = huntCooldownTitle,
             huntCooldownMax = huntCooldownMax,
             huntCooldownRemaining = huntCooldownRemaining,
             huntCooldownTimeText = huntCooldownTimeText,
             huntCooldownRunning = huntCooldownRunning,
+            onHuntCooldownToggle = onHuntCooldownToggle,
             huntCooldownNotches = huntCooldownNotches,
             fingerprintTimerTitle = fingerprintTimerTitle,
             fingerprintTimerMax = fingerprintTimerMax,
             fingerprintTimerRemaining = fingerprintTimerRemaining,
             fingerprintTimerTimeText = fingerprintTimerTimeText,
             fingerprintTimerRunning = fingerprintTimerRunning,
-            fingerprintNotches = fingerprintNotches,
-            bpmMeasurementType = bpmMeasurementType,
-            bpmApplyMeasurement = bpmApplyMeasurement,
-            bpmRealtimeState = bpmToolUiState.realtimeState,
-            bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
-            bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
-            bpmDomainMillis = bpmToolUiState.domainMillis,
-            bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
-            bpmRange = bpmToolUiState.range,
-            bpmDomainOptions = bpmToolUiState.domainOptions,
-            bpmSampleIntervalOptions = bpmToolUiState.sampleIntervalOptions,
-            operationConfigUiColors = operationConfigUiColors,
-            notchedProgressBarUiColors = notchedProgressBarUiColors,
-            onWeatherDropdownSelect = onWeatherDropdownSelect,
-            onMapDropdownSelect = onMapDropdownSelect,
-            onDifficultyDropdownSelect = onDifficultyDropdownSelect,
-            onSanityChange = onSanityChange,
-            onUseSanityMedication = onUseSanityMedication,
-            onPlayerDeath = onPlayerDeath,
-            onTimerToggle = onTimerToggle,
-            onTimerSkip = onTimerSkip,
-            onTogglePower = onTogglePower,
-            onSelectTraitCategory = onSelectTraitCategory,
-            onSelectTrait = onToggleTrait,
-            onToggleUniqueOnly = onToggleUniqueOnly,
-            onSmudgeToggle = onSmudgeToggle,
-            onHuntDurationToggle = onHuntDurationToggle,
-            onHuntCooldownToggle = onHuntCooldownToggle,
             onFingerprintToggle = onFingerprintToggle,
-            onBpmUpdate = onBpmUpdate,
-            onBpmChangeMeasurementType = onBpmChangeMeasurementType,
-            onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
-            onBpmChangeDomain = onBpmChangeDomain,
-            onBpmChangeSampleInterval = onBpmChangeSampleInterval
+            fingerprintNotches = fingerprintNotches,
+            notchedProgressBarUiColors = notchedProgressBarUiColors
+        )
+    }
+
+    val configBottomSheet: @Composable (Modifier) -> Unit = { modifier ->
+        OperationConfigsBottomSheet(
+            modifier = modifier,
+            mapConfigComponent = { modifier ->
+                MapConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = mapDropdownOptions,
+                    isDropdownEnabled = isMapEnabled,
+                    dropdownLabel = mapLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = onMapDropdownSelect
+                )
+            },
+            difficultyConfigComponent = { modifier ->
+                DifficultyConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = difficultyDropdownOptions,
+                    isDropdownEnabled = isDifficultyEnabled,
+                    dropdownLabel = difficultyLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = onDifficultyDropdownSelect
+                )
+            },
+            customDifficultyConfigComponent = { modifier ->
+                CustomDifficultyConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = customDifficultyDropdownOptions,
+                    isDropdownEnabled = isDifficultyEnabled,
+                    dropdownLabel = customDifficultyLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                ) { modifier ->
+                    IconButton(
+                        modifier = modifier,
+                        onClick = { onNavigateToEditCustomDifficulty() }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_settings),
+                            contentDescription = "Custom Difficulty Settings",
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
+                }
+            },
+            weatherConfigComponent = { modifier ->
+                WeatherConfigComponent(
+                    modifier = modifier,
+                    icon = weatherIcon,
+                    dropdownOptions = weatherDropdownOptions,
+                    isDropdownEnabled = isWeatherEnabled,
+                    dropdownLabel = weatherLabel,
+                    onDropdownSelect = onWeatherDropdownSelect
+                )
+            },
+            sanityMeterComponent = { modifier, onHeadClick ->
+                SanityMeterComponent(
+                    modifier = modifier,
+                    sanityLevel = sanityLevel,
+                    insanityLevel = insanityLevel,
+                    onSanityChange = onSanityChange,
+                    onHeadClick = onHeadClick
+                )
+            },
+            timerComponent = { modifier ->
+                OperationTimerColumn(
+                    modifier = modifier,
+                    remainingTime = timerRemainingTime,
+                    paused = timerPaused,
+                    onToggle = onTimerToggle,
+                    onSkip = onTimerSkip,
+                    phaseUiState = phaseUiState
+                )
+            },
+            sanityMedicationComponent = { modifier ->
+                SanityMedicationButton(
+                    modifier = modifier,
+                    onClick = onUseSanityMedication
+                )
+            },
+            playerDeathButtonComponent = { modifier ->
+                PlayerDeathButton(
+                    modifier = modifier,
+                    onClick = onPlayerDeath
+                )
+            },
+            temperatureMeterComponent = { modifier ->
+                TemperatureComponent(
+                    modifier = modifier,
+                    state = temperatureStateBundle
+                )
+            },
+            fuseBoxControlComponent = { modifier ->
+                FuseBoxButton(
+                    modifier = modifier,
+                    flag = fuseBoxFlag,
+                    onTogglePower = onTogglePower
+                )
+            },
+            showTemperatureMeterComponent = weather != Weather.RANDOM,
+            showEditCustomDifficultyComponent = difficultyUiState.type == DifficultyType.CUSTOM
+        )
+    }
+
+    val configSideSheet: @Composable (Modifier) -> Unit = { modifier ->
+        OperationConfigsSideSheet(
+            modifier = modifier,
+            sanityMedicationComponent = { modifier ->
+                SanityMedicationButton(
+                    modifier = modifier,
+                    onClick = onUseSanityMedication
+                )
+            },
+            mapConfigComponent = { modifier ->
+                MapConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = mapDropdownOptions,
+                    isDropdownEnabled = isMapEnabled,
+                    dropdownLabel = mapLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = onMapDropdownSelect
+                )
+            },
+            difficultyConfigComponent = { modifier ->
+                DifficultyConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = difficultyDropdownOptions,
+                    isDropdownEnabled = isDifficultyEnabled,
+                    dropdownLabel = difficultyLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = onDifficultyDropdownSelect
+                )
+            },
+            customDifficultyConfigComponent = { modifier ->
+                CustomDifficultyConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = customDifficultyDropdownOptions,
+                    isDropdownEnabled = isDifficultyEnabled,
+                    dropdownLabel = customDifficultyLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                ) { modifier ->
+                    IconButton(
+                        modifier = modifier,
+                        onClick = { onNavigateToEditCustomDifficulty() }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_settings),
+                            contentDescription = "Custom Difficulty Settings",
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
+                }
+            },
+            weatherConfigComponent = { modifier ->
+                WeatherConfigComponent(
+                    modifier = modifier,
+                    icon = weatherIcon,
+                    dropdownOptions = weatherDropdownOptions,
+                    isDropdownEnabled = isWeatherEnabled,
+                    dropdownLabel = weatherLabel,
+                    onDropdownSelect = onWeatherDropdownSelect
+                )
+            },
+            sanityMeterComponent = { modifier, onHeadClick ->
+                SanityMeterComponent(
+                    modifier = modifier,
+                    sanityLevel = sanityLevel,
+                    insanityLevel = insanityLevel,
+                    onSanityChange = onSanityChange,
+                    onHeadClick = onHeadClick
+                )
+            },
+            timerComponent = { modifier ->
+                OperationTimerRow(
+                    modifier = modifier,
+                    remainingTime = timerRemainingTime,
+                    paused = timerPaused,
+                    onToggle = onTimerToggle,
+                    onSkip = onTimerSkip,
+                    phaseUiState = phaseUiState
+                )
+            },
+            playerDeathButtonComponent = { modifier ->
+                PlayerDeathButton(
+                    modifier = modifier,
+                    onClick = onPlayerDeath
+                )
+            },
+            temperatureMeterComponent = { modifier ->
+                TemperatureComponent(
+                    modifier = modifier,
+                    state = temperatureStateBundle
+                )
+            },
+            fuseBoxControlComponent = { modifier ->
+                FuseBoxButton(
+                    modifier = modifier,
+                    flag = fuseBoxFlag,
+                    onTogglePower = onTogglePower
+                )
+            },
+            showTemperatureMeterComponent = weather != Weather.RANDOM,
+            showEditCustomDifficultyComponent = difficultyUiState.type == DifficultyType.CUSTOM
+        )
+    }
+
+    val bottomSheetComponent: @Composable (Modifier) -> Unit = { modifier ->
+        ToolsBottomSheetComponent(
+            modifier = modifier,
+            toolbarCategory = toolbarCategory,
+            configComponent = configBottomSheet,
+            traitsComponent = traitsComponent,
+            analyzerComponent = analyzerComponent,
+            timersComponent = timersComponent,
+            footstepComponent = footstepComponent
         )
     }
 
@@ -657,89 +887,11 @@ private fun InvestigationContent(
         ToolsSideSheetComponent(
             modifier = modifier,
             toolbarCategory = toolbarCategory,
-            weather = weather,
-            weatherIcon = weatherIcon,
-            weatherDropdownOptions = weatherDropdownOptions,
-            isWeatherDropdownEnabled = isWeatherEnabled,
-            weatherDropdownLabel = weatherLabel,
-            mapDropdownOptions = mapDropdownOptions,
-            isMapDropdownEnabled = isMapEnabled,
-            mapDropdownLabel = mapLabel,
-            difficulty = difficultyUiState.type,
-            difficultyDropdownOptions = difficultyDropdownOptions,
-            isDifficultyDropdownEnabled = isDifficultyEnabled,
-            difficultyDropdownLabel = difficultyLabel,
-            customDifficultyDropdownOptions = customDifficultyDropdownOptions,
-            customDifficultyDropdownLabel = customDifficultyLabel,
-            onCustomDifficultyDropdownSelect = onCustomDifficultyDropdownSelect,
-            onNavigateToEditCustomDifficulty = onNavigateToEditCustomDifficulty,
-            sanityLevel = sanityLevel,
-            insanityLevel = insanityLevel,
-            timerRemainingTime = timerRemainingTime,
-            timerPaused = timerPaused,
-            phaseUiState = phaseUiState,
-            temperatureStateBundle = temperatureStateBundle,
-            fuseBoxFlag = fuseBoxFlag,
-            traitListOptions = traitFilterOptions,
-            traitList = traitListUiStates,
-            operationDetailsUiState = operationDetailsUiState,
-            smudgeHuntPreventionTitle = smudgeHuntPreventionTitle,
-            smudgeHuntPreventionMax = smudgeHuntPreventionMax,
-            smudgeHuntPreventionRemaining = smudgeHuntPreventionRemaining,
-            smudgeHuntPreventionTimeText = smudgeHuntPreventionTimeText,
-            smudgeHuntPreventionRunning = smudgeHuntPreventionRunning,
-            smudgeNotches = smudgeNotches,
-            huntDurationTitle = huntDurationTitle,
-            huntDurationMax = huntDurationMax,
-            huntDurationRemaining = huntDurationRemaining,
-            huntDurationTimeText = huntDurationTimeText,
-            huntDurationRunning = huntDurationRunning,
-            huntDurationNotches = huntDurationNotches,
-            huntCooldownTitle = huntCooldownTitle,
-            huntCooldownMax = huntCooldownMax,
-            huntCooldownRemaining = huntCooldownRemaining,
-            huntCooldownTimeText = huntCooldownTimeText,
-            huntCooldownRunning = huntCooldownRunning,
-            huntCooldownNotches = huntCooldownNotches,
-            fingerprintTimerTitle = fingerprintTimerTitle,
-            fingerprintTimerMax = fingerprintTimerMax,
-            fingerprintTimerRemaining = fingerprintTimerRemaining,
-            fingerprintTimerTimeText = fingerprintTimerTimeText,
-            fingerprintTimerRunning = fingerprintTimerRunning,
-            fingerprintNotches = fingerprintNotches,
-            bpmMeasurementType = bpmMeasurementType,
-            bpmApplyMeasurement = bpmApplyMeasurement,
-            bpmRealtimeState = bpmToolUiState.realtimeState,
-            bpmGhostSpeedModifier = bpmToolUiState.ghostSpeedModifier,
-            bpmFuseBoxFlag = bpmToolUiState.fuseBoxFlag,
-            bpmDomainMillis = bpmToolUiState.domainMillis,
-            bpmDomainSampleIntervalMillis = bpmToolUiState.domainSampleIntervalMillis,
-            bpmRange = bpmToolUiState.range,
-            bpmDomainOptions = bpmToolUiState.domainOptions,
-            bpmSampleIntervalOptions = bpmToolUiState.sampleIntervalOptions,
-            operationConfigUiColors = operationConfigUiColors,
-            notchedProgressBarUiColors = notchedProgressBarUiColors,
-            onWeatherDropdownSelect = onWeatherDropdownSelect,
-            onMapDropdownSelect = onMapDropdownSelect,
-            onDifficultyDropdownSelect = onDifficultyDropdownSelect,
-            onSanityChange = onSanityChange,
-            onUseSanityMedication = onUseSanityMedication,
-            onPlayerDeath = onPlayerDeath,
-            onTimerToggle = onTimerToggle,
-            onTimerSkip = onTimerSkip,
-            onTogglePower = onTogglePower,
-            onSelectTraitCategory = onSelectTraitCategory,
-            onSelectTrait = onToggleTrait,
-            onToggleUniqueOnly = onToggleUniqueOnly,
-            onSmudgeToggle = onSmudgeToggle,
-            onHuntDurationToggle = onHuntDurationToggle,
-            onHuntCooldownToggle = onHuntCooldownToggle,
-            onFingerprintToggle = onFingerprintToggle,
-            onBpmUpdate = onBpmUpdate,
-            onBpmChangeMeasurementType = onBpmChangeMeasurementType,
-            onBpmToggleApplyMeasurement = onBpmToggleApplyMeasurement,
-            onBpmChangeDomain = onBpmChangeDomain,
-            onBpmChangeSampleInterval = onBpmChangeSampleInterval
+            configComponent = configSideSheet,
+            traitsComponent = traitsComponent,
+            analyzerComponent = analyzerComponent,
+            timersComponent = timersComponent,
+            footstepComponent = footstepComponent
         )
     }
 
