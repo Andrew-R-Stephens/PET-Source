@@ -114,8 +114,6 @@ fun InvestigationToolRail(
             stickyContentStart(
                 modifier
                     .sizeIn(maxWidth = 48.dp)
-                    .padding(4.dp)
-                    .aspectRatio(1f)
             )
         }
 
@@ -150,8 +148,6 @@ fun InvestigationToolRail(
             stickyContentEnd(
                 modifier
                     .sizeIn(maxWidth = 48.dp)
-                    .padding(4.dp)
-                    .aspectRatio(1f)
             )
         }
     }

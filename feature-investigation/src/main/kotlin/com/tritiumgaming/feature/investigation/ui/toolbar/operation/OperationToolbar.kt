@@ -4,10 +4,14 @@ import androidx.annotation.FloatRange
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.ScrollableToolbar
 
@@ -24,7 +28,7 @@ fun OperationToolbar(
     ScrollableToolbar(
         modifier = modifier,
         surfaceColor = containerColor,
-        stickyContentStart = { modifier ->
+        stickyContentStart = { stickyContentModifier ->
 
             Row(
                 modifier = Modifier,
@@ -33,13 +37,13 @@ fun OperationToolbar(
             ) {
 
                 ConfigButton(
-                    modifier,
+                    stickyContentModifier,
                     category = category,
                     onCategoryChange = onChangeToolbarCategory
                 )
 
                 AnalyticsButton(
-                    modifier,
+                    stickyContentModifier,
                     category = category,
                     onCategoryChange = onChangeToolbarCategory
                 )
@@ -47,30 +51,30 @@ fun OperationToolbar(
             }
 
         },
-        stickyContentEnd = { modifier ->
+        stickyContentEnd = { stickyContentModifier ->
 
             ResetButton(
-                modifier,
+                stickyContentModifier,
                 onReset = onReset
             )
 
         },
-        scrollContent = { modifier ->
+        scrollContent = { scrollContentModifier ->
 
             TraitsButton(
-                modifier,
+                scrollContentModifier,
                 category = category,
                 onCategoryChange = onChangeToolbarCategory
             )
 
             StopwatchButton(
-                modifier,
+                scrollContentModifier,
                 category = category,
                 onCategoryChange = onChangeToolbarCategory
             )
 
             BpmButton(
-                modifier,
+                scrollContentModifier,
                 category = category,
                 onCategoryChange = onChangeToolbarCategory
             )
@@ -92,22 +96,28 @@ fun OperationToolRail(
     InvestigationToolRail(
         modifier = modifier,
         surfaceColor = containerColor,
-        stickyContentStart = { modifier ->
+        stickyContentStart = { stickyContentModifier ->
 
             Column(
-                modifier = Modifier,
+                modifier = stickyContentModifier,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
 
                 ConfigButton(
-                    modifier,
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(4.dp)
+                        .aspectRatio(1f),
                     category = category,
                     onCategoryChange = onChangeToolbarCategory
                 )
 
                 AnalyticsButton(
-                    modifier,
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(4.dp)
+                        .aspectRatio(1f),
                     category = category,
                     onCategoryChange = onChangeToolbarCategory
                 )
@@ -115,30 +125,32 @@ fun OperationToolRail(
             }
 
         },
-        stickyContentEnd = { modifier ->
+        stickyContentEnd = { stickyContentModifier ->
 
             ResetButton(
-                modifier,
+                stickyContentModifier
+                    .padding(4.dp)
+                    .aspectRatio(1f),
                 onReset = onReset
             )
 
         },
-        scrollContent = { modifier ->
+        scrollContent = { scrollContentModifier ->
 
             TraitsButton(
-                modifier,
+                scrollContentModifier,
                 category = category,
                 onCategoryChange = onChangeToolbarCategory
             )
 
             StopwatchButton(
-                modifier,
+                scrollContentModifier,
                 category = category,
                 onCategoryChange = onChangeToolbarCategory
             )
 
             BpmButton(
-                modifier,
+                scrollContentModifier,
                 category = category,
                 onCategoryChange = onChangeToolbarCategory
             )
