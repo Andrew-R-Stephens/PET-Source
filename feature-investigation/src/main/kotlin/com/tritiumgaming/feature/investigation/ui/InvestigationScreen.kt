@@ -138,18 +138,13 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTi
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
-//@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape",
-    locale = "en"
-)
-//@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp",
-    locale = "de")
-//@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240",
-    locale = "de")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp",
-    locale = "de")
+@Preview(name = "Small Phone", device = "id:small_phone")
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
 private annotation class DevicePreviews
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
@@ -1494,42 +1489,31 @@ fun OperationConfigsSideSheet(
                 color = LocalPalette.current.surfaceContainerLow
             )
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+            BoxWithConstraints(
+                modifier = Modifier.fillMaxWidth()
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    CollapseButton(
-                        modifier = Modifier.size(24.dp),
-                        isCollapsed = !isSanityExpanded,
-                        onClick = toggleSanityExpansion,
-                        enabledRotationAddition = 90
-                    )
+                val buttonsWidth = (48.dp * 2) + 8.dp
+                val canFitBoth = maxWidth >= (224.dp + 8.dp + buttonsWidth)
 
-                    sanityMeterComponent(
-                        Modifier
-                            .height(48.dp)
-                            .weight(1f)
-                            .padding(8.dp),
-                        toggleSanityExpansion
-                    )
-                }
-
-                AnimatedVisibility(visible = isSanityExpanded) {
+                if (canFitBoth) {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(
                             8.dp,
                             Alignment.CenterHorizontally
-                        ),
-                        verticalAlignment = Alignment.CenterVertically
+                        )
                     ) {
+                        sanityMeterComponent(
+                            Modifier
+                                .height(48.dp)
+                                .weight(1f)
+                                .widthIn(max = 224.dp),
+                            toggleSanityExpansion
+                        )
+
                         Surface(
                             modifier = Modifier,
                             color = LocalPalette.current.surfaceContainerLow,
@@ -1540,9 +1524,7 @@ fun OperationConfigsSideSheet(
                             )
                         ) {
                             sanityMedicationComponent(
-                                Modifier
-                                    .size(48.dp)
-                                    .fillMaxHeight()
+                                Modifier.size(48.dp)
                             )
                         }
 
@@ -1556,9 +1538,75 @@ fun OperationConfigsSideSheet(
                             )
                         ) {
                             playerDeathButtonComponent(
-                                Modifier
-                                    .size(48.dp)
+                                Modifier.size(48.dp)
                             )
+                        }
+                    }
+                } else {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            CollapseButton(
+                                modifier = Modifier.size(24.dp),
+                                isCollapsed = !isSanityExpanded,
+                                onClick = toggleSanityExpansion,
+                                enabledRotationAddition = 90
+                            )
+
+                            sanityMeterComponent(
+                                Modifier
+                                    .height(48.dp)
+                                    .weight(1f)
+                                    .padding(8.dp),
+                                toggleSanityExpansion
+                            )
+                        }
+
+                        AnimatedVisibility(visible = isSanityExpanded) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(
+                                    8.dp,
+                                    Alignment.CenterHorizontally
+                                ),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Surface(
+                                    modifier = Modifier,
+                                    color = LocalPalette.current.surfaceContainerLow,
+                                    shape = RoundedCornerShape(8.dp),
+                                    border = BorderStroke(
+                                        width = 2.dp,
+                                        color = LocalPalette.current.surfaceContainer
+                                    )
+                                ) {
+                                    sanityMedicationComponent(
+                                        Modifier.size(48.dp)
+                                    )
+                                }
+
+                                Surface(
+                                    modifier = Modifier,
+                                    color = LocalPalette.current.surfaceContainerLow,
+                                    shape = RoundedCornerShape(8.dp),
+                                    border = BorderStroke(
+                                        width = 2.dp,
+                                        color = LocalPalette.current.surfaceContainer
+                                    )
+                                ) {
+                                    playerDeathButtonComponent(
+                                        Modifier.size(48.dp)
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -1568,7 +1616,8 @@ fun OperationConfigsSideSheet(
         BoxWithConstraints(
             modifier = Modifier.fillMaxWidth()
         ) {
-            val isStacked = maxWidth < 300.dp
+            val canFitBoth = maxWidth >= (140.dp * 2 + 8.dp)
+            val shouldFillWidth = !showTemperatureMeterComponent || !canFitBoth
 
             FlowRow(
                 modifier = Modifier
@@ -1579,7 +1628,10 @@ fun OperationConfigsSideSheet(
             ) {
                 Surface(
                     modifier = Modifier
-                        .then(if (isStacked) Modifier.fillMaxWidth() else Modifier.weight(1f)),
+                        .then(
+                            if (shouldFillWidth) Modifier.fillMaxWidth()
+                            else Modifier.weight(1f).widthIn(max = 140.dp)
+                        ),
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp),
                     border = BorderStroke(
@@ -1591,15 +1643,16 @@ fun OperationConfigsSideSheet(
                         Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
-                            //.then(if (isStacked) Modifier.height(36.dp) else Modifier)
                     )
                 }
 
                 if (showTemperatureMeterComponent) {
                     Surface(
                         modifier = Modifier
-                            .then(if (isStacked) Modifier.fillMaxWidth()
-                                else Modifier.wrapContentWidth()),
+                            .then(
+                                if (shouldFillWidth) Modifier.fillMaxWidth()
+                                else Modifier.weight(1f).widthIn(max = 140.dp)
+                            ),
                         color = LocalPalette.current.surfaceContainer,
                         shape = RoundedCornerShape(8.dp),
                         border = BorderStroke(
@@ -1610,8 +1663,7 @@ fun OperationConfigsSideSheet(
                         temperatureMeterComponent(
                             Modifier
                                 .padding(8.dp)
-                                .then(if (isStacked) Modifier.fillMaxWidth()
-                                    else Modifier.wrapContentWidth())
+                                .fillMaxWidth()
                         )
                     }
                 }
