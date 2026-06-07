@@ -22,10 +22,12 @@
     <string name="footstep_label_instant">Миттєво</string>
     <string name="footstep_label_average">Середня</string>
     <string name="footstep_label_weighted">Зважена</string>
+    <string name="footstep_label_sample_interval">Вибірка</string>
     <string name="tool_timer_label_smudge_protection">Захист від полювання від бруду</string>
     <string name="tool_timer_label_hunt_duration">Тривалість полювання</string>
     <string name="tool_timer_label_hunt_cooldown">Зарядка полювання</string>
     <string name="tool_timer_label_uv_lifetime">Час життя UV</string>
     <string name="tool_timer_label_standard">Стандартний</string>
     <string name="tool_timer_label_cursed">Проклятий</string>
+    <string name="footstep_label_domain">Вікно перегляду</string>
 </resources>

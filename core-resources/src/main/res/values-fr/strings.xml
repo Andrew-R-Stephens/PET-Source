@@ -111,9 +111,11 @@
     <string name="footstep_label_instant">Instantané</string>
     <string name="footstep_label_average">Moyen</string>
     <string name="footstep_label_weighted">Pondéré</string>
+    <string name="footstep_label_sample_interval">Échantillonnage</string>
     <string name="tool_timer_label_smudge_protection">Protection contre la chasse (Encens)</string>
     <string name="tool_timer_label_hunt_duration">Durée de la chasse</string>
     <string name="tool_timer_label_hunt_cooldown">Délai de récupération de la chasse</string>
     <string name="tool_timer_label_uv_lifetime">Durée des UV</string>
+    <string name="footstep_label_domain">Fenêtre d\'affichage</string>
 
 </resources>

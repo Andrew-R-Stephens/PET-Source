@@ -124,9 +124,11 @@
     <string name="footstep_label_instant">Sofort</string>
     <string name="footstep_label_average">Durchschnittlich</string>
     <string name="footstep_label_weighted">Gewichtet</string>
+    <string name="footstep_label_sample_interval">Abtastung</string>
     <string name="tool_timer_label_smudge_protection">Schutz durch Räucherstab</string>
     <string name="tool_timer_label_hunt_duration">Jagddauer</string>
     <string name="tool_timer_label_hunt_cooldown">Jagd-Cooldown</string>
     <string name="tool_timer_label_uv_lifetime">UV-Dauer</string>
+    <string name="footstep_label_domain">Ansichtsfenster</string>
 
 </resources>

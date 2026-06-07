@@ -1354,6 +1354,8 @@
     <string name="footstep_label_instant">即時</string>
     <string name="footstep_label_average">平均</string>
     <string name="footstep_label_weighted">加重平均</string>
+    <string name="footstep_label_domain">ビューポート</string>
+    <string name="footstep_label_sample_interval">サンプリング</string>
     <string name="tool_timer_label_smudge_protection">スマッジによるハント阻止</string>
     <string name="tool_timer_label_hunt_duration">ハント継続時間</string>
     <string name="tool_timer_label_hunt_cooldown">ハントのクールダウン</string>

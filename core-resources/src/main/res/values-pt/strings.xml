@@ -1363,11 +1363,13 @@
     <string name="footstep_label_instant">Instantâneo</string>
     <string name="footstep_label_average">Médio</string>
     <string name="footstep_label_weighted">Ponderado</string>
+    <string name="footstep_label_sample_interval">Amostragem</string>
     <string name="tool_timer_label_smudge_protection">Proteção contra Caçada com Defumador</string>
     <string name="tool_timer_label_hunt_duration">Duração da Caçada</string>
     <string name="tool_timer_label_hunt_cooldown">Intervalo entre Caçadas</string>
     <string name="tool_timer_label_uv_lifetime">Duração da Luz UV</string>
     <string name="objectives_title_firstname">Nome</string>
     <string name="objectives_notice_response_type">Nota: Dificuldades acima do nível Intermediário não revelam o tipo de resposta.</string>
+    <string name="footstep_label_domain">Janela de visualização</string>
 
 </resources>

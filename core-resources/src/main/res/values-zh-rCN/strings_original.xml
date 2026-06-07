@@ -1230,6 +1230,7 @@
     <string name="footstep_label_instant">即时</string>
     <string name="footstep_label_average">平均</string>
     <string name="footstep_label_weighted">加权</string>
+    <string name="footstep_label_sample_interval">采样</string>
     <string name="tool_timer_label_smudge_protection">烟熏狩猎保护</string>
     <string name="tool_timer_label_hunt_duration">狩猎持续时间</string>
     <string name="tool_timer_label_hunt_cooldown">狩猎冷却时间</string>
@@ -1237,5 +1238,6 @@
     <string name="objectives_title_firstname">名字</string>
     <string name="objectives_notice_response_type">注：高于“中等”难度的模式不显示响应类型</string>
     <string name="ghost_strengths_aswang"><![CDATA[  <a>阿斯旺是所有幽灵中视线加速最快的。</a>  <a>如果玩家使用官方藏身点，下次狩猎将没有宽限期。</a>  ]]></string>
+    <string name="footstep_label_domain">视口</string>
 
 </resources>

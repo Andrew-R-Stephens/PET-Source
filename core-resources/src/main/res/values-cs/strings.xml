@@ -128,8 +128,10 @@
     <string name="footstep_label_instant">Okamžité</string>
     <string name="footstep_label_average">Průměrné</string>
     <string name="footstep_label_weighted">Vážené</string>
+    <string name="footstep_label_sample_interval">Vzorkování</string>
     <string name="tool_timer_label_smudge_protection">Ochrana proti rozmazání při lovu</string>
     <string name="tool_timer_label_hunt_duration">Trvání lovu</string>
     <string name="tool_timer_label_hunt_cooldown">Chladicí doba lovu</string>
     <string name="tool_timer_label_uv_lifetime">Doba trvání UV</string>
+    <string name="footstep_label_domain">Výřez</string>
 </resources>

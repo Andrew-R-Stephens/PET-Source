@@ -1357,6 +1357,7 @@
     <string name="footstep_label_instant">Istantaneo</string>
     <string name="footstep_label_average">Medio</string>
     <string name="footstep_label_weighted">Ponderato</string>
+    <string name="footstep_label_sample_interval">Campionamento</string>
     <string name="tool_timer_label_smudge_protection">Protezione dalla caccia (Fumigante)</string>
     <string name="tool_timer_label_hunt_duration">Durata della caccia</string>
     <string name="tool_timer_label_hunt_cooldown">Intervallo tra le cacce</string>
@@ -1364,4 +1365,5 @@
     <string name="objectives_title_firstname">Nome</string>
     <string name="objectives_notice_response_type">Nota: I livelli di difficoltà superiori a \"Intermedio\" non rivelano il tipo di risposta.</string>
     <string name="ghost_info_aswang"><![CDATA[ <a>L\'Aswang è un cacciatore selvaggio, che preferisce il brivido dell\'inseguimento alla ricerca dei giocatori nascosti. Non riuscirai mai a seminare questo fantasma se ti vede, quindi dovresti avere sempre un nascondiglio pronto.</a> ]]></string>
+    <string name="footstep_label_domain">Finestra di visualizzazione</string>
 </resources>
