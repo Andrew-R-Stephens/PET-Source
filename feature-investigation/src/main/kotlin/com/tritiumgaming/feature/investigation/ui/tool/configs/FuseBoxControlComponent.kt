@@ -37,6 +37,13 @@ internal fun FuseBoxButton(
                 LocalPalette.current.onSurface
             )
         }
+        FuseBoxFlag.FUSEBOX_BROKEN -> {
+            FuseButtonTheme(
+                R.drawable.ic_power_broken,
+                LocalPalette.current.onSurface
+            )
+        }
+
     }
 
     Surface(

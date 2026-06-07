@@ -1568,8 +1568,9 @@ class InvestigationScreenViewModel private constructor(
             it.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_DISABLED
-                        else -> state
+                        FuseBoxAtStartOfContract.OFF -> FuseBoxFlag.FUSEBOX_DISABLED
+                        FuseBoxAtStartOfContract.ON -> FuseBoxFlag.FUSEBOX_ENABLED
+                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
                     }
             )
         }
@@ -1579,7 +1580,7 @@ class InvestigationScreenViewModel private constructor(
             it.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_DISABLED
+                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
                         else -> {
                             when(it.fuseBox) {
                                 FuseBoxFlag.FUSEBOX_ENABLED -> FuseBoxFlag.FUSEBOX_DISABLED

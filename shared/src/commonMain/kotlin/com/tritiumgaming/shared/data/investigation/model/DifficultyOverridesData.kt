@@ -10,7 +10,8 @@ data class DifficultyOverridesData(
     companion object {
         enum class FuseBoxFlag {
             FUSEBOX_ENABLED,
-            FUSEBOX_DISABLED
+            FUSEBOX_DISABLED,
+            FUSEBOX_BROKEN
         }
     }
 

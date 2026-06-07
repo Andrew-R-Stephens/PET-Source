@@ -998,7 +998,6 @@ private fun InvestigationContent(
                 )
             }
             else -> {
-
                 ToolsSideSheetComponent(
                     modifier = modifier,
                     toolbarCategory = toolbarCategory,
@@ -1032,7 +1031,10 @@ private fun InvestigationContent(
             modifier = modifier,
             remainingTime = operationTimerUiState.remainingTime,
             phaseType = phaseUiState.type,
-            sanityLevel = sanityUiState.sanityLevel
+            sanityLevel = sanityUiState.sanityLevel,
+            weatherType = weatherUiState.weather,
+            temperature = temperatureUiState.currentAsString,
+            fuseBoxFlag = fuseBoxFlag
         )
     }
 

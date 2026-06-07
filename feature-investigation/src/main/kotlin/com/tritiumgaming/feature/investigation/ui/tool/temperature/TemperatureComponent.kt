@@ -149,8 +149,8 @@ internal data class TemperatureUiState(
 
     val gradientDirection: TemporalGradientDirection =
         when {
-            temporalGradient > TEMPERATURE_FREEZING_POINT -> TemporalGradientDirection.HEATING
-            temporalGradient < TEMPERATURE_FREEZING_POINT -> TemporalGradientDirection.COOLING
+            temporalGradient > TEMPERATURE_FREEZING_POINT -> HEATING
+            temporalGradient < TEMPERATURE_FREEZING_POINT -> COOLING
             else -> TemporalGradientDirection.STABLE
         }
 
