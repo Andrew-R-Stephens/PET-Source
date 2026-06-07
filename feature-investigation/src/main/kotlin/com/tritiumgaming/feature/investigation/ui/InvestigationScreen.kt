@@ -1771,7 +1771,7 @@ fun OperationConfigsSideSheetCompact(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                        verticalArrangement = Arrangement.Center
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
