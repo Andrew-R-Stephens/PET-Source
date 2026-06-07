@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
@@ -158,22 +159,22 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTi
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
-@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+@Preview(name = "Small Phone", device = "id:small_phone", locale = "de")
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape", locale = "de")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp", locale = "de")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp", locale = "de")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait", locale = "de")
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240", locale = "de")
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp", locale = "de")
 private annotation class DevicePreviews
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
     override val values = sequenceOf(
         OperationToolbarUiState.Category.TOOL_CONFIG,
-        OperationToolbarUiState.Category.TOOL_TRAITS,
-        OperationToolbarUiState.Category.TOOL_ANALYZER,
-        OperationToolbarUiState.Category.TOOL_FOOTSTEP,
-        OperationToolbarUiState.Category.TOOL_TIMERS
+        //OperationToolbarUiState.Category.TOOL_TRAITS,
+        //OperationToolbarUiState.Category.TOOL_ANALYZER,
+        //OperationToolbarUiState.Category.TOOL_FOOTSTEP,
+        //OperationToolbarUiState.Category.TOOL_TIMERS
     )
 }
 
@@ -1505,6 +1506,7 @@ fun OperationConfigsBottomSheet(
 
                 Row(
                     modifier = Modifier
+                        .height(IntrinsicSize.Max)
                         .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
@@ -1513,7 +1515,8 @@ fun OperationConfigsBottomSheet(
 
                         Surface(
                             modifier = Modifier
-                                .width(IntrinsicSize.Min),
+                                .width(IntrinsicSize.Min)
+                                .fillMaxHeight(),
                             color = LocalPalette.current.surfaceContainer,
                             shape = RoundedCornerShape(8.dp),
                             border = BorderStroke(
@@ -1552,7 +1555,8 @@ fun OperationConfigsBottomSheet(
 
             Surface(
                 modifier = Modifier
-                    .weight(1f),
+                    .weight(1f)
+                    .fillMaxHeight(),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
@@ -1712,7 +1716,8 @@ fun OperationConfigsSideSheetCompact(
 
             Surface(
                 modifier = Modifier
-                    .weight(1f),
+                    .weight(1f)
+                    .fillMaxHeight(),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
             ) {
@@ -1722,17 +1727,12 @@ fun OperationConfigsSideSheetCompact(
                 )
             }
 
-            Surface(
-                modifier = Modifier,
-                color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-            ) {
-                fuseBoxControlComponent(
-                    Modifier
-                        .fillMaxHeight()
-                        .width(48.dp)
-                )
-            }
+            fuseBoxControlComponent(
+                Modifier
+                    .fillMaxHeight()
+                    .width(48.dp)
+                    .heightIn(min = 48.dp)
+            )
 
         }
 
@@ -2069,12 +2069,15 @@ fun OperationConfigsSideSheetExpanded(
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .height(IntrinsicSize.Max),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Surface(
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight(),
                         color = LocalPalette.current.surfaceContainer,
                         shape = RoundedCornerShape(8.dp)
                     ) {
@@ -2084,7 +2087,12 @@ fun OperationConfigsSideSheetExpanded(
                         )
                     }
 
-                    fuseBoxControlComponent(Modifier.size(48.dp))
+                    fuseBoxControlComponent(
+                        Modifier
+                            .fillMaxHeight()
+                            .width(48.dp)
+                            .heightIn(min = 48.dp)
+                    )
                 }
 
                 Row(

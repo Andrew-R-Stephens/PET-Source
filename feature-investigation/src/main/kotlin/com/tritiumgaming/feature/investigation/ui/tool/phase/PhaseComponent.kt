@@ -1,6 +1,9 @@
 package com.tritiumgaming.feature.investigation.ui.tool.phase
 
 
+import androidx.compose.foundation.MarqueeAnimationMode
+import androidx.compose.foundation.MarqueeDefaults.Iterations
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Text
@@ -26,24 +29,19 @@ internal fun PhaseComponent(
     modifier: Modifier = Modifier,
     state: PhaseUiState
 ) {
-
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            modifier = Modifier
-                .wrapContentHeight(),
-            text = stringResource(state.type.toPhaseTitle().toStringResource()),
-            color = LocalPalette.current.onSurface,
-            style = LocalTypography.current.tertiary.regular.copy(
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center,
-            ),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-    }
+    Text(
+        modifier = modifier
+            .wrapContentHeight()
+            .basicMarquee(Integer.MAX_VALUE, MarqueeAnimationMode.Immediately),
+        text = stringResource(state.type.toPhaseTitle().toStringResource()),
+        color = LocalPalette.current.onSurface,
+        style = LocalTypography.current.tertiary.regular.copy(
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center,
+        ),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+    )
 }
 
 internal data class PhaseUiState(

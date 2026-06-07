@@ -135,7 +135,7 @@ internal fun OperationTimerRow(
 
         Column(
             modifier = Modifier
-                .width(IntrinsicSize.Min),
+                .width(IntrinsicSize.Max),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

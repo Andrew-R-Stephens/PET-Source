@@ -41,14 +41,7 @@ internal fun FuseBoxButton(
 
     Surface(
         onClick = { onTogglePower() },
-        modifier = modifier
-            .border(
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
-            ),
+        modifier = modifier,
         shape = RoundedCornerShape(8.dp),
         color = LocalPalette.current.surfaceContainer,
         contentColor = theme.foreground
