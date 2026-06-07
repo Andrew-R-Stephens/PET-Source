@@ -768,8 +768,111 @@ private fun InvestigationContent(
         )
     }
 
-    val configSideSheet: @Composable (Modifier) -> Unit = { modifier ->
-        OperationConfigsSideSheet(
+    val configSideSheetCompact: @Composable (Modifier) -> Unit = { modifier ->
+        OperationConfigsSideSheetCompact(
+            modifier = modifier,
+            sanityMedicationComponent = { modifier ->
+                SanityMedicationButton(
+                    modifier = modifier,
+                    onClick = onUseSanityMedication
+                )
+            },
+            mapConfigComponent = { modifier ->
+                MapConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = mapDropdownOptions,
+                    isDropdownEnabled = isMapEnabled,
+                    dropdownLabel = mapLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = onMapDropdownSelect
+                )
+            },
+            difficultyConfigComponent = { modifier ->
+                DifficultyConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = difficultyDropdownOptions,
+                    isDropdownEnabled = isDifficultyEnabled,
+                    dropdownLabel = difficultyLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = onDifficultyDropdownSelect
+                )
+            },
+            customDifficultyConfigComponent = { modifier ->
+                CustomDifficultyConfigControl(
+                    modifier = modifier,
+                    dropdownOptions = customDifficultyDropdownOptions,
+                    isDropdownEnabled = isDifficultyEnabled,
+                    dropdownLabel = customDifficultyLabel,
+                    colors = operationConfigUiColors,
+                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                ) { modifier ->
+                    IconButton(
+                        modifier = modifier,
+                        onClick = { onNavigateToEditCustomDifficulty() }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_settings),
+                            contentDescription = "Custom Difficulty Settings",
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
+                }
+            },
+            weatherConfigComponent = { modifier ->
+                WeatherConfigComponent(
+                    modifier = modifier,
+                    icon = weatherIcon,
+                    dropdownOptions = weatherDropdownOptions,
+                    isDropdownEnabled = isWeatherEnabled,
+                    dropdownLabel = weatherLabel,
+                    onDropdownSelect = onWeatherDropdownSelect
+                )
+            },
+            sanityMeterComponent = { modifier, onHeadClick ->
+                SanityMeterComponent(
+                    modifier = modifier,
+                    sanityLevel = sanityLevel,
+                    insanityLevel = insanityLevel,
+                    onSanityChange = onSanityChange,
+                    onHeadClick = onHeadClick
+                )
+            },
+            timerComponent = { modifier ->
+                OperationTimerRow(
+                    modifier = modifier,
+                    remainingTime = timerRemainingTime,
+                    paused = timerPaused,
+                    onToggle = onTimerToggle,
+                    onSkip = onTimerSkip,
+                    phaseUiState = phaseUiState
+                )
+            },
+            playerDeathButtonComponent = { modifier ->
+                PlayerDeathButton(
+                    modifier = modifier,
+                    onClick = onPlayerDeath
+                )
+            },
+            temperatureMeterComponent = { modifier ->
+                TemperatureComponent(
+                    modifier = modifier,
+                    state = temperatureStateBundle
+                )
+            },
+            fuseBoxControlComponent = { modifier ->
+                FuseBoxButton(
+                    modifier = modifier,
+                    flag = fuseBoxFlag,
+                    onTogglePower = onTogglePower
+                )
+            },
+            showTemperatureMeterComponent = weather != Weather.RANDOM,
+            showEditCustomDifficultyComponent = difficultyUiState.type == DifficultyType.CUSTOM
+        )
+    }
+
+    val configSideSheetExpanded: @Composable (Modifier) -> Unit = { modifier ->
+        OperationConfigsSideSheetExpanded(
             modifier = modifier,
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
@@ -884,15 +987,32 @@ private fun InvestigationContent(
     }
 
     val sideSheetComponent: @Composable (Modifier) -> Unit = { modifier ->
-        ToolsSideSheetComponent(
-            modifier = modifier,
-            toolbarCategory = toolbarCategory,
-            configComponent = configSideSheet,
-            traitsComponent = traitsComponent,
-            analyzerComponent = analyzerComponent,
-            timersComponent = timersComponent,
-            footstepComponent = footstepComponent
-        )
+        when (deviceConfiguration) {
+            DeviceConfiguration.MOBILE_LANDSCAPE -> {
+                ToolsSideSheetComponent(
+                    modifier = modifier,
+                    toolbarCategory = toolbarCategory,
+                    configComponent = configSideSheetCompact,
+                    traitsComponent = traitsComponent,
+                    analyzerComponent = analyzerComponent,
+                    timersComponent = timersComponent,
+                    footstepComponent = footstepComponent
+                )
+            }
+            else -> {
+
+                ToolsSideSheetComponent(
+                    modifier = modifier,
+                    toolbarCategory = toolbarCategory,
+                    configComponent = configSideSheetExpanded,
+                    traitsComponent = traitsComponent,
+                    analyzerComponent = analyzerComponent,
+                    timersComponent = timersComponent,
+                    footstepComponent = footstepComponent
+                )
+            }
+        }
+
     }
 
     val journalComponent: @Composable (Modifier) -> Unit = { modifier ->
@@ -1494,7 +1614,7 @@ fun OperationConfigsBottomSheet(
 }
 
 @Composable
-fun OperationConfigsSideSheet(
+fun OperationConfigsSideSheetCompact(
     modifier: Modifier = Modifier,
     sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
     playerDeathButtonComponent: @Composable (Modifier) -> Unit = {},
@@ -1520,8 +1640,7 @@ fun OperationConfigsSideSheet(
 
         Row (
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically) {
 
@@ -1535,7 +1654,7 @@ fun OperationConfigsSideSheet(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = "Operation Config".uppercase(),
+                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
@@ -1555,10 +1674,6 @@ fun OperationConfigsSideSheet(
             modifier = Modifier,
             color = LocalPalette.current.surfaceContainer,
             shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
         ) {
             Column(
                 modifier = Modifier
@@ -1586,40 +1701,31 @@ fun OperationConfigsSideSheet(
 
             }
         }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(IntrinsicSize.Min),
+                .height(IntrinsicSize.Max),
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
             Surface(
                 modifier = Modifier
-                    .width(IntrinsicSize.Min),
+                    .weight(1f),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
             ) {
                 timerComponent(
                     Modifier
                         .width(IntrinsicSize.Min)
-                        .padding(8.dp)
                 )
-
             }
 
             Surface(
                 modifier = Modifier,
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
             ) {
                 fuseBoxControlComponent(
                     Modifier
@@ -1824,6 +1930,196 @@ fun OperationConfigsSideSheet(
 
     }
 
+}
+
+@Composable
+fun OperationConfigsSideSheetExpanded(
+    modifier: Modifier = Modifier,
+    sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
+    playerDeathButtonComponent: @Composable (Modifier) -> Unit = {},
+    timerComponent: @Composable (Modifier) -> Unit = {},
+    mapConfigComponent: @Composable (Modifier) -> Unit = {},
+    difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    customDifficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    weatherConfigComponent: @Composable (Modifier) -> Unit = {},
+    temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
+    fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
+    sanityMeterComponent: @Composable (Modifier, onHeadClick: () -> Unit) -> Unit = { _, _ -> },
+    showTemperatureMeterComponent: Boolean,
+    showEditCustomDifficultyComponent: Boolean
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically) {
+
+            HorizontalDivider(
+                modifier = Modifier
+                    .weight(1f),
+                color = LocalPalette.current.onSurfaceVariant,
+                thickness = Dp.Hairline
+            )
+
+            Text(
+                modifier = Modifier
+                    .wrapContentWidth(),
+                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
+                color = LocalPalette.current.onSurfaceVariant,
+                style = LocalTypography.current.quaternary.bold.copy(
+                    textAlign = TextAlign.Start
+                ),
+                fontSize = 18.sp,
+                maxLines = 1
+            )
+            HorizontalDivider(
+                modifier = Modifier
+                    .weight(1f),
+                color = LocalPalette.current.onSurfaceVariant,
+                thickness = Dp.Hairline
+            )
+        }
+
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+            ) {
+                Column(
+                    modifier = Modifier.padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    mapConfigComponent(Modifier.fillMaxWidth())
+
+                    difficultyConfigComponent(Modifier.fillMaxWidth())
+
+                    if (showEditCustomDifficultyComponent) {
+                        customDifficultyConfigComponent(Modifier.fillMaxWidth())
+                    }
+
+                }
+            }
+
+            Column(
+                modifier = Modifier,
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth()
+                        .height(IntrinsicSize.Max),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Surface(
+                        modifier = Modifier.weight(1f),
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp),
+                    ) {
+                        weatherConfigComponent(
+                            Modifier
+                                .fillMaxSize()
+                                .padding(8.dp)
+                        )
+                    }
+
+                    if (showTemperatureMeterComponent) {
+                        Surface(
+                            modifier = Modifier.wrapContentWidth(),
+                            color = LocalPalette.current.surfaceContainer,
+                            shape = RoundedCornerShape(8.dp),
+                        ) {
+                            temperatureMeterComponent(
+                                Modifier
+                                    .padding(8.dp)
+                            )
+                        }
+                    }
+                }
+            }
+
+        }
+
+        /*Surface(
+            modifier = Modifier.fillMaxWidth(),
+            color = LocalPalette.current.surfaceContainer,
+            shape = RoundedCornerShape(12.dp),
+            border = BorderStroke(
+                width = 2.dp,
+                color = LocalPalette.current.surfaceContainerLow
+            )
+        ) {*/
+            Column(
+                modifier = Modifier,
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Surface(
+                        modifier = Modifier.weight(1f),
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        timerComponent(
+                            Modifier.padding(8.dp)
+                                .fillMaxWidth()
+                        )
+                    }
+
+                    fuseBoxControlComponent(Modifier.size(48.dp))
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+
+                    Surface(
+                        modifier = Modifier.weight(1f),
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        sanityMeterComponent(
+                            Modifier
+                                .height(48.dp), {})
+                    }
+
+                    Surface(
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        sanityMedicationComponent(Modifier.size(48.dp))
+                    }
+
+                    Surface(
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        playerDeathButtonComponent(Modifier.size(48.dp))
+                    }
+                }
+            }
+        //}
+    }
 }
 
 internal data class InvestigationUiState(
