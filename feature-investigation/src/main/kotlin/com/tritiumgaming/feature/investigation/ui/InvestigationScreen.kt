@@ -2,9 +2,7 @@ package com.tritiumgaming.feature.investigation.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
@@ -137,7 +135,6 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.evidence.model.Evidence
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
@@ -1434,11 +1431,7 @@ fun OperationConfigsBottomSheet(
                     .weight(1f)
                     .fillMaxHeight(),
                 color = LocalPalette.current.surfaceContainer,
-                shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
+                shape = RoundedCornerShape(8.dp)
             ) {
                 Column(
                     modifier = Modifier
@@ -1492,10 +1485,6 @@ fun OperationConfigsBottomSheet(
                         .fillMaxWidth(),
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(
-                        width = 2.dp,
-                        color = LocalPalette.current.surfaceContainerLow
-                    )
                 ) {
                     timerComponent(
                         Modifier
@@ -1519,10 +1508,6 @@ fun OperationConfigsBottomSheet(
                                 .fillMaxHeight(),
                             color = LocalPalette.current.surfaceContainer,
                             shape = RoundedCornerShape(8.dp),
-                            border = BorderStroke(
-                                width = 2.dp,
-                                color = LocalPalette.current.surfaceContainerLow
-                            )
                         ) {
 
                             temperatureMeterComponent(
@@ -1559,10 +1544,6 @@ fun OperationConfigsBottomSheet(
                     .fillMaxHeight(),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(
-                    width = 2.dp,
-                    color = LocalPalette.current.surfaceContainerLow
-                )
             ) {
                 sanityMeterComponent(
                     Modifier
@@ -1583,10 +1564,6 @@ fun OperationConfigsBottomSheet(
                     modifier = Modifier,
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(
-                        width = 2.dp,
-                        color = LocalPalette.current.surfaceContainerLow
-                    )
                 ) {
                     sanityMedicationComponent(
                         Modifier
@@ -1598,10 +1575,6 @@ fun OperationConfigsBottomSheet(
                     modifier = Modifier,
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(
-                        width = 2.dp,
-                        color = LocalPalette.current.surfaceContainerLow
-                    )
                 ) {
                     playerDeathButtonComponent(
                         Modifier
@@ -1633,8 +1606,8 @@ fun OperationConfigsSideSheetCompact(
     showTemperatureMeterComponent: Boolean,
     showEditCustomDifficultyComponent: Boolean
 ) {
-    var isSanityExpanded by rememberSaveable { mutableStateOf(false) }
-    val toggleSanityExpansion = { isSanityExpanded = !isSanityExpanded }
+    var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
+    val toggleSanityExpansion = { isSanityCollapsed = !isSanityCollapsed }
 
     Column(
         modifier = modifier,
@@ -1703,6 +1676,10 @@ fun OperationConfigsSideSheetCompact(
                     )
                 }
 
+                weatherConfigComponent(
+                    Modifier
+                        .fillMaxWidth()
+                )
             }
         }
 
@@ -1724,6 +1701,7 @@ fun OperationConfigsSideSheetCompact(
                 timerComponent(
                     Modifier
                         .width(IntrinsicSize.Min)
+                        .padding(8.dp)
                 )
             }
 
@@ -1742,10 +1720,6 @@ fun OperationConfigsSideSheetCompact(
                 .animateContentSize(),
             color = LocalPalette.current.surfaceContainer,
             shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
         ) {
             BoxWithConstraints(
                 modifier = Modifier.fillMaxWidth()
@@ -1776,10 +1750,6 @@ fun OperationConfigsSideSheetCompact(
                             modifier = Modifier,
                             color = LocalPalette.current.surfaceContainerLow,
                             shape = RoundedCornerShape(8.dp),
-                            border = BorderStroke(
-                                width = 2.dp,
-                                color = LocalPalette.current.surfaceContainer
-                            )
                         ) {
                             sanityMedicationComponent(
                                 Modifier.size(48.dp)
@@ -1790,10 +1760,6 @@ fun OperationConfigsSideSheetCompact(
                             modifier = Modifier,
                             color = LocalPalette.current.surfaceContainerLow,
                             shape = RoundedCornerShape(8.dp),
-                            border = BorderStroke(
-                                width = 2.dp,
-                                color = LocalPalette.current.surfaceContainer
-                            )
                         ) {
                             playerDeathButtonComponent(
                                 Modifier.size(48.dp)
@@ -1814,7 +1780,7 @@ fun OperationConfigsSideSheetCompact(
                         ) {
                             CollapseButton(
                                 modifier = Modifier.size(24.dp),
-                                isCollapsed = !isSanityExpanded,
+                                isCollapsed = isSanityCollapsed,
                                 onClick = toggleSanityExpansion,
                                 enabledRotationAddition = 90
                             )
@@ -1828,7 +1794,7 @@ fun OperationConfigsSideSheetCompact(
                             )
                         }
 
-                        AnimatedVisibility(visible = isSanityExpanded) {
+                        AnimatedVisibility(visible = isSanityCollapsed) {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.spacedBy(
@@ -1841,10 +1807,6 @@ fun OperationConfigsSideSheetCompact(
                                     modifier = Modifier,
                                     color = LocalPalette.current.surfaceContainerLow,
                                     shape = RoundedCornerShape(8.dp),
-                                    border = BorderStroke(
-                                        width = 2.dp,
-                                        color = LocalPalette.current.surfaceContainer
-                                    )
                                 ) {
                                     sanityMedicationComponent(
                                         Modifier.size(48.dp)
@@ -1855,10 +1817,6 @@ fun OperationConfigsSideSheetCompact(
                                     modifier = Modifier,
                                     color = LocalPalette.current.surfaceContainerLow,
                                     shape = RoundedCornerShape(8.dp),
-                                    border = BorderStroke(
-                                        width = 2.dp,
-                                        color = LocalPalette.current.surfaceContainer
-                                    )
                                 ) {
                                     playerDeathButtonComponent(
                                         Modifier.size(48.dp)
@@ -1871,7 +1829,21 @@ fun OperationConfigsSideSheetCompact(
             }
         }
 
-        BoxWithConstraints(
+        if (showTemperatureMeterComponent) {
+            Surface(
+                modifier = Modifier.width(IntrinsicSize.Min),
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+            ) {
+                temperatureMeterComponent(
+                    Modifier
+                        .padding(8.dp)
+                        .wrapContentWidth()
+                )
+            }
+        }
+
+        /*BoxWithConstraints(
             modifier = Modifier.fillMaxWidth()
         ) {
             val canFitBoth = maxWidth >= (140.dp * 2 + 8.dp)
@@ -1892,10 +1864,6 @@ fun OperationConfigsSideSheetCompact(
                         ),
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(
-                        width = 2.dp,
-                        color = LocalPalette.current.surfaceContainerLow
-                    )
                 ) {
                     weatherConfigComponent(
                         Modifier
@@ -1913,10 +1881,6 @@ fun OperationConfigsSideSheetCompact(
                             ),
                         color = LocalPalette.current.surfaceContainer,
                         shape = RoundedCornerShape(8.dp),
-                        border = BorderStroke(
-                            width = 2.dp,
-                            color = LocalPalette.current.surfaceContainerLow
-                        )
                     ) {
                         temperatureMeterComponent(
                             Modifier
@@ -1926,7 +1890,7 @@ fun OperationConfigsSideSheetCompact(
                     }
                 }
             }
-        }
+        }*/
 
     }
 

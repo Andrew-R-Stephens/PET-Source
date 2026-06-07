@@ -133,7 +133,7 @@ internal fun CategoryColumn(
                 containerColor,
                 RoundedCornerShape(8.dp)
             )
-            .padding(4.dp)
+            .padding(8.dp)
     ) {
         content()
     }
