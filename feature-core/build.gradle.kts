@@ -75,12 +75,4 @@ dependencies {
     implementation(project(":data-review"))
     implementation(project(":data-customdifficulty"))
     implementation(project(":database-local"))
-    // implementation(project(":data-codex"))
-    // implementation(project(":data-contributor"))
-    // implementation(project(":data-difficulty"))
-    // implementation(project(":data-evidence"))
-    // implementation(project(":data-ghost"))
-    // implementation(project(":data-ghostname"))
-    // implementation(project(":data-map"))
-    // implementation(project(":data-mission"))
 }

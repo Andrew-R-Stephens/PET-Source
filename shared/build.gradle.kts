@@ -1,3 +1,5 @@
+import com.android.sdklib.AndroidVersion.VersionCodes
+
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose.multiplatform)
@@ -12,9 +14,9 @@ kotlin {
     // Target declarations - add or remove as needed below. These define
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
-    androidLibrary {
+    android {
         namespace = "com.tritiumgaming.shared"
-        compileSdk = 36
+        compileSdk = VersionCodes.BAKLAVA
         minSdk = 23
 
         withHostTestBuilder {

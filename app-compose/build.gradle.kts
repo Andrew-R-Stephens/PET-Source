@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.sdklib.AndroidVersion.VersionCodes
 
 plugins {
     alias(libs.plugins.android.application)
@@ -40,7 +41,7 @@ configure<ApplicationExtension> {
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
         minSdk = 23
-        targetSdk = 36
+        targetSdk = VersionCodes.BAKLAVA
         versionCode = 139
         versionName = "10.4.0-compose.a.3"
 
