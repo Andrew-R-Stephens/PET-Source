@@ -6,10 +6,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -81,8 +83,8 @@ import kotlinx.coroutines.launch
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Small Phone", device = "id:small_phone", locale = "de")
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape", locale = "de")
 @Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
 @Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
 @Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
@@ -428,6 +430,9 @@ private fun AccountComponentPortrait(
         Spacer(modifier = Modifier.height(16.dp))
 
         SignOutComponent(
+            modifier = Modifier
+                .width(IntrinsicSize.Min)
+                .padding(8.dp),
             onLogoutClicked = {
                 onLogoutClicked()
             },
@@ -462,6 +467,7 @@ private fun AccountComponentLandscape(
 
         AccountDetailsLandscapeComponent(
             modifier = Modifier
+                .fillMaxHeight()
                 .weight(1f, fill = true),
             userName = userName,
             userEmail = userEmail,
@@ -470,7 +476,7 @@ private fun AccountComponentLandscape(
 
         SignOutComponent(
             modifier = Modifier
-                .weight(1f, fill = true)
+                .weight(1f)
                 .align(Alignment.CenterVertically),
             onLogoutClicked = {
                 onLogoutClicked()
@@ -716,70 +722,63 @@ private fun SignOutComponent(
     onDeactivateClicked: () -> Unit = {},
 ) {
 
-    Spacer(modifier = Modifier.height(16.dp))
-
-    val rememberMaxWidth = remember { mutableIntStateOf(200) }
-
     Column(
-        modifier = modifier
-            .padding(8.dp)
-            .width(rememberMaxWidth.intValue.dp)
-            .wrapContentHeight()
-            .padding(8.dp),
+        modifier = modifier,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(16.dp))
 
-        AccountActionButton(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .onSizeChanged {
-                    if (rememberMaxWidth.intValue > it.width)
-                        rememberMaxWidth.intValue = it.width
-                }
-                .padding(4.dp),
-            text = stringResource(id = R.string.account_button_logout),
-            textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp,
-                color = LocalPalette.current.onSecondaryContainer
-            ),
-            buttonColors = ButtonColors(
-                containerColor = LocalPalette.current.secondaryContainer,
-                contentColor = LocalPalette.current.onSecondaryContainer,
-                disabledContentColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent
-            )
+                .width(IntrinsicSize.Max),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            onLogoutClicked()
-        }
 
-        Spacer(
-            modifier = Modifier
-                .height(24.dp)
-        )
+            AccountActionButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(4.dp),
+                text = stringResource(id = R.string.account_button_logout),
+                textStyle = LocalTypography.current.quaternary.bold.copy(
+                    fontSize = 18.sp,
+                    color = LocalPalette.current.onSecondaryContainer
+                ),
+                buttonColors = ButtonColors(
+                    containerColor = LocalPalette.current.secondaryContainer,
+                    contentColor = LocalPalette.current.onSecondaryContainer,
+                    disabledContentColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent
+                )
+            ) {
+                onLogoutClicked()
+            }
 
-        AccountActionButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .onSizeChanged {
-                    if (rememberMaxWidth.intValue > it.width)
-                        rememberMaxWidth.intValue = it.width
-                }
-                .padding(4.dp),
-            text = stringResource(id = R.string.account_button_deactivate),
-            textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp,
-                color = LocalPalette.current.onErrorContainer
-            ),
-            buttonColors = ButtonColors(
-                containerColor = LocalPalette.current.errorContainer,
-                contentColor = LocalPalette.current.onErrorContainer,
-                disabledContentColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent
+            Spacer(
+                modifier = Modifier
+                    .height(24.dp)
             )
-        ) {
-            onDeactivateClicked()
-        }
 
+            AccountActionButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(4.dp),
+                text = stringResource(id = R.string.account_button_deactivate),
+                textStyle = LocalTypography.current.quaternary.bold.copy(
+                    fontSize = 18.sp,
+                    color = LocalPalette.current.onErrorContainer
+                ),
+                buttonColors = ButtonColors(
+                    containerColor = LocalPalette.current.errorContainer,
+                    contentColor = LocalPalette.current.onErrorContainer,
+                    disabledContentColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent
+                )
+            ) {
+                onDeactivateClicked()
+            }
+
+        }
     }
 
 }

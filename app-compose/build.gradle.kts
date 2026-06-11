@@ -25,6 +25,7 @@ configure<ApplicationExtension> {
     */
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     /* ---------------- */
@@ -62,23 +63,30 @@ configure<ApplicationExtension> {
         debug {
             isMinifyEnabled = false
             isShrinkResources = false
+            buildConfigField("boolean", "USE_FIRESTORE", "false")
+            buildConfigField("boolean", "USE_NEWSLETTER", "false")
+            buildConfigField("boolean", "USE_ACCOUNT", "false")
+            buildConfigField("boolean", "USE_MARKETPLACE", "false")
+        }
+        create("releaseTest") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            applicationIdSuffix = ".test"
+            versionNameSuffix = "-test"
+            buildConfigField("boolean", "USE_NEWSLETTER", "true")
+            buildConfigField("boolean", "USE_FIRESTORE", "true")
+            buildConfigField("boolean", "USE_ACCOUNT", "true")
+            buildConfigField("boolean", "USE_MARKETPLACE", "true")
         }
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
+            buildConfigField("boolean", "USE_NEWSLETTER", "false")
+            buildConfigField("boolean", "USE_FIRESTORE", "false")
+            buildConfigField("boolean", "USE_ACCOUNT", "false")
+            buildConfigField("boolean", "USE_MARKETPLACE", "false")
         }
     }
-
-    /*compileOptions {
-        targetCompatibility = JavaVersion.VERSION_17
-        sourceCompatibility = JavaVersion.VERSION_17
-    }*/
-
-    /*/* kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
-        }
-    } */*/
 
     buildToolsVersion = "36.1.0"
 
