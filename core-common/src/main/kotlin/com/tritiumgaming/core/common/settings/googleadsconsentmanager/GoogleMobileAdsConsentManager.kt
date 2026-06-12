@@ -43,7 +43,7 @@ class GoogleMobileAdsConsentManager(
     ) {
         // For testing purposes, you can force a DebugGeography of EEA or NOT_EEA.
         val debugSettings = ConsentDebugSettings.Builder(activity)
-            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+            //.setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
             .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
             .addTestDeviceHashedId("B3C272DE5AEAB81CA9CBBCB2A928A38E")
             .addTestDeviceHashedId("35C63C64AD5C412021F7831FF07C5411")

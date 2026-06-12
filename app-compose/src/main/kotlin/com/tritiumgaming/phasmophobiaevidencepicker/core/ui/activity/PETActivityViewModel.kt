@@ -164,7 +164,8 @@ class PETActivityViewModel(
 
         // Initialize the Google Mobile Ads SDK on a background thread.
         withContext(Dispatchers.IO) {
-            MobileAds.initialize(context) { _googleAdsPermissionsUiState.update { it.copy(isMobileAdsInitialized = true) } }
+            MobileAds.initialize(context) { _googleAdsPermissionsUiState.update {
+                it.copy(isMobileAdsInitialized = true) } }
 
             Log.d("PermissionsViewModel", "Mobile Ads SDK initialized.")
         }

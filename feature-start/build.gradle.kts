@@ -1,34 +1,33 @@
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.gms.services)
 
     // alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.compose.compiler)
-    alias(libs.plugins.android.library)
 }
 
 configure<LibraryExtension> {
     namespace = "com.tritiumgaming.feature.start"
     compileSdk = 37
 
+    buildFeatures {
+        buildConfig = true
+        compose = true
+    }
+
     defaultConfig {
         minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
     }
 
     buildTypes {
-
-        debug {
-            initWith(getByName("debug"))
-        }
         create("releaseTest") {
             initWith(getByName("releaseTest"))
-        }
-        release {
-            initWith(getByName("release"))
         }
     }
 

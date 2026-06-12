@@ -77,6 +77,7 @@ import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.widgets.menus.SecondarySelector
+import com.tritiumgaming.feature.start.BuildConfig
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
@@ -611,7 +612,7 @@ private fun HeaderNavBar(
     val accountIcon: @Composable () -> Unit = {
         AccountIcon(
             modifier = Modifier
-                .size(48.dp)
+                .fillMaxSize()
                 .padding(4.dp),
             borderColor =  LocalPalette.current.onSurface,
             backgroundColor = LocalPalette.current.surfaceContainerLow,
@@ -746,12 +747,15 @@ private fun HeaderNavBar(
                 onClick = { onNavigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }) {
                 personIcon()
             }
-            SecondarySelector(
-                modifier = Modifier
-                    .size(48.dp)
-                    .padding(4.dp),
-                onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
-                storeIcon()
+
+            if(BuildConfig.USE_MARKETPLACE) {
+                SecondarySelector(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(4.dp),
+                    onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
+                    storeIcon()
+                }
             }
         },
         colors = IconDropdownMenuColors(

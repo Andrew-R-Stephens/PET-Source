@@ -1,10 +1,9 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.sdklib.AndroidVersion.VersionCodes
+import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     alias(libs.plugins.android.application)
 
-    // // alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.jetbrains.kotlin.serialization)
 
@@ -43,8 +42,8 @@ configure<ApplicationExtension> {
 
         minSdk = 23
         targetSdk = 37
-        versionCode = 140
-        versionName = "1.0.0-alpha.1"
+        versionCode = 144
+        versionName = "1.0.0-alpha.4"
 
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -57,6 +56,11 @@ configure<ApplicationExtension> {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
+
+        buildConfigField("boolean", "USE_NEWSLETTER", "true")
+        buildConfigField("boolean", "USE_FIRESTORE", "true")
+        buildConfigField("boolean", "USE_ACCOUNT", "true")
+        buildConfigField("boolean", "USE_MARKETPLACE", "true")
     }
 
     buildTypes {
@@ -64,23 +68,13 @@ configure<ApplicationExtension> {
             isMinifyEnabled = false
             //noinspection NotShrinkingResources
             isShrinkResources = false
-            buildConfigField("boolean", "USE_FIRESTORE", "false")
-            buildConfigField("boolean", "USE_NEWSLETTER", "false")
-            buildConfigField("boolean", "USE_ACCOUNT", "false")
-            buildConfigField("boolean", "USE_MARKETPLACE", "false")
         }
-        getByName("release") {
+        release {
             isMinifyEnabled = true
             isShrinkResources = true
-            buildConfigField("boolean", "USE_NEWSLETTER", "true")
-            buildConfigField("boolean", "USE_FIRESTORE", "true")
-            buildConfigField("boolean", "USE_ACCOUNT", "true")
-            buildConfigField("boolean", "USE_MARKETPLACE", "true")
         }
         create("releaseTest") {
             initWith(getByName("release"))
-            /*applicationIdSuffix = ".test"
-            versionNameSuffix = "-test"*/
             buildConfigField("boolean", "USE_NEWSLETTER", "false")
             buildConfigField("boolean", "USE_FIRESTORE", "false")
             buildConfigField("boolean", "USE_ACCOUNT", "false")
@@ -90,6 +84,31 @@ configure<ApplicationExtension> {
 
     buildToolsVersion = "36.1.0"
 
+}
+
+project(":feature-start").afterEvaluate {
+    extensions.configure<LibraryExtension> {
+        defaultConfig {
+            buildConfigField("boolean", "USE_NEWSLETTER", "true")
+            buildConfigField("boolean", "USE_FIRESTORE", "true")
+            buildConfigField("boolean", "USE_ACCOUNT", "true")
+            buildConfigField("boolean", "USE_MARKETPLACE", "true")
+        }
+        buildTypes {
+            getByName("debug") {
+                buildConfigField("boolean", "USE_FIRESTORE", "false")
+                buildConfigField("boolean", "USE_NEWSLETTER", "false")
+                buildConfigField("boolean", "USE_ACCOUNT", "false")
+                buildConfigField("boolean", "USE_MARKETPLACE", "false")
+            }
+            getByName("releaseTest") {
+                buildConfigField("boolean", "USE_NEWSLETTER", "false")
+                buildConfigField("boolean", "USE_FIRESTORE", "false")
+                buildConfigField("boolean", "USE_ACCOUNT", "false")
+                buildConfigField("boolean", "USE_MARKETPLACE", "false")
+            }
+        }
+    }
 }
 
 composeCompiler {
