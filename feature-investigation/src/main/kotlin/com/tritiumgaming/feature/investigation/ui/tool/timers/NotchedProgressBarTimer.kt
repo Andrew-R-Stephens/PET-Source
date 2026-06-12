@@ -100,7 +100,7 @@ internal fun NotchedProgressBarTimer(
             TimerToggleButton(
                 modifier = Modifier
                     .size(48.dp),
-                paused = !running,
+                paused = !running && remaining > 0,
                 onToggle = { onToggle() },
                 primaryContent = { modifier ->
                     Icon(

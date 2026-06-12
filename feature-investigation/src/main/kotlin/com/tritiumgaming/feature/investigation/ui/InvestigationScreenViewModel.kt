@@ -421,7 +421,7 @@ class InvestigationScreenViewModel private constructor(
 
     private fun MutableStateFlow<NotchedProgressBarData>.toggleTimer() {
         update { state ->
-            if (!state.running) state.copy(running = true)
+            if (!state.running) state.copy(remaining = state.max, running = true)
             else state.copy(remaining = state.max, running = false)
         }
     }
@@ -1379,7 +1379,7 @@ class InvestigationScreenViewModel private constructor(
 
                 it.copy(
                     remaining = nextRemaining,
-                    running = nextRemaining > 0L
+                    running = nextRemaining >= 0L
                 )
             }
         }
@@ -1388,7 +1388,7 @@ class InvestigationScreenViewModel private constructor(
                 val nextRemaining = (it.remaining - delay).coerceAtLeast(0L)
                 it.copy(
                     remaining = nextRemaining,
-                    running = nextRemaining > 0L
+                    running = nextRemaining >= 0L
                 )
             }
         }
@@ -1397,7 +1397,7 @@ class InvestigationScreenViewModel private constructor(
                 val nextRemaining = (it.remaining - delay).coerceAtLeast(0L)
                 it.copy(
                     remaining = nextRemaining,
-                    running = nextRemaining > 0L
+                    running = nextRemaining >= 0L
                 )
             }
         }
@@ -1406,7 +1406,7 @@ class InvestigationScreenViewModel private constructor(
                 val nextRemaining = (it.remaining - delay).coerceAtLeast(0L)
                 it.copy(
                     remaining = nextRemaining,
-                    running = nextRemaining > 0L
+                    running = nextRemaining >= 0L
                 )
             }
         }
@@ -1858,9 +1858,11 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.SetBpmSampleInterval -> setBpmSampleInterval(event.intervalMillis)
             is InvestigationEvent.ToggleApplyBpmMeasurement -> toggleApplyBpmMeasurement()
 
-            // Timers
+            // Operation Timer
             is InvestigationEvent.ToggleOperationTimer -> toggleOperationTimer()
             is InvestigationEvent.SkipOperationTimer -> skipOperationTimer()
+
+            // Tool Timers
             is InvestigationEvent.ToggleTimerLinking -> _timersLinked.update { !it }
             is InvestigationEvent.TriggerToolTimer -> triggerToolTimer(event.type)
 

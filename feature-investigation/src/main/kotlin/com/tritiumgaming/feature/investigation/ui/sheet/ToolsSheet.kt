@@ -259,12 +259,12 @@ internal fun ToolsTimerComponent(
                             )
                         }
 
-                        Checkbox(
+                        /*Checkbox(
                             modifier = Modifier,
                             checked = false,
                             onCheckedChange = {},
                             colors = CheckboxDefaults.colors(),
-                        )
+                        )*/
                     }
                 }
 

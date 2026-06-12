@@ -64,6 +64,7 @@ internal fun TimerTools(
                 fontSize = 18.sp,
                 maxLines = 1
             )
+
             HorizontalDivider(
                 modifier = Modifier
                     .weight(1f),
