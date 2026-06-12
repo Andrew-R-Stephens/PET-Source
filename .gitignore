@@ -11,11 +11,6 @@
 /.kotlin/
 /build
 
-/app-view/build/
-/app-view/release/
-/app-view/upload_certificate.pem
-/app-view/google-services.json
-
 /app-legacy/build/
 /app-legacy/release/
 /app-legacy/upload_certificate.pem
@@ -26,6 +21,8 @@
 /app-compose/google-services.json
 /app-compose/upload_certificate.pem
 /app-compose/libs/processing-core.jar
+
+/app-compose/releaseTest/PET-releaseTest-alpha-1.aab
 
 /data-customdifficulty/build/
 /database-local/build/
