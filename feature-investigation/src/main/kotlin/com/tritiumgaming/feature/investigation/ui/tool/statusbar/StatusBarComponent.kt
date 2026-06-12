@@ -67,7 +67,7 @@ internal fun OperationStatusBar(
     FlowRow(
         modifier = modifier
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
         verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically),
         itemVerticalAlignment = Alignment.CenterVertically
     ) {
@@ -84,11 +84,12 @@ internal fun OperationStatusBar(
             fuseBoxFlag = fuseBoxFlag
         )
 
-        if(weatherType != Weather.RANDOM)
-        WeatherStatusComponent(
-            weatherType = weatherType,
-            temperature = temperature
-        )
+        if(weatherType != Weather.RANDOM) {
+            WeatherStatusComponent(
+                weatherType = weatherType,
+                temperature = temperature
+            )
+        }
     }
 }
 
@@ -274,6 +275,12 @@ private fun PowerStatusComponent(
         FuseBoxFlag.FUSEBOX_BROKEN -> R.drawable.ic_power_broken
     }
 
+    val fuseBoxIconColor = when(fuseBoxFlag) {
+        FuseBoxFlag.FUSEBOX_ENABLED -> LocalPalette.current.onSurfaceVariant
+        FuseBoxFlag.FUSEBOX_DISABLED -> LocalPalette.current.onSurface.copy(alpha = .75f)
+        FuseBoxFlag.FUSEBOX_BROKEN -> LocalPalette.current.onSurface.copy(alpha = .75f)
+    }
+
     Surface(
         modifier = Modifier
             .height(IntrinsicSize.Max),
@@ -287,7 +294,7 @@ private fun PowerStatusComponent(
                 .aspectRatio(1f),
             painter = painterResource(fuseBoxIconRes),
             contentDescription = "",
-            colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
+            colorFilter = ColorFilter.tint(fuseBoxIconColor)
         )
     }
 }

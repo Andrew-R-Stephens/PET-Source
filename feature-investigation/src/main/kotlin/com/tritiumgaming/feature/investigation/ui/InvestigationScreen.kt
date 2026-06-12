@@ -156,13 +156,13 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTi
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone", locale = "de")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape", locale = "de")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp", locale = "de")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp", locale = "de")
-@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait", locale = "de")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240", locale = "de")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp", locale = "de")
+@Preview(name = "Small Phone", device = "id:small_phone")
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
 private annotation class DevicePreviews
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
@@ -192,6 +192,9 @@ private fun InvestigationScreenPreview(
                 uiState = InvestigationUiState(
                     operationTimer = OperationTimerUiState(
                         remainingTime = "0:00"
+                    ),
+                    difficultyOverrides = DifficultyOverridesData(
+                        fuseBox = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
                     ),
                     weather = WeatherUiState(
                         weather = Weather.SNOW
