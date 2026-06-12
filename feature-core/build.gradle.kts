@@ -2,12 +2,11 @@ import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     alias(libs.plugins.android.library)
-    // alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 configure<LibraryExtension> {
     namespace = "com.tritiumgaming.feature.core"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 23
@@ -16,27 +15,25 @@ configure<LibraryExtension> {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+
     buildTypes {
+        debug {
+            initWith(getByName("debug"))
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            initWith(getByName("release"))
+        }
+        create("releaseTest") {
+            initWith(getByName("releaseTest"))
         }
     }
+
 
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
     buildToolsVersion = "36.1.0"
-
-    /* kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
-        }
-    } */
 
 }
 

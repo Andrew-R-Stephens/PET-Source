@@ -10,7 +10,7 @@ plugins {
 
 configure<LibraryExtension> {
     namespace = "com.tritiumgaming.feature.start"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 23
@@ -20,12 +20,15 @@ configure<LibraryExtension> {
     }
 
     buildTypes {
+
+        debug {
+            initWith(getByName("debug"))
+        }
+        create("releaseTest") {
+            initWith(getByName("releaseTest"))
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            initWith(getByName("release"))
         }
     }
 

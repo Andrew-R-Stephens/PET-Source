@@ -7,7 +7,7 @@ plugins {
 
 configure<LibraryExtension> {
     namespace = "com.tritiumgaming.core.common"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 23
@@ -17,12 +17,14 @@ configure<LibraryExtension> {
     }
 
     buildTypes {
+        debug {
+            initWith(getByName("debug"))
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            initWith(getByName("release"))
+        }
+        create("releaseTest") {
+            initWith(getByName("releaseTest"))
         }
     }
 
@@ -32,11 +34,6 @@ configure<LibraryExtension> {
     }
     buildToolsVersion = "36.1.0"
 
-    /* kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
-        }
-    } */
 }
 
 dependencies {

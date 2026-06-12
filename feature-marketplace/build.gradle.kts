@@ -10,7 +10,7 @@ plugins {
 
 configure<LibraryExtension> {
     namespace = "com.tritiumgaming.feature.marketplace"
-    compileSdk = 36
+    compileSdk = 37
 
     /*
      *  Compose Options
@@ -28,15 +28,19 @@ configure<LibraryExtension> {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+
     buildTypes {
+        debug {
+            initWith(getByName("debug"))
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            initWith(getByName("release"))
+        }
+        create("releaseTest") {
+            initWith(getByName("releaseTest"))
         }
     }
+
 
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_17
@@ -44,17 +48,11 @@ configure<LibraryExtension> {
     }
     buildToolsVersion = "36.1.0"
     lint {
-        targetSdk = 36
+        targetSdk = 37
     }
     testOptions {
-        targetSdk = 36
+        targetSdk = 37
     }
-
-    /* kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
-        }
-    } */
 
 }
 

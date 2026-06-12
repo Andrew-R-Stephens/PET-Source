@@ -18,7 +18,7 @@ plugins {
 configure<ApplicationExtension> {
 
     namespace = "com.tritiumgaming.core"
-    compileSdk = 36
+    compileSdk = 37
 
     /*
      *  Compose Options
@@ -42,9 +42,9 @@ configure<ApplicationExtension> {
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
         minSdk = 23
-        targetSdk = VersionCodes.BAKLAVA
-        versionCode = 139
-        versionName = "10.4.0-compose.a.3"
+        targetSdk = 37
+        versionCode = 140
+        versionName = "1.0.0-alpha.1"
 
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -60,28 +60,27 @@ configure<ApplicationExtension> {
     }
 
     buildTypes {
-
         debug {
             isMinifyEnabled = false
+            //noinspection NotShrinkingResources
             isShrinkResources = false
             buildConfigField("boolean", "USE_FIRESTORE", "false")
             buildConfigField("boolean", "USE_NEWSLETTER", "false")
             buildConfigField("boolean", "USE_ACCOUNT", "false")
             buildConfigField("boolean", "USE_MARKETPLACE", "false")
         }
-        create("releaseTest") {
+        getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            applicationIdSuffix = ".test"
-            versionNameSuffix = "-test"
             buildConfigField("boolean", "USE_NEWSLETTER", "true")
             buildConfigField("boolean", "USE_FIRESTORE", "true")
             buildConfigField("boolean", "USE_ACCOUNT", "true")
             buildConfigField("boolean", "USE_MARKETPLACE", "true")
         }
-        getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
+        create("releaseTest") {
+            initWith(getByName("release"))
+            /*applicationIdSuffix = ".test"
+            versionNameSuffix = "-test"*/
             buildConfigField("boolean", "USE_NEWSLETTER", "false")
             buildConfigField("boolean", "USE_FIRESTORE", "false")
             buildConfigField("boolean", "USE_ACCOUNT", "false")
@@ -117,7 +116,6 @@ dependencies {
     implementation(libs.androidx.cardview.core)
     implementation(libs.androidx.legacy.supportV4)
     implementation(libs.android.material)
-    implementation(libs.android.material)
 
     // Testing
     testImplementation(libs.junit)
@@ -127,9 +125,13 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
 
     // --- Google Credential Manager ----
+    //noinspection LoginCredentials
     implementation(libs.android.playServices.auth)
+    //noinspection LoginCredentials
     implementation(libs.androidx.credentials.core)
+    //noinspection LoginCredentials
     implementation(libs.androidx.credentials.playServicesAuth)
+    //noinspection LoginCredentials
     implementation(libs.googleid)
     // ----------------------------------
 

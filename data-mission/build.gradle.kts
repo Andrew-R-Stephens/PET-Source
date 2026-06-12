@@ -7,7 +7,7 @@ plugins {
 
 configure<LibraryExtension> {
     namespace = "com.tritiumgaming.data.mission"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 23
@@ -16,26 +16,24 @@ configure<LibraryExtension> {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+
     buildTypes {
+        debug {
+            initWith(getByName("debug"))
+        }
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            initWith(getByName("release"))
+        }
+        create("releaseTest") {
+            initWith(getByName("releaseTest"))
         }
     }
+
 
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
-
-    /* kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
-        }
-    } */
 }
 
 dependencies {

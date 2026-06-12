@@ -16,7 +16,7 @@ kotlin {
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     android {
         namespace = "com.tritiumgaming.shared"
-        compileSdk = VersionCodes.BAKLAVA
+        compileSdk = 37
         minSdk = 23
 
         withHostTestBuilder {
@@ -42,12 +42,6 @@ kotlin {
     // project can be found here:
     // https://developer.android.com/kotlin/multiplatform/migrate
     val xcfName = "sharedKit"
-
-    iosX64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
 
     iosArm64 {
         binaries.framework {
@@ -109,7 +103,6 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.androidx.navigation.compose)
 
-                // GOOGLE FIREBASE
                 // GOOGLE FIREBASE FIRESTORE
                 implementation(project.dependencies.platform(libs.firebase.bom))
                 // GOOGLE FIREBASE AUTH

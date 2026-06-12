@@ -16,7 +16,7 @@ plugins {
 configure<ApplicationExtension> {
 
     namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
-    compileSdk = 36
+    compileSdk = 37
 
     /*
      *  Compose Options
@@ -39,7 +39,7 @@ configure<ApplicationExtension> {
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
         minSdk = 23
-        targetSdk = VersionCodes.BAKLAVA
+        targetSdk = 37
         versionCode = 139
         versionName = "0.10.4.0-legacy"
 
@@ -60,6 +60,7 @@ configure<ApplicationExtension> {
 
         debug {
             isMinifyEnabled = false
+            //noinspection NotShrinkingResources
             isShrinkResources = false
         }
         getByName("release") {
@@ -72,12 +73,6 @@ configure<ApplicationExtension> {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
-
-    /* kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_17
-        }
-    } */
 
     buildToolsVersion = "36.1.0"
 
