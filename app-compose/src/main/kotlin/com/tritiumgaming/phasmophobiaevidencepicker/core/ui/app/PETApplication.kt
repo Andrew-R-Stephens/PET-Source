@@ -121,7 +121,8 @@ class PETApplication : Application(),
             deactivateAccountUseCase = coreContainer.deactivateAccountUseCase,
             observeAccountCreditsUseCase = coreContainer.observeAccountCreditsUseCase,
             observeAccountUnlockedPalettesUseCase = coreContainer.observeAccountUnlockedPalettesUseCase,
-            observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase
+            observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase,
+            saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
         )
 
         languageContainer = LanguageContainer(

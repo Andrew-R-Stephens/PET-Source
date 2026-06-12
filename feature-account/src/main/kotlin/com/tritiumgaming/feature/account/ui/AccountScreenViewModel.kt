@@ -14,6 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
@@ -26,6 +31,7 @@ import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -44,7 +50,8 @@ class AccountScreenViewModel(
     private val deactivateAccountUseCase: DeactivateAccountUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
-    private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase
+    private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
+    private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
 ): ViewModel() {
 
     private var observeCreditsJob: Job? = null
@@ -103,6 +110,10 @@ class AccountScreenViewModel(
         val result = signOutAccountUseCase().getOrDefault(false)
         onComplete(result)
 
+        if(result) {
+            saveCurrentPaletteUseCase(LocalDefaultPalette.uuid)
+        }
+
         if (result) { stopObservingAccount() }
     }
 
@@ -110,6 +121,10 @@ class AccountScreenViewModel(
         viewModelScope.launch {
             val result = deactivateAccountUseCase().getOrDefault(false)
             onComplete(result)
+
+            if(result) {
+                saveCurrentPaletteUseCase(LocalDefaultPalette.uuid)
+            }
 
             if (result) { stopObservingAccount() }
         }
@@ -267,6 +282,7 @@ class AccountScreenViewModel(
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val observeAccountUnlockedTypographiesUseCase = container.observeAccountUnlockedTypographiesUseCase
+                val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
 
                 AccountScreenViewModel(
                     getSignInCredentialsUseCase = getSignInCredentialsUseCase,
@@ -275,7 +291,8 @@ class AccountScreenViewModel(
                     deactivateAccountUseCase = deactivateAccountUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,
-                    observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase
+                    observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase,
+                    saveCurrentPaletteUseCase = saveCurrentPaletteUseCase
                 )
             }
         }

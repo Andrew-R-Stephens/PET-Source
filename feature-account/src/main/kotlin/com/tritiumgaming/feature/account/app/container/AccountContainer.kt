@@ -7,6 +7,7 @@ import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUs
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 
 class AccountContainer(
     internal val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
@@ -15,5 +16,6 @@ class AccountContainer(
     internal val deactivateAccountUseCase: DeactivateAccountUseCase,
     internal val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     internal val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
-    internal val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase
+    internal val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
+    internal val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
 )
