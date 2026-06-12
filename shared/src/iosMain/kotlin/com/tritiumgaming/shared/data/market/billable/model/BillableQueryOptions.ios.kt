@@ -1,5 +1,11 @@
 package com.tritiumgaming.shared.data.market.billable.model
 
+import com.tritiumgaming.shared.data.market.billable.model.query.BillableQueryFilterField
+import com.tritiumgaming.shared.data.market.billable.model.query.BillableQueryFilterValue
+import com.tritiumgaming.shared.data.market.billable.model.query.BillableQueryLimit
+import com.tritiumgaming.shared.data.market.billable.model.query.BillableQueryOrderDirection
+import com.tritiumgaming.shared.data.market.billable.model.query.BillableQueryOrderField
+
 actual class BillableQueryOptions {
     actual val filterField: BillableQueryFilterField
         get() = TODO("Not yet implemented")
@@ -11,12 +17,6 @@ actual class BillableQueryOptions {
         get() = TODO("Not yet implemented")
     actual val limit: BillableQueryLimit
         get() = TODO("Not yet implemented")
-
-    actual enum class BillableQueryFilterField { TYPE, NONE }
-    actual enum class BillableQueryFilterValue { CREDITS, NONE }
-    actual enum class BillableQueryOrderField { NONE }
-    actual enum class BillableQueryOrderDirection { ASCENDING, DESCENDING }
-    actual enum class BillableQueryLimit { SAFE_LIMIT, UNLIMITED }
 
     actual constructor() {
         TODO("Not yet implemented")

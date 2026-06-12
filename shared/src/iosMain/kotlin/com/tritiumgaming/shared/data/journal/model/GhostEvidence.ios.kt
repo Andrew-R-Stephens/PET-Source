@@ -1,12 +1,12 @@
 package com.tritiumgaming.shared.data.journal.model
 
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.ghost.model.GhostType
+import com.tritiumgaming.shared.data.ghost.model.Ghost
 
 actual class GhostEvidence {
 
     actual constructor(
-        ghost: GhostType,
+        ghost: Ghost,
         normalEvidenceList: List<EvidenceType>,
         strictEvidenceList: List<EvidenceType>
     ) {
@@ -15,7 +15,7 @@ actual class GhostEvidence {
         this.strictEvidenceList = strictEvidenceList
     }
 
-    actual val ghost: GhostType
+    actual val ghost: Ghost
     actual val normalEvidenceList: List<EvidenceType>
     actual val strictEvidenceList: List<EvidenceType>
 
