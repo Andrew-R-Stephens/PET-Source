@@ -401,7 +401,7 @@ private fun SettingsScreenLayout(
     Column(
         modifier = Modifier
             .fillMaxHeight(),
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
     ) {
 
         navigationHeader(
@@ -410,15 +410,14 @@ private fun SettingsScreenLayout(
                 .heightIn(max = 64.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
         val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
         when (deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 SettingsContentPortrait(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .padding(8.dp),
                     screenPreferenceComponent = screenPreferenceComponent,
                     dataUsagePreferenceComponent = dataUsagePreferenceComponent,
                     leftHandedPreferenceComponent = leftHandedPreferenceComponent,
@@ -437,7 +436,8 @@ private fun SettingsScreenLayout(
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 SettingsContentLandscape(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .padding(8.dp),
                     screenPreferenceComponent = screenPreferenceComponent,
                     dataUsagePreferenceComponent = dataUsagePreferenceComponent,
                     leftHandedPreferenceComponent = leftHandedPreferenceComponent,
@@ -511,7 +511,7 @@ private fun ColumnScope.SettingsContentPortrait(
 
         leftHandedPreferenceComponent(Modifier)
 
-        uiDensityPreferenceComponent(Modifier)
+        //uiDensityPreferenceComponent(Modifier)
 
         audioWarningPreferenceComponent(Modifier)
 
@@ -607,7 +607,7 @@ private fun SettingsContentLandscape(
 
             leftHandedPreferenceComponent(Modifier)
 
-            uiDensityPreferenceComponent(Modifier)
+            //uiDensityPreferenceComponent(Modifier)
 
             audioWarningPreferenceComponent(Modifier)
 
