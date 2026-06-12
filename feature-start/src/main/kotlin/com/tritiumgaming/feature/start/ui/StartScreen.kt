@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -84,13 +83,13 @@ import java.util.Locale
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
-@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
+@Preview(name = "Small Phone", device = "id:small_phone", locale="de")
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape", locale="de")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp", locale="de")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp", locale="de")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait", locale="de")
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240", locale="de")
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp", locale="de")
 private annotation class DevicePreviews
 
 @DevicePreviews
@@ -214,7 +213,7 @@ private fun StartContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             HeaderNavBar(
                 inboxNotificationState = inboxNotificationState,
@@ -228,7 +227,7 @@ private fun StartContent(
 
         when(deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
-                StartContentCompactPortrait(
+                StartContentPortrait(
                     modifier = Modifier
                         .weight(1f, false),
                     currentLanguage = currentLanguage,
@@ -236,7 +235,7 @@ private fun StartContent(
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE -> {
-                StartContentCompactLandscape(
+                StartContentLandscape(
                     modifier = Modifier
                         .weight(1f),
                     currentLanguage = currentLanguage,
@@ -244,7 +243,7 @@ private fun StartContent(
                 )
             }
             DeviceConfiguration.TABLET_PORTRAIT -> {
-                StartContentCompactPortrait(
+                StartContentPortrait(
                     modifier = Modifier
                         .weight(1f),
                     currentLanguage = currentLanguage,
@@ -252,7 +251,7 @@ private fun StartContent(
                 )
             }
             DeviceConfiguration.TABLET_LANDSCAPE -> {
-                StartContentCompactLandscape(
+                StartContentLandscape(
                     modifier = Modifier
                         .weight(1f),
                     currentLanguage = currentLanguage,
@@ -260,7 +259,7 @@ private fun StartContent(
                 )
             }
             DeviceConfiguration.DESKTOP -> {
-                StartContentCompactLandscape(
+                StartContentLandscape(
                     modifier = Modifier
                         .weight(1f),
                     currentLanguage = currentLanguage,
@@ -271,7 +270,8 @@ private fun StartContent(
 
         BannerAd(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .height(IntrinsicSize.Max),
             adId = stringResource(R.string.ad_banner_1)
         )
     }
@@ -279,21 +279,24 @@ private fun StartContent(
 }
 
 @Composable
-private fun StartContentCompactPortrait(
+private fun StartContentPortrait(
     modifier: Modifier = Modifier,
     currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Column(
-        modifier = modifier
-            .padding(PaddingValues(vertical = 16.dp)),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+        verticalArrangement = Arrangement.Center,
     ) {
         LogoSection(
             modifier = Modifier
-                .weight(1f)
+                .width(IntrinsicSize.Max)
+                .weight(1f, false)
         )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
         StartSection(
             modifier = Modifier
                 .weight(1f, false),
@@ -304,21 +307,20 @@ private fun StartContentCompactPortrait(
 }
 
 @Composable
-internal fun StartContentCompactLandscape(
+internal fun StartContentLandscape(
     modifier: Modifier = Modifier,
     currentLanguage: String,
     onNavigate: (route: String) -> Unit
 ) {
     Row(
-        modifier = modifier
-            .padding(PaddingValues(vertical = 16.dp)),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically
     ) {
         LogoSection(
             modifier = Modifier
-                .weight(1f, false)
                 .width(IntrinsicSize.Max)
+                .weight(1f, false)
         )
 
         StartSection(
@@ -343,8 +345,8 @@ private fun LogoSection(
         IconResource.ICON_LOGO_APP.ToComposable(
             modifier = Modifier
                 .widthIn(max = 256.dp)
-                .aspectRatio(1f)
-                .weight(1f, false),
+                .weight(1f, false)
+                .aspectRatio(1f),
 
             colors = IconVectorColors.defaults(
                 fillColor = LocalPalette.current.surfaceContainerLow,
