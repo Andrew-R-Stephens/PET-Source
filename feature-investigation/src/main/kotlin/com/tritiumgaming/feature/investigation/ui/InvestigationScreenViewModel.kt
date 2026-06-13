@@ -1916,29 +1916,33 @@ class InvestigationScreenViewModel private constructor(
     private fun observeToolTimerSettings() {
         combine(
             difficultyState,
-            mapState
-        ) { difficulty, map ->
-            difficulty.settings to map.size
+            mapState,
+            difficultyOverridesState
+        ) { difficulty, map, override ->
+            Triple(difficulty.settings, map.size, override.cursedInvestigation)
         }
             .distinctUntilChanged()
-            .onEach { (settings, mapSize) ->
+            .onEach { (settings, mapSize, isCursed) ->
                 val huntDuration = settings.huntDuration.toLong(mapSize)
+                val normalizedHuntDuration =
+                    huntDuration + if (isCursed) 20.seconds.inWholeMilliseconds else 0
+
                 _huntDurationTimerState.update {
                     it.copy(
-                        max = huntDuration,
-                        remaining = huntDuration,
+                        max = normalizedHuntDuration,
+                        remaining = normalizedHuntDuration,
                         notches = listOf(
                             ProgressBarNotch(
                                 UiText.DynamicString(""),
-                                ((huntDuration * .8f) - 1).toLong()
+                                ((normalizedHuntDuration * .8f) - 1).toLong()
                             ),
                             ProgressBarNotch(
                                 UiText.StringResource(R.string.ghost_type_obambo),
-                                (huntDuration * .8f).toLong()
+                                (normalizedHuntDuration * .8f).toLong()
                             ),
                             ProgressBarNotch(
                                 UiText.StringResource(R.string.tool_timer_label_standard),
-                                huntDuration
+                                normalizedHuntDuration
                             )
                         )
                     )
