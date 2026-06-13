@@ -364,21 +364,20 @@ class InvestigationScreenViewModel private constructor(
         )
     )
 
-    private val huntDurationTimerProgressBarNotches = listOf(
-        ProgressBarNotch(
-            UiText.StringResource(R.string.tool_timer_label_standard),
-            (1.5).minutes.inWholeMilliseconds
-        ),
-        ProgressBarNotch(
-            UiText.StringResource(R.string.tool_timer_label_cursed),
-            (1.5).minutes.inWholeMilliseconds
-        ),
-    )
     private val _huntDurationTimerState = MutableStateFlow(
         NotchedProgressBarData(
-            max = 1.minutes.inWholeMilliseconds,
+            max = difficultyState.value.settings.huntDuration.toLong(mapState.value.size),
             origin = 0,
-            notches = huntDurationTimerProgressBarNotches,
+            notches = listOf(
+                ProgressBarNotch(
+                    UiText.StringResource(R.string.ghost_type_obambo),
+                    (difficultyState.value.settings.huntDuration.toLong(mapState.value.size) * .8f).toLong()
+                ),
+                ProgressBarNotch(
+                    UiText.StringResource(R.string.tool_timer_label_standard),
+                    difficultyState.value.settings.huntDuration.toLong(mapState.value.size)
+                )
+            ),
             running = false
         )
     )
@@ -1915,7 +1914,21 @@ class InvestigationScreenViewModel private constructor(
                 _huntDurationTimerState.update {
                     it.copy(
                         max = huntDuration,
-                        remaining = huntDuration
+                        remaining = huntDuration,
+                        notches = listOf(
+                            ProgressBarNotch(
+                                UiText.DynamicString(""),
+                                ((huntDuration * .8f) - 1).toLong()
+                            ),
+                            ProgressBarNotch(
+                                UiText.StringResource(R.string.ghost_type_obambo),
+                                (huntDuration * .8f).toLong()
+                            ),
+                            ProgressBarNotch(
+                                UiText.StringResource(R.string.tool_timer_label_standard),
+                                huntDuration
+                            )
+                        )
                     )
                 }
 
@@ -1925,6 +1938,10 @@ class InvestigationScreenViewModel private constructor(
                         max = fingerprintDuration,
                         remaining = fingerprintDuration,
                         notches = listOf(
+                            ProgressBarNotch(
+                                UiText.DynamicString(""),
+                                ((fingerprintDuration * .5f) - 1).toLong()
+                            ),
                             ProgressBarNotch(
                                 UiText.StringResource(GhostTitle.OBAKE.toStringResource()),
                                 (fingerprintDuration * .5f).toLong()
