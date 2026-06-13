@@ -106,10 +106,7 @@ private fun CodexMenuScreenPreview_Foldable() {
 
 @Composable
 private fun CodexMenuPreview(deviceConfiguration: DeviceConfiguration) {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

@@ -24,13 +24,14 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.StratagemHero
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 
 
 @Composable
 @Preview
 fun Test() {
     SelectiveTheme(
-        palette = StratagemHero
+        palette = PaletteResources.PaletteType.STRATAGEM_HERO
     ) {
         Column(
             modifier = Modifier

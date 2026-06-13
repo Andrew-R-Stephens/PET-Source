@@ -76,10 +76,7 @@ private annotation class DevicePreviews
 @Composable
 @Preview
 private fun SettingsScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {
@@ -702,10 +699,7 @@ fun GDPRButton(
 @Composable
 @Preview
 fun EditButtonPreview() {
-    SelectiveTheme(
-        palette = LocalPalette.current,
-        typography = LocalTypography.current
-    ) {
+    SelectiveTheme {
         GDPRButton()
     }
 }

@@ -4,7 +4,7 @@ import com.tritiumgaming.shared.data.market.model.FeatureAvailability
 import com.tritiumgaming.shared.data.market.model.FeatureAvailability.LOCKED
 import com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_DEFAULT
 import com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_PURCHASE
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 
 data class AccountMarketTypography (
     internal val uuid: String,

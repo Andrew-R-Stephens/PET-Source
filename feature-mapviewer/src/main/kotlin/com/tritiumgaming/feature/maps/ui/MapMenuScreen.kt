@@ -59,10 +59,7 @@ private annotation class DevicePreviews
 @DevicePreviews
 @Composable
 private fun MapMenuScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

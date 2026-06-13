@@ -19,9 +19,9 @@ import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
-import com.tritiumgaming.shared.data.market.palette.model.LocalDefaultPalette
+import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
-import com.tritiumgaming.shared.data.market.typography.model.LocalDefaultTypography
+import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers

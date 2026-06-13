@@ -1,7 +1,7 @@
 package com.tritiumgaming.core.ui.theme.palette
 
 import androidx.compose.ui.graphics.Color
-import com.tritiumgaming.core.ui.theme.ExtendedTheme
+import com.tritiumgaming.core.ui.theme.common.ExtendedTheme
 import com.tritiumgaming.core.ui.theme.palette.common.BrandingColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CodexColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CoreColorFamily

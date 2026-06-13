@@ -180,10 +180,7 @@ private fun InvestigationScreenPreview(
     @PreviewParameter(ToolbarCategoryProvider::class)
     category: OperationToolbarUiState.Category
 ) {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

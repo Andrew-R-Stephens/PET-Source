@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.market.palette.usecase
 
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
 
 class GetMarketCatalogPaletteByUUIDUseCase(

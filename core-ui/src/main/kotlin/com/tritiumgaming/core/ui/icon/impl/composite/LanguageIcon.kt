@@ -53,9 +53,7 @@ fun LanguageIcon(
 @TestOnly
 fun LanguageIconPreview() {
 
-    SelectiveTheme(
-        palette = ClassicPalette
-    ) {
+    SelectiveTheme {
         LanguageIcon(
             modifier = Modifier
                 .size(48.dp),

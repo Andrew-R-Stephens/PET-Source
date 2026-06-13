@@ -86,10 +86,7 @@ private annotation class DevicePreviews
 @Composable
 @Preview
 private fun InfoScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {
@@ -110,10 +107,7 @@ fun InfoScreen(
     navController: NavController = rememberNavController(),
     viewModel: AppInfoViewModel
 ) {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         InfoContent(
             contributors = viewModel.contributorsList,
             onNavigateBack = { navController.popBackStack() }
@@ -708,10 +702,7 @@ private fun VisitDiscordButton(
 @Preview
 private fun VisitDiscordButtonPreview() {
 
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         VisitDiscordButton()
     }
 

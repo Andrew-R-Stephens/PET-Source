@@ -1,6 +1,6 @@
-package com.tritiumgaming.shared.data.market.palette.model
+package com.tritiumgaming.shared.data.market.palette.mappers
 
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 
 class PaletteResources {
 
@@ -67,4 +67,4 @@ fun PaletteType.asUuid(): String =
         PaletteType.STRATAGEM_HERO -> "tempStratHero"
     }
 
-val LocalDefaultPalette = PaletteResources.PaletteType.CLASSIC
+val LocalDefaultPalette = PaletteType.CLASSIC

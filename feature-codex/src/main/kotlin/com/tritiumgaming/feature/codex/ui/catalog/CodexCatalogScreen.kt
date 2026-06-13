@@ -66,7 +66,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEqui
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionItemDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionsList
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import kotlin.math.roundToInt
 
 @Composable
@@ -585,7 +585,7 @@ private fun PreviewPaginator() {
 
     LazyRow {
         items(items = palettes) {
-            SelectiveTheme(it.toPaletteResource()) {
+            SelectiveTheme(it) {
                 VerticalPaginator(
                     modifier = Modifier
                         .height(500.dp)

@@ -14,12 +14,12 @@ import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import com.tritiumgaming.shared.data.market.palette.model.LocalDefaultPalette
+import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.model.LocalDefaultTypography
+import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
 import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase

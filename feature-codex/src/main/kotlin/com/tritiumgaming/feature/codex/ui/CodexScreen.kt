@@ -177,10 +177,7 @@ private annotation class DevicePreviews
 @Composable
 @Preview
 private fun CodexScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

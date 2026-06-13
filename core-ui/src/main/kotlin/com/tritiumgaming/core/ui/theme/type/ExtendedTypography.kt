@@ -1,7 +1,7 @@
 package com.tritiumgaming.core.ui.theme.type
 
 import androidx.compose.runtime.Immutable
-import com.tritiumgaming.core.ui.theme.ExtendedTheme
+import com.tritiumgaming.core.ui.theme.common.ExtendedTheme
 import com.tritiumgaming.core.ui.theme.title_classic
 import com.tritiumgaming.core.ui.theme.type.common.CustomFontFamily
 import com.tritiumgaming.core.ui.theme.type.common.ExtrasFamily

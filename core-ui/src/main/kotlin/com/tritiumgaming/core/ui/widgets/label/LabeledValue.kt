@@ -84,10 +84,7 @@ fun LabeledValue(
 @Preview
 @Composable
 private fun LabeledValuePreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
 
         Column {
 

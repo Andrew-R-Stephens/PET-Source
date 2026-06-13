@@ -69,10 +69,7 @@ private annotation class DevicePreviews
 @DevicePreviews
 @Composable
 private fun InvestigationScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

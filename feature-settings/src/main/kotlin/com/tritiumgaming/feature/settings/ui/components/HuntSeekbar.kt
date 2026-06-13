@@ -56,9 +56,7 @@ import java.util.Locale
 @Preview
 @TestOnly
 private fun HuntSeekbarPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette
-    ) {
+    SelectiveTheme {
         Column {
             SeekbarThumb()
 

@@ -132,7 +132,9 @@ import kotlinx.coroutines.launch
 import kotlin.math.ceil
 import kotlin.math.min
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 class InvestigationScreenViewModel private constructor(
     journalUseCaseBundle: JournalUseCaseBundle,
@@ -834,10 +836,10 @@ class InvestigationScreenViewModel private constructor(
         val range = (ceil((absoluteMax * ghostSpeedModifier * weatherMultiplier) / interval) * interval).toInt()
             .coerceAtLeast(300)
 
-        val domainOptions = (5..30 step 5).map { it * 1000L }
-        val sampleIntervalOptions = (1..(bpmState.domainMillis / 1000).toInt())
+        val domainOptions = (5..30 step 5).map { it * 1.seconds.inWholeMilliseconds }
+        val sampleIntervalOptions = (1..(bpmState.domainMillis / 1.seconds.inWholeMilliseconds).toInt())
             .filter { it <= 5 || it % 5 == 0 }
-            .map { it * 1000L }
+            .map { it * 1.seconds.inWholeMilliseconds }
 
         bpmState.copy(
             ghostSpeedModifier = ghostSpeedModifier,
@@ -849,7 +851,7 @@ class InvestigationScreenViewModel private constructor(
         )
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = BpmToolUiState()
     )
 
@@ -897,7 +899,7 @@ class InvestigationScreenViewModel private constructor(
         )
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = WeatherUiState()
     )
     internal val weatherUiState = _weatherUiState
@@ -927,7 +929,7 @@ class InvestigationScreenViewModel private constructor(
         )
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = GhostTraitFilterUiOptions()
     )
     val traitFilterOptionsUiState = _traitFilterOptionsUiState
@@ -960,7 +962,7 @@ class InvestigationScreenViewModel private constructor(
     }
     .stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = emptyList()
     )
     val traitListUiState = _traitListUiState
@@ -973,7 +975,7 @@ class InvestigationScreenViewModel private constructor(
         )
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = TemperatureUiState()
     )
     internal val temperatureUiState = _temperatureUiState
@@ -1046,7 +1048,7 @@ class InvestigationScreenViewModel private constructor(
         .distinctUntilChanged()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
+            started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
             initialValue = ghostEvidences.map { GhostState(ghostEvidence = it) }
         )
     internal val ghostsSortedUiState = _ghostsSortedUiState
@@ -1101,7 +1103,7 @@ class InvestigationScreenViewModel private constructor(
     internal val operationDetailsUiState = _operationDetailsUiState
 
     internal val huntDurationTimerUiState = _huntDurationTimerState.map {
-        val roundedRemaining = it.remaining.roundMillisToDuration(500L)
+        val roundedRemaining = it.remaining.roundMillisToDuration((.5).seconds.inWholeMilliseconds)
         NotchedProgressBarUiState(
             max = it.max,
             origin = it.origin,
@@ -1113,12 +1115,12 @@ class InvestigationScreenViewModel private constructor(
     }.distinctUntilChanged()
         .stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000L),
+        started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
         initialValue = NotchedProgressBarUiState()
     )
 
     internal val huntCooldownTimerUiState = _huntCooldownTimerState.map {
-        val roundedRemaining = it.remaining.roundMillisToDuration(500L)
+        val roundedRemaining = it.remaining.roundMillisToDuration((.5).seconds.inWholeMilliseconds)
         NotchedProgressBarUiState(
             max = it.max,
             origin = it.origin,
@@ -1130,12 +1132,12 @@ class InvestigationScreenViewModel private constructor(
     }.distinctUntilChanged()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
+            started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
             initialValue = NotchedProgressBarUiState()
         )
 
     internal val smudgeHuntProtectionTimerUiState = _smudgeHuntProtectionTimerState.map {
-        val roundedRemaining = it.remaining.roundMillisToDuration(500L)
+        val roundedRemaining = it.remaining.roundMillisToDuration((.5).seconds.inWholeMilliseconds)
         NotchedProgressBarUiState(
             max = it.max,
             origin = it.origin,
@@ -1147,12 +1149,12 @@ class InvestigationScreenViewModel private constructor(
     }.distinctUntilChanged()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
+            started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
             initialValue = NotchedProgressBarUiState()
         )
 
     internal val fingerprintTimerUiState = _fingerprintTimerState.map {
-        val roundedRemaining = it.remaining.roundMillisToDuration(500L)
+        val roundedRemaining = it.remaining.roundMillisToDuration((.5).seconds.inWholeMilliseconds)
         NotchedProgressBarUiState(
             max = it.max,
             origin = it.origin,
@@ -1164,7 +1166,7 @@ class InvestigationScreenViewModel private constructor(
     }.distinctUntilChanged()
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
+            started = SharingStarted.WhileSubscribed(5.seconds.inWholeMilliseconds),
             initialValue = NotchedProgressBarUiState()
         )
 
@@ -1183,7 +1185,7 @@ class InvestigationScreenViewModel private constructor(
             while(!operationTimerState.value.paused) {
                 tickSanity()
                 tickTemperature()
-                delay(1000)
+                delay(1.seconds.inWholeMilliseconds.milliseconds)
             }
         }
     }
@@ -1347,9 +1349,9 @@ class InvestigationScreenViewModel private constructor(
 
             while (!_toolsTimerState.value.paused) {
 
-                val delay = 500L
+                val delay = (.5).seconds.inWholeMilliseconds
                 val preDelay = System.currentTimeMillis()
-                delay(delay)
+                delay(delay.milliseconds)
                 val postDelay = System.currentTimeMillis()
                 val actualDelay = postDelay - preDelay
 
@@ -1421,9 +1423,9 @@ class InvestigationScreenViewModel private constructor(
 
             while (!operationTimerState.value.paused) {
 
-                val delay = 100L
+                val delay = (.1).seconds.inWholeMilliseconds
                 val preDelay = System.currentTimeMillis()
-                delay(delay)
+                delay(delay.milliseconds)
                 val postDelay = System.currentTimeMillis()
                 val actualDelay = postDelay - preDelay
 
@@ -1535,17 +1537,6 @@ class InvestigationScreenViewModel private constructor(
             )
         }
     }
-
-    /*private fun updateTraitFilter(filter: TraitFilter) {
-        _traitFilterUiState.update {
-            it.copy(
-                category = if(it.category == filter.category) null else filter.category,
-                weight = if(it.weight == filter.weight) null else filter.weight,
-                state = if(it.state == filter.state) null else filter.state,
-                tags = if(it.tags == filter.tags) emptyList() else filter.tags
-            )
-        }
-    }*/
 
     private fun toggleUniqueOnly() {
         _traitFilterUiState.update {

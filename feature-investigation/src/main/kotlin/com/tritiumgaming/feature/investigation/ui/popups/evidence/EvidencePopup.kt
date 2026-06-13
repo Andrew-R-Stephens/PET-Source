@@ -73,7 +73,7 @@ import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
 import com.tritiumgaming.feature.investigation.ui.popups.common.PopupDataRow
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 
 @Composable
@@ -884,7 +884,7 @@ fun EvidenceTypePortraitPreview() {
                 }
 
             SelectiveTheme(
-                palette = paletteItem.toPaletteResource()
+                palette = paletteItem
             ) {
                 InvestigationPopup(
                     modifier = Modifier

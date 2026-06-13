@@ -48,10 +48,7 @@ import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
 @DevicePreviews
 @Composable
 private fun NewsMessageScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

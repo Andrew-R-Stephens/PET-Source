@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteCard
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 
 /*@Composable
 @Preview

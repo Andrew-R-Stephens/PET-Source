@@ -115,10 +115,7 @@ private annotation class DevicePreviews
 @DevicePreviews
 @Composable
 private fun MapViewerPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

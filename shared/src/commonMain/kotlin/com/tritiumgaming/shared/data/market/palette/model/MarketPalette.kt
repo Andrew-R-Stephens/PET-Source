@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.market.palette.model
 
 import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 
 data class MarketPalette(
     val uuid: String,

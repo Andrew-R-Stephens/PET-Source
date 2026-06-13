@@ -35,10 +35,7 @@ import com.tritiumgaming.shared.core.ui.mappers.IconResources
 @Composable
 @Preview
 private fun AccountBannerExpandedPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         AccountBannerExpanded()
     }
 }
@@ -46,10 +43,7 @@ private fun AccountBannerExpandedPreview() {
 @Composable
 @Preview
 private fun AccountBannerCompositePreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         AccountBannerComposite()
     }
 }
@@ -57,10 +51,7 @@ private fun AccountBannerCompositePreview() {
 @Composable
 @Preview
 private fun AccountBannerIconPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         AccountBannerIcon(
             modifier = Modifier,
             name = "A S",

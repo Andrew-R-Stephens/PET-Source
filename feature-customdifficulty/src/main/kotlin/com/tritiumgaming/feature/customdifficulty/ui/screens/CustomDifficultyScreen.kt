@@ -118,10 +118,7 @@ private fun CustomDifficultyPreview() {
         selectedDifficulty = sampleDifficulty,
         hasChanges = true
     )
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(color = LocalPalette.current.surface) {
             CustomDifficultyContent(
                 uiState = uiState,

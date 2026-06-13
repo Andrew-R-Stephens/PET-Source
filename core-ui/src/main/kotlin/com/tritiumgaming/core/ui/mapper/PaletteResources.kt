@@ -1,7 +1,7 @@
 package com.tritiumgaming.core.ui.mapper
 
 import com.tritiumgaming.core.ui.theme.palette.*
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 
 fun PaletteType.toPaletteResource(): ExtendedPalette =
     when (this) {

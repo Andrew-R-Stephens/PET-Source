@@ -97,10 +97,7 @@ private annotation class DevicePreviews
 @Composable
 @Preview
 private fun StartScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

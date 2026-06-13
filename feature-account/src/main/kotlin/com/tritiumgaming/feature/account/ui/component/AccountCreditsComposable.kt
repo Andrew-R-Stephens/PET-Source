@@ -29,10 +29,7 @@ import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 @Preview
 private fun AccountCreditsPreview() {
 
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         AccountCredits()
     }
 

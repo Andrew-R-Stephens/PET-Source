@@ -1,6 +1,6 @@
-package com.tritiumgaming.shared.data.market.typography.model
+package com.tritiumgaming.shared.data.market.typography.mappers
 
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 
 class TypographyResources {
 

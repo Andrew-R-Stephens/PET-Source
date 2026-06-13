@@ -187,10 +187,7 @@ fun TraitUnlikelyIcon(
 @Preview
 @Composable
 private fun Preview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Column(
             modifier = Modifier
                 .background(Color.Magenta)

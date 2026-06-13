@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.market.typography.model
 
 import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 
 data class MarketTypography (
     val uuid: String,

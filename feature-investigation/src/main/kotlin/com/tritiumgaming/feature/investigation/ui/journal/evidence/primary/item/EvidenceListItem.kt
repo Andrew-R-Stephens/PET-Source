@@ -47,7 +47,7 @@ import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 internal data class EvidenceListItemUiState(
@@ -298,8 +298,7 @@ private fun EvidenceItemPreview() {
     ) {
         palettes.forEach {
             SelectiveTheme(
-                palette = it.toPaletteResource(),
-                typography = ClassicTypography
+                palette = it
             ) {
                 Surface(
                     color = LocalPalette.current.surface

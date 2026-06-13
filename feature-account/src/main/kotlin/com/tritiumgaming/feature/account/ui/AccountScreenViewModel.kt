@@ -26,8 +26,8 @@ import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.market.palette.model.LocalDefaultPalette
-import com.tritiumgaming.shared.data.market.palette.model.asUuid
+import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
+import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

@@ -32,7 +32,7 @@ import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 @Composable

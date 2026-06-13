@@ -42,7 +42,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 /*@Preview
@@ -81,8 +81,7 @@ private fun OptionButtonPreview() {
         items(items = palettes) {
 
             SelectiveTheme(
-                palette = it.toPaletteResource(),
-                typography = ClassicTypography
+                palette = it
             ) {
                 ReviewPopupComposable()
             }

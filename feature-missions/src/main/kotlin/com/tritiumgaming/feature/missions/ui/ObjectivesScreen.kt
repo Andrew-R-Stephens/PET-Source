@@ -31,10 +31,7 @@ import com.tritiumgaming.shared.data.mission.model.Mission
 @DevicePreviews
 @Composable
 private fun ObjectivesScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Surface(
             color = LocalPalette.current.surface
         ) {

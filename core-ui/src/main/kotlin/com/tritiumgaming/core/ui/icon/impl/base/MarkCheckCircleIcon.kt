@@ -47,10 +47,7 @@ fun MarkCheckCircleIcon(
 @Preview
 @Composable
 private fun Preview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
+    SelectiveTheme {
         Column(
             modifier = Modifier
                 .padding(12.dp),

@@ -10,7 +10,7 @@ import com.tritiumgaming.core.ui.theme.type.JournalTypography
 import com.tritiumgaming.core.ui.theme.type.LongCangTypography
 import com.tritiumgaming.core.ui.theme.type.NeuchaTypography
 import com.tritiumgaming.core.ui.theme.type.NewTegominTypography
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 
 fun TypographyType.toTypographyResource(): ExtendedTypography =
     when (this) {
