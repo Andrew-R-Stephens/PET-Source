@@ -27,11 +27,12 @@ import com.tritiumgaming.core.ui.icon.impl.base.LogoPatreonIcon
 import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -44,7 +45,9 @@ fun PreviewPatreonBranding() {
         modifier = Modifier
             .verticalScroll(rememberScrollState())
     ) {
-        LocalPalettesMap.toList().forEach { (_, palette) ->
+        PaletteResources.PaletteType.entries.forEach { paletteType ->
+
+            val palette = paletteType.toPaletteResource()
 
             SelectiveTheme(
                 palette = palette,

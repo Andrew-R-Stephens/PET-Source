@@ -1,5 +1,4 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.sdklib.AndroidVersion.VersionCodes
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {

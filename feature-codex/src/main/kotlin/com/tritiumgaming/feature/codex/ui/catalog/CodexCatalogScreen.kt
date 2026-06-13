@@ -48,9 +48,9 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
@@ -66,6 +66,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEqui
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionItemDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionsList
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 import kotlin.math.roundToInt
 
 @Composable
@@ -579,9 +580,12 @@ private fun HorizontalPaginator(
 @Preview
 @Composable
 private fun PreviewPaginator() {
+
+    val palettes = PaletteResources.PaletteType.entries
+
     LazyRow {
-        items(items = LocalPalettesMap.entries.toList()) {
-            SelectiveTheme(it.value) {
+        items(items = palettes) {
+            SelectiveTheme(it.toPaletteResource()) {
                 VerticalPaginator(
                     modifier = Modifier
                         .height(500.dp)

@@ -57,10 +57,10 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
+import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toIntegerResource
@@ -73,6 +73,7 @@ import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
 import com.tritiumgaming.feature.investigation.ui.popups.common.PopupDataRow
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 
 @Composable
@@ -778,8 +779,10 @@ fun EvidenceTypeLandscapePopup(
 @Composable
 fun EvidenceTypePortraitPreview() {
 
-    LazyColumn() {
-        items(items = LocalPalettesMap.entries.toList()) { paletteItem ->
+    val palettes = PaletteResources.PaletteType.entries
+
+    LazyColumn {
+        items(items = palettes) { paletteItem ->
 
             val image = EvidenceResources.EvidenceIcon.DOTS.toDrawableResource()
             val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
@@ -881,7 +884,7 @@ fun EvidenceTypePortraitPreview() {
                 }
 
             SelectiveTheme(
-                palette = paletteItem.value
+                palette = paletteItem.toPaletteResource()
             ) {
                 InvestigationPopup(
                     modifier = Modifier

@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.icon.impl.base.SanityMedicationIcon
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 

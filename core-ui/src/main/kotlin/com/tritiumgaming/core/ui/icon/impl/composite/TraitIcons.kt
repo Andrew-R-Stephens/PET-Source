@@ -28,9 +28,9 @@ import com.tritiumgaming.core.ui.icon.impl.base.ArrowKeyboardUpSingleIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.MarkCheckCircleIcon
 import com.tritiumgaming.core.ui.icon.impl.base.MarkXCircleIcon
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 

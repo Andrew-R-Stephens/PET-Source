@@ -37,8 +37,8 @@ import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
 import com.tritiumgaming.core.ui.mapper.toStringResource
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors

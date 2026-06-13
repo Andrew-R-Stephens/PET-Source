@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,12 +41,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 internal data class EvidenceListItemUiState(
@@ -289,14 +288,17 @@ private fun RulingIconPreview() {
 @Preview(device = "spec:width=150dp,height=891dp")
 @TestOnly
 private fun EvidenceItemPreview() {
+
+    val palettes = PaletteResources.PaletteType.entries
+
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Top
     ) {
-        LocalPalettesMap.forEach {
+        palettes.forEach {
             SelectiveTheme(
-                palette = it.value,
+                palette = it.toPaletteResource(),
                 typography = ClassicTypography
             ) {
                 Surface(

@@ -67,11 +67,11 @@ import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.LanguageIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
@@ -84,13 +84,13 @@ import java.util.Locale
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone", locale="de")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape", locale="de")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp", locale="de")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp", locale="de")
-@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait", locale="de")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240", locale="de")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp", locale="de")
+@Preview(name = "Small Phone", device = "id:small_phone")
+@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
+@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
+@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
+@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
+@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
+@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
 private annotation class DevicePreviews
 
 @DevicePreviews

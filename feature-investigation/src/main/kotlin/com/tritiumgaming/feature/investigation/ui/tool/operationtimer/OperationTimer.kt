@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton

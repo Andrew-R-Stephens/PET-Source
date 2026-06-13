@@ -35,7 +35,7 @@ import com.tritiumgaming.core.ui.icon.impl.base.ConfigIcon
 import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 import kotlinx.coroutines.flow.MutableStateFlow

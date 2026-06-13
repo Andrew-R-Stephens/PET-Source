@@ -33,11 +33,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
 import com.tritiumgaming.shared.core.navigation.NavRoute

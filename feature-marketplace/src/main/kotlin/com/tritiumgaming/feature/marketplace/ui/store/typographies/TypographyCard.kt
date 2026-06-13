@@ -22,15 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.core.ui.theme.type.common.CustomFontFamily
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 
 @Composable

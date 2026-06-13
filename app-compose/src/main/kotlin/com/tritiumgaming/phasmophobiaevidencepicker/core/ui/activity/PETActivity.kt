@@ -28,8 +28,8 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.settings.analytics.FirebaseAnalyticsService
 import com.tritiumgaming.core.common.settings.updatemanager.AppUpdateManagerService
 import com.tritiumgaming.core.ui.theme.ExtendedUiConfiguration
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.ThemeConfigurationControl
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.navigation.RootNavigation
 
 class PETActivity : AppCompatActivity(),

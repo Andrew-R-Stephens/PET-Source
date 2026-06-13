@@ -23,8 +23,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.COOLING
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.HEATING
 import com.tritiumgaming.shared.data.weather.model.Temperature

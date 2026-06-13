@@ -1,9 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.store.typographies
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -12,7 +9,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -21,10 +17,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
-import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteCard
-import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogTypographiesUiState
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)

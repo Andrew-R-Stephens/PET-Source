@@ -17,11 +17,11 @@ import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobi
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
-import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
+import com.tritiumgaming.shared.data.market.palette.model.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.model.LocalDefaultTypography
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
@@ -95,7 +95,7 @@ class PETActivityViewModel(
             getPaletteByUUIDUseCase(uuid).getOrThrow().toPaletteResource()
         } catch (e: Exception) {
             e.printStackTrace()
-            LocalDefaultPalette.palette
+            LocalDefaultPalette.toPaletteResource()
         }
     }
 
@@ -105,7 +105,7 @@ class PETActivityViewModel(
             result.toTypographyResource()
         } catch (e: Exception) {
             e.printStackTrace()
-            LocalDefaultTypography.typography
+            LocalDefaultTypography.toTypographyResource()
         }
     }
 

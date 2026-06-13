@@ -2,21 +2,17 @@ package com.tritiumgaming.feature.investigation.ui.tool.phase
 
 
 import androidx.compose.foundation.MarqueeAnimationMode
-import androidx.compose.foundation.MarqueeDefaults.Iterations
 import androidx.compose.foundation.basicMarquee
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
 import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT

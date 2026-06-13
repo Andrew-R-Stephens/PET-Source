@@ -30,13 +30,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 
@@ -44,10 +45,13 @@ import org.jetbrains.annotations.TestOnly
 @Preview(device = "spec:width=1500px,height=4000px,dpi=440")
 @Composable
 fun PaletteTester() {
+
+    val palettes = PaletteResources.PaletteType.entries
+
     LazyColumn {
-        items(items = LocalPalettesMap.entries.toList()) {
+        items(items = palettes) {
             TestM3Palette(
-                palette = it.value
+                palette = it.toPaletteResource()
             )
         }
     }

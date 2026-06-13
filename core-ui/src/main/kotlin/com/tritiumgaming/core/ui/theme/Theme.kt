@@ -9,16 +9,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 
 @Composable
 fun SelectiveTheme(
@@ -45,15 +44,6 @@ fun SelectiveTheme(
     if (!view.isInEditMode) {
 
         SideEffect {
-
-            /*val window = (view.context as Activity).window
-
-            window.statusBarColor = palette.surface.toArgb()
-            window.navigationBarColor = palette.surface.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
-                palette.extrasFamily.isLightMode
-            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =
-                palette.extrasFamily.isLightMode*/
 
             val context = view.context as ComponentActivity
 
@@ -104,3 +94,5 @@ fun ThemeConfigurationControl(
 
 }
 
+val LocalPalette = staticCompositionLocalOf { ExtendedPalette() }
+val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }

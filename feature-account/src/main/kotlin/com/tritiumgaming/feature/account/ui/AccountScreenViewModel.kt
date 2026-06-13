@@ -14,11 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
@@ -31,6 +26,8 @@ import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.market.palette.model.LocalDefaultPalette
+import com.tritiumgaming.shared.data.market.palette.model.asUuid
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -111,7 +108,7 @@ class AccountScreenViewModel(
         onComplete(result)
 
         if(result) {
-            saveCurrentPaletteUseCase(LocalDefaultPalette.uuid)
+            saveCurrentPaletteUseCase(LocalDefaultPalette.asUuid())
         }
 
         if (result) { stopObservingAccount() }
@@ -123,7 +120,7 @@ class AccountScreenViewModel(
             onComplete(result)
 
             if(result) {
-                saveCurrentPaletteUseCase(LocalDefaultPalette.uuid)
+                saveCurrentPaletteUseCase(LocalDefaultPalette.asUuid())
             }
 
             if (result) { stopObservingAccount() }

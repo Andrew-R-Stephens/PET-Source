@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.LocalUiConfiguration
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.PrimaryEvidenceList
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostList

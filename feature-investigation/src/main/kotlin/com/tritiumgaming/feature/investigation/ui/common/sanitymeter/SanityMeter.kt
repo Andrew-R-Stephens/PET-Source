@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 
 @Composable
 internal fun SanityMeter(

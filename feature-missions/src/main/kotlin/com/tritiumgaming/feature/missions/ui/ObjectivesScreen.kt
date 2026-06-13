@@ -8,16 +8,14 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUiState
-import com.tritiumgaming.feature.missions.ui.components.mission.MissionStatus
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
 import com.tritiumgaming.feature.missions.ui.components.name.GhostNameUiActions

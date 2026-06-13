@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.modifier.DisplayOrientation
 import com.tritiumgaming.core.ui.modifier.fadingEdges
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalPalette
 
 @Composable
 fun ScrollableToolbar(

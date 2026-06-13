@@ -46,8 +46,8 @@ import com.tritiumgaming.core.ui.icon.impl.composite.TraitConfirmIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.TraitLikelyIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.TraitRejectIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.TraitUnlikelyIcon
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource

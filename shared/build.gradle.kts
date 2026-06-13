@@ -1,5 +1,3 @@
-import com.android.sdklib.AndroidVersion.VersionCodes
-
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose.multiplatform)
