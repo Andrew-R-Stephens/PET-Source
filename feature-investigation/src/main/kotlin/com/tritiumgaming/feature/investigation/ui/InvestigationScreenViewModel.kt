@@ -343,16 +343,20 @@ class InvestigationScreenViewModel private constructor(
 
     private val smudgeHuntTimerProgressBarNotches = listOf(
         ProgressBarNotch(
-            UiText.StringResource(GhostTitle.SPIRIT.toStringResource()),
-            (3).minutes.inWholeMilliseconds
+            UiText.StringResource(GhostTitle.DEMON.toStringResource()),
+            (1).minutes.inWholeMilliseconds
+        ),
+        ProgressBarNotch(
+            UiText.DynamicString(""),
+            (1).minutes.inWholeMilliseconds + 1
         ),
         ProgressBarNotch(
             UiText.StringResource(R.string.tool_timer_label_standard),
             (1.5).minutes.inWholeMilliseconds
         ),
         ProgressBarNotch(
-            UiText.StringResource(GhostTitle.DEMON.toStringResource()),
-            (1).minutes.inWholeMilliseconds
+            UiText.StringResource(GhostTitle.SPIRIT.toStringResource()),
+            (3).minutes.inWholeMilliseconds
         ),
     )
     private val _smudgeHuntProtectionTimerState = MutableStateFlow(
