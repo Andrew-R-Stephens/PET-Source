@@ -27,7 +27,7 @@ class MarketCatalogPaletteRepositoryImpl(
         val result = localDataSource.getPalettes()
         result.exceptionOrNull()?.let { e ->
             Log.d("Palette", "Error getting local palettes: $e") }
-        val list: List<MarketPaletteDto> = result.getOrDefault(emptyMap()).toLocal()
+        val list: List<MarketPaletteDto> = result.getOrDefault(emptyList()).toLocal()
 
         return Result.success(list)
     }

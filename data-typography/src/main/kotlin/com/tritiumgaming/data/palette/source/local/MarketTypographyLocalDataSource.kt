@@ -13,21 +13,11 @@ import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResourc
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.NEW_TEGOMIN
 
 class MarketTypographyLocalDataSource:
-    MarketLocalDataSource<Map<String, TypographyType>> {
+    MarketLocalDataSource<List<TypographyType>> {
 
-    val typographyResources = mapOf(
-        Pair("c29cJglM92MLWN1RKRyK8qyAD", CLASSIC),
-        Pair("8Jk15N2GB6PBopXvmEluU2eoS", ANDROID),
-        Pair("7q1Nza1o0Nvt16YyNXNkJ590F", JOURNAL),
-        Pair("3a1vXEZveFEWrf5RdVxTJI6pF", BRICK),
-        Pair("93Ph8a2SLU3YEupV54TKMKJAO", CLEAN),
-        Pair("8UEl0G5HXx119AXh69OeIUPCB", LONG_CANG),
-        Pair("8rX9hVOyV8eIZmz3ZQaHgrnan", NEW_TEGOMIN),
-        Pair("DPre8Bscm8Tf3pwyQw7HxBznt", NEUCHA),
-        Pair("3vAD75LdzvZN3zBjab5z19zpc", JETBRAINS_MONO),
-    )
+    val typographyResources = TypographyType.entries
 
-    override fun get(): Result<Map<String, TypographyType>> =
+    override fun get(): Result<List<TypographyType>> =
         Result.success(typographyResources)
 
 }

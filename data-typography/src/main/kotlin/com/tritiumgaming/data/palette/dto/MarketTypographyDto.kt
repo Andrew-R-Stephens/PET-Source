@@ -2,6 +2,7 @@ package com.tritiumgaming.data.palette.dto
 
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
+import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
 
 data class MarketTypographyDto(
     internal val uuid: String,
@@ -23,10 +24,10 @@ fun MarketTypographyDto.toDomain() = MarketTypography(
     typography = typography
 )
 
-fun Map<String, TypographyType>.toLocal() = map { (uuid, typography) ->
+fun List<TypographyType>.toLocal() = map { typographyType ->
     MarketTypographyDto(
-        uuid = uuid,
-        typography = typography,
+        uuid = typographyType.asUuid(),
+        typography = typographyType,
         unlocked = true
     )
 }

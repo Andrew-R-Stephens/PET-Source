@@ -27,7 +27,7 @@ class MarketCatalogTypographyRepositoryImpl(
         val result = localDataSource.get()
         result.exceptionOrNull()?.let { e ->
             Log.d("Typography", "Error getting local typographies: $e") }
-        val list: List<MarketTypographyDto> = result.getOrDefault(emptyMap()).toLocal()
+        val list: List<MarketTypographyDto> = result.getOrDefault(emptyList()).toLocal()
 
         return Result.success(list)
     }

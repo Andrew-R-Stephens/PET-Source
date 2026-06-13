@@ -2,6 +2,7 @@ package com.tritiumgaming.data.palette.dto
 
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 
 data class MarketPaletteDto(
     internal val uuid: String,
@@ -27,10 +28,10 @@ fun MarketPaletteDto.toDomain(): MarketPalette = MarketPalette(
     palette = palette
 )
 
-fun Map<String, PaletteType>.toLocal(): List<MarketPaletteDto> = map { (uuid, palette) ->
+fun List<PaletteType>.toLocal(): List<MarketPaletteDto> = map { type ->
     MarketPaletteDto(
-        uuid = uuid,
-        palette = palette,
+        uuid = type.asUuid(),
+        palette = type,
         unlocked = true
     )
 }
