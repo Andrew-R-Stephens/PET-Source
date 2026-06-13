@@ -375,6 +375,10 @@ class InvestigationScreenViewModel private constructor(
             notches = listOf(
                 ProgressBarNotch(
                     UiText.StringResource(R.string.ghost_type_obambo),
+                    ((difficultyState.value.settings.huntDuration.toLong(mapState.value.size) * .8f) - 1).toLong()
+                ),
+                ProgressBarNotch(
+                    UiText.StringResource(R.string.ghost_type_obambo),
                     (difficultyState.value.settings.huntDuration.toLong(mapState.value.size) * .8f).toLong()
                 ),
                 ProgressBarNotch(
@@ -406,6 +410,10 @@ class InvestigationScreenViewModel private constructor(
             max = difficultyState.value.settings.fingerprintDuration.toLong(),
             origin = 0,
             notches = listOf(
+                ProgressBarNotch(
+                    UiText.StringResource(GhostTitle.OBAKE.toStringResource()),
+                    ((difficultyState.value.settings.fingerprintDuration.toLong() * .5f) - 1).toLong()
+                ),
                 ProgressBarNotch(
                     UiText.StringResource(GhostTitle.OBAKE.toStringResource()),
                     (difficultyState.value.settings.fingerprintDuration.toLong() * .5f).toLong()
