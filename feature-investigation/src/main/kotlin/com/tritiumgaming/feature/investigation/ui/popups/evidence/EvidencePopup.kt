@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -219,12 +220,18 @@ private fun EvidencePopupContent(
                     fontSize = 20.sp
                 )
 
-                AnimatedGif(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    animatedGifRes = evidencePopupRecord.animation.toDrawableResource()
-                )
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    AnimatedGif(
+                        modifier = Modifier
+                            .widthIn(max = 256.dp)
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
+                        animatedGifRes = evidencePopupRecord.animation.toDrawableResource()
+                    )
+                }
             }
         }
 
@@ -387,12 +394,18 @@ private fun EvidencePopupContent(
                     }
 
                     equipmentTierAnimation?.let { animationRes ->
-                        AnimatedGif(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .wrapContentHeight(),
-                            animatedGifRes = animationRes.toDrawableResource()
-                        )
+                        Box(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            AnimatedGif(
+                                modifier = Modifier
+                                    .widthIn(max = 256.dp)
+                                    .fillMaxWidth()
+                                    .wrapContentHeight(),
+                                animatedGifRes = animationRes.toDrawableResource()
+                            )
+                        }
                     }
                 }
 
@@ -913,138 +926,3 @@ fun EvidenceTypePortraitPreview() {
 
     }
 }
-/*
-
-@Preview(device = "spec:width=411dp,height=891dp,orientation=landscape")
-@Composable
-fun EvidenceTypePopupLandscapePreview() {
-
-    val evidenceImage = EvidenceResources.EvidenceIcon.DOTS.toDrawableResource()
-    val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
-        stringResource(EvidenceResources.EvidenceTitle.DOTS.toStringResource()))
-    val evidenceDescription = AnnotatedString.fromHtml(
-        stringResource(EvidenceResources.EvidenceDescription.DOTS.toStringResource()))
-    val equipmentTypeImage = EquipmentResources.EquipmentIcon.DOTS.toDrawableResource()
-
-    val buyCost = integerResource(EquipmentResources.EquipmentBuyCost.DOTS.toIntegerResource())
-
-    val primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            GridIcon(
-                modifier = modifier,
-                colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.surfaceVariant,
-                    strokeColor = LocalPalette.current.codexFamily.outline
-                ),
-                contentScale = ContentScale.Fit
-            )
-            */
-/*Image(
-                modifier = modifier,
-                painter = painterResource(id = R.drawable.itemstore_grid),
-                contentDescription = "Primary Icon",
-                contentScale = ContentScale.Fit
-            )*//*
-
-            Icon(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                painter = painterResource(id = evidenceImage),
-                contentDescription = "Primary Icon",
-                tint = LocalPalette.current.codexFamily.onSurfaceVariant
-            )
-        }
-
-    val primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            PopupDataRow(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                    .heightIn(max = 32.dp),
-                icon = R.drawable.ic_shop_cost,
-                data = "$buyCost"
-            )
-
-        }
-
-    val primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            Text(
-                modifier = modifier
-                    .basicMarquee(
-                        iterations = Int.MAX_VALUE,
-                        initialDelayMillis = 1000,
-                        repeatDelayMillis = 1000,
-                    )
-                    .padding(horizontal = 8.dp, vertical = 4.dp),
-                style = LocalTypography.current.quaternary.bold.copy(
-                    textAlign = TextAlign.Start
-                ),
-                color = LocalPalette.current.codexFamily.onSurfaceVariant,
-                maxLines = 1,
-                fontSize = 20.sp,
-                text = evidenceTitle
-            )
-        }
-
-    val bodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            Column(
-                modifier = modifier
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.Top
-            ) {
-                Text(
-                    modifier = Modifier
-                        .weight(1f, false)
-                        .wrapContentHeight()
-                        .padding(4.dp),
-                    text = evidenceDescription,
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Start
-                    ),
-                    color = LocalPalette.current.codexFamily.onSurfaceVariant,
-                    fontSize = 20.sp
-                )
-            }
-        }
-
-    val equipmentTypeIcon: @Composable (modifier: Modifier, colors: IconVectorColors) -> Unit =
-        @Composable { modifier, colors ->
-            Icon(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(4.dp),
-                painter = painterResource(equipmentTypeImage),
-                contentDescription = "",
-                tint = colors.strokeColor,
-            )
-        }
-
-
-    SelectiveTheme {
-        InvestigationPopup(
-            modifier = Modifier
-                .fillMaxSize(),
-            shown = true,
-            backgroundColor = LocalPalette.current.surfaceContainer
-        ) {
-            EvidenceTypeLandscapePopup(
-                modifier = Modifier
-                    .fillMaxSize(),
-                primaryTitleContent = primaryTitleContent,
-                primaryImageContent = primaryImageContent,
-                primaryDataContent = primaryDataContent,
-                evidenceBodyContent = bodyContent,
-                equipmentTypeIcon = { modifier, colors ->
-                    equipmentTypeIcon(modifier, colors) },
-                onDismiss = {}
-            )
-        }
-    }
-
-}
-*/
