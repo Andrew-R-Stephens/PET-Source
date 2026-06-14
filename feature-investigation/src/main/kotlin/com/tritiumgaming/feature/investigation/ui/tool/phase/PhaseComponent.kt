@@ -45,10 +45,24 @@ internal fun PhaseComponent(
     modifier: Modifier = Modifier,
     state: PhaseUiState
 ) {
+    val isAlert = state.type == PhaseIdentifier.HUNT
+    val canAnimate = state.canFlash
+
     Surface(
         modifier = modifier
-            .phaseBorderAnimation(PhaseAnimationType.THICKNESS, true)
-            .phaseBorderAnimation(PhaseAnimationType.PULSE_INWARD, true),
+            .then(
+                when {
+                    canAnimate ->
+                        Modifier
+                            .phaseBorderAnimation(PhaseAnimationType.THICKNESS)
+                            .phaseBorderAnimation(PhaseAnimationType.PULSE_INWARD)
+                    isAlert ->
+                        Modifier
+                            .phaseBorderStatic(PhaseAnimationType.PULSE)
+                            .phaseBorderStatic(PhaseAnimationType.PULSE_INWARD)
+                    else -> Modifier
+                }
+            ),
         color = LocalPalette.current.surfaceContainerLowest,
         shape = RoundedCornerShape(8.dp),
     ) {
@@ -90,10 +104,8 @@ internal enum class PhaseAnimationType {
 
 @Composable
 private fun Modifier.phaseBorderAnimation(
-    type: PhaseAnimationType,
-    enabled: Boolean
+    type: PhaseAnimationType
 ): Modifier {
-    if (!enabled) return this
 
     val infiniteTransition = rememberInfiniteTransition(label = "PhaseBorderAnimation")
     val primaryColor = LocalPalette.current.primary
@@ -148,6 +160,175 @@ private fun Modifier.phaseBorderAnimation(
                     if (currentInset >= maxInsetWidth || currentInset >= maxInsetHeight) break
 
                     val layerAlpha = alpha * (1f - i.toFloat() / steps) * 0.4f
+                    if (layerAlpha <= 0.01f) continue
+
+                    inset(currentInset) {
+                        drawRoundRect(
+                            color = primaryColor.copy(alpha = layerAlpha),
+                            cornerRadius = CornerRadius((cornerRadiusPx - currentInset).coerceAtLeast(0f)),
+                            style = Stroke(width = sw)
+                        )
+                    }
+                }
+            }
+        }
+
+        PhaseAnimationType.FLASH -> {
+            val alpha by infiniteTransition.animateFloat(
+                initialValue = 0f,
+                targetValue = 1f,
+                animationSpec = infiniteRepeatable(
+                    animation = keyframes {
+                        durationMillis = 500
+                        0f at 0
+                        0f at 249
+                        1f at 250
+                        1f at 500
+                    },
+                    repeatMode = RepeatMode.Restart
+                ),
+                label = "FlashAlpha"
+            )
+            this.drawWithContent {
+                drawContent()
+                val sw = 2.dp.toPx()
+                if (sw >= size.width || sw >= size.height) return@drawWithContent
+
+                val cornerRadiusPx = 8.dp.toPx()
+                inset(sw / 2f) {
+                    drawRoundRect(
+                        color = primaryColor.copy(alpha = alpha),
+                        cornerRadius = CornerRadius(cornerRadiusPx - sw / 2f),
+                        style = Stroke(width = sw)
+                    )
+                }
+            }
+        }
+
+        PhaseAnimationType.THICKNESS -> {
+            val width by infiniteTransition.animateFloat(
+                initialValue = 0f,
+                targetValue = 2f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(2000),
+                    repeatMode = RepeatMode.Reverse
+                ),
+                label = "ThicknessWidth"
+            )
+            this.drawWithContent {
+                drawContent()
+                val sw = width.dp.toPx()
+                if (sw <= 0.1f) return@drawWithContent
+                if (sw >= size.width || sw >= size.height) return@drawWithContent
+
+                val cornerRadiusPx = 8.dp.toPx()
+                inset(sw / 2f) {
+                    drawRoundRect(
+                        color = primaryColor,
+                        cornerRadius = CornerRadius(cornerRadiusPx - sw / 2f),
+                        style = Stroke(width = sw)
+                    )
+                }
+            }
+        }
+
+        PhaseAnimationType.COLOR -> {
+            val color by infiniteTransition.animateColor(
+                initialValue = primaryColor,
+                targetValue = LocalPalette.current.onSurface.copy(alpha = 0.5f),
+                animationSpec = infiniteRepeatable(
+                    animation = tween(1500),
+                    repeatMode = RepeatMode.Reverse
+                ),
+                label = "ColorShift"
+            )
+            this.drawWithContent {
+                drawContent()
+                val sw = 2.dp.toPx()
+                if (sw >= size.width || sw >= size.height) return@drawWithContent
+
+                val cornerRadiusPx = 8.dp.toPx()
+                inset(sw / 2f) {
+                    drawRoundRect(
+                        color = color,
+                        cornerRadius = CornerRadius(cornerRadiusPx - sw / 2f),
+                        style = Stroke(width = sw)
+                    )
+                }
+            }
+        }
+
+        PhaseAnimationType.DASH -> {
+            val phase by infiniteTransition.animateFloat(
+                initialValue = 0f,
+                targetValue = 40f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(1000, easing = LinearEasing),
+                    repeatMode = RepeatMode.Restart
+                ),
+                label = "DashPhase"
+            )
+            this.drawWithContent {
+                drawContent()
+                val sw = 2.dp.toPx()
+                if (sw >= size.width || sw >= size.height) return@drawWithContent
+
+                val cornerRadiusPx = 8.dp.toPx()
+                inset(sw / 2f) {
+                    drawRoundRect(
+                        color = primaryColor,
+                        cornerRadius = CornerRadius(cornerRadiusPx - sw / 2f),
+                        style = Stroke(
+                            width = sw,
+                            pathEffect = PathEffect.dashPathEffect(floatArrayOf(20f, 20f), phase)
+                        )
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun Modifier.phaseBorderStatic(
+    type: PhaseAnimationType
+): Modifier {
+
+    val infiniteTransition = rememberInfiniteTransition(label = "PhaseBorderAnimation")
+    val primaryColor = LocalPalette.current.primary
+
+    return when (type) {
+        PhaseAnimationType.PULSE -> {
+            this.drawWithContent {
+                drawContent()
+                val sw = 2.dp.toPx()
+                if (sw >= size.width || sw >= size.height) return@drawWithContent
+
+                val cornerRadiusPx = 8.dp.toPx()
+                inset(sw / 2f) {
+                    drawRoundRect(
+                        color = primaryColor,
+                        cornerRadius = CornerRadius(cornerRadiusPx - sw / 2f),
+                        style = Stroke(width = sw)
+                    )
+                }
+            }
+        }
+
+        PhaseAnimationType.PULSE_INWARD -> {
+            this.drawWithContent {
+                drawContent()
+                val cornerRadiusPx = 8.dp.toPx()
+                val steps = 16
+                val sw = 0.5.dp.toPx()
+                val maxInsetWidth = size.width / 2f
+                val maxInsetHeight = size.height / 2f
+
+                for (i in 0 until steps) {
+                    val currentInset = i * sw + sw / 2f + 2.dp.toPx()
+                    if (currentInset >= maxInsetWidth || currentInset >= maxInsetHeight) break
+
+                    val layerAlpha = (1f - i.toFloat() / steps) * 0.4f
                     if (layerAlpha <= 0.01f) continue
 
                     inset(currentInset) {

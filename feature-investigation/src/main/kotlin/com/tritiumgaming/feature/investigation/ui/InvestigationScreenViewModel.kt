@@ -797,6 +797,17 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val phaseUiState = _phaseUiState
 
+    private val _huntWarningState = combine(
+        preferences, phaseUiState
+    ) { preferences, phaseState ->
+        preferences.allowHuntWarnAudio && phaseState.type == PhaseIdentifier.HUNT
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = false
+    )
+    internal val huntWarningState = _huntWarningState
+
     private val _operationToolbarUiState = MutableStateFlow(
         OperationToolbarUiState(
             isCollapsed = false,

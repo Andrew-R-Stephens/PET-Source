@@ -97,7 +97,7 @@ class PETActivity : AppCompatActivity(),
                 typography = typography,
                 uiConfiguration = ExtendedUiConfiguration (
                     densityType = uiConfigurations.densityType,
-                    isRtl = uiConfigurations.isRtl
+                    isRtl = uiConfigurations.isRtl,
                 )
             ) {
                 Scaffold {
