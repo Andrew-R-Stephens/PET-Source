@@ -3,13 +3,18 @@ package com.tritiumgaming.feature.investigation.ui.tool.phase
 
 import androidx.compose.foundation.MarqueeAnimationMode
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
@@ -25,19 +30,26 @@ internal fun PhaseComponent(
     modifier: Modifier = Modifier,
     state: PhaseUiState
 ) {
-    Text(
-        modifier = modifier
-            .wrapContentHeight()
-            .basicMarquee(Integer.MAX_VALUE, MarqueeAnimationMode.Immediately),
-        text = stringResource(state.type.toPhaseTitle().toStringResource()),
-        color = LocalPalette.current.onSurface,
-        style = LocalTypography.current.tertiary.regular.copy(
-            fontSize = 12.sp,
-            textAlign = TextAlign.Center,
-        ),
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis
-    )
+    Surface(
+        modifier = modifier,
+        color = LocalPalette.current.surfaceContainerLowest,
+        shape = RoundedCornerShape(8.dp),
+    ) {
+        Text(
+            modifier = Modifier
+                .wrapContentHeight()
+                .padding(8.dp)
+                .basicMarquee(Integer.MAX_VALUE, MarqueeAnimationMode.Immediately),
+            text = stringResource(state.type.toPhaseTitle().toStringResource()),
+            color = LocalPalette.current.onSurface,
+            style = LocalTypography.current.tertiary.regular.copy(
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+            ),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
 }
 
 internal data class PhaseUiState(

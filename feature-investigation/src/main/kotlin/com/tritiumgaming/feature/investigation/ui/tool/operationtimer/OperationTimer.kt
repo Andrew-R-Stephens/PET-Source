@@ -57,19 +57,11 @@ internal fun OperationTimerColumn(
             )
         }
 
-        Surface(
-            modifier = Modifier
+        PhaseComponent(
+            Modifier
                 .fillMaxWidth(),
-            color = LocalPalette.current.surfaceContainerLowest,
-            shape = RoundedCornerShape(8.dp),
-        ) {
-            PhaseComponent(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                state = phaseUiState
-            )
-        }
+            state = phaseUiState
+        )
 
         Row (
             modifier = Modifier,
@@ -146,19 +138,11 @@ internal fun OperationTimerRow(
                 remainingTime = remainingTime,
             )
 
-            Surface(
-                modifier = Modifier
+            PhaseComponent(
+                Modifier
                     .fillMaxWidth(),
-                color = LocalPalette.current.surfaceContainerLowest,
-                shape = RoundedCornerShape(8.dp),
-            ) {
-                PhaseComponent(
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    state = phaseUiState
-                )
-            }
+                state = phaseUiState
+            )
         }
 
         Row (

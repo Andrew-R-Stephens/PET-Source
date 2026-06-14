@@ -36,7 +36,6 @@ internal fun TimerTools(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
 
-
         Row (
             modifier = Modifier
                 .fillMaxWidth()
@@ -70,7 +69,6 @@ internal fun TimerTools(
                 thickness = Dp.Hairline
             )
         }
-
 
         component(Modifier)
     }
