@@ -6,18 +6,15 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
@@ -33,7 +30,6 @@ import com.tritiumgaming.feature.customdifficulty.ui.screens.CustomDifficultyScr
 import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.InvestigationSoloScreen
-import com.tritiumgaming.feature.investigation.ui.tool.phase.HuntAlertAudioComponent
 import com.tritiumgaming.feature.language.ui.LanguageScreen
 import com.tritiumgaming.feature.language.ui.LanguageScreenViewModel
 import com.tritiumgaming.feature.maps.ui.MapMenuScreen
@@ -55,8 +51,6 @@ import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(
-    newsletterViewModel: NewsletterViewModel =
-        viewModel(factory = NewsletterViewModel.Factory),
     investigationViewModel: InvestigationScreenViewModel =
         viewModel(factory = InvestigationScreenViewModel.Factory),
     objectivesViewModel: ObjectivesViewModel =
@@ -68,12 +62,6 @@ fun RootNavigation(
 
     val navController = rememberNavController()
 
-    val huntWarningState by investigationViewModel.huntWarningState.collectAsStateWithLifecycle()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val isOperationScreen = navBackStackEntry?.destination?.hierarchy?.any {
-        it.route == NavRoute.NAVIGATION_INVESTIGATION.route
-    } == true
-
     NavHost(
         navController = navController,
         startDestination = NavRoute.NAVIGATION_HOME.route,
@@ -84,8 +72,7 @@ fun RootNavigation(
     ) {
 
         homeNavigation(
-            navController = navController,
-            newsletterViewModel = newsletterViewModel
+            navController = navController
         )
 
         operationNavigation(
@@ -98,14 +85,10 @@ fun RootNavigation(
 
     }
 
-    HuntAlertAudioComponent(
-        enabled = huntWarningState && isOperationScreen
-    )
 }
 
 private fun NavGraphBuilder.homeNavigation(
-    navController: NavHostController,
-    newsletterViewModel: NewsletterViewModel
+    navController: NavHostController
 ) {
 
     navigation(
@@ -153,7 +136,13 @@ private fun NavGraphBuilder.homeNavigation(
             startDestination = NavRoute.SCREEN_NEWSLETTER_INBOX.route
         ) {
 
-            composable(route = NavRoute.SCREEN_NEWSLETTER_INBOX.route) {
+            composable(route = NavRoute.SCREEN_NEWSLETTER_INBOX.route) { navBackStackEntry ->
+                val newsletterViewModel: NewsletterViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(NavRoute.NAVIGATION_NEWSLETTER.route)
+                    },
+                    factory = NewsletterViewModel.Factory
+                )
                 HomeScreen {
                     NewsInboxesScreen(
                         navController = navController,
@@ -168,6 +157,13 @@ private fun NavGraphBuilder.homeNavigation(
                     navArgument("inboxID") { type = NavType.StringType }
                 )) { navBackStackEntry ->
                 val inboxID = navBackStackEntry.arguments?.getString("inboxID")
+
+                val newsletterViewModel: NewsletterViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(NavRoute.NAVIGATION_NEWSLETTER.route)
+                    },
+                    factory = NewsletterViewModel.Factory
+                )
 
                 if (inboxID != null) {
                     HomeScreen {
@@ -192,6 +188,13 @@ private fun NavGraphBuilder.homeNavigation(
 
                 val inboxID = navBackStackEntry.arguments?.getString("inboxID")
                 val messageID = navBackStackEntry.arguments?.getString("messageID")
+
+                val newsletterViewModel: NewsletterViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(NavRoute.NAVIGATION_NEWSLETTER.route)
+                    },
+                    factory = NewsletterViewModel.Factory
+                )
 
                 if (inboxID != null && messageID != null) {
                     HomeScreen {

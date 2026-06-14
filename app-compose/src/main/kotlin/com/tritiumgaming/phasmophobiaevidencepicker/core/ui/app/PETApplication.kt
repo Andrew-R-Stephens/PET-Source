@@ -176,6 +176,7 @@ class PETApplication : Application(),
         newsletterContainer = NewsletterContainer(
             getFlowNewsletterDatastoreUseCase = coreContainer.getFlowNewsletterDatastoreUseCase,
             getFlowNewsletterInboxesUseCase= coreContainer.getFlowNewsletterInboxesUseCase,
+            getNewsletterLastFetchDateFlowUseCase = coreContainer.getNewsletterLastFetchDateFlowUseCase,
             getNewsletterInboxesUseCase= coreContainer.getNewsletterInboxesUseCase,
             saveNewsletterInboxLastReadDateUseCase= coreContainer.saveNewsletterInboxLastReadDateUseCase
         )

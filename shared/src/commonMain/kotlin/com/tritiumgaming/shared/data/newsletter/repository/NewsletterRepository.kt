@@ -16,4 +16,6 @@ interface NewsletterRepository: DatastoreRepository<NewsletterPreferences> {
 
     fun getInboxFlow(): Flow<List<NewsletterInbox>>
 
+    fun getLastFetchDateFlow(): Flow<Long>
+
 }

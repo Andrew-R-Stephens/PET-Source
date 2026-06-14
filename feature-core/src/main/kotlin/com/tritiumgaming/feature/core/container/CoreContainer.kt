@@ -91,6 +91,7 @@ import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
@@ -183,6 +184,9 @@ class CoreContainer(
         repository = newsletterRepository
     )
     val getFlowNewsletterInboxesUseCase = GetFlowNewsletterInboxesUseCase(
+        repository = newsletterRepository
+    )
+    val getNewsletterLastFetchDateFlowUseCase = GetNewsletterLastFetchDateFlowUseCase(
         repository = newsletterRepository
     )
     val getNewsletterInboxesUseCase = FetchNewsletterInboxesUseCase(

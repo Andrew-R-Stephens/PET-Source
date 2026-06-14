@@ -13,6 +13,7 @@ import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterRefreshUiState
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -26,9 +27,17 @@ import kotlin.time.Duration.Companion.seconds
 class NewsletterViewModel(
     private val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
     private val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
+    private val getNewsletterLastFetchDateFlowUseCase: GetNewsletterLastFetchDateFlowUseCase,
     private val fetchNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
     private val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
 ): ViewModel() {
+
+    private val _lastRefreshDate = getNewsletterLastFetchDateFlowUseCase()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = 0L
+        )
 
     private val _inboxesUiState = getFlowNewsletterInboxesUseCase()
         .combine(getFlowNewsletterDatastoreUseCase()) { inboxes, datastore ->
@@ -86,6 +95,7 @@ class NewsletterViewModel(
     }
 
     fun loadInboxes(
+        forceRefresh: Boolean = false,
         onStart: () -> Unit = {},
         onSuccess: () -> Unit = {},
         onFailure: () -> Unit = {},
@@ -95,12 +105,7 @@ class NewsletterViewModel(
             onStart()
 
             try {
-                val fetchedInboxes = fetchNewsletterInboxesUseCase().getOrThrow()
-
-                /*fetchedInboxes.forEach { inbox ->
-                    Log.d("NewsletterViewModel",
-                        "Fetched inbox: ${inbox.title} ${inbox.channel?.messages?.map { "${ it.title }\n" }}")
-                }*/
+                fetchNewsletterInboxesUseCase(forceRefresh = forceRefresh).getOrThrow()
 
                 onSuccess()
 
@@ -117,12 +122,13 @@ class NewsletterViewModel(
         onFailure: (message: String) -> Unit = {}
     ) {
 
-        if(System.currentTimeMillis() - refreshUiState.value.lastRefreshEpoch < MIN_REFRESH_WAIT_TIME) {
+        if((System.currentTimeMillis() - _lastRefreshDate.value) < MIN_REFRESH_WAIT_TIME) {
             onFailure("Please wait to refresh.")
-            return // Don't refresh if it's too soon
+            return
         }
 
         loadInboxes(
+            forceRefresh = true,
             onStart = {
                 _refreshUiState.update {
                     it.copy(
@@ -133,8 +139,7 @@ class NewsletterViewModel(
             onSuccess = {
                 _refreshUiState.update {
                     it.copy(
-                        isRefreshing = false,
-                        lastRefreshEpoch = System.currentTimeMillis()
+                        isRefreshing = false
                     )
                 }
                 onSuccess()
@@ -159,6 +164,7 @@ class NewsletterViewModel(
                 NewsletterViewModel(
                     getFlowNewsletterDatastoreUseCase = container.getFlowNewsletterDatastoreUseCase,
                     getFlowNewsletterInboxesUseCase = container.getFlowNewsletterInboxesUseCase,
+                    getNewsletterLastFetchDateFlowUseCase = container.getNewsletterLastFetchDateFlowUseCase,
                     fetchNewsletterInboxesUseCase = container.getNewsletterInboxesUseCase,
                     saveNewsletterInboxLastReadDateUseCase = container.saveNewsletterInboxLastReadDateUseCase
                 )

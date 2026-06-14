@@ -3,12 +3,14 @@ package com.tritiumgaming.feature.newsletter.app.container
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 
 class NewsletterContainer(
     //val setupNewsletterUseCase: SetupNewsletterUseCase,
     internal val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
     internal val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
+    internal val getNewsletterLastFetchDateFlowUseCase: GetNewsletterLastFetchDateFlowUseCase,
     internal val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
     internal val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
 )

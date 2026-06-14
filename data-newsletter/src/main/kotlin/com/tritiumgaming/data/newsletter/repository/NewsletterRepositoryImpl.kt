@@ -27,7 +27,7 @@ class NewsletterRepositoryImpl(
     private val coroutineDispatcher: CoroutineDispatcher
 ): NewsletterRepository {
 
-    private var lastFetchDateMillis = 0L
+    private val _lastFetchDateMillis = MutableStateFlow(0L)
 
     private var _flow = MutableStateFlow<List<FlattenedNewsletterInboxDto>>(emptyList())
     val flow: StateFlow<List<FlattenedNewsletterInboxDto>> = _flow.asStateFlow()
@@ -79,9 +79,9 @@ class NewsletterRepositoryImpl(
     ): Result<List<NewsletterInbox>> {
 
         // Check the last time data was updated.
-        if(forceRefresh || (System.currentTimeMillis() - lastFetchDateMillis >= REFRESH_DELTA_MIN)) {
+        if(forceRefresh || (System.currentTimeMillis() - _lastFetchDateMillis.value >= REFRESH_DELTA_MIN)) {
             // Update the last fetch date
-            lastFetchDateMillis = System.currentTimeMillis()
+            _lastFetchDateMillis.update { System.currentTimeMillis() }
 
             // Accept Synchronization:
             // Initialize the Inboxes with locally. Fetch remote data if possible
@@ -101,7 +101,7 @@ class NewsletterRepositoryImpl(
                 _flow.update { internal }
 
                 // Update the last fetch date
-                lastFetchDateMillis = System.currentTimeMillis()
+                _lastFetchDateMillis.update { System.currentTimeMillis() }
 
                 Result.success(flow.value.toExternal()) // Successful initialization
             } catch (e: Exception) {
@@ -117,6 +117,8 @@ class NewsletterRepositoryImpl(
     }
 
     override fun getInboxFlow(): Flow<List<NewsletterInbox>> = flow.map { it.toExternal() }
+
+    override fun getLastFetchDateFlow(): Flow<Long> = _lastFetchDateMillis.asStateFlow()
 
     override suspend fun saveInboxLastReadDate(id: String, date: Long) =
         dataStoreSource.setLastReadDate(id, date)

@@ -40,6 +40,7 @@ import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
@@ -128,6 +129,9 @@ class HomeContainer(
         repository = newsletterRepository
     )
     internal val getFlowNewsletterInboxesUseCase = GetFlowNewsletterInboxesUseCase(
+        repository = newsletterRepository
+    )
+    internal val getNewsletterLastFetchDateFlowUseCase = GetNewsletterLastFetchDateFlowUseCase(
         repository = newsletterRepository
     )
     internal val getNewsletterInboxesUseCase = FetchNewsletterInboxesUseCase(
