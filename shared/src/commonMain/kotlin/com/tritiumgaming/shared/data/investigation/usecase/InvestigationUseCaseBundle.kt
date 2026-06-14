@@ -7,6 +7,8 @@ data class InvestigationUseCaseBundle(
     val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase,
     val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase,
     val updateInvestigationSanityUseCase: UpdateInvestigationSanityUseCase,
+    val updateInvestigationPhaseUseCase: UpdateInvestigationPhaseUseCase,
+    val updateInvestigationHuntWarningUseCase: UpdateInvestigationHuntWarningUseCase,
     val updateInvestigationEvidenceUseCase: UpdateInvestigationEvidenceUseCase,
     /*val updateGhostStates: UpdateInvestigationGhostStatesUseCase,*/
     val resetInvestigationUseCase: ResetInvestigationUseCase,

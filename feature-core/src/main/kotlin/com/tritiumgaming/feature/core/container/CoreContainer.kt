@@ -64,7 +64,9 @@ import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseB
 import com.tritiumgaming.shared.data.investigation.usecase.ResetInvestigationUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationEvidenceUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationHuntWarningUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationPhaseUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
@@ -456,6 +458,12 @@ class CoreContainer(
             repository = investigationRepository
         ),
         updateInvestigationSanityUseCase = UpdateInvestigationSanityUseCase(
+            repository = investigationRepository
+        ),
+        updateInvestigationPhaseUseCase = UpdateInvestigationPhaseUseCase(
+            repository = investigationRepository
+        ),
+        updateInvestigationHuntWarningUseCase = UpdateInvestigationHuntWarningUseCase(
             repository = investigationRepository
         ),
         updateInvestigationEvidenceUseCase = UpdateInvestigationEvidenceUseCase(

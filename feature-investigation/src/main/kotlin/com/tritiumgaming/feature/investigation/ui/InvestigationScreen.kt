@@ -113,7 +113,6 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.Visua
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerColumn
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerRow
 import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
-import com.tritiumgaming.feature.investigation.ui.tool.phase.HuntAlertAudioComponent
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButton
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationButton
@@ -335,7 +334,6 @@ fun InvestigationSoloScreen(
     val huntGapTimerState by investigationViewModel.huntCooldownTimerUiState.collectAsStateWithLifecycle()
     val fingerprintTimerState by investigationViewModel.fingerprintTimerUiState.collectAsStateWithLifecycle()
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
-    val isAlertHunt by investigationViewModel.huntWarningState.collectAsStateWithLifecycle()
 
     val uiState = InvestigationUiState(
         popup = popupUiState,
@@ -417,10 +415,6 @@ fun InvestigationSoloScreen(
     InvestigationContent(
         uiState = uiState,
         uiActions = uiActions
-    )
-
-    HuntAlertAudioComponent(
-        enabled = isAlertHunt
     )
 }
 

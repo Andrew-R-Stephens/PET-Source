@@ -92,7 +92,9 @@ import com.tritiumgaming.shared.data.investigation.model.WeightOption
 import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationHuntWarningUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationPhaseUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
@@ -104,6 +106,7 @@ import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUs
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.shared.data.phase.model.PhaseResources
 import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
@@ -163,10 +166,12 @@ class InvestigationScreenViewModel private constructor(
     private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase
     private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase
     private val updateInvestigationSanityUseCase: UpdateInvestigationSanityUseCase = investigationUseCaseBundle.updateInvestigationSanityUseCase
+    private val updateInvestigationPhaseUseCase: UpdateInvestigationPhaseUseCase = investigationUseCaseBundle.updateInvestigationPhaseUseCase
+    private val updateInvestigationHuntWarningUseCase: UpdateInvestigationHuntWarningUseCase = investigationUseCaseBundle.updateInvestigationHuntWarningUseCase
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
     private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase = investigationUseCaseBundle.getCustomDifficultiesUseCase
 
-    private val preferences: StateFlow<InvestigationScreenUserPreferences> =
+    private val preferencesState: StateFlow<InvestigationScreenUserPreferences> =
         preferencesUseCaseBundle.initFlowUserPreferencesUseCase()
         .map {
             InvestigationScreenUserPreferences(
@@ -249,6 +254,13 @@ class InvestigationScreenViewModel private constructor(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = SanityData()
+        )
+
+    private val phaseState = _investigationState.map { it.phase }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = PhaseData()
         )
 
     private fun updateMap(
@@ -530,8 +542,25 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Phase
      */
-    private val _phaseState = MutableStateFlow(PhaseData())
-    private val phaseState = _phaseState.asStateFlow()
+    private fun setPhase(phaseData: PhaseData) {
+        updateInvestigationPhaseUseCase(phaseData)
+    }
+
+    private fun updatePhase(
+        type: PhaseIdentifier? = null,
+        canAlertAudio: Boolean? = null,
+        startFlashTime: Long? = null,
+        elapsedFlashTime: Long? = null
+    ) {
+        val currentPhase = phaseState.value
+        val nextPhase = currentPhase.copy(
+            type = type ?: currentPhase.type,
+            canAlertAudio = canAlertAudio ?: currentPhase.canAlertAudio,
+            startFlashTime = startFlashTime ?: currentPhase.startFlashTime,
+            elapsedFlashTime = elapsedFlashTime ?: currentPhase.elapsedFlashTime
+        )
+        setPhase(nextPhase)
+    }
 
     /*
      * Traits Data
@@ -764,20 +793,14 @@ class InvestigationScreenViewModel private constructor(
     )
 
     private val _phaseUiState = combine(
-        phaseState, operationTimerState, sanityState, preferences
-    ) { phaseState, timerUiState, sanityState, preferences ->
-        val type =
-            when {
-                timerUiState.remainingTime > TIME_MIN -> PhaseIdentifier.SETUP
-                sanityState.sanityLevel < SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
-                else -> PhaseIdentifier.ACTION
-            }
+        phaseState, sanityState, preferencesState
+    ) { phaseState, sanityState, preferences ->
 
         val canFlash = sanityState.sanityLevel < SAFE_MIN_BOUNDS &&
                 phaseState.elapsedFlashTime <= preferences.maxHuntWarnFlashTime
 
         PhaseUiState(
-            type = type,
+            type = phaseState.type,
             canFlash = canFlash,
             canAlertAudio = phaseState.canAlertAudio,
             startFlashTime = phaseState.startFlashTime,
@@ -797,16 +820,12 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val phaseUiState = _phaseUiState
 
-    private val _huntWarningState = combine(
-        preferences, phaseUiState
-    ) { preferences, phaseState ->
-        preferences.allowHuntWarnAudio && phaseState.type == PhaseIdentifier.HUNT
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = false
-    )
-    internal val huntWarningState = _huntWarningState
+    val huntWarningState = _investigationState.map { it.huntWarning }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = false
+        )
 
     private val _operationToolbarUiState = MutableStateFlow(
         OperationToolbarUiState(
@@ -1037,7 +1056,7 @@ class InvestigationScreenViewModel private constructor(
     /* Ghost Order **/
     private val _ghostsSortedUiState: StateFlow<List<GhostState>> =
         combine(
-            _ghostStates, preferences
+            _ghostStates, preferencesState
         ) { ghostScores, preferences ->
             if(!preferences.enableGhostReorder) {
                 ghostScores
@@ -1343,12 +1362,13 @@ class InvestigationScreenViewModel private constructor(
      */
 
     private fun resetPhase() {
-        _phaseState.update {
-            it.copy(
+        val currentPhase = phaseState.value
+        setPhase(
+            currentPhase.copy(
                 startFlashTime = DEFAULT,
-                elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
+                elapsedFlashTime = System.currentTimeMillis() - currentPhase.startFlashTime
             )
-        }
+        )
     }
 
     private fun resetWeatherOverride() {
@@ -1891,6 +1911,35 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private fun observeHuntWarning() {
+        combine(
+            preferencesState, phaseUiState
+        ) { preferences, phaseState ->
+            preferences.allowHuntWarnAudio && phaseState.type == PhaseIdentifier.HUNT
+        }
+            .distinctUntilChanged()
+            .onEach { updateInvestigationHuntWarningUseCase(it) }
+            .launchIn(viewModelScope)
+    }
+
+    private fun observePhase() {
+        combine(
+            _operationTimerState,
+            sanityState
+        ) { timerState, sanityState ->
+            when {
+                timerState.remainingTime > TIME_MIN -> PhaseIdentifier.SETUP
+                sanityState.sanityLevel < SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
+                else -> PhaseIdentifier.ACTION
+            }
+        }
+            .distinctUntilChanged()
+            .onEach { type ->
+                updatePhase(type = type)
+            }
+            .launchIn(viewModelScope)
+    }
+
     private fun observeOperationTimer() {
         _operationTimerState
             .map { it.paused }
@@ -2011,11 +2060,7 @@ class InvestigationScreenViewModel private constructor(
 
                 updateInvestigationSanityUseCase(SanityData(insanityLevel, sanityLevel))
 
-                _phaseState.update {
-                    it.copy(
-                        canAlertAudio = false
-                    )
-                }
+                updatePhase(canAlertAudio = false)
 
                 val fuseState = if (difficulty.settings.fuseBoxAtStartOfContract ==
                     FuseBoxAtStartOfContract.ON) FuseBoxFlag.FUSEBOX_ENABLED
@@ -2041,6 +2086,8 @@ class InvestigationScreenViewModel private constructor(
         observeCustomDifficulty()
         observeDifficulty()
         observeConfigOverrides()
+        observePhase()
+        observeHuntWarning()
         observeOperationTimer()
         observeToolTimers()
         observeToolTimerSettings()

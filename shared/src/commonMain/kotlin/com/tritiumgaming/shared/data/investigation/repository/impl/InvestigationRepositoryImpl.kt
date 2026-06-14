@@ -6,6 +6,7 @@ import com.tritiumgaming.shared.data.investigation.model.DifficultyData
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.InvestigationData
 import com.tritiumgaming.shared.data.investigation.model.MapData
+import com.tritiumgaming.shared.data.investigation.model.PhaseData
 import com.tritiumgaming.shared.data.investigation.model.SanityData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,6 +27,14 @@ class InvestigationRepositoryImpl : InvestigationRepository {
 
     override fun updateSanity(sanity: SanityData) {
         _state.update { it.copy(sanity = sanity) }
+    }
+
+    override fun updatePhase(phase: PhaseData) {
+        _state.update { it.copy(phase = phase) }
+    }
+
+    override fun updateHuntWarning(warning: Boolean) {
+        _state.update { it.copy(huntWarning = warning) }
     }
 
     override fun updateEvidence(evidence: List<EvidenceState>) {
