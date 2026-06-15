@@ -44,6 +44,7 @@ import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessageScreen
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessagesScreen
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.settings.ui.SettingsScreen
+import com.tritiumgaming.feature.settings.ui.SettingsScreenViewModel
 import com.tritiumgaming.feature.start.ui.StartScreen
 import com.tritiumgaming.feature.start.ui.StartScreenViewModel
 import com.tritiumgaming.shared.core.navigation.NavRoute
@@ -51,12 +52,12 @@ import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(
-    investigationViewModel: InvestigationScreenViewModel =
+    /*investigationViewModel: InvestigationScreenViewModel =
         viewModel(factory = InvestigationScreenViewModel.Factory),
     objectivesViewModel: ObjectivesViewModel =
         viewModel(factory = ObjectivesViewModel.Factory),
     mapsScreenViewModel: MapsScreenViewModel =
-        viewModel(factory = MapsScreenViewModel.Factory),
+        viewModel(factory = MapsScreenViewModel.Factory),*/
     windowInsets: WindowInsets = WindowInsets()
 ) {
 
@@ -78,9 +79,9 @@ fun RootNavigation(
         operationNavigation(
             navController = navController,
             windowInsets = windowInsets,
-            investigationViewModel = investigationViewModel,
+            /*investigationViewModel = investigationViewModel,
             objectivesViewModel = objectivesViewModel,
-            mapsScreenViewModel = mapsScreenViewModel
+            mapsScreenViewModel = mapsScreenViewModel*/
         )
 
     }
@@ -126,6 +127,7 @@ private fun NavGraphBuilder.homeNavigation(
         composable(route = NavRoute.SCREEN_SETTINGS.route) {
             HomeScreen {
                 SettingsScreen(
+                    settingsViewModel = viewModel(factory = SettingsScreenViewModel.Factory),
                     navController = navController
                 )
             }
@@ -265,16 +267,23 @@ private fun NavGraphBuilder.homeNavigation(
 private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
     windowInsets: WindowInsets,
-    investigationViewModel: InvestigationScreenViewModel,
+    /*investigationViewModel: InvestigationScreenViewModel,
     objectivesViewModel: ObjectivesViewModel,
-    mapsScreenViewModel: MapsScreenViewModel
+    mapsScreenViewModel: MapsScreenViewModel*/
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
         startDestination = NavRoute.SCREEN_INVESTIGATION.route
     ) {
 
-        composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
+        composable(route = NavRoute.SCREEN_INVESTIGATION.route) { navBackStackEntry ->
+            val investigationViewModel: InvestigationScreenViewModel = viewModel(
+                viewModelStoreOwner = remember(navBackStackEntry) {
+                    navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
+                },
+                factory = InvestigationScreenViewModel.Factory
+            )
+
             OperationScreen(
                 modifier = Modifier
                     .padding(horizontal = 8.dp),
@@ -288,7 +297,14 @@ private fun NavGraphBuilder.operationNavigation(
             }
         }
 
-        composable(route = NavRoute.SCREEN_MISSIONS.route) {
+        composable(route = NavRoute.SCREEN_MISSIONS.route) {navBackStackEntry ->
+            val objectivesViewModel: ObjectivesViewModel = viewModel(
+                viewModelStoreOwner = remember(navBackStackEntry) {
+                    navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
+                },
+                factory = InvestigationScreenViewModel.Factory
+            )
+
             OperationScreen(
                 modifier = Modifier
                     .padding(horizontal = 8.dp),
@@ -320,7 +336,15 @@ private fun NavGraphBuilder.operationNavigation(
             startDestination = NavRoute.SCREEN_MAPS_MENU.route
         ) {
 
-            composable(route = NavRoute.SCREEN_MAPS_MENU.route) {
+            composable(route = NavRoute.SCREEN_MAPS_MENU.route) { navBackStackEntry ->
+
+                val mapsScreenViewModel: MapsScreenViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
+                    },
+                    factory = MapsScreenViewModel.Factory
+                )
+
                 OperationScreen(
                     modifier = Modifier
                         .padding(horizontal = 8.dp),
@@ -338,6 +362,13 @@ private fun NavGraphBuilder.operationNavigation(
                 arguments = listOf(
                     navArgument("mapId") { type = NavType.StringType }
                 )) { navBackStackEntry ->
+
+                val mapsScreenViewModel: MapsScreenViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(NavRoute.NAVIGATION_MAPS.route)
+                    },
+                    factory = MapsScreenViewModel.Factory
+                )
 
                 val mapId = navBackStackEntry.arguments?.getString("mapId")
 

@@ -89,8 +89,7 @@ private fun SettingsScreenPreview() {
 
 @Composable
 fun SettingsScreen(
-    settingsViewModel: SettingsScreenViewModel =
-        viewModel(factory = SettingsScreenViewModel.Factory),
+    settingsViewModel: SettingsScreenViewModel,
     navController: NavController = rememberNavController()
 ) {
     val settingsScreenUiState by
