@@ -21,6 +21,7 @@ import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
+import com.tritiumgaming.shared.data.mission.usecase.MissionsUseCaseBundle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -36,8 +37,8 @@ class ObjectivesViewModel(
     private val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase,
     private val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
     private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
-    investigationStateUseCaseBundle: InvestigationUseCaseBundle,
-    getOperationStateUseCase: GetOperationStateUseCase = investigationStateUseCaseBundle.getOperationStateUseCase
+    missionsStateUseCaseBundle: MissionsUseCaseBundle,
+    getOperationStateUseCase: GetOperationStateUseCase = missionsStateUseCaseBundle.getOperationStateUseCase
 
 ): ViewModel() {
 
@@ -304,7 +305,7 @@ class ObjectivesViewModel(
                 val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase = container.fetchAllMaleNamesUseCase
                 val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase = container.fetchAllFemaleNamesUseCase
                 val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase = container.fetchAllSurnamesUseCase
-                val investigationStateUseCaseBundle: InvestigationUseCaseBundle = container.investigationUseCaseBundle
+                val missionsStateUseCaseBundle: MissionsUseCaseBundle = container.missionsUseCaseBundle
 
                 ObjectivesViewModel(
                     fetchAllMissionsUseCase = fetchAllMissionsUseCase,
@@ -312,7 +313,7 @@ class ObjectivesViewModel(
                     fetchAllMaleNamesUseCase = fetchAllMaleNamesUseCase,
                     fetchAllFemaleNamesUseCase = fetchAllFemaleNamesUseCase,
                     fetchAllSurnamesUseCase = fetchAllSurnamesUseCase,
-                    investigationStateUseCaseBundle = investigationStateUseCaseBundle
+                    missionsStateUseCaseBundle = missionsStateUseCaseBundle
                 )
             }
         }

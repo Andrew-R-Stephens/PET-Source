@@ -213,7 +213,7 @@ class PETApplication : Application(),
 
         missionsContainer = MissionsContainer(
             applicationContext = applicationContext,
-            investigationUseCaseBundle = coreContainer.investigationUseCaseBundle
+            missionsUseCaseBundle = coreContainer.missionsUseCaseBundle
         )
 
         mapViewerContainer = MapViewerContainer(

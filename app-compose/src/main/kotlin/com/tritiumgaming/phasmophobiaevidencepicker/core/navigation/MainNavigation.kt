@@ -297,7 +297,7 @@ private fun NavGraphBuilder.operationNavigation(
             }
         }
 
-        composable(route = NavRoute.SCREEN_MISSIONS.route) {navBackStackEntry ->
+        composable(route = NavRoute.SCREEN_MISSIONS.route) { navBackStackEntry ->
             val objectivesViewModel: ObjectivesViewModel = viewModel(
                 viewModelStoreOwner = remember(navBackStackEntry) {
                     navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)

@@ -15,10 +15,11 @@ import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllSurnamesUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.mission.repository.MissionRepository
 import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
+import com.tritiumgaming.shared.data.mission.usecase.MissionsUseCaseBundle
 
 class MissionsContainer(
     applicationContext: Context,
-    internal val investigationUseCaseBundle: InvestigationUseCaseBundle
+    internal val missionsUseCaseBundle: MissionsUseCaseBundle
 ) {
     // Mission
     internal val missionRepository: MissionRepository by lazy {

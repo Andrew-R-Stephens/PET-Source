@@ -87,6 +87,7 @@ import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogT
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.mission.usecase.MissionsUseCaseBundle
 import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
@@ -483,25 +484,25 @@ class CoreContainer(
         getOperationStateUseCase = GetOperationStateUseCase(
             repository = operationRepository
         ),
-        updateInvestigationMapUseCase = UpdateOperationMapUseCase(
+        updateOperationMapUseCase = UpdateOperationMapUseCase(
             repository = operationRepository
         ),
-        updateInvestigationDifficultyUseCase = UpdateOperationDifficultyUseCase(
+        updateOperationDifficultyUseCase = UpdateOperationDifficultyUseCase(
             repository = operationRepository
         ),
-        updateInvestigationSanityUseCase = UpdateOperationSanityUseCase(
+        updateOperationSanityUseCase = UpdateOperationSanityUseCase(
             repository = operationRepository
         ),
-        updateInvestigationPhaseUseCase = UpdateOperationPhaseUseCase(
+        updateOperationPhaseUseCase = UpdateOperationPhaseUseCase(
             repository = operationRepository
         ),
-        updateInvestigationHuntWarningUseCase = UpdateOperationHuntWarningUseCase(
+        updateOperationHuntWarningUseCase = UpdateOperationHuntWarningUseCase(
             repository = operationRepository
         ),
-        updateInvestigationEvidenceUseCase = UpdateOperationEvidenceUseCase(
+        updateOperationEvidenceUseCase = UpdateOperationEvidenceUseCase(
             repository = operationRepository
         ),
-        resetInvestigationUseCase = ResetOperationUseCase(
+        resetOperationUseCase = ResetOperationUseCase(
             repository = operationRepository
         ),
         getCustomDifficultiesUseCase = getCustomDifficultiesUseCase
