@@ -72,7 +72,7 @@ import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.operation.model.GhostState
 import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterOptions
 import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
-import com.tritiumgaming.shared.data.operation.model.InvestigationScreenUserPreferences
+import com.tritiumgaming.shared.data.operation.model.OperationUserPreferences
 import com.tritiumgaming.shared.data.operation.model.MapData
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
@@ -90,12 +90,12 @@ import com.tritiumgaming.shared.data.operation.model.TraitValidationType
 import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.operation.model.WeightOption
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
-import com.tritiumgaming.shared.data.operation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationDifficultyUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationHuntWarningUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationMapUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationPhaseUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationSanityUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
@@ -162,18 +162,18 @@ class InvestigationScreenViewModel private constructor(
     private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase = simpleMapUseCaseBundle.fetchSimpleMapModifiersUseCase
     private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase
     private val getOperationStateUseCase: GetOperationStateUseCase = investigationUseCaseBundle.getOperationStateUseCase
-    private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase
-    private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase
-    private val updateInvestigationSanityUseCase: UpdateInvestigationSanityUseCase = investigationUseCaseBundle.updateInvestigationSanityUseCase
-    private val updateInvestigationPhaseUseCase: UpdateInvestigationPhaseUseCase = investigationUseCaseBundle.updateInvestigationPhaseUseCase
-    private val updateInvestigationHuntWarningUseCase: UpdateInvestigationHuntWarningUseCase = investigationUseCaseBundle.updateInvestigationHuntWarningUseCase
+    private val updateOperationMapUseCase: UpdateOperationMapUseCase = investigationUseCaseBundle.updateOperationMapUseCase
+    private val updateOperationDifficultyUseCase: UpdateOperationDifficultyUseCase = investigationUseCaseBundle.updateOperationDifficultyUseCase
+    private val updateOperationSanityUseCase: UpdateOperationSanityUseCase = investigationUseCaseBundle.updateOperationSanityUseCase
+    private val updateOperationPhaseUseCase: UpdateOperationPhaseUseCase = investigationUseCaseBundle.updateOperationPhaseUseCase
+    private val updateOperationHuntWarningUseCase: UpdateOperationHuntWarningUseCase = investigationUseCaseBundle.updateOperationHuntWarningUseCase
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
     private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase = investigationUseCaseBundle.getCustomDifficultiesUseCase
 
-    private val preferencesState: StateFlow<InvestigationScreenUserPreferences> =
+    private val preferencesState: StateFlow<OperationUserPreferences> =
         preferencesUseCaseBundle.initFlowUserPreferencesUseCase()
         .map {
-            InvestigationScreenUserPreferences(
+            OperationUserPreferences(
                 enableGhostReorder = it.enableGhostReorder,
                 maxHuntWarnFlashTime = it.maxHuntWarnFlashTime,
                 allowHuntWarnAudio = it.allowHuntWarnAudio
@@ -181,7 +181,7 @@ class InvestigationScreenViewModel private constructor(
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
-            initialValue = InvestigationScreenUserPreferences()
+            initialValue = OperationUserPreferences()
         )
 
     private val _customDifficulties = getCustomDifficultiesUseCase().map {
@@ -278,7 +278,7 @@ class InvestigationScreenViewModel private constructor(
                 actionModifier = modifier.actionModifier
             )
 
-            updateInvestigationMapUseCase(mapState)
+            updateOperationMapUseCase(mapState)
 
         } catch (e: Exception) {
             Log.e("InvestigationViewModel", "Error setting map index")
@@ -340,7 +340,7 @@ class InvestigationScreenViewModel private constructor(
                     customIndex = customIndex
                 )
 
-                updateInvestigationDifficultyUseCase(newDifficultyState)
+                updateOperationDifficultyUseCase(newDifficultyState)
 
             } catch (e: Exception) {
                 Log.e("InvestigationViewModel", "Update Difficulty failed", e)
@@ -542,7 +542,7 @@ class InvestigationScreenViewModel private constructor(
      * Phase
      */
     private fun setPhase(phaseData: PhaseData) {
-        updateInvestigationPhaseUseCase(phaseData)
+        updateOperationPhaseUseCase(phaseData)
     }
 
     private fun updatePhase(
@@ -1259,7 +1259,7 @@ class InvestigationScreenViewModel private constructor(
         val sanityLevel = (SanityLevel.MAX_SANITY - value)
             .coerceIn(SanityLevel.MIN_SANITY, SanityLevel.MAX_SANITY)
 
-        updateInvestigationSanityUseCase(SanityData(insanityLevel, sanityLevel))
+        updateOperationSanityUseCase(SanityData(insanityLevel, sanityLevel))
     }
     private fun addPlayerSanity(
         value: Float
@@ -1917,7 +1917,7 @@ class InvestigationScreenViewModel private constructor(
             preferences.allowHuntWarnAudio && phaseState.type == PhaseIdentifier.HUNT
         }
             .distinctUntilChanged()
-            .onEach { updateInvestigationHuntWarningUseCase(it) }
+            .onEach { updateOperationHuntWarningUseCase(it) }
             .launchIn(viewModelScope)
     }
 
@@ -2040,7 +2040,7 @@ class InvestigationScreenViewModel private constructor(
                         customDifficulties.getOrNull(it) } ?: customDifficulties.firstOrNull()
                     custom?.let {
                         if (currentDifficulty.settings != it.settings) {
-                            updateInvestigationDifficultyUseCase(
+                            updateOperationDifficultyUseCase(
                                 currentDifficulty.copy(settings = it.settings)
                             )
                         }
@@ -2057,7 +2057,7 @@ class InvestigationScreenViewModel private constructor(
                 val sanityLevel = difficulty.settings.startingSanity.toFloat()
                 val insanityLevel = 1f - difficulty.settings.startingSanity.toFloat()
 
-                updateInvestigationSanityUseCase(SanityData(insanityLevel, sanityLevel))
+                updateOperationSanityUseCase(SanityData(insanityLevel, sanityLevel))
 
                 updatePhase(canAlertAudio = false)
 

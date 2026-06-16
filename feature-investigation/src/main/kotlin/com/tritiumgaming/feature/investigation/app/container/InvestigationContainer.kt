@@ -52,7 +52,7 @@ import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategory
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByGhostUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetUniqueGhostTraitsUseCase
-import com.tritiumgaming.shared.data.operation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase

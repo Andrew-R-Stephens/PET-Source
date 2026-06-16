@@ -60,14 +60,14 @@ import com.tritiumgaming.shared.data.customdifficulty.usecase.UpdateCustomDiffic
 import com.tritiumgaming.shared.data.operation.OperationRepository
 import com.tritiumgaming.shared.data.operation.repository.impl.OperationRepositoryImpl
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
-import com.tritiumgaming.shared.data.operation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.operation.usecase.ResetInvestigationUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationDifficultyUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationEvidenceUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationHuntWarningUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationMapUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationPhaseUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationSanityUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.operation.usecase.ResetOperationUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationEvidenceUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
@@ -455,25 +455,25 @@ class CoreContainer(
         getOperationStateUseCase = GetOperationStateUseCase(
             repository = operationRepository
         ),
-        updateInvestigationMapUseCase = UpdateInvestigationMapUseCase(
+        updateOperationMapUseCase = UpdateOperationMapUseCase(
             repository = operationRepository
         ),
-        updateInvestigationDifficultyUseCase = UpdateInvestigationDifficultyUseCase(
+        updateOperationDifficultyUseCase = UpdateOperationDifficultyUseCase(
             repository = operationRepository
         ),
-        updateInvestigationSanityUseCase = UpdateInvestigationSanityUseCase(
+        updateOperationSanityUseCase = UpdateOperationSanityUseCase(
             repository = operationRepository
         ),
-        updateInvestigationPhaseUseCase = UpdateInvestigationPhaseUseCase(
+        updateOperationPhaseUseCase = UpdateOperationPhaseUseCase(
             repository = operationRepository
         ),
-        updateInvestigationHuntWarningUseCase = UpdateInvestigationHuntWarningUseCase(
+        updateOperationHuntWarningUseCase = UpdateOperationHuntWarningUseCase(
             repository = operationRepository
         ),
-        updateInvestigationEvidenceUseCase = UpdateInvestigationEvidenceUseCase(
+        updateOperationEvidenceUseCase = UpdateOperationEvidenceUseCase(
             repository = operationRepository
         ),
-        resetInvestigationUseCase = ResetInvestigationUseCase(
+        resetOperationUseCase = ResetOperationUseCase(
             repository = operationRepository
         ),
         getCustomDifficultiesUseCase = getCustomDifficultiesUseCase
@@ -483,25 +483,25 @@ class CoreContainer(
         getOperationStateUseCase = GetOperationStateUseCase(
             repository = operationRepository
         ),
-        updateInvestigationMapUseCase = UpdateInvestigationMapUseCase(
+        updateInvestigationMapUseCase = UpdateOperationMapUseCase(
             repository = operationRepository
         ),
-        updateInvestigationDifficultyUseCase = UpdateInvestigationDifficultyUseCase(
+        updateInvestigationDifficultyUseCase = UpdateOperationDifficultyUseCase(
             repository = operationRepository
         ),
-        updateInvestigationSanityUseCase = UpdateInvestigationSanityUseCase(
+        updateInvestigationSanityUseCase = UpdateOperationSanityUseCase(
             repository = operationRepository
         ),
-        updateInvestigationPhaseUseCase = UpdateInvestigationPhaseUseCase(
+        updateInvestigationPhaseUseCase = UpdateOperationPhaseUseCase(
             repository = operationRepository
         ),
-        updateInvestigationHuntWarningUseCase = UpdateInvestigationHuntWarningUseCase(
+        updateInvestigationHuntWarningUseCase = UpdateOperationHuntWarningUseCase(
             repository = operationRepository
         ),
-        updateInvestigationEvidenceUseCase = UpdateInvestigationEvidenceUseCase(
+        updateInvestigationEvidenceUseCase = UpdateOperationEvidenceUseCase(
             repository = operationRepository
         ),
-        resetInvestigationUseCase = ResetInvestigationUseCase(
+        resetInvestigationUseCase = ResetOperationUseCase(
             repository = operationRepository
         ),
         getCustomDifficultiesUseCase = getCustomDifficultiesUseCase
