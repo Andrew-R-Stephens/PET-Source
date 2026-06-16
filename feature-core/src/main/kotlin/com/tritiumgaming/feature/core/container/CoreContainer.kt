@@ -64,8 +64,10 @@ import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseB
 import com.tritiumgaming.shared.data.operation.usecase.ResetOperationUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationEvidenceUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
@@ -474,6 +476,12 @@ class CoreContainer(
         updateOperationEvidenceUseCase = UpdateOperationEvidenceUseCase(
             repository = operationRepository
         ),
+        updateOperationGhostDetailsUseCase = UpdateOperationGhostDetailsUseCase(
+            repository = operationRepository
+        ),
+        updateOperationMissionDataUseCase = UpdateOperationMissionDataUseCase(
+            repository = operationRepository
+        ),
         resetOperationUseCase = ResetOperationUseCase(
             repository = operationRepository
         ),
@@ -500,6 +508,12 @@ class CoreContainer(
             repository = operationRepository
         ),
         updateOperationEvidenceUseCase = UpdateOperationEvidenceUseCase(
+            repository = operationRepository
+        ),
+        updateOperationGhostDetailsUseCase = UpdateOperationGhostDetailsUseCase(
+            repository = operationRepository
+        ),
+        updateOperationMissionDataUseCase = UpdateOperationMissionDataUseCase(
             repository = operationRepository
         ),
         resetOperationUseCase = ResetOperationUseCase(

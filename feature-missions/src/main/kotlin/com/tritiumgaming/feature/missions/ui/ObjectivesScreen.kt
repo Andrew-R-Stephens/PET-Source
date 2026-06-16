@@ -85,7 +85,7 @@ private fun ObjectivesScreenPreview() {
                     namesSpinnerUiState = NamesSpinnerUiState()
                 ),
                 ghostNameUiActions = GhostNameUiActions({}, {}),
-                ghostResponseUiActions = GhostResponseUiActions({}),
+                ghostResponseUiActions = GhostResponseUiActions {},
                 missionWrapperActions = MissionWrapperActions({ _, _ -> }, { _, _ -> })
             )
         }

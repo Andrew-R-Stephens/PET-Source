@@ -7,7 +7,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUiState
-import com.tritiumgaming.feature.missions.ui.components.mission.MissionStatus
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
 import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
@@ -17,19 +16,22 @@ import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllMaleNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllSurnamesUseCase
 import com.tritiumgaming.shared.data.operation.model.DifficultyData
+import com.tritiumgaming.shared.data.operation.model.GhostDetails
+import com.tritiumgaming.shared.data.operation.model.MissionData
+import com.tritiumgaming.shared.data.operation.model.MissionState
+import com.tritiumgaming.shared.data.operation.model.MissionStatus
+import com.tritiumgaming.shared.data.operation.model.Response
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
 import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import com.tritiumgaming.shared.data.mission.usecase.MissionsUseCaseBundle
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 
 class ObjectivesViewModel(
     private val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
@@ -37,37 +39,65 @@ class ObjectivesViewModel(
     private val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase,
     private val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
     private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
-    missionsStateUseCaseBundle: MissionsUseCaseBundle,
-    getOperationStateUseCase: GetOperationStateUseCase = missionsStateUseCaseBundle.getOperationStateUseCase
-
+    private val missionsUseCaseBundle: MissionsUseCaseBundle,
+    getOperationStateUseCase: GetOperationStateUseCase = missionsUseCaseBundle.getOperationStateUseCase,
+    private val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase = missionsUseCaseBundle.updateOperationGhostDetailsUseCase,
+    private val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase = missionsUseCaseBundle.updateOperationMissionDataUseCase
 ): ViewModel() {
 
     private val _investigationState = getOperationStateUseCase()
 
-    private val _difficultyState = _investigationState.map { it.difficulty }
+    val difficultyState = _investigationState.map { it.difficulty }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = DifficultyData()
         )
-    val difficultyState = _difficultyState
 
-    private val _missionSpinnerUiState: MutableStateFlow<MissionSpinnerUiState> =
-        MutableStateFlow(
-            MissionSpinnerUiState(
-                availableMissions = fetchAllMissions()
-            )
+    val ghostDetailsState = _investigationState.map { it.ghostDetails }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = GhostDetails()
         )
-    val missionSpinnerUiState = _missionSpinnerUiState.asStateFlow()
 
-    private val _namesSpinnerUiState: MutableStateFlow<NamesSpinnerUiState> =
-        MutableStateFlow(
-            NamesSpinnerUiState(
-                firstNames = fetchAllFirstNames(),
-                surnames = fetchAllSurnames()
-            )
+    val missionDataState = _investigationState.map { it.missionData }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = MissionData()
         )
-    val namesSpinnerUiState = _namesSpinnerUiState.asStateFlow()
+
+    val missionSpinnerUiState: StateFlow<MissionSpinnerUiState> = missionDataState.map { missionData ->
+        val filteredMissions = missionData.selectedMissions.fold(fetchAllMissions()) { acc, selected ->
+            acc.filter { it.id != selected.mission.id }
+        }
+        MissionSpinnerUiState(
+            selectedMissions = missionData.selectedMissions.map { MissionUiState(it.mission, it.status) },
+            availableMissions = filteredMissions
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = MissionSpinnerUiState()
+    )
+
+    val namesSpinnerUiState: StateFlow<NamesSpinnerUiState> = ghostDetailsState.map { ghostDetails ->
+        val filteredFirstNames = fetchAllFirstNames()
+            .sortedBy { it.name }
+            .filter { it.name != ghostDetails.firstName?.name }
+        val filteredSurnames = fetchAllSurnames()
+            .sortedBy { it.name }
+            .filter { it.name != ghostDetails.surname?.name }
+        NamesSpinnerUiState(
+            firstNames = filteredFirstNames,
+            surnames = filteredSurnames
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = NamesSpinnerUiState()
+    )
 
     /*
      * Missions -------------------------
@@ -82,111 +112,50 @@ class ObjectivesViewModel(
     }
 
     fun updateMissionStatus(mission: Mission, status: MissionStatus) {
-
-        _missionSpinnerUiState.update {
-            it.copy(
-                selectedMissions = it.selectedMissions.map { spinnerState ->
-                    if(spinnerState.mission.id == mission.id) {
-                        spinnerState.copy(status = status)
-                    } else {
-                        spinnerState
-                    }
-                }
-            )
-
+        val currentMissionData = missionDataState.value
+        val newMissions = currentMissionData.selectedMissions.map {
+            if(it.mission.id == mission.id) it.copy(status = status) else it
         }
+        updateOperationMissionDataUseCase(currentMissionData.copy(selectedMissions = newMissions))
     }
 
     fun selectMission(spinnerIndex: Int, mission: Mission) {
-
-        _missionSpinnerUiState.update {
-            it.copy(
-                selectedMissions = it.selectedMissions.mapIndexed { index, spinnerState ->
-                    if(spinnerIndex == index) {
-                        spinnerState.copy(
-                            mission = mission,
-                            status = NOT_COMPLETE
-                        )
-                    } else {
-                        spinnerState
-                    }
-                }
-            )
+        val currentMissionData = missionDataState.value
+        val newMissions = currentMissionData.selectedMissions.toMutableList()
+        if(spinnerIndex < newMissions.size) {
+            newMissions[spinnerIndex] = MissionState(mission, NOT_COMPLETE)
         }
-
-        updateMissionSpinnerUiState()
-
+        updateOperationMissionDataUseCase(currentMissionData.copy(selectedMissions = newMissions))
     }
 
     private fun initializeMissionUiState() {
-        val missions = try {
-            fetchAllMissionsUseCase().getOrThrow()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return
-        }
+        if(missionDataState.value.selectedMissions.isNotEmpty()) return
+
+        val missions = fetchAllMissions()
+        if(missions.isEmpty()) return
 
         val maxMissions = 3.coerceAtMost(missions.size)
-
-        val newStates: MutableList<MissionUiState> = mutableListOf()
-        for(i in 0 until maxMissions) {
-            newStates.add(
-                MissionUiState(
-                    mission = missions[i],
-                    status = NOT_COMPLETE
-                )
-            )
-        }
-        /*
-        _missionUiState.update {
-            newStates
-        }
-        */
-
-        _missionSpinnerUiState.update {
-            it.copy(
-                selectedMissions = newStates
-            )
+        val newStates = List(maxMissions) { i ->
+            MissionState(mission = missions[i], status = NOT_COMPLETE)
         }
 
-
-    }
-
-    /*
-     * Mission Spinners -------------------------
-     */
-
-    private fun updateMissionSpinnerUiState() {
-
-        val filteredMissions = missionSpinnerUiState.value.selectedMissions
-            .fold(fetchAllMissions()) { missionsUi, mission ->
-                missionsUi.filter { it.id != mission.mission.id }
-            }
-
-        _missionSpinnerUiState.update {
-            it.copy(
-                availableMissions = filteredMissions
-            )
-        }
+        updateOperationMissionDataUseCase(MissionData(selectedMissions = newStates))
     }
 
     /*
      * Ghost details ---------------------
      */
-    private val _ghostDetailsState = MutableStateFlow(GhostDetailsUiState())
-    val ghostDetailsState = _ghostDetailsState.asStateFlow()
-
-    private val _ghostDetailsUiState: StateFlow<GhostDetailsUiState> = combine(
+    val ghostDetailsUiState: StateFlow<GhostDetailsUiState> = combine(
         ghostDetailsState,
         difficultyState
-    ) { ghostDetailsState, difficultyState ->
+    ) { ghostDetails, difficultyState ->
         val ghostResponse = if(difficultyState.responseType ==
             DifficultyResources.DifficultyResponseType.UNKNOWN) { UNKNOWN }
-            else { ghostDetailsState.responseState }
+            else { ghostDetails.responseState }
 
         GhostDetailsUiState(
-            firstName = ghostDetailsState.firstName,
-            surname = ghostDetailsState.surname,
+            firstName = ghostDetails.firstName,
+            surname = ghostDetails.surname,
             responseState = ghostResponse
         )
     }.stateIn(
@@ -194,62 +163,23 @@ class ObjectivesViewModel(
         started = SharingStarted.Eagerly,
         initialValue = GhostDetailsUiState()
     )
-    val ghostDetailsUiState = _ghostDetailsUiState
 
     fun setGhostFirstName(name: GhostName) {
-        _ghostDetailsState.update {
-            it.copy(
-                firstName = name
-            )
-        }
-
-        updateFirstNamesOfNameSpinnerUiState(name)
+        updateOperationGhostDetailsUseCase(
+            ghostDetailsState.value.copy(firstName = name)
+        )
     }
 
     fun setGhostSurname(name: GhostName) {
-        _ghostDetailsState.update {
-            it.copy(
-                surname = name
-            )
-        }
-
-        updateSurnamesOfNamesSpinnerUiState(name)
+        updateOperationGhostDetailsUseCase(
+            ghostDetailsState.value.copy(surname = name)
+        )
     }
 
     fun setGhostResponse(response: Response) {
-        _ghostDetailsState.update {
-            it.copy(
-                responseState = response
-            )
-        }
-    }
-
-    /*
-     * Name Spinners ------------------
-     */
-
-    private fun updateFirstNamesOfNameSpinnerUiState(name: GhostName) {
-        val filteredFirstNames = fetchAllFirstNames()
-            .sortedBy { ghostName -> ghostName.name }
-            .filter { it.name != name.name }
-
-        _namesSpinnerUiState.update {
-            it.copy(
-                firstNames = filteredFirstNames
-            )
-        }
-    }
-
-    private fun updateSurnamesOfNamesSpinnerUiState(name: GhostName) {
-        val filteredSurnames = fetchAllSurnames()
-            .sortedBy { ghostName -> ghostName.name }
-            .filter { it.name != name.name }
-
-        _namesSpinnerUiState.update {
-            it.copy(
-                surnames = filteredSurnames
-            )
-        }
+        updateOperationGhostDetailsUseCase(
+            ghostDetailsState.value.copy(responseState = response)
+        )
     }
 
     private fun fetchAllFirstNames(): List<GhostName> {
@@ -270,30 +200,18 @@ class ObjectivesViewModel(
         }
     }
 
-    /*fun reset() {
-        // ghostName = null
-        _ghostDetailsUiState.update {
-            it.copy(
-                firstName = null,
-                surname = null,
-                responseState = UNKNOWN
-            )
-        }
-    }*/
-
     init {
         initializeMissionUiState()
-        updateMissionSpinnerUiState()
     }
 
     companion object {
 
-        const val UNKNOWN: Response = 0
-        const val ALONE: Response = 1
-        const val GROUP: Response = 2
+        const val UNKNOWN: Int = 0
+        const val ALONE: Int = 1
+        const val GROUP: Int = 2
 
-        const val NOT_COMPLETE: MissionStatus = false
-        const val COMPLETE: MissionStatus = true
+        const val NOT_COMPLETE: Boolean = false
+        const val COMPLETE: Boolean = true
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
@@ -313,7 +231,7 @@ class ObjectivesViewModel(
                     fetchAllMaleNamesUseCase = fetchAllMaleNamesUseCase,
                     fetchAllFemaleNamesUseCase = fetchAllFemaleNamesUseCase,
                     fetchAllSurnamesUseCase = fetchAllSurnamesUseCase,
-                    missionsStateUseCaseBundle = missionsStateUseCaseBundle
+                    missionsUseCaseBundle = missionsStateUseCaseBundle
                 )
             }
         }

@@ -3,8 +3,10 @@ package com.tritiumgaming.shared.data.operation
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.operation.model.DifficultyData
 import com.tritiumgaming.shared.data.operation.model.EvidenceState
-import com.tritiumgaming.shared.data.operation.model.OperationData
+import com.tritiumgaming.shared.data.operation.model.GhostDetails
 import com.tritiumgaming.shared.data.operation.model.MapData
+import com.tritiumgaming.shared.data.operation.model.MissionData
+import com.tritiumgaming.shared.data.operation.model.OperationData
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.SanityData
 import kotlinx.coroutines.flow.StateFlow
@@ -19,6 +21,8 @@ interface OperationRepository {
     fun updateHuntWarning(warning: Boolean)
     fun updateEvidence(evidence: List<EvidenceState>)
     fun updateDifficulty(difficulty: DifficultyData)
+    fun updateGhostDetails(ghostDetails: GhostDetails)
+    fun updateMissionData(missionData: MissionData)
     fun toggleGhostRejection(id: GhostResources.GhostIdentifier)
 
     fun reset()

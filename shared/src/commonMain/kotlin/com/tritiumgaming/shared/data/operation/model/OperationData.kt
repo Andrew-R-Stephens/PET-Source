@@ -10,5 +10,7 @@ data class OperationData(
     val huntWarning: Boolean = false,
     val evidenceStates: List<EvidenceState> = emptyList(),
     //val ghostStates: List<GhostState> = emptyList(),
-    val explicitRejections: Set<GhostResources.GhostIdentifier> = emptySet()
+    val explicitRejections: Set<GhostResources.GhostIdentifier> = emptySet(),
+    val ghostDetails: GhostDetails = GhostDetails(),
+    val missionData: MissionData = MissionData()
 )

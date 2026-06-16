@@ -52,12 +52,8 @@ import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(
-    /*investigationViewModel: InvestigationScreenViewModel =
+    investigationViewModel: InvestigationScreenViewModel =
         viewModel(factory = InvestigationScreenViewModel.Factory),
-    objectivesViewModel: ObjectivesViewModel =
-        viewModel(factory = ObjectivesViewModel.Factory),
-    mapsScreenViewModel: MapsScreenViewModel =
-        viewModel(factory = MapsScreenViewModel.Factory),*/
     windowInsets: WindowInsets = WindowInsets()
 ) {
 
@@ -79,9 +75,7 @@ fun RootNavigation(
         operationNavigation(
             navController = navController,
             windowInsets = windowInsets,
-            /*investigationViewModel = investigationViewModel,
-            objectivesViewModel = objectivesViewModel,
-            mapsScreenViewModel = mapsScreenViewModel*/
+            investigationViewModel = investigationViewModel
         )
 
     }
@@ -267,9 +261,7 @@ private fun NavGraphBuilder.homeNavigation(
 private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
     windowInsets: WindowInsets,
-    /*investigationViewModel: InvestigationScreenViewModel,
-    objectivesViewModel: ObjectivesViewModel,
-    mapsScreenViewModel: MapsScreenViewModel*/
+    investigationViewModel: InvestigationScreenViewModel,
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
@@ -277,12 +269,12 @@ private fun NavGraphBuilder.operationNavigation(
     ) {
 
         composable(route = NavRoute.SCREEN_INVESTIGATION.route) { navBackStackEntry ->
-            val investigationViewModel: InvestigationScreenViewModel = viewModel(
+            /*val investigationViewModel: InvestigationScreenViewModel = viewModel(
                 viewModelStoreOwner = remember(navBackStackEntry) {
                     navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
                 },
                 factory = InvestigationScreenViewModel.Factory
-            )
+            )*/
 
             OperationScreen(
                 modifier = Modifier
@@ -398,7 +390,15 @@ private fun NavGraphBuilder.operationNavigation(
         ) {
 
 
-            composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
+            composable(route = NavRoute.SCREEN_CODEX_MENU.route) { navBackStackEntry ->
+
+                val codexCatalogScreenViewModel: CodexCatalogScreenViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(NavRoute.NAVIGATION_CODEX.route)
+                    },
+                    factory = CodexCatalogScreenViewModel.Factory
+                )
+
                 OperationScreen(
                     modifier = Modifier
                         .padding(horizontal = 8.dp),
@@ -425,6 +425,14 @@ private fun NavGraphBuilder.operationNavigation(
                     entry.id == categoryId }
 
                 category?.let {
+
+                    val codexCatalogScreenViewModel: CodexCatalogScreenViewModel = viewModel(
+                        viewModelStoreOwner = remember(navBackStackEntry) {
+                            navController.getBackStackEntry(NavRoute.NAVIGATION_CODEX.route)
+                        },
+                        factory = CodexCatalogScreenViewModel.Factory
+                    )
+
                     OperationScreen(
                         modifier = Modifier
                             .padding(horizontal = 8.dp),
@@ -433,7 +441,7 @@ private fun NavGraphBuilder.operationNavigation(
                     ) {
                         CodexCatalogScreen(
                             navController = navController,
-                            codexCatalogScreenViewModel = viewModel(factory = CodexCatalogScreenViewModel.Factory),
+                            codexCatalogScreenViewModel = codexCatalogScreenViewModel,
                             category = category
                         )
                     }
