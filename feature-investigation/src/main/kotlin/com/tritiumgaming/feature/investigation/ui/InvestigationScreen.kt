@@ -136,16 +136,16 @@ import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
-import com.tritiumgaming.shared.data.investigation.model.CategoryOption
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
-import com.tritiumgaming.shared.data.investigation.model.EvidenceState
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.investigation.model.GhostState
-import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
-import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
-import com.tritiumgaming.shared.data.investigation.model.TraitFilter
-import com.tritiumgaming.shared.data.investigation.model.TraitScore
-import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
+import com.tritiumgaming.shared.data.operation.model.CategoryOption
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
+import com.tritiumgaming.shared.data.operation.model.EvidenceState
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.operation.model.GhostState
+import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
+import com.tritiumgaming.shared.data.operation.model.ToolTimerType
+import com.tritiumgaming.shared.data.operation.model.TraitFilter
+import com.tritiumgaming.shared.data.operation.model.TraitScore
+import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
@@ -187,8 +187,8 @@ private fun InvestigationScreenPreview(
                     operationTimer = OperationTimerUiState(
                         remainingTime = "0:00"
                     ),
-                    difficultyOverrides = DifficultyOverridesData(
-                        fuseBox = DifficultyOverridesData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
+                    difficultyOverrides = OperationOverrideData(
+                        fuseBox = OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
                     ),
                     weather = WeatherUiState(
                         weather = Weather.SNOW
@@ -321,7 +321,7 @@ fun InvestigationSoloScreen(
     val customDifficultyConfigUiState by investigationViewModel.customDifficultyConfigUiState.collectAsStateWithLifecycle()
     val weatherUiState by investigationViewModel.weatherUiState.collectAsStateWithLifecycle()
     val temperatureUiState by investigationViewModel.temperatureUiState.collectAsStateWithLifecycle()
-    val difficultyOverrideUiState by investigationViewModel.difficultyOverridesState.collectAsStateWithLifecycle()
+    val difficultyOverrideUiState by investigationViewModel.operationOverridesState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
     val traitFilterOptions by investigationViewModel.traitFilterOptionsUiState.collectAsStateWithLifecycle()
@@ -2104,7 +2104,7 @@ internal data class InvestigationUiState(
     val customDifficultyConfig: InvestigationScreenViewModel.CustomDifficultyConfigUiState = InvestigationScreenViewModel.CustomDifficultyConfigUiState(),
     val weather: WeatherUiState = WeatherUiState(),
     val temperature: TemperatureUiState = TemperatureUiState(),
-    val difficultyOverrides: DifficultyOverridesData = DifficultyOverridesData(),
+    val difficultyOverrides: OperationOverrideData = OperationOverrideData(),
     val playerSanity: PlayerSanityUiState = PlayerSanityUiState(),
     val evidenceList: List<EvidenceState> = emptyList(),
     val traitFilterOptions: GhostTraitFilterUiOptions = GhostTraitFilterUiOptions(),

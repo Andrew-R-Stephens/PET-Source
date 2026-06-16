@@ -41,12 +41,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
 

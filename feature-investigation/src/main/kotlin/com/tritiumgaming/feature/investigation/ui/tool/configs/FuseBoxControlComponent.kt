@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 
 @Composable
 internal fun FuseBoxButton(

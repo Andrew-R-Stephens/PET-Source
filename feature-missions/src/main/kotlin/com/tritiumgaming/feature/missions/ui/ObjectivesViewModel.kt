@@ -16,9 +16,9 @@ import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCas
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllMaleNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllSurnamesUseCase
-import com.tritiumgaming.shared.data.investigation.model.DifficultyData
-import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.operation.model.DifficultyData
+import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
+import com.tritiumgaming.shared.data.operation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,11 +37,11 @@ class ObjectivesViewModel(
     private val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
     private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
     investigationStateUseCaseBundle: InvestigationUseCaseBundle,
-    getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationStateUseCaseBundle.getInvestigationStateUseCase
+    getOperationStateUseCase: GetOperationStateUseCase = investigationStateUseCaseBundle.getOperationStateUseCase
 
 ): ViewModel() {
 
-    private val _investigationState = getInvestigationStateUseCase()
+    private val _investigationState = getOperationStateUseCase()
 
     private val _difficultyState = _investigationState.map { it.difficulty }
         .stateIn(

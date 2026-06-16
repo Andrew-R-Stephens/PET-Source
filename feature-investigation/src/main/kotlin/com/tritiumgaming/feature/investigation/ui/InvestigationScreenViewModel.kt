@@ -63,39 +63,39 @@ import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
-import com.tritiumgaming.shared.data.investigation.model.CategoryOption
-import com.tritiumgaming.shared.data.investigation.model.DifficultyData
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
-import com.tritiumgaming.shared.data.investigation.model.EvidenceState
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.investigation.model.GhostState
-import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterOptions
-import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
-import com.tritiumgaming.shared.data.investigation.model.InvestigationScreenUserPreferences
-import com.tritiumgaming.shared.data.investigation.model.MapData
-import com.tritiumgaming.shared.data.investigation.model.PhaseData
-import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
-import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
-import com.tritiumgaming.shared.data.investigation.model.SanityData
-import com.tritiumgaming.shared.data.investigation.model.SanityTimerData
-import com.tritiumgaming.shared.data.investigation.model.SanityTimerData.Companion.TIME_MIN
-import com.tritiumgaming.shared.data.investigation.model.StateOption
-import com.tritiumgaming.shared.data.investigation.model.TagOption
-import com.tritiumgaming.shared.data.investigation.model.TemperatureData
-import com.tritiumgaming.shared.data.investigation.model.ToolTimerData
-import com.tritiumgaming.shared.data.investigation.model.ToolTimerType
-import com.tritiumgaming.shared.data.investigation.model.TraitFilter
-import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
-import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
-import com.tritiumgaming.shared.data.investigation.model.WeightOption
-import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationHuntWarningUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationPhaseUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
+import com.tritiumgaming.shared.data.operation.model.CategoryOption
+import com.tritiumgaming.shared.data.operation.model.DifficultyData
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import com.tritiumgaming.shared.data.operation.model.EvidenceState
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.operation.model.GhostState
+import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterOptions
+import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
+import com.tritiumgaming.shared.data.operation.model.InvestigationScreenUserPreferences
+import com.tritiumgaming.shared.data.operation.model.MapData
+import com.tritiumgaming.shared.data.operation.model.PhaseData
+import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
+import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.shared.data.operation.model.SanityData
+import com.tritiumgaming.shared.data.operation.model.SanityTimerData
+import com.tritiumgaming.shared.data.operation.model.SanityTimerData.Companion.TIME_MIN
+import com.tritiumgaming.shared.data.operation.model.StateOption
+import com.tritiumgaming.shared.data.operation.model.TagOption
+import com.tritiumgaming.shared.data.operation.model.TemperatureData
+import com.tritiumgaming.shared.data.operation.model.ToolTimerData
+import com.tritiumgaming.shared.data.operation.model.ToolTimerType
+import com.tritiumgaming.shared.data.operation.model.TraitFilter
+import com.tritiumgaming.shared.data.operation.model.TraitValidationType
+import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
+import com.tritiumgaming.shared.data.operation.model.WeightOption
+import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
+import com.tritiumgaming.shared.data.operation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationDifficultyUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationHuntWarningUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationMapUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationPhaseUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
@@ -106,8 +106,7 @@ import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUs
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.phase.model.PhaseResources
-import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
+import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel
@@ -162,7 +161,7 @@ class InvestigationScreenViewModel private constructor(
     private val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase = simpleMapUseCaseBundle.getSimpleMapModifierUseCase
     private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase = simpleMapUseCaseBundle.fetchSimpleMapModifiersUseCase
     private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase
-    private val getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationUseCaseBundle.getInvestigationStateUseCase
+    private val getOperationStateUseCase: GetOperationStateUseCase = investigationUseCaseBundle.getOperationStateUseCase
     private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase
     private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase
     private val updateInvestigationSanityUseCase: UpdateInvestigationSanityUseCase = investigationUseCaseBundle.updateInvestigationSanityUseCase
@@ -236,7 +235,7 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Investigation Repository
      */
-    private val _investigationState = getInvestigationStateUseCase()
+    private val _investigationState = getOperationStateUseCase()
 
     /*
      * Map
@@ -467,14 +466,14 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Override
      * */
-    private val _difficultyOverridesState = MutableStateFlow(DifficultyOverridesData())
-    val difficultyOverridesState = _difficultyOverridesState.asStateFlow()
+    private val _operationOverridesState = MutableStateFlow(OperationOverrideData())
+    val operationOverridesState = _operationOverridesState.asStateFlow()
 
     /*
      * Weather
      */
     private val _weatherState = combine(
-        difficultyOverridesState,
+        operationOverridesState,
         difficultyState
     ) { overrides, diff ->
         if (diff.settings.weather == Weather.RANDOM) overrides.weather
@@ -488,7 +487,7 @@ class InvestigationScreenViewModel private constructor(
     private val _temperatureState = MutableStateFlow(TemperatureData())
     private fun updateTemperature(delta: Float, timeStamp: Long) {
         val weatherRange = getCurrentWeather().toTemperatureRange()
-        val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+        val fuseBoxOn = _operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
 
         val targetTemp = if (fuseBoxOn)
             Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
@@ -514,7 +513,7 @@ class InvestigationScreenViewModel private constructor(
     private fun resetTemperature() {
         val weather = getCurrentWeather()
         val weatherRange = weather.toTemperatureRange()
-        val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+        val fuseBoxOn = _operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
 
         val startTemp = if (fuseBoxOn) {
             Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
@@ -534,7 +533,7 @@ class InvestigationScreenViewModel private constructor(
 
     private fun getCurrentWeather(): Weather {
         val diff = difficultyState.value
-        val overrides = _difficultyOverridesState.value
+        val overrides = _operationOverridesState.value
         return if (diff.settings.weather == Weather.RANDOM) overrides.weather
         else diff.settings.weather
     }
@@ -643,14 +642,14 @@ class InvestigationScreenViewModel private constructor(
         _bpmToolState,
         _explicitGhostRejects,
         selectedTraits,
-        difficultyOverridesState
+        operationOverridesState
     ) { args ->
         val evidenceStates = args[0] as List<EvidenceState>
         val difficultyState = args[1] as DifficultyData
         val bpmToolUiState = args[2] as BpmToolUiState
         val explicitRejections = args[3] as Set<GhostResources.GhostIdentifier>
         val selectedTraits = args[4] as List<ValidatedGhostTrait>
-        val overridesState = args[5] as DifficultyOverridesData
+        val overridesState = args[5] as OperationOverrideData
 
         ghostEvidences.map { ghostEvidence ->
             val isManuallyRejected = ghostEvidence.ghost.id in explicitRejections
@@ -846,7 +845,7 @@ class InvestigationScreenViewModel private constructor(
         _bpmToolState,
         difficultyState,
         _weatherState,
-        difficultyOverridesState
+        operationOverridesState
     ) { bpmState, difficulty, weather, overrides ->
         val ghostSpeedModifier = difficulty.settings.ghostSpeed.toFloat()
         val fuseBoxFlag = overrides.fuseBox
@@ -1099,7 +1098,7 @@ class InvestigationScreenViewModel private constructor(
         mapState,
         difficultyState,
         ghostStates,
-        difficultyOverridesState
+        operationOverridesState
     ) {
             mapState, difficultyState, ghostStates, difficultyOverrideState ->
 
@@ -1336,7 +1335,7 @@ class InvestigationScreenViewModel private constructor(
             currentTime - lastTickTime else 0L
 
         if (deltaTime > 0) {
-            val fuseBoxOn = _difficultyOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+            val fuseBoxOn = _operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
             val currentTemp = _temperatureState.value.current
             val weatherRange = getCurrentWeather().toTemperatureRange()
 
@@ -1372,7 +1371,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun resetWeatherOverride() {
-        _difficultyOverridesState.update { it.copy(weather = Weather.RANDOM) }
+        _operationOverridesState.update { it.copy(weather = Weather.RANDOM) }
     }
 
     private fun resetToolTimers() {
@@ -1589,7 +1588,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun setWeatherOverride(weather: Weather) {
-        _difficultyOverridesState.update {
+        _operationOverridesState.update {
             it.copy (
                 weather = weather
             )
@@ -1597,7 +1596,7 @@ class InvestigationScreenViewModel private constructor(
         resetTemperature()
     }
     private fun setFuseBoxOverride(state: FuseBoxFlag) {
-        _difficultyOverridesState.update {
+        _operationOverridesState.update {
             it.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
@@ -1609,7 +1608,7 @@ class InvestigationScreenViewModel private constructor(
         }
     }
     private fun toggleFuseBoxOverride() {
-        _difficultyOverridesState.update {
+        _operationOverridesState.update {
             it.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
@@ -1977,7 +1976,7 @@ class InvestigationScreenViewModel private constructor(
         combine(
             difficultyState,
             mapState,
-            difficultyOverridesState
+            operationOverridesState
         ) { difficulty, map, override ->
             Triple(difficulty.settings, map.size, override.cursedInvestigation)
         }

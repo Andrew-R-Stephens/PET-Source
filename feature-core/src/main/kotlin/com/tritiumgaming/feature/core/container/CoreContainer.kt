@@ -57,17 +57,17 @@ import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCas
 import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficultyRepository
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.customdifficulty.usecase.UpdateCustomDifficultyUseCase
-import com.tritiumgaming.shared.data.investigation.InvestigationRepository
-import com.tritiumgaming.shared.data.investigation.repository.impl.InvestigationRepositoryImpl
-import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.investigation.usecase.ResetInvestigationUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationEvidenceUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationHuntWarningUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationPhaseUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
+import com.tritiumgaming.shared.data.operation.OperationRepository
+import com.tritiumgaming.shared.data.operation.repository.impl.OperationRepositoryImpl
+import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
+import com.tritiumgaming.shared.data.operation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.operation.usecase.ResetInvestigationUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationDifficultyUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationEvidenceUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationHuntWarningUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationMapUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationPhaseUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
@@ -447,34 +447,62 @@ class CoreContainer(
         repository = languageRepository
     )
 
-    private val investigationRepository: InvestigationRepository by lazy {
-        InvestigationRepositoryImpl()
+    private val operationRepository: OperationRepository by lazy {
+        OperationRepositoryImpl()
     }
 
     val investigationUseCaseBundle = InvestigationUseCaseBundle(
-        getInvestigationStateUseCase = GetInvestigationStateUseCase(
-            repository = investigationRepository
+        getOperationStateUseCase = GetOperationStateUseCase(
+            repository = operationRepository
         ),
         updateInvestigationMapUseCase = UpdateInvestigationMapUseCase(
-            repository = investigationRepository
+            repository = operationRepository
         ),
         updateInvestigationDifficultyUseCase = UpdateInvestigationDifficultyUseCase(
-            repository = investigationRepository
+            repository = operationRepository
         ),
         updateInvestigationSanityUseCase = UpdateInvestigationSanityUseCase(
-            repository = investigationRepository
+            repository = operationRepository
         ),
         updateInvestigationPhaseUseCase = UpdateInvestigationPhaseUseCase(
-            repository = investigationRepository
+            repository = operationRepository
         ),
         updateInvestigationHuntWarningUseCase = UpdateInvestigationHuntWarningUseCase(
-            repository = investigationRepository
+            repository = operationRepository
         ),
         updateInvestigationEvidenceUseCase = UpdateInvestigationEvidenceUseCase(
-            repository = investigationRepository
+            repository = operationRepository
         ),
         resetInvestigationUseCase = ResetInvestigationUseCase(
-            repository = investigationRepository
+            repository = operationRepository
+        ),
+        getCustomDifficultiesUseCase = getCustomDifficultiesUseCase
+    )
+
+    val missionsUseCaseBundle = MissionsUseCaseBundle(
+        getOperationStateUseCase = GetOperationStateUseCase(
+            repository = operationRepository
+        ),
+        updateInvestigationMapUseCase = UpdateInvestigationMapUseCase(
+            repository = operationRepository
+        ),
+        updateInvestigationDifficultyUseCase = UpdateInvestigationDifficultyUseCase(
+            repository = operationRepository
+        ),
+        updateInvestigationSanityUseCase = UpdateInvestigationSanityUseCase(
+            repository = operationRepository
+        ),
+        updateInvestigationPhaseUseCase = UpdateInvestigationPhaseUseCase(
+            repository = operationRepository
+        ),
+        updateInvestigationHuntWarningUseCase = UpdateInvestigationHuntWarningUseCase(
+            repository = operationRepository
+        ),
+        updateInvestigationEvidenceUseCase = UpdateInvestigationEvidenceUseCase(
+            repository = operationRepository
+        ),
+        resetInvestigationUseCase = ResetInvestigationUseCase(
+            repository = operationRepository
         ),
         getCustomDifficultiesUseCase = getCustomDifficultiesUseCase
     )

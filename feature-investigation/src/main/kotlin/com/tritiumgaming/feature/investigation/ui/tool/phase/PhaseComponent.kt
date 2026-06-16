@@ -21,8 +21,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.inset
@@ -35,9 +33,9 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
-import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
-import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
-import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
+import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
+import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
 
 
 @Composable

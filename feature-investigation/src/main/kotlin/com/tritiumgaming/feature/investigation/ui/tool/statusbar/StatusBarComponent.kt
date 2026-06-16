@@ -38,8 +38,8 @@ import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanit
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData.Companion.FuseBoxFlag
-import com.tritiumgaming.shared.data.phase.model.PhaseResources
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import com.tritiumgaming.shared.data.phase.mappers.PhaseResources
 
 @Composable
 internal fun OperationStatusBar(

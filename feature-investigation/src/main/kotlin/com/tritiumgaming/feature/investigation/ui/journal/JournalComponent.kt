@@ -36,9 +36,9 @@ import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.investigation.model.EvidenceState
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.investigation.model.GhostState
+import com.tritiumgaming.shared.data.operation.model.EvidenceState
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.operation.model.GhostState
 
 
 @Composable

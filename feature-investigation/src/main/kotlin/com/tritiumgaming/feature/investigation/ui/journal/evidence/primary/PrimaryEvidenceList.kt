@@ -13,8 +13,8 @@ import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItemUiAction
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItemUiState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.investigation.model.EvidenceState
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.operation.model.EvidenceState
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 
 
 @Composable

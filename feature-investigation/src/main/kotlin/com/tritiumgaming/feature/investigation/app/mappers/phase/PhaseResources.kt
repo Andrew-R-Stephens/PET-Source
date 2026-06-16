@@ -2,7 +2,7 @@ package com.tritiumgaming.feature.investigation.app.mappers.phase
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.phase.model.PhaseResources
+import com.tritiumgaming.shared.data.phase.mappers.PhaseResources
 
 fun PhaseResources.PhaseIdentifier.toPhaseTitle() = when(this) {
     PhaseResources.PhaseIdentifier.SETUP -> PhaseResources.PhaseTitle.SETUP

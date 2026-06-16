@@ -32,14 +32,14 @@ import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
 import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toSanityBounds
-import com.tritiumgaming.shared.data.investigation.model.DifficultyOverridesData
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import kotlin.math.max
 
 @Composable
 internal fun ActiveGhostModifierDetails(
     state: OperationDetailsUiState.GhostDetails,
     difficultySettings: DifficultySettingsModel? = null,
-    overrides: DifficultyOverridesData? = null
+    overrides: OperationOverrideData? = null
 ) {
     val rememberGhostDetails = state.activeGhosts
 

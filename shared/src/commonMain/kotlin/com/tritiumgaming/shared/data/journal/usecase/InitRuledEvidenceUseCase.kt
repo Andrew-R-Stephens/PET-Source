@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.journal.usecase
 
-import com.tritiumgaming.shared.data.investigation.model.EvidenceState
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEUTRAL
+import com.tritiumgaming.shared.data.operation.model.EvidenceState
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType.NEUTRAL
 
 class InitRuledEvidenceUseCase(
     private val fetchEvidencesUseCase: FetchEvidenceTypesUseCase

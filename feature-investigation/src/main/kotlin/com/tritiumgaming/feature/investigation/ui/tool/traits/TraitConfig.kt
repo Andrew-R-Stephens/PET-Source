@@ -46,9 +46,9 @@ import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.Trait
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState.REJECT
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.DEFINITIVE
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.PROBABLE
-import com.tritiumgaming.shared.data.investigation.model.CategoryOption
-import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
-import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
+import com.tritiumgaming.shared.data.operation.model.CategoryOption
+import com.tritiumgaming.shared.data.operation.model.TraitValidationType
+import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
 
 @Composable
 internal fun TraitConfig(

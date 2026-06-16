@@ -12,7 +12,7 @@ import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCas
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllMaleNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllSurnamesUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.operation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.mission.repository.MissionRepository
 import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 

@@ -302,7 +302,7 @@ private fun NavGraphBuilder.operationNavigation(
                 viewModelStoreOwner = remember(navBackStackEntry) {
                     navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
                 },
-                factory = InvestigationScreenViewModel.Factory
+                factory = ObjectivesViewModel.Factory
             )
 
             OperationScreen(
