@@ -107,6 +107,18 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
         KillsExtendHunts.HIGH -> R.string.difficulty_setting_state_high
     }
 
+@StringRes fun FingerprintDuration.toStringResource(): Int =
+    when(this) {
+        FingerprintDuration.DURATION_NEVER -> R.string.difficulty_setting_value_0_seconds
+        FingerprintDuration.DURATION_15 -> R.string.difficulty_setting_value_15_seconds
+        FingerprintDuration.DURATION_30 -> R.string.difficulty_setting_value_30_seconds
+        FingerprintDuration.DURATION_60 -> R.string.difficulty_setting_value_60_seconds
+        FingerprintDuration.DURATION_90 -> R.string.difficulty_setting_value_90_seconds
+        FingerprintDuration.DURATION_120 -> R.string.difficulty_setting_value_120_seconds
+        FingerprintDuration.DURATION_180 -> R.string.difficulty_setting_value_180_seconds
+        FingerprintDuration.DURATION_INFINITE -> R.string.difficulty_setting_state_infinite
+    }
+
 @StringRes fun Weather.toStringResource(): Int =
     when(this) {
         Weather.RANDOM -> R.string.difficulty_setting_state_random

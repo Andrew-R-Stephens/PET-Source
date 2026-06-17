@@ -207,7 +207,7 @@ internal fun BpmTool(
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    text = "Modifiers".uppercase(),
+                    text = stringResource(R.string.general_label_modifiers).uppercase(),
                     color = LocalPalette.current.onSurfaceVariant,
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start

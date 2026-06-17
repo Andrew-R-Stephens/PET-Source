@@ -655,6 +655,11 @@ private fun InvestigationContent(
             fingerprintTimerRunning = fingerprintTimerRunning,
             onFingerprintToggle = onFingerprintToggle,
             fingerprintNotches = fingerprintNotches,
+            isCursedInvestigation = difficultyOverrideUiState.cursedInvestigation,
+            difficultyTitle = operationDetailsUiState.difficultyDetails.difficultyTitle,
+            mapSize = operationDetailsUiState.mapDetails.size,
+            huntDuration = operationDetailsUiState.difficultyDetails.settings.huntDuration,
+            fingerprintDuration = operationDetailsUiState.difficultyDetails.settings.fingerprintDuration,
             notchedProgressBarUiColors = notchedProgressBarUiColors
         )
     }

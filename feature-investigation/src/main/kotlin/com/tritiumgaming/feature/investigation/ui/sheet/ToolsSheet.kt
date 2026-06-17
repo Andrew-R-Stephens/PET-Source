@@ -27,6 +27,9 @@ import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarTimer
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
 
 @Composable
 internal fun ToolsBottomSheetComponent(
@@ -182,11 +185,22 @@ internal fun ToolsTimerComponent(
     fingerprintTimerRunning: Boolean,
     onFingerprintToggle: () -> Unit,
     fingerprintNotches: List<ProgressBarNotch>,
+    // Modifiers
+    isCursedInvestigation: Boolean = false,
+    difficultyTitle: DifficultyResources.DifficultyTitle = DifficultyResources.DifficultyTitle.AMATEUR,
+    mapSize: MapModifierResources.MapSize = MapModifierResources.MapSize.SMALL,
+    huntDuration: DifficultySettingResources.HuntDuration = DifficultySettingResources.HuntDuration.MEDIUM,
+    fingerprintDuration: DifficultySettingResources.FingerprintDuration = DifficultySettingResources.FingerprintDuration.DURATION_120,
     // Colors
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
     TimerTools(
-        modifier = modifier
+        modifier = modifier,
+        isCursedInvestigation = isCursedInvestigation,
+        difficultyTitle = difficultyTitle,
+        mapSize = mapSize,
+        huntDuration = huntDuration,
+        fingerprintDuration = fingerprintDuration
     ) {
         Surface(
             modifier = Modifier,

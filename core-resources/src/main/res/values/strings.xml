@@ -30,6 +30,8 @@
     <string name="general_label_revert">Revert</string>
     <string name="general_label_discard">Discard</string>
 
+    <string name="general_label_modifiers" translatable="false">Modifiers</string>
+
     <!--
         TITLESCREEN FRAGMENT
     -->
