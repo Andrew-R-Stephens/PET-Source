@@ -72,24 +72,14 @@ class NewsletterViewModel(
     )
     val refreshUiState = _refreshUiState.asStateFlow()
 
-    fun saveInboxLastReadDate(inboxId: String) {
+    fun saveInboxLastReadDate(inboxId: String, date: Long? = null) {
         viewModelScope.launch {
             val inbox = inboxesUiState.value.inboxes.first { inbox -> inbox.inbox.id == inboxId }
-            val newDate = inbox.inbox.channel?.messages?.get(0)?.dateEpoch ?:
+            val newDate = date ?: inbox.inbox.channel?.messages?.getOrNull(0)?.dateEpoch ?:
                 System.currentTimeMillis()
 
             if(inbox.lastReadDate < newDate) {
                 saveNewsletterInboxLastReadDateUseCase(inboxId, newDate)
-            }
-        }
-    }
-
-    fun saveInboxLastReadDate(inboxId: String, date: Long) {
-        viewModelScope.launch {
-            val inbox = inboxesUiState.value.inboxes.first { inbox -> inbox.inbox.id == inboxId }
-
-            if(inbox.lastReadDate < date) {
-                saveNewsletterInboxLastReadDateUseCase(inboxId, date)
             }
         }
     }
@@ -108,7 +98,6 @@ class NewsletterViewModel(
                 fetchNewsletterInboxesUseCase(forceRefresh = forceRefresh).getOrThrow()
 
                 onSuccess()
-
             } catch (e: Exception) {
                 e.printStackTrace()
                 onFailure()
