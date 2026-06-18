@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -227,7 +228,7 @@ private fun StartContent(
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 StartContentPortrait(
                     modifier = Modifier
-                        .weight(1f, false),
+                        .weight(1f, true),
                     currentLanguage = currentLanguage,
                     onNavigate = onNavigate
                 )
@@ -269,7 +270,8 @@ private fun StartContent(
         BannerAd(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(IntrinsicSize.Max),
+                .height(IntrinsicSize.Min)
+                .heightIn(min = 50.dp),
             adId = stringResource(R.string.ad_banner_1)
         )
     }

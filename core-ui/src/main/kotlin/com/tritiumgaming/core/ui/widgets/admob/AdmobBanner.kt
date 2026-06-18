@@ -74,8 +74,7 @@ fun BannerAd(
     adId: String
 ) {
     val localContext = LocalContext.current
-
-
+    
     if (LocalInspectionMode.current) {
         // Formula mirrors Google's internal scaling (~14.5% of width, min 50dp, max 120dp)
         val adWidth = LocalConfiguration.current.screenWidthDp
