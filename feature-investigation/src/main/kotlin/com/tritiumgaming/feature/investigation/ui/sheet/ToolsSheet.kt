@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -268,8 +269,13 @@ internal fun ToolsTimerComponent(
                             notches = huntDurationNotches,
                             colors = notchedProgressBarUiColors,
                             titleContent = {
+                                val rememberLazyListState = rememberScrollState()
+
                                 Row(
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                    modifier = Modifier
+                                        .weight(1f, false)
+                                        .horizontalScroll(rememberLazyListState),
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                                 ) {
                                     TimerToolModifierIcon(
                                         modifier = Modifier,
