@@ -1,6 +1,8 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,14 +13,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -196,6 +203,9 @@ internal fun ToolsTimerComponent(
     fingerprintTimerRunning: Boolean,
     onFingerprintToggle: () -> Unit,
     fingerprintNotches: List<ProgressBarNotch>,
+    // Link
+    timersLinked: Boolean = false,
+    onLinkToggle: () -> Unit = {},
     // Modifiers
     isCursedInvestigation: Boolean = false,
     difficultyTitle: DifficultyResources.DifficultyTitle = DifficultyResources.DifficultyTitle.AMATEUR,
@@ -208,33 +218,6 @@ internal fun ToolsTimerComponent(
     TimerTools(
         modifier = modifier
     ) {
-        Surface(
-            modifier = Modifier,
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(8.dp)
-        ) {
-            NotchedProgressBarTimer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                title = smudgeHuntPreventionTitle,
-                max = smudgeHuntPreventionMax,
-                remaining = smudgeHuntPreventionRemaining,
-                timeText = smudgeHuntPreventionTimeText,
-                running = smudgeHuntPreventionRunning,
-                onToggle = onSmudgeToggle,
-                notches = smudgeNotches,
-                colors = notchedProgressBarUiColors
-            ) { modifier ->
-                PreventHuntIcon(
-                    modifier = modifier,
-                    colors = IconVectorColors.defaults().copy(
-                        fillColor = LocalPalette.current.onSurface
-                    )
-                )
-            }
-        }
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -242,15 +225,74 @@ internal fun ToolsTimerComponent(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
             verticalAlignment = Alignment.Top
         ) {
+            val linkPainter = painterResource(R.drawable.ic_link)
+            val iconColor =
+                if (timersLinked) LocalPalette.current.onSurfaceVariant else LocalPalette.current.onSurface
+            val lineColor =
+                if (timersLinked) LocalPalette.current.onSurfaceVariant else LocalPalette.current.onSurface.copy(alpha = .3f)
+
+            Canvas(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .width(16.dp)
+                    .padding(vertical = 12.dp)
+                    .clickable { onLinkToggle() }
+            ) {
+                val strokeWidth = 2.dp.toPx()
+                val x = size.width / 2
+                val centerY = size.height / 2
+                val iconSize = 14.dp.toPx()
+                val gap = 4.dp.toPx()
+
+                // Top vertical line
+                drawLine(
+                    lineColor,
+                    Offset(x, 0f),
+                    Offset(x, centerY - iconSize / 2 - gap),
+                    strokeWidth
+                )
+                // Bottom vertical line
+                drawLine(
+                    lineColor,
+                    Offset(x, centerY + iconSize / 2 + gap),
+                    Offset(x, size.height),
+                    strokeWidth
+                )
+
+                // Pointing to hunt duration
+                drawLine(
+                    lineColor,
+                    Offset(x, 0f),
+                    Offset(size.width, 0f),
+                    strokeWidth
+                )
+                // Pointing to hunt cooldown
+                drawLine(
+                    lineColor,
+                    Offset(x, size.height),
+                    Offset(size.width, size.height),
+                    strokeWidth
+                )
+
+                translate(left = x - iconSize / 2, top = centerY - iconSize / 2) {
+                    with(linkPainter) {
+                        draw(
+                            size = Size(iconSize, iconSize),
+                            colorFilter = ColorFilter.tint(iconColor)
+                        )
+                    }
+                }
+            }
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(if (timersLinked) 0.dp else 8.dp)
             ) {
                 Surface(
                     modifier = Modifier,
                     color = LocalPalette.current.surfaceContainer,
-                    shape = RoundedCornerShape(8.dp)
+                    shape = if (timersLinked) RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp) else RoundedCornerShape(8.dp)
                 ) {
                     Column(
                         modifier = Modifier
@@ -276,6 +318,7 @@ internal fun ToolsTimerComponent(
                                         .weight(1f, false)
                                         .horizontalScroll(rememberLazyListState),
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     TimerToolModifierIcon(
                                         modifier = Modifier,
@@ -299,6 +342,18 @@ internal fun ToolsTimerComponent(
                                             contentDescription = ""
                                         )
                                     }
+
+                                    TimerToolModifierIcon(
+                                        tooltipText = stringResource(huntDuration.toStringResource())
+                                    ) {
+                                        HuntDurationIcon(
+                                            modifier = it.size(16.dp),
+                                            colors = IconVectorColors.defaults().copy(
+                                                fillColor = LocalPalette.current.onSurfaceVariant
+                                            )
+                                        )
+                                    }
+
                                     if (isCursedInvestigation) {
                                         TimerToolModifierIcon(
                                             tooltipText = stringResource(R.string.tool_timer_label_cursed)
@@ -311,17 +366,6 @@ internal fun ToolsTimerComponent(
                                             )
                                         }
                                     }
-
-                                    /*TimerToolModifierIcon(
-                                        tooltipText = stringResource(huntDuration.toStringResource())
-                                    ) {
-                                        HuntDurationIcon(
-                                            modifier = it.size(16.dp),
-                                            colors = IconVectorColors.defaults().copy(
-                                                fillColor = LocalPalette.current.onSurfaceVariant
-                                            )
-                                        )
-                                    }*/
                                 }
                             }
                         ) { modifier ->
@@ -333,19 +377,21 @@ internal fun ToolsTimerComponent(
                             )
                         }
 
-                        /*Checkbox(
-                            modifier = Modifier,
-                            checked = false,
-                            onCheckedChange = {},
-                            colors = CheckboxDefaults.colors(),
-                        )*/
                     }
+                }
+
+                if (timersLinked) {
+                    HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.onSurface.copy(alpha = 0.1f)
+                    )
                 }
 
                 Surface(
                     modifier = Modifier,
                     color = LocalPalette.current.surfaceContainer,
-                    shape = RoundedCornerShape(8.dp)
+                    shape = if (timersLinked) RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp) else RoundedCornerShape(8.dp)
                 ) {
                     NotchedProgressBarTimer(
                         modifier = Modifier
@@ -357,7 +403,22 @@ internal fun ToolsTimerComponent(
                         running = huntCooldownRunning,
                         onToggle = onHuntCooldownToggle,
                         notches = huntCooldownNotches,
-                        colors = notchedProgressBarUiColors
+                        colors = notchedProgressBarUiColors,
+                        showControls = !timersLinked,
+                        titleContent = {
+                            if (timersLinked) {
+                                TimerToolModifierIcon(
+                                    tooltipText = stringResource(R.string.tool_timer_label_linked)
+                                ) {
+                                    Image(
+                                        modifier = it.size(16.dp),
+                                        painter = painterResource(R.drawable.ic_link),
+                                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant),
+                                        contentDescription = ""
+                                    )
+                                }
+                            }
+                        }
                     ) { modifier ->
                         HuntCooldownDurationIcon(
                             modifier = modifier,
@@ -367,6 +428,33 @@ internal fun ToolsTimerComponent(
                         )
                     }
                 }
+            }
+        }
+
+        Surface(
+            modifier = Modifier,
+            color = LocalPalette.current.surfaceContainer,
+            shape = RoundedCornerShape(8.dp)
+        ) {
+            NotchedProgressBarTimer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                title = smudgeHuntPreventionTitle,
+                max = smudgeHuntPreventionMax,
+                remaining = smudgeHuntPreventionRemaining,
+                timeText = smudgeHuntPreventionTimeText,
+                running = smudgeHuntPreventionRunning,
+                onToggle = onSmudgeToggle,
+                notches = smudgeNotches,
+                colors = notchedProgressBarUiColors
+            ) { modifier ->
+                PreventHuntIcon(
+                    modifier = modifier,
+                    colors = IconVectorColors.defaults().copy(
+                        fillColor = LocalPalette.current.onSurface
+                    )
+                )
             }
         }
 

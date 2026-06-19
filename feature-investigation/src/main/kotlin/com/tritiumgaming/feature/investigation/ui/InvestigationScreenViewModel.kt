@@ -1895,7 +1895,15 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.SkipOperationTimer -> skipOperationTimer()
 
             // Tool Timers
-            is InvestigationEvent.ToggleTimerLinking -> _timersLinked.update { !it }
+            is InvestigationEvent.ToggleTimerLinking -> {
+                _timersLinked.update { linked ->
+                    val nextLinked = !linked
+                    if (nextLinked && _huntCooldownTimerState.value.running) {
+                        _huntCooldownTimerState.update { it.copy(remaining = it.max, running = false) }
+                    }
+                    nextLinked
+                }
+            }
             is InvestigationEvent.TriggerToolTimer -> triggerToolTimer(event.type)
 
             // UI Navigation/Popups

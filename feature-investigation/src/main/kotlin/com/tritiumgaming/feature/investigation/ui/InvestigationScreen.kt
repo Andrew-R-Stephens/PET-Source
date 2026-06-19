@@ -82,6 +82,7 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleFuseBoxOverride
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleGhostNegation
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleOperationTimer
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleTimerLinking
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleToolbar
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleTrait
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleUniqueTraitFilter
@@ -395,6 +396,7 @@ fun InvestigationSoloScreen(
         onHuntDurationToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) },
         onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
         onFingerprintToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) },
+        onLinkToggle = { investigationViewModel.onEvent(ToggleTimerLinking) },
         onBpmUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
         onBpmChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
         onBpmToggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) },
@@ -653,8 +655,10 @@ private fun InvestigationContent(
             fingerprintTimerRemaining = fingerprintTimerRemaining,
             fingerprintTimerTimeText = fingerprintTimerTimeText,
             fingerprintTimerRunning = fingerprintTimerRunning,
-            onFingerprintToggle = onFingerprintToggle,
+            onFingerprintToggle = uiActions.onFingerprintToggle,
             fingerprintNotches = fingerprintNotches,
+            timersLinked = uiState.timersLinked,
+            onLinkToggle = uiActions.onLinkToggle,
             isCursedInvestigation = difficultyOverrideUiState.cursedInvestigation,
             difficultyTitle = operationDetailsUiState.difficultyDetails.difficultyTitle,
             mapSize = operationDetailsUiState.mapDetails.size,
@@ -2143,6 +2147,7 @@ internal data class InvestigationUiActions(
     val onHuntDurationToggle: () -> Unit = {},
     val onHuntCooldownToggle: () -> Unit = {},
     val onFingerprintToggle: () -> Unit = {},
+    val onLinkToggle: () -> Unit = {},
     val onBpmUpdate: (RealtimeUiState<BpmPoint>) -> Unit = {},
     val onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit = {},
     val onBpmToggleApplyMeasurement: () -> Unit = {},

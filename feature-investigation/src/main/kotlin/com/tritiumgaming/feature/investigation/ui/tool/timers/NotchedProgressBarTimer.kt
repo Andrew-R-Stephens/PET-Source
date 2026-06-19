@@ -39,6 +39,7 @@ internal fun NotchedProgressBarTimer(
     onToggle: () -> Unit,
     notches: List<ProgressBarNotch>,
     colors: NotchedProgressBarUiColors,
+    showControls: Boolean = true,
     titleContent: @Composable () -> Unit = {},
     icon: @Composable (Modifier) -> Unit = {}
 ) {
@@ -108,30 +109,37 @@ internal fun NotchedProgressBarTimer(
                 )
             }
 
-            TimerToggleButton(
-                modifier = Modifier
-                    .size(48.dp),
-                paused = !running && remaining > 0,
-                onToggle = { onToggle() },
-                primaryContent = { modifier ->
-                    Icon(
-                        modifier = modifier
-                            .padding(2.dp),
-                        painter = painterResource(R.drawable.ic_control_play),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
-                },
-                alternateContent = { modifier ->
-                    Icon(
-                        modifier = modifier
-                            .padding(2.dp),
-                        painter = painterResource(R.drawable.ic_control_reset),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
-                }
-            )
+            if (showControls) {
+                TimerToggleButton(
+                    modifier = Modifier
+                        .size(48.dp),
+                    paused = !running && remaining > 0,
+                    onToggle = { onToggle() },
+                    primaryContent = { modifier ->
+                        Icon(
+                            modifier = modifier
+                                .padding(2.dp),
+                            painter = painterResource(R.drawable.ic_control_play),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    },
+                    alternateContent = { modifier ->
+                        Icon(
+                            modifier = modifier
+                                .padding(2.dp),
+                            painter = painterResource(R.drawable.ic_control_reset),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
+                )
+            } else {
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                )
+            }
 
         }
     }
