@@ -19,12 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.COOLING
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.HEATING
 import com.tritiumgaming.shared.data.weather.model.Temperature
@@ -40,96 +42,105 @@ internal fun TemperatureComponent(
 ) {
     val temperatureUiState = state.temperatureUiState
 
-    Row(
+    CommonTooltip(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-
-        Column(
-            modifier = Modifier
-                .wrapContentSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        tooltipText = stringResource(R.string.general_label_temperature)
+    ) { tooltipModifier ->
+        Row(
+            modifier = tooltipModifier,
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
 
-            Text(
+            Column(
                 modifier = Modifier
                     .wrapContentSize(),
-                text = "${temperatureUiState.range.high}",
-                color = LocalPalette.current.onSurface,
-                style = LocalTypography.current.tertiary.regular.copy(
-                    fontSize = 8.sp,
-                    textAlign = TextAlign.Center,
-                ),
-                maxLines = 1
-            )
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-            Icon(
-                modifier = Modifier
-                    .size(32.dp)
-                    .padding(4.dp),
-                painter = painterResource(R.drawable.ic_thermostat),
-                contentDescription = null,
-                tint = LocalPalette.current.onSurface
-            )
+                Text(
+                    modifier = Modifier
+                        .wrapContentSize(),
+                    text = "${temperatureUiState.range.high}",
+                    color = LocalPalette.current.onSurface,
+                    style = LocalTypography.current.tertiary.regular.copy(
+                        fontSize = 8.sp,
+                        textAlign = TextAlign.Center,
+                    ),
+                    maxLines = 1
+                )
 
-            Text(
+                Icon(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .padding(4.dp),
+                    painter = painterResource(R.drawable.ic_thermostat),
+                    contentDescription = null,
+                    tint = LocalPalette.current.onSurface
+                )
+
+                Text(
+                    modifier = Modifier
+                        .wrapContentSize(),
+                    text = "${temperatureUiState.range.low}",
+                    color = LocalPalette.current.onSurface,
+                    style = LocalTypography.current.tertiary.regular.copy(
+                        fontSize = 8.sp,
+                        textAlign = TextAlign.Center,
+                    ),
+                    maxLines = 1
+                )
+
+            }
+
+            Column(
                 modifier = Modifier
-                    .wrapContentSize(),
-                text = "${temperatureUiState.range.low}",
-                color = LocalPalette.current.onSurface,
-                style = LocalTypography.current.tertiary.regular.copy(
-                    fontSize = 8.sp,
-                    textAlign = TextAlign.Center,
-                ),
-                maxLines = 1
-            )
+                    .wrapContentWidth()
+                    .height(IntrinsicSize.Min),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+
+                Icon(
+                    modifier = Modifier
+                        .size(20.dp),
+                    painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
+                    contentDescription = null,
+                    tint = if (temperatureUiState.gradientDirection == HEATING) {
+                        LocalPalette.current.tertiary
+                    } else {
+                        Color.Transparent
+                    }
+                )
+
+                Text(
+                    modifier = Modifier
+                        .widthIn(min = with(LocalDensity.current) { 48.sp.toDp() }),
+                    text = temperatureUiState.currentAsString,
+                    color = LocalPalette.current.onSurface,
+                    style = LocalTypography.current.tertiary.regular.copy(
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1
+                )
+
+                Icon(
+                    modifier = Modifier
+                        .size(20.dp),
+                    painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
+                    contentDescription = null,
+                    tint = if (temperatureUiState.gradientDirection == COOLING) {
+                        LocalPalette.current.primary
+                    } else {
+                        Color.Transparent
+                    }
+                )
+
+            }
 
         }
-
-        Column(
-            modifier = Modifier
-                .wrapContentWidth()
-                .height(IntrinsicSize.Min),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-
-            Icon(
-                modifier = Modifier
-                    .size(20.dp),
-                painter = painterResource(R.drawable.ic_arrow_keyboard_up_single),
-                contentDescription = null,
-                tint = if(temperatureUiState.gradientDirection == HEATING) {
-                    LocalPalette.current.tertiary
-                } else { Color.Transparent }
-            )
-
-            Text(
-                modifier = Modifier
-                    .widthIn(min = with(LocalDensity.current) { 48.sp.toDp() }),
-                text = temperatureUiState.currentAsString,
-                color = LocalPalette.current.onSurface,
-                style = LocalTypography.current.tertiary.regular.copy(
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                ),
-                maxLines = 1
-            )
-
-            Icon(
-                modifier = Modifier
-                    .size(20.dp),
-                painter = painterResource(R.drawable.ic_arrow_keyboard_down_single),
-                contentDescription = null,
-                tint = if(temperatureUiState.gradientDirection == COOLING) {
-                    LocalPalette.current.primary
-                } else { Color.Transparent }
-            )
-
-        }
-
     }
 }
 

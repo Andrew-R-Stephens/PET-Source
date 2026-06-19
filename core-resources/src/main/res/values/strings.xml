@@ -32,6 +32,7 @@
 
     <string name="general_label_modifiers" translatable="false">Modifiers</string>
     <string name="general_label_power" translatable="false">Power</string>
+    <string name="general_label_temperature" translatable="false">Temperature</string>
 
     <!--
         TITLESCREEN FRAGMENT
@@ -118,8 +119,8 @@
     <string name="tool_timer_label_hunt_duration">Hunt Duration</string>
     <string name="tool_timer_label_hunt_cooldown">Hunt Cooldown</string>
     <string name="tool_timer_label_uv_lifetime">UV Lifetime</string>
-    <string name="tool_timer_label_linked">Linked</string>
-    <string name="tool_timer_label_unlinked">Unlinked</string>
+    <string name="tool_timer_label_linked" translatable="false">Linked</string>
+    <string name="tool_timer_label_unlinked" translatable="false">Unlinked</string>
     <string name="tool_timer_label_standard">Standard</string>
     <string name="tool_timer_label_cursed">Cursed</string>
 
