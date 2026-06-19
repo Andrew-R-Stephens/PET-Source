@@ -42,7 +42,7 @@ import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarTimer
-import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerToolModifierIcon
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
@@ -320,7 +320,7 @@ internal fun ToolsTimerComponent(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    TimerToolModifierIcon(
+                                    CommonTooltip(
                                         modifier = Modifier,
                                         tooltipText = stringResource(difficultyTitle.toStringResource())
                                     ) {
@@ -332,7 +332,7 @@ internal fun ToolsTimerComponent(
                                         )
                                     }
 
-                                    TimerToolModifierIcon(
+                                    CommonTooltip(
                                         tooltipText = stringResource(mapSize.toStringResource())
                                     ) {
                                         Image(
@@ -343,7 +343,7 @@ internal fun ToolsTimerComponent(
                                         )
                                     }
 
-                                    TimerToolModifierIcon(
+                                    CommonTooltip(
                                         tooltipText = stringResource(huntDuration.toStringResource())
                                     ) {
                                         HuntDurationIcon(
@@ -355,7 +355,7 @@ internal fun ToolsTimerComponent(
                                     }
 
                                     if (isCursedInvestigation) {
-                                        TimerToolModifierIcon(
+                                        CommonTooltip(
                                             tooltipText = stringResource(R.string.tool_timer_label_cursed)
                                         ) {
                                             Image(
@@ -407,7 +407,7 @@ internal fun ToolsTimerComponent(
                         showControls = !timersLinked,
                         titleContent = {
                             if (timersLinked) {
-                                TimerToolModifierIcon(
+                                CommonTooltip(
                                     tooltipText = stringResource(R.string.tool_timer_label_linked)
                                 ) {
                                     Image(
@@ -475,7 +475,7 @@ internal fun ToolsTimerComponent(
                 notches = fingerprintNotches,
                 colors = notchedProgressBarUiColors,
                 titleContent = {
-                    TimerToolModifierIcon(
+                    CommonTooltip(
                         tooltipText = stringResource(fingerprintDuration.toStringResource())
                     ) {
                         FingerprintDurationIcon(
