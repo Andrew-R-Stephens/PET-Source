@@ -41,11 +41,11 @@ internal fun OperationTimerColumn(
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
     ) {
 
         Row(
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
@@ -65,7 +65,7 @@ internal fun OperationTimerColumn(
 
         Row (
             modifier = Modifier,
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ){
             TimerToggleButton(
@@ -121,20 +121,19 @@ internal fun OperationTimerRow(
     FlowRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         itemVerticalAlignment = Alignment.CenterVertically
     ) {
 
         Column(
             modifier = Modifier
                 .width(IntrinsicSize.Max),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             DigitalTimer(
                 modifier = Modifier
-                    .height(36.dp)
-                    .padding(8.dp),
+                    .height(36.dp),
                 remainingTime = remainingTime,
             )
 
@@ -148,7 +147,7 @@ internal fun OperationTimerRow(
         Row (
             modifier = Modifier
                 .wrapContentSize(),
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ){
             TimerToggleButton(

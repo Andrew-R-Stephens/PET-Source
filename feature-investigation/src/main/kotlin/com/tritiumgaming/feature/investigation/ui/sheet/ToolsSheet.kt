@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -15,16 +17,24 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.FingerprintDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
+import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
+import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
+import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarTimer
+import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerToolModifierIcon
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
@@ -195,12 +205,7 @@ internal fun ToolsTimerComponent(
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
     TimerTools(
-        modifier = modifier,
-        isCursedInvestigation = isCursedInvestigation,
-        difficultyTitle = difficultyTitle,
-        mapSize = mapSize,
-        huntDuration = huntDuration,
-        fingerprintDuration = fingerprintDuration
+        modifier = modifier
     ) {
         Surface(
             modifier = Modifier,
@@ -261,7 +266,58 @@ internal fun ToolsTimerComponent(
                             running = huntDurationRunning,
                             onToggle = onHuntDurationToggle,
                             notches = huntDurationNotches,
-                            colors = notchedProgressBarUiColors
+                            colors = notchedProgressBarUiColors,
+                            titleContent = {
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    TimerToolModifierIcon(
+                                        modifier = Modifier,
+                                        tooltipText = stringResource(difficultyTitle.toStringResource())
+                                    ) {
+                                        Image(
+                                            modifier = it.size(16.dp),
+                                            painter = painterResource(R.drawable.ic_trophy),
+                                            colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant),
+                                            contentDescription = ""
+                                        )
+                                    }
+
+                                    TimerToolModifierIcon(
+                                        tooltipText = stringResource(mapSize.toStringResource())
+                                    ) {
+                                        Image(
+                                            modifier = it.size(16.dp),
+                                            painter = painterResource(R.drawable.icon_nav_mapmenu2),
+                                            colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant),
+                                            contentDescription = ""
+                                        )
+                                    }
+                                    if (isCursedInvestigation) {
+                                        TimerToolModifierIcon(
+                                            tooltipText = stringResource(R.string.tool_timer_label_cursed)
+                                        ) {
+                                            Image(
+                                                modifier = it.size(16.dp),
+                                                painter = painterResource(R.drawable.ic_map_cp_ouija),
+                                                colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant),
+                                                contentDescription = ""
+                                            )
+                                        }
+                                    }
+
+                                    /*TimerToolModifierIcon(
+                                        tooltipText = stringResource(huntDuration.toStringResource())
+                                    ) {
+                                        HuntDurationIcon(
+                                            modifier = it.size(16.dp),
+                                            colors = IconVectorColors.defaults().copy(
+                                                fillColor = LocalPalette.current.onSurfaceVariant
+                                            )
+                                        )
+                                    }*/
+                                }
+                            }
                         ) { modifier ->
                             HuntDurationIcon(
                                 modifier = modifier,
@@ -323,7 +379,19 @@ internal fun ToolsTimerComponent(
                 running = fingerprintTimerRunning,
                 onToggle = onFingerprintToggle,
                 notches = fingerprintNotches,
-                colors = notchedProgressBarUiColors
+                colors = notchedProgressBarUiColors,
+                titleContent = {
+                    TimerToolModifierIcon(
+                        tooltipText = stringResource(fingerprintDuration.toStringResource())
+                    ) {
+                        FingerprintDurationIcon(
+                            modifier = it.size(16.dp),
+                            colors = IconVectorColors.defaults().copy(
+                                fillColor = LocalPalette.current.onSurfaceVariant
+                            )
+                        )
+                    }
+                }
             ) { modifier ->
                 FingerprintDurationIcon(
                     modifier = modifier,

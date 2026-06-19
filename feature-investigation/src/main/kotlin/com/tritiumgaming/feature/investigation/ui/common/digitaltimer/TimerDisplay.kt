@@ -70,19 +70,19 @@ fun TimerToggleButton(
             containerColor = Color.Transparent,
             contentColor = LocalPalette.current.onSurface
         ),
-        contentPadding = PaddingValues(8.dp)
+        contentPadding = PaddingValues(),
     ) {
         if (paused) {
             primaryContent(
                 Modifier
                     .fillMaxSize()
-                    .padding(4.dp)
+                    .padding(12.dp)
             )
         } else {
             alternateContent(
                 Modifier
                     .fillMaxSize()
-                    .padding(4.dp)
+                    .padding(12.dp)
             )
         }
     }
@@ -101,13 +101,13 @@ fun TimerSkipButton(
             containerColor = Color.Transparent,
             contentColor = LocalPalette.current.onSurface
         ),
-        contentPadding = PaddingValues(8.dp),
+        contentPadding = PaddingValues(),
         //enabled = state.remainingTime > 0L
     ) {
         content(
             Modifier
                 .fillMaxSize()
-                .padding(4.dp)
+                .padding(12.dp)
         )
     }
 }

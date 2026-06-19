@@ -38,6 +38,7 @@ internal fun NotchedProgressBarTimer(
     onToggle: () -> Unit,
     notches: List<ProgressBarNotch>,
     colors: NotchedProgressBarUiColors,
+    titleContent: @Composable () -> Unit = {},
     icon: @Composable (Modifier) -> Unit = {}
 ) {
 
@@ -45,14 +46,23 @@ internal fun NotchedProgressBarTimer(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text(
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = title.uppercase(),
-            style = LocalTypography.current.quaternary.bold,
-            color = colors.label,
-            fontSize = 14.sp
-        )
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                modifier = Modifier
+                    .weight(1f),
+                text = title.uppercase(),
+                style = LocalTypography.current.quaternary.bold,
+                color = colors.label,
+                fontSize = 14.sp
+            )
+
+            titleContent()
+        }
 
         Row(
             modifier = Modifier

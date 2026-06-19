@@ -5,7 +5,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 data class OperationOverrideData(
     val weather: Weather = Weather.RANDOM,
     val fuseBox: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED,
-    val cursedInvestigation: Boolean = false
+    val cursedInvestigation: Boolean = true
 ) {
 
     companion object {
