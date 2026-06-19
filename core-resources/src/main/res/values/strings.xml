@@ -31,6 +31,7 @@
     <string name="general_label_discard">Discard</string>
 
     <string name="general_label_modifiers" translatable="false">Modifiers</string>
+    <string name="general_label_power" translatable="false">Power</string>
 
     <!--
         TITLESCREEN FRAGMENT

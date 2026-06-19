@@ -25,18 +25,24 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
+import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
+import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.phase.mappers.PhaseResources
@@ -90,45 +96,47 @@ private fun SanityStatusComponent(
 
     val sanityPercentString = sanityLevel.toPercentageString()
 
-    Surface(
-        modifier = Modifier,
-        color = LocalPalette.current.surfaceContainerLow,
-        shape = RoundedCornerShape(8.dp),
-    ) {
-
-        Row(
-            modifier = Modifier
-                .height(IntrinsicSize.Min)
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
+    CommonTooltip(tooltipText = stringResource(R.string.investigation_average_sanity_title)) { tooltipModifier ->
+        Surface(
+            modifier = tooltipModifier,
+            color = LocalPalette.current.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp),
         ) {
 
-            SanityMeter(
+            Row(
                 modifier = Modifier
-                    .heightIn(min = 18.dp)
-                    .height(textHeight)
-                    .aspectRatio(1f),
-                sanityLevel = sanityLevel,
-                showText = false,
-                showProgress = false
-            )
+                    .height(IntrinsicSize.Min)
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-            Text(
-                modifier = Modifier
-                    .wrapContentSize()
-                    .onGloballyPositioned {
-                        textHeight = with(density) { it.size.height.toDp() }
-                    },
-                text = sanityPercentString,
-                color = LocalPalette.current.onSurfaceVariant,
-                style = LocalTypography.current.tertiary.regular.copy(
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                ),
-                maxLines = 1,
-            )
+                SanityMeter(
+                    modifier = Modifier
+                        .heightIn(min = 18.dp)
+                        .height(textHeight)
+                        .aspectRatio(1f),
+                    sanityLevel = sanityLevel,
+                    showText = false,
+                    showProgress = false
+                )
 
+                Text(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .onGloballyPositioned {
+                            textHeight = with(density) { it.size.height.toDp() }
+                        },
+                    text = sanityPercentString,
+                    color = LocalPalette.current.onSurfaceVariant,
+                    style = LocalTypography.current.tertiary.regular.copy(
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1,
+                )
+
+            }
         }
     }
 }
@@ -153,46 +161,52 @@ private fun PhaseStatusComponent(
         PhaseResources.PhaseIdentifier.HUNT -> LocalPalette.current.onSurfaceVariant
     }
 
-    Surface(
-        modifier = Modifier,
-        color = LocalPalette.current.surfaceContainerLow,
-        shape = RoundedCornerShape(8.dp),
-    ) {
-
-        Row(
-            modifier = Modifier
-                .height(IntrinsicSize.Min)
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
+    CommonTooltip(tooltipText = "${stringResource(R.string.investigation_label_phase)}: ${
+        stringResource(
+            phaseType.toPhaseTitle().toStringResource()
+        )
+    }") { tooltipModifier ->
+        Surface(
+            modifier = tooltipModifier,
+            color = LocalPalette.current.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp),
         ) {
 
-            Image(
+            Row(
                 modifier = Modifier
-                    .heightIn(min = 18.dp)
-                    .height(textHeight)
-                    .aspectRatio(1f),
-                painter = painterResource(phaseIconRes),
-                contentDescription = "",
-                colorFilter = ColorFilter.tint(phaseIconColor)
-            )
+                    .height(IntrinsicSize.Min)
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-            if (remainingTime.isNotEmpty()) {
-                Text(
+                Image(
                     modifier = Modifier
-                        .wrapContentSize()
-                        .onGloballyPositioned {
-                            textHeight = with(density) { it.size.height.toDp() }
-                        },
-                    text = remainingTime,
-                    color = LocalPalette.current.onSurfaceVariant,
-                    style = LocalTypography.current.tertiary.regular.copy(
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center,
-                        fontFeatureSettings = "tnum"
-                    ),
-                    maxLines = 1,
+                        .heightIn(min = 18.dp)
+                        .height(textHeight)
+                        .aspectRatio(1f),
+                    painter = painterResource(phaseIconRes),
+                    contentDescription = "",
+                    colorFilter = ColorFilter.tint(phaseIconColor)
                 )
+
+                if (remainingTime.isNotEmpty()) {
+                    Text(
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .onGloballyPositioned {
+                                textHeight = with(density) { it.size.height.toDp() }
+                            },
+                        text = remainingTime,
+                        color = LocalPalette.current.onSurfaceVariant,
+                        style = LocalTypography.current.tertiary.regular.copy(
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center,
+                            fontFeatureSettings = "tnum"
+                        ),
+                        maxLines = 1,
+                    )
+                }
             }
         }
     }
@@ -208,46 +222,52 @@ private fun WeatherStatusComponent(
 
     val weatherIconRes = weatherType.toDrawable()
 
-    Surface(
-        modifier = Modifier,
-        color = LocalPalette.current.surfaceContainerLow,
-        shape = RoundedCornerShape(8.dp),
-    ) {
-
-        Row(
-            modifier = Modifier
-                .height(IntrinsicSize.Min)
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
+    CommonTooltip(tooltipText = "${stringResource(R.string.difficulty_setting_title_weather)}: ${
+        stringResource(
+            weatherType.toStringResource()
+        )
+    }") { tooltipModifier ->
+        Surface(
+            modifier = tooltipModifier,
+            color = LocalPalette.current.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp),
         ) {
 
-            Image(
+            Row(
                 modifier = Modifier
-                    .heightIn(min = 18.dp)
-                    .height(textHeight)
-                    .aspectRatio(1f),
-                painter = painterResource(weatherIconRes),
-                contentDescription = "",
-                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
-            )
+                    .height(IntrinsicSize.Min)
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-            if (temperature.isNotEmpty()) {
-                Text(
+                Image(
                     modifier = Modifier
-                        .wrapContentSize()
-                        .onGloballyPositioned {
-                            textHeight = with(density) { it.size.height.toDp() }
-                        },
-                    text = temperature,
-                    color = LocalPalette.current.onSurfaceVariant,
-                    style = LocalTypography.current.tertiary.regular.copy(
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center,
-                        fontFeatureSettings = "tnum"
-                    ),
-                    maxLines = 1,
+                        .heightIn(min = 18.dp)
+                        .height(textHeight)
+                        .aspectRatio(1f),
+                    painter = painterResource(weatherIconRes),
+                    contentDescription = "",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
                 )
+
+                if (temperature.isNotEmpty()) {
+                    Text(
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .onGloballyPositioned {
+                                textHeight = with(density) { it.size.height.toDp() }
+                            },
+                        text = temperature,
+                        color = LocalPalette.current.onSurfaceVariant,
+                        style = LocalTypography.current.tertiary.regular.copy(
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center,
+                            fontFeatureSettings = "tnum"
+                        ),
+                        maxLines = 1,
+                    )
+                }
             }
         }
     }
@@ -257,6 +277,12 @@ private fun WeatherStatusComponent(
 private fun PowerStatusComponent(
     fuseBoxFlag: FuseBoxFlag
 ) {
+    val fuseBoxStateTitle = when(fuseBoxFlag) {
+        FuseBoxFlag.FUSEBOX_ENABLED -> DifficultySettingResources.FuseBoxAtStartOfContract.ON
+        FuseBoxFlag.FUSEBOX_DISABLED -> DifficultySettingResources.FuseBoxAtStartOfContract.OFF
+        FuseBoxFlag.FUSEBOX_BROKEN -> DifficultySettingResources.FuseBoxAtStartOfContract.BROKEN
+    }
+
     val fuseBoxIconRes = when(fuseBoxFlag) {
         FuseBoxFlag.FUSEBOX_ENABLED -> R.drawable.ic_power_on
         FuseBoxFlag.FUSEBOX_DISABLED -> R.drawable.ic_power_off
@@ -269,21 +295,26 @@ private fun PowerStatusComponent(
         FuseBoxFlag.FUSEBOX_BROKEN -> LocalPalette.current.onSurface.copy(alpha = .75f)
     }
 
-    Surface(
-        modifier = Modifier
-            .height(IntrinsicSize.Max),
-        color = LocalPalette.current.surfaceContainerLow,
-        shape = RoundedCornerShape(8.dp),
-    ) {
-        Image(
-            modifier = Modifier
-                .padding(8.dp)
-                .height(18.dp)
-                .aspectRatio(1f),
-            painter = painterResource(fuseBoxIconRes),
-            contentDescription = "",
-            colorFilter = ColorFilter.tint(fuseBoxIconColor)
-        )
+    CommonTooltip(
+        tooltipText = "${stringResource(R.string.general_label_power)}: " +
+                stringResource(fuseBoxStateTitle.toStringResource())
+    ) { tooltipModifier ->
+        Surface(
+            modifier = tooltipModifier
+                .height(IntrinsicSize.Max),
+            color = LocalPalette.current.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp),
+        ) {
+            Image(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .height(18.dp)
+                    .aspectRatio(1f),
+                painter = painterResource(fuseBoxIconRes),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(fuseBoxIconColor)
+            )
+        }
     }
 }
 
