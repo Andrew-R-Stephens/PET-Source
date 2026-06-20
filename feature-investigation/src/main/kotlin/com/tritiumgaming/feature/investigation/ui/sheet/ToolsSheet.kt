@@ -2,6 +2,7 @@ package com.tritiumgaming.feature.investigation.ui.sheet
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +19,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -206,6 +209,7 @@ internal fun ToolsTimerComponent(
     // Link
     timersLinked: Boolean = false,
     onLinkToggle: () -> Unit = {},
+    onToggleCursed: () -> Unit = {},
     // Modifiers
     isCursedInvestigation: Boolean = false,
     difficultyTitle: DifficultyResources.DifficultyTitle = DifficultyResources.DifficultyTitle.AMATEUR,
@@ -363,17 +367,20 @@ internal fun ToolsTimerComponent(
                                         )
                                     }
 
-                                    if (isCursedInvestigation) {
-                                        CommonTooltip(
-                                            tooltipText = stringResource(R.string.tool_timer_label_cursed)
-                                        ) {
-                                            Image(
-                                                modifier = it.size(16.dp),
-                                                painter = painterResource(R.drawable.ic_map_cp_ouija),
-                                                colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant),
-                                                contentDescription = ""
-                                            )
-                                        }
+                                    CommonTooltip(
+                                        tooltipText = stringResource(R.string.tool_timer_label_cursed)
+                                    ) {
+                                        Image(
+                                            modifier = it.size(16.dp),
+                                            painter = painterResource(R.drawable.ic_map_cp_ouija),
+                                            colorFilter = ColorFilter.tint(
+                                                if(isCursedInvestigation)
+                                                    LocalPalette.current.onSurfaceVariant
+                                                else
+                                                    LocalPalette.current.onSurface
+                                            ),
+                                            contentDescription = ""
+                                        )
                                     }
                                 }
                             }

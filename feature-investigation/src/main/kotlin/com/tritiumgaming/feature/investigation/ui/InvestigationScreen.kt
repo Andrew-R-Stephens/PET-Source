@@ -79,6 +79,7 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ShowGhostPopup
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SkipOperationTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleApplyBpmMeasurement
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleCursedOverride
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleFuseBoxOverride
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleGhostNegation
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleOperationTimer
@@ -397,6 +398,7 @@ fun InvestigationSoloScreen(
         onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
         onFingerprintToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.UV_EVIDENCE_DURATION)) },
         onLinkToggle = { investigationViewModel.onEvent(ToggleTimerLinking) },
+        onToggleCursed = { investigationViewModel.onEvent(ToggleCursedOverride) },
         onBpmUpdate = { investigationViewModel.onEvent(SetBpmData(it)) },
         onBpmChangeMeasurementType = { investigationViewModel.onEvent(SetBpmMeasurementType(it)) },
         onBpmToggleApplyMeasurement = { investigationViewModel.onEvent(ToggleApplyBpmMeasurement) },
@@ -659,6 +661,7 @@ private fun InvestigationContent(
             fingerprintNotches = fingerprintNotches,
             timersLinked = uiState.timersLinked,
             onLinkToggle = uiActions.onLinkToggle,
+            onToggleCursed = uiActions.onToggleCursed,
             isCursedInvestigation = difficultyOverrideUiState.cursedInvestigation,
             difficultyTitle = operationDetailsUiState.difficultyDetails.difficultyTitle,
             mapSize = operationDetailsUiState.mapDetails.size,
@@ -2148,6 +2151,7 @@ internal data class InvestigationUiActions(
     val onHuntCooldownToggle: () -> Unit = {},
     val onFingerprintToggle: () -> Unit = {},
     val onLinkToggle: () -> Unit = {},
+    val onToggleCursed: () -> Unit = {},
     val onBpmUpdate: (RealtimeUiState<BpmPoint>) -> Unit = {},
     val onBpmChangeMeasurementType: (VisualizerMeasurementType) -> Unit = {},
     val onBpmToggleApplyMeasurement: () -> Unit = {},

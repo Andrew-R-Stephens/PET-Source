@@ -1904,6 +1904,11 @@ class InvestigationScreenViewModel private constructor(
                     nextLinked
                 }
             }
+            is InvestigationEvent.ToggleCursedOverride -> {
+                _operationOverridesState.update {
+                    it.copy(cursedInvestigation = !it.cursedInvestigation)
+                }
+            }
             is InvestigationEvent.TriggerToolTimer -> triggerToolTimer(event.type)
 
             // UI Navigation/Popups
@@ -2162,6 +2167,7 @@ class InvestigationScreenViewModel private constructor(
         object ToggleOperationTimer : InvestigationEvent()
         object SkipOperationTimer : InvestigationEvent()
         object ToggleTimerLinking : InvestigationEvent()
+        object ToggleCursedOverride : InvestigationEvent()
         data class TriggerToolTimer(val type: ToolTimerType) : InvestigationEvent()
 
         // UI State Events
