@@ -225,11 +225,18 @@ internal fun ToolsTimerComponent(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
             verticalAlignment = Alignment.Top
         ) {
-            val linkPainter = painterResource(R.drawable.ic_link)
+
+            val linkPainter =
+                if (timersLinked) painterResource(R.drawable.ic_link)
+                else painterResource(R.drawable.ic_link_off)
+
             val iconColor =
-                if (timersLinked) LocalPalette.current.onSurfaceVariant else LocalPalette.current.onSurface
+                if (timersLinked) LocalPalette.current.onSurfaceVariant
+                else LocalPalette.current.onSurface.copy(alpha = .5f)
+
             val lineColor =
-                if (timersLinked) LocalPalette.current.onSurfaceVariant else LocalPalette.current.onSurface.copy(alpha = .3f)
+                if (timersLinked) LocalPalette.current.onSurfaceVariant
+                else LocalPalette.current.onSurface.copy(alpha = .25f)
 
             Canvas(
                 modifier = Modifier
@@ -292,7 +299,9 @@ internal fun ToolsTimerComponent(
                 Surface(
                     modifier = Modifier,
                     color = LocalPalette.current.surfaceContainer,
-                    shape = if (timersLinked) RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp) else RoundedCornerShape(8.dp)
+                    shape =
+                        if (timersLinked) RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)
+                        else RoundedCornerShape(8.dp)
                 ) {
                     Column(
                         modifier = Modifier
