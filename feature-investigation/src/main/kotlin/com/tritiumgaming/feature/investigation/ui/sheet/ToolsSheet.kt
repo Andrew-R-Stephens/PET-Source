@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -8,6 +9,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,21 +20,29 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Surface
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.FingerprintDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
@@ -224,73 +234,112 @@ internal fun ToolsTimerComponent(
     ) {
         Row(
             modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(
+                modifier = Modifier
+                    .size(32.dp),
+                onClick = onToggleCursed,
+                shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor =
+                        if(isCursedInvestigation) LocalPalette.current.primaryContainer
+                        else LocalPalette.current.surfaceContainer,
+                ),
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = if(isCursedInvestigation) 4.dp else 0.dp
+                ),
+                contentPadding = PaddingValues(8.dp),
+                border = if(!isCursedInvestigation)
+                    BorderStroke(1.dp, LocalPalette.current.surfaceContainerHigh)
+                else null
+            ) {
+                Icon(
+                    modifier = Modifier,
+                    painter = painterResource(R.drawable.ic_map_cp_ouija),
+                    tint = if(isCursedInvestigation) LocalPalette.current.onPrimaryContainer
+                        else LocalPalette.current.onSurface,
+                    contentDescription = ""
+                )
+            }
+        }
+
+        Row(
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Min),
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
             verticalAlignment = Alignment.Top
         ) {
 
-            val linkPainter =
-                if (timersLinked) painterResource(R.drawable.ic_link)
-                else painterResource(R.drawable.ic_link_off)
-
-            val iconColor =
-                if (timersLinked) LocalPalette.current.onSurfaceVariant
-                else LocalPalette.current.onSurface.copy(alpha = .5f)
-
-            val lineColor =
-                if (timersLinked) LocalPalette.current.onSurfaceVariant
-                else LocalPalette.current.onSurface.copy(alpha = .25f)
-
-            Canvas(
+            CommonTooltip(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .width(16.dp)
-                    .padding(vertical = 12.dp)
-                    .clickable { onLinkToggle() }
+                    .padding(vertical = 12.dp),
+                tooltipText = stringResource(R.string.tool_timer_label_hunt_timer_link)
             ) {
-                val strokeWidth = 2.dp.toPx()
-                val x = size.width / 2
-                val centerY = size.height / 2
-                val iconSize = 14.dp.toPx()
-                val gap = 4.dp.toPx()
+                val linkPainter =
+                    if (timersLinked) painterResource(R.drawable.ic_link)
+                    else painterResource(R.drawable.ic_link_off)
 
-                // Top vertical line
-                drawLine(
-                    lineColor,
-                    Offset(x, 0f),
-                    Offset(x, centerY - iconSize / 2 - gap),
-                    strokeWidth
-                )
-                // Bottom vertical line
-                drawLine(
-                    lineColor,
-                    Offset(x, centerY + iconSize / 2 + gap),
-                    Offset(x, size.height),
-                    strokeWidth
-                )
+                val iconColor =
+                    if (timersLinked) LocalPalette.current.onSurfaceVariant
+                    else LocalPalette.current.onSurface.copy(alpha = .5f)
 
-                // Pointing to hunt duration
-                drawLine(
-                    lineColor,
-                    Offset(x, 0f),
-                    Offset(size.width, 0f),
-                    strokeWidth
-                )
-                // Pointing to hunt cooldown
-                drawLine(
-                    lineColor,
-                    Offset(x, size.height),
-                    Offset(size.width, size.height),
-                    strokeWidth
-                )
+                val lineColor =
+                    if (timersLinked) LocalPalette.current.onSurfaceVariant
+                    else LocalPalette.current.onSurface.copy(alpha = .25f)
 
-                translate(left = x - iconSize / 2, top = centerY - iconSize / 2) {
-                    with(linkPainter) {
-                        draw(
-                            size = Size(iconSize, iconSize),
-                            colorFilter = ColorFilter.tint(iconColor)
-                        )
+                Canvas(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .width(16.dp)
+                        .clickable { onLinkToggle() }
+                ) {
+                    val strokeWidth = 2.dp.toPx()
+                    val x = size.width / 2
+                    val centerY = size.height / 2
+                    val iconSize = 14.dp.toPx()
+                    val gap = 4.dp.toPx()
+
+                    // Top vertical line
+                    drawLine(
+                        lineColor,
+                        Offset(x, 0f),
+                        Offset(x, centerY - iconSize / 2 - gap),
+                        strokeWidth
+                    )
+                    // Bottom vertical line
+                    drawLine(
+                        lineColor,
+                        Offset(x, centerY + iconSize / 2 + gap),
+                        Offset(x, size.height),
+                        strokeWidth
+                    )
+
+                    // Pointing to hunt duration
+                    drawLine(
+                        lineColor,
+                        Offset(x, 0f),
+                        Offset(size.width, 0f),
+                        strokeWidth
+                    )
+                    // Pointing to hunt cooldown
+                    drawLine(
+                        lineColor,
+                        Offset(x, size.height),
+                        Offset(size.width, size.height),
+                        strokeWidth
+                    )
+
+                    translate(left = x - iconSize / 2, top = centerY - iconSize / 2) {
+                        with(linkPainter) {
+                            draw(
+                                size = Size(iconSize, iconSize),
+                                colorFilter = ColorFilter.tint(iconColor)
+                            )
+                        }
                     }
                 }
             }
@@ -359,28 +408,28 @@ internal fun ToolsTimerComponent(
                                     CommonTooltip(
                                         tooltipText = stringResource(huntDuration.toStringResource())
                                     ) {
-                                        HuntDurationIcon(
+                                        StopwatchIcon(
                                             modifier = it.size(16.dp),
                                             colors = IconVectorColors.defaults().copy(
+                                                strokeColor = LocalPalette.current.onSurfaceVariant,
                                                 fillColor = LocalPalette.current.onSurfaceVariant
                                             )
                                         )
                                     }
 
-                                    CommonTooltip(
-                                        tooltipText = stringResource(R.string.tool_timer_label_cursed)
-                                    ) {
-                                        Image(
-                                            modifier = it.size(16.dp),
-                                            painter = painterResource(R.drawable.ic_map_cp_ouija),
-                                            colorFilter = ColorFilter.tint(
-                                                if(isCursedInvestigation)
+                                    if(isCursedInvestigation) {
+                                        CommonTooltip(
+                                            tooltipText = stringResource(R.string.tool_timer_label_cursed)
+                                        ) {
+                                            Image(
+                                                modifier = it.size(16.dp),
+                                                painter = painterResource(R.drawable.ic_map_cp_ouija),
+                                                colorFilter = ColorFilter.tint(
                                                     LocalPalette.current.onSurfaceVariant
-                                                else
-                                                    LocalPalette.current.onSurface
-                                            ),
-                                            contentDescription = ""
-                                        )
+                                                ),
+                                                contentDescription = ""
+                                            )
+                                        }
                                     }
                                 }
                             }
@@ -494,9 +543,10 @@ internal fun ToolsTimerComponent(
                     CommonTooltip(
                         tooltipText = stringResource(fingerprintDuration.toStringResource())
                     ) {
-                        FingerprintDurationIcon(
+                        StopwatchIcon(
                             modifier = it.size(16.dp),
                             colors = IconVectorColors.defaults().copy(
+                                strokeColor = LocalPalette.current.onSurfaceVariant,
                                 fillColor = LocalPalette.current.onSurfaceVariant
                             )
                         )

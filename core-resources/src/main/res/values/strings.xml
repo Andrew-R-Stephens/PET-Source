@@ -119,10 +119,11 @@
     <string name="tool_timer_label_hunt_duration">Hunt Duration</string>
     <string name="tool_timer_label_hunt_cooldown">Hunt Cooldown</string>
     <string name="tool_timer_label_uv_lifetime">UV Lifetime</string>
+    <string name="tool_timer_label_hunt_timer_link" translatable="false">Hunt Cooldown timer starts automatically when Hunt Duration timer ends.</string>
     <string name="tool_timer_label_linked" translatable="false">Linked</string>
     <string name="tool_timer_label_unlinked" translatable="false">Unlinked</string>
     <string name="tool_timer_label_standard">Standard</string>
-    <string name="tool_timer_label_cursed">Cursed</string>
+    <string name="tool_timer_label_cursed">Is Cursed Operation</string>
 
     <!--
         TOOLS PAGE
