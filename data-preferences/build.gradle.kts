@@ -34,6 +34,11 @@ configure<LibraryExtension> {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     buildToolsVersion = "36.1.0"
 }
 
@@ -43,6 +48,8 @@ dependencies {
     implementation(libs.androidx.appcompat.core)
     implementation(libs.android.material)
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 

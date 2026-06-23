@@ -432,6 +432,9 @@ private fun SettingsContent(
                     personalizedAdsPreferenceComponent(Modifier)
 
                     analyticsPreferenceComponent(Modifier)
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
                 }
             }
         }
@@ -448,7 +451,9 @@ private fun SettingsContent(
         huntWarningTimeoutPreferenceComponent,
         palettePreferenceComponent,
         typographyPreferenceComponent,
-        privacyPreferenceComponent
+        privacyPreferenceComponent,
+        // TODO analyticsPreferenceComponent,
+        // TODO personalizedAdsPreferenceComponent
     )
 }
 

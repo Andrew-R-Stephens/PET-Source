@@ -70,6 +70,10 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perfCore)
 
+    // GOOGLE ADS
+    implementation(libs.android.playServices.ads)
+    implementation(libs.android.ump.core)
+
     /*
         ---- START----
         ANDROID COMPOSE

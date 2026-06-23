@@ -1,7 +1,12 @@
 package com.tritiumgaming.feature.start.ui
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
+import android.os.Bundle
+import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -48,7 +53,11 @@ import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.google.android.gms.ads.MobileAds
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics.ConsentStatus
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
@@ -598,15 +607,17 @@ private fun HeaderNavBar(
         )
     }
 
-    val reviewIcon: @Composable () -> Unit = { ReviewIcon(
-        modifier = Modifier
-            .size(48.dp)
-            .padding(4.dp),
-        colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.surfaceContainerLow,
-            strokeColor = LocalPalette.current.onSurface
+    val reviewIcon: @Composable (modifier: Modifier) -> Unit = { modifier ->
+        ReviewIcon(
+            modifier = modifier
+                .size(48.dp)
+                .padding(4.dp),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.onSurface
+            )
         )
-    ) }
+    }
 
     val accountIcon: @Composable () -> Unit = {
         AccountIcon(
@@ -728,8 +739,38 @@ private fun HeaderNavBar(
         onNavigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }
 
+    val context = LocalContext.current
     if(canRequestReview) {
-        reviewIcon()
+        reviewIcon(
+            Modifier.clickable(onClick = {
+                try {
+                    val appInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        context.packageManager.getApplicationInfo(
+                            context.packageName,
+                            PackageManager.ApplicationInfoFlags.of(PackageManager.GET_META_DATA.toLong())
+                        )
+                    } else {
+                        @Suppress("DEPRECATION")
+                        context.packageManager.getApplicationInfo(
+                            context.packageName,
+                            PackageManager.GET_META_DATA
+                        )
+                    }
+
+                    val metaData: Bundle? = appInfo.metaData
+                    if (metaData != null) {
+                        // Note: If not explicitly defined in the manifest, these will return false or null
+                        val allowAdUserData = metaData.getBoolean("google_analytics_default_allow_ad_user_data", false)
+                        val allowAdPersonalization = metaData.getBoolean("google_analytics_default_allow_ad_personalization_signals", false)
+
+                        Log.d("ConsentManifest", "Default Ad User Data: $allowAdUserData")
+                        Log.d("ConsentManifest", "Default Ad Personalization: $allowAdPersonalization")
+                    }
+                } catch (e: PackageManager.NameNotFoundException) {
+                    Log.e("ConsentManifest", "Failed to load meta-data", e)
+                }
+            })
+        )
     }
 
     IconDropdownMenu(

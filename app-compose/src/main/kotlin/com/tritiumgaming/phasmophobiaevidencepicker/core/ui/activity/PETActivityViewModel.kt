@@ -43,7 +43,7 @@ class PETActivityViewModel(
     private val initFlowPolicyUseCase: InitFlowPolicyUseCase,
     private val applyPolicyUseCase: ApplyPolicyUseCase,
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
-    private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
+    private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase
 ): ViewModel() {
 
     private lateinit var _googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
@@ -68,7 +68,6 @@ class PETActivityViewModel(
                 preferences to policy
             }
             .combine(_googleAdsPermissionsUiState) { (preferences, policy), googleAdsPermissionsUiState ->
-
                 PETActivityUiState(
                     isMobileAdsInitialized = googleAdsPermissionsUiState.isMobileAdsInitialized,
                     canRequestAds = googleAdsPermissionsUiState.canRequestAds,
@@ -127,27 +126,23 @@ class PETActivityViewModel(
                 _isGoogleAdsConsentManagerInitialized = true
                 _googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(activity)
 
-                // Initializes the consent manager and calls the UMP SDK methods to request consent information
-                // and load/show a consent form if necessary.
+                /* Initializes the consent manager and calls the UMP SDK methods to request
+                consent information and load/show a consent form if necessary. */
                 gatherConsent(activity) { error ->
                     if (error != null) {
-                        // Consent not obtained in current session.
                         Log.d("PermissionsViewModel", "${error.errorCode}: ${error.message}")
                     }
-                    // canRequestAds can be updated when gatherConsent is completed.
                     _googleAdsPermissionsUiState.update { it.copy(
                         canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
                 }
-                // canRequestAds can be updated when gatherConsent is called.
+
                 _googleAdsPermissionsUiState.update { it.copy(
                     canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
 
                 googleAdsPermissionsUiState.collect { state ->
-                    // when canRequestAds is true initializeMobileAdsSdk
                     if (state.canRequestAds) {
                         initializeMobileAdsSdk(activity)
                     } else {
-                        // when canRequestAds is false, show the consent form
                         showPrivacyOptionsForm(activity) {}
                     }
 
@@ -217,7 +212,8 @@ class PETActivityViewModel(
         _googleMobileAdsConsentManager.gatherConsent(activity) { error ->
             // Update UIState and notify listener of updated consent status.
             _googleAdsPermissionsUiState.update {
-                Log.d("PermissionsViewModel", "Consent gathering from current session complete. " +
+                Log.d("PermissionsViewModel",
+                    "Consent gathering from current session complete. " +
                         "${_googleMobileAdsConsentManager.canRequestAds} / " +
                         "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
                 it.copy(
@@ -229,7 +225,8 @@ class PETActivityViewModel(
         }
         // Update UIState based on consent obtained in the previous session.
         _googleAdsPermissionsUiState.update {
-            Log.d("PermissionsViewModel", "Consent gathering from previous session complete. " +
+            Log.d("PermissionsViewModel",
+                "Consent gathering from previous session complete. " +
                     "${_googleMobileAdsConsentManager.canRequestAds} / " +
                     "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
             it.copy(
@@ -242,6 +239,7 @@ class PETActivityViewModel(
     init {
         viewModelScope.launch {
             initFlowPolicyUseCase().collect { policy ->
+                Log.d("Consent", "Policy: $policy")
                 applyPolicyUseCase(policy)
             }
         }

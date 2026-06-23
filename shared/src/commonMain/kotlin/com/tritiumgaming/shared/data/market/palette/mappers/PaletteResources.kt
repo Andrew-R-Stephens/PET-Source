@@ -43,7 +43,7 @@ fun PaletteType.asUuid(): String =
         PaletteType.DEUTERANOMALY -> "9Ec5cQIB0Jb73gbQ3a9R5kScX"
         PaletteType.PROTANOMALY -> "44uBEX9ID9131TMG3yH7T2P1Q"
         PaletteType.TRITANOMALY -> "28yi3LJWYMbA7v87RMAEznISy"
-        PaletteType.WHITEBOARD -> "tempWhiteboard"
+        PaletteType.WHITEBOARD -> "a892ra3fg36ot0b4uygvdcc0q"
         PaletteType.RECRUIT -> "9QWud4Mj5C4jYp1hOA91b6G0L"
         PaletteType.INVESTIGATOR -> "1UdIWr97JGtOoRszQHpBYfK5U"
         PaletteType.PRIVATE_INVESTIGATOR -> "1oF0ZF78LqA64zRyn8ozgMqLu"
@@ -64,7 +64,7 @@ fun PaletteType.asUuid(): String =
         PaletteType.TRANSLATOR -> "e6nDE683SE7Wg9dRPJeN61CD6"
         PaletteType.WINNER -> "8xkSw89x50Zwgr4tGd6z5X0a7"
         PaletteType.ARTIST -> "88kEPt48wGs0ZxR4n7gtM3OTe"
-        PaletteType.STRATAGEM_HERO -> "tempStratHero"
+        PaletteType.STRATAGEM_HERO -> "2v7z1qn95szrf3ardzl6quf2c"
     }
 
 val LocalDefaultPalette = PaletteType.CLASSIC
