@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.preferences.properties
+package com.tritiumgaming.shared.data.preferences.model.properties
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 

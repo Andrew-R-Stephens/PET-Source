@@ -12,7 +12,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.preferences.properties.DensityType
+import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import kotlinx.coroutines.flow.Flow

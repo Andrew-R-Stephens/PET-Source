@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.preferences.properties
+package com.tritiumgaming.shared.data.preferences.model.properties
 
 enum class DensityType(val value: Int) {
     COMFORTABLE(0),
