@@ -27,6 +27,8 @@
     <string name="preference_fontType" translatable="false">fontType</string>-->
     <string name="preference_savedPalette" translatable="false">savedTheme</string>
     <string name="preference_savedTypography" translatable="false">savedFont</string>
+    <string name="preference_allowAnalytics" translatable="false">allowAnalytics</string>
+    <string name="preference_allowPersonalizedAds" translatable="false">allowPersonalizedAds</string>
     <!-- Review Tracking -->
     <string name="tutorialTracking_canShowIntroduction" translatable="false">canShowIntroduction</string>
     <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>

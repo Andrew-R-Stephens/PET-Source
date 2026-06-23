@@ -3,9 +3,11 @@ package com.tritiumgaming.feature.core.container
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
+import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
 import com.tritiumgaming.data.account.repository.CredentialsRepositoryImpl
 import com.tritiumgaming.data.account.repository.FirestoreAccountRepositoryImpl
 import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
@@ -30,6 +32,8 @@ import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceI
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
+import com.tritiumgaming.data.policy.repository.PolicyRepositoryImpl
+import com.tritiumgaming.data.policy.source.datastore.PolicyDatastoreDataSource
 import com.tritiumgaming.data.palette.repository.MarketCatalogPaletteRepositoryImpl
 import com.tritiumgaming.data.palette.repository.MarketCatalogTypographyRepositoryImpl
 import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
@@ -96,6 +100,13 @@ import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatasto
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.shared.data.policy.repository.PolicyRepository
+import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
+import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase
+import com.tritiumgaming.shared.data.policy.usecase.SetAllowPersonalizedAdsUseCase
+import com.tritiumgaming.shared.data.policy.usecase.ShowPrivacyOptionsFormUseCase
 import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
@@ -122,9 +133,13 @@ class CoreContainer(
     dataStore: DataStore<Preferences>,
     firestore: FirebaseFirestore,
     firebaseAuth: FirebaseAuth,
+    analytics: FirebaseAnalytics,
     localDatabase: LocalDatabase
 ) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+
+    val googleMobileAdsConsentManager =
+        GoogleMobileAdsConsentManager.getInstance(applicationContext)
 
     private val customDifficultyRepository: CustomDifficultyRepository by lazy {
         CustomDifficultyRepositoryImpl(
@@ -243,6 +258,41 @@ class CoreContainer(
     )
     val saveCurrentPaletteUseCase = SaveCurrentPaletteUseCase(
         repository = globalPreferencesRepository
+    )
+
+    /**
+     * Policy
+     */
+    val policyRepository: PolicyRepository by lazy {
+        val policyDataSource = PolicyDatastoreDataSource(
+            context = applicationContext,
+            dataStore = dataStore
+        )
+
+        PolicyRepositoryImpl(
+            analytics = analytics,
+            dataStoreSource = policyDataSource,
+            googleMobileAdsConsentManager = googleMobileAdsConsentManager
+        )
+    }
+
+    val initFlowPolicyUseCase = InitFlowPolicyUseCase(
+        repository = policyRepository
+    )
+    val applyPolicyUseCase = ApplyPolicyUseCase(
+        repository = policyRepository
+    )
+    val setAllowAnalyticsUseCase = SetAllowAnalyticsUseCase(
+        repository = policyRepository
+    )
+    val setAllowPersonalizedAdsUseCase = SetAllowPersonalizedAdsUseCase(
+        repository = policyRepository
+    )
+    val isPrivacyOptionsRequiredUseCase = IsPrivacyOptionsRequiredUseCase(
+        repository = policyRepository
+    )
+    val showPrivacyOptionsFormUseCase = ShowPrivacyOptionsFormUseCase(
+        repository = policyRepository
     )
 
     /**

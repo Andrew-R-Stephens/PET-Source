@@ -16,4 +16,5 @@ data class SettingsScreenUiState(
     val typographyUiState: TypographyUiState = TypographyUiState(),
     val analyticsPreference: Boolean = true,
     val adPrivacyPreference: Boolean = true,
+    val isPrivacyOptionsRequired: Boolean? = null,
 )

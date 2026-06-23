@@ -6,9 +6,11 @@ internal data class PETActivityUiState(
     /** Indicates whether the app has completed the steps for gathering updated user consent. */
     val canRequestAds: Boolean = false,
     /** Indicates whether a privacy options form is required. */
-    val isPrivacyOptionsRequired: Boolean = false,
+    val isPrivacyOptionsRequired: Boolean? = null,
     val disableScreenSaver: Boolean = true,
     val allowCellularData: Boolean = true,
+    val allowAnalytics: Boolean = true,
+    val allowPersonalizedAds: Boolean = true,
     val paletteUiState: PaletteUiState = PaletteUiState(),
     val typographyUiState: TypographyUiState = TypographyUiState(),
     val uiConfiguration: UiConfigurationState = UiConfigurationState()

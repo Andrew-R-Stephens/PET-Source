@@ -29,6 +29,6 @@
     <string name="settings_appearancesettings">Apariencia</string>
     <string name="settings_fontstylesettings">"Estilo de Fuente "</string>
     <string name="settings_adsconsentcontrolsection">Configuración de anuncios/RGPD</string>
-    <string name="settings_adsconsentcontrolsettings">Configuración GDPR</string>
+    <string name="settings_adsgdprcontrolsection">Configuración GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Editar</string>
 </resources>

@@ -24,6 +24,11 @@ import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypo
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
+import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase
+import com.tritiumgaming.shared.data.policy.usecase.SetAllowPersonalizedAdsUseCase
+import com.tritiumgaming.shared.data.policy.usecase.ShowPrivacyOptionsFormUseCase
 import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
@@ -37,6 +42,7 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetUiDensityTypeUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -53,6 +59,12 @@ class SettingsScreenViewModel(
     private val setEnableRTLUseCase: SetEnableRTLUseCase,
     private val setUiDensityTypeUseCase: SetUiDensityTypeUseCase,
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
+    // Policy Preferences
+    private val initFlowPolicyUseCase: InitFlowPolicyUseCase,
+    private val setAllowAnalyticsUseCase: SetAllowAnalyticsUseCase,
+    private val setAllowPersonalizedAdsUseCase: SetAllowPersonalizedAdsUseCase,
+    private val isPrivacyOptionsRequiredUseCase: IsPrivacyOptionsRequiredUseCase,
+    private val showPrivacyOptionsFormUseCase: ShowPrivacyOptionsFormUseCase,
     // Typographies
     private val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase,
     private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
@@ -73,7 +85,7 @@ class SettingsScreenViewModel(
 
     private val _settingsScreenUiState : StateFlow<SettingsScreenUiState> =
         initFlowGlobalPreferencesUseCase()
-            .map { preferences ->
+            .combine(initFlowPolicyUseCase()) { preferences, policy ->
                 SettingsScreenUiState(
                     screensaverPreference = preferences.disableScreenSaver,
                     networkPreference = preferences.allowCellularData,
@@ -90,7 +102,10 @@ class SettingsScreenViewModel(
                         uuid = preferences.typographyUuid,
                         typography = getTypographyByUUID(preferences.typographyUuid)
                     ),
-                    uiDensityType = preferences.uiDensityType
+                    uiDensityType = preferences.uiDensityType,
+                    analyticsPreference = policy.allowAnalytics,
+                    adPrivacyPreference = policy.allowPersonalizedAds,
+                    isPrivacyOptionsRequired = isPrivacyOptionsRequiredUseCase()
                 )
             }
             .stateIn(
@@ -148,6 +163,26 @@ class SettingsScreenViewModel(
         viewModelScope.launch {
             setAllowHuntWarnAudioUseCase(isAllowed)
         }
+    }
+
+    /**
+     * Privacy Preferences
+     */
+
+    fun setPersonalizedAdsPreference(isAllowed: Boolean) {
+        viewModelScope.launch {
+            setAllowPersonalizedAdsUseCase(isAllowed)
+        }
+    }
+
+    fun setAnalyticsPreference(isAllowed: Boolean) {
+        viewModelScope.launch {
+            setAllowAnalyticsUseCase(isAllowed)
+        }
+    }
+
+    fun showPrivacyOptionsForm(activity: android.app.Activity, onFinished: () -> Unit = {}) {
+        showPrivacyOptionsFormUseCase(activity, onFinished)
     }
 
     /**
@@ -280,6 +315,12 @@ class SettingsScreenViewModel(
                 val setEnableRTLUseCase: SetEnableRTLUseCase = container.setEnableRTLUseCase
                 val setUiDensityTypeUseCase: SetUiDensityTypeUseCase = container.setUiDensityTypeUseCase
                 val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = container.setMaxHuntWarnFlashTimeUseCase
+                // Policy Preferences
+                val initFlowPolicyUseCase: InitFlowPolicyUseCase = container.initFlowPolicyUseCase
+                val setAllowAnalyticsUseCase: SetAllowAnalyticsUseCase = container.setAllowAnalyticsUseCase
+                val setAllowPersonalizedAdsUseCase: SetAllowPersonalizedAdsUseCase = container.setAllowPersonalizedAdsUseCase
+                val isPrivacyOptionsRequiredUseCase: IsPrivacyOptionsRequiredUseCase = container.isPrivacyOptionsRequiredUseCase
+                val showPrivacyOptionsFormUseCase: ShowPrivacyOptionsFormUseCase = container.showPrivacyOptionsFormUseCase
                 // Typographies
                 val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase = container.fetchUnlockedTypographiesUseCase
                 val setCurrentTypographyUseCase: SaveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
@@ -302,6 +343,12 @@ class SettingsScreenViewModel(
                     setEnableRTLUseCase = setEnableRTLUseCase,
                     setUiDensityTypeUseCase = setUiDensityTypeUseCase,
                     setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
+                    // Policy
+                    initFlowPolicyUseCase = initFlowPolicyUseCase,
+                    setAllowAnalyticsUseCase = setAllowAnalyticsUseCase,
+                    setAllowPersonalizedAdsUseCase = setAllowPersonalizedAdsUseCase,
+                    isPrivacyOptionsRequiredUseCase = isPrivacyOptionsRequiredUseCase,
+                    showPrivacyOptionsFormUseCase = showPrivacyOptionsFormUseCase,
                     // Typographies
                     fetchUnlockedTypographiesUseCase = fetchUnlockedTypographiesUseCase,
                     saveCurrentTypographyUseCase = setCurrentTypographyUseCase,

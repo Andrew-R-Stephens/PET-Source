@@ -30,9 +30,12 @@ class GoogleMobileAdsConsentManager(
     val canRequestAds: Boolean
         get() = consentInformation.canRequestAds()
 
-    val isPrivacyOptionsRequired: Boolean
-        get() = consentInformation.privacyOptionsRequirementStatus ==
-                ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED
+    val isPrivacyOptionsRequired: Boolean?
+        get() = when (consentInformation.privacyOptionsRequirementStatus) {
+            ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED -> true
+            ConsentInformation.PrivacyOptionsRequirementStatus.NOT_REQUIRED -> false
+            else -> null
+        }
 
 
     /** Helper method to call the UMP SDK methods to request consent information and load/present a
@@ -48,6 +51,7 @@ class GoogleMobileAdsConsentManager(
             .addTestDeviceHashedId("B3C272DE5AEAB81CA9CBBCB2A928A38E")
             .addTestDeviceHashedId("35C63C64AD5C412021F7831FF07C5411")
             .addTestDeviceHashedId("4980A1A8D6C7BD9E599217DE73CD36EB")
+            .addTestDeviceHashedId("27146712BE687C3CD0661E581B0631A4")
             .build()
 
         val params = ConsentRequestParameters.Builder()

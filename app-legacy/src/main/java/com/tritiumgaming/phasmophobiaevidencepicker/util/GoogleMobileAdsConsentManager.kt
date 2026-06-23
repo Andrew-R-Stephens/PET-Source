@@ -29,10 +29,13 @@ class GoogleMobileAdsConsentManager(private val activity: Activity) {
         return consentInformation.canRequestAds()
     }
 
-    val isPrivacyOptionsRequired: Boolean
+    val isPrivacyOptionsRequired: Boolean?
         /** Helper variable to determine if the privacy options form is required.  */
-        get() = (consentInformation.privacyOptionsRequirementStatus
-                == PrivacyOptionsRequirementStatus.REQUIRED)
+        get() = when (consentInformation.privacyOptionsRequirementStatus) {
+            PrivacyOptionsRequirementStatus.REQUIRED -> true
+            PrivacyOptionsRequirementStatus.NOT_REQUIRED -> false
+            else -> null
+        }
 
     /** Helper method to call the UMP SDK methods to request consent information and load/present a
      * consent form if necessary.  */

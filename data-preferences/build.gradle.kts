@@ -49,6 +49,13 @@ dependencies {
     // DataStore
     implementation(libs.androidx.datastore.preferences)
 
+    // GOOGLE ADS
+    implementation(libs.android.ump.core)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+
     implementation(project(":shared"))
     implementation(project(":core-common"))
     implementation(project(":core-resources"))

@@ -46,7 +46,7 @@
     <string name="settings_appearancesettings">Aspetto</string>
     <string name="settings_fontstylesettings">Stile carattere</string>
     <string name="settings_adsconsentcontrolsection">Annunci/Impostazioni GDPR</string>
-    <string name="settings_adsconsentcontrolsettings">Impostazioni GDPR</string>
+    <string name="settings_adsgdprcontrolsection">Impostazioni GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Modificare</string>
     <string name="settings_screenalwayson">Tieni lo schermo sempre acceso</string>
     <string name="settings_networktitle">Consenti al Centro messaggi di utilizzare i dati mobili</string>

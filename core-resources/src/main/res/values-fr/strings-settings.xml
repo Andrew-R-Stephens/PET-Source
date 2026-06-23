@@ -27,6 +27,6 @@
     <string name="settings_appearancesettings">Apparence</string>
     <string name="settings_fontstylesettings">"Le Style de Police "</string>
     <string name="settings_adsconsentcontrolsection">Annonces/Paramètres RGPD</string>
-    <string name="settings_adsconsentcontrolsettings">Configuration GDPR</string>
+    <string name="settings_adsgdprcontrolsection">Configuration GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Modifier</string>
 </resources>

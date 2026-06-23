@@ -613,7 +613,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/settings_adsconsentcontrolsettings"
+                        android:text="@string/settings_adsgdprcontrolsection"
                         android:textColor="?attr/textColorPrimary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

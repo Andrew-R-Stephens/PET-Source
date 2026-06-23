@@ -33,6 +33,7 @@
     <string name="general_label_modifiers" translatable="false">Modifiers</string>
     <string name="general_label_power" translatable="false">Power</string>
     <string name="general_label_temperature" translatable="false">Temperature</string>
+    <string name="general_label_edit" translatable="false">Edit</string>
 
     <!--
         TITLESCREEN FRAGMENT

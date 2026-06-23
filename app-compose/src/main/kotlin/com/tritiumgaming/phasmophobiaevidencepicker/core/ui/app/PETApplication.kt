@@ -6,6 +6,8 @@ import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
 import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
@@ -77,6 +79,9 @@ class PETApplication : Application(),
     private val firebaseAuth by lazy {
         Firebase.auth
     }
+    private val analytics by lazy {
+        Firebase.analytics
+    }
 
     lateinit var coreContainer: CoreContainer
 
@@ -105,11 +110,14 @@ class PETApplication : Application(),
             dataStore = dataStore,
             firestore = firestore,
             firebaseAuth = firebaseAuth,
+            analytics = analytics,
             localDatabase = localDatabase
         )
 
         appContainer = AppContainer(
             initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
+            initFlowPolicyUseCase = coreContainer.initFlowPolicyUseCase,
+            applyPolicyUseCase = coreContainer.applyPolicyUseCase,
             getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
             getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
         )
@@ -145,6 +153,12 @@ class PETApplication : Application(),
             setEnableRTLUseCase = coreContainer.setEnableRTLUseCase,
             setUiDensityTypeUseCase = coreContainer.setUiDensityTypeUseCase,
             setMaxHuntWarnFlashTimeUseCase = coreContainer.setMaxHuntWarnFlashTimeUseCase,
+            // Policy,
+            initFlowPolicyUseCase = coreContainer.initFlowPolicyUseCase,
+            setAllowAnalyticsUseCase = coreContainer.setAllowAnalyticsUseCase,
+            setAllowPersonalizedAdsUseCase = coreContainer.setAllowPersonalizedAdsUseCase,
+            isPrivacyOptionsRequiredUseCase = coreContainer.isPrivacyOptionsRequiredUseCase,
+            showPrivacyOptionsFormUseCase = coreContainer.showPrivacyOptionsFormUseCase,
             // Typographies
             fetchUnlockedTypographiesUseCase = coreContainer.fetchUnlockedTypographiesUseCase,
             saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,

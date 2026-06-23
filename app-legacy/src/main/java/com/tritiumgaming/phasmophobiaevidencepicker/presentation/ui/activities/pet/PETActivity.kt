@@ -184,10 +184,13 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
     }
     */
 
-    val isPrivacyOptionsRequired: Boolean
+    val isPrivacyOptionsRequired: Boolean?
         // Show a privacy options button if required.
-        get() = (consentInformation!!.privacyOptionsRequirementStatus
-                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED)
+        get() = when (consentInformation?.privacyOptionsRequirementStatus) {
+            ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED -> true
+            ConsentInformation.PrivacyOptionsRequirementStatus.NOT_REQUIRED -> false
+            else -> null
+        }
 
     protected fun createConsentInformation() {
         val debugSettings = ConsentDebugSettings.Builder(this)

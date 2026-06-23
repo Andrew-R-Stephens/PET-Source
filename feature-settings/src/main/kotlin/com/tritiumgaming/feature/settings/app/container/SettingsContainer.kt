@@ -8,6 +8,11 @@ import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypo
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
+import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase
+import com.tritiumgaming.shared.data.policy.usecase.SetAllowPersonalizedAdsUseCase
+import com.tritiumgaming.shared.data.policy.usecase.ShowPrivacyOptionsFormUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
@@ -29,6 +34,13 @@ class SettingsContainer(
     internal val setEnableRTLUseCase: SetEnableRTLUseCase,
     internal val setUiDensityTypeUseCase: SetUiDensityTypeUseCase,
     internal val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
+    // Policy
+    internal val initFlowPolicyUseCase: InitFlowPolicyUseCase,
+    internal val setAllowAnalyticsUseCase: SetAllowAnalyticsUseCase,
+    internal val setAllowPersonalizedAdsUseCase: SetAllowPersonalizedAdsUseCase,
+    internal val isPrivacyOptionsRequiredUseCase: IsPrivacyOptionsRequiredUseCase,
+    internal val showPrivacyOptionsFormUseCase: ShowPrivacyOptionsFormUseCase,
+    // Typographies
     internal val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase,
     internal val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     internal val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,

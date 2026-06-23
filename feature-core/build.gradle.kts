@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.firebase.auth)
     // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
+    // GOOGLE FIREBASE ANALYTICS
+    implementation(libs.firebase.analytics)
 
     implementation(project(":shared"))
 

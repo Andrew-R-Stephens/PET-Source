@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -69,6 +72,18 @@ import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 @Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
 private annotation class DevicePreviews
 
+@Composable
+@Preview
+private fun GDPRButtonPreview() {
+    SelectiveTheme {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            GDPRButton()
+        }
+    }
+}
+
 @DevicePreviews
 @Composable
 @Preview
@@ -89,6 +104,7 @@ fun SettingsScreen(
     settingsViewModel: SettingsScreenViewModel,
     navController: NavController = rememberNavController()
 ) {
+    val context = LocalContext.current
     val settingsScreenUiState by
         settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
 
@@ -102,6 +118,13 @@ fun SettingsScreen(
         onHuntWarningAudioPreferenceChange = { settingsViewModel.setHuntWarningAudioPreference(it) },
         onGhostReorderPreferenceChange = { settingsViewModel.setGhostReorderPreference(it) },
         onHuntWarnDurationPreferenceChange = { settingsViewModel.setHuntWarnDurationPreference(it) },
+        onPersonalizedAdsPreferenceChange = { settingsViewModel.setPersonalizedAdsPreference(it) },
+        onAnalyticsPreferenceChange = { settingsViewModel.setAnalyticsPreference(it) },
+        onShowPrivacyOptionsForm = {
+            if (context is android.app.Activity) {
+                settingsViewModel.showPrivacyOptionsForm(context)
+            }
+        },
         onPalettePrevious = { settingsViewModel.setNextAvailablePalette(IncrementDirection.BACKWARD) },
         onPaletteNext = { settingsViewModel.setNextAvailablePalette(IncrementDirection.FORWARD) },
         onTypographyPrevious = { settingsViewModel.setNextAvailableTypography(IncrementDirection.BACKWARD) },
@@ -120,6 +143,9 @@ private fun SettingsContent(
     onHuntWarningAudioPreferenceChange: (Boolean) -> Unit = {},
     onGhostReorderPreferenceChange: (Boolean) -> Unit = {},
     onHuntWarnDurationPreferenceChange: (Long) -> Unit = {},
+    onPersonalizedAdsPreferenceChange: (Boolean) -> Unit = {},
+    onAnalyticsPreferenceChange: (Boolean) -> Unit = {},
+    onShowPrivacyOptionsForm: () -> Unit = {},
     onPalettePrevious: () -> Unit = {},
     onPaletteNext: () -> Unit = {},
     onTypographyPrevious: () -> Unit = {},
@@ -324,42 +350,91 @@ private fun SettingsContent(
         )
     }
 
-    val privacyPolicyPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { _ ->
+    val personalizedAdsPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_enablePersonalizedAds),
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            state = settingsScreenUiState.adPrivacyPreference,
+            onChange = { state -> onPersonalizedAdsPreferenceChange(state) }
+        )
+    }
 
-        //TODO
-        /*if(permissionsUiState.value.isPrivacyOptionsRequired) {
+    val analyticsPreferenceComponent: @Composable (modifier: Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_enableAnalytics),
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            state = settingsScreenUiState.analyticsPreference,
+            onChange = { state -> onAnalyticsPreferenceChange(state) }
+        )
+    }
 
-            val activity = LocalContext.current.applicationContext
+    val gdprPrivacyPreferenceComponent: @Composable (modifier: Modifier) -> Unit = @Composable { modifier ->
 
-            Spacer(modifier = Modifier.height(16.dp))
+        Column(
+            modifier = modifier
+                .wrapContentHeight()
+                .fillMaxWidth()
+        ) {
 
-            Column(
+            Text(
                 modifier = Modifier
-                    .wrapContentHeight()
                     .fillMaxWidth()
-            ) {
+                    .wrapContentHeight()
+                    .padding(4.dp),
+                text = stringResource(R.string.settings_adsgdprcontrolsection),
+                color = LocalPalette.current.secondary,
+                style = LocalTypography.current.primary.bold,
+                textAlign = TextAlign.Start,
+                fontSize = 18.sp,
+                maxLines = 1,
+            )
 
-                Text(
+            GDPRButton(
+                modifier = Modifier
+            ) {
+                onShowPrivacyOptionsForm()
+            }
+
+        }
+    }
+
+    val privacyPreferenceComponent: @Composable (modifier: Modifier) -> Unit = @Composable { modifier ->
+
+        settingsScreenUiState.isPrivacyOptionsRequired?.let { isPrivacyOptionsRequired ->
+            if (isPrivacyOptionsRequired) {
+                gdprPrivacyPreferenceComponent(modifier)
+
+                Spacer(modifier = Modifier.height(16.dp))
+            } else {
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(4.dp),
-                    text = stringResource(R.string.settings_adsconsentcontrolsettings),
-                    color = LocalPalette.current.primary,
-                    style = LocalTypography.current.primary.bold,
-                    textAlign = TextAlign.Start,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                )
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                            .padding(4.dp),
+                        text = stringResource(R.string.settings_adsconsentcontrolsection),
+                        color = LocalPalette.current.secondary,
+                        style = LocalTypography.current.primary.bold,
+                        textAlign = TextAlign.Start,
+                        fontSize = 18.sp,
+                        maxLines = 1,
+                    )
 
-                GDPRButton {
-                    activity?.let {
-                        permissionsViewModel.showPrivacyOptionsForm(activity = it) {  }
-                    }
+                    personalizedAdsPreferenceComponent(Modifier)
+
+                    analyticsPreferenceComponent(Modifier)
                 }
-
             }
-        }*/
+        }
     }
 
     SettingsScreenLayout(
@@ -373,7 +448,7 @@ private fun SettingsContent(
         huntWarningTimeoutPreferenceComponent,
         palettePreferenceComponent,
         typographyPreferenceComponent,
-        privacyPolicyPreferenceComponent
+        privacyPreferenceComponent
     )
 }
 
@@ -389,7 +464,7 @@ private fun SettingsScreenLayout(
     huntWarningTimeoutPreferenceComponent: @Composable ((Modifier) -> Unit),
     palettePreferenceComponent: @Composable ((Modifier) -> Unit),
     typographyPreferenceComponent: @Composable ((Modifier) -> Unit),
-    privacyPolicyPreferenceComponent: @Composable ((Modifier) -> Unit)
+    privacyPreferenceComponent: @Composable ((Modifier) -> Unit)
 ) {
     Column(
         modifier = Modifier
@@ -420,7 +495,7 @@ private fun SettingsScreenLayout(
                     huntWarningTimeoutPreferenceComponent = huntWarningTimeoutPreferenceComponent,
                     palettePreferenceComponent = palettePreferenceComponent,
                     typographyPreferenceComponent = typographyPreferenceComponent,
-                    privacyPolicyPreferenceComponent = privacyPolicyPreferenceComponent
+                    privacyPolicyPreferenceComponent = privacyPreferenceComponent
                 )
             }
 
@@ -440,7 +515,7 @@ private fun SettingsScreenLayout(
                     huntWarningTimeoutPreferenceComponent = huntWarningTimeoutPreferenceComponent,
                     palettePreferenceComponent = palettePreferenceComponent,
                     typographyPreferenceComponent = typographyPreferenceComponent,
-                    privacyPolicyPreferenceComponent = privacyPolicyPreferenceComponent
+                    privacyPolicyPreferenceComponent = privacyPreferenceComponent
                 )
             }
         }
@@ -474,7 +549,7 @@ private fun ColumnScope.SettingsContentPortrait(
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .padding(4.dp),
-            text = stringResource(R.string.settings_generalsettings),
+            text = stringResource(R.string.settings_devicesettings),
             color = LocalPalette.current.secondary,
             style = LocalTypography.current.primary.bold,
             textAlign = TextAlign.Start,
@@ -494,7 +569,7 @@ private fun ColumnScope.SettingsContentPortrait(
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .padding(4.dp),
-            text = stringResource(R.string.settings_extrasettings),
+            text = stringResource(R.string.settings_interfacesettings),
             color = LocalPalette.current.secondary,
             style = LocalTypography.current.primary.bold,
             textAlign = TextAlign.Start,
@@ -514,8 +589,6 @@ private fun ColumnScope.SettingsContentPortrait(
 
         huntWarningTimeoutPreferenceComponent(Modifier)
 
-        privacyPolicyPreferenceComponent(Modifier)
-
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
@@ -534,6 +607,10 @@ private fun ColumnScope.SettingsContentPortrait(
         palettePreferenceComponent(Modifier)
 
         typographyPreferenceComponent(Modifier)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        privacyPolicyPreferenceComponent(Modifier)
 
     }
 }
@@ -571,7 +648,7 @@ private fun SettingsContentLandscape(
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .padding(4.dp),
-                text = stringResource(R.string.settings_generalsettings),
+                text = stringResource(R.string.settings_devicesettings),
                 color = LocalPalette.current.secondary,
                 style = LocalTypography.current.primary.bold,
                 textAlign = TextAlign.Start,
@@ -590,7 +667,7 @@ private fun SettingsContentLandscape(
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .padding(4.dp),
-                text = stringResource(R.string.settings_extrasettings),
+                text = stringResource(R.string.settings_interfacesettings),
                 color = LocalPalette.current.secondary,
                 style = LocalTypography.current.primary.bold,
                 textAlign = TextAlign.Start,
@@ -609,6 +686,10 @@ private fun SettingsContentLandscape(
             Spacer(modifier = Modifier.height(16.dp))
 
             huntWarningTimeoutPreferenceComponent(Modifier)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            privacyPolicyPreferenceComponent(Modifier)
 
         }
 
@@ -644,8 +725,6 @@ private fun SettingsContentLandscape(
 
             }
 
-            privacyPolicyPreferenceComponent(Modifier)
-
         }
     }
 }
@@ -659,12 +738,13 @@ fun GDPRButton(
     Button (
         modifier = modifier
             .height(48.dp)
+            .width(IntrinsicSize.Min)
             .padding(4.dp),
         onClick = onClick,
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.buttonColors(
-            contentColor = LocalPalette.current.primary,
-            containerColor = LocalPalette.current.primary,
+            contentColor = LocalPalette.current.primaryContainer,
+            containerColor = LocalPalette.current.primaryContainer,
         )
     ) {
         Row(
@@ -674,12 +754,12 @@ fun GDPRButton(
             Icon(
                 painter = painterResource(android.R.drawable.ic_menu_edit),
                 contentDescription = null,
-                tint = LocalPalette.current.primaryContainer
+                tint = LocalPalette.current.onPrimaryContainer
             )
 
             Text(
                 modifier = Modifier,
-                text = stringResource(R.string.settings_adsconsentcontrolsettings),
+                text = stringResource(R.string.settings_gdprsettings_button),
                 color = LocalPalette.current.onPrimaryContainer,
                 style = LocalTypography.current.quaternary.bold,
                 textAlign = TextAlign.Start,

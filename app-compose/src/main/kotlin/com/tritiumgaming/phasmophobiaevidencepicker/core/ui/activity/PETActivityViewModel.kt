@@ -23,6 +23,8 @@ import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,6 +40,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivityViewModel(
     private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
+    private val initFlowPolicyUseCase: InitFlowPolicyUseCase,
+    private val applyPolicyUseCase: ApplyPolicyUseCase,
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
 ): ViewModel() {
@@ -60,8 +64,10 @@ class PETActivityViewModel(
 
     private val _petActivityUiState : StateFlow<PETActivityUiState> =
         initFlowGlobalPreferencesUseCase()
-            .combine(_googleAdsPermissionsUiState) {
-                    preferences, googleAdsPermissionsUiState ->
+            .combine(initFlowPolicyUseCase()) { preferences, policy ->
+                preferences to policy
+            }
+            .combine(_googleAdsPermissionsUiState) { (preferences, policy), googleAdsPermissionsUiState ->
 
                 PETActivityUiState(
                     isMobileAdsInitialized = googleAdsPermissionsUiState.isMobileAdsInitialized,
@@ -69,6 +75,8 @@ class PETActivityViewModel(
                     isPrivacyOptionsRequired = googleAdsPermissionsUiState.isPrivacyOptionsRequired,
                     disableScreenSaver = preferences.disableScreenSaver,
                     allowCellularData = preferences.allowCellularData,
+                    allowAnalytics = policy.allowAnalytics,
+                    allowPersonalizedAds = policy.allowPersonalizedAds,
                     paletteUiState = PaletteUiState(
                         uuid = preferences.paletteUuid,
                         palette = getPaletteByUUID(preferences.paletteUuid)
@@ -231,6 +239,14 @@ class PETActivityViewModel(
         }
     }
 
+    init {
+        viewModelScope.launch {
+            initFlowPolicyUseCase().collect { policy ->
+                applyPolicyUseCase(policy)
+            }
+        }
+    }
+
     companion object {
 
         // Check your logcat output for the test device hashed ID e.g.
@@ -251,11 +267,15 @@ class PETActivityViewModel(
                 val container = (application as AppContainerProvider).provideAppContainer()
 
                 val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
+                val initFlowPolicyUseCase: InitFlowPolicyUseCase = container.initFlowPolicyUseCase
+                val applyPolicyUseCase: ApplyPolicyUseCase = container.applyPolicyUseCase
                 val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
 
                 PETActivityViewModel(
                     initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
+                    initFlowPolicyUseCase = initFlowPolicyUseCase,
+                    applyPolicyUseCase = applyPolicyUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                 )

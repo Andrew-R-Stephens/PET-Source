@@ -18,10 +18,13 @@ interface ConsentManagementService {
     // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
     val isMobileAdsInitializeCalled: AtomicBoolean
 
-    val isPrivacyOptionsRequired: Boolean
+    val isPrivacyOptionsRequired: Boolean?
         // Show a privacy options button if required.
-        get() = (consentInformation!!.privacyOptionsRequirementStatus
-                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED)
+        get() = when (consentInformation?.privacyOptionsRequirementStatus) {
+            ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED -> true
+            ConsentInformation.PrivacyOptionsRequirementStatus.NOT_REQUIRED -> false
+            else -> null
+        }
 
     fun createConsentInformation(activity: Activity) {
         val debugSettings = ConsentDebugSettings.Builder(activity)

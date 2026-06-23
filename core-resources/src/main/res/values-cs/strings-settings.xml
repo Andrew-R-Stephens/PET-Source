@@ -13,7 +13,7 @@
     <string name="settings_appearancesettings">Vzhled</string>
     <string name="settings_fontstylesettings">Styl písma</string>
     <string name="settings_adsconsentcontrolsection">Nastavení reklam / GDPR</string>
-    <string name="settings_adsconsentcontrolsettings">Konfigurace GDPR</string>
+    <string name="settings_adsgdprcontrolsection">Konfigurace GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Upravit</string>
     <string name="settings_screenalwayson">Vždy mějte obrazovku zapnutou</string>
     <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
