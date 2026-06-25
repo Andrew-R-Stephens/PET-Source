@@ -46,17 +46,37 @@ class PolicyRepositoryImpl(
     }
 
     private fun setAnalyticsEnabled(enabled: Boolean) {
-        Log.d("PrivacyControl", "Setting analytics enabled: $enabled")
+        val consentStatus = if (enabled) {
+            FirebaseAnalytics.ConsentStatus.GRANTED
+        } else {
+            FirebaseAnalytics.ConsentStatus.DENIED
+        }
+
+        if(consentStatus == FirebaseAnalytics.ConsentStatus.DENIED) {
+            analytics.resetAnalyticsData()
+            Log.d("PrivacyControl", "Analytics manually reset data")
+        }
+
+        analytics.setConsent {
+            analyticsStorage = consentStatus
+        }
+
         try {
             analytics.setAnalyticsCollectionEnabled(enabled)
+            Log.d("PrivacyControl", "Analytics collection permission set to: $enabled")
+
+            // Programmatic verification: retrieve app instance ID.
+            // If disabled/denied, this returns null.
+            analytics.appInstanceId.addOnCompleteListener { task ->
+                val isActive = task.isSuccessful && task.result != null
+                Log.d("PrivacyControl", "Verification - Is Analytics Active (AppInstanceId exists): $isActive")
+            }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("PrivacyControl", "Failed to set analytics collection enabled", e)
         }
     }
 
     private fun setPersonalizedAdsEnabled(enabled: Boolean) {
-        Log.d("PrivacyControl", "Setting personalized ads enabled: $enabled")
-
         val consentStatus = if (enabled) {
             FirebaseAnalytics.ConsentStatus.GRANTED
         } else {
@@ -64,9 +84,11 @@ class PolicyRepositoryImpl(
         }
 
         analytics.setConsent {
+            adStorage = consentStatus
             adPersonalization = consentStatus
             adUserData = consentStatus
         }
+        Log.d("PrivacyControl", "Personalized ads consent state set to: $consentStatus")
     }
 
 }

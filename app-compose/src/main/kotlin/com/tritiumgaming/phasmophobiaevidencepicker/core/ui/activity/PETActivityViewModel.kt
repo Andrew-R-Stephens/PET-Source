@@ -32,6 +32,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -130,7 +133,7 @@ class PETActivityViewModel(
                 consent information and load/show a consent form if necessary. */
                 gatherConsent(activity) { error ->
                     if (error != null) {
-                        Log.d("PermissionsViewModel", "${error.errorCode}: ${error.message}")
+                        Log.d("PETActivityViewModel", "${error.errorCode}: ${error.message}")
                     }
                     _googleAdsPermissionsUiState.update { it.copy(
                         canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
@@ -237,12 +240,12 @@ class PETActivityViewModel(
     }
 
     init {
-        viewModelScope.launch {
-            initFlowPolicyUseCase().collect { policy ->
-                Log.d("Consent", "Policy: $policy")
-                applyPolicyUseCase(policy)
-            }
-        }
+        initFlowPolicyUseCase()
+            .distinctUntilChanged()
+            .onEach {
+                Log.d("PETActivityViewModel", "Consent Policy: $it")
+                applyPolicyUseCase(it)
+            }.launchIn(viewModelScope)
     }
 
     companion object {
