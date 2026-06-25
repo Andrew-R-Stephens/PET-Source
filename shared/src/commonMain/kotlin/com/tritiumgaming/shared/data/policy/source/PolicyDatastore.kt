@@ -10,8 +10,8 @@ interface PolicyDatastore: DatastoreDataSource<Policy> {
     suspend fun setAllowPersonalizedAds(allow: Boolean)
 
     data class Policy(
-        val allowAnalytics: Boolean = true,
-        val allowPersonalizedAds: Boolean = true
+        val allowAnalytics: Boolean = false,
+        val allowPersonalizedAds: Boolean = false
     )
 
 }

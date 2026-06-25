@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.settings.ui
 
+import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -43,7 +44,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -84,8 +84,8 @@ class SettingsScreenViewModel(
     private val unlockedTypographies = _unlockedTypographies
 
     private val _settingsScreenUiState : StateFlow<SettingsScreenUiState> =
-        initFlowGlobalPreferencesUseCase()
-            .combine(initFlowPolicyUseCase()) { preferences, policy ->
+        combine(initFlowGlobalPreferencesUseCase(), initFlowPolicyUseCase()) {
+            preferences, policy ->
                 SettingsScreenUiState(
                     screensaverPreference = preferences.disableScreenSaver,
                     networkPreference = preferences.allowCellularData,
@@ -181,7 +181,7 @@ class SettingsScreenViewModel(
         }
     }
 
-    fun showPrivacyOptionsForm(activity: android.app.Activity, onFinished: () -> Unit = {}) {
+    fun showPrivacyOptionsForm(activity: Activity, onFinished: () -> Unit = {}) {
         showPrivacyOptionsFormUseCase(activity, onFinished)
     }
 
@@ -298,8 +298,6 @@ class SettingsScreenViewModel(
     }
 
     companion object {
-        internal const val MAX_TIMES_OPENED_TARGET: Int = 5
-
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]

@@ -1,6 +1,7 @@
 package com.tritiumgaming.data.policy.source.datastore
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -17,9 +18,47 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 
 class PolicyDatastoreDataSource(
-    context: Context,
+    private val context: Context,
     private val dataStore: DataStore<Preferences>
 ): PolicyDatastore {
+
+    private val defaultAllowAnalytics: Boolean by lazy {
+        getMetadataBoolean("google_analytics_default_allow_analytics_storage", false)
+    }
+
+    private val defaultAllowPersonalizedAds: Boolean by lazy {
+        val adStorage = getMetadataBoolean("google_analytics_default_allow_ad_storage", false)
+        val adPersonalization = getMetadataBoolean("google_analytics_default_allow_ad_personalization_signals", false)
+        val adUserData = getMetadataBoolean("google_analytics_default_allow_ad_user_data", false)
+
+        adStorage && adPersonalization && adUserData
+    }
+
+    private fun getMetadataBoolean(key: String, defaultValue: Boolean): Boolean {
+        return try {
+            val appInfo = context.packageManager.getApplicationInfo(
+                context.packageName,
+                PackageManager.GET_META_DATA
+            )
+            val bundle = appInfo.metaData ?: return defaultValue
+            when (val value = bundle.get(key)) {
+                is Boolean -> value
+                is String -> {
+                    if (value == "eu_consent_policy") {
+                        // For Datastore initialization, we treat "policy" as false (denied)
+                        // to ensure a privacy-first default that the user can then toggle.
+                        false
+                    } else {
+                        value.toBoolean()
+                    }
+                }
+                else -> defaultValue
+            }
+        } catch (e: Exception) {
+            Log.w("PolicyDatastore", "Could not read manifest meta-data for $key", e)
+            defaultValue
+        }
+    }
 
     private val flow: Flow<Policy> = dataStore.data
         .catch { exception ->
@@ -56,8 +95,8 @@ class PolicyDatastoreDataSource(
 
     private fun mapPreferences(preferences: Preferences): Policy {
         return Policy(
-            allowAnalytics = preferences[KEY_ALLOW_ANALYTICS] != false,
-            allowPersonalizedAds = preferences[KEY_ALLOW_PERSONALIZED_ADS] != false
+            allowAnalytics = preferences[KEY_ALLOW_ANALYTICS] ?: defaultAllowAnalytics,
+            allowPersonalizedAds = preferences[KEY_ALLOW_PERSONALIZED_ADS] ?: defaultAllowPersonalizedAds
         )
     }
 

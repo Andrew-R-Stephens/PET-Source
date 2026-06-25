@@ -14,7 +14,7 @@ data class SettingsScreenUiState(
     val huntWarnDurationPreference: Long = SettingsScreenViewModel.FOREVER,
     val paletteUiState: PaletteUiState = PaletteUiState(),
     val typographyUiState: TypographyUiState = TypographyUiState(),
-    val analyticsPreference: Boolean = true,
-    val adPrivacyPreference: Boolean = true,
+    val analyticsPreference: Boolean = false,
+    val adPrivacyPreference: Boolean = false,
     val isPrivacyOptionsRequired: Boolean? = null,
 )

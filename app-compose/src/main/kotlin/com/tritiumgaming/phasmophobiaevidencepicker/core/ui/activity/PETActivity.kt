@@ -22,10 +22,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.firebase.Firebase
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.tritiumgaming.core.common.settings.analytics.FirebaseAnalyticsService
 import com.tritiumgaming.core.common.settings.updatemanager.AppUpdateManagerService
 import com.tritiumgaming.core.ui.theme.ExtendedUiConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
@@ -33,14 +31,12 @@ import com.tritiumgaming.core.ui.theme.ThemeConfigurationControl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.navigation.RootNavigation
 
 class PETActivity : AppCompatActivity(),
-    AppUpdateManagerService, FirebaseAnalyticsService {
+    AppUpdateManagerService {
 
     private val petActivityViewModel: PETActivityViewModel
         by viewModels { PETActivityViewModel.Factory }
 
-    /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth
-    override var firebaseAnalytics: FirebaseAnalytics? = null
 
     /* Update */
     override var appUpdateManager: AppUpdateManager? = null
@@ -72,8 +68,6 @@ class PETActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
 
         petActivityViewModel.initMobileAdsConsentManager(this@PETActivity)
-
-        initFirebaseAnalytics(this)
 
         checkForAppUpdate(this@PETActivity)
 

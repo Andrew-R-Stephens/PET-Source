@@ -1,7 +1,6 @@
 package com.tritiumgaming.data.policy.repository
 
 import android.app.Activity
-import android.content.Context
 import android.util.Log
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.setConsent
@@ -45,6 +44,8 @@ class PolicyRepositoryImpl(
         setPersonalizedAdsEnabled(policy.allowPersonalizedAds)
     }
 
+    /** Set FirebaseAnalytics consent types to
+     * [Consent V2](https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2). */
     private fun setAnalyticsEnabled(enabled: Boolean) {
         val consentStatus = if (enabled) {
             FirebaseAnalytics.ConsentStatus.GRANTED
