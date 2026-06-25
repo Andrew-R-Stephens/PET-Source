@@ -59,12 +59,6 @@ class PETActivityViewModel(
     private val _googleAdsPermissionsUiState = MutableStateFlow(PETActivityUiState())
     private val googleAdsPermissionsUiState = _googleAdsPermissionsUiState.asStateFlow()
 
-    private val _unlockedPalettes = MutableStateFlow(UnlockedPalettes())
-    private val unlockedPalettes = _unlockedPalettes
-
-    private val _unlockedTypographies = MutableStateFlow(UnlockedTypographies())
-    private val unlockedTypographies = _unlockedTypographies
-
     private val _petActivityUiState : StateFlow<PETActivityUiState> =
         initFlowGlobalPreferencesUseCase()
             .combine(initFlowPolicyUseCase()) { preferences, policy ->
