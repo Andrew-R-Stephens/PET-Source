@@ -18,6 +18,14 @@ class GoogleMobileAdsConsentManager(
     context: Context
 ) {
 
+    val TEST_DEVICE_HASHED_IDS = listOf (
+        "00E2BE3BE3FB3298734CA8B92655E237",
+        "B3C272DE5AEAB81CA9CBBCB2A928A38E",
+        "35C63C64AD5C412021F7831FF07C5411",
+        "4980A1A8D6C7BD9E599217DE73CD36EB",
+        "27146712BE687C3CD0661E581B0631A4"
+    )
+
     private val consentInformation: ConsentInformation =
         UserMessagingPlatform.getConsentInformation(context)
 
@@ -37,7 +45,6 @@ class GoogleMobileAdsConsentManager(
             else -> null
         }
 
-
     /** Helper method to call the UMP SDK methods to request consent information and load/present a
      * consent form if necessary.  */
     fun gatherConsent(
@@ -46,16 +53,13 @@ class GoogleMobileAdsConsentManager(
     ) {
         // For testing purposes, you can force a DebugGeography of EEA or NOT_EEA.
         val debugSettings = ConsentDebugSettings.Builder(activity)
-            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-            .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
-            .addTestDeviceHashedId("B3C272DE5AEAB81CA9CBBCB2A928A38E")
-            .addTestDeviceHashedId("35C63C64AD5C412021F7831FF07C5411")
-            .addTestDeviceHashedId("4980A1A8D6C7BD9E599217DE73CD36EB")
-            .addTestDeviceHashedId("27146712BE687C3CD0661E581B0631A4")
-            .build()
+        val debugBuilder = debugSettings.apply {
+            //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+            TEST_DEVICE_HASHED_IDS.forEach { addTestDeviceHashedId(it) }
+        }.build()
 
         val params = ConsentRequestParameters.Builder()
-            .setConsentDebugSettings(debugSettings)
+            .setConsentDebugSettings(debugBuilder)
             .build()
 
         // Requesting an update to consent information should be called on every app launch.

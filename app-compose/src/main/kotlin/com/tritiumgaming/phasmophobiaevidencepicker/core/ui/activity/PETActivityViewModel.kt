@@ -49,6 +49,14 @@ class PETActivityViewModel(
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase
 ): ViewModel() {
 
+    val TEST_DEVICE_HASHED_IDS = listOf (
+        "00E2BE3BE3FB3298734CA8B92655E237",
+        "B3C272DE5AEAB81CA9CBBCB2A928A38E",
+        "35C63C64AD5C412021F7831FF07C5411",
+        "4980A1A8D6C7BD9E599217DE73CD36EB",
+        "27146712BE687C3CD0661E581B0631A4"
+    )
+
     private lateinit var _googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
 
     /** Initialization state for the ViewModel. */
@@ -243,18 +251,6 @@ class PETActivityViewModel(
     }
 
     companion object {
-
-        // Check your logcat output for the test device hashed ID e.g.
-        // "Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("ABCDEF012345"))
-        // to get test ads on this device" or
-        // "Use new ConsentDebugSettings.Builder().addTestDeviceHashedId("ABCDEF012345") to set
-        // this as a debug device".
-        val TEST_DEVICE_HASHED_IDS = listOf (
-            "00E2BE3BE3FB3298734CA8B92655E237",
-            "B3C272DE5AEAB81CA9CBBCB2A928A38E",
-            "35C63C64AD5C412021F7831FF07C5411",
-            "4980A1A8D6C7BD9E599217DE73CD36EB"
-        )
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
