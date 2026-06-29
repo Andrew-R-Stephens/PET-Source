@@ -74,12 +74,12 @@ private annotation class DevicePreviews
 
 @Composable
 @Preview
-private fun GDPRButtonPreview() {
+private fun PrivacyOptionsButtonPreview() {
     LocalThemeProvider {
         Surface(
             color = LocalPalette.current.surface
         ) {
-            GDPRButton()
+            PrivacyOptionsButton()
         }
     }
 }
@@ -374,7 +374,7 @@ private fun SettingsContent(
         )
     }
 
-    val gdprPrivacyPreferenceComponent: @Composable (modifier: Modifier) -> Unit = @Composable { modifier ->
+    val privacyOptionsComponent: @Composable (modifier: Modifier) -> Unit = @Composable { modifier ->
 
         Column(
             modifier = modifier
@@ -395,7 +395,7 @@ private fun SettingsContent(
                 maxLines = 1,
             )
 
-            GDPRButton(
+            PrivacyOptionsButton(
                 modifier = Modifier
             ) {
                 onShowPrivacyOptionsForm()
@@ -408,7 +408,7 @@ private fun SettingsContent(
 
         settingsScreenUiState.isPrivacyOptionsRequired?.let { isPrivacyOptionsRequired ->
             if (isPrivacyOptionsRequired) {
-                gdprPrivacyPreferenceComponent(modifier)
+                privacyOptionsComponent(modifier)
 
                 Spacer(modifier = Modifier.height(16.dp))
             } else {
@@ -735,7 +735,7 @@ private fun SettingsContentLandscape(
 }
 
 @Composable
-fun GDPRButton(
+fun PrivacyOptionsButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -748,8 +748,8 @@ fun GDPRButton(
         onClick = onClick,
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.buttonColors(
-            contentColor = LocalPalette.current.primaryContainer,
             containerColor = LocalPalette.current.primaryContainer,
+            contentColor = LocalPalette.current.onPrimaryContainer,
         )
     ) {
         Row(
@@ -779,8 +779,8 @@ fun GDPRButton(
 
 @Composable
 @Preview
-fun EditButtonPreview() {
+fun PrivacyOptionsButtonPreviewComponent() {
     LocalThemeProvider {
-        GDPRButton()
+        PrivacyOptionsButton()
     }
 }

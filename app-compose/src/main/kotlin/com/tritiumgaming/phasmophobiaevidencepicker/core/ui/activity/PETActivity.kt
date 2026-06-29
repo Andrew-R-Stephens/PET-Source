@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -28,9 +27,9 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.settings.updatemanager.AppUpdateManagerService
 import com.tritiumgaming.core.ui.theme.ExtendedUiConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.ThemeConfigurationControl
-import com.tritiumgaming.core.ui.widgets.admob.AdConsent
-import com.tritiumgaming.core.ui.widgets.admob.LocalAdConsent
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.widgets.admob.provider.AdConsent
+import com.tritiumgaming.core.ui.widgets.admob.provider.LocalPrivacyProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.navigation.RootNavigation
 
 class PETActivity : AppCompatActivity(),
@@ -91,7 +90,7 @@ class PETActivity : AppCompatActivity(),
                 )
             }
 
-            ThemeConfigurationControl(
+            LocalThemeProvider(
                 palette = palette,
                 typography = typography,
                 uiConfiguration = ExtendedUiConfiguration (
@@ -99,8 +98,8 @@ class PETActivity : AppCompatActivity(),
                     isRtl = uiConfigurations.isRtl,
                 )
             ) {
-                CompositionLocalProvider(
-                    LocalAdConsent provides AdConsent(
+                LocalPrivacyProvider(
+                    adConsent = AdConsent(
                         allowPersonalizedAds = allowPersonalizedAds,
                         allowAnalytics = allowAnalytics
                     )

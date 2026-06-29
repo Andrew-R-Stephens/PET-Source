@@ -26,14 +26,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.tritiumgaming.core.resources.R
-
-
-val LocalAdConsent = staticCompositionLocalOf { AdConsent() }
-
-data class AdConsent(
-    val allowPersonalizedAds: Boolean = true,
-    val allowAnalytics: Boolean = true
-)
+import com.tritiumgaming.core.ui.widgets.admob.provider.LocalAdConsent
 
 @Composable
 fun AdmobBanner(
@@ -118,12 +111,17 @@ fun BannerAd(
 
             setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
             val adRequest = AdRequest.Builder().apply {
-                if (!adConsent.allowPersonalizedAds) {
+                val npaValue = if (!adConsent.allowPersonalizedAds) "1" else "0"
+                addNetworkExtrasBundle(AdMobAdapter::class.java, Bundle().apply {
+                    putString("npa", npaValue)
+                })
+                /*if (!adConsent.allowPersonalizedAds) {
                     addNetworkExtrasBundle(AdMobAdapter::class.java, Bundle().apply {
                         putString("npa", "1")
                     })
-                }
+                }*/
             }.build()
+            
             loadAd(adRequest)
         }
     }

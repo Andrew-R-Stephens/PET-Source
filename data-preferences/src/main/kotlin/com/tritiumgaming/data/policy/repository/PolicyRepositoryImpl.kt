@@ -2,7 +2,9 @@ package com.tritiumgaming.data.policy.repository
 
 import android.app.Activity
 import android.util.Log
+import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import com.google.firebase.analytics.setConsent
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
 import com.tritiumgaming.shared.data.policy.repository.PolicyRepository
@@ -11,7 +13,6 @@ import com.tritiumgaming.shared.data.policy.source.PolicyDatastore.Policy
 import kotlinx.coroutines.flow.Flow
 
 class PolicyRepositoryImpl(
-    private val analytics: FirebaseAnalytics,
     private val dataStoreSource: PolicyDatastore,
     private val googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
 ) : PolicyRepository {
@@ -40,56 +41,41 @@ class PolicyRepositoryImpl(
     }
 
     override fun applyPolicy(policy: Policy) {
-        setAnalyticsEnabled(policy.allowAnalytics)
-        setPersonalizedAdsEnabled(policy.allowPersonalizedAds)
-    }
-
-    /** Set FirebaseAnalytics consent types to
-     * [Consent V2](https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2). */
-    private fun setAnalyticsEnabled(enabled: Boolean) {
-        val consentStatus = if (enabled) {
+        val analyticsStatus = if (policy.allowAnalytics) {
+            FirebaseAnalytics.ConsentStatus.GRANTED
+        } else {
+            FirebaseAnalytics.ConsentStatus.DENIED
+        }
+        val adsStatus = if (policy.allowPersonalizedAds) {
             FirebaseAnalytics.ConsentStatus.GRANTED
         } else {
             FirebaseAnalytics.ConsentStatus.DENIED
         }
 
-        if(consentStatus == FirebaseAnalytics.ConsentStatus.DENIED) {
-            analytics.resetAnalyticsData()
-            Log.d("PrivacyControl", "Analytics manually reset data")
-        }
-
-        analytics.setConsent {
-            analyticsStorage = consentStatus
+        /** Set FirebaseAnalytics consent types to
+         * [Consent V2](https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2). */
+        Firebase.analytics.setConsent {
+            analyticsStorage = analyticsStatus
+            adStorage = adsStatus
+            adPersonalization = adsStatus
+            adUserData = adsStatus
         }
 
         try {
-            analytics.setAnalyticsCollectionEnabled(enabled)
-            Log.d("PrivacyControl", "Analytics collection permission set to: $enabled")
+            // To support Advanced Consent Mode (GCMv2), we keep collection enabled.
+            // When consent is DENIED, Firebase will send cookieless pings.
+            Firebase.analytics.setAnalyticsCollectionEnabled(true)
+            Log.d("PrivacyControl", "Policy applied: Analytics=$analyticsStatus, Ads=$adsStatus")
 
             // Programmatic verification: retrieve app instance ID.
-            // If disabled/denied, this returns null.
-            analytics.appInstanceId.addOnCompleteListener { task ->
+            // If consent is denied, this returns null (even if collection is enabled).
+            Firebase.analytics.appInstanceId.addOnCompleteListener { task ->
                 val isActive = task.isSuccessful && task.result != null
-                Log.d("PrivacyControl", "Verification - Is Analytics Active (AppInstanceId exists): $isActive")
+                Log.d("PrivacyControl", "Verification - Is Analytics Fully Active: $isActive -> ID: ${task.result}")
             }
         } catch (e: Exception) {
-            Log.e("PrivacyControl", "Failed to set analytics collection enabled", e)
+            Log.e("PrivacyControl", "Failed to apply policy", e)
         }
-    }
-
-    private fun setPersonalizedAdsEnabled(enabled: Boolean) {
-        val consentStatus = if (enabled) {
-            FirebaseAnalytics.ConsentStatus.GRANTED
-        } else {
-            FirebaseAnalytics.ConsentStatus.DENIED
-        }
-
-        analytics.setConsent {
-            adStorage = consentStatus
-            adPersonalization = consentStatus
-            adUserData = consentStatus
-        }
-        Log.d("PrivacyControl", "Personalized ads consent state set to: $consentStatus")
     }
 
 }

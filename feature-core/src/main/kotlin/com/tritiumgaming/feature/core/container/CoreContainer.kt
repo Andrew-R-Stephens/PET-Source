@@ -133,7 +133,6 @@ class CoreContainer(
     dataStore: DataStore<Preferences>,
     firestore: FirebaseFirestore,
     firebaseAuth: FirebaseAuth,
-    analytics: FirebaseAnalytics,
     localDatabase: LocalDatabase
 ) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -270,7 +269,6 @@ class CoreContainer(
         )
 
         PolicyRepositoryImpl(
-            analytics = analytics,
             dataStoreSource = policyDataSource,
             googleMobileAdsConsentManager = googleMobileAdsConsentManager
         )

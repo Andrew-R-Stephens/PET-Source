@@ -67,7 +67,6 @@ class PETActivityViewModel(
 
     /** UIState for the ViewModel. */
     private val _googleAdsPermissionsUiState = MutableStateFlow(PETActivityUiState())
-    private val googleAdsPermissionsUiState = _googleAdsPermissionsUiState.asStateFlow()
 
     private val _petActivityUiState : StateFlow<PETActivityUiState> =
         initFlowGlobalPreferencesUseCase()
@@ -145,7 +144,7 @@ class PETActivityViewModel(
                 _googleAdsPermissionsUiState.update { it.copy(
                     canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
 
-                googleAdsPermissionsUiState.collect { state ->
+                _googleAdsPermissionsUiState.collect { state ->
                     if (state.canRequestAds) {
                         initializeMobileAdsSdk(activity)
                     } else {
@@ -201,8 +200,7 @@ class PETActivityViewModel(
         _googleMobileAdsConsentManager.showPrivacyOptionsForm(activity) { error ->
             if (error != null) {
                 val errorMessage = error.message
-                Log.e("PermissionsViewModel", errorMessage)
-                Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
+                Log.e("PermissionsViewModel", "Consent Form: $errorMessage")
             }
             // Notify listener of consent form dismissal.
             onConsentFormDismissedListener?.onConsentFormDismissed(error)

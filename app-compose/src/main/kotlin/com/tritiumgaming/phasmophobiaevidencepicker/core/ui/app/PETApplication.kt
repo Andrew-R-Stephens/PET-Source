@@ -110,7 +110,6 @@ class PETApplication : Application(),
             dataStore = dataStore,
             firestore = firestore,
             firebaseAuth = firebaseAuth,
-            analytics = analytics,
             localDatabase = localDatabase
         )
 

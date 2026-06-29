@@ -33,6 +33,12 @@ fun LocalThemeProvider(
     val paletteResource = palette.toPaletteResource()
     val typographyResource = typography.toTypographyResource()
 
+    Log.d("ThemeConfigCtrl", "Palette: ${stringResource(paletteResource.extrasFamily.title)}")
+    Log.d("ThemeConfigCtrl", "Typography: ${stringResource(typographyResource.extrasFamily.title)}")
+    Log.d("ThemeConfigCtrl", "UiConfig: [" +
+            "\n\tdensityType: ${uiConfiguration.densityType}" +
+            "\n\tisRtl: ${uiConfiguration.isRtl}\n]")
+
     CompositionLocalProvider(
         LocalPalette provides paletteResource,
         LocalTypography provides typographyResource,
@@ -66,39 +72,6 @@ fun LocalThemeProvider(
         }
 
     }
-}
-
-@Composable
-fun ThemeConfigurationControl(
-    modifier: Modifier = Modifier,
-    palette: PaletteType = PaletteType.CLASSIC,
-    typography: TypographyType = TypographyType.CLASSIC,
-    uiConfiguration: ExtendedUiConfiguration = ExtendedUiConfiguration(),
-    content: @Composable () -> Unit = {}
-) {
-
-    val paletteResource = palette.toPaletteResource()
-    val typographyResource = typography.toTypographyResource()
-
-    Log.d("ThemeConfigCtrl", "Palette: ${stringResource(paletteResource.extrasFamily.title)}")
-    Log.d("ThemeConfigCtrl", "Typography: ${stringResource(typographyResource.extrasFamily.title)}")
-    Log.d("ThemeConfigCtrl", "UiConfig: [" +
-            "\n\tdensityType: ${uiConfiguration.densityType}" +
-            "\n\tisRtl: ${uiConfiguration.isRtl}\n]")
-
-    LocalThemeProvider(
-        palette = palette,
-        typography = typography,
-        uiConfiguration = uiConfiguration
-    ) {
-        Box(
-            modifier = modifier
-        ) {
-            content()
-        }
-
-    }
-
 }
 
 val LocalPalette = staticCompositionLocalOf { ExtendedPalette() }
