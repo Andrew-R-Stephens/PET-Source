@@ -44,8 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.feature.settings.ui.SettingsScreenViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly
@@ -56,7 +55,7 @@ import java.util.Locale
 @Preview
 @TestOnly
 private fun HuntSeekbarPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         Column {
             SeekbarThumb()
 

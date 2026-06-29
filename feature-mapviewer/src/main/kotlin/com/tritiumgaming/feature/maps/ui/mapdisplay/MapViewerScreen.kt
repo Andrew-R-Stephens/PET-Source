@@ -85,9 +85,7 @@ import com.tritiumgaming.core.ui.icon.impl.base.Arrow60RightIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentAlignmentPercentage
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentRow
@@ -115,7 +113,7 @@ private annotation class DevicePreviews
 @DevicePreviews
 @Composable
 private fun MapViewerPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(
             color = LocalPalette.current.surface
         ) {

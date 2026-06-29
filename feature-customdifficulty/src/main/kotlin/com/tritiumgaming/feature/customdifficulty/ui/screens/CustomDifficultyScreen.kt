@@ -74,9 +74,7 @@ import com.tritiumgaming.core.ui.icon.impl.base.MarkCheckIcon
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
@@ -118,7 +116,7 @@ private fun CustomDifficultyPreview() {
         selectedDifficulty = sampleDifficulty,
         hasChanges = true
     )
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(color = LocalPalette.current.surface) {
             CustomDifficultyContent(
                 uiState = uiState,
@@ -1089,7 +1087,7 @@ private fun PortraitContentPreview() {
         selectedDifficulty = sampleDifficulty,
         hasChanges = true
     )
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(color = LocalPalette.current.surface) {
             PortraitContent(
                 uiState = uiState,
@@ -1115,7 +1113,7 @@ private fun LandscapeContentPreview() {
         selectedDifficulty = sampleDifficulty,
         hasChanges = true
     )
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(color = LocalPalette.current.surface) {
             LandscapeContent(
                 uiState = uiState,

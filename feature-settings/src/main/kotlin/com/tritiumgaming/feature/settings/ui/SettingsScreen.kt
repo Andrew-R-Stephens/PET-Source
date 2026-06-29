@@ -49,7 +49,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
@@ -75,7 +75,7 @@ private annotation class DevicePreviews
 @Composable
 @Preview
 private fun GDPRButtonPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(
             color = LocalPalette.current.surface
         ) {
@@ -88,7 +88,7 @@ private fun GDPRButtonPreview() {
 @Composable
 @Preview
 private fun SettingsScreenPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(
             color = LocalPalette.current.surface
         ) {
@@ -780,7 +780,7 @@ fun GDPRButton(
 @Composable
 @Preview
 fun EditButtonPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         GDPRButton()
     }
 }

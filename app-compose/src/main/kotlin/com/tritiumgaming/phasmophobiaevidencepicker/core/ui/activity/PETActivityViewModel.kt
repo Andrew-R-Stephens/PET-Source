@@ -20,8 +20,10 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
@@ -74,11 +76,9 @@ class PETActivityViewModel(
                     allowAnalytics = policy.allowAnalytics,
                     allowPersonalizedAds = policy.allowPersonalizedAds,
                     paletteUiState = PaletteUiState(
-                        uuid = preferences.paletteUuid,
                         palette = getPaletteByUUID(preferences.paletteUuid)
                     ),
                     typographyUiState = TypographyUiState(
-                        uuid = preferences.typographyUuid,
                         typography = getTypographyByUUID(preferences.typographyUuid)
                     ),
                     uiConfiguration = UiConfigurationState(
@@ -94,22 +94,23 @@ class PETActivityViewModel(
             )
     internal val petActivityUiState = _petActivityUiState
 
-    private fun getPaletteByUUID(uuid: String): ExtendedPalette {
+    private fun getPaletteByUUID(uuid: String): PaletteResources.PaletteType {
         return try {
-            getPaletteByUUIDUseCase(uuid).getOrThrow().toPaletteResource()
+            val result = getPaletteByUUIDUseCase(uuid).getOrThrow()
+            result
         } catch (e: Exception) {
             e.printStackTrace()
-            LocalDefaultPalette.toPaletteResource()
+            LocalDefaultPalette
         }
     }
 
-    private fun getTypographyByUUID(uuid: String): ExtendedTypography {
+    private fun getTypographyByUUID(uuid: String): TypographyResources.TypographyType {
         return try {
             val result = getTypographyByUUIDUseCase(uuid).getOrThrow()
-            result.toTypographyResource()
+            result
         } catch (e: Exception) {
             e.printStackTrace()
-            LocalDefaultTypography.toTypographyResource()
+            LocalDefaultTypography
         }
     }
 

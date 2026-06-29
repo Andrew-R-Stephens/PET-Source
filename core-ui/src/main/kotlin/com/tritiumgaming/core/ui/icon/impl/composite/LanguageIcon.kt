@@ -12,8 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import org.jetbrains.annotations.TestOnly
@@ -53,7 +52,7 @@ fun LanguageIcon(
 @TestOnly
 fun LanguageIconPreview() {
 
-    SelectiveTheme {
+    LocalThemeProvider {
         LanguageIcon(
             modifier = Modifier
                 .size(48.dp),

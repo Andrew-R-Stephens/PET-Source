@@ -13,9 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.vector.getMarkCheckFilledVector
 import com.tritiumgaming.core.ui.vector.getMarkCheckVector
@@ -47,7 +45,7 @@ fun MarkCheckCircleIcon(
 @Preview
 @Composable
 private fun Preview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         Column(
             modifier = Modifier
                 .padding(12.dp),

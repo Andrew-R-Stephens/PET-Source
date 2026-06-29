@@ -1,6 +1,5 @@
 package com.tritiumgaming.core.ui.widgets.switch
 
-import android.graphics.Paint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,21 +23,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.StratagemHero
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 
 
 @Composable
 @Preview
 fun Test() {
-    SelectiveTheme(
+    LocalThemeProvider(
         palette = PaletteResources.PaletteType.STRATAGEM_HERO
     ) {
         Column(

@@ -1,5 +1,6 @@
 package com.tritiumgaming.core.ui.widgets.admob
 
+import android.os.Bundle
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,11 +21,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.LifecycleResumeEffect
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.tritiumgaming.core.resources.R
 
+
+val LocalAdConsent = staticCompositionLocalOf { AdConsent() }
+
+data class AdConsent(
+    val allowPersonalizedAds: Boolean = true,
+    val allowAnalytics: Boolean = true
+)
 
 @Composable
 fun AdmobBanner(
@@ -96,7 +106,8 @@ fun BannerAd(
     }
 
     // 3. Live production flow
-    val adView = remember {
+    val adConsent = LocalAdConsent.current
+    val adView = remember(adConsent) {
         AdView(localContext).apply {
             adUnitId = adId
 
@@ -106,7 +117,14 @@ fun BannerAd(
             val adWidth = (adWidthPixels / density).toInt()
 
             setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
-            loadAd(AdRequest.Builder().build())
+            val adRequest = AdRequest.Builder().apply {
+                if (!adConsent.allowPersonalizedAds) {
+                    addNetworkExtrasBundle(AdMobAdapter::class.java, Bundle().apply {
+                        putString("npa", "1")
+                    })
+                }
+            }.build()
+            loadAd(adRequest)
         }
     }
 

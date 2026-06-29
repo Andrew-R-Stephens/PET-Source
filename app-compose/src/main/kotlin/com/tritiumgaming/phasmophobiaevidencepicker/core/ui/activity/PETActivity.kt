@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -28,6 +29,8 @@ import com.tritiumgaming.core.common.settings.updatemanager.AppUpdateManagerServ
 import com.tritiumgaming.core.ui.theme.ExtendedUiConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.ThemeConfigurationControl
+import com.tritiumgaming.core.ui.widgets.admob.AdConsent
+import com.tritiumgaming.core.ui.widgets.admob.LocalAdConsent
 import com.tritiumgaming.phasmophobiaevidencepicker.core.navigation.RootNavigation
 
 class PETActivity : AppCompatActivity(),
@@ -78,6 +81,8 @@ class PETActivity : AppCompatActivity(),
             val palette = state.paletteUiState.palette
             val typography =  state.typographyUiState.typography
             val uiConfigurations = state.uiConfiguration
+            val allowPersonalizedAds = state.allowPersonalizedAds
+            val allowAnalytics = state.allowAnalytics
 
             LocalActivity.current?.let { activity ->
                 setScreenSaverFlag(
@@ -94,17 +99,24 @@ class PETActivity : AppCompatActivity(),
                     isRtl = uiConfigurations.isRtl,
                 )
             ) {
-                Scaffold {
-                    Box(
-                        modifier = Modifier
-                            .background(LocalPalette.current.surface)
-                            .padding(it)
-                    ) {
-                        RootNavigation(
-                            windowInsets = WindowInsets(
-                                bottom = it.calculateBottomPadding(),
+                CompositionLocalProvider(
+                    LocalAdConsent provides AdConsent(
+                        allowPersonalizedAds = allowPersonalizedAds,
+                        allowAnalytics = allowAnalytics
+                    )
+                ) {
+                    Scaffold {
+                        Box(
+                            modifier = Modifier
+                                .background(LocalPalette.current.surface)
+                                .padding(it)
+                        ) {
+                            RootNavigation(
+                                windowInsets = WindowInsets(
+                                    bottom = it.calculateBottomPadding(),
+                                )
                             )
-                        )
+                        }
                     }
                 }
             }

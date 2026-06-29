@@ -61,9 +61,7 @@ import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
@@ -86,7 +84,7 @@ private annotation class DevicePreviews
 @Composable
 @Preview
 private fun InfoScreenPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(
             color = LocalPalette.current.surface
         ) {
@@ -107,7 +105,7 @@ fun InfoScreen(
     navController: NavController = rememberNavController(),
     viewModel: AppInfoViewModel
 ) {
-    SelectiveTheme {
+    LocalThemeProvider {
         InfoContent(
             contributors = viewModel.contributorsList,
             onNavigateBack = { navController.popBackStack() }
@@ -702,7 +700,7 @@ private fun VisitDiscordButton(
 @Preview
 private fun VisitDiscordButtonPreview() {
 
-    SelectiveTheme {
+    LocalThemeProvider {
         VisitDiscordButton()
     }
 

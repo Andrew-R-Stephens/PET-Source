@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.modifier.offsetPercent
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 @Composable
@@ -123,7 +123,7 @@ fun TruckTimeIcon(
 @Composable
 @Preview
 fun TestTruckTimeIcon() {
-    SelectiveTheme {
+    LocalThemeProvider {
         TruckTimeIcon(
             modifier = Modifier
                 .size(128.dp),

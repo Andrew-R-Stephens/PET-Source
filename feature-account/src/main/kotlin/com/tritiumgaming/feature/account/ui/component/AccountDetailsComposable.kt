@@ -26,16 +26,14 @@ import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
 
 @Composable
 @Preview
 private fun AccountBannerExpandedPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         AccountBannerExpanded()
     }
 }
@@ -43,7 +41,7 @@ private fun AccountBannerExpandedPreview() {
 @Composable
 @Preview
 private fun AccountBannerCompositePreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         AccountBannerComposite()
     }
 }
@@ -51,7 +49,7 @@ private fun AccountBannerCompositePreview() {
 @Composable
 @Preview
 private fun AccountBannerIconPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         AccountBannerIcon(
             modifier = Modifier,
             name = "A S",

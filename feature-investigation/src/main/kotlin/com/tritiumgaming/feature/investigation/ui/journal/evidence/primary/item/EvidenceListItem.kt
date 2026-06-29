@@ -43,7 +43,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
@@ -251,7 +251,7 @@ private fun RulingIcon(
 @Composable
 private fun RulingIconPreview() {
 
-    SelectiveTheme {
+    LocalThemeProvider {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -295,7 +295,7 @@ private fun EvidenceItemPreview() {
         verticalArrangement = Arrangement.Top
     ) {
         palettes.forEach {
-            SelectiveTheme(
+            LocalThemeProvider(
                 palette = it
             ) {
                 Surface(

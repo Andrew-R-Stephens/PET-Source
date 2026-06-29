@@ -51,7 +51,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
@@ -180,7 +180,7 @@ private fun InvestigationScreenPreview(
     @PreviewParameter(ToolbarCategoryProvider::class)
     category: OperationToolbarUiState.Category
 ) {
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(
             color = LocalPalette.current.surface
         ) {

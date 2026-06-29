@@ -53,11 +53,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.google.android.gms.ads.MobileAds
-import com.google.android.ump.ConsentInformation
-import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.Firebase
-import com.google.firebase.analytics.FirebaseAnalytics.ConsentStatus
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
@@ -79,9 +75,7 @@ import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
@@ -107,7 +101,7 @@ private annotation class DevicePreviews
 @Composable
 @Preview
 private fun StartScreenPreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         Surface(
             color = LocalPalette.current.surface
         ) {
