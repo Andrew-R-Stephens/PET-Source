@@ -41,7 +41,7 @@ import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIconComposit
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.white_M100
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
@@ -239,7 +239,7 @@ private fun BundleIncludedThemeImage(
 @Composable
 @Preview
 private fun PreviewBundleCard() {
-    SelectiveTheme {
+    LocalThemeProvider {
         PaletteBundleCard(
             modifier = Modifier,
             uuid = "4324132",
@@ -286,7 +286,7 @@ private fun PreviewBundleCard() {
 @Composable
 @Preview
 private fun BundleIncludedItemImagePreview() {
-    SelectiveTheme {
+    LocalThemeProvider {
         BundleIncludedThemeImage(
             modifier = Modifier
                 .size(48.dp),

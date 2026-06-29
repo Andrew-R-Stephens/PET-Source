@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 
 @Composable
 fun NavigationHeaderComposable(
@@ -136,7 +136,7 @@ fun RowScope.NavigationHeaderSideButton(
 @Composable
 @Preview
 fun TestNavHeader() {
-    SelectiveTheme {
+    LocalThemeProvider {
         NavigationHeaderComposable(
             modifier = Modifier
                 .fillMaxWidth()

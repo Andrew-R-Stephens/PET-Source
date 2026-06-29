@@ -24,7 +24,7 @@ import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.Pal
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 
 @Composable
-fun SelectiveTheme(
+fun LocalThemeProvider(
     palette: PaletteType = PaletteType.CLASSIC,
     typography: TypographyType = TypographyType.CLASSIC,
     uiConfiguration: ExtendedUiConfiguration = ExtendedUiConfiguration(),
@@ -33,26 +33,9 @@ fun SelectiveTheme(
     val paletteResource = palette.toPaletteResource()
     val typographyResource = typography.toTypographyResource()
 
-    SelectiveTheme(
-        palette = paletteResource,
-        typography = typographyResource,
-        uiConfiguration = uiConfiguration,
-        content = content
-    )
-
-}
-
-@Composable
-private fun SelectiveTheme(
-    palette: ExtendedPalette = ClassicPalette,
-    typography: ExtendedTypography = ClassicTypography,
-    uiConfiguration: ExtendedUiConfiguration = ExtendedUiConfiguration(),
-    content: @Composable () -> Unit = {}
-) {
-
     CompositionLocalProvider(
-        LocalPalette provides palette,
-        LocalTypography provides typography,
+        LocalPalette provides paletteResource,
+        LocalTypography provides typographyResource,
         LocalUiConfiguration provides uiConfiguration
     ) {
 
@@ -70,8 +53,8 @@ private fun SelectiveTheme(
 
             val context = view.context as ComponentActivity
 
-            val surfaceColor = palette.surface.toArgb()
-            val colors = if (palette.extrasFamily.isLightMode) {
+            val surfaceColor = paletteResource.surface.toArgb()
+            val colors = if (paletteResource.extrasFamily.isLightMode) {
                 SystemBarStyle.light(surfaceColor, surfaceColor)
             } else { SystemBarStyle.dark(surfaceColor) }
 
@@ -83,36 +66,6 @@ private fun SelectiveTheme(
         }
 
     }
-}
-
-@Composable
-fun ThemeConfigurationControl(
-    modifier: Modifier = Modifier,
-    palette: ExtendedPalette = LocalPalette.current,
-    typography: ExtendedTypography = LocalTypography.current,
-    uiConfiguration: ExtendedUiConfiguration = ExtendedUiConfiguration(),
-    content: @Composable () -> Unit = {}
-) {
-
-    Log.d("ThemeConfigCtrl", "Palette: ${stringResource(palette.extrasFamily.title)}")
-    Log.d("ThemeConfigCtrl", "Typography: ${stringResource(typography.extrasFamily.title)}")
-    Log.d("ThemeConfigCtrl", "UiConfig: [" +
-            "\n\tdensityType: ${uiConfiguration.densityType}" +
-            "\n\tisRtl: ${uiConfiguration.isRtl}\n]")
-
-    SelectiveTheme(
-        palette = palette,
-        typography = typography,
-        uiConfiguration = uiConfiguration
-    ) {
-        Box(
-            modifier = modifier
-        ) {
-            content()
-        }
-
-    }
-
 }
 
 @Composable
@@ -133,7 +86,7 @@ fun ThemeConfigurationControl(
             "\n\tdensityType: ${uiConfiguration.densityType}" +
             "\n\tisRtl: ${uiConfiguration.isRtl}\n]")
 
-    SelectiveTheme(
+    LocalThemeProvider(
         palette = palette,
         typography = typography,
         uiConfiguration = uiConfiguration

@@ -33,7 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.common.util.datastructs.CircularQueueLinkedList
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLine
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiState
@@ -308,7 +308,7 @@ private fun calcInterval(
 @Preview
 private fun Preview() {
 
-    SelectiveTheme {
+    LocalThemeProvider {
         Column (
             modifier = Modifier
                 .fillMaxWidth()
