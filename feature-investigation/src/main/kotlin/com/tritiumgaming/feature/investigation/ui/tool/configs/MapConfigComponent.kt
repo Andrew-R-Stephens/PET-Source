@@ -7,8 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
@@ -25,14 +27,20 @@ internal fun MapConfigControl(
     val textStyle = LocalTypography.current.quaternary.regular
 
     val icon: @Composable (Modifier) -> Unit = { modifier ->
-        Image(
-            modifier = modifier,
-            contentScale = ContentScale.Inside,
-            alignment = Alignment.Center,
-            painter = painterResource(R.drawable.icon_nav_mapmenu2),
-            colorFilter = ColorFilter.tint(colors.onColor),
-            contentDescription = ""
-        )
+
+        CommonTooltip(
+            modifier = Modifier,
+            tooltipText = stringResource(R.string.map_setting_label_modifier)
+        ) {
+            Image(
+                modifier = modifier,
+                contentScale = ContentScale.Inside,
+                alignment = Alignment.Center,
+                painter = painterResource(R.drawable.icon_nav_mapmenu2),
+                colorFilter = ColorFilter.tint(colors.onColor),
+                contentDescription = ""
+            )
+        }
     }
 
     OperationConfigDropdown(

@@ -238,31 +238,37 @@ internal fun ToolsTimerComponent(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Button(
-                modifier = Modifier
-                    .size(32.dp),
-                onClick = onToggleCursed,
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor =
-                        if(isCursedInvestigation) LocalPalette.current.primaryContainer
-                        else LocalPalette.current.surfaceContainer,
-                ),
-                elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = if(isCursedInvestigation) 4.dp else 0.dp
-                ),
-                contentPadding = PaddingValues(8.dp),
-                border = if(!isCursedInvestigation)
-                    BorderStroke(1.dp, LocalPalette.current.surfaceContainerHigh)
-                else null
+
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(R.string.tool_timer_label_toggle_cursed)
             ) {
-                Icon(
-                    modifier = Modifier,
-                    painter = painterResource(R.drawable.ic_map_cp_ouija),
-                    tint = if(isCursedInvestigation) LocalPalette.current.onPrimaryContainer
+                Button(
+                    modifier = Modifier
+                        .size(32.dp),
+                    onClick = onToggleCursed,
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor =
+                            if (isCursedInvestigation) LocalPalette.current.primaryContainer
+                            else LocalPalette.current.surfaceContainer,
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = if (isCursedInvestigation) 4.dp else 0.dp
+                    ),
+                    contentPadding = PaddingValues(8.dp),
+                    border = if (!isCursedInvestigation)
+                        BorderStroke(1.dp, LocalPalette.current.surfaceContainerHigh)
+                    else null
+                ) {
+                    Icon(
+                        modifier = Modifier,
+                        painter = painterResource(R.drawable.ic_map_cp_ouija),
+                        tint = if (isCursedInvestigation) LocalPalette.current.onPrimaryContainer
                         else LocalPalette.current.onSurface,
-                    contentDescription = ""
-                )
+                        contentDescription = ""
+                    )
+                }
             }
         }
 

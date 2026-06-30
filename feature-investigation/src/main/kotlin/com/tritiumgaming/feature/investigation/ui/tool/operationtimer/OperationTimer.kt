@@ -19,9 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
@@ -49,19 +51,29 @@ internal fun OperationTimerColumn(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            DigitalTimer(
-                modifier = Modifier
-                    .height(36.dp)
-                    .padding(8.dp),
-                remainingTime = remainingTime,
-            )
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(R.string.investigation_timer_label)
+            ) {
+                DigitalTimer(
+                    modifier = Modifier
+                        .height(36.dp)
+                        .padding(8.dp),
+                    remainingTime = remainingTime,
+                )
+            }
         }
 
-        PhaseComponent(
-            Modifier
-                .fillMaxWidth(),
-            state = phaseUiState
-        )
+        CommonTooltip(
+            modifier = Modifier,
+            tooltipText = stringResource(R.string.investigation_label_phase)
+        ) {
+            PhaseComponent(
+                Modifier
+                    .fillMaxWidth(),
+                state = phaseUiState
+            )
+        }
 
         Row (
             modifier = Modifier,
@@ -74,36 +86,51 @@ internal fun OperationTimerColumn(
                 paused = paused,
                 onToggle = onToggle,
                 primaryContent = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_play),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
+                    CommonTooltip(
+                        modifier = Modifier,
+                        tooltipText = stringResource(R.string.investigation_label_timer_run)
+                    ) {
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_play),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
                 },
                 alternateContent = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_pause),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
+                    CommonTooltip(
+                        modifier = Modifier,
+                        tooltipText = stringResource(R.string.investigation_label_timer_pause)
+                    ) {
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_pause),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
                 }
             )
 
-            TimerSkipButton(
-                modifier = Modifier
-                    .size(48.dp),
-                onSkip = onSkip,
-                content = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_skip),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
-                },
-            )
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(R.string.investigation_label_timer_skip)
+            ) {
+                TimerSkipButton(
+                    modifier = Modifier
+                        .size(48.dp),
+                    onSkip = onSkip,
+                    content = { modifier ->
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_skip),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    },
+                )
+            }
         }
     }
 }
@@ -131,17 +158,27 @@ internal fun OperationTimerRow(
             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            DigitalTimer(
-                modifier = Modifier
-                    .height(36.dp),
-                remainingTime = remainingTime,
-            )
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(R.string.investigation_timer_label)
+            ) {
+                DigitalTimer(
+                    modifier = Modifier
+                        .height(36.dp),
+                    remainingTime = remainingTime,
+                )
+            }
 
-            PhaseComponent(
-                Modifier
-                    .fillMaxWidth(),
-                state = phaseUiState
-            )
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(R.string.investigation_label_phase)
+            ) {
+                PhaseComponent(
+                    Modifier
+                        .fillMaxWidth(),
+                    state = phaseUiState
+                )
+            }
         }
 
         Row (
@@ -156,36 +193,52 @@ internal fun OperationTimerRow(
                 paused = paused,
                 onToggle = onToggle,
                 primaryContent = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_play),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
+                    CommonTooltip(
+                        modifier = Modifier,
+                        tooltipText = stringResource(R.string.investigation_label_timer_run)
+                    ) {
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_play),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
                 },
                 alternateContent = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_pause),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
+
+                    CommonTooltip(
+                        modifier = Modifier,
+                        tooltipText = stringResource(R.string.investigation_label_timer_pause)
+                    ) {
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_pause),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
                 }
             )
 
-            TimerSkipButton(
-                modifier = Modifier
-                    .size(48.dp),
-                onSkip = onSkip,
-                content = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_skip),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
-                },
-            )
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(R.string.investigation_label_timer_skip)
+            ) {
+                TimerSkipButton(
+                    modifier = Modifier
+                        .size(48.dp),
+                    onSkip = onSkip,
+                    content = { modifier ->
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_skip),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    },
+                )
+            }
         }
 
     }

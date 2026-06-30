@@ -38,13 +38,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 
 @Composable
@@ -62,24 +65,29 @@ internal fun SanityMeterComponent(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        SanityMeter(
-            modifier = Modifier
-                .size(32.dp)
-                .aspectRatio(1f)
-                .then(
-                    if (onHeadClick != null) {
-                        Modifier.clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) { onHeadClick() }
-                    } else Modifier
-                )
-                .padding(4.dp),
-            sanityLevel = sanityLevel,
-            showText = false,
-            showProgress = false
-        )
 
+        CommonTooltip(
+            modifier = Modifier,
+            tooltipText = stringResource(R.string.investigation_sanitymeter_title)
+        ) {
+            SanityMeter(
+                modifier = Modifier
+                    .size(32.dp)
+                    .aspectRatio(1f)
+                    .then(
+                        if (onHeadClick != null) {
+                            Modifier.clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) { onHeadClick() }
+                        } else Modifier
+                    )
+                    .padding(4.dp),
+                sanityLevel = sanityLevel,
+                showText = false,
+                showProgress = false
+            )
+        }
 
         Text(
             modifier = Modifier

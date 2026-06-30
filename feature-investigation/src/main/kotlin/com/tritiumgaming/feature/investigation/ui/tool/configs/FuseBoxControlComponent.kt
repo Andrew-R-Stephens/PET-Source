@@ -8,9 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 
 @Composable
@@ -44,19 +46,24 @@ internal fun FuseBoxButton(
 
     }
 
-    Surface(
-        onClick = { onTogglePower() },
-        modifier = modifier,
-        shape = RoundedCornerShape(8.dp),
-        color = LocalPalette.current.surfaceContainer,
-        contentColor = theme.foreground
+    CommonTooltip(
+        modifier = Modifier,
+        tooltipText = stringResource(R.string.general_label_power)
     ) {
-        Icon(
-            modifier = Modifier
-                .padding(12.dp),
-            painter = painterResource(theme.icon),
-            contentDescription = "Toggle Power"
-        )
+        Surface(
+            onClick = { onTogglePower() },
+            modifier = modifier,
+            shape = RoundedCornerShape(8.dp),
+            color = LocalPalette.current.surfaceContainer,
+            contentColor = theme.foreground
+        ) {
+            Icon(
+                modifier = Modifier
+                    .padding(12.dp),
+                painter = painterResource(theme.icon),
+                contentDescription = "Toggle Power"
+            )
+        }
     }
 }
 

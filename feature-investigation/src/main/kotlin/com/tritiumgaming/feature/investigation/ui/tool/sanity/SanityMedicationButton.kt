@@ -13,10 +13,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.SanityMedicationIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 
 
 @Composable
@@ -36,22 +39,28 @@ internal fun SanityMedicationButton(
         color = if(isPressed) { fillColor } else { strokeColor }
     }
 
-    Button(
-        modifier = modifier,
-        interactionSource = interactionSource,
-        shape = CircleShape,
-        colors = ButtonDefaults.buttonColors().copy(
-            containerColor = Color.Transparent
-        ),
-        onClick = { onClick() },
-        contentPadding = PaddingValues(8.dp)
+
+    CommonTooltip(
+        modifier = Modifier,
+        tooltipText = stringResource(R.string.equipment_info_name_sanitymedication)
     ) {
-        SanityMedicationIcon(
-            modifier = Modifier,
-            colors = IconVectorColors.defaults().copy(
-                fillColor = color,
-                strokeColor = color
+        Button(
+            modifier = modifier,
+            interactionSource = interactionSource,
+            shape = CircleShape,
+            colors = ButtonDefaults.buttonColors().copy(
+                containerColor = Color.Transparent
+            ),
+            onClick = { onClick() },
+            contentPadding = PaddingValues(8.dp)
+        ) {
+            SanityMedicationIcon(
+                modifier = Modifier,
+                colors = IconVectorColors.defaults().copy(
+                    fillColor = color,
+                    strokeColor = color
+                )
             )
-        )
+        }
     }
 }

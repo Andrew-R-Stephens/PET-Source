@@ -95,6 +95,7 @@
     <string name="investigation_phase_label_hunt">Hunt</string>
     <string name="investigation_sanity_huntwarn">Hunt Warn</string>
     <string name="investigation_sanitymeter_title">Max Sanity</string>
+    <string name="investigation_sanity_player_death" translatable="false">Player Killed</string>
     <string name="investigation_section_title_ghosts">Ghosts</string>
     <string name="investigation_section_title_evidence">Evidence</string>
     <string name="investigation_section_title_active_ghosts">Ghosts Active</string>
@@ -106,6 +107,10 @@
     <string name="investigation_label_tool_operation_details">Operation Details</string>
     <string name="investigation_label_tool_secondary_evidence">Secondary Evidence</string>
     <string name="investigation_label_tool_timers">Timers</string>
+    <string name="investigation_label_timer_run" translatable="false">Run Timer</string>
+    <string name="investigation_label_timer_pause" translatable="false">Pause Timer</string>
+    <string name="investigation_label_timer_skip" translatable="false">Skip Timer</string>
+    <string name="investigation_label_timer_reset" translatable="false">Reset Timer</string>
     <string name="investigation_label_tool_footstep">Footstep Tool</string>
 
     <string name="footstep_label_apply">Apply BPM</string>
@@ -124,6 +129,7 @@
     <string name="tool_timer_label_linked" translatable="false">Linked</string>
     <string name="tool_timer_label_unlinked" translatable="false">Unlinked</string>
     <string name="tool_timer_label_standard">Standard</string>
+    <string name="tool_timer_label_toggle_cursed" translatable="false">Toggle Cursed Operation Status</string>
     <string name="tool_timer_label_cursed">Is Cursed Operation</string>
 
     <!--

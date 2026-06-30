@@ -8,8 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 
@@ -27,14 +30,19 @@ internal fun WeatherConfigComponent(
     val onColor = LocalPalette.current.onSurface
 
     val icon: @Composable (Modifier) -> Unit = { modifier ->
-        Image(
-            modifier = modifier,
-            contentScale = ContentScale.Inside,
-            alignment = Alignment.Center,
-            painter = painterResource(icon),
-            colorFilter = ColorFilter.tint(onColor),
-            contentDescription = ""
-        )
+        CommonTooltip(
+            modifier = Modifier,
+            tooltipText = stringResource(R.string.difficulty_setting_title_weather)
+        ) {
+            Image(
+                modifier = modifier,
+                contentScale = ContentScale.Inside,
+                alignment = Alignment.Center,
+                painter = painterResource(icon),
+                colorFilter = ColorFilter.tint(onColor),
+                contentDescription = ""
+            )
+        }
     }
 
     OperationConfigDropdown(
