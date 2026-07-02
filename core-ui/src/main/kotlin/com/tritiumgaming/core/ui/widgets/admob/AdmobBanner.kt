@@ -29,49 +29,6 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.widgets.admob.provider.LocalAdConsent
 
 @Composable
-fun AdmobBanner(
-    modifier: Modifier = Modifier
-) {
-    val adID = stringResource(R.string.ad_banner_1)
-
-    AndroidView(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(50.dp),
-        factory = { context ->
-            AdView(context).apply {
-                setAdSize(AdSize.BANNER)
-                adUnitId = adID
-                loadAd(AdRequest.Builder().build())
-            }
-        }
-    )
-}
-
-@Composable
-fun AdmobBanner2(
-    modifier: Modifier = Modifier
-) {
-    val adID = stringResource(R.string.ad_banner_1)
-
-    AndroidView(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(50.dp),
-        factory = { context ->
-            AdView(context).apply {
-                setAdSize(AdSize.BANNER)
-                adUnitId = adID
-                loadAd(AdRequest.Builder().build())
-            }
-        }
-    )
-
-    //BannerAd()
-
-}
-
-@Composable
 fun BannerAd(
     modifier: Modifier = Modifier,
     adId: String
@@ -138,60 +95,4 @@ fun BannerAd(
         factory = { adView },
         onRelease = { it.destroy() }
     )
-}
-
-@Composable
-fun BannerAd2(
-    modifier: Modifier = Modifier,
-    adId: String
-) {
-    val localContext = LocalContext.current
-
-    // Ad load does not work in preview mode because it requires a network connection.
-    if (LocalInspectionMode.current) {
-        Box {
-            Text(
-                modifier = Modifier
-                    .align(Alignment.Center),
-                text = "Google Mobile Ads preview banner."
-            )
-        }
-    }
-
-    val adView = AdView(localContext).apply {
-        //setAdSize(AdSize.BANNER)
-        adUnitId = adId
-
-        // 2. Calculate Adaptive Size
-        val displayMetrics = context.resources.displayMetrics
-        val adWidthPixels = displayMetrics.widthPixels.toFloat()
-        val density = displayMetrics.density
-        val adWidth = (adWidthPixels / density).toInt()
-
-        //setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
-        setAdSize(AdSize.getLargeAnchoredAdaptiveBannerAdSize(context, adWidth))
-        loadAd(AdRequest.Builder().build())
-
-        /*val adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width)
-        setAdSize(adSize)
-        adUnitId = adId
-        loadAd(AdRequest.Builder().build())*/
-    }
-
-    val rememberAdView = remember { adView }
-    Log.d("TAG", "BannerAd Loaded: $rememberAdView")
-
-    // Pause and resume the AdView when the lifecycle is paused and resumed.
-    LifecycleResumeEffect(rememberAdView) {
-        rememberAdView.resume()
-        onPauseOrDispose { rememberAdView.pause() }
-    }
-
-    AndroidView(
-        modifier = modifier
-            .wrapContentSize(),
-        factory = { rememberAdView },
-        onRelease = { it.destroy() }
-    )
-
 }
