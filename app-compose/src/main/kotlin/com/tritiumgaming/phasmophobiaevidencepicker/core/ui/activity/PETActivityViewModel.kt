@@ -14,6 +14,7 @@ import com.google.android.gms.ads.OnAdInspectorClosedListener
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.ump.ConsentForm
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
+import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager.Companion.TEST_DEVICE_HASHED_IDS
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
@@ -50,14 +51,6 @@ class PETActivityViewModel(
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase
 ): ViewModel() {
-
-    val TEST_DEVICE_HASHED_IDS = listOf (
-        "00E2BE3BE3FB3298734CA8B92655E237",
-        "B3C272DE5AEAB81CA9CBBCB2A928A38E",
-        "35C63C64AD5C412021F7831FF07C5411",
-        "4980A1A8D6C7BD9E599217DE73CD36EB",
-        "27146712BE687C3CD0661E581B0631A4"
-    )
 
     private lateinit var _googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
 
@@ -139,19 +132,21 @@ class PETActivityViewModel(
                         Log.d("PETActivityViewModel", "${error.errorCode}: ${error.message}")
                     }
                     _googleAdsPermissionsUiState.update { it.copy(
-                        canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
-                }
+                        canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
+                        isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired
+                    ) }
 
-                _googleAdsPermissionsUiState.update { it.copy(
-                    canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
-
-                _googleAdsPermissionsUiState.collect { state ->
-                    if (state.canRequestAds) {
-                        initializeMobileAdsSdk(activity)
-                    } else {
-                        showPrivacyOptionsForm(activity) {}
+                    viewModelScope.launch {
+                        if (!_googleMobileAdsConsentManager.canRequestAds) {
+                            showPrivacyOptionsForm(activity) {
+                                viewModelScope.launch {
+                                    initializeMobileAdsSdk(activity)
+                                }
+                            }
+                        } else {
+                            initializeMobileAdsSdk(activity)
+                        }
                     }
-
                 }
             }
         }

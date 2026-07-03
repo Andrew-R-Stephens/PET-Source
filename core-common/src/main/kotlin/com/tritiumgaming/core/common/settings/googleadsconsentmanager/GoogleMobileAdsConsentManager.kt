@@ -18,14 +18,6 @@ class GoogleMobileAdsConsentManager(
     context: Context
 ) {
 
-    val TEST_DEVICE_HASHED_IDS = listOf (
-        "00E2BE3BE3FB3298734CA8B92655E237",
-        "B3C272DE5AEAB81CA9CBBCB2A928A38E",
-        "35C63C64AD5C412021F7831FF07C5411",
-        "4980A1A8D6C7BD9E599217DE73CD36EB",
-        "27146712BE687C3CD0661E581B0631A4"
-    )
-
     private val consentInformation: ConsentInformation =
         UserMessagingPlatform.getConsentInformation(context)
 
@@ -55,7 +47,7 @@ class GoogleMobileAdsConsentManager(
         val debugSettings = ConsentDebugSettings.Builder(activity)
         val debugBuilder = debugSettings.apply {
             //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-            //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE)
+            setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE)
             //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
             TEST_DEVICE_HASHED_IDS.forEach { addTestDeviceHashedId(it) }
         }.build()
@@ -93,5 +85,13 @@ class GoogleMobileAdsConsentManager(
                 ?: synchronized(this) {
                     instance ?: GoogleMobileAdsConsentManager(context).also { instance = it }
                 }
+
+        val TEST_DEVICE_HASHED_IDS = listOf (
+            "00E2BE3BE3FB3298734CA8B92655E237",
+            "B3C272DE5AEAB81CA9CBBCB2A928A38E",
+            "35C63C64AD5C412021F7831FF07C5411",
+            "4980A1A8D6C7BD9E599217DE73CD36EB",
+            "27146712BE687C3CD0661E581B0631A4"
+        )
     }
 }
