@@ -451,9 +451,7 @@ private fun SettingsContent(
         huntWarningTimeoutPreferenceComponent,
         palettePreferenceComponent,
         typographyPreferenceComponent,
-        privacyPreferenceComponent,
-        // TODO analyticsPreferenceComponent,
-        // TODO personalizedAdsPreferenceComponent
+        privacyPreferenceComponent
     )
 }
 
