@@ -1,5 +1,6 @@
 package com.tritiumgaming.core.ui.widgets.admob
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.compose.foundation.background
@@ -56,11 +57,19 @@ fun BannerAd(
     }
 
     // 3. Live production flow
+    AdBanner(modifier = modifier, localContext = localContext, adId = adId)
+}
+
+@Composable
+private fun AdBanner(
+    modifier: Modifier,
+    localContext: Context,
+    adId: String
+) {
     val adConsent = LocalAdConsent.current
     val adView = remember(adConsent) {
         AdView(localContext).apply {
             adUnitId = adId
-
             val displayMetrics = context.resources.displayMetrics
             val adWidthPixels = displayMetrics.widthPixels.toFloat()
             val density = displayMetrics.density
@@ -68,17 +77,14 @@ fun BannerAd(
 
             setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
             val adRequest = AdRequest.Builder().apply {
-                val npaValue = if (!adConsent.allowPersonalizedAds) "1" else "0"
                 addNetworkExtrasBundle(AdMobAdapter::class.java, Bundle().apply {
-                    putString("npa", npaValue)
+                    val isOptOut = adConsent.allowPersonalizedAds
+
+                    putString("npa", if (!isOptOut) "0" else "1")
+                    putInt("rdp", if (!isOptOut) 0 else 1)
                 })
-                /*if (!adConsent.allowPersonalizedAds) {
-                    addNetworkExtrasBundle(AdMobAdapter::class.java, Bundle().apply {
-                        putString("npa", "1")
-                    })
-                }*/
             }.build()
-            
+
             loadAd(adRequest)
         }
     }

@@ -73,7 +73,8 @@ class PETActivityViewModel(
             .combine(initFlowPolicyUseCase()) { preferences, policy ->
                 preferences to policy
             }
-            .combine(_googleAdsPermissionsUiState) { (preferences, policy), googleAdsPermissionsUiState ->
+            .combine(_googleAdsPermissionsUiState) {
+                (preferences, policy), googleAdsPermissionsUiState ->
                 PETActivityUiState(
                     isMobileAdsInitialized = googleAdsPermissionsUiState.isMobileAdsInitialized,
                     canRequestAds = googleAdsPermissionsUiState.canRequestAds,
