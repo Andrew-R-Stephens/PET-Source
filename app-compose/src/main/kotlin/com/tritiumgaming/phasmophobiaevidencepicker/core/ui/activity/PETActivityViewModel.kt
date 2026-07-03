@@ -13,6 +13,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.OnAdInspectorClosedListener
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.ump.ConsentForm
+import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleAdsConsentState
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager.Companion.TEST_DEVICE_HASHED_IDS
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
@@ -54,12 +55,8 @@ class PETActivityViewModel(
 
     private lateinit var _googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
 
-    /** Initialization state for the ViewModel. */
-    private var _isGoogleAdsConsentManagerInitialized: Boolean = false
-    private var _isMobileAdsInitializeCalled = AtomicBoolean(false)
-
     /** UIState for the ViewModel. */
-    private val _googleAdsPermissionsUiState = MutableStateFlow(PETActivityUiState())
+    private val _googleAdsPermissionsUiState = MutableStateFlow(GoogleAdsConsentState())
 
     private val _petActivityUiState : StateFlow<PETActivityUiState> =
         initFlowGlobalPreferencesUseCase()
@@ -117,12 +114,12 @@ class PETActivityViewModel(
 
     /** GDPR consent manager */
     fun initMobileAdsConsentManager(activity: Activity) {
-        if(_isGoogleAdsConsentManagerInitialized) return
+        if(_googleMobileAdsConsentManager.isGoogleAdsConsentManagerInitialized) return
 
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
 
-                _isGoogleAdsConsentManagerInitialized = true
+                _googleMobileAdsConsentManager.isGoogleAdsConsentManagerInitialized = true
                 _googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(activity)
 
                 /* Initializes the consent manager and calls the UMP SDK methods to request
@@ -157,7 +154,7 @@ class PETActivityViewModel(
     private suspend fun initializeMobileAdsSdk(context: Context) {
 
         // Ensure that MobileAdsInitialize is called only once.
-        if (_isMobileAdsInitializeCalled.getAndSet(true)) {
+        if (_googleMobileAdsConsentManager.isMobileAdsInitializeCalled.getAndSet(true)) {
             return
         }
 
@@ -171,7 +168,7 @@ class PETActivityViewModel(
             MobileAds.initialize(context) { _googleAdsPermissionsUiState.update {
                 it.copy(isMobileAdsInitialized = true) } }
 
-            Log.d("PermissionsViewModel", "Mobile Ads SDK initialized.")
+            Log.d("PETActivityViewModel", "Mobile Ads SDK initialized.")
         }
     }
 
@@ -180,8 +177,7 @@ class PETActivityViewModel(
         MobileAds.openAdInspector(context) { error ->
             if (error != null) {
                 val errorMessage = error.message
-                Log.e("PermissionsViewModel", errorMessage)
-                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                Log.e("PETActivityViewModel", errorMessage)
             }
             // Notify listener of ad inspector closed.
             listener?.onAdInspectorClosed(error)
@@ -196,7 +192,7 @@ class PETActivityViewModel(
         _googleMobileAdsConsentManager.showPrivacyOptionsForm(activity) { error ->
             if (error != null) {
                 val errorMessage = error.message
-                Log.e("PermissionsViewModel", "Consent Form: $errorMessage")
+                Log.e("PETActivityViewModel", "Consent Form: $errorMessage")
             }
             // Notify listener of consent form dismissal.
             onConsentFormDismissedListener?.onConsentFormDismissed(error)
@@ -212,7 +208,7 @@ class PETActivityViewModel(
         _googleMobileAdsConsentManager.gatherConsent(activity) { error ->
             // Update UIState and notify listener of updated consent status.
             _googleAdsPermissionsUiState.update {
-                Log.d("PermissionsViewModel",
+                Log.d("PETActivityViewModel",
                     "Consent gathering from current session complete. " +
                         "${_googleMobileAdsConsentManager.canRequestAds} / " +
                         "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
@@ -223,9 +219,10 @@ class PETActivityViewModel(
             }
             onConsentGatheringCompleteListener.consentGatheringComplete(error)
         }
+
         // Update UIState based on consent obtained in the previous session.
         _googleAdsPermissionsUiState.update {
-            Log.d("PermissionsViewModel",
+            Log.d("PETActivityViewModel",
                 "Consent gathering from previous session complete. " +
                     "${_googleMobileAdsConsentManager.canRequestAds} / " +
                     "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")

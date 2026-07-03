@@ -8,6 +8,7 @@ import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * The Google Mobile Ads SDK provides the User Messaging Platform (Google's
@@ -21,11 +22,6 @@ class GoogleMobileAdsConsentManager(
     private val consentInformation: ConsentInformation =
         UserMessagingPlatform.getConsentInformation(context)
 
-    /** Interface definition for a callback to be invoked when consent gathering is complete.  */
-    fun interface OnConsentGatheringCompleteListener {
-        fun consentGatheringComplete(error: FormError?)
-    }
-
     /** Helper variable to determine if the app can request ads.  */
     val canRequestAds: Boolean
         get() = consentInformation.canRequestAds()
@@ -37,6 +33,9 @@ class GoogleMobileAdsConsentManager(
             else -> null
         }
 
+    var isGoogleAdsConsentManagerInitialized: Boolean = false
+    var isMobileAdsInitializeCalled = AtomicBoolean(false)
+
     /** Helper method to call the UMP SDK methods to request consent information and load/present a
      * consent form if necessary.  */
     fun gatherConsent(
@@ -47,7 +46,7 @@ class GoogleMobileAdsConsentManager(
         val debugSettings = ConsentDebugSettings.Builder(activity)
         val debugBuilder = debugSettings.apply {
             //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-            setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE)
+            //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE)
             //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
             TEST_DEVICE_HASHED_IDS.forEach { addTestDeviceHashedId(it) }
         }.build()
@@ -94,4 +93,19 @@ class GoogleMobileAdsConsentManager(
             "27146712BE687C3CD0661E581B0631A4"
         )
     }
+
+    /** Interface definition for a callback to be invoked when consent gathering is complete.  */
+    fun interface OnConsentGatheringCompleteListener {
+        fun consentGatheringComplete(error: FormError?)
+    }
+
 }
+
+data class GoogleAdsConsentState(
+    /** Represents current initialization states for the Google Mobile Ads SDK. */
+    val isMobileAdsInitialized: Boolean = false,
+    /** Indicates whether the app has completed the steps for gathering updated user consent. */
+    val canRequestAds: Boolean = false,
+    /** Indicates whether a privacy options form is required. */
+    val isPrivacyOptionsRequired: Boolean? = null
+)
