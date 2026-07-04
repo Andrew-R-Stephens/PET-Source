@@ -1904,17 +1904,24 @@ class InvestigationScreenViewModel private constructor(
         updateOperationGhostDetailsUseCase(GhostDetails())
     }
 
+    private fun resetAll() {
+        resetJournal()
+        resetMission()
+        resetConfigs()
+        resetTraitSelections()
+        resetBpm()
+        resetToolTimers()
+    }
+
     private fun reset(option: OperationToolbarUiState.ResetOption? = null) {
         when (option) {
             OperationToolbarUiState.ResetOption.ALL, null -> {
-                resetJournal()
-                resetMission()
-                resetBpm()
+                resetAll()
             }
             OperationToolbarUiState.ResetOption.JOURNAL -> {
                 resetJournal()
             }
-            OperationToolbarUiState.ResetOption.MISSION -> {
+            OperationToolbarUiState.ResetOption.TRUCK_DEBRIEF -> {
                 resetMission()
             }
             OperationToolbarUiState.ResetOption.TOOL_CONFIG -> {

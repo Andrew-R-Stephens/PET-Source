@@ -70,7 +70,6 @@ import com.tritiumgaming.shared.data.operation.repository.impl.OperationReposito
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.operation.usecase.ResetOperationUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationEvidenceUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
@@ -104,6 +103,7 @@ import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatasto
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
 import com.tritiumgaming.shared.data.policy.repository.PolicyRepository
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase

@@ -186,7 +186,7 @@ data class OperationToolbarUiState(
         TOOL_FOOTSTEP(R.string.investigation_label_tool_footstep),
         TOOL_TIMERS(R.string.investigation_label_tool_timers),
         JOURNAL(R.string.investigation_label_journal),
-        MISSION(R.string.objectives_title_investigation_debrief),
+        TRUCK_DEBRIEF(R.string.objectives_title_investigation_debrief),
         ALL(R.string.investigation_label_all),
     }
 
