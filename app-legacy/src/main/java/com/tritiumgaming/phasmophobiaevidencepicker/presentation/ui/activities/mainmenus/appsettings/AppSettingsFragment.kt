@@ -147,12 +147,12 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             val showClockTime: (Boolean) -> Unit = { showTime: Boolean ->
                 when(showTime) {
                     true -> {
-                        clockTimeTextView.visibility = VISIBLE
-                        clockOtherTextView.visibility = GONE
+                        clockTimeTextView?.visibility = VISIBLE
+                        clockOtherTextView?.visibility = GONE
                     }
                     false -> {
-                        clockTimeTextView.visibility = GONE
-                        clockOtherTextView.visibility = VISIBLE
+                        clockTimeTextView?.visibility = GONE
+                        clockOtherTextView?.visibility = VISIBLE
                     }
                 }
             }
