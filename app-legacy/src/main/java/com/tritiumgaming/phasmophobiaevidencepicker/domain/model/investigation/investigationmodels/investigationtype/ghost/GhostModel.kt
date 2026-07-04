@@ -57,7 +57,7 @@ class GhostModel(
             if (forcefullyRejected) { return -5 }
 
             val currentDifficulty =
-                investigationModel?.investigationViewModel?.difficultyCarouselModel?.currentDifficulty
+                investigationModel.investigationViewModel?.difficultyCarouselModel?.currentDifficulty
 
             val isNightmare = currentDifficulty == DifficultyCarouselModel.Difficulty.NIGHTMARE
             val isInsanity = currentDifficulty == DifficultyCarouselModel.Difficulty.INSANITY
@@ -78,7 +78,7 @@ class GhostModel(
             var posScore = 0
             var negScore = 0
 
-            investigationModel?.evidenceListModel?.evidenceList?.let { list ->
+            investigationModel.evidenceListModel.evidenceList.let { list ->
                 for (e in list) {
                     var isContained = false
                     for (eThis in thisGhostEvidence) {

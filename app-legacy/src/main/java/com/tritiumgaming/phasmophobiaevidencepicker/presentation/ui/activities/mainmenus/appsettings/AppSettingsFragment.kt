@@ -147,12 +147,12 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             val showClockTime: (Boolean) -> Unit = { showTime: Boolean ->
                 when(showTime) {
                     true -> {
-                        clockTimeTextView.visibility = VISIBLE
-                        clockOtherTextView.visibility = GONE
+                        clockTimeTextView?.visibility = VISIBLE
+                        clockOtherTextView?.visibility = GONE
                     }
                     false -> {
-                        clockTimeTextView.visibility = GONE
-                        clockOtherTextView.visibility = VISIBLE
+                        clockTimeTextView?.visibility = GONE
+                        clockOtherTextView?.visibility = VISIBLE
                     }
                 }
             }
@@ -177,7 +177,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                                 if (progress < seekbar.max) {
                                     val breakdown = (progressMax * progress / 1000L).toLong()
                                     val text = millisToTime("%sm %ss", breakdown)
-                                    clockTimeTextView.text = text
+                                    clockTimeTextView?.text = text
                                     showClockTime(true)
                                 } else if (progress == seekbar.max) {
                                     showClockTime(false)
@@ -194,7 +194,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                     val breakdown = (progressMax * seekbar.progress / 1000L).toLong()
                     val text = millisToTime("%sm %ss", breakdown)
                     showClockTime(true)
-                    clockTimeTextView.text = text
+                    clockTimeTextView?.text = text
                 } else { showClockTime(false) }
             }
         }
@@ -228,7 +228,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
 
         // COLORBLIND LISTENERS
-        colorThemePrevButton.setOnClickListener {
+        colorThemePrevButton?.setOnClickListener {
             globalPreferencesViewModel?.colorThemeControl?.let { themeControl ->
                 themeControl.iterateSelectedIndex(-1)
                 try { colorThemeTextView?.text = getString(themeControl.currentName) }
@@ -237,7 +237,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             }
         }
 
-        colorThemeNextButton.setOnClickListener {
+        colorThemeNextButton?.setOnClickListener {
             globalPreferencesViewModel?.colorThemeControl?.let { themeControl ->
                 themeControl.iterateSelectedIndex(1)
                 try { colorThemeTextView?.text = getString(themeControl.currentName) }
@@ -247,7 +247,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
 
         // FONT-STYLE LISTENERS
-        fontThemePrevButton.setOnClickListener {
+        fontThemePrevButton?.setOnClickListener {
             globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
                 themeControl.iterateSelectedIndex(-1)
                 try { fontThemeTextView?.text = getString(themeControl.currentName) }
@@ -256,7 +256,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             }
         }
 
-        fontThemeNextButton.setOnClickListener {
+        fontThemeNextButton?.setOnClickListener {
             globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
                 themeControl.iterateSelectedIndex(1)
                 try { fontThemeTextView?.text = getString(themeControl.currentName) }
