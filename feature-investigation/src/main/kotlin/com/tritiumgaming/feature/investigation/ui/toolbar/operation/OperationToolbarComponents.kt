@@ -17,7 +17,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MenuDefaults
+import androidx.compose.material3.MenuItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -55,8 +58,6 @@ internal fun ResetButton(
     category: OperationToolbarUiState.Category,
     onReset: (OperationToolbarUiState.ResetOption?) -> Unit
 ) {
-    val resetText = stringResource(R.string.general_label_reset)
-
     var showOptions by remember { mutableStateOf(false) }
 
     ToolbarItem(
@@ -73,74 +74,108 @@ internal fun ResetButton(
 
             DropdownMenu(
                 expanded = showOptions,
-                onDismissRequest = { showOptions = false }
+                onDismissRequest = { showOptions = false },
+                containerColor = LocalPalette.current.surfaceContainerHighest
             ) {
                 when (category) {
                     OperationToolbarUiState.Category.TOOL_CONFIG -> {
                         DropdownMenuItem(
-                            text = { Text("$resetText ${stringResource(
-                                OperationToolbarUiState.ResetOption.TOOL_CONFIG.title)}") },
+                            text = { Text(
+                                stringResource(
+                                    OperationToolbarUiState.ResetOption.TOOL_CONFIG.title)
+                            ) },
                             onClick = {
                                 onReset(OperationToolbarUiState.ResetOption.TOOL_CONFIG)
                                 showOptions = false
-                            }
+                            },
+                            colors = MenuDefaults.itemColors(
+                                textColor = LocalPalette.current.onSurface
+                            )
                         )
                     }
                     OperationToolbarUiState.Category.TOOL_TRAITS -> {
                         DropdownMenuItem(
-                            text = { Text("$resetText ${stringResource(
-                                OperationToolbarUiState.ResetOption.TOOL_TRAITS.title)}") },
+                            text = { Text(
+                                stringResource(
+                                    OperationToolbarUiState.ResetOption.TOOL_TRAITS.title)
+                            ) },
                             onClick = {
                                 onReset(OperationToolbarUiState.ResetOption.TOOL_TRAITS)
                                 showOptions = false
-                            }
+                            },
+                            colors = MenuDefaults.itemColors(
+                                textColor = LocalPalette.current.onSurface
+                            )
                         )
                     }
                     OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
                         DropdownMenuItem(
-                            text = { Text("$resetText ${stringResource(
-                                OperationToolbarUiState.ResetOption.TOOL_FOOTSTEP.title)}") },
+                            text = { Text(
+                                stringResource(
+                                    OperationToolbarUiState.ResetOption.TOOL_FOOTSTEP.title)
+                            ) },
                             onClick = {
                                 onReset(OperationToolbarUiState.ResetOption.TOOL_FOOTSTEP)
                                 showOptions = false
-                            }
+                            },
+                            colors = MenuDefaults.itemColors(
+                                textColor = LocalPalette.current.onSurface
+                            )
                         )
                     }
                     OperationToolbarUiState.Category.TOOL_TIMERS -> {
                         DropdownMenuItem(
-                            text = { Text("$resetText ${stringResource(
-                                OperationToolbarUiState.ResetOption.TOOL_TIMERS.title)}") },
+                            text = { Text(
+                                stringResource(
+                                    OperationToolbarUiState.ResetOption.TOOL_TIMERS.title)
+                            ) },
                             onClick = {
                                 onReset(OperationToolbarUiState.ResetOption.TOOL_TIMERS)
                                 showOptions = false
-                            }
+                            },
+                            colors = MenuDefaults.itemColors(
+                                textColor = LocalPalette.current.onSurface
+                            )
                         )
                     }
                     else -> {}
                 }
 
                 DropdownMenuItem(
-                    text = { Text("$resetText ${stringResource(
-                        OperationToolbarUiState.ResetOption.JOURNAL.title)}") },
+                    text = { Text(
+                        stringResource(
+                            OperationToolbarUiState.ResetOption.JOURNAL.title)
+                    ) },
                     onClick = {
                         onReset(OperationToolbarUiState.ResetOption.JOURNAL)
                         showOptions = false
-                    }
+                    },
+                    colors = MenuDefaults.itemColors(
+                        textColor = LocalPalette.current.onSurface
+                    )
                 )
                 DropdownMenuItem(
-                    text = { Text("$resetText ${stringResource(
-                        OperationToolbarUiState.ResetOption.MISSION.title)}") },
+                    text = { Text(
+                        stringResource(
+                            OperationToolbarUiState.ResetOption.MISSION.title)
+                    ) },
                     onClick = {
                         onReset(OperationToolbarUiState.ResetOption.MISSION)
                         showOptions = false
-                    }
+                    },
+                    colors = MenuDefaults.itemColors(
+                        textColor = LocalPalette.current.onSurface
+                    )
                 )
                 DropdownMenuItem(
-                    text = { Text("$resetText ${stringResource(R.string.investigation_label_all)}") },
+                    text = { Text(stringResource(R.string.investigation_label_all)) },
                     onClick = {
                         onReset(OperationToolbarUiState.ResetOption.ALL)
                         showOptions = false
-                    }
+                    },
+                    colors = MenuDefaults.itemColors(
+                        textColor = LocalPalette.current.onSurface
+                    )
                 )
             }
 
