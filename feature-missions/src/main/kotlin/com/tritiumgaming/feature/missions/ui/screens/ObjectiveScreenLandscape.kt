@@ -89,7 +89,7 @@ internal fun ObjectivesContentLandscape(
                     .fillMaxWidth()
                     .height(36.dp)
                     .padding(4.dp),
-                text = stringResource(R.string.objectives_title_investigation_debrief),
+                text = stringResource(R.string.objectives_title_objective_board),
                 style = LocalTypography.current.primary.regular.copy(
                     color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center

@@ -105,8 +105,8 @@
 
     <string name="investigation_label_all" translatable="false">All</string>
     <string name="investigation_label_journal" translatable="false">Journal</string>
-    <string name="investigation_label_operation_configuration">Operation Config</string>
-    <string name="investigation_label_tool_operation_details">Operation Details</string>
+    <string name="investigation_label_contract">Configure Contract</string>
+    <string name="investigation_label_tool_operation_details">Contract Details</string>
     <string name="investigation_label_tool_secondary_evidence">Secondary Evidence</string>
     <string name="investigation_label_tool_timers">Timers</string>
     <string name="investigation_label_timer_run" translatable="false">Run Timer</string>

@@ -1419,7 +1419,7 @@ fun OperationConfigsBottomSheet(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
+                text = stringResource(R.string.investigation_label_contract).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
@@ -1648,7 +1648,7 @@ fun OperationConfigsSideSheetCompact(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
+                text = stringResource(R.string.investigation_label_contract).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
@@ -1952,7 +1952,7 @@ fun OperationConfigsSideSheetExpanded(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
+                text = stringResource(R.string.investigation_label_contract).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start

@@ -180,13 +180,13 @@ data class OperationToolbarUiState(
     }
 
     enum class ResetOption(@StringRes val title: Int) {
-        TOOL_CONFIG(R.string.investigation_label_operation_configuration),
+        TOOL_CONFIG(R.string.investigation_label_contract),
         TOOL_TRAITS(R.string.investigation_label_tool_secondary_evidence),
         TOOL_ANALYZER(R.string.investigation_label_tool_operation_details),
         TOOL_FOOTSTEP(R.string.investigation_label_tool_footstep),
         TOOL_TIMERS(R.string.investigation_label_tool_timers),
         JOURNAL(R.string.investigation_label_journal),
-        TRUCK_DEBRIEF(R.string.objectives_title_investigation_debrief),
+        OBJECTIVE_BOARD(R.string.objectives_title_objective_board),
         ALL(R.string.investigation_label_all),
     }
 

@@ -110,7 +110,7 @@
     <string name="alert_gui_palette_error">Palette nicht festgelegt!</string>
     <string name="alert_gui_typography_error">Typografie nicht festgelegt!</string>
     <string name="investigation_average_sanity_title">Durchschnittliche geistige Gesundheit</string>
-    <string name="investigation_label_operation_configuration">Operationskonfiguration</string>
+    <string name="investigation_label_contract">Operationskonfiguration</string>
     <string name="investigation_label_tool_operation_details">Operationsdetails</string>
     <string name="investigation_label_tool_secondary_evidence">Sekundäre Beweismittel</string>
     <string name="investigation_label_tool_timers">Timer</string>

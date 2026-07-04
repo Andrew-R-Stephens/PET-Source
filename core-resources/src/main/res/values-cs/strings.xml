@@ -114,7 +114,7 @@
     <string name="alert_gui_palette_error">Paleta není nastavena!</string>
     <string name="alert_gui_typography_error">Typografie není nastavena!</string>
     <string name="investigation_average_sanity_title">Průměrná příčetnost</string>
-    <string name="investigation_label_operation_configuration">Konfigurace operace</string>
+    <string name="investigation_label_contract">Konfigurace operace</string>
     <string name="investigation_label_tool_operation_details">Detaily operace</string>
     <string name="investigation_label_tool_secondary_evidence">Sekundární důkazy</string>
     <string name="investigation_label_tool_timers">Časovače</string>

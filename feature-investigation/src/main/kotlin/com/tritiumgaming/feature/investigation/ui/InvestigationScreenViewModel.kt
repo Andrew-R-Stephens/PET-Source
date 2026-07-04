@@ -308,7 +308,10 @@ class InvestigationScreenViewModel private constructor(
             initialValue = DifficultyData()
         )
 
-    private fun updateDifficulty(difficultyIndex: Int = 0, customIndex: Int? = null) {
+    private fun updateDifficulty(
+        difficultyIndex: Int = 0,
+        customIndex: Int? = null
+    ) {
         viewModelScope.launch {
             try {
                 val baseDifficulty = difficulties.getOrNull(difficultyIndex) ?: return@launch
@@ -1921,7 +1924,7 @@ class InvestigationScreenViewModel private constructor(
             OperationToolbarUiState.ResetOption.JOURNAL -> {
                 resetJournal()
             }
-            OperationToolbarUiState.ResetOption.TRUCK_DEBRIEF -> {
+            OperationToolbarUiState.ResetOption.OBJECTIVE_BOARD -> {
                 resetMission()
             }
             OperationToolbarUiState.ResetOption.TOOL_CONFIG -> {
