@@ -408,7 +408,7 @@ fun InvestigationSoloScreen(
         onChangeToolbarCategory = { category, allowCollapse ->
             investigationViewModel.onEvent(SetToolbarCategory(category, allowCollapse))
         },
-        onReset = { investigationViewModel.onEvent(ResetInvestigation) },
+        onReset = { option -> investigationViewModel.onEvent(ResetInvestigation(option)) },
         onGhostNameClick = { investigationViewModel.onEvent(ShowGhostPopup(it)) },
         onToggleNegateGhost = { investigationViewModel.onEvent(ToggleGhostNegation(it)) },
         onChangeEvidenceRuling = { e, r -> investigationViewModel.onEvent(SetEvidence(e, r)) },
@@ -1054,8 +1054,8 @@ private fun InvestigationContent(
                 toolbarState = toolbarUiState,
                 toolbarActions = ToolbarUiActions(
                     onToggleCollapseToolbar = onToggleCollapseToolbar,
-                    onChangeToolbarCategory = { category ->
-                        onChangeToolbarCategory(category, true)
+                    onChangeToolbarCategory = { category, allowCollapse ->
+                        onChangeToolbarCategory(category, allowCollapse)
                     },
                     onReset = onReset
                 ),
@@ -1071,8 +1071,8 @@ private fun InvestigationContent(
                 operationToolbarUiState = toolbarUiState,
                 toolbarUiActions = ToolbarUiActions(
                     onToggleCollapseToolbar = onToggleCollapseToolbar,
-                    onChangeToolbarCategory = { category ->
-                        onChangeToolbarCategory(category, true)
+                    onChangeToolbarCategory = { category, allowCollapse ->
+                        onChangeToolbarCategory(category, allowCollapse)
                     },
                     onReset = onReset
                 ),
@@ -1089,8 +1089,8 @@ private fun InvestigationContent(
                 operationToolbarUiState = toolbarUiState,
                 toolbarUiActions = ToolbarUiActions(
                     onToggleCollapseToolbar = onToggleCollapseToolbar,
-                    onChangeToolbarCategory = { category ->
-                        onChangeToolbarCategory(category, false)
+                    onChangeToolbarCategory = { category, allowCollapse ->
+                        onChangeToolbarCategory(category, allowCollapse)
                     },
                     onReset = onReset
                 ),
@@ -1138,7 +1138,9 @@ private fun CompactPortraitContent(
             modifier = modifier
                 .heightIn(min = 48.dp),
             category = toolbarState.category,
-            onChangeToolbarCategory = toolbarActions.onChangeToolbarCategory,
+            onChangeToolbarCategory = { category, allowCollapse ->
+                toolbarActions.onChangeToolbarCategory(category, allowCollapse)
+            },
             onReset = toolbarActions.onReset,
             containerColor = LocalPalette.current.surfaceContainerHigh
         )
@@ -1206,7 +1208,9 @@ private fun CompactLandscapeContent(
                 modifier = modifier
                     .widthIn(min = 48.dp),
                 category = operationToolbarUiState.category,
-                onChangeToolbarCategory = toolbarUiActions.onChangeToolbarCategory,
+                onChangeToolbarCategory = { category, allowCollapse ->
+                    toolbarUiActions.onChangeToolbarCategory(category, allowCollapse)
+                },
                 onReset = toolbarUiActions.onReset,
                 containerColor = LocalPalette.current.surfaceContainerHigh
             )
@@ -1278,7 +1282,9 @@ private fun ExpandedLandscapeContent(
                 modifier = modifier
                     .widthIn(min = 48.dp),
                 category = operationToolbarUiState.category,
-                onChangeToolbarCategory = toolbarUiActions.onChangeToolbarCategory,
+                onChangeToolbarCategory = { category, allowCollapse ->
+                    toolbarUiActions.onChangeToolbarCategory(category, allowCollapse)
+                },
                 onReset = toolbarUiActions.onReset,
                 containerColor = LocalPalette.current.surfaceContainerHigh
             )
@@ -2159,7 +2165,7 @@ internal data class InvestigationUiActions(
     val onBpmChangeSampleInterval: (Long) -> Unit = {},
     val onToggleCollapseToolbar: () -> Unit = {},
     val onChangeToolbarCategory: (OperationToolbarUiState.Category, Boolean) -> Unit = { _, _ -> },
-    val onReset: () -> Unit = {},
+    val onReset: (OperationToolbarUiState.ResetOption?) -> Unit = {},
     val onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit = {},
     val onToggleNegateGhost: (Ghost) -> Unit = {},
     val onChangeEvidenceRuling: (EvidenceType, EvidenceValidationType) -> Unit = { _, _ -> },

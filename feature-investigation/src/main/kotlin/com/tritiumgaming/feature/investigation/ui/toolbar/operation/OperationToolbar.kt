@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.toolbar.operation
 
 import androidx.annotation.FloatRange
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.ScrollableToolbar
 
@@ -20,8 +22,8 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ScrollableToolbar
 fun OperationToolbar(
     modifier: Modifier = Modifier,
     category: OperationToolbarUiState.Category,
-    onChangeToolbarCategory: (OperationToolbarUiState.Category) -> Unit,
-    onReset: () -> Unit,
+    onChangeToolbarCategory: (OperationToolbarUiState.Category, Boolean) -> Unit,
+    onReset: (OperationToolbarUiState.ResetOption?) -> Unit,
     containerColor: Color
 ) {
 
@@ -55,6 +57,7 @@ fun OperationToolbar(
 
             ResetButton(
                 stickyContentModifier,
+                category = category,
                 onReset = onReset
             )
 
@@ -88,8 +91,8 @@ fun OperationToolbar(
 fun OperationToolRail(
     modifier: Modifier = Modifier,
     category: OperationToolbarUiState.Category,
-    onChangeToolbarCategory: (OperationToolbarUiState.Category) -> Unit,
-    onReset: () -> Unit,
+    onChangeToolbarCategory: (OperationToolbarUiState.Category, Boolean) -> Unit,
+    onReset: (OperationToolbarUiState.ResetOption?) -> Unit,
     containerColor: Color
 ) {
 
@@ -131,6 +134,7 @@ fun OperationToolRail(
                 stickyContentModifier
                     .padding(4.dp)
                     .aspectRatio(1f),
+                category = category,
                 onReset = onReset
             )
 
@@ -173,6 +177,17 @@ data class OperationToolbarUiState(
         TOOL_ANALYZER,
         TOOL_FOOTSTEP,
         TOOL_TIMERS
+    }
+
+    enum class ResetOption(@StringRes val title: Int) {
+        TOOL_CONFIG(R.string.investigation_label_operation_configuration),
+        TOOL_TRAITS(R.string.investigation_label_tool_secondary_evidence),
+        TOOL_ANALYZER(R.string.investigation_label_tool_operation_details),
+        TOOL_FOOTSTEP(R.string.investigation_label_tool_footstep),
+        TOOL_TIMERS(R.string.investigation_label_tool_timers),
+        JOURNAL(R.string.investigation_label_journal),
+        MISSION(R.string.objectives_title_investigation_debrief),
+        ALL(R.string.investigation_label_all),
     }
 
 }

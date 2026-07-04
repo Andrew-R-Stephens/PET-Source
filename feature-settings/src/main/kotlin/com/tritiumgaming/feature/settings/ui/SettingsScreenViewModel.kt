@@ -84,8 +84,10 @@ class SettingsScreenViewModel(
     private val unlockedTypographies = _unlockedTypographies
 
     private val _settingsScreenUiState : StateFlow<SettingsScreenUiState> =
-        combine(initFlowGlobalPreferencesUseCase(), initFlowPolicyUseCase()) {
-            preferences, policy ->
+        combine(
+            initFlowGlobalPreferencesUseCase(),
+            initFlowPolicyUseCase()
+        ) { preferences, policy ->
                 SettingsScreenUiState(
                     screensaverPreference = preferences.disableScreenSaver,
                     networkPreference = preferences.allowCellularData,

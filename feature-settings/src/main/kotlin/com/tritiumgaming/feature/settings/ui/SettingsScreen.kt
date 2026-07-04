@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.settings.ui
 
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,7 +35,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -58,6 +58,7 @@ import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
 import com.tritiumgaming.feature.settings.ui.components.CarouselComposable
 import com.tritiumgaming.feature.settings.ui.components.CarouselUiActions
 import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSeekbar
+import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 
@@ -92,8 +93,20 @@ private fun SettingsScreenPreview() {
         Surface(
             color = LocalPalette.current.surface
         ) {
+            val settingsScreenUiState = SettingsScreenUiState()
             SettingsContent(
-                settingsScreenUiState = SettingsScreenUiState()
+                screensaverPreference = settingsScreenUiState.screensaverPreference,
+                networkPreference = settingsScreenUiState.networkPreference,
+                huntWarningAudioPreference = settingsScreenUiState.huntWarningAudioPreference,
+                ghostReorderPreference = settingsScreenUiState.ghostReorderPreference,
+                rTLPreference = settingsScreenUiState.rTLPreference,
+                uiDensityType = settingsScreenUiState.uiDensityType,
+                huntWarnDurationPreference = settingsScreenUiState.huntWarnDurationPreference,
+                paletteUiState = settingsScreenUiState.paletteUiState,
+                typographyUiState = settingsScreenUiState.typographyUiState,
+                analyticsPreference = settingsScreenUiState.analyticsPreference,
+                adPrivacyPreference = settingsScreenUiState.adPrivacyPreference,
+                isPrivacyOptionsRequired = settingsScreenUiState.isPrivacyOptionsRequired
             )
         }
     }
@@ -104,12 +117,23 @@ fun SettingsScreen(
     settingsViewModel: SettingsScreenViewModel,
     navController: NavController = rememberNavController()
 ) {
-    val context = LocalContext.current
+    val context = LocalActivity.current
     val settingsScreenUiState by
         settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
 
     SettingsContent(
-        settingsScreenUiState = settingsScreenUiState,
+        screensaverPreference = settingsScreenUiState.screensaverPreference,
+        networkPreference = settingsScreenUiState.networkPreference,
+        huntWarningAudioPreference = settingsScreenUiState.huntWarningAudioPreference,
+        ghostReorderPreference = settingsScreenUiState.ghostReorderPreference,
+        rTLPreference = settingsScreenUiState.rTLPreference,
+        uiDensityType = settingsScreenUiState.uiDensityType,
+        huntWarnDurationPreference = settingsScreenUiState.huntWarnDurationPreference,
+        paletteUiState = settingsScreenUiState.paletteUiState,
+        typographyUiState = settingsScreenUiState.typographyUiState,
+        analyticsPreference = settingsScreenUiState.analyticsPreference,
+        adPrivacyPreference = settingsScreenUiState.adPrivacyPreference,
+        isPrivacyOptionsRequired = settingsScreenUiState.isPrivacyOptionsRequired,
         onBack = { navController.popBackStack() },
         onScreenSaverPreferenceChange = { settingsViewModel.setScreenSaverPreference(it) },
         onNetworkPreferenceChange = { settingsViewModel.setNetworkPreference(it) },
@@ -121,7 +145,7 @@ fun SettingsScreen(
         onPersonalizedAdsPreferenceChange = { settingsViewModel.setPersonalizedAdsPreference(it) },
         onAnalyticsPreferenceChange = { settingsViewModel.setAnalyticsPreference(it) },
         onShowPrivacyOptionsForm = {
-            if (context is android.app.Activity) {
+            context?.let {
                 settingsViewModel.showPrivacyOptionsForm(context)
             }
         },
@@ -134,7 +158,18 @@ fun SettingsScreen(
 
 @Composable
 private fun SettingsContent(
-    settingsScreenUiState: SettingsScreenUiState,
+    screensaverPreference: Boolean,
+    networkPreference: Boolean,
+    huntWarningAudioPreference: Boolean,
+    ghostReorderPreference: Boolean,
+    rTLPreference: Boolean,
+    uiDensityType: DensityType,
+    huntWarnDurationPreference: Long,
+    paletteUiState: PaletteUiState,
+    typographyUiState: TypographyUiState,
+    analyticsPreference: Boolean,
+    adPrivacyPreference: Boolean,
+    isPrivacyOptionsRequired: Boolean?,
     onBack: () -> Unit = {},
     onScreenSaverPreferenceChange: (Boolean) -> Unit = {},
     onNetworkPreferenceChange: (Boolean) -> Unit = {},
@@ -208,7 +243,7 @@ private fun SettingsContent(
             modifier = modifier
                 .fillMaxWidth(),
             label = stringResource(R.string.settings_screenalwayson),
-            state = settingsScreenUiState.screensaverPreference,
+            state = screensaverPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
             onChange = { state -> onScreenSaverPreferenceChange(state) }
@@ -220,7 +255,7 @@ private fun SettingsContent(
             modifier = modifier
                 .fillMaxWidth(),
             label = stringResource(R.string.settings_networktitle),
-            state = settingsScreenUiState.networkPreference,
+            state = networkPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
             onChange = { state -> onNetworkPreferenceChange(state) }
@@ -232,7 +267,7 @@ private fun SettingsContent(
             modifier = modifier
                 .fillMaxWidth(),
             label = stringResource(R.string.settings_enableLeftHandSupport),
-            state = settingsScreenUiState.rTLPreference,
+            state = rTLPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
             onChange = { state -> onRTLPreferenceChange(state) }
@@ -244,7 +279,7 @@ private fun SettingsContent(
             modifier = modifier
                 .fillMaxWidth(),
             label = stringResource(R.string.settings_uiDensity),
-            state = settingsScreenUiState.uiDensityType == DensityType.COMPACT,
+            state = uiDensityType == DensityType.COMPACT,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
             onChange = { state -> onUiDensityPreferenceChange(state) }
@@ -256,7 +291,7 @@ private fun SettingsContent(
             modifier = modifier
                 .fillMaxWidth(),
             label = stringResource(R.string.settings_enablehuntaudioqueue),
-            state = settingsScreenUiState.huntWarningAudioPreference,
+            state = huntWarningAudioPreference,
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
             onChange = { state -> onHuntWarningAudioPreferenceChange(state) }
@@ -270,7 +305,7 @@ private fun SettingsContent(
             label = stringResource(R.string.settings_enableGhostReorder),
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            state = settingsScreenUiState.ghostReorderPreference,
+            state = ghostReorderPreference,
             onChange = { state -> onGhostReorderPreferenceChange(state) }
         )
 
@@ -280,7 +315,7 @@ private fun SettingsContent(
         HuntTimeoutPreferenceSeekbar(
             modifier = modifier
                 .fillMaxWidth(),
-            state = settingsScreenUiState.huntWarnDurationPreference,
+            state = huntWarnDurationPreference,
             containerColor = LocalPalette.current.surfaceContainer,
             textColor = LocalPalette.current.onSurface,
             inactiveTrackColor = LocalPalette.current.onSurface,
@@ -293,14 +328,12 @@ private fun SettingsContent(
     }
 
     val palettePreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
-        val state = settingsScreenUiState.paletteUiState
-
         CarouselComposable(
             modifier = modifier
                 .fillMaxWidth(),
             title = R.string.settings_colortheme_title,
-            state = state.uuid,
-            label = stringResource(state.palette.extrasFamily.title),
+            state = paletteUiState.uuid,
+            label = stringResource(paletteUiState.palette.extrasFamily.title),
             iconComponent = { modifier ->
                 Image(
                     modifier = modifier,
@@ -322,14 +355,12 @@ private fun SettingsContent(
     }
 
     val typographyPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
-        val state = settingsScreenUiState.typographyUiState
-
         CarouselComposable(
             modifier = modifier
                 .fillMaxWidth(),
             title = R.string.settings_fontstylesettings,
-            state = state.uuid,
-            label = stringResource(state.typography.extrasFamily.title),
+            state = typographyUiState.uuid,
+            label = stringResource(typographyUiState.typography.extrasFamily.title),
             iconComponent = { modifier ->
                 Image(
                     modifier = modifier,
@@ -357,7 +388,7 @@ private fun SettingsContent(
             label = stringResource(R.string.settings_enablePersonalizedAds),
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            state = settingsScreenUiState.adPrivacyPreference,
+            state = adPrivacyPreference,
             onChange = { state -> onPersonalizedAdsPreferenceChange(state) }
         )
     }
@@ -369,7 +400,7 @@ private fun SettingsContent(
             label = stringResource(R.string.settings_enableAnalytics),
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
-            state = settingsScreenUiState.analyticsPreference,
+            state = analyticsPreference,
             onChange = { state -> onAnalyticsPreferenceChange(state) }
         )
     }
@@ -406,7 +437,7 @@ private fun SettingsContent(
 
     val privacyPreferenceComponent: @Composable (modifier: Modifier) -> Unit = @Composable { modifier ->
 
-        settingsScreenUiState.isPrivacyOptionsRequired?.let { isPrivacyOptionsRequired ->
+        isPrivacyOptionsRequired?.let { isPrivacyOptionsRequired ->
             if (isPrivacyOptionsRequired) {
                 privacyOptionsComponent(modifier)
 

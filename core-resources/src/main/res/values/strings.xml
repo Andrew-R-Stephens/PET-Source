@@ -103,6 +103,8 @@
     <string name="investigation_section_title_movement_speed">Movement Speed</string>
     <string name="investigation_label_phase">Phase</string>
 
+    <string name="investigation_label_all" translatable="false">All</string>
+    <string name="investigation_label_journal" translatable="false">Journal</string>
     <string name="investigation_label_operation_configuration">Operation Config</string>
     <string name="investigation_label_tool_operation_details">Operation Details</string>
     <string name="investigation_label_tool_secondary_evidence">Secondary Evidence</string>

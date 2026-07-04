@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.investigation.usecase
 
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
+import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
 import com.tritiumgaming.shared.data.operation.usecase.ResetOperationUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
@@ -22,6 +23,7 @@ data class InvestigationUseCaseBundle(
     val updateOperationEvidenceUseCase: UpdateOperationEvidenceUseCase,
     val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase,
     val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase,
+    val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
     /*val updateGhostStates: UpdateInvestigationGhostStatesUseCase,*/
     val resetOperationUseCase: ResetOperationUseCase,
     val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase

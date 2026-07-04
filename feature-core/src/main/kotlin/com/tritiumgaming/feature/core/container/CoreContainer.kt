@@ -34,6 +34,8 @@ import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourc
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.data.policy.repository.PolicyRepositoryImpl
 import com.tritiumgaming.data.policy.source.datastore.PolicyDatastoreDataSource
+import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
+import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
 import com.tritiumgaming.data.palette.repository.MarketCatalogPaletteRepositoryImpl
 import com.tritiumgaming.data.palette.repository.MarketCatalogTypographyRepositoryImpl
 import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
@@ -61,6 +63,8 @@ import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCas
 import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficultyRepository
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.customdifficulty.usecase.UpdateCustomDifficultyUseCase
+import com.tritiumgaming.shared.data.mission.repository.MissionRepository
+import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import com.tritiumgaming.shared.data.operation.OperationRepository
 import com.tritiumgaming.shared.data.operation.repository.impl.OperationRepositoryImpl
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
@@ -510,6 +514,15 @@ class CoreContainer(
         OperationRepositoryImpl()
     }
 
+    private val missionRepository: MissionRepository by lazy {
+        val missionLocalDataSource = MissionLocalDataSource(
+            applicationContext = applicationContext
+        )
+        MissionRepositoryImpl(
+            localSource = missionLocalDataSource
+        )
+    }
+
     val investigationUseCaseBundle = InvestigationUseCaseBundle(
         getOperationStateUseCase = GetOperationStateUseCase(
             repository = operationRepository
@@ -537,6 +550,9 @@ class CoreContainer(
         ),
         updateOperationMissionDataUseCase = UpdateOperationMissionDataUseCase(
             repository = operationRepository
+        ),
+        fetchAllMissionsUseCase = FetchAllMissionsUseCase(
+            missionRepository = missionRepository
         ),
         resetOperationUseCase = ResetOperationUseCase(
             repository = operationRepository

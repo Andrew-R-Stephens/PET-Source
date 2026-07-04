@@ -65,6 +65,7 @@ import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
 import com.tritiumgaming.shared.data.operation.model.CategoryOption
 import com.tritiumgaming.shared.data.operation.model.DifficultyData
+import com.tritiumgaming.shared.data.operation.model.GhostDetails
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.operation.model.EvidenceState
@@ -74,6 +75,8 @@ import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterOptions
 import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
 import com.tritiumgaming.shared.data.operation.model.OperationUserPreferences
 import com.tritiumgaming.shared.data.operation.model.MapData
+import com.tritiumgaming.shared.data.operation.model.MissionData
+import com.tritiumgaming.shared.data.operation.model.MissionState
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
@@ -91,9 +94,12 @@ import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.operation.model.WeightOption
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
@@ -167,6 +173,9 @@ class InvestigationScreenViewModel private constructor(
     private val updateOperationSanityUseCase: UpdateOperationSanityUseCase = investigationUseCaseBundle.updateOperationSanityUseCase
     private val updateOperationPhaseUseCase: UpdateOperationPhaseUseCase = investigationUseCaseBundle.updateOperationPhaseUseCase
     private val updateOperationHuntWarningUseCase: UpdateOperationHuntWarningUseCase = investigationUseCaseBundle.updateOperationHuntWarningUseCase
+    private val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase = investigationUseCaseBundle.updateOperationGhostDetailsUseCase
+    private val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase = investigationUseCaseBundle.updateOperationMissionDataUseCase
+    private val fetchAllMissionsUseCase: FetchAllMissionsUseCase = investigationUseCaseBundle.fetchAllMissionsUseCase
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
     private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase = investigationUseCaseBundle.getCustomDifficultiesUseCase
 
@@ -1374,6 +1383,16 @@ class InvestigationScreenViewModel private constructor(
         _operationOverridesState.update { it.copy(weather = Weather.RANDOM) }
     }
 
+    private fun resetFuseOverride() {
+        _operationOverridesState.update { it.copy(fuseBox =
+            when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
+                FuseBoxAtStartOfContract.OFF -> FuseBoxFlag.FUSEBOX_DISABLED
+                FuseBoxAtStartOfContract.ON -> FuseBoxFlag.FUSEBOX_ENABLED
+                FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
+            }
+        ) }
+    }
+
     private fun resetToolTimers() {
         _huntDurationTimerState.update { it.copy(remaining = it.max, running = false) }
         _huntCooldownTimerState.update { it.copy(remaining = it.max, running = false) }
@@ -1851,14 +1870,69 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private fun reset() {
-        resetJournal()
+    private fun resetConfigs() {
         resetOperationTimer()
-        resetPhase()
         resetSanity()
+        resetPhase()
         resetWeatherOverride()
+        resetFuseOverride()
         resetTemperature()
-        resetToolTimers()
+    }
+
+    private fun resetBpm() {
+        _bpmToolState.update { BpmToolUiState() }
+    }
+
+    private fun resetMission() {
+        // Reset Missions
+        val missions = try {
+            fetchAllMissionsUseCase().getOrThrow()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+
+        if (missions.isNotEmpty()) {
+            val maxMissions = 3.coerceAtMost(missions.size)
+            val newStates = List(maxMissions) { i ->
+                MissionState(mission = missions[i], status = false)
+            }
+            updateOperationMissionDataUseCase(MissionData(selectedMissions = newStates))
+        }
+
+        // Reset Ghost Details
+        updateOperationGhostDetailsUseCase(GhostDetails())
+    }
+
+    private fun reset(option: OperationToolbarUiState.ResetOption? = null) {
+        when (option) {
+            OperationToolbarUiState.ResetOption.ALL, null -> {
+                resetJournal()
+                resetMission()
+                resetBpm()
+            }
+            OperationToolbarUiState.ResetOption.JOURNAL -> {
+                resetJournal()
+            }
+            OperationToolbarUiState.ResetOption.MISSION -> {
+                resetMission()
+            }
+            OperationToolbarUiState.ResetOption.TOOL_CONFIG -> {
+                resetConfigs()
+            }
+            OperationToolbarUiState.ResetOption.TOOL_TRAITS -> {
+                resetTraitSelections()
+            }
+            OperationToolbarUiState.ResetOption.TOOL_ANALYZER -> {
+                // Analyzer currently has no specific persistent tool state beyond mission data
+            }
+            OperationToolbarUiState.ResetOption.TOOL_FOOTSTEP -> {
+                resetBpm()
+            }
+            OperationToolbarUiState.ResetOption.TOOL_TIMERS -> {
+                resetToolTimers()
+            }
+        }
     }
 
     fun onEvent(event: InvestigationEvent) {
@@ -1918,8 +1992,8 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.ShowGhostPopup -> setPopup(event.id)
             is InvestigationEvent.ClearPopup -> clearPopup()
 
-            // Lifecycle
-            is InvestigationEvent.ResetInvestigation -> reset()
+            // System Events
+            is InvestigationEvent.ResetInvestigation -> reset(event.option)
         }
     }
 
@@ -2178,7 +2252,7 @@ class InvestigationScreenViewModel private constructor(
         object ClearPopup : InvestigationEvent()
 
         // System Events
-        object ResetInvestigation : InvestigationEvent()
+        data class ResetInvestigation(val option: OperationToolbarUiState.ResetOption? = null) : InvestigationEvent()
     }
 
     internal data class CustomDifficultyConfigUiState(

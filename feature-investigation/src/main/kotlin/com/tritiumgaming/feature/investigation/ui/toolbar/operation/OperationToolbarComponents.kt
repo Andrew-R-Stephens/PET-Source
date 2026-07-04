@@ -6,17 +6,23 @@ import androidx.compose.animation.core.Spring.DampingRatioLowBouncy
 import androidx.compose.animation.core.Spring.StiffnessLow
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -28,6 +34,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.AnalyticsIcon
@@ -45,16 +52,99 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 internal fun ResetButton(
     modifier: Modifier = Modifier,
-    onReset: () -> Unit
+    category: OperationToolbarUiState.Category,
+    onReset: (OperationToolbarUiState.ResetOption?) -> Unit
 ) {
+    val resetText = stringResource(R.string.general_label_reset)
+
+    var showOptions by remember { mutableStateOf(false) }
+
     ToolbarItem(
-        modifier = modifier
+        modifier = modifier,
+        onLongClick = { showOptions = true }
     ) { modifier ->
-        ResetIcon(
-            modifier = modifier
-                .fillMaxSize(),
-            onClick = { onReset() }
-        )
+        Box {
+            ResetIcon(
+                modifier = modifier
+                    .fillMaxSize(),
+                onClick = { onReset(null) },
+                onLongClick = { showOptions = true }
+            )
+
+            DropdownMenu(
+                expanded = showOptions,
+                onDismissRequest = { showOptions = false }
+            ) {
+                when (category) {
+                    OperationToolbarUiState.Category.TOOL_CONFIG -> {
+                        DropdownMenuItem(
+                            text = { Text("$resetText ${stringResource(
+                                OperationToolbarUiState.ResetOption.TOOL_CONFIG.title)}") },
+                            onClick = {
+                                onReset(OperationToolbarUiState.ResetOption.TOOL_CONFIG)
+                                showOptions = false
+                            }
+                        )
+                    }
+                    OperationToolbarUiState.Category.TOOL_TRAITS -> {
+                        DropdownMenuItem(
+                            text = { Text("$resetText ${stringResource(
+                                OperationToolbarUiState.ResetOption.TOOL_TRAITS.title)}") },
+                            onClick = {
+                                onReset(OperationToolbarUiState.ResetOption.TOOL_TRAITS)
+                                showOptions = false
+                            }
+                        )
+                    }
+                    OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
+                        DropdownMenuItem(
+                            text = { Text("$resetText ${stringResource(
+                                OperationToolbarUiState.ResetOption.TOOL_FOOTSTEP.title)}") },
+                            onClick = {
+                                onReset(OperationToolbarUiState.ResetOption.TOOL_FOOTSTEP)
+                                showOptions = false
+                            }
+                        )
+                    }
+                    OperationToolbarUiState.Category.TOOL_TIMERS -> {
+                        DropdownMenuItem(
+                            text = { Text("$resetText ${stringResource(
+                                OperationToolbarUiState.ResetOption.TOOL_TIMERS.title)}") },
+                            onClick = {
+                                onReset(OperationToolbarUiState.ResetOption.TOOL_TIMERS)
+                                showOptions = false
+                            }
+                        )
+                    }
+                    else -> {}
+                }
+
+                DropdownMenuItem(
+                    text = { Text("$resetText ${stringResource(
+                        OperationToolbarUiState.ResetOption.JOURNAL.title)}") },
+                    onClick = {
+                        onReset(OperationToolbarUiState.ResetOption.JOURNAL)
+                        showOptions = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("$resetText ${stringResource(
+                        OperationToolbarUiState.ResetOption.MISSION.title)}") },
+                    onClick = {
+                        onReset(OperationToolbarUiState.ResetOption.MISSION)
+                        showOptions = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("$resetText ${stringResource(R.string.investigation_label_all)}") },
+                    onClick = {
+                        onReset(OperationToolbarUiState.ResetOption.ALL)
+                        showOptions = false
+                    }
+                )
+            }
+
+        }
     }
 }
 
@@ -62,12 +152,12 @@ internal fun ResetButton(
 internal fun BpmButton(
     modifier: Modifier = Modifier,
     category: OperationToolbarUiState.Category,
-    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
+    onCategoryChange: (OperationToolbarUiState.Category, Boolean) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier,
         onClick = {
-            onCategoryChange(OperationToolbarUiState.Category.TOOL_FOOTSTEP)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_FOOTSTEP, true)
         }
     ) { modifier ->
         FootprintsIcon(
@@ -92,12 +182,12 @@ internal fun BpmButton(
 internal fun StopwatchButton(
     modifier: Modifier = Modifier,
     category: OperationToolbarUiState.Category,
-    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
+    onCategoryChange: (OperationToolbarUiState.Category, Boolean) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier,
         onClick = {
-            onCategoryChange(OperationToolbarUiState.Category.TOOL_TIMERS)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_TIMERS, true)
         }
     ) { modifier ->
         StopwatchIcon(
@@ -122,14 +212,14 @@ internal fun StopwatchButton(
 internal fun AnalyticsButton(
     modifier: Modifier = Modifier,
     category: OperationToolbarUiState.Category,
-    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
+    onCategoryChange: (OperationToolbarUiState.Category, Boolean) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
             .fillMaxSize(),
         onClick = {
-            onCategoryChange(OperationToolbarUiState.Category.TOOL_ANALYZER)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_ANALYZER, true)
         }
     ) { modifier ->
         AnalyticsIcon(
@@ -155,14 +245,14 @@ internal fun AnalyticsButton(
 internal fun ConfigButton(
     modifier: Modifier = Modifier,
     category: OperationToolbarUiState.Category,
-    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
+    onCategoryChange: (OperationToolbarUiState.Category, Boolean) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
             .fillMaxSize(),
         onClick = {
-            onCategoryChange(OperationToolbarUiState.Category.TOOL_CONFIG)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_CONFIG, true)
         }
     ) { modifier ->
         ConfigIcon(
@@ -187,14 +277,14 @@ internal fun ConfigButton(
 internal fun TraitsButton(
     modifier: Modifier = Modifier,
     category: OperationToolbarUiState.Category,
-    onCategoryChange: (OperationToolbarUiState.Category) -> Unit
+    onCategoryChange: (OperationToolbarUiState.Category, Boolean) -> Unit
 ) {
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
             .fillMaxSize(),
         onClick = {
-            onCategoryChange(OperationToolbarUiState.Category.TOOL_TRAITS)
+            onCategoryChange(OperationToolbarUiState.Category.TOOL_TRAITS, true)
         }
     ) { modifier ->
         GeneticsIcon(
@@ -215,11 +305,13 @@ internal fun TraitsButton(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun ResetIcon(
     modifier: Modifier = Modifier,
     tintColor: Color = Color.Unspecified,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    onLongClick: (() -> Unit)? = null
 ) {
     var rotationTarget by remember { mutableFloatStateOf(0f) }
 
@@ -239,47 +331,14 @@ internal fun ResetIcon(
         modifier = modifier
             .fillMaxSize()
             .aspectRatio(1f)
-            .clickable(onClick = {
-                rotationTarget -= 360f
-                onClick()
-            })
+            .combinedClickable(
+                onClick = {
+                    rotationTarget -= 360f
+                    onClick()
+                },
+                onLongClick = onLongClick
+            )
             .padding(2.dp)
             .rotate(rotation)
     )
-}
-
-@Composable
-internal fun SanityButton(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
-    isShownState: StateFlow<Boolean> = MutableStateFlow(false)
-) {
-
-    val foregroundColor = LocalPalette.current.onSurface
-
-    Box(
-        modifier = modifier
-            .size(48.dp)
-            //.border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
-            .clickable {
-                onClick()
-            }
-    ) {
-
-        when(LocalConfiguration.current.orientation) {
-            ORIENTATION_PORTRAIT -> 90
-            ORIENTATION_LANDSCAPE -> 180
-            else -> 0
-        }
-
-        Image(
-            painterResource(id = R.drawable.icon_sanityhead_skull),
-            contentDescription = "Sanity Drawable",
-            colorFilter = ColorFilter.tint(foregroundColor),
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center)
-                .clip(RectangleShape)
-        )
-    }
 }

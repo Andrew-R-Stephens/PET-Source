@@ -1,7 +1,8 @@
 package com.tritiumgaming.feature.investigation.ui.toolbar
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -170,15 +171,21 @@ private fun StickyItemContainer(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ToolbarItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { },
+    onLongClick: (() -> Unit)? = null,
     content: @Composable (Modifier) -> Unit,
 ) {
     content(
         modifier
-            .clickable { onClick() }
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = onLongClick
+            )
             .padding(8.dp),
     )
 }
+

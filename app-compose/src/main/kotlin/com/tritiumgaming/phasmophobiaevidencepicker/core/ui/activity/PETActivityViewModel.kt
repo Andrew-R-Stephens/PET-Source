@@ -50,12 +50,11 @@ class PETActivityViewModel(
     private val _googleAdsPermissionsUiState = MutableStateFlow(GoogleAdsConsentState())
 
     private val _petActivityUiState : StateFlow<PETActivityUiState> =
-        initFlowGlobalPreferencesUseCase()
-            .combine(initFlowPolicyUseCase()) { preferences, policy ->
-                preferences to policy
-            }
-            .combine(_googleAdsPermissionsUiState) {
-                (preferences, policy), googleAdsPermissionsUiState ->
+        combine(
+            initFlowGlobalPreferencesUseCase(),
+            initFlowPolicyUseCase(),
+            _googleAdsPermissionsUiState
+        ) { preferences, policy, googleAdsPermissionsUiState ->
                 PETActivityUiState(
                     isMobileAdsInitialized = googleAdsPermissionsUiState.isMobileAdsInitialized,
                     canRequestAds = googleAdsPermissionsUiState.canRequestAds,
@@ -131,34 +130,6 @@ class PETActivityViewModel(
             }
         }
     }
-
-    /** Opens the ad inspector. */
-    fun openAdInspector(context: Context, listener: OnAdInspectorClosedListener?) {
-        MobileAds.openAdInspector(context) { error ->
-            if (error != null) {
-                val errorMessage = error.message
-                Log.e("PETActivityViewModel", errorMessage)
-            }
-            // Notify listener of ad inspector closed.
-            listener?.onAdInspectorClosed(error)
-        }
-    }
-
-    /** Calls the UMP SDK method to show the privacy options form. */
-    fun showPrivacyOptionsForm(
-        activity: Activity,
-        onConsentFormDismissedListener: ConsentForm.OnConsentFormDismissedListener?,
-    ) {
-        com.google.android.ump.UserMessagingPlatform.showPrivacyOptionsForm(activity) { error ->
-            if (error != null) {
-                val errorMessage = error.message
-                Log.e("PETActivityViewModel", "Consent Form: $errorMessage")
-            }
-            // Notify listener of consent form dismissal.
-            onConsentFormDismissedListener?.onConsentFormDismissed(error)
-        }
-    }
-
 
     init {
         initFlowPolicyUseCase()
