@@ -112,7 +112,7 @@ private annotation class UkrainianPreviews
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
 @EnglishPreviews
-@CzechPreviews
+/*@CzechPreviews
 @GermanPreviews
 @SpanishPreviews
 @FrenchPreviews
@@ -121,5 +121,5 @@ private annotation class UkrainianPreviews
 @PortuguesePreviews
 @RussianPreviews
 @TurkishPreviews
-@UkrainianPreviews
+@UkrainianPreviews*/
 internal annotation class DevicePreviews

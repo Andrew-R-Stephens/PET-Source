@@ -160,7 +160,7 @@
     <string name="alert_gui_typography_error">¡Tipografía sin definir!</string>
     <string name="account_button_visit_marketplace">Visita Marketplace</string>
     <string name="investigation_average_sanity_title">Cordura promedio</string>
-    <string name="investigation_label_operation_configuration">Configuración de la operación</string>
+    <string name="investigation_label_contract">Configuración de la operación</string>
     <string name="investigation_label_tool_operation_details">Detalles de la operación</string>
     <string name="investigation_label_tool_secondary_evidence">Pruebas secundarias</string>
     <string name="investigation_label_tool_timers">Temporizadores</string>

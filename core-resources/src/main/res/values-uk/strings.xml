@@ -5,7 +5,7 @@
     <string name="investigation_phase_label_hunt">Полювання</string>
     <string name="investigation_section_title_movement_speed">Швидкість руху</string>
     <string name="investigation_label_phase">Фаза</string>
-    <string name="investigation_label_operation_configuration">Конфігурація операції</string>
+    <string name="investigation_label_contract">Конфігурація операції</string>
     <string name="investigation_label_tool_operation_details">Деталі операції</string>
     <string name="investigation_label_tool_secondary_evidence">Вторинні докази</string>
     <string name="investigation_label_tool_timers">Таймери</string>

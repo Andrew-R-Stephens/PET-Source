@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.missions.app.container.ObjectiveBoardContainerProvider
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUiState
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
 import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
@@ -33,7 +33,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class ObjectivesViewModel(
+class ObjectiveBoardViewModel(
     private val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
     private val fetchAllFirstNamesUseCase: FetchAllFirstNamesUseCase,
     private val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase,
@@ -216,7 +216,7 @@ class ObjectivesViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
-                val container = (application as MissionsContainerProvider).provideMissionsContainer()
+                val container = (application as ObjectiveBoardContainerProvider).provideMissionsContainer()
 
                 val fetchAllMissionsUseCase: FetchAllMissionsUseCase = container.fetchAllMissionsUseCase
                 val fetchAllFirstNamesUseCase: FetchAllFirstNamesUseCase = container.fetchAllFirstNamesUseCase
@@ -225,7 +225,7 @@ class ObjectivesViewModel(
                 val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase = container.fetchAllSurnamesUseCase
                 val missionsStateUseCaseBundle: MissionsUseCaseBundle = container.missionsUseCaseBundle
 
-                ObjectivesViewModel(
+                ObjectiveBoardViewModel(
                     fetchAllMissionsUseCase = fetchAllMissionsUseCase,
                     fetchAllFirstNamesUseCase = fetchAllFirstNamesUseCase,
                     fetchAllMaleNamesUseCase = fetchAllMaleNamesUseCase,

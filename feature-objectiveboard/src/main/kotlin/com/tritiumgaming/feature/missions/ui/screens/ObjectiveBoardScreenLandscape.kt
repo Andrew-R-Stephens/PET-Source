@@ -2,6 +2,8 @@ package com.tritiumgaming.feature.missions.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -28,26 +30,26 @@ import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseCo
 import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiActions
 
 @Composable
-internal fun ObjectivesContentPortrait(
+internal fun ObjectivesContentLandscape(
     modifier: Modifier = Modifier,
-    objectivesContentUiState: ObjectivesContentUiState,
+    objectiveBoardContentUiState: ObjectiveBoardContentUiState,
     ghostNameUiActions: GhostNameUiActions,
     missionWrapperActions: MissionWrapperActions,
     ghostResponseUiActions: GhostResponseUiActions
 ) {
-    val rememberScrollState = rememberScrollState()
-
-    Column(
-        modifier = modifier
-            .verticalScroll(state = rememberScrollState),
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.Top
     ) {
 
         Column(
             modifier = Modifier
-                .wrapContentHeight(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .weight(1f)
+                .fillMaxHeight()
+                .verticalScroll(state = rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
             BasicText(
@@ -67,7 +69,7 @@ internal fun ObjectivesContentPortrait(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top)
                     .fillMaxWidth(),
-                missionSpinnerUiState = objectivesContentUiState.missionSpinnerUiState,
+                missionSpinnerUiState = objectiveBoardContentUiState.missionSpinnerUiState,
                 missionWrapperActions = missionWrapperActions
             )
 
@@ -75,8 +77,10 @@ internal fun ObjectivesContentPortrait(
 
         Column(
             modifier = Modifier
-                .wrapContentHeight(),
-            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+                .weight(1f)
+                .fillMaxHeight()
+                .verticalScroll(state = rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -85,7 +89,7 @@ internal fun ObjectivesContentPortrait(
                     .fillMaxWidth()
                     .height(36.dp)
                     .padding(4.dp),
-                text = stringResource(R.string.objectives_title_investigation_debrief),
+                text = stringResource(R.string.objectives_title_ghost_details),
                 style = LocalTypography.current.primary.regular.copy(
                     color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center
@@ -94,20 +98,17 @@ internal fun ObjectivesContentPortrait(
             )
 
             GhostNameContent(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                namesSpinnerUiState = objectivesContentUiState.namesSpinnerUiState,
-                ghostDetailsUiState = objectivesContentUiState.ghostDetailsUiState,
-                ghostNameUiActions = ghostNameUiActions
+                modifier = Modifier,
+                namesSpinnerUiState = objectiveBoardContentUiState.namesSpinnerUiState,
+                ghostDetailsUiState = objectiveBoardContentUiState.ghostDetailsUiState,
+                ghostNameUiActions = ghostNameUiActions,
             )
 
             GhostResponseContent(
                 modifier = Modifier
-                    .padding(16.dp)
                     .wrapContentHeight(Alignment.Top),
-                ghostResponseUiState = objectivesContentUiState.ghostResponseUiState,
-                ghostDetailsUiState = objectivesContentUiState.ghostDetailsUiState,
+                ghostResponseUiState = objectiveBoardContentUiState.ghostResponseUiState,
+                ghostDetailsUiState = objectiveBoardContentUiState.ghostDetailsUiState,
                 ghostResponseUiActions = ghostResponseUiActions
             )
 

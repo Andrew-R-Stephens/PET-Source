@@ -6,7 +6,7 @@
     <!-- Page Details -->
     <string name="map_setting_state_large">Великий</string>
     <string name="objectives_title_optional_objectives">Додаткові цілі</string>
-    <string name="objectives_title_investigation_debrief">Звіт про розслідування</string>
+    <string name="objectives_title_objective_board">Звіт про розслідування</string>
     <string name="objectives_title_ghost_name">Ім\'я Привида</string>
     <string name="objectives_ghostname_note">Введіть ім\'я привида тут</string>
     <string name="objectives_title_optional_objective">Мета</string>

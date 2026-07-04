@@ -341,7 +341,7 @@ private enum class Destination(
         subRoutes = listOf(NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route)
     ),
     MISSIONS(
-        NavRoute.SCREEN_MISSIONS.route,
+        NavRoute.SCREEN_OBJECTIVE_BOARD.route,
         R.drawable.icon_nav_tasks,
         NavOptions.Builder()
             .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = false)

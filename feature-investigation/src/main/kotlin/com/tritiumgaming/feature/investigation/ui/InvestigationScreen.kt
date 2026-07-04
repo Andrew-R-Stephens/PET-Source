@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.investigation.ui
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -193,7 +194,7 @@ private fun InvestigationScreenPreview(
                         fuseBox = OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
                     ),
                     weather = WeatherUiState(
-                        weather = Weather.SNOW
+                        weather = Weather.RANDOM
                     ),
                     ghostsSorted = GhostResources.GhostIdentifier.entries.take(10).map { identifier ->
                         GhostState(
@@ -1419,7 +1420,7 @@ fun OperationConfigsBottomSheet(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
+                text = stringResource(R.string.investigation_label_contract).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
@@ -1485,7 +1486,8 @@ fun OperationConfigsBottomSheet(
 
                     weatherConfigComponent(
                         Modifier
-                            .fillMaxWidth()                    )
+                            .fillMaxWidth()
+                    )
                 }
             }
 
@@ -1539,9 +1541,7 @@ fun OperationConfigsBottomSheet(
 
                     fuseBoxControlComponent(
                         Modifier
-                            .width(48.dp)
-                            .fillMaxHeight()
-                            .heightIn(min = 48.dp)
+                            .fillMaxSize()
                     )
                 }
             }
@@ -1648,7 +1648,7 @@ fun OperationConfigsSideSheetCompact(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
+                text = stringResource(R.string.investigation_label_contract).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
@@ -1952,7 +1952,7 @@ fun OperationConfigsSideSheetExpanded(
             Text(
                 modifier = Modifier
                     .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_operation_configuration).uppercase(),
+                text = stringResource(R.string.investigation_label_contract).uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
@@ -2000,7 +2000,8 @@ fun OperationConfigsSideSheetExpanded(
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .height(IntrinsicSize.Max),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
@@ -2050,7 +2051,8 @@ fun OperationConfigsSideSheetExpanded(
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .height(IntrinsicSize.Max),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
@@ -2063,7 +2065,8 @@ fun OperationConfigsSideSheetExpanded(
                         shape = RoundedCornerShape(8.dp)
                     ) {
                         timerComponent(
-                            Modifier.padding(8.dp)
+                            Modifier
+                                .padding(8.dp)
                                 .fillMaxWidth()
                         )
                     }

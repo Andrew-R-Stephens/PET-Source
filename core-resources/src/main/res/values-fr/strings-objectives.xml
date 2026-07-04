@@ -7,7 +7,7 @@
     <!-- Page Details -->
     <string name="objectives_ghostname_note">Entrez le nom du fantôme ici</string>
     <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
-    <string name="objectives_title_investigation_debrief">Compte rendu d\'enquête</string>
+    <string name="objectives_title_objective_board">Compte rendu d\'enquête</string>
     <string name="objectives_title_ghost_name">Nom du fantôme</string>
     <string name="objectives_title_response">"Réponds aux personnes qui sont "</string>
     <string name="objectives_title_optional_objective">Objectif</string>

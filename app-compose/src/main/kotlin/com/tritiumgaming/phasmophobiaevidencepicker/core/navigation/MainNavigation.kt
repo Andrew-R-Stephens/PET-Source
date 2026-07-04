@@ -37,7 +37,7 @@ import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
-import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
+import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsInboxesScreen
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessageScreen
@@ -289,12 +289,12 @@ private fun NavGraphBuilder.operationNavigation(
             }
         }
 
-        composable(route = NavRoute.SCREEN_MISSIONS.route) { navBackStackEntry ->
-            val objectivesViewModel: ObjectivesViewModel = viewModel(
+        composable(route = NavRoute.SCREEN_OBJECTIVE_BOARD.route) { navBackStackEntry ->
+            val objectiveBoardViewModel: ObjectiveBoardViewModel = viewModel(
                 viewModelStoreOwner = remember(navBackStackEntry) {
                     navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
                 },
-                factory = ObjectivesViewModel.Factory
+                factory = ObjectiveBoardViewModel.Factory
             )
 
             OperationScreen(
@@ -304,7 +304,7 @@ private fun NavGraphBuilder.operationNavigation(
                 windowInsets = windowInsets
             ) {
                 ObjectivesScreen(
-                    objectivesViewModel = objectivesViewModel
+                    objectiveBoardViewModel = objectiveBoardViewModel
                 )
             }
         }

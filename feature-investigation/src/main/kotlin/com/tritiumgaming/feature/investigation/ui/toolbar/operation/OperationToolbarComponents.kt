@@ -9,9 +9,11 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.Text
@@ -26,6 +28,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.AnalyticsIcon
@@ -34,6 +37,7 @@ import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 
@@ -63,6 +67,26 @@ internal fun ResetButton(
                 onDismissRequest = { showOptions = false },
                 containerColor = LocalPalette.current.surfaceContainerHighest
             ) {
+                // 1. The Title Header (Using a simple Text composable)
+                Text(
+                    text = stringResource(R.string.general_label_reset),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Center
+                    ),
+                    color = LocalPalette.current.onSurfaceVariant,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(4.dp)
+                )
+
+                // Optional: A divider line beneath the title
+                HorizontalDivider(
+                    modifier = Modifier.padding(vertical = 4.dp),
+                    color = LocalPalette.current.onSurface.copy(
+                        alpha = .5f
+                    )
+                )
+
                 when (category) {
                     OperationToolbarUiState.Category.TOOL_CONFIG -> {
                         DropdownMenuItem(
@@ -143,10 +167,10 @@ internal fun ResetButton(
                 DropdownMenuItem(
                     text = { Text(
                         stringResource(
-                            OperationToolbarUiState.ResetOption.TRUCK_DEBRIEF.title)
+                            OperationToolbarUiState.ResetOption.OBJECTIVE_BOARD.title)
                     ) },
                     onClick = {
-                        onReset(OperationToolbarUiState.ResetOption.TRUCK_DEBRIEF)
+                        onReset(OperationToolbarUiState.ResetOption.OBJECTIVE_BOARD)
                         showOptions = false
                     },
                     colors = MenuDefaults.itemColors(

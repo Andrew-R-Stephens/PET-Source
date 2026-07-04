@@ -160,7 +160,7 @@ fun OperationNavigationDrawer(
                                 )
                             )
                         },
-                        selected = currentDestination?.route == NavRoute.SCREEN_MISSIONS.route,
+                        selected = currentDestination?.route == NavRoute.SCREEN_OBJECTIVE_BOARD.route,
                         colors = NavigationDrawerItemDefaults.colors(
                             selectedIconColor = LocalPalette.current.primary,
                             unselectedIconColor = LocalPalette.current.onSurface,
@@ -176,8 +176,8 @@ fun OperationNavigationDrawer(
                             )
                         },
                         onClick = {
-                            if (currentDestination?.route != NavRoute.SCREEN_MISSIONS.route) {
-                                navController.navigate(NavRoute.SCREEN_MISSIONS.route) {
+                            if (currentDestination?.route != NavRoute.SCREEN_OBJECTIVE_BOARD.route) {
+                                navController.navigate(NavRoute.SCREEN_OBJECTIVE_BOARD.route) {
                                     popUpTo(NavRoute.SCREEN_INVESTIGATION.route) {
                                         inclusive = false
                                     }

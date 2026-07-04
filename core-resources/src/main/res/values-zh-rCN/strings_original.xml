@@ -138,7 +138,7 @@
     <string name="map_info_help_pois">保险丝盒和诅咒物品的位置由相关图标指示。</string>
     <string name="map_setting_state_large">大的</string>
     <string name="objectives_title_optional_objectives">可选目标</string>
-    <string name="objectives_title_investigation_debrief">调查汇报</string>
+    <string name="objectives_title_objective_board">调查汇报</string>
     <string name="objectives_title_ghost_name">鬼魂的名字</string>
     <string name="objectives_ghostname_note">在此输入幽灵名称</string>
     <string name="objectives_title_response">回应以下人士</string>
@@ -1146,7 +1146,7 @@
     <string name="map_setting_state_setup">设置</string>
     <string name="map_setting_state_action">动作</string>
     <string name="objectives_title_response_type">响应类型</string>
-    <string name="investigation_label_operation_configuration">操作配置</string>
+    <string name="investigation_label_contract">操作配置</string>
     <string name="investigation_label_tool_operation_details">操作详情</string>
     <string name="investigation_label_tool_secondary_evidence">辅助证据</string>
     <string name="investigation_label_tool_timers">计时器</string>

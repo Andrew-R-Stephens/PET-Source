@@ -136,7 +136,7 @@
     <string name="map_info_help_pois">Le posizioni delle scatole dei fusibili e degli oggetti maledetti sono indicate dalle relative icone.</string>
     <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Obiettivi facoltativi</string>
-    <string name="objectives_title_investigation_debrief">Rapporto investigativo</string>
+    <string name="objectives_title_objective_board">Rapporto investigativo</string>
     <string name="objectives_title_ghost_name">Nome del fantasma</string>
     <string name="objectives_ghostname_note">Inserisci qui il nome del fantasma</string>
     <string name="objectives_title_response">Risponde alle persone che sono</string>
@@ -1343,7 +1343,7 @@
     <string name="map_setting_label_drainrate">Tasso di consumo</string>
     <string name="store_title_achievements">Obiettivi</string>
     <string name="investigation_average_sanity_title">Sanità mentale media</string>
-    <string name="investigation_label_operation_configuration">Configurazione operazione</string>
+    <string name="investigation_label_contract">Configurazione operazione</string>
     <string name="investigation_label_tool_operation_details">Dettagli operazione</string>
     <string name="investigation_label_tool_secondary_evidence">Prove secondarie</string>
     <string name="investigation_label_tool_timers">Timer</string>

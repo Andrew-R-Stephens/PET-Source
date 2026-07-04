@@ -325,6 +325,6 @@ dependencies {
     implementation(project(":feature-investigation"))
     implementation(project(":feature-customdifficulty"))
     implementation(project(":feature-mapviewer"))
-    implementation(project(":feature-missions"))
+    implementation(project(":feature-objectiveboard"))
     implementation(project(":feature-operation"))
 }

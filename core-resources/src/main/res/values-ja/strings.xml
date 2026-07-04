@@ -137,7 +137,7 @@
     <string name="map_info_help_pois">ヒューズボックスと呪いのアイテムの位置は、関連するアイコンで示されます。</string>
     <string name="map_setting_state_large">大きい</string>
     <string name="objectives_title_optional_objectives">オプションの目標</string>
-    <string name="objectives_title_investigation_debrief">捜査報告書</string>
+    <string name="objectives_title_objective_board">捜査報告書</string>
     <string name="objectives_title_ghost_name">幽霊の名前</string>
     <string name="objectives_ghostname_note">ここにゴースト名を入力してください</string>
     <string name="objectives_title_response">次のような人々に対応します。</string>
@@ -1340,7 +1340,7 @@
     <string name="map_setting_label_drainrate">消耗率</string>
     <string name="store_title_achievements">実績</string>
     <string name="investigation_average_sanity_title">平均正気度</string>
-    <string name="investigation_label_operation_configuration">操作設定</string>
+    <string name="investigation_label_contract">操作設定</string>
     <string name="investigation_label_tool_operation_details">操作詳細</string>
     <string name="investigation_label_tool_secondary_evidence">二次証拠</string>
     <string name="investigation_label_tool_timers">タイマー</string>

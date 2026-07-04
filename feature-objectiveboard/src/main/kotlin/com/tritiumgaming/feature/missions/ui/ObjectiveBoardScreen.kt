@@ -21,7 +21,7 @@ import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
 import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiActions
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentLandscape
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentPortrait
-import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentUiState
+import com.tritiumgaming.feature.missions.ui.screens.ObjectiveBoardContentUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.mission.mappers.MissionResources
 import com.tritiumgaming.shared.data.mission.model.Mission
@@ -34,7 +34,7 @@ private fun ObjectivesScreenPreview() {
             color = LocalPalette.current.surface
         ) {
             ObjectivesScreenContent(
-                objectivesContentUiState = ObjectivesContentUiState(
+                objectiveBoardContentUiState = ObjectiveBoardContentUiState(
                     ghostResponseUiState = DifficultyResponseType.KNOWN,
                     missionSpinnerUiState = MissionSpinnerUiState(
                         selectedMissions = listOf(
@@ -92,15 +92,15 @@ private fun ObjectivesScreenPreview() {
 
 @Composable
 fun ObjectivesScreen(
-    objectivesViewModel: ObjectivesViewModel
+    objectiveBoardViewModel: ObjectiveBoardViewModel
 ) {
 
-    val namesSpinnerUiState by objectivesViewModel.namesSpinnerUiState.collectAsStateWithLifecycle()
-    val ghostDetailsUiState by objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
-    val missionSpinnerUiState by objectivesViewModel.missionSpinnerUiState.collectAsStateWithLifecycle()
-    val difficultyState by objectivesViewModel.difficultyState.collectAsStateWithLifecycle()
+    val namesSpinnerUiState by objectiveBoardViewModel.namesSpinnerUiState.collectAsStateWithLifecycle()
+    val ghostDetailsUiState by objectiveBoardViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
+    val missionSpinnerUiState by objectiveBoardViewModel.missionSpinnerUiState.collectAsStateWithLifecycle()
+    val difficultyState by objectiveBoardViewModel.difficultyState.collectAsStateWithLifecycle()
 
-    val objectivesContentUiState = ObjectivesContentUiState(
+    val objectiveBoardContentUiState = ObjectiveBoardContentUiState(
         ghostResponseUiState = difficultyState.responseType,
         missionSpinnerUiState = missionSpinnerUiState,
         ghostDetailsUiState = ghostDetailsUiState,
@@ -109,30 +109,30 @@ fun ObjectivesScreen(
 
     val ghostNameUiActions = GhostNameUiActions(
         onSelectFirstName = { firstname ->
-            objectivesViewModel.setGhostFirstName(firstname)
+            objectiveBoardViewModel.setGhostFirstName(firstname)
         },
         onSelectSurname = { surname ->
-            objectivesViewModel.setGhostSurname(surname)
+            objectiveBoardViewModel.setGhostSurname(surname)
         },
     )
 
     val ghostResponseUiActions = GhostResponseUiActions(
         onSelectResponse = { response ->
-            objectivesViewModel.setGhostResponse(response)
+            objectiveBoardViewModel.setGhostResponse(response)
         }
     )
 
     val missionWrapperActions = MissionWrapperActions(
         onSelectMission = { index, mission ->
-            objectivesViewModel.selectMission(index, mission)
+            objectiveBoardViewModel.selectMission(index, mission)
         },
         onChangeMissionStatus = { mission, state ->
-            objectivesViewModel.updateMissionStatus(mission, state)
+            objectiveBoardViewModel.updateMissionStatus(mission, state)
         },
     )
 
     ObjectivesScreenContent(
-        objectivesContentUiState,
+        objectiveBoardContentUiState,
         ghostNameUiActions,
         ghostResponseUiActions,
         missionWrapperActions
@@ -142,7 +142,7 @@ fun ObjectivesScreen(
 
 @Composable
 private fun ObjectivesScreenContent(
-    objectivesContentUiState: ObjectivesContentUiState,
+    objectiveBoardContentUiState: ObjectiveBoardContentUiState,
     ghostNameUiActions: GhostNameUiActions,
     ghostResponseUiActions: GhostResponseUiActions,
     missionWrapperActions: MissionWrapperActions
@@ -156,7 +156,7 @@ private fun ObjectivesScreenContent(
                 modifier = Modifier
                     .wrapContentHeight()
                     .padding(8.dp),
-                objectivesContentUiState = objectivesContentUiState,
+                objectiveBoardContentUiState = objectiveBoardContentUiState,
                 ghostNameUiActions = ghostNameUiActions,
                 ghostResponseUiActions = ghostResponseUiActions,
                 missionWrapperActions = missionWrapperActions,
@@ -171,7 +171,7 @@ private fun ObjectivesScreenContent(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(8.dp),
-                objectivesContentUiState = objectivesContentUiState,
+                objectiveBoardContentUiState = objectiveBoardContentUiState,
                 ghostNameUiActions = ghostNameUiActions,
                 ghostResponseUiActions = ghostResponseUiActions,
                 missionWrapperActions = missionWrapperActions,

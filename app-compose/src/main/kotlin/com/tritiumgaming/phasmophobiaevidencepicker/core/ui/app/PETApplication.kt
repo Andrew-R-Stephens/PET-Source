@@ -6,7 +6,6 @@ import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
 import com.google.firebase.Firebase
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,8 +28,8 @@ import com.tritiumgaming.feature.maps.app.container.MapViewerContainer
 import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainer
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
-import com.tritiumgaming.feature.missions.app.container.MissionsContainer
-import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.missions.app.container.ObjectiveBoardContainer
+import com.tritiumgaming.feature.missions.app.container.ObjectiveBoardContainerProvider
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainer
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
 import com.tritiumgaming.feature.settings.app.container.SettingsContainer
@@ -59,7 +58,7 @@ class PETApplication : Application(),
     NewsletterContainerProvider,
     MarketplaceContainerProvider,
     InvestigationContainerProvider,
-    MissionsContainerProvider,
+    ObjectiveBoardContainerProvider,
     CodexContainerProvider,
     MapViewerContainerProvider,
     CustomDifficultyContainerProvider {
@@ -96,7 +95,7 @@ class PETApplication : Application(),
     lateinit var marketplaceContainer: MarketplaceContainer
 
     lateinit var codexContainer: CodexContainer
-    lateinit var missionsContainer: MissionsContainer
+    lateinit var objectiveBoardContainer: ObjectiveBoardContainer
     lateinit var mapViewerContainer: MapViewerContainer
     lateinit var customDifficultyContainer: CustomDifficultyContainer
     lateinit var investigationContainer: InvestigationContainer
@@ -226,7 +225,7 @@ class PETApplication : Application(),
 
         codexContainer = CodexContainer()
 
-        missionsContainer = MissionsContainer(
+        objectiveBoardContainer = ObjectiveBoardContainer(
             applicationContext = applicationContext,
             missionsUseCaseBundle = coreContainer.missionsUseCaseBundle
         )
@@ -252,7 +251,7 @@ class PETApplication : Application(),
     override fun provideNewsletterContainer(): NewsletterContainer = newsletterContainer
     override fun provideMarketplaceContainer(): MarketplaceContainer = marketplaceContainer
     override fun provideCodexContainer(): CodexContainer = codexContainer
-    override fun provideMissionsContainer(): MissionsContainer = missionsContainer
+    override fun provideMissionsContainer(): ObjectiveBoardContainer = objectiveBoardContainer
     override fun provideMapViewerContainer(): MapViewerContainer = mapViewerContainer
     override fun provideInvestigationContainer(): InvestigationContainer = investigationContainer
     override fun provideCustomDifficultyContainer(): CustomDifficultyContainer = customDifficultyContainer

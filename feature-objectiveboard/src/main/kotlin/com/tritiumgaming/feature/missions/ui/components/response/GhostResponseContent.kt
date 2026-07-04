@@ -28,8 +28,8 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
-import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.ALONE
-import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.GROUP
+import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel.Companion.ALONE
+import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel.Companion.GROUP
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 
 @Composable

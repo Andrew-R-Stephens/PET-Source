@@ -136,7 +136,7 @@
     <string name="map_info_help_pois">As posições das caixas de fusíveis e dos itens amaldiçoados são indicadas por ícones relevantes.</string>
     <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionais</string>
-    <string name="objectives_title_investigation_debrief">Resumo da investigação</string>
+    <string name="objectives_title_objective_board">Resumo da investigação</string>
     <string name="objectives_title_ghost_name">Nome do Fantasma</string>
     <string name="objectives_ghostname_note">Digite o nome do fantasma aqui</string>
     <string name="objectives_title_response">Responde a pessoas que são</string>
@@ -1349,7 +1349,7 @@
     <string name="map_setting_label_drainrate">Taxa de drenagem</string>
     <string name="store_title_achievements">Conquistas</string>
     <string name="investigation_average_sanity_title">Sanidade média</string>
-    <string name="investigation_label_operation_configuration">Configuração da Operação</string>
+    <string name="investigation_label_contract">Configuração da Operação</string>
     <string name="investigation_label_tool_operation_details">Detalhes da Operação</string>
     <string name="investigation_label_tool_secondary_evidence">Evidências Secundárias</string>
     <string name="investigation_label_tool_timers">Temporizadores</string>

@@ -5,8 +5,9 @@
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
+    <string name="objectives_title_objective_board">Objective Board</string>
     <string name="objectives_title_optional_objectives">Optional Objectives</string>
-    <string name="objectives_title_investigation_debrief">Investigation Debrief</string>
+    <string name="objectives_title_ghost_details" translatable="false">Ghost Details</string>
     <string name="objectives_title_ghost_name">Ghost\'s Name</string>
     <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
     <string name="objectives_title_response">Responds to People who are</string>

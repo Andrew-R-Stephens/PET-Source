@@ -5,7 +5,7 @@ import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUi
 import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 
-data class ObjectivesContentUiState(
+data class ObjectiveBoardContentUiState(
     val ghostResponseUiState: DifficultyResponseType,
     val missionSpinnerUiState: MissionSpinnerUiState,
     val ghostDetailsUiState: GhostDetailsUiState,
