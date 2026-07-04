@@ -13,6 +13,10 @@ interface PolicyRepository: DatastoreRepository<Policy> {
 
     fun showPrivacyOptionsForm(activity: Any, onFinished: () -> Unit)
 
+    fun gatherAdsConsent(activity: Any, onFinished: (error: Any?) -> Unit)
+
+    suspend fun initializeMobileAds(context: Any, onFinished: () -> Unit)
+
     fun applyPolicy(policy: Policy)
 
 }

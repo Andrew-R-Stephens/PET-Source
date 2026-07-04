@@ -102,7 +102,9 @@ import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDa
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.data.policy.repository.PolicyRepository
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.InitializeMobileAdsUseCase
 import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
 import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase
 import com.tritiumgaming.shared.data.policy.usecase.SetAllowPersonalizedAdsUseCase
@@ -290,6 +292,12 @@ class CoreContainer(
         repository = policyRepository
     )
     val showPrivacyOptionsFormUseCase = ShowPrivacyOptionsFormUseCase(
+        repository = policyRepository
+    )
+    val gatherAdsConsentUseCase = GatherAdsConsentUseCase(
+        repository = policyRepository
+    )
+    val initializeMobileAdsUseCase = InitializeMobileAdsUseCase(
         repository = policyRepository
     )
 

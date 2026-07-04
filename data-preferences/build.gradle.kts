@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     // GOOGLE ADS
+    implementation(libs.android.playServices.ads)
     implementation(libs.android.ump.core)
 
     // Firebase

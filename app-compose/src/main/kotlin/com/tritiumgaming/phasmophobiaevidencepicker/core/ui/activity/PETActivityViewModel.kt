@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.ui.activity
 import android.app.Activity
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -11,15 +10,9 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.OnAdInspectorClosedListener
-import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.ump.ConsentForm
+import com.google.android.ump.ConsentInformation.PrivacyOptionsRequirementStatus
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleAdsConsentState
-import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
-import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager.Companion.TEST_DEVICE_HASHED_IDS
-import com.tritiumgaming.core.ui.mapper.toPaletteResource
-import com.tritiumgaming.core.ui.mapper.toTypographyResource
-import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
@@ -28,13 +21,13 @@ import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypog
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
+import com.tritiumgaming.shared.data.policy.usecase.InitializeMobileAdsUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
@@ -42,18 +35,16 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivityViewModel(
     private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val initFlowPolicyUseCase: InitFlowPolicyUseCase,
     private val applyPolicyUseCase: ApplyPolicyUseCase,
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
-    private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase
+    private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
+    private val gatherAdsConsentUseCase: GatherAdsConsentUseCase,
+    private val initializeMobileAdsUseCase: InitializeMobileAdsUseCase
 ): ViewModel() {
-
-    private lateinit var _googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
 
     /** UIState for the ViewModel. */
     private val _googleAdsPermissionsUiState = MutableStateFlow(GoogleAdsConsentState())
@@ -114,61 +105,30 @@ class PETActivityViewModel(
 
     /** GDPR consent manager */
     fun initMobileAdsConsentManager(activity: Activity) {
-        if(_googleMobileAdsConsentManager.isGoogleAdsConsentManagerInitialized) return
+        gatherAdsConsentUseCase(activity) { error ->
+            if (error is com.google.android.ump.FormError) {
+                Log.d("PETActivityViewModel", "${error.errorCode}: ${error.message}")
+            }
+            // Update UI State with current consent info
+            val consentInformation = com.google.android.ump.UserMessagingPlatform.getConsentInformation(activity)
+            _googleAdsPermissionsUiState.update { it.copy(
+                canRequestAds = consentInformation.canRequestAds(),
+                isPrivacyOptionsRequired = consentInformation.privacyOptionsRequirementStatus == PrivacyOptionsRequirementStatus.REQUIRED
+            ) }
 
-        viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-
-                _googleMobileAdsConsentManager.isGoogleAdsConsentManagerInitialized = true
-                _googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(activity)
-
-                /* Initializes the consent manager and calls the UMP SDK methods to request
-                consent information and load/show a consent form if necessary. */
-                gatherConsent(activity) { error ->
-                    if (error != null) {
-                        Log.d("PETActivityViewModel", "${error.errorCode}: ${error.message}")
-                    }
-                    _googleAdsPermissionsUiState.update { it.copy(
-                        canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
-                        isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired
-                    ) }
-
-                    viewModelScope.launch {
-                        if (!_googleMobileAdsConsentManager.canRequestAds) {
-                            showPrivacyOptionsForm(activity) {
-                                viewModelScope.launch {
-                                    initializeMobileAdsSdk(activity)
-                                }
-                            }
-                        } else {
-                            initializeMobileAdsSdk(activity)
-                        }
-                    }
-                }
+            // Initialize SDK if consent was gathered (or already existed)
+            viewModelScope.launch {
+                initializeMobileAdsSdk(activity)
             }
         }
-
     }
 
     /** Initializes the Mobile Ads SDK. */
     private suspend fun initializeMobileAdsSdk(context: Context) {
-
-        // Ensure that MobileAdsInitialize is called only once.
-        if (_googleMobileAdsConsentManager.isMobileAdsInitializeCalled.getAndSet(true)) {
-            return
-        }
-
-        // Set your test devices.
-        MobileAds.setRequestConfiguration(
-            RequestConfiguration.Builder().setTestDeviceIds(TEST_DEVICE_HASHED_IDS).build()
-        )
-
-        // Initialize the Google Mobile Ads SDK on a background thread.
-        withContext(Dispatchers.IO) {
-            MobileAds.initialize(context) { _googleAdsPermissionsUiState.update {
-                it.copy(isMobileAdsInitialized = true) } }
-
-            Log.d("PETActivityViewModel", "Mobile Ads SDK initialized.")
+        initializeMobileAdsUseCase(context) {
+            _googleAdsPermissionsUiState.update {
+                it.copy(isMobileAdsInitialized = true)
+            }
         }
     }
 
@@ -185,11 +145,11 @@ class PETActivityViewModel(
     }
 
     /** Calls the UMP SDK method to show the privacy options form. */
-    private fun showPrivacyOptionsForm(
+    fun showPrivacyOptionsForm(
         activity: Activity,
         onConsentFormDismissedListener: ConsentForm.OnConsentFormDismissedListener?,
     ) {
-        _googleMobileAdsConsentManager.showPrivacyOptionsForm(activity) { error ->
+        com.google.android.ump.UserMessagingPlatform.showPrivacyOptionsForm(activity) { error ->
             if (error != null) {
                 val errorMessage = error.message
                 Log.e("PETActivityViewModel", "Consent Form: $errorMessage")
@@ -199,39 +159,6 @@ class PETActivityViewModel(
         }
     }
 
-    /** Calls the UMP SDK methods to gatherConsent. */
-    private fun gatherConsent(
-        activity: Activity,
-        onConsentGatheringCompleteListener:
-        GoogleMobileAdsConsentManager.OnConsentGatheringCompleteListener,
-    ) {
-        _googleMobileAdsConsentManager.gatherConsent(activity) { error ->
-            // Update UIState and notify listener of updated consent status.
-            _googleAdsPermissionsUiState.update {
-                Log.d("PETActivityViewModel",
-                    "Consent gathering from current session complete. " +
-                        "${_googleMobileAdsConsentManager.canRequestAds} / " +
-                        "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
-                it.copy(
-                    canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
-                    isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired,
-                )
-            }
-            onConsentGatheringCompleteListener.consentGatheringComplete(error)
-        }
-
-        // Update UIState based on consent obtained in the previous session.
-        _googleAdsPermissionsUiState.update {
-            Log.d("PETActivityViewModel",
-                "Consent gathering from previous session complete. " +
-                    "${_googleMobileAdsConsentManager.canRequestAds} / " +
-                    "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
-            it.copy(
-                canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
-                isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired,
-            )
-        }
-    }
 
     init {
         initFlowPolicyUseCase()
@@ -254,6 +181,8 @@ class PETActivityViewModel(
                 val applyPolicyUseCase: ApplyPolicyUseCase = container.applyPolicyUseCase
                 val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
+                val gatherAdsConsentUseCase = container.gatherAdsConsentUseCase
+                val initializeMobileAdsUseCase = container.initializeMobileAdsUseCase
 
                 PETActivityViewModel(
                     initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
@@ -261,6 +190,8 @@ class PETActivityViewModel(
                     applyPolicyUseCase = applyPolicyUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
+                    gatherAdsConsentUseCase = gatherAdsConsentUseCase,
+                    initializeMobileAdsUseCase = initializeMobileAdsUseCase
                 )
             }
         }

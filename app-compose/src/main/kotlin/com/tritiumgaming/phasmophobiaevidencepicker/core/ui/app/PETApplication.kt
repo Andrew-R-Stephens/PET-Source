@@ -117,8 +117,10 @@ class PETApplication : Application(),
             initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
             initFlowPolicyUseCase = coreContainer.initFlowPolicyUseCase,
             applyPolicyUseCase = coreContainer.applyPolicyUseCase,
+            gatherAdsConsentUseCase = coreContainer.gatherAdsConsentUseCase,
+            initializeMobileAdsUseCase = coreContainer.initializeMobileAdsUseCase,
             getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
-            getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
+            getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase
         )
 
         accountContainer = AccountContainer(

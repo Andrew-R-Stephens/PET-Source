@@ -33,8 +33,8 @@ class GoogleMobileAdsConsentManager(
             else -> null
         }
 
-    var isGoogleAdsConsentManagerInitialized: Boolean = false
-    var isMobileAdsInitializeCalled = AtomicBoolean(false)
+    private var isGoogleAdsConsentManagerInitialized: Boolean = false
+    private val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
     /** Helper method to call the UMP SDK methods to request consent information and load/present a
      * consent form if necessary.  */
@@ -42,30 +42,40 @@ class GoogleMobileAdsConsentManager(
         activity: Activity,
         onConsentGatheringCompleteListener: OnConsentGatheringCompleteListener
     ) {
+        if (isGoogleAdsConsentManagerInitialized) return
+        isGoogleAdsConsentManagerInitialized = true
+
         // For testing purposes, you can force a DebugGeography of EEA or NOT_EEA.
         val debugSettings = ConsentDebugSettings.Builder(activity)
-        val debugBuilder = debugSettings.apply {
-            //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-            //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE)
-            //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
-            TEST_DEVICE_HASHED_IDS.forEach { addTestDeviceHashedId(it) }
-        }.build()
+            .apply {
+                //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE)
+                //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
+                TEST_DEVICE_HASHED_IDS.forEach { addTestDeviceHashedId(it) }
+            }.build()
 
         val params = ConsentRequestParameters.Builder()
-            .setConsentDebugSettings(debugBuilder)
+            .setConsentDebugSettings(debugSettings)
             .build()
 
         // Requesting an update to consent information should be called on every app launch.
         consentInformation.requestConsentInfoUpdate(
             activity,
-            params,
-            { UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) {
-                formError: FormError? -> // Consent has been gathered.
-                    onConsentGatheringCompleteListener.consentGatheringComplete(formError) }
-            },
-            { requestConsentError : FormError? ->
-                onConsentGatheringCompleteListener.consentGatheringComplete(requestConsentError ) }
+            params, {
+                UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) { formError ->
+                    // Consent has been gathered.
+                    onConsentGatheringCompleteListener.consentGatheringComplete(formError)
+                }
+            }, { requestConsentError ->
+                onConsentGatheringCompleteListener.consentGatheringComplete(requestConsentError)
+            }
         )
+    }
+
+    /** Helper method to check if the Mobile Ads SDK should be initialized. */
+    fun canInitializeMobileAds(): Boolean {
+        return canRequestAds && isMobileAdsInitializeCalled
+            .compareAndSet(false, true)
     }
 
     /** Helper method to call the UMP SDK method to present the privacy options form.  */

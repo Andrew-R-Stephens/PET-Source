@@ -2,6 +2,8 @@ package com.tritiumgaming.data.policy.repository
 
 import android.app.Activity
 import android.util.Log
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
@@ -36,6 +38,33 @@ class PolicyRepositoryImpl(
         if (activity is Activity) {
             googleMobileAdsConsentManager.showPrivacyOptionsForm(activity) {
                 onFinished()
+            }
+        }
+    }
+
+    override fun gatherAdsConsent(activity: Any, onFinished: (error: Any?) -> Unit) {
+        if (activity is Activity) {
+            googleMobileAdsConsentManager.gatherConsent(activity) { error ->
+                onFinished(error)
+            }
+        }
+    }
+
+    override suspend fun initializeMobileAds(context: Any, onFinished: () -> Unit) {
+        if (context is Activity && googleMobileAdsConsentManager.canInitializeMobileAds()) {
+            // Set your test devices.
+            MobileAds.setRequestConfiguration(
+                RequestConfiguration.Builder()
+                    .setTestDeviceIds(GoogleMobileAdsConsentManager.TEST_DEVICE_HASHED_IDS)
+                    .build()
+            )
+
+            // Initialize the Google Mobile Ads SDK on a background thread.
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                MobileAds.initialize(context) {
+                    onFinished()
+                }
+                Log.d("InitializeMobileAds", "Mobile Ads SDK initialized.")
             }
         }
     }
