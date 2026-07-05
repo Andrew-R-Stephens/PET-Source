@@ -45,13 +45,13 @@ import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Diffi
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
-import com.tritiumgaming.shared.data.operation.model.GhostState
-import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
-import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.shared.data.operation.model.GhostState
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
+import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
+import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
 
 @Composable

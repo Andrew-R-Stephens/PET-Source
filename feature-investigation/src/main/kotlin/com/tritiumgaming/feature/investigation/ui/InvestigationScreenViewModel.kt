@@ -63,20 +63,32 @@ import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
+import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
+import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
+import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
+import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
+import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
+import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import com.tritiumgaming.shared.data.operation.model.CategoryOption
 import com.tritiumgaming.shared.data.operation.model.DifficultyData
-import com.tritiumgaming.shared.data.operation.model.GhostDetails
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.operation.model.EvidenceState
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.operation.model.GhostDetails
 import com.tritiumgaming.shared.data.operation.model.GhostState
 import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterOptions
 import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
-import com.tritiumgaming.shared.data.operation.model.OperationUserPreferences
 import com.tritiumgaming.shared.data.operation.model.MapData
 import com.tritiumgaming.shared.data.operation.model.MissionData
 import com.tritiumgaming.shared.data.operation.model.MissionState
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import com.tritiumgaming.shared.data.operation.model.OperationUserPreferences
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
 import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
@@ -93,8 +105,6 @@ import com.tritiumgaming.shared.data.operation.model.TraitValidationType
 import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.operation.model.WeightOption
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
@@ -102,16 +112,6 @@ import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
-import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
-import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
-import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
-import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
-import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
-import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
-import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
@@ -2029,12 +2029,11 @@ class InvestigationScreenViewModel private constructor(
                 sanityState.sanityLevel < SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
                 else -> PhaseIdentifier.ACTION
             }
+        }.distinctUntilChanged()
+        .onEach { type ->
+            updatePhase(type = type)
         }
-            .distinctUntilChanged()
-            .onEach { type ->
-                updatePhase(type = type)
-            }
-            .launchIn(viewModelScope)
+        .launchIn(viewModelScope)
     }
 
     private fun observeOperationTimer() {
@@ -2060,14 +2059,15 @@ class InvestigationScreenViewModel private constructor(
                 _smudgeHuntProtectionTimerState,
                 _fingerprintTimerState
             )
-        ) { states -> states.any { it.running } }
-            .distinctUntilChanged()
-            .onEach { shouldRun ->
-                if (shouldRun) {
-                    _toolsTimerState.update { it.copy(paused = false) }
-                    launchToolTimersJob()
-                } else stopToolTimersJob()
-            }.launchIn(viewModelScope)
+        ) { states ->
+            states.any { it.running }
+        }.distinctUntilChanged()
+        .onEach { shouldRun ->
+            if (shouldRun) {
+                _toolsTimerState.update { it.copy(paused = false) }
+                launchToolTimersJob()
+            } else stopToolTimersJob()
+        }.launchIn(viewModelScope)
     }
 
     private fun observeToolTimerSettings() {
@@ -2077,56 +2077,55 @@ class InvestigationScreenViewModel private constructor(
             operationOverridesState
         ) { difficulty, map, override ->
             Triple(difficulty.settings, map.size, override.cursedInvestigation)
-        }
-            .distinctUntilChanged()
-            .onEach { (settings, mapSize, isCursed) ->
-                val huntDuration = settings.huntDuration.toLong(mapSize)
-                val normalizedHuntDuration =
-                    huntDuration + if (isCursed) 20.seconds.inWholeMilliseconds else 0
+        }.distinctUntilChanged()
+        .onEach { (settings, mapSize, isCursed) ->
+            val huntDuration = settings.huntDuration.toLong(mapSize)
+            val normalizedHuntDuration =
+                huntDuration + if (isCursed) 20.seconds.inWholeMilliseconds else 0
 
-                _huntDurationTimerState.update {
-                    it.copy(
-                        max = normalizedHuntDuration,
-                        remaining = normalizedHuntDuration,
-                        notches = listOf(
-                            ProgressBarNotch(
-                                UiText.DynamicString(""),
-                                ((normalizedHuntDuration * .8f) - 1).toLong()
-                            ),
-                            ProgressBarNotch(
-                                UiText.StringResource(R.string.ghost_type_obambo),
-                                (normalizedHuntDuration * .8f).toLong()
-                            ),
-                            ProgressBarNotch(
-                                UiText.StringResource(R.string.tool_timer_label_standard),
-                                normalizedHuntDuration
-                            )
+            _huntDurationTimerState.update {
+                it.copy(
+                    max = normalizedHuntDuration,
+                    remaining = normalizedHuntDuration,
+                    notches = listOf(
+                        ProgressBarNotch(
+                            UiText.DynamicString(""),
+                            ((normalizedHuntDuration * .8f) - 1).toLong()
+                        ),
+                        ProgressBarNotch(
+                            UiText.StringResource(R.string.ghost_type_obambo),
+                            (normalizedHuntDuration * .8f).toLong()
+                        ),
+                        ProgressBarNotch(
+                            UiText.StringResource(R.string.tool_timer_label_standard),
+                            normalizedHuntDuration
                         )
                     )
-                }
+                )
+            }
 
-                val fingerprintDuration = settings.fingerprintDuration.toLong()
-                _fingerprintTimerState.update {
-                    it.copy(
-                        max = fingerprintDuration,
-                        remaining = fingerprintDuration,
-                        notches = listOf(
-                            ProgressBarNotch(
-                                UiText.DynamicString(""),
-                                ((fingerprintDuration * .5f) - 1).toLong()
-                            ),
-                            ProgressBarNotch(
-                                UiText.StringResource(GhostTitle.OBAKE.toStringResource()),
-                                (fingerprintDuration * .5f).toLong()
-                            ),
-                            ProgressBarNotch(
-                                UiText.StringResource(R.string.tool_timer_label_standard),
-                                fingerprintDuration
-                            )
+            val fingerprintDuration = settings.fingerprintDuration.toLong()
+            _fingerprintTimerState.update {
+                it.copy(
+                    max = fingerprintDuration,
+                    remaining = fingerprintDuration,
+                    notches = listOf(
+                        ProgressBarNotch(
+                            UiText.DynamicString(""),
+                            ((fingerprintDuration * .5f) - 1).toLong()
+                        ),
+                        ProgressBarNotch(
+                            UiText.StringResource(GhostTitle.OBAKE.toStringResource()),
+                            (fingerprintDuration * .5f).toLong()
+                        ),
+                        ProgressBarNotch(
+                            UiText.StringResource(R.string.tool_timer_label_standard),
+                            fingerprintDuration
                         )
                     )
-                }
-            }.launchIn(viewModelScope)
+                )
+            }
+        }.launchIn(viewModelScope)
     }
 
     private fun observeCustomDifficulty() {

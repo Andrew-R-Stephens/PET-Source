@@ -19,9 +19,9 @@ import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperAc
 import com.tritiumgaming.feature.missions.ui.components.name.GhostNameUiActions
 import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
 import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiActions
+import com.tritiumgaming.feature.missions.ui.screens.ObjectiveBoardContentUiState
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentLandscape
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentPortrait
-import com.tritiumgaming.feature.missions.ui.screens.ObjectiveBoardContentUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.mission.mappers.MissionResources
 import com.tritiumgaming.shared.data.mission.model.Mission

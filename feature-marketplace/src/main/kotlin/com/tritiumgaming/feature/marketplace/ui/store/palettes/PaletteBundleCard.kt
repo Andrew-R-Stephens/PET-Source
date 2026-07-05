@@ -40,11 +40,11 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIconComposite
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
 @Composable
 fun PaletteBundleCard(

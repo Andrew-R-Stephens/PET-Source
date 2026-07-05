@@ -8,7 +8,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteCard
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 
 /*@Composable

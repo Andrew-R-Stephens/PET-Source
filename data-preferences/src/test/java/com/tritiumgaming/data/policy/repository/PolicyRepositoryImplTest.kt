@@ -3,9 +3,9 @@ package com.tritiumgaming.data.policy.repository
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
 import com.tritiumgaming.shared.data.policy.source.PolicyDatastore
 import com.tritiumgaming.shared.data.policy.source.PolicyDatastore.Policy
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import kotlinx.coroutines.test.runTest
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify

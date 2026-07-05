@@ -59,8 +59,8 @@ import com.tritiumgaming.core.common.util.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toIntegerResource

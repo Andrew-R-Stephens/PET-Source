@@ -12,8 +12,8 @@ import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 
 data class GhostState(
     val ghostEvidence: GhostEvidence,

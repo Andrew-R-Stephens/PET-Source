@@ -3,7 +3,6 @@ package com.tritiumgaming.feature.investigation.ui
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -51,8 +50,8 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
@@ -144,19 +143,19 @@ import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.shared.data.journal.model.GhostEvidence
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.shared.data.operation.model.CategoryOption
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.EvidenceState
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.operation.model.GhostState
 import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.ToolTimerType
 import com.tritiumgaming.shared.data.operation.model.TraitFilter
 import com.tritiumgaming.shared.data.operation.model.TraitScore
 import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
-import com.tritiumgaming.shared.data.journal.model.GhostEvidence
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)

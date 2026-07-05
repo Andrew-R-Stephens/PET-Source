@@ -8,9 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.OnAdInspectorClosedListener
-import com.google.android.ump.ConsentForm
 import com.google.android.ump.ConsentInformation.PrivacyOptionsRequirementStatus
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleAdsConsentState
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider

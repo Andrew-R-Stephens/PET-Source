@@ -36,8 +36,8 @@ import com.tritiumgaming.feature.maps.ui.MapMenuScreen
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
-import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
 import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel
+import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsInboxesScreen
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessageScreen

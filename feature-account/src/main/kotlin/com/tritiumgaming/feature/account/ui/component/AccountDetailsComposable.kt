@@ -25,8 +25,8 @@ import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
 

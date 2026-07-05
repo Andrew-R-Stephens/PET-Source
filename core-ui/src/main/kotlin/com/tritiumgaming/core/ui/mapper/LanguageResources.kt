@@ -2,7 +2,9 @@ package com.tritiumgaming.core.ui.mapper
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.language.mappers.LanguageResources.*
+import com.tritiumgaming.shared.data.language.mappers.LanguageResources.LocalizationCode
+import com.tritiumgaming.shared.data.language.mappers.LanguageResources.LocalizedTitle
+import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTitle
 
 @StringRes fun LocalizedTitle.toStringResource(): Int =
     when(this) {

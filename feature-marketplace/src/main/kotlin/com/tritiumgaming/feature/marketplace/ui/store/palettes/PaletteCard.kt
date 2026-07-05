@@ -43,8 +43,8 @@ import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
 @Composable
 fun PaletteCard(

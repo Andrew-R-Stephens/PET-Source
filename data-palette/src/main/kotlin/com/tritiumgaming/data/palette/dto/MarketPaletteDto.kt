@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.palette.dto
 
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
+import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
 data class MarketPaletteDto(
     internal val uuid: String,
