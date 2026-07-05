@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
@@ -72,10 +73,16 @@ internal fun DifficultyChallengeLabel(
 
     Text(
         modifier = modifier
-            .basicMarquee(Integer.MAX_VALUE, MarqueeAnimationMode.WhileFocused),
+            .basicMarquee(
+                iterations = Int.MAX_VALUE,
+                animationMode = MarqueeAnimationMode.Immediately,
+                initialDelayMillis = 1000,
+                repeatDelayMillis = 1000
+            ),
         text = stringResource(label),
         style = textStyle,
         color = colors.onColor,
+        fontSize = 14.sp,
         maxLines = 1
     )
 }
