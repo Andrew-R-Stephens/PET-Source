@@ -58,9 +58,11 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
+import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.CustomDifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ClearPopup
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.PlayerDeath
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ResetInvestigation
@@ -103,6 +105,7 @@ import com.tritiumgaming.feature.investigation.ui.sheet.ToolsTimerComponent
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.CustomDifficultyConfigControl
+import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyChallengeLabel
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigControl
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxButton
@@ -131,7 +134,9 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources.ChallengeTitle
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
@@ -194,7 +199,7 @@ private fun InvestigationScreenPreview(
                         fuseBox = OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
                     ),
                     weather = WeatherUiState(
-                        weather = Weather.RANDOM
+                        weather = Weather.HEAVY_RAIN
                     ),
                     ghostsSorted = GhostResources.GhostIdentifier.entries.take(10).map { identifier ->
                         GhostState(
@@ -300,6 +305,11 @@ private fun InvestigationScreenPreview(
                             MapTitle.BLEASDALE_FARMHOUSE,
                             MapTitle.CAMP_WOODWIND
                         )
+                    ),
+                    difficultyConfig = DifficultyConfigUiState(
+                        type = DifficultyType.CHALLENGE,
+                        name = DifficultyTitle.CHALLENGE,
+                        challengeTitle = ChallengeTitle.TORTOISE_AND_THE_HARE_TORTOISE
                     )
                 ),
                 uiActions = InvestigationUiActions()
@@ -522,11 +532,15 @@ private fun InvestigationContent(
         it.toStringResource()
     }
 
+    val challengeLabel = difficultyUiState.challengeTitle?.toStringResource()
+
     val customDifficultyLabel = customDifficultyConfigUiState.selectedDifficulty?.let {
-        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
+        it.name ?:
+        "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
     } ?: ""
     val customDifficultyDropdownOptions = customDifficultyConfigUiState.difficulties.map {
-        it.name ?: "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
+        it.name ?:
+        "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
     }
 
     val sanityLevel = sanityUiState.sanityLevel
@@ -695,6 +709,15 @@ private fun InvestigationContent(
                     onDropdownSelect = onDifficultyDropdownSelect
                 )
             },
+            challengeLabelComponent = { modifier ->
+                challengeLabel?.let {
+                    DifficultyChallengeLabel(
+                        modifier = modifier,
+                        label = challengeLabel,
+                        colors = operationConfigUiColors
+                    )
+                }
+            },
             customDifficultyConfigComponent = { modifier ->
                 CustomDifficultyConfigControl(
                     modifier = modifier,
@@ -771,6 +794,7 @@ private fun InvestigationContent(
                 )
             },
             showTemperatureMeterComponent = weather != Weather.RANDOM,
+            showChallengeTitleComponent = difficultyUiState.type == DifficultyType.CHALLENGE,
             showEditCustomDifficultyComponent = difficultyUiState.type == DifficultyType.CUSTOM
         )
     }
@@ -804,6 +828,15 @@ private fun InvestigationContent(
                     onDropdownSelect = onDifficultyDropdownSelect
                 )
             },
+            challengeLabelComponent = { modifier ->
+                challengeLabel?.let {
+                    DifficultyChallengeLabel(
+                        modifier = modifier,
+                        label = challengeLabel,
+                        colors = operationConfigUiColors
+                    )
+                }
+            },
             customDifficultyConfigComponent = { modifier ->
                 CustomDifficultyConfigControl(
                     modifier = modifier,
@@ -874,6 +907,7 @@ private fun InvestigationContent(
                 )
             },
             showTemperatureMeterComponent = weather != Weather.RANDOM,
+            showChallengeTitleComponent = difficultyUiState.type == DifficultyType.CHALLENGE,
             showEditCustomDifficultyComponent = difficultyUiState.type == DifficultyType.CUSTOM
         )
     }
@@ -907,6 +941,15 @@ private fun InvestigationContent(
                     onDropdownSelect = onDifficultyDropdownSelect
                 )
             },
+            challengeLabelComponent = { modifier ->
+                challengeLabel?.let {
+                    DifficultyChallengeLabel(
+                        modifier = modifier,
+                        label = challengeLabel,
+                        colors = operationConfigUiColors
+                    )
+                }
+            },
             customDifficultyConfigComponent = { modifier ->
                 CustomDifficultyConfigControl(
                     modifier = modifier,
@@ -977,6 +1020,7 @@ private fun InvestigationContent(
                 )
             },
             showTemperatureMeterComponent = weather != Weather.RANDOM,
+            showChallengeTitleComponent = difficultyUiState.type == DifficultyType.CHALLENGE,
             showEditCustomDifficultyComponent = difficultyUiState.type == DifficultyType.CUSTOM
         )
     }
@@ -1389,12 +1433,14 @@ fun OperationConfigsBottomSheet(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    challengeLabelComponent: @Composable (Modifier) -> Unit = {},
     customDifficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier, onHeadClick: () -> Unit) -> Unit = { _, _ -> },
     showTemperatureMeterComponent: Boolean,
+    showChallengeTitleComponent: Boolean,
     showEditCustomDifficultyComponent: Boolean
 ) {
     Column(
@@ -1464,19 +1510,19 @@ fun OperationConfigsBottomSheet(
                             .widthIn(max = 400.dp)
                     )
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
+                    difficultyConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
 
-                        difficultyConfigComponent(
+                    if(showChallengeTitleComponent) {
+                        challengeLabelComponent(
                             Modifier
-                                .weight(1f)
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp)
                         )
-
                     }
+
                     if(showEditCustomDifficultyComponent) {
                         customDifficultyConfigComponent(
                             Modifier
@@ -1614,12 +1660,14 @@ fun OperationConfigsSideSheetCompact(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    challengeLabelComponent: @Composable (Modifier) -> Unit = {},
     customDifficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier, onHeadClick: () -> Unit) -> Unit = { _, _ -> },
     showTemperatureMeterComponent: Boolean,
+    showChallengeTitleComponent: Boolean,
     showEditCustomDifficultyComponent: Boolean
 ) {
     var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
@@ -1684,6 +1732,14 @@ fun OperationConfigsSideSheetCompact(
                     Modifier
                         .fillMaxWidth()
                 )
+
+                if(showChallengeTitleComponent) {
+                    challengeLabelComponent(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                    )
+                }
 
                 if(showEditCustomDifficultyComponent) {
                     customDifficultyConfigComponent(
@@ -1920,12 +1976,14 @@ fun OperationConfigsSideSheetExpanded(
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    challengeLabelComponent: @Composable (Modifier) -> Unit = {},
     customDifficultyConfigComponent: @Composable (Modifier) -> Unit = {},
     weatherConfigComponent: @Composable (Modifier) -> Unit = {},
     temperatureMeterComponent: @Composable (Modifier) -> Unit = {},
     fuseBoxControlComponent: @Composable (Modifier) -> Unit = {},
     sanityMeterComponent: @Composable (Modifier, onHeadClick: () -> Unit) -> Unit = { _, _ -> },
     showTemperatureMeterComponent: Boolean,
+    showChallengeTitleComponent: Boolean,
     showEditCustomDifficultyComponent: Boolean
 ) {
     Column(
@@ -1985,6 +2043,14 @@ fun OperationConfigsSideSheetExpanded(
                     mapConfigComponent(Modifier.fillMaxWidth())
 
                     difficultyConfigComponent(Modifier.fillMaxWidth())
+
+                    if(showChallengeTitleComponent) {
+                        challengeLabelComponent(
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp)
+                        )
+                    }
 
                     if (showEditCustomDifficultyComponent) {
                         customDifficultyConfigComponent(Modifier.fillMaxWidth())
@@ -2121,7 +2187,7 @@ internal data class InvestigationUiState(
     val mapConfig: MapConfigUiState = MapConfigUiState(),
     val operationDetails: OperationDetailsUiState = OperationDetailsUiState(),
     val difficultyConfig: DifficultyConfigUiState = DifficultyConfigUiState(),
-    val customDifficultyConfig: InvestigationScreenViewModel.CustomDifficultyConfigUiState = InvestigationScreenViewModel.CustomDifficultyConfigUiState(),
+    val customDifficultyConfig: CustomDifficultyConfigUiState = CustomDifficultyConfigUiState(),
     val weather: WeatherUiState = WeatherUiState(),
     val temperature: TemperatureUiState = TemperatureUiState(),
     val difficultyOverrides: OperationOverrideData = OperationOverrideData(),

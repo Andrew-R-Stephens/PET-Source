@@ -745,6 +745,7 @@ class InvestigationScreenViewModel private constructor(
             DifficultyConfigUiState(
                 type = type,
                 name = name,
+                challengeTitle = state.challengeTitle,
                 allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
             )
         }
