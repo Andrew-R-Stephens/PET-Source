@@ -72,18 +72,11 @@ internal fun DifficultyChallengeLabel(
     val textStyle = LocalTypography.current.quaternary.regular
 
     Text(
-        modifier = modifier
-            .basicMarquee(
-                iterations = Int.MAX_VALUE,
-                animationMode = MarqueeAnimationMode.Immediately,
-                initialDelayMillis = 1000,
-                repeatDelayMillis = 1000
-            ),
+        modifier = modifier,
         text = stringResource(label),
         style = textStyle,
         color = colors.onColor,
-        fontSize = 14.sp,
-        maxLines = 1
+        fontSize = 14.sp
     )
 }
 
