@@ -6,7 +6,7 @@
     <string name="toast_discardchanges">Modifiche scartate</string>
     <string name="general_label_evidence">Prova</string>
     <string name="general_label_maps">Mappe</string>
-    <string name="general_label_tasks">Compiti</string>
+    <string name="general_label_objectiveboard">Tabellone degli obiettivi</string>
     <string name="general_label_codex">Codice</string>
     <string name="general_navigation_customdifficultyeditor">Editor difficoltà</string>
     <string name="general_label_reset">Ripristina</string>
@@ -14,6 +14,7 @@
     <!-- Page Details -->
 
     <string name="general_label_discard">Annulla</string>
+    <string name="general_label_edit">Modifica</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Lo strumento di prova definitivo</string>
     <string name="titlescreen_button">Inizia la caccia</string>
@@ -42,12 +43,15 @@
     <string name="settings_confirm">Confermare</string>
     <string name="settings_cancel">Annulla</string>
     <string name="settings_generalsettings">Generale</string>
+    <string name="settings_devicesettings">Dispositivo</string>
     <string name="settings_extrasettings">Impostazioni aggiuntive</string>
+    <string name="settings_interfacesettings">Interfaccia</string>
     <string name="settings_appearancesettings">Aspetto</string>
     <string name="settings_fontstylesettings">Stile carattere</string>
     <string name="settings_adsconsentcontrolsection">Annunci/Impostazioni GDPR</string>
     <string name="settings_adsgdprcontrolsection">Impostazioni GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Modificare</string>
+    <string name="settings_gdprsettings_button">Impostazioni della privacy</string>
     <string name="settings_screenalwayson">Tieni lo schermo sempre acceso</string>
     <string name="settings_networktitle">Consenti al Centro messaggi di utilizzare i dati mobili</string>
     <string name="settings_huntwarningflashtimeout">Timeout del flash di avviso di caccia</string>
@@ -56,6 +60,7 @@
     <string name="settings_uiDensity">Abilita interfaccia utente compatta</string>
     <string name="settings_enablehuntaudioqueue">Abilita l\'avviso audio di caccia</string>
     <string name="settings_enableGhostReorder">Abilita il riordino dell\'elenco fantasma</string>
+    <string name="settings_enableAnalytics">Abilita analisi</string>
     <string name="settings_colorblindnessmode_title">Modalità daltonico</string>
     <string name="settings_colorblindnessmode_note">(Avrà effetto dopo aver lasciato le Impostazioni)</string>
 
@@ -88,7 +93,7 @@
 
     <string name="investigation_prep_time_title">Tempo di preparazione</string>
     <string name="investigation_your_sanity_level_title">Il tuo livello di sanità mentale</string>
-    <string name="investigation_timer_label">Tempo di preparazione:</string>
+    <string name="investigation_timer_label">Tempo di preparazione</string>
     <string name="difficulty_title_default">Nessuno</string>
     <string name="difficulty_title_amateur">Dilettante</string>
     <string name="difficulty_title_intermediate">Intermedio</string>
@@ -102,6 +107,7 @@
     <string name="investigation_phase_label_hunt">Caccia</string>
     <string name="investigation_sanity_huntwarn">Caccia avviso</string>
     <string name="investigation_sanitymeter_title">Livello massimo di sanità mentale</string>
+    <string name="investigation_sanity_player_death">Giocatore ucciso</string>
     <string name="investigation_section_title_ghosts">Fantasmi</string>
     <string name="investigation_section_title_evidence">Prova</string>
 
@@ -137,6 +143,7 @@
     <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Obiettivi facoltativi</string>
     <string name="objectives_title_objective_board">Rapporto investigativo</string>
+    <string name="objectives_title_ghost_details">Dettagli del fantasma</string>
     <string name="objectives_title_ghost_name">Nome del fantasma</string>
     <string name="objectives_ghostname_note">Inserisci qui il nome del fantasma</string>
     <string name="objectives_title_response">Risponde alle persone che sono</string>
@@ -726,8 +733,11 @@
     <string name="general_navigation_menu">Menù</string>
     <string name="investigation_section_title_movement_speed">Velocità di movimento</string>
     <string name="investigation_label_phase">Fase</string>
+    <string name="investigation_label_timer_reset">Timer reset</string>
     <string name="investigation_label_tool_footstep">Strumento rilevamento passi</string>
+    <string name="tool_timer_label_unlinked">Scollegato</string>
     <string name="tool_timer_label_standard">Standard</string>
+    <string name="tool_timer_label_toggle_cursed">Attiva/Disattiva stato operazione maledetta</string>
     <string name="tool_timer_label_cursed">Maledetta</string>
     <string name="codex_section_equipment">Attrezzatura</string>
     <string name="codex_section_more">Maggiori informazioni tra breve</string>
@@ -1343,8 +1353,9 @@
     <string name="map_setting_label_drainrate">Tasso di consumo</string>
     <string name="store_title_achievements">Obiettivi</string>
     <string name="investigation_average_sanity_title">Sanità mentale media</string>
-    <string name="investigation_label_contract">Configurazione operazione</string>
-    <string name="investigation_label_tool_operation_details">Dettagli operazione</string>
+    <string name="investigation_label_journal">Diario</string>
+    <string name="investigation_label_contract">Configura contratto</string>
+    <string name="investigation_label_tool_operation_details">Dettagli del contratto</string>
     <string name="investigation_label_tool_secondary_evidence">Prove secondarie</string>
     <string name="investigation_label_tool_timers">Timer</string>
     <string name="general_label_preset_slot">Slot preimpostazione</string>
@@ -1366,4 +1377,14 @@
     <string name="objectives_notice_response_type">Nota: I livelli di difficoltà superiori a \"Intermedio\" non rivelano il tipo di risposta.</string>
     <string name="ghost_info_aswang"><![CDATA[ <a>L\'Aswang è un cacciatore selvaggio, che preferisce il brivido dell\'inseguimento alla ricerca dei giocatori nascosti. Non riuscirai mai a seminare questo fantasma se ti vede, quindi dovresti avere sempre un nascondiglio pronto.</a> ]]></string>
     <string name="footstep_label_domain">Finestra di visualizzazione</string>
+    <string name="general_label_modifiers">Modificatori</string>
+    <string name="general_label_power">Potenza</string>
+    <string name="general_label_temperature">Temperatura</string>
+    <string name="settings_enablePersonalizedAds">Abilita annunci personalizzati</string>
+    <string name="investigation_label_all">Tutti</string>
+    <string name="investigation_label_timer_run">Timer corsa</string>
+    <string name="investigation_label_timer_pause">Timer pausa</string>
+    <string name="investigation_label_timer_skip">Timer salta</string>
+    <string name="tool_timer_label_hunt_timer_link">Il timer di recupero della Caccia si avvia automaticamente al termine del timer di durata della Caccia.</string>
+    <string name="tool_timer_label_linked">Collegato</string>
 </resources>

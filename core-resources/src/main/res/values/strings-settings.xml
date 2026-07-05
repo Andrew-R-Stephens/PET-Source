@@ -9,14 +9,14 @@
     <string name="settings_confirm">Confirm</string>
     <string name="settings_cancel">Cancel</string>
     <string name="settings_generalsettings">General Settings</string>
-    <string name="settings_devicesettings" translatable="false">Device</string>
+    <string name="settings_devicesettings">Device</string>
     <string name="settings_extrasettings">Extra Settings</string>
-    <string name="settings_interfacesettings" translatable="false">Interface</string>
+    <string name="settings_interfacesettings">Interface</string>
     <string name="settings_appearancesettings">Appearance</string>
     <string name="settings_fontstylesettings">Font Style</string>
     <string name="settings_adsconsentcontrolsection">Privacy</string>
     <string name="settings_adsgdprcontrolsection">Privacy Options</string>
-    <string name="settings_gdprsettings_button" translatable="false">Privacy Settings</string>
+    <string name="settings_gdprsettings_button">Privacy Settings</string>
     <string name="settings_screenalwayson">Always keep the screen on</string>
     <string name="settings_networktitle">Allow Mobile Data</string>
     <string name="settings_huntwarningflashtimeout">Hunt Warning Duration</string>
@@ -25,8 +25,8 @@
     <string name="settings_uiDensity">Enable Compact UI</string>
     <string name="settings_enablehuntaudioqueue">Enable Hunt Warning Audio</string>
     <string name="settings_enableGhostReorder">Enable Ghost List Reordering</string>
-    <string name="settings_enablePersonalizedAds" translatable="false">Enable Personalized Ads</string>
-    <string name="settings_enableAnalytics" translatable="false">Enable Analytics</string>
+    <string name="settings_enablePersonalizedAds">Enable Personalized Ads</string>
+    <string name="settings_enableAnalytics">Enable Analytics</string>
     <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
     <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
     <string name="settings_colortheme_title">Skin</string>

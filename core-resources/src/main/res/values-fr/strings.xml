@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="investigation_sanity_player_death">Joueur tué</string>
     <string name="investigation_section_title_ghosts">Fantômes</string>
     <string name="investigation_section_title_evidence">Preuve</string>
 
     <string name="general_label_discard">Annuler</string>
+    <string name="general_label_edit">Modifier</string>
     <string name="titlescreen_beta_label">Bêta</string>
     <string name="titlescreen_description">L’outil de preuves ultime</string>
     <string name="titlescreen_button">Commencer la chasse</string>
@@ -12,7 +14,7 @@
     <string name="investigation_timer_difficulty_label">Difficulté</string>
     <string name="investigation_prep_time_title">Temps de préparation</string>
     <string name="investigation_your_sanity_level_title">Votre niveau de santé mentale</string>
-    <string name="investigation_timer_label">Temps de préparation:</string>
+    <string name="investigation_timer_label">Temps de préparation</string>
 
 
     <string name="aboutinfo_aboutapp_info">
@@ -32,7 +34,7 @@
     <string name="toast_discardchanges">Modifications rejetées</string>
     <string name="general_label_evidence">Preuve</string>
     <string name="general_label_maps">Plans</string>
-    <string name="general_label_tasks">Tâches</string>
+    <string name="general_label_objectiveboard">Tableau des objectifs</string>
     <string name="aboutinfo_version">Versión</string>
     <string name="aboutinfo_title_about">À propos</string>
     <string name="aboutinfo_specialthanks_title">Remerciements spéciaux</string>
@@ -61,8 +63,11 @@
     <string name="general_navigation_menu">Menu</string>
     <string name="investigation_section_title_movement_speed">Vitesse de déplacement</string>
     <string name="investigation_label_phase">Phase</string>
+    <string name="investigation_label_timer_reset">Réinitialiser le chronomètre</string>
     <string name="investigation_label_tool_footstep">Outil de suivi des pas</string>
+    <string name="tool_timer_label_unlinked">Dissocié</string>
     <string name="tool_timer_label_standard">Standard</string>
+    <string name="tool_timer_label_toggle_cursed">Basculer l\'état de l\'opération maudite</string>
     <string name="tool_timer_label_cursed">Maudite</string>
     <string name="codex_section_equipment">Équipement</string>
     <string name="codex_section_more">Plus à venir bientôt</string>
@@ -97,8 +102,9 @@
     <string name="alert_gui_palette_error">Palette non définie !</string>
     <string name="alert_gui_typography_error">Typographie non définie !</string>
     <string name="investigation_average_sanity_title">Santé mentale moyenne</string>
-    <string name="investigation_label_contract">Configuration de l\'opération</string>
-    <string name="investigation_label_tool_operation_details">Détails de l\'opération</string>
+    <string name="investigation_label_journal">Journal</string>
+    <string name="investigation_label_contract">Configurer le contrat</string>
+    <string name="investigation_label_tool_operation_details">Détails du contrat</string>
     <string name="investigation_label_tool_secondary_evidence">Preuves secondaires</string>
     <string name="investigation_label_tool_timers">Minuteurs</string>
     <string name="general_label_preset_slot">Emplacement de préréglage</string>
@@ -117,5 +123,14 @@
     <string name="tool_timer_label_hunt_cooldown">Délai de récupération de la chasse</string>
     <string name="tool_timer_label_uv_lifetime">Durée des UV</string>
     <string name="footstep_label_domain">Fenêtre d\'affichage</string>
+    <string name="general_label_modifiers">Modificateurs</string>
+    <string name="general_label_power">Puissance</string>
+    <string name="general_label_temperature">Température</string>
+    <string name="investigation_label_all">Tout</string>
+    <string name="investigation_label_timer_run">Chronomètre de course</string>
+    <string name="investigation_label_timer_pause">Chronomètre de pause</string>
+    <string name="investigation_label_timer_skip">Chronomètre d\'ellipse</string>
+    <string name="tool_timer_label_hunt_timer_link">Le minuteur de temps de recharge de la Chasse démarre automatiquement à la fin du minuteur de durée de la Chasse.</string>
+    <string name="tool_timer_label_linked">Lié</string>
 
 </resources>

@@ -154,7 +154,7 @@ fun OperationNavigationDrawer(
                             .padding(8.dp),
                         label = {
                             Text(
-                                text = stringResource(R.string.general_label_tasks),
+                                text = stringResource(R.string.general_label_objectiveboard),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp
                                 )

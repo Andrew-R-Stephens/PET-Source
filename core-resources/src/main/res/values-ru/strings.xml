@@ -7,7 +7,7 @@
     <string name="toast_discardchanges">Изменения отменены</string>
     <string name="general_label_evidence">Доказательства</string>
     <string name="general_label_maps">Карты</string>
-    <string name="general_label_tasks">Задачи</string>
+    <string name="general_label_objectiveboard">Доска целей</string>
     <string name="general_label_codex">Кодекс</string>
     <string name="general_navigation_customdifficultyeditor">Редактор сложности</string>
     <string name="general_label_reset">Сброс</string>
@@ -17,6 +17,7 @@
     -->
     <!-- Page Details -->
     <string name="general_label_discard">Отменить</string>
+    <string name="general_label_edit">Изменить</string>
     <string name="titlescreen_beta_label">Бета</string>
     <string name="titlescreen_description">Лучший инструмент для сбора доказательств</string>
     <string name="titlescreen_button">Начать охоту</string>
@@ -59,7 +60,9 @@
     <string name="settings_confirm">Подтвердить</string>
     <string name="settings_cancel">Отмена</string>
     <string name="settings_generalsettings">Общие</string>
+    <string name="settings_devicesettings">Устройство</string>
     <string name="settings_extrasettings">Дополнительные настройки</string>
+    <string name="settings_gdprsettings_button">Настройки конфиденциальности</string>
     <string name="settings_screenalwayson">Всегда держать экран включенным</string>
     <string name="settings_networktitle">Разрешить Центру сообщений использовать мобильные данные</string>
     <string name="settings_huntwarningflashtimeout">Тайм-аут мигающего предупреждения об охоте</string>
@@ -68,6 +71,7 @@
     <string name="settings_uiDensity">Включить компактный интерфейс</string>
     <string name="settings_enablehuntaudioqueue">Включить звуковое предупреждение об обнаружении</string>
     <string name="settings_enableGhostReorder">Включить переупорядочение списка призраков</string>
+    <string name="settings_enableAnalytics">Включить аналитику</string>
     <string name="settings_colorblindnessmode_title">Режим дальтонизма</string>
     <string name="settings_colorblindnessmode_note">(Вступит в силу после выхода из настроек)</string>
     <!-- Colorblindness Types -->
@@ -102,7 +106,7 @@
     <!-- Solo/Team Data -->
     <string name="investigation_prep_time_title">Время подготовки</string>
     <string name="investigation_your_sanity_level_title">Ваш уровень здравомыслия</string>
-    <string name="investigation_timer_label">Время подготовки:</string>
+    <string name="investigation_timer_label">Время подготовки</string>
     <string name="difficulty_title_default">Нет</string>
     <string name="difficulty_title_amateur">Любитель</string>
     <string name="difficulty_title_intermediate">Средний</string>
@@ -116,6 +120,7 @@
     <string name="investigation_phase_label_hunt">Охота</string>
     <string name="investigation_sanity_huntwarn">Предупреждение Охоты</string>
     <string name="investigation_sanitymeter_title">Максимальный Уровень Вменяемости</string>
+    <string name="investigation_sanity_player_death">Игрок убит</string>
     <string name="investigation_section_title_ghosts">Призраки</string>
     <string name="investigation_section_title_evidence">Доказательства</string>
     <string name="popup_ghost_strength">Сильные стороны</string>
@@ -734,6 +739,7 @@
     <string name="map_setting_state_large">Большой</string>
     <string name="objectives_title_optional_objectives">Дополнительные цели</string>
     <string name="objectives_title_objective_board">Отчет о расследовании</string>
+    <string name="objectives_title_ghost_details">Детали призрака</string>
     <string name="objectives_title_ghost_name">Имя призрака</string>
     <string name="objectives_ghostname_note">Введите здесь имя призрака</string>
     <string name="objectives_title_response">Отвечает людям, которые</string>
@@ -811,6 +817,7 @@
     <string name="spiritbox_entry_q35">Насколько я сумасшедший?</string>
     <string name="spiritbox_entry_q36">Я сошел с ума?</string>
 
+    <string name="settings_interfacesettings">Интерфейс</string>
     <string name="settings_appearancesettings">Появление</string>
     <string name="settings_fontstylesettings">Стиль шрифта</string>
     <string name="evidence_section_overview">Обзор</string>
@@ -1702,8 +1709,11 @@
     <string name="general_navigation_menu">меню</string>
     <string name="investigation_section_title_movement_speed">Скорость передвижения</string>
     <string name="investigation_label_phase">Фаза</string>
+    <string name="investigation_label_timer_reset">Сброс таймера</string>
     <string name="investigation_label_tool_footstep">Инструмент для отслеживания шагов</string>
+    <string name="tool_timer_label_unlinked">Не связано</string>
     <string name="tool_timer_label_standard">Стандартное</string>
+    <string name="tool_timer_label_toggle_cursed">Переключить статус проклятой операции</string>
     <string name="tool_timer_label_cursed">Проклятый</string>
     <string name="codex_section_equipment">Оборудование</string>
     <string name="codex_section_more">Продолжение следует</string>
@@ -2712,8 +2722,9 @@
     <string name="map_setting_label_drainrate">Скорость разрядки</string>
     <string name="store_title_achievements">Достижения</string>
     <string name="investigation_average_sanity_title">Средний уровень рассудка</string>
-    <string name="investigation_label_contract">Конфигурация операции</string>
-    <string name="investigation_label_tool_operation_details">Подробности операции</string>
+    <string name="investigation_label_journal">Журнал</string>
+    <string name="investigation_label_contract">Настроить контракт</string>
+    <string name="investigation_label_tool_operation_details">Детали договора</string>
     <string name="investigation_label_tool_secondary_evidence">Вторичные доказательства</string>
     <string name="investigation_label_tool_timers">Таймеры</string>
     <string name="general_label_preset_slot">Слот пресета</string>
@@ -2734,5 +2745,15 @@
     <string name="objectives_title_firstname">Имя</string>
     <string name="objectives_notice_response_type">Примечание: На уровнях сложности выше «Среднего» тип ответа не раскрывается.</string>
     <string name="footstep_label_domain">Видовое окно</string>
+    <string name="general_label_modifiers">Модификаторы</string>
+    <string name="general_label_power">Мощность</string>
+    <string name="general_label_temperature">Температура</string>
+    <string name="settings_enablePersonalizedAds">Включить персонализированную рекламу</string>
+    <string name="investigation_label_all">Все</string>
+    <string name="investigation_label_timer_run">Таймер забега</string>
+    <string name="investigation_label_timer_pause">Пауза таймера</string>
+    <string name="investigation_label_timer_skip">Пропуск таймера</string>
+    <string name="tool_timer_label_hunt_timer_link">Таймер восстановления охоты запускается автоматически по окончании таймера длительности охоты.</string>
+    <string name="tool_timer_label_linked">Связано</string>
 
 </resources>

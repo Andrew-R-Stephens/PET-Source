@@ -10,7 +10,7 @@
     <string name="navigation_closed_state">Панель навігації закрита.</string>
     <string name="general_label_evidence">Докази</string>
     <string name="general_label_maps">Карти</string>
-    <string name="general_label_tasks">Завдання</string>
+    <string name="general_label_objectiveboard">Дошка цілей</string>
     <string name="general_label_codex">Кодекс</string>
     <string name="general_navigation_menu">Меню</string>
     <string name="general_navigation_home">Додому</string>
@@ -107,7 +107,7 @@
     <!-- Team Data -->
     <!-- Solo/Team Data -->
     <string name="investigation_your_sanity_level_title">Ваш рівень здорового глузду</string>
-    <string name="investigation_timer_label">Час підготовки:</string>
+    <string name="investigation_timer_label">Час підготовки</string>
     <string name="difficulty_title_default">Жодного</string>
     <string name="difficulty_title_amateur">Любитий</string>
     <string name="difficulty_title_intermediate">Середня</string>

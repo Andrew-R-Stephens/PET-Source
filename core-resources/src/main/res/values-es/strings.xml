@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="investigation_sanity_player_death">Jugador eliminado</string>
     <string name="investigation_section_title_ghosts">Fantasmas</string>
     <string name="investigation_section_title_evidence">Evidencia</string>
     <string name="general_label_discard">Descartar</string>
+    <string name="general_label_edit">Editar</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">La herramienta de evidencia definitiva</string>
     <string name="titlescreen_button">Comenzar Cacería</string>
     <string name="investigation_timer_difficulty_label">Dificultad</string>
     <string name="investigation_prep_time_title">Tiempo de preparación</string>
     <string name="investigation_your_sanity_level_title">Tu nivel de cordura</string>
-    <string name="investigation_timer_label">Tiempo de preparacion:</string>
+    <string name="investigation_timer_label">Tiempo de preparacion</string>
 
     <string name="aboutinfo_aboutapp_info">
         <![CDATA[
@@ -53,7 +55,7 @@
 
     <string name="toast_discardchanges">Cambios descartados</string>
     <string name="general_label_evidence">Evidencia</string>
-    <string name="general_label_tasks">Tareas</string>
+    <string name="general_label_objectiveboard">Tablero de objetivos</string>
     <string name="general_label_maps">Mapas</string>
 
     <string name="aboutinfo_version">Version</string>
@@ -99,8 +101,11 @@
     <string name="general_navigation_menu">El Menú</string>
     <string name="investigation_section_title_movement_speed">Velocidad de movimiento</string>
     <string name="investigation_label_phase">Fase</string>
+    <string name="investigation_label_timer_reset">Reiniciar temporizador</string>
     <string name="investigation_label_tool_footstep">Herramienta de detección de pasos</string>
+    <string name="tool_timer_label_unlinked">Desvinculado</string>
     <string name="tool_timer_label_standard">Estándar</string>
+    <string name="tool_timer_label_toggle_cursed">Alternar estado de la operación maldita</string>
     <string name="tool_timer_label_cursed">Maldita</string>
     <string name="codex_section_equipment">Equipo</string>
     <string name="codex_section_more">Más muy pronto</string>
@@ -160,8 +165,9 @@
     <string name="alert_gui_typography_error">¡Tipografía sin definir!</string>
     <string name="account_button_visit_marketplace">Visita Marketplace</string>
     <string name="investigation_average_sanity_title">Cordura promedio</string>
-    <string name="investigation_label_contract">Configuración de la operación</string>
-    <string name="investigation_label_tool_operation_details">Detalles de la operación</string>
+    <string name="investigation_label_journal">Diario</string>
+    <string name="investigation_label_contract">Configurar contrato</string>
+    <string name="investigation_label_tool_operation_details">Detalles del contrato</string>
     <string name="investigation_label_tool_secondary_evidence">Pruebas secundarias</string>
     <string name="investigation_label_tool_timers">Temporizadores</string>
     <string name="general_label_preset_slot">Ranura de preajuste</string>
@@ -180,5 +186,14 @@
     <string name="tool_timer_label_hunt_cooldown">Enfriamiento de la caza</string>
     <string name="tool_timer_label_uv_lifetime">Duración de la luz UV</string>
     <string name="footstep_label_domain">Ventana gráfica</string>
+    <string name="general_label_modifiers">Modificadores</string>
+    <string name="general_label_power">Potencia</string>
+    <string name="general_label_temperature">Temperatura</string>
+    <string name="investigation_label_all">Todos</string>
+    <string name="investigation_label_timer_run">Temporizador de carrera</string>
+    <string name="investigation_label_timer_pause">Pausar temporizador</string>
+    <string name="investigation_label_timer_skip">Omitir temporizador</string>
+    <string name="tool_timer_label_hunt_timer_link">El temporizador de enfriamiento de la Cacería comienza automáticamente al finalizar el temporizador de duración de la Cacería.</string>
+    <string name="tool_timer_label_linked">Vinculado</string>
 
 </resources>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings_uiDensity">Увімкнути компактний інтерфейс</string>
+    <string name="settings_devicesettings">Пристрій</string>
+    <string name="settings_interfacesettings">Інтерфейс</string>
+    <string name="settings_gdprsettings_button">Налаштування конфіденційності</string>
+    <string name="settings_enablePersonalizedAds">Увімкнути персоналізовану рекламу</string>
+    <string name="settings_enableAnalytics">Увімкнути аналітику</string>
 </resources>

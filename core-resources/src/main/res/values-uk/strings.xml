@@ -5,10 +5,12 @@
     <string name="investigation_phase_label_hunt">Полювання</string>
     <string name="investigation_section_title_movement_speed">Швидкість руху</string>
     <string name="investigation_label_phase">Фаза</string>
-    <string name="investigation_label_contract">Конфігурація операції</string>
-    <string name="investigation_label_tool_operation_details">Деталі операції</string>
+    <string name="investigation_label_journal">Журнал</string>
+    <string name="investigation_label_contract">Налаштувати контракт</string>
+    <string name="investigation_label_tool_operation_details">Деталі договору</string>
     <string name="investigation_label_tool_secondary_evidence">Вторинні докази</string>
     <string name="investigation_label_tool_timers">Таймери</string>
+    <string name="investigation_label_timer_reset">Таймер скидання</string>
     <string name="investigation_label_tool_footstep">Інструмент кроків</string>
     <string name="general_navigation_customdifficultyeditor">Редактор складності</string>
     <string name="general_label_preset_slot">Слот пресетів</string>
@@ -27,7 +29,20 @@
     <string name="tool_timer_label_hunt_duration">Тривалість полювання</string>
     <string name="tool_timer_label_hunt_cooldown">Зарядка полювання</string>
     <string name="tool_timer_label_uv_lifetime">Час життя UV</string>
+    <string name="tool_timer_label_unlinked">Не пов\'язано</string>
     <string name="tool_timer_label_standard">Стандартний</string>
+    <string name="tool_timer_label_toggle_cursed">Перемкнути стан проклятої операції</string>
     <string name="tool_timer_label_cursed">Проклятий</string>
     <string name="footstep_label_domain">Вікно перегляду</string>
+    <string name="general_label_modifiers">Модифікатори</string>
+    <string name="general_label_power">Потужність</string>
+    <string name="general_label_temperature">Температура</string>
+    <string name="general_label_edit">Редагувати</string>
+    <string name="investigation_sanity_player_death">Гравець убитий</string>
+    <string name="investigation_label_all">Усі</string>
+    <string name="investigation_label_timer_run">Таймер запуску</string>
+    <string name="investigation_label_timer_pause">Таймер паузи</string>
+    <string name="investigation_label_timer_skip">Таймер пропуску</string>
+    <string name="tool_timer_label_hunt_timer_link">Таймер відновлення полювання запускається автоматично, коли закінчується таймер тривалості полювання.</string>
+    <string name="tool_timer_label_linked">Пов\'язано</string>
 </resources>

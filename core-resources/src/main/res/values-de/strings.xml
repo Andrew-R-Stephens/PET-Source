@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="investigation_sanity_player_death">Spieler getötet</string>
     <string name="investigation_section_title_ghosts">Geister</string>
     <string name="investigation_section_title_evidence">Beweis</string>
 
     <string name="general_label_discard">Verwerfen</string>
+    <string name="general_label_edit">Bearbeiten</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Das ultimative Beweiswerkzeug</string>
     <string name="titlescreen_button">Starten Sie die Jagd</string>
@@ -12,7 +14,7 @@
     <string name="investigation_timer_difficulty_label">Schwierigkeit</string>
     <string name="investigation_prep_time_title">Vorbereitungszeit</string>
     <string name="investigation_your_sanity_level_title">Ihre geistige Gesundheit</string>
-    <string name="investigation_timer_label">Vorbereitungszeit:</string>
+    <string name="investigation_timer_label">Vorbereitungszeit</string>
 
     <string name="aboutinfo_aboutapp_info">
         <![CDATA[
@@ -29,7 +31,7 @@
     <string name="titlescreen_languages_label">Sprache Auswählen</string>
     <string name="toast_discardchanges">Änderungen verworfen</string>
     <string name="general_label_evidence">Beweis</string>
-    <string name="general_label_tasks">Aufgaben</string>
+    <string name="general_label_objectiveboard">Zielübersicht</string>
     <string name="general_label_maps">Karten</string>
     <string name="aboutinfo_version">Version</string>
     <string name="aboutinfo_title_about">Über</string>
@@ -73,8 +75,11 @@
     <string name="general_navigation_menu">Menü</string>
     <string name="investigation_section_title_movement_speed">Bewegungsgeschwindigkeit</string>
     <string name="investigation_label_phase">Phase</string>
+    <string name="investigation_label_timer_reset">Zurücksetzen-Timer</string>
     <string name="investigation_label_tool_footstep">Fußspuren-Tool</string>
+    <string name="tool_timer_label_unlinked">Nicht verknüpft</string>
     <string name="tool_timer_label_standard">Standard</string>
+    <string name="tool_timer_label_toggle_cursed">Status der verfluchten Operation umschalten</string>
     <string name="tool_timer_label_cursed">Verflucht</string>
     <string name="codex_section_equipment">Ausrüstung</string>
     <string name="codex_section_more">Mehr folgt bald</string>
@@ -110,8 +115,9 @@
     <string name="alert_gui_palette_error">Palette nicht festgelegt!</string>
     <string name="alert_gui_typography_error">Typografie nicht festgelegt!</string>
     <string name="investigation_average_sanity_title">Durchschnittliche geistige Gesundheit</string>
-    <string name="investigation_label_contract">Operationskonfiguration</string>
-    <string name="investigation_label_tool_operation_details">Operationsdetails</string>
+    <string name="investigation_label_journal">Tagebuch</string>
+    <string name="investigation_label_contract">Vertrag konfigurieren</string>
+    <string name="investigation_label_tool_operation_details">Vertragsdetails</string>
     <string name="investigation_label_tool_secondary_evidence">Sekundäre Beweismittel</string>
     <string name="investigation_label_tool_timers">Timer</string>
     <string name="general_label_preset_slot">Preset-Slot</string>
@@ -130,5 +136,14 @@
     <string name="tool_timer_label_hunt_cooldown">Jagd-Cooldown</string>
     <string name="tool_timer_label_uv_lifetime">UV-Dauer</string>
     <string name="footstep_label_domain">Ansichtsfenster</string>
+    <string name="general_label_modifiers">Modifikatoren</string>
+    <string name="general_label_power">Leistung</string>
+    <string name="general_label_temperature">Temperatur</string>
+    <string name="investigation_label_all">Alle</string>
+    <string name="investigation_label_timer_run">Laufzeit-Timer</string>
+    <string name="investigation_label_timer_pause">Pause-Timer</string>
+    <string name="investigation_label_timer_skip">Überspringen-Timer</string>
+    <string name="tool_timer_label_hunt_timer_link">Der Abklingzeit-Timer der Jagd startet automatisch, wenn der Dauer-Timer der Jagd abläuft.</string>
+    <string name="tool_timer_label_linked">Verknüpft</string>
 
 </resources>

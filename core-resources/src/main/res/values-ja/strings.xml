@@ -5,7 +5,7 @@
     <string name="toast_discardchanges">破棄された変更</string>
     <string name="general_label_evidence">証拠</string>
     <string name="general_label_maps">地図</string>
-    <string name="general_label_tasks">タスク</string>
+    <string name="general_label_objectiveboard">目標ボード</string>
     <string name="general_label_codex">コーデックス</string>
     <string name="general_navigation_customdifficultyeditor">難易度エディタ</string>
     <string name="general_label_reset">リセット</string>
@@ -13,6 +13,7 @@
     <!-- Page Details -->
 
     <string name="general_label_discard">破棄</string>
+    <string name="general_label_edit">編集</string>
     <string name="titlescreen_beta_label">ベータ</string>
     <string name="titlescreen_description">究極の証拠ツール</string>
     <string name="titlescreen_button">狩猟を開始する</string>
@@ -41,12 +42,15 @@
     <string name="settings_confirm">確認する</string>
     <string name="settings_cancel">キャンセル</string>
     <string name="settings_generalsettings">一般的な</string>
+    <string name="settings_devicesettings">デバイス</string>
     <string name="settings_extrasettings">追加設定</string>
+    <string name="settings_interfacesettings">インターフェース</string>
     <string name="settings_appearancesettings">外観</string>
     <string name="settings_fontstylesettings">フォントスタイル</string>
     <string name="settings_adsconsentcontrolsection">広告/GDPR設定</string>
     <string name="settings_adsgdprcontrolsection">GDPR 設定</string>
     <string name="settings_adsconsentcontrolsettings_button">編集</string>
+    <string name="settings_gdprsettings_button">プライバシー設定</string>
     <string name="settings_screenalwayson">常に画面をオンにしておきます</string>
     <string name="settings_networktitle">メッセージ センターにモバイル データの使用を許可する</string>
     <string name="settings_huntwarningflashtimeout">ハント警告フラッシュのタイムアウト</string>
@@ -55,6 +59,7 @@
     <string name="settings_uiDensity">コンパクトUIを有効にする</string>
     <string name="settings_enablehuntaudioqueue">ハント音声警告を有効にする</string>
     <string name="settings_enableGhostReorder">ゴーストリストの並べ替えを有効にする</string>
+    <string name="settings_enableAnalytics">分析機能を有効にする</string>
     <string name="settings_colorblindnessmode_title">色覚異常モード</string>
     <string name="settings_colorblindnessmode_note">(設定を終了すると有効になります)</string>
 
@@ -88,7 +93,7 @@
 
     <string name="investigation_prep_time_title">準備時間</string>
     <string name="investigation_your_sanity_level_title">あなたの正気度</string>
-    <string name="investigation_timer_label">準備時間：</string>
+    <string name="investigation_timer_label">準備時間</string>
     <string name="difficulty_title_default">なし</string>
     <string name="difficulty_title_amateur">アマチュア</string>
     <string name="difficulty_title_intermediate">中級</string>
@@ -102,6 +107,7 @@
     <string name="investigation_phase_label_hunt">ハント</string>
     <string name="investigation_sanity_huntwarn">狩猟警告</string>
     <string name="investigation_sanitymeter_title">最大正気度レベル</string>
+    <string name="investigation_sanity_player_death">プレイヤー死亡</string>
     <string name="investigation_section_title_ghosts">幽霊</string>
     <string name="investigation_section_title_evidence">証拠</string>
 
@@ -138,6 +144,7 @@
     <string name="map_setting_state_large">大きい</string>
     <string name="objectives_title_optional_objectives">オプションの目標</string>
     <string name="objectives_title_objective_board">捜査報告書</string>
+    <string name="objectives_title_ghost_details">ゴーストの詳細</string>
     <string name="objectives_title_ghost_name">幽霊の名前</string>
     <string name="objectives_ghostname_note">ここにゴースト名を入力してください</string>
     <string name="objectives_title_response">次のような人々に対応します。</string>
@@ -727,8 +734,11 @@
     <string name="general_navigation_menu">メニュー</string>
     <string name="investigation_section_title_movement_speed">移動速度</string>
     <string name="investigation_label_phase">フェーズ</string>
+    <string name="investigation_label_timer_reset">リセットタイマー</string>
     <string name="investigation_label_tool_footstep">足跡ツール</string>
+    <string name="tool_timer_label_unlinked">リンク解除済み</string>
     <string name="tool_timer_label_standard">標準</string>
+    <string name="tool_timer_label_toggle_cursed">「呪われた作戦」の状態を切り替え</string>
     <string name="tool_timer_label_cursed">呪われし者</string>
     <string name="codex_section_equipment">装置</string>
     <string name="codex_section_more">さらに近日公開予定</string>
@@ -1340,8 +1350,9 @@
     <string name="map_setting_label_drainrate">消耗率</string>
     <string name="store_title_achievements">実績</string>
     <string name="investigation_average_sanity_title">平均正気度</string>
-    <string name="investigation_label_contract">操作設定</string>
-    <string name="investigation_label_tool_operation_details">操作詳細</string>
+    <string name="investigation_label_journal">ジャーナル</string>
+    <string name="investigation_label_contract">契約を構成する</string>
+    <string name="investigation_label_tool_operation_details">契約詳細</string>
     <string name="investigation_label_tool_secondary_evidence">二次証拠</string>
     <string name="investigation_label_tool_timers">タイマー</string>
     <string name="general_label_preset_slot">プリセットスロット</string>
@@ -1362,5 +1373,15 @@
     <string name="tool_timer_label_uv_lifetime">UVライトの持続時間</string>
     <string name="objectives_title_firstname">名</string>
     <string name="objectives_notice_response_type">注：難易度「中級」より上では、反応の種類は開示されません。</string>
+    <string name="general_label_modifiers">修飾設定</string>
+    <string name="general_label_power">出力</string>
+    <string name="general_label_temperature">温度</string>
+    <string name="settings_enablePersonalizedAds">パーソナライズド広告を有効にする</string>
+    <string name="investigation_label_all">すべて</string>
+    <string name="investigation_label_timer_run">実行タイマー</string>
+    <string name="investigation_label_timer_pause">一時停止タイマー</string>
+    <string name="investigation_label_timer_skip">スキップタイマー</string>
+    <string name="tool_timer_label_hunt_timer_link">「ハント継続時間」タイマーの終了後、「ハント・クールダウン」タイマーが自動的に開始されます。</string>
+    <string name="tool_timer_label_linked">リンク済み</string>
 
 </resources>

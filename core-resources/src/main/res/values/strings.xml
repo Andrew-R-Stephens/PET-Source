@@ -12,7 +12,7 @@
 
     <string name="general_label_evidence">Evidence</string>
     <string name="general_label_maps">Maps</string>
-    <string name="general_label_tasks">Tasks</string>
+    <string name="general_label_objectiveboard">Objective Board</string>
     <string name="general_label_codex">Codex</string>
     <string name="general_navigation_menu">Menu</string>
     <string name="general_navigation_home">Home</string>
@@ -30,10 +30,10 @@
     <string name="general_label_revert">Revert</string>
     <string name="general_label_discard">Discard</string>
 
-    <string name="general_label_modifiers" translatable="false">Modifiers</string>
-    <string name="general_label_power" translatable="false">Power</string>
-    <string name="general_label_temperature" translatable="false">Temperature</string>
-    <string name="general_label_edit" translatable="false">Edit</string>
+    <string name="general_label_modifiers">Modifiers</string>
+    <string name="general_label_power">Power</string>
+    <string name="general_label_temperature">Temperature</string>
+    <string name="general_label_edit">Edit</string>
 
     <!--
         TITLESCREEN FRAGMENT
@@ -95,7 +95,7 @@
     <string name="investigation_phase_label_hunt">Hunt</string>
     <string name="investigation_sanity_huntwarn">Hunt Warn</string>
     <string name="investigation_sanitymeter_title">Max Sanity</string>
-    <string name="investigation_sanity_player_death" translatable="false">Player Killed</string>
+    <string name="investigation_sanity_player_death">Player Killed</string>
     <string name="investigation_section_title_ghosts">Ghosts</string>
     <string name="investigation_section_title_evidence">Evidence</string>
     <string name="investigation_section_title_active_ghosts">Ghosts Active</string>
@@ -103,16 +103,16 @@
     <string name="investigation_section_title_movement_speed">Movement Speed</string>
     <string name="investigation_label_phase">Phase</string>
 
-    <string name="investigation_label_all" translatable="false">All</string>
-    <string name="investigation_label_journal" translatable="false">Journal</string>
+    <string name="investigation_label_all">All</string>
+    <string name="investigation_label_journal">Journal</string>
     <string name="investigation_label_contract">Configure Contract</string>
     <string name="investigation_label_tool_operation_details">Contract Details</string>
     <string name="investigation_label_tool_secondary_evidence">Secondary Evidence</string>
     <string name="investigation_label_tool_timers">Timers</string>
-    <string name="investigation_label_timer_run" translatable="false">Run Timer</string>
-    <string name="investigation_label_timer_pause" translatable="false">Pause Timer</string>
-    <string name="investigation_label_timer_skip" translatable="false">Skip Timer</string>
-    <string name="investigation_label_timer_reset" translatable="false">Reset Timer</string>
+    <string name="investigation_label_timer_run">Run Timer</string>
+    <string name="investigation_label_timer_pause">Pause Timer</string>
+    <string name="investigation_label_timer_skip">Skip Timer</string>
+    <string name="investigation_label_timer_reset">Reset Timer</string>
     <string name="investigation_label_tool_footstep">Footstep Tool</string>
 
     <string name="footstep_label_apply">Apply BPM</string>
@@ -127,11 +127,11 @@
     <string name="tool_timer_label_hunt_duration">Hunt Duration</string>
     <string name="tool_timer_label_hunt_cooldown">Hunt Cooldown</string>
     <string name="tool_timer_label_uv_lifetime">UV Lifetime</string>
-    <string name="tool_timer_label_hunt_timer_link" translatable="false">Hunt Cooldown timer starts automatically when Hunt Duration timer ends.</string>
-    <string name="tool_timer_label_linked" translatable="false">Linked</string>
-    <string name="tool_timer_label_unlinked" translatable="false">Unlinked</string>
+    <string name="tool_timer_label_hunt_timer_link">Hunt Cooldown timer starts automatically when Hunt Duration timer ends.</string>
+    <string name="tool_timer_label_linked">Linked</string>
+    <string name="tool_timer_label_unlinked">Unlinked</string>
     <string name="tool_timer_label_standard">Standard</string>
-    <string name="tool_timer_label_toggle_cursed" translatable="false">Toggle Cursed Operation Status</string>
+    <string name="tool_timer_label_toggle_cursed">Toggle Cursed Operation Status</string>
     <string name="tool_timer_label_cursed">Is Cursed Operation</string>
 
     <!--
@@ -148,5 +148,6 @@
             <a><font color="#99AEB3">GH</font><font color="#FFB43D">//OS.T</font></a>
         ]]>
     </string>
+    <string name="settings_adsconsentcontrolsettings_button">Edit</string>
 
 </resources>

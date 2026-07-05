@@ -6,7 +6,7 @@
     <string name="toast_discardchanges">Alterações descartadas</string>
     <string name="general_label_evidence">Evidência</string>
     <string name="general_label_maps">Mapas</string>
-    <string name="general_label_tasks">Tarefas</string>
+    <string name="general_label_objectiveboard">Quadro de Objetivos</string>
     <string name="general_label_codex">Códice</string>
     <string name="general_navigation_customdifficultyeditor">Editor de Dificuldade</string>
     <string name="general_label_reset">Reiniciar</string>
@@ -14,6 +14,7 @@
     <!-- Page Details -->
 
     <string name="general_label_discard">Descartar</string>
+    <string name="general_label_edit">Editar</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">A melhor ferramenta de evidência</string>
     <string name="titlescreen_button">Comece a caçar</string>
@@ -42,12 +43,15 @@
     <string name="settings_confirm">confirme</string>
     <string name="settings_cancel">Cancelar</string>
     <string name="settings_generalsettings">Em geral</string>
+    <string name="settings_devicesettings">Dispositivo</string>
     <string name="settings_extrasettings">Configurações extras</string>
+    <string name="settings_interfacesettings">Interface</string>
     <string name="settings_appearancesettings">Aparência</string>
     <string name="settings_fontstylesettings">Estilo de fonte</string>
     <string name="settings_adsconsentcontrolsection">Anúncios/Configurações do GDPR</string>
     <string name="settings_adsgdprcontrolsection">Configurações do GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Editar</string>
+    <string name="settings_gdprsettings_button">Configurações de privacidade</string>
     <string name="settings_screenalwayson">Mantenha sempre a tela ligada</string>
     <string name="settings_networktitle">Permitir que o Message Center use dados móveis</string>
     <string name="settings_huntwarningflashtimeout">Tempo limite do flash de aviso de caça</string>
@@ -56,6 +60,7 @@
     <string name="settings_uiDensity">Ativar interface compacta</string>
     <string name="settings_enablehuntaudioqueue">Ativar aviso de áudio de busca</string>
     <string name="settings_enableGhostReorder">Habilitar reordenação da lista fantasma</string>
+    <string name="settings_enableAnalytics">Ativar análises</string>
     <string name="settings_colorblindnessmode_title">Modo daltônico</string>
     <string name="settings_colorblindnessmode_note">(Entrará em vigor após sair das configurações)</string>
 
@@ -88,7 +93,7 @@
 
     <string name="investigation_prep_time_title">Tempo de preparação</string>
     <string name="investigation_your_sanity_level_title">Seu nível de sanidade</string>
-    <string name="investigation_timer_label">Tempo de preparação:</string>
+    <string name="investigation_timer_label">Tempo de preparação</string>
     <string name="difficulty_title_default">Nenhum</string>
     <string name="difficulty_title_amateur">Amador</string>
     <string name="difficulty_title_intermediate">Intermediário</string>
@@ -102,6 +107,7 @@
     <string name="investigation_phase_label_hunt">Caçada</string>
     <string name="investigation_sanity_huntwarn">Aviso De Caça</string>
     <string name="investigation_sanitymeter_title">Nível máximo de sanidade</string>
+    <string name="investigation_sanity_player_death">Jogador Morto</string>
     <string name="investigation_section_title_ghosts">Fantasmas</string>
     <string name="investigation_section_title_evidence">Evidência</string>
 
@@ -137,6 +143,7 @@
     <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionais</string>
     <string name="objectives_title_objective_board">Resumo da investigação</string>
+    <string name="objectives_title_ghost_details">Detalhes do Fantasma</string>
     <string name="objectives_title_ghost_name">Nome do Fantasma</string>
     <string name="objectives_ghostname_note">Digite o nome do fantasma aqui</string>
     <string name="objectives_title_response">Responde a pessoas que são</string>
@@ -730,8 +737,11 @@
     <string name="general_navigation_menu">cardápio</string>
     <string name="investigation_section_title_movement_speed">Velocidade de Movimento</string>
     <string name="investigation_label_phase">Fase</string>
+    <string name="investigation_label_timer_reset">Reiniciar Cronômetro</string>
     <string name="investigation_label_tool_footstep">Ferramenta de Pegadas</string>
+    <string name="tool_timer_label_unlinked">Desvinculado</string>
     <string name="tool_timer_label_standard">Padrão</string>
+    <string name="tool_timer_label_toggle_cursed">Alternar Status da Operação Amaldiçoada</string>
     <string name="tool_timer_label_cursed">Amaldiçoada</string>
     <string name="codex_section_equipment">Equipamento</string>
     <string name="codex_section_more">Mais em breve</string>
@@ -1349,8 +1359,9 @@
     <string name="map_setting_label_drainrate">Taxa de drenagem</string>
     <string name="store_title_achievements">Conquistas</string>
     <string name="investigation_average_sanity_title">Sanidade média</string>
-    <string name="investigation_label_contract">Configuração da Operação</string>
-    <string name="investigation_label_tool_operation_details">Detalhes da Operação</string>
+    <string name="investigation_label_journal">Diário</string>
+    <string name="investigation_label_contract">Configurar contrato</string>
+    <string name="investigation_label_tool_operation_details">Detalhes do contrato</string>
     <string name="investigation_label_tool_secondary_evidence">Evidências Secundárias</string>
     <string name="investigation_label_tool_timers">Temporizadores</string>
     <string name="general_label_preset_slot">Slot de Predefinição</string>
@@ -1371,5 +1382,15 @@
     <string name="objectives_title_firstname">Nome</string>
     <string name="objectives_notice_response_type">Nota: Dificuldades acima do nível Intermediário não revelam o tipo de resposta.</string>
     <string name="footstep_label_domain">Janela de visualização</string>
+    <string name="general_label_modifiers">Modificadores</string>
+    <string name="general_label_power">Potência</string>
+    <string name="general_label_temperature">Temperatura</string>
+    <string name="settings_enablePersonalizedAds">Ativar anúncios personalizados</string>
+    <string name="investigation_label_all">Todos</string>
+    <string name="investigation_label_timer_run">Cronômetro de Corrida</string>
+    <string name="investigation_label_timer_pause">Pausar Cronômetro</string>
+    <string name="investigation_label_timer_skip">Pular Cronômetro</string>
+    <string name="tool_timer_label_hunt_timer_link">O cronômetro de recarga da Caçada inicia automaticamente quando o cronômetro de duração da Caçada termina.</string>
+    <string name="tool_timer_label_linked">Vinculado</string>
 
 </resources>

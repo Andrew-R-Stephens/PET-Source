@@ -8,6 +8,7 @@
     <string name="objectives_ghostname_note">Ingrese el nombre del fantasma aquí</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionales</string>
     <string name="objectives_title_objective_board">Informe de investigacion</string>
+    <string name="objectives_title_ghost_details">Detalles del fantasma</string>
     <string name="objectives_title_ghost_name">Nombre del fantasma</string>
     <string name="objectives_title_response">Responde a las personas que son</string>
     <string name="objectives_title_optional_objective">Objetivo</string>

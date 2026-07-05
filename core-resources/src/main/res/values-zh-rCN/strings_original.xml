@@ -7,7 +7,7 @@
     <string name="toast_discardchanges">更改被放弃</string>
     <string name="general_label_evidence">证据</string>
     <string name="general_label_maps">地图</string>
-    <string name="general_label_tasks">任务</string>
+    <string name="general_label_objectiveboard">"目标板 "</string>
     <string name="general_label_codex">法典</string>
     <string name="general_navigation_customdifficultyeditor">难度编辑器</string>
     <string name="general_label_reset">重置</string>
@@ -15,6 +15,7 @@
     <!-- Page Details -->
 
     <string name="general_label_discard">放弃</string>
+    <string name="general_label_edit">编辑</string>
     <string name="titlescreen_beta_label">贝塔</string>
     <string name="titlescreen_description">最终的证据工具</string>
     <string name="titlescreen_button">开始狩猎</string>
@@ -43,12 +44,15 @@
     <string name="settings_confirm">确认</string>
     <string name="settings_cancel">取消</string>
     <string name="settings_generalsettings">一般的</string>
+    <string name="settings_devicesettings">设备</string>
     <string name="settings_extrasettings">额外设置</string>
+    <string name="settings_interfacesettings">界面</string>
     <string name="settings_appearancesettings">外貌</string>
     <string name="settings_fontstylesettings">字体样式</string>
     <string name="settings_adsconsentcontrolsection">广告/GDPR 设置</string>
     <string name="settings_adsgdprcontrolsection">GDPR 设置</string>
     <string name="settings_adsconsentcontrolsettings_button">编辑</string>
+    <string name="settings_gdprsettings_button">隐私设置</string>
     <string name="settings_screenalwayson">始终保持屏幕开启</string>
     <string name="settings_networktitle">允许消息中心使用移动数据</string>
     <string name="settings_huntwarningflashtimeout">狩猎警告闪光超时</string>
@@ -57,6 +61,7 @@
     <string name="settings_uiDensity">启用精简界面</string>
     <string name="settings_enablehuntaudioqueue">启用寻线音频警告</string>
     <string name="settings_enableGhostReorder">启用幽灵列表重新排序</string>
+    <string name="settings_enableAnalytics">启用分析功能</string>
     <string name="settings_colorblindnessmode_title">色盲模式</string>
     <string name="settings_colorblindnessmode_note">（离开设置后生效）</string>
 
@@ -90,7 +95,7 @@
     <string name="investigation_average_sanity_title">平均理智</string>
     <string name="investigation_prep_time_title">准备时间</string>
     <string name="investigation_your_sanity_level_title">您的理智水平</string>
-    <string name="investigation_timer_label">准备时间：</string>
+    <string name="investigation_timer_label">准备时间</string>
     <string name="difficulty_title_default">没有任何</string>
     <string name="difficulty_title_amateur">业余</string>
     <string name="difficulty_title_intermediate">中间的</string>
@@ -104,6 +109,7 @@
     <string name="investigation_phase_label_hunt">狩猎</string>
     <string name="investigation_sanity_huntwarn">狩猎警告</string>
     <string name="investigation_sanitymeter_title">最大理智水平</string>
+    <string name="investigation_sanity_player_death">玩家被杀</string>
     <string name="investigation_section_title_ghosts">鬼魂</string>
     <string name="investigation_section_title_evidence">证据</string>
 
@@ -139,6 +145,7 @@
     <string name="map_setting_state_large">大的</string>
     <string name="objectives_title_optional_objectives">可选目标</string>
     <string name="objectives_title_objective_board">调查汇报</string>
+    <string name="objectives_title_ghost_details">目标板</string>
     <string name="objectives_title_ghost_name">鬼魂的名字</string>
     <string name="objectives_ghostname_note">在此输入幽灵名称</string>
     <string name="objectives_title_response">回应以下人士</string>
@@ -724,8 +731,11 @@
     <string name="general_navigation_menu">目录</string>
     <string name="investigation_section_title_movement_speed">移动速度</string>
     <string name="investigation_label_phase">阶段</string>
+    <string name="investigation_label_timer_reset">重置计时器</string>
     <string name="investigation_label_tool_footstep">足迹工具</string>
+    <string name="tool_timer_label_unlinked">未关联</string>
     <string name="tool_timer_label_standard">标准</string>
+    <string name="tool_timer_label_toggle_cursed">切换“受诅咒行动”状态</string>
     <string name="tool_timer_label_cursed">被诅咒的</string>
     <string name="codex_section_equipment">设备</string>
     <string name="codex_section_more">更多即将推出</string>
@@ -1146,8 +1156,9 @@
     <string name="map_setting_state_setup">设置</string>
     <string name="map_setting_state_action">动作</string>
     <string name="objectives_title_response_type">响应类型</string>
-    <string name="investigation_label_contract">操作配置</string>
-    <string name="investigation_label_tool_operation_details">操作详情</string>
+    <string name="investigation_label_journal">日志</string>
+    <string name="investigation_label_contract">配置合同</string>
+    <string name="investigation_label_tool_operation_details">合同详情</string>
     <string name="investigation_label_tool_secondary_evidence">辅助证据</string>
     <string name="investigation_label_tool_timers">计时器</string>
     <string name="evidence_trait_description_always_finds_players_if_hunt">狩猎期间总能找到玩家</string>
@@ -1239,5 +1250,15 @@
     <string name="objectives_notice_response_type">注：高于“中等”难度的模式不显示响应类型</string>
     <string name="ghost_strengths_aswang"><![CDATA[  <a>阿斯旺是所有幽灵中视线加速最快的。</a>  <a>如果玩家使用官方藏身点，下次狩猎将没有宽限期。</a>  ]]></string>
     <string name="footstep_label_domain">视口</string>
+    <string name="general_label_modifiers">修饰符</string>
+    <string name="general_label_power">功率</string>
+    <string name="general_label_temperature">温度</string>
+    <string name="settings_enablePersonalizedAds">启用个性化广告</string>
+    <string name="investigation_label_all">全部</string>
+    <string name="investigation_label_timer_run">运行计时器</string>
+    <string name="investigation_label_timer_pause">暂停计时器</string>
+    <string name="investigation_label_timer_skip">跳过计时器</string>
+    <string name="tool_timer_label_hunt_timer_link">狩猎冷却计时器在狩猎持续时间计时器结束后自动启动。</string>
+    <string name="tool_timer_label_linked">已关联</string>
 
 </resources>

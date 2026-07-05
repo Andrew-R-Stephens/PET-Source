@@ -7,7 +7,7 @@
     <string name="toast_discardchanges">" Změny byly zahozeny"</string>
     <string name="general_label_evidence">Důkaz</string>
     <string name="general_label_maps">Mapy</string>
-    <string name="general_label_tasks">Úkoly</string>
+    <string name="general_label_objectiveboard">Tabule cílů</string>
     <string name="general_label_codex">Kodex</string>
     <string name="general_navigation_customdifficultyeditor">Editor obtížnosti</string>
     <string name="general_label_reset">Resetovat</string>
@@ -19,6 +19,7 @@
     -->
     <!-- Page Details -->
     <string name="general_label_discard">Zahodit</string>
+    <string name="general_label_edit">Upravit</string>
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">Nejlepší důkazní nástroj</string>
     <string name="titlescreen_button">Zahájit lov</string>
@@ -55,7 +56,7 @@
     <!-- Page Details -->
     <string name="investigation_prep_time_title">Doba přípravy</string>
     <string name="investigation_your_sanity_level_title">Vaše úroveň příčetnosti</string>
-    <string name="investigation_timer_label">Čas přípravy:</string>
+    <string name="investigation_timer_label">Čas přípravy</string>
     <string name="investigation_timer_maplabel">Mapa</string>
     <string name="investigation_timer_difficulty_label">Obtížnost</string>
     <string name="investigation_phase_label_action">Akce</string>
@@ -63,6 +64,7 @@
     <string name="investigation_phase_label_hunt">Lov</string>
     <string name="investigation_sanity_huntwarn">Pozor Na Lov</string>
     <string name="investigation_sanitymeter_title">Max. úroveň příčetnosti</string>
+    <string name="investigation_sanity_player_death">Zabitý hráč</string>
     <string name="investigation_section_title_ghosts">Duchové</string>
     <string name="investigation_section_title_evidence">Důkaz</string>
 
@@ -78,8 +80,11 @@
     <string name="general_navigation_menu">Menu</string>
     <string name="investigation_section_title_movement_speed">Rychlost pohybu</string>
     <string name="investigation_label_phase">Fáze</string>
+    <string name="investigation_label_timer_reset">Časovač resetování</string>
     <string name="investigation_label_tool_footstep">Nástroj pro schody</string>
+    <string name="tool_timer_label_unlinked">Nepropojeno</string>
     <string name="tool_timer_label_standard">Standardní</string>
+    <string name="tool_timer_label_toggle_cursed">Přepnout stav prokleté operace</string>
     <string name="tool_timer_label_cursed">Prokletý</string>
     <string name="codex_section_equipment">Zařízení</string>
     <string name="codex_section_more">Více již brzy</string>
@@ -114,8 +119,9 @@
     <string name="alert_gui_palette_error">Paleta není nastavena!</string>
     <string name="alert_gui_typography_error">Typografie není nastavena!</string>
     <string name="investigation_average_sanity_title">Průměrná příčetnost</string>
-    <string name="investigation_label_contract">Konfigurace operace</string>
-    <string name="investigation_label_tool_operation_details">Detaily operace</string>
+    <string name="investigation_label_journal">Deník</string>
+    <string name="investigation_label_contract">Konfigurovat smlouvu</string>
+    <string name="investigation_label_tool_operation_details">Podrobnosti smlouvy</string>
     <string name="investigation_label_tool_secondary_evidence">Sekundární důkazy</string>
     <string name="investigation_label_tool_timers">Časovače</string>
     <string name="general_label_preset_slot">Přednastavený slot</string>
@@ -134,4 +140,13 @@
     <string name="tool_timer_label_hunt_cooldown">Chladicí doba lovu</string>
     <string name="tool_timer_label_uv_lifetime">Doba trvání UV</string>
     <string name="footstep_label_domain">Výřez</string>
+    <string name="general_label_modifiers">Modifikátory</string>
+    <string name="general_label_power">Výkon</string>
+    <string name="general_label_temperature">Teplota</string>
+    <string name="investigation_label_all">Vše</string>
+    <string name="investigation_label_timer_run">Časovač běhu</string>
+    <string name="investigation_label_timer_pause">Časovač pozastavení</string>
+    <string name="investigation_label_timer_skip">Časovač přeskočení</string>
+    <string name="tool_timer_label_hunt_timer_link">Časovač zchlazení lovu se spustí automaticky po skončení časovače trvání lovu.</string>
+    <string name="tool_timer_label_linked">Propojeno</string>
 </resources>

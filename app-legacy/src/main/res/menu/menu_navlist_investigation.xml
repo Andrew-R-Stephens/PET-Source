@@ -17,7 +17,7 @@
                     android:icon="@drawable/icon_nav_evidence" />
                 <item
                     android:id="@+id/objectivesFragment"
-                    android:title="@string/general_label_tasks"
+                    android:title="@string/general_label_objectiveboard"
                     android:icon="@drawable/icon_nav_tasks" />
                 <item
                     android:id="@+id/mapMenuFragment"
