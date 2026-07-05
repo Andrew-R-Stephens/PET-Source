@@ -110,6 +110,7 @@ import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetai
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
 import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
@@ -175,6 +176,7 @@ class InvestigationScreenViewModel private constructor(
     private val updateOperationHuntWarningUseCase: UpdateOperationHuntWarningUseCase = investigationUseCaseBundle.updateOperationHuntWarningUseCase
     private val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase = investigationUseCaseBundle.updateOperationGhostDetailsUseCase
     private val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase = investigationUseCaseBundle.updateOperationMissionDataUseCase
+    private val updateOperationOverridesUseCase: UpdateOperationOverridesUseCase = investigationUseCaseBundle.updateOperationOverridesUseCase
     private val fetchAllMissionsUseCase: FetchAllMissionsUseCase = investigationUseCaseBundle.fetchAllMissionsUseCase
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
     private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase = investigationUseCaseBundle.getCustomDifficultiesUseCase
@@ -244,27 +246,27 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Investigation Repository
      */
-    private val _investigationState = getOperationStateUseCase()
+    private val _operationState = getOperationStateUseCase()
 
     /*
      * Map
      */
 
-    private val mapState = _investigationState.map { it.map }
+    private val mapState = _operationState.map { it.map }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = MapData()
         )
 
-    private val sanityState = _investigationState.map { it.sanity }
+    private val sanityState = _operationState.map { it.sanity }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = SanityData()
         )
 
-    private val phaseState = _investigationState.map { it.phase }
+    private val phaseState = _operationState.map { it.phase }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
@@ -301,7 +303,7 @@ class InvestigationScreenViewModel private constructor(
      * Difficulty
      */
 
-    private val difficultyState = _investigationState.map { it.difficulty }
+    private val difficultyState = _operationState.map { it.difficulty }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
@@ -478,8 +480,12 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Override
      * */
-    private val _operationOverridesState = MutableStateFlow(OperationOverrideData())
-    val operationOverridesState = _operationOverridesState.asStateFlow()
+    val operationOverridesState = _operationState.map { it.overrides }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = OperationOverrideData()
+        )
 
     /*
      * Weather
@@ -499,7 +505,7 @@ class InvestigationScreenViewModel private constructor(
     private val _temperatureState = MutableStateFlow(TemperatureData())
     private fun updateTemperature(delta: Float, timeStamp: Long) {
         val weatherRange = getCurrentWeather().toTemperatureRange()
-        val fuseBoxOn = _operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+        val fuseBoxOn = operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
 
         val targetTemp = if (fuseBoxOn)
             Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
@@ -525,7 +531,7 @@ class InvestigationScreenViewModel private constructor(
     private fun resetTemperature() {
         val weather = getCurrentWeather()
         val weatherRange = weather.toTemperatureRange()
-        val fuseBoxOn = _operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+        val fuseBoxOn = operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
 
         val startTemp = if (fuseBoxOn) {
             Temperature.TEMPERATURE_START_FUSEBOX_ENABLED
@@ -545,7 +551,7 @@ class InvestigationScreenViewModel private constructor(
 
     private fun getCurrentWeather(): Weather {
         val diff = difficultyState.value
-        val overrides = _operationOverridesState.value
+        val overrides = operationOverridesState.value
         return if (diff.settings.weather == Weather.RANDOM) overrides.weather
         else diff.settings.weather
     }
@@ -832,7 +838,7 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val phaseUiState = _phaseUiState
 
-    val huntWarningState = _investigationState.map { it.huntWarning }
+    val huntWarningState = _operationState.map { it.huntWarning }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
@@ -1348,7 +1354,7 @@ class InvestigationScreenViewModel private constructor(
             currentTime - lastTickTime else 0L
 
         if (deltaTime > 0) {
-            val fuseBoxOn = _operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
+            val fuseBoxOn = operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
             val currentTemp = _temperatureState.value.current
             val weatherRange = getCurrentWeather().toTemperatureRange()
 
@@ -1384,17 +1390,19 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun resetWeatherOverride() {
-        _operationOverridesState.update { it.copy(weather = Weather.RANDOM) }
+        updateOperationOverridesUseCase(operationOverridesState.value.copy(weather = Weather.RANDOM))
     }
 
     private fun resetFuseOverride() {
-        _operationOverridesState.update { it.copy(fuseBox =
-            when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                FuseBoxAtStartOfContract.OFF -> FuseBoxFlag.FUSEBOX_DISABLED
-                FuseBoxAtStartOfContract.ON -> FuseBoxFlag.FUSEBOX_ENABLED
-                FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
-            }
-        ) }
+        updateOperationOverridesUseCase(
+            operationOverridesState.value.copy(fuseBox =
+                when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
+                    FuseBoxAtStartOfContract.OFF -> FuseBoxFlag.FUSEBOX_DISABLED
+                    FuseBoxAtStartOfContract.ON -> FuseBoxFlag.FUSEBOX_ENABLED
+                    FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
+                }
+            )
+        )
     }
 
     private fun resetToolTimers() {
@@ -1611,16 +1619,16 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun setWeatherOverride(weather: Weather) {
-        _operationOverridesState.update {
-            it.copy (
+        updateOperationOverridesUseCase(
+            operationOverridesState.value.copy (
                 weather = weather
             )
-        }
+        )
         resetTemperature()
     }
     private fun setFuseBoxOverride(state: FuseBoxFlag) {
-        _operationOverridesState.update {
-            it.copy(
+        updateOperationOverridesUseCase(
+            operationOverridesState.value.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
                         FuseBoxAtStartOfContract.OFF -> FuseBoxFlag.FUSEBOX_DISABLED
@@ -1628,23 +1636,24 @@ class InvestigationScreenViewModel private constructor(
                         FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
                     }
             )
-        }
+        )
     }
     private fun toggleFuseBoxOverride() {
-        _operationOverridesState.update {
-            it.copy(
+        val currentOverrides = operationOverridesState.value
+        updateOperationOverridesUseCase(
+            currentOverrides.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
                         FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
                         else -> {
-                            when(it.fuseBox) {
+                            when(currentOverrides.fuseBox) {
                                 FuseBoxFlag.FUSEBOX_ENABLED -> FuseBoxFlag.FUSEBOX_DISABLED
                                 else -> FuseBoxFlag.FUSEBOX_ENABLED
                             }
                         }
                     }
             )
-        }
+        )
     }
 
     private fun setMapIndex(index: Int) {
@@ -1990,9 +1999,11 @@ class InvestigationScreenViewModel private constructor(
                 }
             }
             is InvestigationEvent.ToggleCursedOverride -> {
-                _operationOverridesState.update {
-                    it.copy(cursedInvestigation = !it.cursedInvestigation)
-                }
+                updateOperationOverridesUseCase(
+                    operationOverridesState.value.copy(
+                        cursedInvestigation = !operationOverridesState.value.cursedInvestigation
+                    )
+                )
             }
             is InvestigationEvent.TriggerToolTimer -> triggerToolTimer(event.type)
 

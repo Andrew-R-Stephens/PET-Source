@@ -8,6 +8,7 @@ import com.tritiumgaming.shared.data.operation.model.GhostDetails
 import com.tritiumgaming.shared.data.operation.model.MapData
 import com.tritiumgaming.shared.data.operation.model.MissionData
 import com.tritiumgaming.shared.data.operation.model.OperationData
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.SanityData
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,6 +54,10 @@ class OperationRepositoryImpl : OperationRepository {
 
     override fun updateMissionData(missionData: MissionData) {
         _state.update { it.copy(missionData = missionData) }
+    }
+
+    override fun updateOverrides(overrides: OperationOverrideData) {
+        _state.update { it.copy(overrides = overrides) }
     }
 
     override fun toggleGhostRejection(id: GhostResources.GhostIdentifier) {

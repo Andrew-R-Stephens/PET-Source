@@ -101,6 +101,7 @@ import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetai
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
 import com.tritiumgaming.shared.data.policy.repository.PolicyRepository
@@ -548,6 +549,9 @@ class CoreContainer(
             repository = operationRepository
         ),
         updateOperationMissionDataUseCase = UpdateOperationMissionDataUseCase(
+            repository = operationRepository
+        ),
+        updateOperationOverridesUseCase = UpdateOperationOverridesUseCase(
             repository = operationRepository
         ),
         fetchAllMissionsUseCase = FetchAllMissionsUseCase(

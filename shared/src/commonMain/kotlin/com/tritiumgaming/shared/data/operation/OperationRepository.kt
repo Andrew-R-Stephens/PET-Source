@@ -7,6 +7,7 @@ import com.tritiumgaming.shared.data.operation.model.GhostDetails
 import com.tritiumgaming.shared.data.operation.model.MapData
 import com.tritiumgaming.shared.data.operation.model.MissionData
 import com.tritiumgaming.shared.data.operation.model.OperationData
+import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.SanityData
 import kotlinx.coroutines.flow.StateFlow
@@ -23,6 +24,7 @@ interface OperationRepository {
     fun updateDifficulty(difficulty: DifficultyData)
     fun updateGhostDetails(ghostDetails: GhostDetails)
     fun updateMissionData(missionData: MissionData)
+    fun updateOverrides(overrides: OperationOverrideData)
     fun toggleGhostRejection(id: GhostResources.GhostIdentifier)
 
     fun reset()

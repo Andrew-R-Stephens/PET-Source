@@ -16,8 +16,7 @@ class GetSimpleMapNameUseCase(
         val mapResultList = result.getOrNull()
 
         val name = mapResultList?.getOrNull(index)?.mapName
-
-        if(name == null) return Result.failure(Exception("Could not get map name"))
+            ?: return Result.failure(Exception("Could not get map name"))
 
         return Result.success(name)
     }

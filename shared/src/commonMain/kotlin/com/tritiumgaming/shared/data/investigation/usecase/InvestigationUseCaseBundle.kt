@@ -10,6 +10,7 @@ import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetai
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
 
@@ -23,6 +24,7 @@ data class InvestigationUseCaseBundle(
     val updateOperationEvidenceUseCase: UpdateOperationEvidenceUseCase,
     val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase,
     val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase,
+    val updateOperationOverridesUseCase: UpdateOperationOverridesUseCase,
     val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
     /*val updateGhostStates: UpdateInvestigationGhostStatesUseCase,*/
     val resetOperationUseCase: ResetOperationUseCase,

@@ -12,5 +12,6 @@ data class OperationData(
     //val ghostStates: List<GhostState> = emptyList(),
     val explicitRejections: Set<GhostResources.GhostIdentifier> = emptySet(),
     val ghostDetails: GhostDetails = GhostDetails(),
-    val missionData: MissionData = MissionData()
+    val missionData: MissionData = MissionData(),
+    val overrides: OperationOverrideData = OperationOverrideData()
 )
