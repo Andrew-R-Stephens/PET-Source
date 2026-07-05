@@ -11,6 +11,8 @@ import com.tritiumgaming.shared.data.operation.model.OperationData
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.SanityData
+import com.tritiumgaming.shared.data.operation.model.TemperatureData
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -58,6 +60,14 @@ class OperationRepositoryImpl : OperationRepository {
 
     override fun updateOverrides(overrides: OperationOverrideData) {
         _state.update { it.copy(overrides = overrides) }
+    }
+
+    override fun updateWeather(weather: Weather) {
+        _state.update { it.copy(weather = weather) }
+    }
+
+    override fun updateTemperature(temperature: TemperatureData) {
+        _state.update { it.copy(temperature = temperature) }
     }
 
     override fun toggleGhostRejection(id: GhostResources.GhostIdentifier) {

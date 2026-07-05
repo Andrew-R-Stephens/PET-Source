@@ -32,20 +32,22 @@ internal fun FuseBoxButton(
     val theme = when (flag) {
         FuseBoxFlag.FUSEBOX_ENABLED -> {
             FuseButtonTheme(
-                R.drawable.ic_fuse_box_fill,
+                R.drawable.ic_power_on,
                 LocalPalette.current.primary
             )
         }
         FuseBoxFlag.FUSEBOX_DISABLED -> {
             FuseButtonTheme(
-                R.drawable.ic_fuse_box,
+                R.drawable.ic_power_off,
                 LocalPalette.current.onSurface
             )
         }
         FuseBoxFlag.FUSEBOX_BROKEN -> {
             FuseButtonTheme(
                 R.drawable.ic_power_broken,
-                LocalPalette.current.onSurface
+                LocalPalette.current.onSurface.copy(
+                    alpha = .5f
+                )
             )
         }
 
@@ -56,8 +58,9 @@ internal fun FuseBoxButton(
         tooltipText = stringResource(R.string.general_label_power)
     ) {
         Surface(
-            onClick = { onTogglePower() },
             modifier = modifier,
+            enabled = flag != FuseBoxFlag.FUSEBOX_BROKEN,
+            onClick = { onTogglePower() },
             shape = RoundedCornerShape(8.dp),
             color = LocalPalette.current.surfaceContainer,
             contentColor = theme.foreground

@@ -104,6 +104,8 @@ import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDat
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationTemperatureUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationWeatherUseCase
 import com.tritiumgaming.shared.data.policy.repository.PolicyRepository
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
@@ -552,6 +554,12 @@ class CoreContainer(
             repository = operationRepository
         ),
         updateOperationOverridesUseCase = UpdateOperationOverridesUseCase(
+            repository = operationRepository
+        ),
+        updateOperationWeatherUseCase = UpdateOperationWeatherUseCase(
+            repository = operationRepository
+        ),
+        updateOperationTemperatureUseCase = UpdateOperationTemperatureUseCase(
             repository = operationRepository
         ),
         fetchAllMissionsUseCase = FetchAllMissionsUseCase(

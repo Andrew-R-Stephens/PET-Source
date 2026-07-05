@@ -113,6 +113,8 @@ import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDat
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationTemperatureUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationWeatherUseCase
 import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
@@ -177,6 +179,8 @@ class InvestigationScreenViewModel private constructor(
     private val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase = investigationUseCaseBundle.updateOperationGhostDetailsUseCase
     private val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase = investigationUseCaseBundle.updateOperationMissionDataUseCase
     private val updateOperationOverridesUseCase: UpdateOperationOverridesUseCase = investigationUseCaseBundle.updateOperationOverridesUseCase
+    private val updateOperationWeatherUseCase: UpdateOperationWeatherUseCase = investigationUseCaseBundle.updateOperationWeatherUseCase
+    private val updateOperationTemperatureUseCase: UpdateOperationTemperatureUseCase = investigationUseCaseBundle.updateOperationTemperatureUseCase
     private val fetchAllMissionsUseCase: FetchAllMissionsUseCase = investigationUseCaseBundle.fetchAllMissionsUseCase
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase = challengesUseCaseBundle.getCurrentChallengeUseCase
     private val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase = investigationUseCaseBundle.getCustomDifficultiesUseCase
@@ -271,6 +275,13 @@ class InvestigationScreenViewModel private constructor(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = PhaseData()
+        )
+
+    val operationOverridesState = _operationState.map { it.overrides }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = OperationOverrideData()
         )
 
     private fun updateMap(
@@ -478,31 +489,23 @@ class InvestigationScreenViewModel private constructor(
     private val operationTimerState = _operationTimerState.asStateFlow()
 
     /*
-     * Override
-     * */
-    val operationOverridesState = _operationState.map { it.overrides }
+     * Weather
+     */
+    val weatherState = _operationState.map { it.weather }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
-            initialValue = OperationOverrideData()
+            initialValue = Weather.RANDOM
         )
 
-    /*
-     * Weather
-     */
-    private val _weatherState = combine(
-        operationOverridesState,
-        difficultyState
-    ) { overrides, diff ->
-        if (diff.settings.weather == Weather.RANDOM) overrides.weather
-        else diff.settings.weather
-    }.stateIn(viewModelScope,
-        SharingStarted.WhileSubscribed(5000),
-        Weather.RANDOM
-    )
-
     /* Temperature */
-    private val _temperatureState = MutableStateFlow(TemperatureData())
+    val temperatureState = _operationState.map { it.temperature }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = TemperatureData()
+        )
+
     private fun updateTemperature(delta: Float, timeStamp: Long) {
         val weatherRange = getCurrentWeather().toTemperatureRange()
         val fuseBoxOn = operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
@@ -512,20 +515,21 @@ class InvestigationScreenViewModel private constructor(
         else
             weatherRange.low
 
-        _temperatureState.update { state ->
-            var nextTemp = state.current + delta
-            if (delta > 0) { // Heating
-                if (state.current <= targetTemp && nextTemp > targetTemp) nextTemp = targetTemp
-            } else if (delta < 0) { // Cooling
-                if (state.current >= targetTemp && nextTemp < targetTemp) nextTemp = targetTemp
-            }
+        val state = temperatureState.value
+        var nextTemp = state.current + delta
+        if (delta > 0) { // Heating
+            if (state.current <= targetTemp && nextTemp > targetTemp) nextTemp = targetTemp
+        } else if (delta < 0) { // Cooling
+            if (state.current >= targetTemp && nextTemp < targetTemp) nextTemp = targetTemp
+        }
 
+        updateOperationTemperatureUseCase(
             state.copy(
                 previous = state.current,
                 current = nextTemp,
                 lastUpdate = timeStamp
             )
-        }
+        )
     }
 
     private fun resetTemperature() {
@@ -539,14 +543,14 @@ class InvestigationScreenViewModel private constructor(
             weatherRange.high
         }
 
-        _temperatureState.update {
-            it.copy(
+        updateOperationTemperatureUseCase(
+            temperatureState.value.copy(
                 current = startTemp,
                 previous = startTemp,
                 range = weatherRange,
                 lastUpdate = System.currentTimeMillis()
             )
-        }
+        )
     }
 
     private fun getCurrentWeather(): Weather {
@@ -863,7 +867,7 @@ class InvestigationScreenViewModel private constructor(
     internal val bpmToolUiState = combine(
         _bpmToolState,
         difficultyState,
-        _weatherState,
+        weatherState,
         operationOverridesState
     ) { bpmState, difficulty, weather, overrides ->
         val ghostSpeedModifier = difficulty.settings.ghostSpeed.toFloat()
@@ -949,7 +953,7 @@ class InvestigationScreenViewModel private constructor(
      * Weather Ui
      */
     private val _weatherUiState = combine(
-        _weatherState,
+        weatherState,
         difficultyState,
     ) { weatherState, difficultyState ->
         WeatherUiState(
@@ -1026,7 +1030,7 @@ class InvestigationScreenViewModel private constructor(
     )
     val traitListUiState = _traitListUiState
 
-    private val _temperatureUiState = _temperatureState.map { temperatureState ->
+    private val _temperatureUiState = temperatureState.map { temperatureState ->
         TemperatureUiState(
             range = temperatureState.range,
             current = temperatureState.current,
@@ -1234,12 +1238,13 @@ class InvestigationScreenViewModel private constructor(
      */
 
     private fun launchOperationControllerJob() {
-        _sanityTickerState.update { it.copy(lastTickTime = System.currentTimeMillis()) }
-        _temperatureState.update{
-            it.copy(
-                lastUpdate = System.currentTimeMillis()
+        val lastTickTime = System.currentTimeMillis()
+        _sanityTickerState.update { it.copy(lastTickTime = lastTickTime) }
+        updateOperationTemperatureUseCase(
+            temperatureState.value.copy(
+                lastUpdate = lastTickTime
             )
-        }
+        )
         operationControllerJob = viewModelScope.launch {
             while(!operationTimerState.value.paused) {
                 tickSanity()
@@ -1349,13 +1354,13 @@ class InvestigationScreenViewModel private constructor(
      */
     private fun tickTemperature() {
         val currentTime = System.currentTimeMillis()
-        val lastTickTime = _temperatureState.value.lastUpdate
+        val lastTickTime = temperatureState.value.lastUpdate
         val deltaTime = if (lastTickTime > 0)
             currentTime - lastTickTime else 0L
 
         if (deltaTime > 0) {
             val fuseBoxOn = operationOverridesState.value.fuseBox == FuseBoxFlag.FUSEBOX_ENABLED
-            val currentTemp = _temperatureState.value.current
+            val currentTemp = temperatureState.value.current
             val weatherRange = getCurrentWeather().toTemperatureRange()
 
             val targetTemp = if (fuseBoxOn)
@@ -2019,6 +2024,19 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private fun observeWeather() {
+        combine(
+            operationOverridesState,
+            difficultyState
+        ) { overrides, diff ->
+            if (diff.settings.weather == Weather.RANDOM) overrides.weather
+            else diff.settings.weather
+        }
+        .distinctUntilChanged()
+        .onEach { updateOperationWeatherUseCase(it) }
+        .launchIn(viewModelScope)
+    }
+
     private fun observeHuntWarning() {
         combine(
             preferencesState, phaseUiState
@@ -2194,6 +2212,7 @@ class InvestigationScreenViewModel private constructor(
         observeDifficulty()
         observeConfigOverrides()
         observePhase()
+        observeWeather()
         observeHuntWarning()
         observeOperationTimer()
         observeToolTimers()

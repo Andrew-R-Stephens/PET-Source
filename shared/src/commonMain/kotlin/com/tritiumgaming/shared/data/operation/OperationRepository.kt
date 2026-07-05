@@ -10,6 +10,8 @@ import com.tritiumgaming.shared.data.operation.model.OperationData
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.SanityData
+import com.tritiumgaming.shared.data.operation.model.TemperatureData
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import kotlinx.coroutines.flow.StateFlow
 
 interface OperationRepository {
@@ -25,6 +27,8 @@ interface OperationRepository {
     fun updateGhostDetails(ghostDetails: GhostDetails)
     fun updateMissionData(missionData: MissionData)
     fun updateOverrides(overrides: OperationOverrideData)
+    fun updateWeather(weather: Weather)
+    fun updateTemperature(temperature: TemperatureData)
     fun toggleGhostRejection(id: GhostResources.GhostIdentifier)
 
     fun reset()

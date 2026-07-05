@@ -13,6 +13,8 @@ import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDat
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationTemperatureUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationWeatherUseCase
 
 data class InvestigationUseCaseBundle(
     val getOperationStateUseCase: GetOperationStateUseCase,
@@ -25,6 +27,8 @@ data class InvestigationUseCaseBundle(
     val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase,
     val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase,
     val updateOperationOverridesUseCase: UpdateOperationOverridesUseCase,
+    val updateOperationWeatherUseCase: UpdateOperationWeatherUseCase,
+    val updateOperationTemperatureUseCase: UpdateOperationTemperatureUseCase,
     val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
     /*val updateGhostStates: UpdateInvestigationGhostStatesUseCase,*/
     val resetOperationUseCase: ResetOperationUseCase,

@@ -25,6 +25,7 @@ import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 @Composable
 internal fun SanityMedicationButton(
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     onClick: () -> Unit = {}
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -46,6 +47,7 @@ internal fun SanityMedicationButton(
     ) {
         Button(
             modifier = modifier,
+            enabled = enabled,
             interactionSource = interactionSource,
             shape = CircleShape,
             colors = ButtonDefaults.buttonColors().copy(
