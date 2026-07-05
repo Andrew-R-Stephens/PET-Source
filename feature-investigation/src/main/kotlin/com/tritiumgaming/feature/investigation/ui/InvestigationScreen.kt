@@ -1566,9 +1566,8 @@ fun OperationConfigsBottomSheet(
                     Modifier
                         .height(48.dp)
                         .weight(1f)
-                        .padding(8.dp),
-                    {}
-                )
+                        .padding(8.dp)
+                ) {}
             }
 
             Row(

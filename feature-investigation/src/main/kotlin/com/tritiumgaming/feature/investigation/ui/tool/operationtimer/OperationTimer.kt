@@ -80,29 +80,26 @@ internal fun OperationTimerColumn(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ){
-            TimerToggleButton(
-                modifier = Modifier
-                    .size(48.dp),
-                paused = paused,
-                onToggle = onToggle,
-                primaryContent = { modifier ->
-                    CommonTooltip(
-                        modifier = Modifier,
-                        tooltipText = stringResource(R.string.investigation_label_timer_run)
-                    ) {
+            val toggleTimerTooltip = if(paused) R.string.investigation_label_timer_run else R.string.investigation_label_timer_pause
+
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(toggleTimerTooltip)
+            ) {
+                TimerToggleButton(
+                    modifier = Modifier
+                        .size(48.dp),
+                    paused = paused,
+                    onToggle = onToggle,
+                    primaryContent = { modifier ->
                         Icon(
                             modifier = modifier,
                             painter = painterResource(R.drawable.ic_control_play),
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
-                    }
-                },
-                alternateContent = { modifier ->
-                    CommonTooltip(
-                        modifier = Modifier,
-                        tooltipText = stringResource(R.string.investigation_label_timer_pause)
-                    ) {
+                    },
+                    alternateContent = { modifier ->
                         Icon(
                             modifier = modifier,
                             painter = painterResource(R.drawable.ic_control_pause),
@@ -110,8 +107,8 @@ internal fun OperationTimerColumn(
                             tint = LocalPalette.current.onSurface
                         )
                     }
-                }
-            )
+                )
+            }
 
             CommonTooltip(
                 modifier = Modifier,
