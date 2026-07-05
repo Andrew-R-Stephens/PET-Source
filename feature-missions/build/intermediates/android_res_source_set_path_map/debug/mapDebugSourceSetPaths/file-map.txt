@@ -1,0 +1,9 @@
+com.tritiumgaming.feature.missions.feature-missions-pngs-0 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/build/generated/res/pngs/debug
+com.tritiumgaming.feature.missions.feature-missions-updated_navigation_xml-1 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/build/generated/updated_navigation_xml/debug
+com.tritiumgaming.feature.missions.feature-missions-mergeDebugResources-2 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/build/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.tritiumgaming.feature.missions.feature-missions-mergeDebugResources-3 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/build/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.tritiumgaming.feature.missions.feature-missions-debug-4 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/build/intermediates/merged_res/debug/mergeDebugResources
+com.tritiumgaming.feature.missions.feature-missions-debug-5 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/build/intermediates/packaged_res/debug/packageDebugResources
+com.tritiumgaming.feature.missions.feature-missions-debug-6 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/src/debug/res
+com.tritiumgaming.feature.missions.feature-missions-main-7 /Users/andrew/AndroidStudioProjects/PET-Source/feature-missions/src/main/res
+gradleHome-0 /Users/andrew/.gradle
