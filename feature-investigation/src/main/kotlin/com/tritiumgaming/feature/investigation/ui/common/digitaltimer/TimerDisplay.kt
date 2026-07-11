@@ -40,8 +40,7 @@ fun DigitalTimer(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            modifier = Modifier
-                .wrapContentHeight(),
+            modifier = Modifier,
             text = remainingTime,
             style = style.copy(
                 fontFeatureSettings = "tnum"

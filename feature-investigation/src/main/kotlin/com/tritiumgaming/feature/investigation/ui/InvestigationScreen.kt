@@ -171,11 +171,11 @@ private annotation class DevicePreviews
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
     override val values = sequenceOf(
-        OperationToolbarUiState.Category.TOOL_CONFIG,
-        //OperationToolbarUiState.Category.TOOL_TRAITS,
+        //OperationToolbarUiState.Category.TOOL_CONFIG,
         //OperationToolbarUiState.Category.TOOL_ANALYZER,
+        //OperationToolbarUiState.Category.TOOL_TRAITS,
+        OperationToolbarUiState.Category.TOOL_TIMERS,
         //OperationToolbarUiState.Category.TOOL_FOOTSTEP,
-        //OperationToolbarUiState.Category.TOOL_TIMERS
     )
 }
 

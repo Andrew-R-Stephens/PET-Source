@@ -290,17 +290,19 @@ internal fun ToolsTimerComponent(
                     if (timersLinked) LocalPalette.current.onSurfaceVariant
                     else LocalPalette.current.onSurface.copy(alpha = .25f)
 
+                val circleColor = LocalPalette.current.surfaceContainerHigh
+
                 Canvas(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .width(16.dp)
+                        .width(22.dp)
                         .clickable { onLinkToggle() }
                 ) {
                     val strokeWidth = 2.dp.toPx()
                     val x = size.width / 2
                     val centerY = size.height / 2
                     val iconSize = 14.dp.toPx()
-                    val gap = 4.dp.toPx()
+                    val gap = 8.dp.toPx()
 
                     // Top vertical line
                     drawLine(
@@ -315,6 +317,12 @@ internal fun ToolsTimerComponent(
                         Offset(x, centerY + iconSize / 2 + gap),
                         Offset(x, size.height),
                         strokeWidth
+                    )
+
+                    drawCircle(
+                        color = circleColor,
+                        radius = (iconSize + gap) / 2f,
+                        center = Offset(x, centerY)
                     )
 
                     // Pointing to hunt duration
