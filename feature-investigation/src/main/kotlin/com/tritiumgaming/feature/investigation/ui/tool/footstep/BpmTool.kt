@@ -49,6 +49,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
+import com.tritiumgaming.feature.investigation.ui.sheet.ToolComponent
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
@@ -148,47 +149,13 @@ internal fun BpmTool(
         activeBorderColor = LocalPalette.current.onSurfaceVariant
     )
 
-    Column (
+    ToolComponent (
         modifier = modifier
-            .fillMaxWidth()
+            /*.fillMaxWidth()
             .wrapContentHeight()
-            .preferredFrameRate(FrameRateCategory.Normal),
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .preferredFrameRate(FrameRateCategory.Normal)*/,
+        label = stringResource(R.string.investigation_label_tool_footstep)
     ) {
-
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically) {
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
-            )
-
-            Text(
-                modifier = Modifier
-                    .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_tool_footstep).uppercase(),
-                color = LocalPalette.current.onSurfaceVariant,
-                style = LocalTypography.current.quaternary.bold.copy(
-                    textAlign = TextAlign.Start
-                ),
-                fontSize = 18.sp,
-                maxLines = 1
-            )
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
-            )
-        }
 
         /*LiveStatsRow(
             realtimeState = realtimeState,

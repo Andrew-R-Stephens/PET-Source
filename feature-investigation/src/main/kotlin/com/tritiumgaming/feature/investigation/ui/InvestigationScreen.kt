@@ -32,8 +32,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -100,7 +102,6 @@ import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
 import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
-import com.tritiumgaming.feature.investigation.ui.sheet.ToolsTimerComponent
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.CustomDifficultyConfigControl
@@ -126,6 +127,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatus
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
+import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
@@ -622,7 +624,10 @@ private fun InvestigationContent(
 
     val footstepComponent: @Composable (Modifier) -> Unit = { modifier ->
         BpmTool(
-            modifier = modifier,
+            modifier = modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .preferredFrameRate(FrameRateCategory.Normal),
             realtimeState = bpmToolUiState.realtimeState,
             measurementType = bpmMeasurementType,
             applyMeasurement = bpmApplyMeasurement,
@@ -643,7 +648,7 @@ private fun InvestigationContent(
     }
 
     val timersComponent: @Composable (Modifier) -> Unit = { modifier ->
-        ToolsTimerComponent(
+        TimerTools(
             modifier = modifier,
             smudgeHuntPreventionTitle = smudgeHuntPreventionTitle,
             smudgeHuntPreventionMax = smudgeHuntPreventionMax,
