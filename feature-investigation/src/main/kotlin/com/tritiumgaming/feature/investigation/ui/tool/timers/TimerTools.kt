@@ -7,7 +7,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -17,17 +16,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,10 +32,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.FingerprintDurationIcon
@@ -49,14 +41,12 @@ import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.ui.sheet.ToolComponent
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
@@ -109,46 +99,213 @@ fun TimerTools(
     // Colors
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
-        verticalAlignment = Alignment.CenterVertically
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-
-        CommonTooltip(
+        Row(
             modifier = Modifier,
-            tooltipText = stringResource(R.string.tool_timer_label_toggle_cursed)
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Button(
-                modifier = Modifier
-                    .size(32.dp),
-                onClick = onToggleCursed,
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor =
-                        if (isCursedInvestigation) LocalPalette.current.primaryContainer
-                        else LocalPalette.current.surfaceContainer,
-                ),
-                elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = if (isCursedInvestigation) 4.dp else 0.dp
-                ),
-                contentPadding = PaddingValues(8.dp),
-                border = if (!isCursedInvestigation)
-                    BorderStroke(1.dp, LocalPalette.current.surfaceContainerHigh)
-                else null
+
+            CommonTooltip(
+                modifier = Modifier,
+                tooltipText = stringResource(R.string.tool_timer_label_toggle_cursed)
             ) {
-                Icon(
-                    modifier = Modifier,
-                    painter = painterResource(R.drawable.ic_map_cp_ouija),
-                    tint = if (isCursedInvestigation) LocalPalette.current.onPrimaryContainer
-                    else LocalPalette.current.onSurface,
-                    contentDescription = ""
-                )
+                Button(
+                    modifier = Modifier
+                        .size(32.dp),
+                    onClick = onToggleCursed,
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor =
+                            if (isCursedInvestigation) LocalPalette.current.primaryContainer
+                            else LocalPalette.current.surfaceContainer,
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = if (isCursedInvestigation) 4.dp else 0.dp
+                    ),
+                    contentPadding = PaddingValues(8.dp),
+                    border = if (!isCursedInvestigation)
+                        BorderStroke(1.dp, LocalPalette.current.surfaceContainerHigh)
+                    else null
+                ) {
+                    Icon(
+                        modifier = Modifier,
+                        painter = painterResource(R.drawable.ic_map_cp_ouija),
+                        tint = if (isCursedInvestigation) LocalPalette.current.onPrimaryContainer
+                        else LocalPalette.current.onSurface,
+                        contentDescription = ""
+                    )
+                }
             }
         }
-    }
 
+        HuntTimersComponent(
+            timersLinked,
+            onLinkToggle,
+            huntDurationTitle,
+            huntDurationMax,
+            huntDurationRemaining,
+            huntDurationTimeText,
+            huntDurationRunning,
+            onHuntDurationToggle,
+            huntDurationNotches,
+            notchedProgressBarUiColors,
+            difficultyTitle,
+            mapSize,
+            huntDuration,
+            isCursedInvestigation,
+            huntCooldownTitle,
+            huntCooldownMax,
+            huntCooldownRemaining,
+            huntCooldownTimeText,
+            huntCooldownRunning,
+            onHuntCooldownToggle,
+            huntCooldownNotches
+        )
+
+        CleanseTimerComponent(
+            smudgeHuntPreventionTitle,
+            smudgeHuntPreventionMax,
+            smudgeHuntPreventionRemaining,
+            smudgeHuntPreventionTimeText,
+            smudgeHuntPreventionRunning,
+            onSmudgeToggle,
+            smudgeNotches,
+            notchedProgressBarUiColors
+        )
+
+        FingerprintTimerComponent(
+            fingerprintTimerTitle,
+            fingerprintTimerMax,
+            fingerprintTimerRemaining,
+            fingerprintTimerTimeText,
+            fingerprintTimerRunning,
+            onFingerprintToggle,
+            fingerprintNotches,
+            notchedProgressBarUiColors,
+            fingerprintDuration
+        )
+    }
+}
+
+@Composable
+private fun FingerprintTimerComponent(
+    fingerprintTimerTitle: String,
+    fingerprintTimerMax: Long,
+    fingerprintTimerRemaining: Long,
+    fingerprintTimerTimeText: String,
+    fingerprintTimerRunning: Boolean,
+    onFingerprintToggle: () -> Unit,
+    fingerprintNotches: List<ProgressBarNotch>,
+    notchedProgressBarUiColors: NotchedProgressBarUiColors,
+    fingerprintDuration: DifficultySettingResources.FingerprintDuration
+) {
+    Surface(
+        modifier = Modifier,
+        color = LocalPalette.current.surfaceContainer,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        NotchedProgressBarTimer(
+            modifier = Modifier
+                .padding(8.dp),
+            title = fingerprintTimerTitle,
+            max = fingerprintTimerMax,
+            remaining = fingerprintTimerRemaining,
+            timeText = fingerprintTimerTimeText,
+            running = fingerprintTimerRunning,
+            onToggle = onFingerprintToggle,
+            notches = fingerprintNotches,
+            colors = notchedProgressBarUiColors,
+            titleContent = {
+                CommonTooltip(
+                    tooltipText = stringResource(fingerprintDuration.toStringResource())
+                ) {
+                    StopwatchIcon(
+                        modifier = it.size(16.dp),
+                        colors = IconVectorColors.defaults().copy(
+                            strokeColor = LocalPalette.current.onSurfaceVariant,
+                            fillColor = LocalPalette.current.onSurfaceVariant
+                        )
+                    )
+                }
+            }
+        ) { modifier ->
+            FingerprintDurationIcon(
+                modifier = modifier,
+                colors = IconVectorColors.defaults().copy(
+                    fillColor = LocalPalette.current.onSurface
+                )
+            )
+        }
+    }
+}
+
+@Composable
+private fun CleanseTimerComponent(
+    smudgeHuntPreventionTitle: String,
+    smudgeHuntPreventionMax: Long,
+    smudgeHuntPreventionRemaining: Long,
+    smudgeHuntPreventionTimeText: String,
+    smudgeHuntPreventionRunning: Boolean,
+    onSmudgeToggle: () -> Unit,
+    smudgeNotches: List<ProgressBarNotch>,
+    notchedProgressBarUiColors: NotchedProgressBarUiColors
+) {
+    Surface(
+        modifier = Modifier,
+        color = LocalPalette.current.surfaceContainer,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        NotchedProgressBarTimer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            title = smudgeHuntPreventionTitle,
+            max = smudgeHuntPreventionMax,
+            remaining = smudgeHuntPreventionRemaining,
+            timeText = smudgeHuntPreventionTimeText,
+            running = smudgeHuntPreventionRunning,
+            onToggle = onSmudgeToggle,
+            notches = smudgeNotches,
+            colors = notchedProgressBarUiColors
+        ) { modifier ->
+            PreventHuntIcon(
+                modifier = modifier,
+                colors = IconVectorColors.defaults().copy(
+                    fillColor = LocalPalette.current.onSurface
+                )
+            )
+        }
+    }
+}
+
+@Composable
+private fun HuntTimersComponent(
+    timersLinked: Boolean,
+    onLinkToggle: () -> Unit,
+    huntDurationTitle: String,
+    huntDurationMax: Long,
+    huntDurationRemaining: Long,
+    huntDurationTimeText: String,
+    huntDurationRunning: Boolean,
+    onHuntDurationToggle: () -> Unit,
+    huntDurationNotches: List<ProgressBarNotch>,
+    notchedProgressBarUiColors: NotchedProgressBarUiColors,
+    difficultyTitle: DifficultyResources.DifficultyTitle,
+    mapSize: MapModifierResources.MapSize,
+    huntDuration: DifficultySettingResources.HuntDuration,
+    isCursedInvestigation: Boolean,
+    huntCooldownTitle: String,
+    huntCooldownMax: Long,
+    huntCooldownRemaining: Long,
+    huntCooldownTimeText: String,
+    huntCooldownRunning: Boolean,
+    onHuntCooldownToggle: () -> Unit,
+    huntCooldownNotches: List<ProgressBarNotch>
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -308,7 +465,7 @@ fun TimerTools(
                                     )
                                 }
 
-                                if(isCursedInvestigation) {
+                                if (isCursedInvestigation) {
                                     CommonTooltip(
                                         tooltipText = stringResource(R.string.tool_timer_label_cursed)
                                     ) {
@@ -347,7 +504,10 @@ fun TimerTools(
             Surface(
                 modifier = Modifier,
                 color = LocalPalette.current.surfaceContainer,
-                shape = if (timersLinked) RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp) else RoundedCornerShape(8.dp)
+                shape = if (timersLinked) RoundedCornerShape(
+                    bottomStart = 8.dp,
+                    bottomEnd = 8.dp
+                ) else RoundedCornerShape(8.dp)
             ) {
                 NotchedProgressBarTimer(
                     modifier = Modifier
@@ -386,71 +546,4 @@ fun TimerTools(
             }
         }
     }
-
-    Surface(
-        modifier = Modifier,
-        color = LocalPalette.current.surfaceContainer,
-        shape = RoundedCornerShape(8.dp)
-    ) {
-        NotchedProgressBarTimer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            title = smudgeHuntPreventionTitle,
-            max = smudgeHuntPreventionMax,
-            remaining = smudgeHuntPreventionRemaining,
-            timeText = smudgeHuntPreventionTimeText,
-            running = smudgeHuntPreventionRunning,
-            onToggle = onSmudgeToggle,
-            notches = smudgeNotches,
-            colors = notchedProgressBarUiColors
-        ) { modifier ->
-            PreventHuntIcon(
-                modifier = modifier,
-                colors = IconVectorColors.defaults().copy(
-                    fillColor = LocalPalette.current.onSurface
-                )
-            )
-        }
-    }
-
-    Surface(
-        modifier = Modifier,
-        color = LocalPalette.current.surfaceContainer,
-        shape = RoundedCornerShape(8.dp)
-    ) {
-        NotchedProgressBarTimer(
-            modifier = Modifier
-                .padding(8.dp),
-            title = fingerprintTimerTitle,
-            max = fingerprintTimerMax,
-            remaining = fingerprintTimerRemaining,
-            timeText = fingerprintTimerTimeText,
-            running = fingerprintTimerRunning,
-            onToggle = onFingerprintToggle,
-            notches = fingerprintNotches,
-            colors = notchedProgressBarUiColors,
-            titleContent = {
-                CommonTooltip(
-                    tooltipText = stringResource(fingerprintDuration.toStringResource())
-                ) {
-                    StopwatchIcon(
-                        modifier = it.size(16.dp),
-                        colors = IconVectorColors.defaults().copy(
-                            strokeColor = LocalPalette.current.onSurfaceVariant,
-                            fillColor = LocalPalette.current.onSurfaceVariant
-                        )
-                    )
-                }
-            }
-        ) { modifier ->
-            FingerprintDurationIcon(
-                modifier = modifier,
-                colors = IconVectorColors.defaults().copy(
-                    fillColor = LocalPalette.current.onSurface
-                )
-            )
-        }
-    }
-
 }

@@ -221,7 +221,7 @@ internal fun ToolsSideSheetComponent(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ToolComponent(
+private fun ToolComponent(
     modifier: Modifier = Modifier,
     label: String,
     component: @Composable ColumnScope.() -> Unit = {},

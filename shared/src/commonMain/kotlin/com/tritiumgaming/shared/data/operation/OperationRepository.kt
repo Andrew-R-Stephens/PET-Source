@@ -1,5 +1,6 @@
 package com.tritiumgaming.shared.data.operation
 
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.operation.model.DifficultyData
 import com.tritiumgaming.shared.data.operation.model.EvidenceState
@@ -11,7 +12,6 @@ import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
 import com.tritiumgaming.shared.data.operation.model.PhaseData
 import com.tritiumgaming.shared.data.operation.model.SanityData
 import com.tritiumgaming.shared.data.operation.model.TemperatureData
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import kotlinx.coroutines.flow.StateFlow
 
 interface OperationRepository {

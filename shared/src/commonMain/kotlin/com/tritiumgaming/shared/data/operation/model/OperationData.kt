@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.operation.model
 
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 
 data class OperationData(
     val map: MapData = MapData(),

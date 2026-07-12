@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,11 +21,9 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,13 +37,10 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
@@ -53,7 +49,6 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
-import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
@@ -490,6 +485,8 @@ private fun InvestigationContent(
     val onHuntDurationToggle = uiActions.onHuntDurationToggle
     val onHuntCooldownToggle = uiActions.onHuntCooldownToggle
     val onFingerprintToggle = uiActions.onFingerprintToggle
+    val onLinkToggle = uiActions.onLinkToggle
+    val onToggleCursed = uiActions.onToggleCursed
     val onBpmUpdate = uiActions.onBpmUpdate
     val onBpmChangeMeasurementType = uiActions.onBpmChangeMeasurementType
     val onBpmToggleApplyMeasurement = uiActions.onBpmToggleApplyMeasurement
@@ -676,11 +673,11 @@ private fun InvestigationContent(
             fingerprintTimerRemaining = fingerprintTimerRemaining,
             fingerprintTimerTimeText = fingerprintTimerTimeText,
             fingerprintTimerRunning = fingerprintTimerRunning,
-            onFingerprintToggle = uiActions.onFingerprintToggle,
+            onFingerprintToggle = onFingerprintToggle,
             fingerprintNotches = fingerprintNotches,
-            timersLinked = uiState.timersLinked,
-            onLinkToggle = uiActions.onLinkToggle,
-            onToggleCursed = uiActions.onToggleCursed,
+            timersLinked = timersLinked,
+            onLinkToggle = onLinkToggle,
+            onToggleCursed = onToggleCursed,
             isCursedInvestigation = difficultyOverrideUiState.cursedInvestigation,
             difficultyTitle = operationDetailsUiState.difficultyDetails.difficultyTitle,
             mapSize = operationDetailsUiState.mapDetails.size,
@@ -1474,31 +1471,35 @@ fun OperationConfigsBottomSheet(
                     horizontalAlignment = Alignment.Start
                 ) {
 
-                    mapConfigComponent(
-                        Modifier
-                            .fillMaxWidth()
-                            .widthIn(max = 400.dp)
-                    )
-
                     difficultyConfigComponent(
                         Modifier
                             .fillMaxWidth()
                     )
 
-                    if(showChallengeTitleComponent) {
+                    if (showChallengeTitleComponent) {
                         challengeLabelComponent(
                             Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 8.dp)
                         )
+
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
 
-                    if(showEditCustomDifficultyComponent) {
+                    if (showEditCustomDifficultyComponent) {
                         customDifficultyConfigComponent(
                             Modifier
                                 .fillMaxWidth()
                         )
+
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
+
+                    mapConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                            .widthIn(max = 400.dp)
+                    )
 
                     weatherConfigComponent(
                         Modifier
@@ -1661,11 +1662,6 @@ fun OperationConfigsSideSheetCompact(
                 horizontalAlignment = Alignment.Start
             ) {
 
-                mapConfigComponent(
-                    Modifier
-                        .fillMaxWidth()
-                )
-
                 difficultyConfigComponent(
                     Modifier
                         .fillMaxWidth()
@@ -1677,6 +1673,8 @@ fun OperationConfigsSideSheetCompact(
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp)
                     )
+
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
 
                 if(showEditCustomDifficultyComponent) {
@@ -1684,7 +1682,14 @@ fun OperationConfigsSideSheetCompact(
                         Modifier
                             .fillMaxWidth()
                     )
+
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
+
+                mapConfigComponent(
+                    Modifier
+                        .fillMaxWidth()
+                )
 
                 weatherConfigComponent(
                     Modifier
@@ -1945,8 +1950,6 @@ fun OperationConfigsSideSheetExpanded(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    mapConfigComponent(Modifier.fillMaxWidth())
-
                     difficultyConfigComponent(Modifier.fillMaxWidth())
 
                     if(showChallengeTitleComponent) {
@@ -1960,6 +1963,8 @@ fun OperationConfigsSideSheetExpanded(
                     if (showEditCustomDifficultyComponent) {
                         customDifficultyConfigComponent(Modifier.fillMaxWidth())
                     }
+
+                    mapConfigComponent(Modifier.fillMaxWidth())
 
                 }
             }
