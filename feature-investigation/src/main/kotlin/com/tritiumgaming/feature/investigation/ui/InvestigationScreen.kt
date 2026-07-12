@@ -1384,7 +1384,9 @@ private fun HorizontalToolbar(
             topStart = 16.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 0.dp)
     ) {
         Column(
-            modifier = modifier
+            modifier = modifier,
+            verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             selectBarComponent(
                 Modifier

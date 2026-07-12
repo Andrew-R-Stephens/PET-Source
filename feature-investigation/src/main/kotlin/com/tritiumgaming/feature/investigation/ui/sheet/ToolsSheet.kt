@@ -4,23 +4,21 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
@@ -54,7 +52,6 @@ internal fun ToolsBottomSheetComponent(
                     val scrollState = rememberScrollState()
                     configComponent(
                         modifier
-                            .padding(top = 8.dp)
                             .height(IntrinsicSize.Max)
                             .verticalScroll(scrollState)
                     )
@@ -68,7 +65,6 @@ internal fun ToolsBottomSheetComponent(
                 component = { modifier ->
                     traitsComponent(
                         modifier
-                            .padding(top = 8.dp)
                             .fillMaxHeight(.5f)
                     )
                 }
@@ -81,7 +77,6 @@ internal fun ToolsBottomSheetComponent(
                 component = { modifier ->
                     analyzerComponent(
                         modifier
-                            .padding(top = 8.dp)
                             .height(IntrinsicSize.Max)
                     )
                 }
@@ -95,7 +90,6 @@ internal fun ToolsBottomSheetComponent(
                     val scrollState = rememberScrollState()
                     timersComponent(
                         modifier
-                            .padding(8.dp)
                             .height(IntrinsicSize.Max)
                             .verticalScroll(scrollState)
                     )
@@ -111,7 +105,6 @@ internal fun ToolsBottomSheetComponent(
                     val scrollState = rememberScrollState()
                     footstepComponent(
                         modifier
-                            .padding(top = 8.dp)
                             .height(IntrinsicSize.Max)
                             .verticalScroll(scrollState)
                     )
@@ -149,7 +142,6 @@ internal fun ToolsSideSheetComponent(
                     val scrollState = rememberScrollState()
                     configComponent(
                         modifier
-                            .padding(top = 8.dp)
                             .verticalScroll(scrollState)
                     )
                 }
@@ -162,7 +154,6 @@ internal fun ToolsSideSheetComponent(
                 component = { modifier ->
                     traitsComponent(
                         modifier
-                            .padding(top = 8.dp)
                     )
                 }
             )
@@ -174,7 +165,6 @@ internal fun ToolsSideSheetComponent(
                 component = { modifier ->
                     analyzerComponent(
                         modifier
-                            .padding(top = 8.dp)
                     )
                 }
             )
@@ -187,7 +177,6 @@ internal fun ToolsSideSheetComponent(
                     val scrollState = rememberScrollState()
                     timersComponent(
                         modifier
-                            .padding(8.dp)
                             .verticalScroll(scrollState)
                     )
                 }
@@ -228,40 +217,26 @@ private fun ToolComponent(
 ) {
     Column (
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp, alignment = Alignment.Top),
     ) {
 
-        Row (
+        Surface(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically) {
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
-            )
-
+                .fillMaxWidth(),
+            color = LocalPalette.current.surfaceContainer.copy(alpha = .5f),
+            shape = RoundedCornerShape(8.dp)
+        ) {
             Text(
                 modifier = Modifier
-                    .wrapContentWidth(),
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp, horizontal = 8.dp),
                 text = label.uppercase(),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold.copy(
-                    textAlign = TextAlign.Start
+                    textAlign = TextAlign.Center
                 ),
                 fontSize = 18.sp,
                 maxLines = 1
-            )
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
             )
         }
 

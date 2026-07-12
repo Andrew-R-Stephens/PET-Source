@@ -37,7 +37,6 @@ import com.tritiumgaming.core.ui.icon.impl.base.AnalyticsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.ConfigIcon
 import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
-import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.ResetAltIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
