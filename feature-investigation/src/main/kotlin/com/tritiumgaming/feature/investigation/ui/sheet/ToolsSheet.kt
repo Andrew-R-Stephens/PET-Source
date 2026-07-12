@@ -43,89 +43,88 @@ internal fun ToolsBottomSheetComponent(
     timersComponent: @Composable (Modifier) -> Unit,
     footstepComponent: @Composable (Modifier) -> Unit,
 ) {
-    Column(
+    val categoryPair: CategoryPair = when (toolbarCategory) {
+        OperationToolbarUiState.Category.TOOL_NONE -> {
+            CategoryPair("") {}
+        }
+        OperationToolbarUiState.Category.TOOL_CONFIG -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_contract),
+                component = { modifier ->
+                    val scrollState = rememberScrollState()
+                    configComponent(
+                        modifier
+                            .padding(top = 8.dp)
+                            .height(IntrinsicSize.Max)
+                            .verticalScroll(scrollState)
+                    )
+                }
+            )
+        }
+
+        OperationToolbarUiState.Category.TOOL_TRAITS -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_secondary_evidence),
+                component = { modifier ->
+                    traitsComponent(
+                        modifier
+                            .padding(top = 8.dp)
+                            .fillMaxHeight(.5f)
+                    )
+                }
+            )
+        }
+
+        OperationToolbarUiState.Category.TOOL_ANALYZER -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_operation_details),
+                component = { modifier ->
+                    analyzerComponent(
+                        modifier
+                            .padding(top = 8.dp)
+                            .height(IntrinsicSize.Max)
+                    )
+                }
+            )
+        }
+
+        OperationToolbarUiState.Category.TOOL_TIMERS -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_timers),
+                component = { modifier ->
+                    val scrollState = rememberScrollState()
+                    timersComponent(
+                        modifier
+                            .padding(8.dp)
+                            .height(IntrinsicSize.Max)
+                            .verticalScroll(scrollState)
+                    )
+                }
+            )
+
+        }
+
+        OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_footstep),
+                component = { modifier ->
+                    val scrollState = rememberScrollState()
+                    footstepComponent(
+                        modifier
+                            .padding(top = 8.dp)
+                            .height(IntrinsicSize.Max)
+                            .verticalScroll(scrollState)
+                    )
+                }
+            )
+        }
+    }
+
+    ToolComponent(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalAlignment = Alignment.Start
+        label = categoryPair.label
     ) {
-
-        val categoryPair: CategoryPair = when (toolbarCategory) {
-            OperationToolbarUiState.Category.TOOL_NONE -> {
-                CategoryPair("") {}
-            }
-            OperationToolbarUiState.Category.TOOL_CONFIG -> {
-                CategoryPair(
-                    label = stringResource(R.string.investigation_label_contract),
-                    component = { modifier ->
-                        configComponent(
-                            modifier
-                                .padding(top = 8.dp)
-                                .height(IntrinsicSize.Max)
-                        )
-                    }
-                )
-            }
-
-            OperationToolbarUiState.Category.TOOL_TRAITS -> {
-                CategoryPair(
-                    label = stringResource(R.string.investigation_label_tool_secondary_evidence),
-                    component = {
-                        traitsComponent(
-                            Modifier
-                                .padding(top = 8.dp)
-                                .fillMaxHeight(.5f)
-                        )
-                    }
-                )
-            }
-
-            OperationToolbarUiState.Category.TOOL_ANALYZER -> {
-                CategoryPair(
-                    label = stringResource(R.string.investigation_label_tool_operation_details),
-                    component = {
-                        analyzerComponent(
-                            Modifier
-                                .padding(top = 8.dp)
-                                .height(IntrinsicSize.Max)
-                        )
-                    }
-                )
-            }
-
-            OperationToolbarUiState.Category.TOOL_TIMERS -> {
-                CategoryPair(
-                    label = stringResource(R.string.investigation_label_tool_timers),
-                    component = {
-                        timersComponent(
-                            Modifier
-                                .padding(8.dp)
-                                .height(IntrinsicSize.Max)
-                        )
-                    }
-                )
-
-            }
-
-            OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
-                CategoryPair(
-                    label = stringResource(R.string.investigation_label_tool_footstep),
-                    component = {
-                        footstepComponent(
-                            Modifier
-                                .padding(top = 8.dp)
-                                .height(IntrinsicSize.Max)
-                        )
-                    }
-                )
-            }
-        }
-
-        ToolComponent(
-            label = categoryPair.label
-        ) {
-            categoryPair.component(Modifier)
-        }
-
+        categoryPair.component(Modifier)
     }
 }
 
@@ -139,52 +138,84 @@ internal fun ToolsSideSheetComponent(
     timersComponent: @Composable (Modifier) -> Unit,
     footstepComponent: @Composable (Modifier) -> Unit,
 ) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalAlignment = Alignment.Start
-    ) {
-        when (toolbarCategory) {
-            OperationToolbarUiState.Category.TOOL_NONE -> {}
-            OperationToolbarUiState.Category.TOOL_CONFIG -> {
-                configComponent(
-                    Modifier
-                        .padding(top = 8.dp)
-                        .verticalScroll(rememberScrollState())
-                )
-            }
-
-            OperationToolbarUiState.Category.TOOL_TRAITS -> {
-                traitsComponent(
-                    Modifier
-                        .padding(top = 8.dp)
-                        .fillMaxHeight()
-                )
-            }
-
-            OperationToolbarUiState.Category.TOOL_ANALYZER -> {
-                analyzerComponent(
-                    Modifier
-                        .padding(top = 8.dp)
-                )
-            }
-
-            OperationToolbarUiState.Category.TOOL_TIMERS -> {
-                timersComponent(
-                    Modifier
-                        .padding(8.dp)
-                        .height(IntrinsicSize.Max)
-                )
-            }
-
-            OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
-                footstepComponent(
-                    Modifier
-                        .padding(8.dp)
-                        .verticalScroll(rememberScrollState())
-                )
-            }
+    val categoryPair: CategoryPair = when (toolbarCategory) {
+        OperationToolbarUiState.Category.TOOL_NONE -> {
+            CategoryPair("") {}
         }
+        OperationToolbarUiState.Category.TOOL_CONFIG -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_contract),
+                component = { modifier ->
+                    val scrollState = rememberScrollState()
+                    configComponent(
+                        modifier
+                            .padding(top = 8.dp)
+                            .verticalScroll(scrollState)
+                    )
+                }
+            )
+        }
+
+        OperationToolbarUiState.Category.TOOL_TRAITS -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_secondary_evidence),
+                component = { modifier ->
+                    traitsComponent(
+                        modifier
+                            .padding(top = 8.dp)
+                    )
+                }
+            )
+        }
+
+        OperationToolbarUiState.Category.TOOL_ANALYZER -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_operation_details),
+                component = { modifier ->
+                    analyzerComponent(
+                        modifier
+                            .padding(top = 8.dp)
+                    )
+                }
+            )
+        }
+
+        OperationToolbarUiState.Category.TOOL_TIMERS -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_timers),
+                component = { modifier ->
+                    val scrollState = rememberScrollState()
+                    timersComponent(
+                        modifier
+                            .padding(8.dp)
+                            .verticalScroll(scrollState)
+                    )
+                }
+            )
+
+        }
+
+        OperationToolbarUiState.Category.TOOL_FOOTSTEP -> {
+            CategoryPair(
+                label = stringResource(R.string.investigation_label_tool_footstep),
+                component = { modifier ->
+                    val scrollState = rememberScrollState()
+
+                    footstepComponent(
+                        modifier
+                            .padding(8.dp)
+                            .verticalScroll(scrollState)
+                    )
+                }
+            )
+        }
+    }
+
+    ToolComponent(
+        modifier = modifier,
+        label = categoryPair.label
+    ) {
+        categoryPair.component(Modifier)
     }
 }
 
@@ -195,11 +226,8 @@ internal fun ToolComponent(
     label: String,
     component: @Composable ColumnScope.() -> Unit = {},
 ) {
-    val scrollState = rememberScrollState()
-
     Column (
-        modifier = modifier
-            .verticalScroll(scrollState),
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
 
@@ -240,5 +268,3 @@ internal fun ToolComponent(
         component()
     }
 }
-
-

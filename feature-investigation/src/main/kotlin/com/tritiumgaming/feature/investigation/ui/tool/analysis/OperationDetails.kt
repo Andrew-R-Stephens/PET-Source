@@ -67,40 +67,6 @@ internal fun OperationDetails(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically) {
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
-            )
-
-            Text(
-                modifier = Modifier
-                    .wrapContentWidth(),
-                text = stringResource(R.string.investigation_label_tool_operation_details).uppercase(),
-                color = LocalPalette.current.onSurfaceVariant,
-                style = LocalTypography.current.quaternary.bold.copy(
-                    textAlign = TextAlign.Start
-                ),
-                fontSize = 18.sp,
-                maxLines = 1
-            )
-            HorizontalDivider(
-                modifier = Modifier
-                    .weight(1f),
-                color = LocalPalette.current.onSurfaceVariant,
-                thickness = Dp.Hairline
-            )
-        }
-
-
         PhaseModifierDetails(
             state = operationDetailsUiState.phaseDetails
         )

@@ -149,19 +149,10 @@ internal fun BpmTool(
         activeBorderColor = LocalPalette.current.onSurfaceVariant
     )
 
-    ToolComponent (
-        modifier = modifier
-            /*.fillMaxWidth()
-            .wrapContentHeight()
-            .preferredFrameRate(FrameRateCategory.Normal)*/,
-        label = stringResource(R.string.investigation_label_tool_footstep)
+    Column (
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-
-        /*LiveStatsRow(
-            realtimeState = realtimeState,
-            measurementType = measurementType,
-            applyMeasurement = applyMeasurement
-        )*/
 
         if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED || weather == Weather.BLOOD_MOON ||
             ghostSpeedModifier != DifficultySettingResources.GhostSpeed.SPEED_100.toFloat()) {
