@@ -436,7 +436,7 @@ private fun HuntTimersComponent(
                                 ) {
                                     Image(
                                         modifier = it.size(16.dp),
-                                        painter = painterResource(R.drawable.ic_trophy),
+                                        painter = painterResource(R.drawable.ic_puzzle),
                                         colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant),
                                         contentDescription = ""
                                     )
