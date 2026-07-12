@@ -41,13 +41,15 @@ fun OperationToolbar(
                 ConfigButton(
                     stickyContentModifier,
                     category = category,
-                    onCategoryChange = onChangeToolbarCategory
+                    onCategoryChange = onChangeToolbarCategory,
+                    onReset = onReset
                 )
 
                 AnalyticsButton(
                     stickyContentModifier,
                     category = category,
-                    onCategoryChange = onChangeToolbarCategory
+                    onCategoryChange = onChangeToolbarCategory,
+                    onReset = onReset
                 )
 
             }
@@ -67,19 +69,22 @@ fun OperationToolbar(
             TraitsButton(
                 scrollContentModifier,
                 category = category,
-                onCategoryChange = onChangeToolbarCategory
+                onCategoryChange = onChangeToolbarCategory,
+                onReset = onReset
             )
 
             StopwatchButton(
                 scrollContentModifier,
                 category = category,
-                onCategoryChange = onChangeToolbarCategory
+                onCategoryChange = onChangeToolbarCategory,
+                onReset = onReset
             )
 
             BpmButton(
                 scrollContentModifier,
                 category = category,
-                onCategoryChange = onChangeToolbarCategory
+                onCategoryChange = onChangeToolbarCategory,
+                onReset = onReset
             )
 
         }
@@ -113,7 +118,8 @@ fun OperationToolRail(
                         .padding(4.dp)
                         .aspectRatio(1f),
                     category = category,
-                    onCategoryChange = onChangeToolbarCategory
+                    onCategoryChange = onChangeToolbarCategory,
+                    onReset = onReset
                 )
 
                 AnalyticsButton(
@@ -122,7 +128,8 @@ fun OperationToolRail(
                         .padding(4.dp)
                         .aspectRatio(1f),
                     category = category,
-                    onCategoryChange = onChangeToolbarCategory
+                    onCategoryChange = onChangeToolbarCategory,
+                    onReset = onReset
                 )
 
             }
@@ -144,19 +151,22 @@ fun OperationToolRail(
             TraitsButton(
                 scrollContentModifier,
                 category = category,
-                onCategoryChange = onChangeToolbarCategory
+                onCategoryChange = onChangeToolbarCategory,
+                onReset = onReset
             )
 
             StopwatchButton(
                 scrollContentModifier,
                 category = category,
-                onCategoryChange = onChangeToolbarCategory
+                onCategoryChange = onChangeToolbarCategory,
+                onReset = onReset
             )
 
             BpmButton(
                 scrollContentModifier,
                 category = category,
-                onCategoryChange = onChangeToolbarCategory
+                onCategoryChange = onChangeToolbarCategory,
+                onReset = onReset
             )
 
         }

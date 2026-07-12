@@ -109,6 +109,6 @@ private fun PreviewB() {
             fillColor = Color.White,
             strokeColor = Color.White
         ),
-        R.drawable.ic_footprints
+        R.drawable.ic_stopwatch_normal
     )
 }
