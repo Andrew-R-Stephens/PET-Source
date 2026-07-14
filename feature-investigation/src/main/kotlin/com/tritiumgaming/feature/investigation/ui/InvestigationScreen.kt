@@ -168,10 +168,10 @@ private annotation class DevicePreviews
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
     override val values = sequenceOf(
-        OperationToolbarUiState.Category.TOOL_CONFIG,
-        OperationToolbarUiState.Category.TOOL_ANALYZER,
-        OperationToolbarUiState.Category.TOOL_TRAITS,
-        OperationToolbarUiState.Category.TOOL_TIMERS,
+        //OperationToolbarUiState.Category.TOOL_CONFIG,
+        //OperationToolbarUiState.Category.TOOL_ANALYZER,
+        //OperationToolbarUiState.Category.TOOL_TRAITS,
+        //OperationToolbarUiState.Category.TOOL_TIMERS,
         OperationToolbarUiState.Category.TOOL_FOOTSTEP,
     )
 }
@@ -550,7 +550,7 @@ private fun InvestigationContent(
     val temperatureStateBundle = TemperatureStateBundle(temperatureUiState)
     val fuseBoxFlag = difficultyOverrideUiState.fuseBox
 
-    val smudgeHuntPreventionTitle = stringResource(R.string.tool_timer_label_smudge_protection)
+    val smudgeHuntPreventionTitle = stringResource(R.string.tool_timer_label_smudge_cleanse)
     val smudgeHuntPreventionMax = smudgeHuntProtectionTimerState.max
     val smudgeHuntPreventionRemaining = smudgeHuntProtectionTimerState.remaining
     val smudgeHuntPreventionTimeText = smudgeHuntProtectionTimerState.timeText
@@ -726,7 +726,8 @@ private fun InvestigationContent(
                     isDropdownEnabled = isDifficultyEnabled,
                     dropdownLabel = customDifficultyLabel,
                     colors = operationConfigUiColors,
-                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) },
+                    onEditClick = { onNavigateToEditCustomDifficulty() }
                 ) { modifier ->
                     IconButton(
                         modifier = modifier,
@@ -845,7 +846,8 @@ private fun InvestigationContent(
                     isDropdownEnabled = isDifficultyEnabled,
                     dropdownLabel = customDifficultyLabel,
                     colors = operationConfigUiColors,
-                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) },
+                    onEditClick = { onNavigateToEditCustomDifficulty() }
                 ) { modifier ->
                     IconButton(
                         modifier = modifier,
@@ -958,7 +960,8 @@ private fun InvestigationContent(
                     isDropdownEnabled = isDifficultyEnabled,
                     dropdownLabel = customDifficultyLabel,
                     colors = operationConfigUiColors,
-                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) }
+                    onDropdownSelect = { onCustomDifficultyDropdownSelect(it) },
+                    onEditClick = { onNavigateToEditCustomDifficulty() }
                 ) { modifier ->
                     IconButton(
                         modifier = modifier,

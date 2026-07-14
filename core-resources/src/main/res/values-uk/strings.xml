@@ -22,10 +22,12 @@
     <string name="footstep_label_apply">Застосувати BPM</string>
     <string name="footstep_label_none">Немає</string>
     <string name="footstep_label_instant">Миттєво</string>
+    <string name="footstep_label_instant_description">Використовується останнє миттєве значення, згладжене експоненціальною ковзною середньою.</string>
     <string name="footstep_label_average">Середня</string>
+    <string name="footstep_label_average_description">Використовується розрахунок ковзної середньої. Розраховується шляхом усереднення необроблених миттєвих значень кожного дотику в межах діапазону вибірки.</string>
     <string name="footstep_label_weighted">Зважена</string>
     <string name="footstep_label_sample_interval">Вибірка</string>
-    <string name="tool_timer_label_smudge_protection">Захист від полювання від бруду</string>
+    <string name="tool_timer_label_smudge_cleanse">очищення за допомогою ладану</string>
     <string name="tool_timer_label_hunt_duration">Тривалість полювання</string>
     <string name="tool_timer_label_hunt_cooldown">Зарядка полювання</string>
     <string name="tool_timer_label_uv_lifetime">Час життя UV</string>
@@ -33,6 +35,7 @@
     <string name="tool_timer_label_standard">Стандартний</string>
     <string name="tool_timer_label_toggle_cursed">Перемкнути стан проклятої операції</string>
     <string name="tool_timer_label_cursed">Проклятий</string>
+    <string name="footstep_label_weighted_description">Використовується розрахунок середньозваженої. Розраховується шляхом усереднення значень ковзної середньої, розрахованих для кожного дотику в межах діапазону вибірки.</string>
     <string name="footstep_label_domain">Вікно перегляду</string>
     <string name="general_label_modifiers">Модифікатори</string>
     <string name="general_label_power">Потужність</string>

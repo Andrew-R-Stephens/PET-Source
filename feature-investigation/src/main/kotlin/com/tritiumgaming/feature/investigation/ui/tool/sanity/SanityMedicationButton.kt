@@ -43,7 +43,8 @@ internal fun SanityMedicationButton(
 
     CommonTooltip(
         modifier = Modifier,
-        tooltipText = stringResource(R.string.equipment_info_name_sanitymedication)
+        tooltipText = stringResource(R.string.equipment_info_name_sanitymedication),
+        onClick = onClick
     ) {
         Button(
             modifier = modifier,
@@ -53,7 +54,7 @@ internal fun SanityMedicationButton(
             colors = ButtonDefaults.buttonColors().copy(
                 containerColor = Color.Transparent
             ),
-            onClick = { onClick() },
+            onClick = onClick,
             contentPadding = PaddingValues(8.dp)
         ) {
             SanityMedicationIcon(

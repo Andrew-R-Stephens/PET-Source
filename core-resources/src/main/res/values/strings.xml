@@ -118,12 +118,15 @@
     <string name="footstep_label_apply">Apply BPM</string>
     <string name="footstep_label_none">None</string>
     <string name="footstep_label_instant">Instant</string>
+    <string name="footstep_label_instant_description">The latest instantaneous value is used, smoothed by an Exponential Moving Average.</string>
     <string name="footstep_label_average">Average</string>
+    <string name="footstep_label_average_description">The Moving Average calculation is used. Calculated by averaging the raw instantaneous values of each tap within the Sampling range.</string>
     <string name="footstep_label_weighted">Weighted</string>
+    <string name="footstep_label_weighted_description">The Weighted Average calculation is used. Calculated by averaging the Moving Average values calculated for each tap within the Sampling range.</string>
     <string name="footstep_label_domain">Viewport</string>
     <string name="footstep_label_sample_interval">Sampling</string>
 
-    <string name="tool_timer_label_smudge_protection">Smudge Hunt Protection</string>
+    <string name="tool_timer_label_smudge_cleanse">Smudge Cleanse</string>
     <string name="tool_timer_label_hunt_duration">Hunt Duration</string>
     <string name="tool_timer_label_hunt_cooldown">Hunt Cooldown</string>
     <string name="tool_timer_label_uv_lifetime">UV Lifetime</string>

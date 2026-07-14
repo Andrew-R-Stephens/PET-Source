@@ -55,12 +55,13 @@ internal fun FuseBoxButton(
 
     CommonTooltip(
         modifier = Modifier,
-        tooltipText = stringResource(R.string.general_label_power)
+        tooltipText = stringResource(R.string.general_label_power),
+        onClick = { if (flag != FuseBoxFlag.FUSEBOX_BROKEN) onTogglePower() }
     ) {
         Surface(
             modifier = modifier,
             enabled = flag != FuseBoxFlag.FUSEBOX_BROKEN,
-            onClick = { onTogglePower() },
+            onClick = onTogglePower,
             shape = RoundedCornerShape(8.dp),
             color = LocalPalette.current.surfaceContainer,
             contentColor = theme.foreground

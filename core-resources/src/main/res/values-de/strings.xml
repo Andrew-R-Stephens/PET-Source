@@ -128,13 +128,16 @@
     <string name="footstep_label_apply">BPM-Anwendung</string>
     <string name="footstep_label_none">Keine</string>
     <string name="footstep_label_instant">Sofort</string>
+    <string name="footstep_label_instant_description">Der letzte Messwert wird verwendet und mit einem exponentiellen gleitenden Durchschnitt geglättet.</string>
     <string name="footstep_label_average">Durchschnittlich</string>
+    <string name="footstep_label_average_description">Es wird der gleitende Durchschnitt berechnet. Dieser wird ermittelt, indem die Rohwerte jedes Messpunkts innerhalb des Abtastbereichs gemittelt werden.</string>
     <string name="footstep_label_weighted">Gewichtet</string>
     <string name="footstep_label_sample_interval">Abtastung</string>
-    <string name="tool_timer_label_smudge_protection">Schutz durch Räucherstab</string>
+    <string name="tool_timer_label_smudge_cleanse">Reinigung mit Weihrauch</string>
     <string name="tool_timer_label_hunt_duration">Jagddauer</string>
     <string name="tool_timer_label_hunt_cooldown">Jagd-Cooldown</string>
     <string name="tool_timer_label_uv_lifetime">UV-Dauer</string>
+    <string name="footstep_label_weighted_description">Es wird der gewichtete Durchschnitt berechnet. Dieser wird ermittelt, indem die gleitenden Mittelwerte für jeden Messpunkt innerhalb des Abtastbereichs gemittelt werden.</string>
     <string name="footstep_label_domain">Ansichtsfenster</string>
     <string name="general_label_modifiers">Modifikatoren</string>
     <string name="general_label_power">Leistung</string>

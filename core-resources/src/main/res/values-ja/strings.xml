@@ -1363,11 +1363,14 @@
     <string name="footstep_label_apply">BPM適用</string>
     <string name="footstep_label_none">なし</string>
     <string name="footstep_label_instant">即時</string>
+    <string name="footstep_label_instant_description">最新の瞬時値を使用し、指数移動平均で平滑化します。</string>
     <string name="footstep_label_average">平均</string>
+    <string name="footstep_label_average_description">移動平均計算が使用されます。これは、サンプリング範囲内の各タップの生の瞬時値を平均することによって算出されます。</string>
     <string name="footstep_label_weighted">加重平均</string>
+    <string name="footstep_label_weighted_description">加重平均計算が使用されます。これは、サンプリング範囲内の各タップについて計算された移動平均値を平均することによって算出されます。</string>
     <string name="footstep_label_domain">ビューポート</string>
     <string name="footstep_label_sample_interval">サンプリング</string>
-    <string name="tool_timer_label_smudge_protection">スマッジによるハント阻止</string>
+    <string name="tool_timer_label_smudge_cleanse">お香による浄化</string>
     <string name="tool_timer_label_hunt_duration">ハント継続時間</string>
     <string name="tool_timer_label_hunt_cooldown">ハントのクールダウン</string>
     <string name="tool_timer_label_uv_lifetime">UVライトの持続時間</string>

@@ -4,7 +4,6 @@ package com.tritiumgaming.feature.investigation.ui.tool.sanity
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -68,20 +67,13 @@ internal fun SanityMeterComponent(
 
         CommonTooltip(
             modifier = Modifier,
-            tooltipText = stringResource(R.string.investigation_sanitymeter_title)
+            tooltipText = stringResource(R.string.investigation_sanitymeter_title),
+            onClick = onHeadClick
         ) {
             SanityMeter(
                 modifier = Modifier
                     .size(32.dp)
                     .aspectRatio(1f)
-                    .then(
-                        if (onHeadClick != null) {
-                            Modifier.clickable(
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = null
-                            ) { onHeadClick() }
-                        } else Modifier
-                    )
                     .padding(4.dp),
                 sanityLevel = sanityLevel,
                 showText = false,

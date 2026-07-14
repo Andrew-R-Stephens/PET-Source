@@ -132,13 +132,16 @@
     <string name="footstep_label_apply">Použití BPM</string>
     <string name="footstep_label_none">Žádné</string>
     <string name="footstep_label_instant">Okamžité</string>
+    <string name="footstep_label_instant_description">Použije se nejnovější okamžitá hodnota vyhlazená exponenciálním klouzavým průměrem.</string>
     <string name="footstep_label_average">Průměrné</string>
+    <string name="footstep_label_average_description">Použije se výpočet klouzavého průměru. Vypočítá se zprůměrováním nezpracovaných okamžitých hodnot každého klepnutí v rámci rozsahu vzorkování.</string>
     <string name="footstep_label_weighted">Vážené</string>
     <string name="footstep_label_sample_interval">Vzorkování</string>
-    <string name="tool_timer_label_smudge_protection">Ochrana proti rozmazání při lovu</string>
+    <string name="tool_timer_label_smudge_cleanse">Očista Kadidlem</string>
     <string name="tool_timer_label_hunt_duration">Trvání lovu</string>
     <string name="tool_timer_label_hunt_cooldown">Chladicí doba lovu</string>
     <string name="tool_timer_label_uv_lifetime">Doba trvání UV</string>
+    <string name="footstep_label_weighted_description">Používá se výpočet váženého průměru. Vypočítá se zprůměrováním hodnot klouzavého průměru vypočítaných pro každé klepnutí v rámci rozsahu vzorkování.</string>
     <string name="footstep_label_domain">Výřez</string>
     <string name="general_label_modifiers">Modifikátory</string>
     <string name="general_label_power">Výkon</string>

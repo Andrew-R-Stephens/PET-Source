@@ -38,7 +38,8 @@ internal fun PlayerDeathButton(
 
     CommonTooltip(
         modifier = Modifier,
-        tooltipText = stringResource(R.string.investigation_sanity_player_death)
+        tooltipText = stringResource(R.string.investigation_sanity_player_death),
+        onClick = onClick
     ) {
         Button(
             modifier = modifier,
@@ -47,7 +48,7 @@ internal fun PlayerDeathButton(
             colors = ButtonDefaults.buttonColors().copy(
                 containerColor = Color.Transparent
             ),
-            onClick = { onClick() },
+            onClick = onClick,
             contentPadding = PaddingValues(8.dp)
         ) {
             Icon(

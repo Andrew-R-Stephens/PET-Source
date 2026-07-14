@@ -115,13 +115,16 @@
     <string name="footstep_label_apply">Application du BPM</string>
     <string name="footstep_label_none">Aucun</string>
     <string name="footstep_label_instant">Instantané</string>
+    <string name="footstep_label_instant_description">La dernière valeur instantanée est utilisée, lissée par une moyenne mobile exponentielle.</string>
     <string name="footstep_label_average">Moyen</string>
+    <string name="footstep_label_average_description">Le calcul de la moyenne mobile est également utilisé. Il consiste à calculer la moyenne des valeurs instantanées brutes de chaque prise de mesure dans la plage d\'échantillonnage.</string>
     <string name="footstep_label_weighted">Pondéré</string>
     <string name="footstep_label_sample_interval">Échantillonnage</string>
-    <string name="tool_timer_label_smudge_protection">Protection contre la chasse (Encens)</string>
+    <string name="tool_timer_label_smudge_cleanse">Purification par L\'encens</string>
     <string name="tool_timer_label_hunt_duration">Durée de la chasse</string>
     <string name="tool_timer_label_hunt_cooldown">Délai de récupération de la chasse</string>
     <string name="tool_timer_label_uv_lifetime">Durée des UV</string>
+    <string name="footstep_label_weighted_description">Le calcul de la moyenne pondérée est utilisé. Elle consiste à calculer la moyenne des valeurs de la moyenne mobile calculées pour chaque prise de mesure dans la plage d\'échantillonnage.</string>
     <string name="footstep_label_domain">Fenêtre d\'affichage</string>
     <string name="general_label_modifiers">Modificateurs</string>
     <string name="general_label_power">Puissance</string>

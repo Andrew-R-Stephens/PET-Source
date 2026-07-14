@@ -178,13 +178,16 @@
     <string name="footstep_label_apply">Aplicar PPM</string>
     <string name="footstep_label_none">Ninguno</string>
     <string name="footstep_label_instant">Instantáneo</string>
+    <string name="footstep_label_instant_description">Se utiliza el último valor instantáneo, suavizado mediante un promedio móvil exponencial.</string>
     <string name="footstep_label_average">Promedio</string>
+    <string name="footstep_label_average_description">Se utiliza el cálculo de promedio móvil. Este se calcula promediando los valores instantáneos brutos de cada punto de muestreo dentro del rango de muestreo.</string>
     <string name="footstep_label_weighted">Ponderado</string>
     <string name="footstep_label_sample_interval">Muestreo</string>
-    <string name="tool_timer_label_smudge_protection">Protección de caza con incienso</string>
+    <string name="tool_timer_label_smudge_cleanse">Purificación con Incienso</string>
     <string name="tool_timer_label_hunt_duration">Duración de la caza</string>
     <string name="tool_timer_label_hunt_cooldown">Enfriamiento de la caza</string>
     <string name="tool_timer_label_uv_lifetime">Duración de la luz UV</string>
+    <string name="footstep_label_weighted_description">Se utiliza el cálculo de promedio ponderado. Este se calcula promediando los valores de promedio móvil obtenidos para cada punto de muestreo dentro del rango de muestreo.</string>
     <string name="footstep_label_domain">Ventana gráfica</string>
     <string name="general_label_modifiers">Modificadores</string>
     <string name="general_label_power">Potencia</string>

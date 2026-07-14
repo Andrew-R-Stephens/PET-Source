@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 fun CommonTooltip(
     modifier: Modifier = Modifier,
     tooltipText: String,
+    onClick: (() -> Unit)? = null,
     content: @Composable (Modifier) -> Unit
 ) {
     val tooltipState = rememberTooltipState()
@@ -54,6 +55,7 @@ fun CommonTooltip(
                     indication = null
                 ) {
                     scope.launch { tooltipState.show() }
+                    onClick?.invoke()
                 }
         ) {
             content(Modifier)

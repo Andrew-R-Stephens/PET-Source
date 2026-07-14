@@ -42,6 +42,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.Realtime
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
@@ -276,7 +277,7 @@ internal fun BpmTool(
                         baseShape = RoundedCornerShape(8.dp)
                     ),
                     onClick = {
-                        if(applyMeasurement)
+                        if (applyMeasurement)
                             toggleApplyMeasurement()
                     },
                     selected = !applyMeasurement,
@@ -299,31 +300,46 @@ internal fun BpmTool(
                         baseShape = RoundedCornerShape(8.dp)
                     ),
                     onClick = {
-                        if(!applyMeasurement) { toggleApplyMeasurement() }
-                        onChangeMeasurementType(VisualizerMeasurementType.INSTANT) },
+                        if (!applyMeasurement) {
+                            toggleApplyMeasurement()
+                        }
+                        onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
+                    },
                     selected = applyMeasurement &&
                             active(measurementType, VisualizerMeasurementType.INSTANT),
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    CommonTooltip(
+                        modifier = Modifier,
+                        tooltipText = stringResource(R.string.footstep_label_instant_description),
+                        onClick = {
+                            if (!applyMeasurement) {
+                                toggleApplyMeasurement()
+                            }
+                            onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
+                        }
                     ) {
-                        SpeedIcon(
-                            modifier = Modifier.size(16.dp),
-                            colors = IconVectorColors(
-                                fillColor = LocalPalette.current.primary,
-                                strokeColor = LocalPalette.current.primary
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            SpeedIcon(
+                                modifier = Modifier.size(16.dp),
+                                colors = IconVectorColors(
+                                    fillColor = LocalPalette.current.primary,
+                                    strokeColor = LocalPalette.current.primary
+                                )
                             )
-                        )
-                        Text(
-                            modifier = Modifier,
-                            text = stringResource(R.string.footstep_label_instant).uppercase(),
-                            fontSize = 12.sp,
-                            maxLines = 1
-                        )
+                            Text(
+                                modifier = Modifier,
+                                text = stringResource(R.string.footstep_label_instant).uppercase(),
+                                fontSize = 12.sp,
+                                maxLines = 1
+                            )
+                        }
                     }
+
                 }
 
                 SegmentedButton(
@@ -334,30 +350,44 @@ internal fun BpmTool(
                         baseShape = RoundedCornerShape(8.dp)
                     ),
                     onClick = {
-                        if(!applyMeasurement) { toggleApplyMeasurement() }
-                        onChangeMeasurementType(VisualizerMeasurementType.AVERAGED) },
+                        if (!applyMeasurement) {
+                            toggleApplyMeasurement()
+                        }
+                        onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
+                    },
                     selected = applyMeasurement &&
                             active(measurementType, VisualizerMeasurementType.AVERAGED),
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    CommonTooltip(
+                        modifier = Modifier,
+                        tooltipText = stringResource(R.string.footstep_label_average_description),
+                        onClick = {
+                            if (!applyMeasurement) {
+                                toggleApplyMeasurement()
+                            }
+                            onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
+                        }
                     ) {
-                        SpeedBIcon(
-                            modifier = Modifier.size(16.dp),
-                            colors = IconVectorColors(
-                                fillColor = LocalPalette.current.tertiary,
-                                strokeColor = LocalPalette.current.tertiary
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            SpeedBIcon(
+                                modifier = Modifier.size(16.dp),
+                                colors = IconVectorColors(
+                                    fillColor = LocalPalette.current.tertiary,
+                                    strokeColor = LocalPalette.current.tertiary
+                                )
                             )
-                        )
-                        Text(
-                            modifier = Modifier,
-                            text = stringResource(R.string.footstep_label_average).uppercase(),
-                            fontSize = 12.sp,
-                            maxLines = 1
-                        )
+                            Text(
+                                modifier = Modifier,
+                                text = stringResource(R.string.footstep_label_average).uppercase(),
+                                fontSize = 12.sp,
+                                maxLines = 1
+                            )
+                        }
                     }
                 }
 
@@ -369,30 +399,44 @@ internal fun BpmTool(
                         baseShape = RoundedCornerShape(8.dp)
                     ),
                     onClick = {
-                        if(!applyMeasurement) { toggleApplyMeasurement() }
-                        onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED) },
+                        if (!applyMeasurement) {
+                            toggleApplyMeasurement()
+                        }
+                        onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
+                    },
                     selected = applyMeasurement &&
                             active(measurementType, VisualizerMeasurementType.WEIGHTED),
                     colors = segmentedColors,
                     icon = {}
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    CommonTooltip(
+                        modifier = Modifier,
+                        tooltipText = stringResource(R.string.footstep_label_weighted_description),
+                        onClick = {
+                            if (!applyMeasurement) {
+                                toggleApplyMeasurement()
+                            }
+                            onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
+                        }
                     ) {
-                        SpeedBBIcon(
-                            modifier = Modifier.size(16.dp),
-                            colors = IconVectorColors(
-                                fillColor = LocalPalette.current.secondary,
-                                strokeColor = LocalPalette.current.secondary
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            SpeedBBIcon(
+                                modifier = Modifier.size(16.dp),
+                                colors = IconVectorColors(
+                                    fillColor = LocalPalette.current.secondary,
+                                    strokeColor = LocalPalette.current.secondary
+                                )
                             )
-                        )
-                        Text(
-                            modifier = Modifier,
-                            text = stringResource(R.string.footstep_label_weighted).uppercase(),
-                            fontSize = 12.sp,
-                            maxLines = 1
-                        )
+                            Text(
+                                modifier = Modifier,
+                                text = stringResource(R.string.footstep_label_weighted).uppercase(),
+                                fontSize = 12.sp,
+                                maxLines = 1
+                            )
+                        }
                     }
                 }
             }

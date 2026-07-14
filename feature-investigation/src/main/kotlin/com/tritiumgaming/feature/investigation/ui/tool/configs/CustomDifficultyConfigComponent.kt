@@ -66,6 +66,7 @@ internal fun CustomDifficultyConfigControl(
     dropdownLabel: String,
     colors: OperationConfigUiColors,
     onDropdownSelect: (Int) -> Unit,
+    onEditClick: () -> Unit,
     editButtonComponent: @Composable (Modifier) -> Unit
 ) {
     val textStyle = LocalTypography.current.quaternary.regular
@@ -94,7 +95,8 @@ internal fun CustomDifficultyConfigControl(
 
         CommonTooltip(
             modifier = Modifier,
-            tooltipText = stringResource(R.string.difficulty_title_custom)
+            tooltipText = stringResource(R.string.difficulty_title_custom),
+            onClick = onEditClick
         ) {
             editButtonComponent(
                 Modifier
