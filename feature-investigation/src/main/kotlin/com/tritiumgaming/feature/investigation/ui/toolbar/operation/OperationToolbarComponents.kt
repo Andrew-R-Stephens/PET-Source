@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -68,6 +69,7 @@ internal fun ResetButton(
                 modifier = Modifier.wrapContentWidth(),
                 expanded = showOptions,
                 onDismissRequest = { showOptions = false },
+                shape = RoundedCornerShape(8.dp),
                 containerColor = LocalPalette.current.surfaceContainerHighest
             ) {
                 val iconColors = IconVectorColors.defaults(
@@ -286,6 +288,7 @@ private fun ToolbarCategoryButton(
                 modifier = Modifier.wrapContentWidth(),
                 expanded = showOptions,
                 onDismissRequest = { showOptions = false },
+                shape = RoundedCornerShape(8.dp),
                 containerColor = LocalPalette.current.surfaceContainerHighest
             ) {
                 ResetDropdownMenuItem(
@@ -344,6 +347,7 @@ private fun ToolbarCategoryButton(
                 modifier = Modifier.wrapContentWidth(),
                 expanded = showOptions,
                 onDismissRequest = { showOptions = false },
+                shape = RoundedCornerShape(8.dp),
                 containerColor = LocalPalette.current.surfaceContainerHighest
             ) {
                 ResetDropdownMenuItem(
