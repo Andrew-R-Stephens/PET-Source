@@ -159,7 +159,8 @@ internal fun OperationTimerRow(
             ) {
                 DigitalTimer(
                     modifier = Modifier
-                        .height(36.dp),
+                        .height(36.dp)
+                        .padding(8.dp),
                     remainingTime = remainingTime,
                 )
             }

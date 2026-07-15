@@ -350,6 +350,7 @@ private fun ToolbarCategoryButton(
                 shape = RoundedCornerShape(8.dp),
                 containerColor = LocalPalette.current.surfaceContainerHighest
             ) {
+
                 ResetDropdownMenuItem(
                     tooltipText = tooltipText,
                     iconColors = IconVectorColors.defaults(fillColor = LocalPalette.current.onSurface),
@@ -359,6 +360,7 @@ private fun ToolbarCategoryButton(
                         showOptions = false
                     }
                 )
+
             }
         }
     }

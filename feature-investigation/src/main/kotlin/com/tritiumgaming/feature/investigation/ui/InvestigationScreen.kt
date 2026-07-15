@@ -168,11 +168,12 @@ private annotation class DevicePreviews
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
     override val values = sequenceOf(
-        //OperationToolbarUiState.Category.TOOL_CONFIG,
+        OperationToolbarUiState.Category.TOOL_CONFIG,
         //OperationToolbarUiState.Category.TOOL_ANALYZER,
         //OperationToolbarUiState.Category.TOOL_TRAITS,
         //OperationToolbarUiState.Category.TOOL_TIMERS,
-        OperationToolbarUiState.Category.TOOL_FOOTSTEP,
+        //OperationToolbarUiState.Category.TOOL_FOOTSTEP,
+        //OperationToolbarUiState.Category.TOOL_NONE,
     )
 }
 
@@ -1283,7 +1284,7 @@ private fun CompactLandscapeContent(
                                     .alpha(1f)
                             else
                                 Modifier
-                                    .height(0.dp)
+                                    .width(0.dp)
                                     .alpha(0f)
                         )
                 )
