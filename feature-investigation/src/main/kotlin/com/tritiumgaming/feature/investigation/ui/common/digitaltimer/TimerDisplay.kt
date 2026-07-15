@@ -74,13 +74,15 @@ fun TimerToggleButton(
             primaryContent(
                 Modifier
                     .fillMaxSize()
-                    .padding(12.dp)
+                    .padding(4.dp)
+                    //.padding(12.dp)
             )
         } else {
             alternateContent(
                 Modifier
                     .fillMaxSize()
-                    .padding(12.dp)
+                    .padding(4.dp)
+                    //.padding(12.dp)
             )
         }
     }
@@ -105,7 +107,8 @@ fun TimerSkipButton(
         content(
             Modifier
                 .fillMaxSize()
-                .padding(12.dp)
+                .padding(4.dp)
+                //.padding(12.dp)
         )
     }
 }

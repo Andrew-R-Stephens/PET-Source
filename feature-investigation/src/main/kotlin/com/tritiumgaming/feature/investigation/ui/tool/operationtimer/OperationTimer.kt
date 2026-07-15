@@ -91,16 +91,18 @@ internal fun OperationTimerColumn(
                     onToggle = onToggle,
                     primaryContent = { modifier ->
                         Icon(
-                            modifier = modifier,
-                            painter = painterResource(R.drawable.ic_control_play),
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(R.drawable.ic_play),
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
                     },
                     alternateContent = { modifier ->
                         Icon(
-                            modifier = modifier,
-                            painter = painterResource(R.drawable.ic_control_pause),
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(R.drawable.ic_pause),
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
@@ -118,8 +120,9 @@ internal fun OperationTimerColumn(
                     onSkip = onSkip,
                     content = { modifier ->
                         Icon(
-                            modifier = modifier,
-                            painter = painterResource(R.drawable.ic_control_skip),
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(R.drawable.ic_fast_forward),
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
@@ -194,8 +197,9 @@ internal fun OperationTimerRow(
                         tooltipText = stringResource(R.string.investigation_label_timer_run)
                     ) {
                         Icon(
-                            modifier = modifier,
-                            painter = painterResource(R.drawable.ic_control_play),
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(R.drawable.ic_play),
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
@@ -208,8 +212,9 @@ internal fun OperationTimerRow(
                         tooltipText = stringResource(R.string.investigation_label_timer_pause)
                     ) {
                         Icon(
-                            modifier = modifier,
-                            painter = painterResource(R.drawable.ic_control_pause),
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(R.drawable.ic_pause),
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
@@ -227,8 +232,9 @@ internal fun OperationTimerRow(
                     onSkip = onSkip,
                     content = { modifier ->
                         Icon(
-                            modifier = modifier,
-                            painter = painterResource(R.drawable.ic_control_skip),
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(R.drawable.ic_fast_forward),
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
