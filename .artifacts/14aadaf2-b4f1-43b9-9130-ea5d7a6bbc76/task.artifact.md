@@ -1,0 +1,29 @@
+- [x] `WalkthroughState`: Add `start(id: String)` function
+- [x] `strings-walkthrough.xml`: Add new walkthrough strings
+- [x] `ToolsSheet.kt`: Update `ToolComponent`, `ToolsBottomSheetComponent`, and `ToolsSideSheetComponent` to handle tutorial clicks
+- [x] `InvestigationScreen.kt`:
+    - [x] Update `walkthroughState` with new steps
+    - [x] Add walkthrough target modifiers to components
+    - [x] Pass `onStartTutorial` callbacks to sheets
+- [x] Walkthrough Scrim Cutout Optimization:
+    - [x] `WalkthroughState`: Add host registration and shape support
+    - [x] `WalkthroughModifier`: Update `walkthroughTarget` with `shape` parameter
+    - [x] `WalkthroughHost`: Implement host registration and shape-based cutout drawing
+- [x] Walkthrough Info Card Positioning:
+    - [x] `WalkthroughHost`: Implement "largest space" heuristic for card alignment
+- [x] Walkthrough Info Card Multi-Directional Positioning:
+    - [x] `WalkthroughHost`: Implement 4-way area-based placement (Top, Bottom, Left, Right)
+- [x] Isolated Walkthrough Mode:
+    - [x] `WalkthroughState`: Implement `isIsolated` logic and `isLastStep` property
+    - [x] `WalkthroughHost`: Update "Finish" button logic
+- [x] Minimalist Walkthrough UI:
+    - [x] `WalkthroughState`: Add page count/index properties
+    - [x] `WalkthroughHost`: Implement swipe navigation, dots, and click-to-close
+- [x] Proximal Walkthrough Card Positioning:
+    - [x] `WalkthroughHost`: Refactor positioning to use custom `Layout` near targets
+- [x] Edge-Aligned Walkthrough Card & Improved Compactness:
+    - [x] `WalkthroughHost`: Position card at screen edges
+    - [x] `WalkthroughHost`: Remove internal `fillMaxWidth` for true compactness
+- [x] Walkthrough Target Optimization:
+    - [x] `InvestigationScreen.kt`: Isolate "configs" walkthrough targets
+- [x] Verification: Build and manual check

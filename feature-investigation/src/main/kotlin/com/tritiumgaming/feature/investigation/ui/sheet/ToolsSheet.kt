@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.sheet
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
@@ -57,6 +59,7 @@ internal fun ToolsBottomSheetComponent(
     analyzerComponent: @Composable (Modifier) -> Unit,
     timersComponent: @Composable (Modifier) -> Unit,
     footstepComponent: @Composable (Modifier) -> Unit,
+    onStartTutorial: (String) -> Unit
 ) {
     val categoryPair: CategoryPair = when (toolbarCategory) {
         OperationToolbarUiState.Category.TOOL_NONE -> {
@@ -130,9 +133,19 @@ internal fun ToolsBottomSheetComponent(
         }
     }
 
+    val walkthroughId = when (toolbarCategory) {
+        OperationToolbarUiState.Category.TOOL_CONFIG -> "configs"
+        OperationToolbarUiState.Category.TOOL_TRAITS -> "traits"
+        OperationToolbarUiState.Category.TOOL_ANALYZER -> "analyzer"
+        OperationToolbarUiState.Category.TOOL_TIMERS -> "timers"
+        OperationToolbarUiState.Category.TOOL_FOOTSTEP -> "footstep"
+        else -> ""
+    }
+
     ToolComponent(
         modifier = modifier,
-        label = categoryPair.label
+        label = categoryPair.label,
+        onStartTutorial = { onStartTutorial(walkthroughId) }
     ) {
         categoryPair.component(Modifier)
     }
@@ -147,6 +160,7 @@ internal fun ToolsSideSheetComponent(
     analyzerComponent: @Composable (Modifier) -> Unit,
     timersComponent: @Composable (Modifier) -> Unit,
     footstepComponent: @Composable (Modifier) -> Unit,
+    onStartTutorial: (String) -> Unit
 ) {
     val categoryPair: CategoryPair = when (toolbarCategory) {
         OperationToolbarUiState.Category.TOOL_NONE -> {
@@ -217,9 +231,19 @@ internal fun ToolsSideSheetComponent(
         }
     }
 
+    val walkthroughId = when (toolbarCategory) {
+        OperationToolbarUiState.Category.TOOL_CONFIG -> "configs"
+        OperationToolbarUiState.Category.TOOL_TRAITS -> "traits"
+        OperationToolbarUiState.Category.TOOL_ANALYZER -> "analyzer"
+        OperationToolbarUiState.Category.TOOL_TIMERS -> "timers"
+        OperationToolbarUiState.Category.TOOL_FOOTSTEP -> "footstep"
+        else -> ""
+    }
+
     ToolComponent(
         modifier = modifier,
-        label = categoryPair.label
+        label = categoryPair.label,
+        onStartTutorial = { onStartTutorial(walkthroughId) }
     ) {
         categoryPair.component(Modifier)
     }
@@ -230,6 +254,7 @@ internal fun ToolsSideSheetComponent(
 private fun ToolComponent(
     modifier: Modifier = Modifier,
     label: String,
+    onStartTutorial: () -> Unit = {},
     component: @Composable ColumnScope.() -> Unit = {},
 ) {
     val density = LocalDensity.current
@@ -281,7 +306,9 @@ private fun ToolComponent(
                     modifier = Modifier
                         .heightIn(min = 18.dp)
                         .height(textHeight)
-                        .aspectRatio(1f),
+                        .aspectRatio(1f)
+                        .clip(RoundedCornerShape(4.dp))
+                        .clickable { onStartTutorial() },
                     painter = painterResource(R.drawable.ic_help_alt),
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)

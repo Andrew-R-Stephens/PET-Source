@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">Investigation Screen</string>
+    <string name="walkthrough_desc_investigation_1">Welcome to the Investigation screen! This is your main dashboard for tracking evidence and identifying the ghost.</string>
+
+    <string name="walkthrough_title_journal">The Journal</string>
+    <string name="walkthrough_desc_journal_1">The Journal is where you record evidence found during the investigation.</string>
+    <string name="walkthrough_desc_journal_2">Select evidence to filter the list of possible ghosts. You can also tap on ghost names to see more details.</string>
+
+    <string name="walkthrough_title_status">Status Bar</string>
+    <string name="walkthrough_desc_status_1">Keep an eye on the status bar for your current sanity, the remaining preparation time, and the current weather.</string>
+
+    <string name="walkthrough_title_toolbar">Tools &amp; Configs</string>
+    <string name="walkthrough_desc_toolbar_1">The toolbar gives you access to various tools like the BPM counter, Timers, and Operation Configurations.</string>
+
+    <string name="walkthrough_title_configs">Investigation Setup</string>
+    <string name="walkthrough_desc_configs_1">Configure the map, difficulty, and weather for your investigation here. These settings affect the ghost\'s behavior and your rewards.</string>
+
+    <string name="walkthrough_title_sanity">Sanity Management</string>
+    <string name="walkthrough_desc_sanity_1">Your sanity drops over time in the dark. Use sanity pills to restore it, and be careful – low sanity makes you a target!</string>
+
+    <string name="walkthrough_title_traits">Secondary Evidence</string>
+    <string name="walkthrough_desc_traits_1">Identify secondary evidence traits to narrow down the ghost type. Some traits are unique to specific ghosts.</string>
+
+    <string name="walkthrough_title_analyzer">Operation Details</string>
+    <string name="walkthrough_desc_analyzer_1">Review the specific details of your current operation, including ghost behavior and investigation settings.</string>
+
+    <string name="walkthrough_title_timers">Investigation Timers</string>
+    <string name="walkthrough_desc_timers_1">Use these timers to track smudge stick effectiveness, hunt durations, and fingerprint persistence.</string>
+
+    <string name="walkthrough_title_footstep">Footstep Analyzer</string>
+    <string name="walkthrough_desc_footstep_1">Measure the ghost\'s movement speed (BPM) to help identify it. Different ghosts have distinct walking speeds.</string>
+</resources>

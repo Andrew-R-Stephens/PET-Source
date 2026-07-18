@@ -504,3 +504,21 @@ internal fun ResetIcon(
             .rotate(rotation)
     )
 }
+
+@Composable
+internal fun TutorialButton(
+    modifier: Modifier = Modifier,
+    onStartTutorial: () -> Unit
+) {
+    ToolbarItem(
+        modifier = modifier,
+        onClick = onStartTutorial
+    ) { itemModifier ->
+        Icon(
+            painter = painterResource(R.drawable.ic_help),
+            contentDescription = "Tutorial",
+            modifier = itemModifier.padding(8.dp),
+            tint = LocalPalette.current.onSurface
+        )
+    }
+}

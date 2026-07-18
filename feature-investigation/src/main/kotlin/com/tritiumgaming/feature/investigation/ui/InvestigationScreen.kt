@@ -54,6 +54,11 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughHost
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughStep
+import com.tritiumgaming.core.ui.widgets.walkthrough.rememberWalkthroughState
+import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
 import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
@@ -501,6 +506,76 @@ private fun InvestigationContent(
     val onChangeEvidenceRuling = uiActions.onChangeEvidenceRuling
     val onEvidenceClick = uiActions.onEvidenceClick
     val onClearPopup = uiActions.onClearPopup
+    val onStartTutorial = uiActions.onStartTutorial
+
+    val walkthroughState = rememberWalkthroughState(
+        steps = listOf(
+            WalkthroughStep(
+                id = "screen_overview",
+                targetIds = listOf("journal", "status_bar", "toolbar"),
+                titleRes = R.string.walkthrough_title_investigation,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_investigation_1),
+                isMajor = true
+            ),
+            WalkthroughStep(
+                id = "journal",
+                targetIds = listOf("journal"),
+                titleRes = R.string.walkthrough_title_journal,
+                descriptionPagesRes = listOf(
+                    R.string.walkthrough_desc_journal_1,
+                    R.string.walkthrough_desc_journal_2
+                )
+            ),
+            WalkthroughStep(
+                id = "toolbar",
+                targetIds = listOf("toolbar"),
+                titleRes = R.string.walkthrough_title_toolbar,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_toolbar_1)
+            ),
+            WalkthroughStep(
+                id = "status_bar",
+                targetIds = listOf("status_bar"),
+                titleRes = R.string.walkthrough_title_status,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_status_1)
+            ),
+            WalkthroughStep(
+                id = "sanity",
+                targetIds = listOf("sanity"),
+                titleRes = R.string.walkthrough_title_sanity,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_sanity_1)
+            ),
+            WalkthroughStep(
+                id = "configs",
+                targetIds = listOf("configs"),
+                titleRes = R.string.investigation_label_contract,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_configs_1)
+            ),
+            WalkthroughStep(
+                id = "traits",
+                targetIds = listOf("traits"),
+                titleRes = R.string.walkthrough_title_traits,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_traits_1)
+            ),
+            WalkthroughStep(
+                id = "analyzer",
+                targetIds = listOf("analyzer"),
+                titleRes = R.string.walkthrough_title_analyzer,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_analyzer_1)
+            ),
+            WalkthroughStep(
+                id = "timers",
+                targetIds = listOf("timers"),
+                titleRes = R.string.walkthrough_title_timers,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_timers_1)
+            ),
+            WalkthroughStep(
+                id = "footstep",
+                targetIds = listOf("footstep"),
+                titleRes = R.string.walkthrough_title_footstep,
+                descriptionPagesRes = listOf(R.string.walkthrough_desc_footstep_1)
+            )
+        )
+    )
 
     val toolbarCategory = toolbarUiState.category
 
@@ -597,7 +672,12 @@ private fun InvestigationContent(
 
     val traitsComponent: @Composable (Modifier) -> Unit = { modifier ->
         TraitConfig(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(
+                    walkthroughState,
+                    "traits",
+                    RoundedCornerShape(8.dp)
+                ),
             uniqueOnly = traitFilterOptions.uniqueOnly ?: false,
             categories = traitFilterOptions.category,
             list = traitListUiStates,
@@ -615,7 +695,12 @@ private fun InvestigationContent(
 
     val analyzerComponent: @Composable (Modifier) -> Unit = { modifier ->
         OperationDetails(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(
+                    walkthroughState,
+                    "analyzer",
+                    RoundedCornerShape(8.dp)
+                ),
             operationDetailsUiState = operationDetailsUiState
         )
     }
@@ -625,6 +710,11 @@ private fun InvestigationContent(
             modifier = modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
+                .walkthroughTarget(
+                    walkthroughState,
+                    "footstep",
+                    RoundedCornerShape(8.dp)
+                )
                 .preferredFrameRate(FrameRateCategory.Normal),
             realtimeState = bpmToolUiState.realtimeState,
             measurementType = bpmMeasurementType,
@@ -647,7 +737,12 @@ private fun InvestigationContent(
 
     val timersComponent: @Composable (Modifier) -> Unit = { modifier ->
         TimerTools(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(
+                    walkthroughState,
+                    "timers",
+                    RoundedCornerShape(8.dp)
+                ),
             smudgeHuntPreventionTitle = smudgeHuntPreventionTitle,
             smudgeHuntPreventionMax = smudgeHuntPreventionMax,
             smudgeHuntPreventionRemaining = smudgeHuntPreventionRemaining,
@@ -690,7 +785,12 @@ private fun InvestigationContent(
 
     val configBottomSheet: @Composable (Modifier) -> Unit = { modifier ->
         OperationConfigsBottomSheet(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(
+                    walkthroughState,
+                    "configs",
+                    RoundedCornerShape(8.dp)
+                ),
             mapConfigComponent = { modifier ->
                 MapConfigControl(
                     modifier = modifier,
@@ -754,7 +854,12 @@ private fun InvestigationContent(
             },
             sanityMeterComponent = { modifier, onHeadClick ->
                 SanityMeterComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(
+                            walkthroughState,
+                            "sanity",
+                            RoundedCornerShape(8.dp)
+                        ),
                     sanityLevel = sanityLevel,
                     insanityLevel = insanityLevel,
                     onSanityChange = onSanityChange,
@@ -804,7 +909,12 @@ private fun InvestigationContent(
 
     val configSideSheetCompact: @Composable (Modifier) -> Unit = { modifier ->
         OperationConfigsSideSheetCompact(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(
+                    walkthroughState,
+                    "configs",
+                    RoundedCornerShape(8.dp)
+                ),
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
                     modifier = modifier,
@@ -874,7 +984,12 @@ private fun InvestigationContent(
             },
             sanityMeterComponent = { modifier, onHeadClick ->
                 SanityMeterComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(
+                            walkthroughState,
+                            "sanity",
+                            RoundedCornerShape(8.dp)
+                        ),
                     sanityLevel = sanityLevel,
                     insanityLevel = insanityLevel,
                     onSanityChange = onSanityChange,
@@ -918,7 +1033,12 @@ private fun InvestigationContent(
 
     val configSideSheetExpanded: @Composable (Modifier) -> Unit = { modifier ->
         OperationConfigsSideSheetExpanded(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(
+                    walkthroughState,
+                    "configs",
+                    RoundedCornerShape(8.dp)
+                ),
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
                     modifier = modifier,
@@ -988,7 +1108,12 @@ private fun InvestigationContent(
             },
             sanityMeterComponent = { modifier, onHeadClick ->
                 SanityMeterComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(
+                            walkthroughState,
+                            "sanity",
+                            RoundedCornerShape(8.dp)
+                        ),
                     sanityLevel = sanityLevel,
                     insanityLevel = insanityLevel,
                     onSanityChange = onSanityChange,
@@ -1038,7 +1163,8 @@ private fun InvestigationContent(
             traitsComponent = traitsComponent,
             analyzerComponent = analyzerComponent,
             timersComponent = timersComponent,
-            footstepComponent = footstepComponent
+            footstepComponent = footstepComponent,
+            onStartTutorial = { walkthroughState.start(it) }
         )
     }
 
@@ -1052,7 +1178,8 @@ private fun InvestigationContent(
                     traitsComponent = traitsComponent,
                     analyzerComponent = analyzerComponent,
                     timersComponent = timersComponent,
-                    footstepComponent = footstepComponent
+                    footstepComponent = footstepComponent,
+                    onStartTutorial = { walkthroughState.start(it) }
                 )
             }
             else -> {
@@ -1063,7 +1190,8 @@ private fun InvestigationContent(
                     traitsComponent = traitsComponent,
                     analyzerComponent = analyzerComponent,
                     timersComponent = timersComponent,
-                    footstepComponent = footstepComponent
+                    footstepComponent = footstepComponent,
+                    onStartTutorial = { walkthroughState.start(it) }
                 )
             }
         }
@@ -1072,7 +1200,8 @@ private fun InvestigationContent(
 
     val journalComponent: @Composable (Modifier) -> Unit = { modifier ->
         JournalComponent(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(walkthroughState, "journal", RoundedCornerShape(8.dp)),
             evidenceStateList = evidenceListUiStates,
             ghostOrder = ghostOrder,
             ghostEvidenceState = evidenceStates,
@@ -1086,7 +1215,8 @@ private fun InvestigationContent(
 
     val statusBarComponent: @Composable (Modifier) -> Unit = { modifier ->
         OperationStatusBar(
-            modifier = modifier,
+            modifier = modifier
+                .walkthroughTarget(walkthroughState, "status_bar"),
             remainingTime = operationTimerUiState.remainingTime,
             phaseType = phaseUiState.type,
             sanityLevel = sanityUiState.sanityLevel,
@@ -1096,58 +1226,66 @@ private fun InvestigationContent(
         )
     }
 
-    when(deviceConfiguration) {
-        DeviceConfiguration.MOBILE_PORTRAIT,
-        DeviceConfiguration.TABLET_PORTRAIT -> {
-            CompactPortraitContent(
-                modifier = Modifier,
-                toolbarState = toolbarUiState,
-                toolbarActions = ToolbarUiActions(
-                    onToggleCollapseToolbar = onToggleCollapseToolbar,
-                    onChangeToolbarCategory = { category, allowCollapse ->
-                        onChangeToolbarCategory(category, allowCollapse)
-                    },
-                    onReset = onReset
-                ),
-                statusBarComponent = { modifier -> statusBarComponent(modifier) },
-                journalComponent = { modifier -> journalComponent(modifier) },
-                bottomSheetComponent = bottomSheetComponent
-            )
-        }
+    WalkthroughHost(state = walkthroughState) {
+        when (deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT,
+            DeviceConfiguration.TABLET_PORTRAIT -> {
+                CompactPortraitContent(
+                    modifier = Modifier,
+                    walkthroughState = walkthroughState,
+                    toolbarState = toolbarUiState,
+                    toolbarActions = ToolbarUiActions(
+                        onToggleCollapseToolbar = onToggleCollapseToolbar,
+                        onChangeToolbarCategory = { category, allowCollapse ->
+                            onChangeToolbarCategory(category, allowCollapse)
+                        },
+                        onReset = onReset,
+                        onStartTutorial = { walkthroughState.start() }
+                    ),
+                    statusBarComponent = { modifier -> statusBarComponent(modifier) },
+                    journalComponent = { modifier -> journalComponent(modifier) },
+                    bottomSheetComponent = bottomSheetComponent
+                )
+            }
 
-        DeviceConfiguration.MOBILE_LANDSCAPE -> {
-            CompactLandscapeContent(
-                modifier = Modifier,
-                operationToolbarUiState = toolbarUiState,
-                toolbarUiActions = ToolbarUiActions(
-                    onToggleCollapseToolbar = onToggleCollapseToolbar,
-                    onChangeToolbarCategory = { category, allowCollapse ->
-                        onChangeToolbarCategory(category, allowCollapse)
-                    },
-                    onReset = onReset
-                ),
-                statusBarComponent = { modifier -> statusBarComponent(modifier) },
-                journalComponent = { modifier -> journalComponent(modifier) },
-                sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
-            )
-        }
+            DeviceConfiguration.MOBILE_LANDSCAPE -> {
+                CompactLandscapeContent(
+                    modifier = Modifier,
+                    walkthroughState = walkthroughState,
+                    operationToolbarUiState = toolbarUiState,
+                    toolbarUiActions = ToolbarUiActions(
+                        onToggleCollapseToolbar = onToggleCollapseToolbar,
+                        onChangeToolbarCategory = { category, allowCollapse ->
+                            onChangeToolbarCategory(category, allowCollapse)
+                        },
+                        onReset = onReset,
+                        onStartTutorial = { walkthroughState.start() }
+                    ),
+                    statusBarComponent = { modifier -> statusBarComponent(modifier) },
+                    journalComponent = { modifier -> journalComponent(modifier) },
+                    sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
+                )
+            }
 
-        DeviceConfiguration.TABLET_LANDSCAPE,
-        DeviceConfiguration.DESKTOP -> {
-            ExpandedLandscapeContent(
-                modifier = Modifier,
-                operationToolbarUiState = toolbarUiState,
-                toolbarUiActions = ToolbarUiActions(
-                    onToggleCollapseToolbar = onToggleCollapseToolbar,
-                    onChangeToolbarCategory = { category, allowCollapse ->
-                        onChangeToolbarCategory(category, allowCollapse)
-                    },
-                    onReset = onReset
-                ),
-                statusBarComponent = { modifier -> statusBarComponent(modifier) },
-                journalComponent = { modifier -> journalComponent(modifier) },
-                sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
-            )
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                ExpandedLandscapeContent(
+                    modifier = Modifier,
+                    walkthroughState = walkthroughState,
+                    operationToolbarUiState = toolbarUiState,
+                    toolbarUiActions = ToolbarUiActions(
+                        onToggleCollapseToolbar = onToggleCollapseToolbar,
+                        onChangeToolbarCategory = { category, allowCollapse ->
+                            onChangeToolbarCategory(category, allowCollapse)
+                        },
+                        onReset = onReset,
+                        onStartTutorial = { walkthroughState.start() }
+                    ),
+                    statusBarComponent = { modifier -> statusBarComponent(modifier) },
+                    journalComponent = { modifier -> journalComponent(modifier) },
+                    sideSheetComponent = { modifier -> sideSheetComponent(modifier) }
+                )
+            }
         }
     }
 
@@ -1176,6 +1314,7 @@ private fun InvestigationContent(
 @Composable
 private fun CompactPortraitContent(
     modifier: Modifier = Modifier,
+    walkthroughState: WalkthroughState,
     toolbarState: OperationToolbarUiState,
     toolbarActions: ToolbarUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
@@ -1186,12 +1325,14 @@ private fun CompactPortraitContent(
     val toolbarComponent: @Composable (Modifier) -> Unit = { modifier ->
         OperationToolbar(
             modifier = modifier
+                .walkthroughTarget(walkthroughState, "toolbar")
                 .heightIn(min = 48.dp),
             category = toolbarState.category,
             onChangeToolbarCategory = { category, allowCollapse ->
                 toolbarActions.onChangeToolbarCategory(category, allowCollapse)
             },
             onReset = toolbarActions.onReset,
+            onStartTutorial = toolbarActions.onStartTutorial,
             containerColor = LocalPalette.current.surfaceContainerHigh
         )
     }
@@ -1215,7 +1356,8 @@ private fun CompactPortraitContent(
 
         HorizontalToolbar(
             modifier = Modifier
-                .padding(8.dp),
+                .padding(8.dp)
+                .walkthroughTarget(walkthroughState, "toolbar"),
             selectBarComponent = { modifier ->
                 toolbarComponent(modifier) },
             content = { modifier ->
@@ -1242,6 +1384,7 @@ private fun CompactPortraitContent(
 @Composable
 private fun CompactLandscapeContent(
     modifier: Modifier = Modifier,
+    walkthroughState: WalkthroughState,
     operationToolbarUiState: OperationToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
@@ -1256,19 +1399,21 @@ private fun CompactLandscapeContent(
         val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
             OperationToolRail(
                 modifier = modifier
+                    .walkthroughTarget(walkthroughState, "toolbar")
                     .widthIn(min = 48.dp),
                 category = operationToolbarUiState.category,
                 onChangeToolbarCategory = { category, allowCollapse ->
                     toolbarUiActions.onChangeToolbarCategory(category, allowCollapse)
                 },
                 onReset = toolbarUiActions.onReset,
+                onStartTutorial = toolbarUiActions.onStartTutorial,
                 containerColor = LocalPalette.current.surfaceContainerHigh
             )
         }
 
         VerticalToolbar(
             modifier = Modifier
-                /*.padding(8.dp)*/,
+                .walkthroughTarget(walkthroughState, "toolbar"),
             selectRailComponent = { modifier ->
                 toolbarContent(modifier) },
             content = { modifier ->
@@ -1316,6 +1461,7 @@ private fun CompactLandscapeContent(
 @Composable
 private fun ExpandedLandscapeContent(
     modifier: Modifier = Modifier,
+    walkthroughState: WalkthroughState,
     operationToolbarUiState: OperationToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
     statusBarComponent: @Composable (Modifier) -> Unit = {},
@@ -1330,12 +1476,14 @@ private fun ExpandedLandscapeContent(
         val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
             OperationToolRail(
                 modifier = modifier
+                    .walkthroughTarget(walkthroughState, "toolbar")
                     .widthIn(min = 48.dp),
                 category = operationToolbarUiState.category,
                 onChangeToolbarCategory = { category, allowCollapse ->
                     toolbarUiActions.onChangeToolbarCategory(category, allowCollapse)
                 },
                 onReset = toolbarUiActions.onReset,
+                onStartTutorial = toolbarUiActions.onStartTutorial,
                 containerColor = LocalPalette.current.surfaceContainerHigh
             )
         }
@@ -2017,81 +2165,71 @@ fun OperationConfigsSideSheetExpanded(
 
         }
 
-        /*Surface(
-            modifier = Modifier.fillMaxWidth(),
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(12.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
-        ) {*/
-            Column(
-                modifier = Modifier,
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalAlignment = Alignment.Start
+        Column(
+            modifier = Modifier,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.Start
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Max),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
+                Surface(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(IntrinsicSize.Max),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                        .weight(1f)
+                        .fillMaxHeight(),
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp)
                 ) {
-                    Surface(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight(),
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        timerComponent(
-                            Modifier
-                                .padding(8.dp)
-                                .fillMaxWidth()
-                        )
-                    }
-
-                    fuseBoxControlComponent(
+                    timerComponent(
                         Modifier
-                            .fillMaxHeight()
-                            .width(48.dp)
-                            .heightIn(min = 48.dp)
+                            .padding(8.dp)
+                            .fillMaxWidth()
                     )
                 }
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                fuseBoxControlComponent(
+                    Modifier
+                        .fillMaxHeight()
+                        .width(48.dp)
+                        .heightIn(min = 48.dp)
+                )
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+
+                Surface(
+                    modifier = Modifier.weight(1f),
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp)
                 ) {
+                    sanityMeterComponent(
+                        Modifier
+                            .height(48.dp), {})
+                }
 
-                    Surface(
-                        modifier = Modifier.weight(1f),
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        sanityMeterComponent(
-                            Modifier
-                                .height(48.dp), {})
-                    }
+                Surface(
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    sanityMedicationComponent(Modifier.size(48.dp))
+                }
 
-                    Surface(
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        sanityMedicationComponent(Modifier.size(48.dp))
-                    }
-
-                    Surface(
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        playerDeathButtonComponent(Modifier.size(48.dp))
-                    }
+                Surface(
+                    color = LocalPalette.current.surfaceContainer,
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    playerDeathButtonComponent(Modifier.size(48.dp))
                 }
             }
-        //}
+        }
     }
 }
 
@@ -2154,5 +2292,6 @@ internal data class InvestigationUiActions(
     val onToggleNegateGhost: (Ghost) -> Unit = {},
     val onChangeEvidenceRuling: (EvidenceType, EvidenceValidationType) -> Unit = { _, _ -> },
     val onEvidenceClick: (EvidenceType) -> Unit = {},
-    val onClearPopup: () -> Unit = {}
+    val onClearPopup: () -> Unit = {},
+    val onStartTutorial: () -> Unit = {}
 )

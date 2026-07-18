@@ -24,6 +24,7 @@ fun OperationToolbar(
     category: OperationToolbarUiState.Category,
     onChangeToolbarCategory: (OperationToolbarUiState.Category, Boolean) -> Unit,
     onReset: (OperationToolbarUiState.ResetOption?) -> Unit,
+    onStartTutorial: () -> Unit,
     containerColor: Color
 ) {
 
@@ -51,6 +52,11 @@ fun OperationToolbar(
                     onCategoryChange = onChangeToolbarCategory,
                     onReset = onReset
                 )
+
+                /*TutorialButton(
+                    stickyContentModifier,
+                    onStartTutorial = onStartTutorial
+                )*/
 
             }
 
@@ -98,6 +104,7 @@ fun OperationToolRail(
     category: OperationToolbarUiState.Category,
     onChangeToolbarCategory: (OperationToolbarUiState.Category, Boolean) -> Unit,
     onReset: (OperationToolbarUiState.ResetOption?) -> Unit,
+    onStartTutorial: () -> Unit,
     containerColor: Color
 ) {
 
@@ -131,6 +138,14 @@ fun OperationToolRail(
                     onCategoryChange = onChangeToolbarCategory,
                     onReset = onReset
                 )
+
+                /*TutorialButton(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(4.dp)
+                        .aspectRatio(1f),
+                    onStartTutorial = onStartTutorial
+                )*/
 
             }
 
