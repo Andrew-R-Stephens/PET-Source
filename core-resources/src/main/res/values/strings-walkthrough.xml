@@ -15,14 +15,25 @@
 
     <string name="walkthrough_title_configs">Investigation Setup</string>
     <string name="walkthrough_desc_configs_1">Configure the map, difficulty, and weather for your investigation here. These settings affect the ghost\'s behavior and your rewards.</string>
+    <string name="walkthrough_subtitle_configs_map">Map Selection</string>
     <string name="walkthrough_desc_configs_map">Select the location for your next investigation. Larger maps offer higher rewards but are more dangerous.</string>
+    <string name="walkthrough_subtitle_configs_difficulty">Difficulty Settings</string>
     <string name="walkthrough_desc_configs_difficulty">Choose how challenging the investigation will be. Higher difficulties increase ghost aggression and multiplier.</string>
+    <string name="walkthrough_subtitle_configs_weather">Weather Control</string>
     <string name="walkthrough_desc_configs_weather">Check or select the weather conditions. Weather affects visibility and can impact certain ghost behaviors.</string>
+    <string name="walkthrough_subtitle_configs_temperature">Temperature Meter</string>
     <string name="walkthrough_desc_configs_temperature">Monitor the ambient temperature. Freezing temperatures are a key piece of evidence.</string>
+    <string name="walkthrough_subtitle_configs_timer">Preparation Timer</string>
     <string name="walkthrough_desc_configs_timer">Track the remaining preparation time. Once it hits zero, the ghost can start hunting!</string>
+    <string name="walkthrough_subtitle_configs_power">Fuse Box Button</string>
     <string name="walkthrough_desc_configs_power">Control the building\'s main fuse box. Keep the lights on to preserve your sanity!</string>
+    <string name="walkthrough_subtitle_configs_death">Teammate Death</string>
     <string name="walkthrough_desc_configs_death">Record a teammate\'s unfortunate passing to adjust your investigation strategy.</string>
+    <string name="walkthrough_subtitle_configs_medication">Sanity Medication</string>
     <string name="walkthrough_desc_configs_medication">Use sanity pills to restore your mental state and delay the onset of ghost hunts.</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">Sanity Meter</string>
+    <string name="walkthrough_subtitle_configs_status">Status Bar</string>
 
     <string name="walkthrough_title_sanity">Sanity Management</string>
     <string name="walkthrough_desc_sanity_1">Your sanity drops over time in the dark. Use sanity pills to restore it, and be careful – low sanity makes you a target!</string>

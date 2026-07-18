@@ -1,8 +1,13 @@
 package com.tritiumgaming.core.ui.widgets.walkthrough
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,6 +30,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -111,6 +117,10 @@ private fun WalkthroughOverlay(
     val step = state.currentStep ?: return
     val interactionSource = remember { MutableInteractionSource() }
 
+    LaunchedEffect(state.currentStepIndex, state.currentPageIndex) {
+        state.triggerTargetInteraction()
+    }
+
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
         val screenWidthPx = constraints.maxWidth.toFloat()
         val screenHeightPx = constraints.maxHeight.toFloat()
@@ -175,6 +185,7 @@ private fun WalkthroughOverlay(
                     modifier = Modifier
                         .wrapContentWidth()
                         .wrapContentHeight()
+                        .animateContentSize()
                         .pointerInput(state) {
                             detectHorizontalDragGestures(
                                 onDragEnd = {
@@ -192,35 +203,70 @@ private fun WalkthroughOverlay(
                     color = LocalPalette.current.surfaceContainerHigh,
                     tonalElevation = 8.dp
                 ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        step.titleRes?.let {
-                            Text(
-                                text = stringResource(it),
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = LocalPalette.current.primary
-                            )
-                        }
+                    AnimatedContent(
+                        targetState = state.currentStepIndex to state.currentPageIndex,
+                        transitionSpec = {
+                            if (targetState.first == initialState.first) {
+                                // Within same step: slide based on page index
+                                if (targetState.second > initialState.second) {
+                                    (slideInHorizontally { it } + fadeIn()) togetherWith
+                                            (slideOutHorizontally { -it } + fadeOut())
+                                } else {
+                                    (slideInHorizontally { -it } + fadeIn()) togetherWith
+                                            (slideOutHorizontally { it } + fadeOut())
+                                }
+                            } else {
+                                // Between steps: slide based on step index
+                                if ((targetState.first ?: 0) > (initialState.first ?: 0)) {
+                                    (slideInHorizontally { it } + fadeIn()) togetherWith
+                                            (slideOutHorizontally { -it } + fadeOut())
+                                } else {
+                                    (slideInHorizontally { -it } + fadeIn()) togetherWith
+                                            (slideOutHorizontally { it } + fadeOut())
+                                }
+                            }
+                        },
+                        label = "WalkthroughContent"
+                    ) { (_, pageIndex) ->
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            step.titleRes?.let {
+                                Text(
+                                    text = stringResource(it),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = LocalPalette.current.primary
+                                )
+                            }
 
-                        val page = step.pages.getOrNull(state.currentPageIndex)
-                        page?.descriptionRes?.let {
-                            Text(
-                                text = stringResource(it),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = LocalPalette.current.onSurface
-                            )
-                        }
+                            val page = step.pages.getOrNull(pageIndex)
+                            page?.subtitleRes?.let {
+                                Text(
+                                    text = stringResource(it),
+                                    style = MaterialTheme.typography.titleSmall,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = LocalPalette.current.secondary
+                                )
+                            }
 
-                        if (state.pageCount > 1) {
-                            PagerIndicator(
-                                count = state.pageCount,
-                                index = state.pageIndex,
-                                modifier = Modifier.padding(top = 4.dp)
-                            )
+                            page?.descriptionRes?.let {
+                                Text(
+                                    text = stringResource(it),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = LocalPalette.current.onSurface
+                                )
+                            }
+
+                            if (state.pageCount > 1) {
+                                PagerIndicator(
+                                    count = state.pageCount,
+                                    index = state.pageIndex,
+                                    modifier = Modifier.padding(top = 4.dp)
+                                )
+                            }
                         }
                     }
                 }

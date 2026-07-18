@@ -1,11 +1,13 @@
 package com.tritiumgaming.core.ui.widgets.walkthrough
 
+import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -15,15 +17,20 @@ import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Stable
 class WalkthroughState(
     val steps: List<WalkthroughStep>,
+    private val scope: CoroutineScope,
+    private val onTargetRequired: (targetId: String) -> Unit = {},
     private val onFinish: () -> Unit = {}
 ) {
     private data class TargetInfo(
         val coordinates: LayoutCoordinates,
-        val shape: Shape
+        val shape: Shape,
+        val bringIntoViewRequester: BringIntoViewRequester
     )
 
     data class TargetBoundInfo(
@@ -47,8 +54,30 @@ class WalkthroughState(
         hostCoordinates = coordinates
     }
 
-    fun registerTarget(id: String, coordinates: LayoutCoordinates, shape: Shape) {
-        targetInfoMap[id] = TargetInfo(coordinates, shape)
+    fun registerTarget(
+        id: String,
+        coordinates: LayoutCoordinates,
+        shape: Shape,
+        bringIntoViewRequester: BringIntoViewRequester
+    ) {
+        targetInfoMap[id] = TargetInfo(coordinates, shape, bringIntoViewRequester)
+    }
+
+    fun triggerTargetInteraction() {
+        val step = currentStep ?: return
+        val page = step.pages.getOrNull(currentPageIndex) ?: return
+        page.targetIds.forEach { id ->
+            onTargetRequired(id)
+            targetInfoMap[id]?.let { info ->
+                scope.launch {
+                    try {
+                        info.bringIntoViewRequester.bringIntoView()
+                    } catch (e: Exception) {
+                        // Ignore if component is not yet in a scrollable parent or similar
+                    }
+                }
+            }
+        }
     }
 
     fun start() {
@@ -56,6 +85,7 @@ class WalkthroughState(
         if (steps.isNotEmpty()) {
             currentStepIndex = 0
             currentPageIndex = 0
+            triggerTargetInteraction()
         }
     }
 
@@ -65,6 +95,7 @@ class WalkthroughState(
         if (index != -1) {
             currentStepIndex = index
             currentPageIndex = 0
+            triggerTargetInteraction()
         }
     }
 
@@ -72,6 +103,7 @@ class WalkthroughState(
         val step = currentStep ?: return
         if (currentPageIndex < step.pages.size - 1) {
             currentPageIndex++
+            triggerTargetInteraction()
         } else {
             if (isIsolated) {
                 finish()
@@ -80,6 +112,7 @@ class WalkthroughState(
                 if (nextIndex < steps.size) {
                     currentStepIndex = nextIndex
                     currentPageIndex = 0
+                    triggerTargetInteraction()
                 } else {
                     finish()
                 }
@@ -90,6 +123,7 @@ class WalkthroughState(
     fun previous() {
         if (currentPageIndex > 0) {
             currentPageIndex--
+            triggerTargetInteraction()
         } else {
             if (!isIsolated) {
                 val prevIndex = (currentStepIndex ?: 0) - 1
@@ -97,6 +131,7 @@ class WalkthroughState(
                     currentStepIndex = prevIndex
                     val prevStep = steps[prevIndex]
                     currentPageIndex = (prevStep.pages.size - 1).coerceAtLeast(0)
+                    triggerTargetInteraction()
                 }
             }
         }
@@ -165,9 +200,11 @@ class WalkthroughState(
 @Composable
 fun rememberWalkthroughState(
     steps: List<WalkthroughStep>,
+    onTargetRequired: (targetId: String) -> Unit = {},
     onFinish: () -> Unit = {}
 ): WalkthroughState {
+    val scope = rememberCoroutineScope()
     return remember(steps) {
-        WalkthroughState(steps, onFinish)
+        WalkthroughState(steps, scope, onTargetRequired, onFinish)
     }
 }

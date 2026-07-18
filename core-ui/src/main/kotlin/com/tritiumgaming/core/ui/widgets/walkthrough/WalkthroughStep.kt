@@ -8,6 +8,7 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class WalkthroughPage(
     val descriptionRes: Int,
+    val subtitleRes: Int? = null,
     val targetIds: List<String> = emptyList()
 )
 

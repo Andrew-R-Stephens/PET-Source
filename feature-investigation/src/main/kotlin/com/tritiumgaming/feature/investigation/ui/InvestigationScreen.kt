@@ -510,7 +510,14 @@ private fun InvestigationContent(
     val onClearPopup = uiActions.onClearPopup
     val onStartTutorial = uiActions.onStartTutorial
 
+    var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
+
     val walkthroughState = rememberWalkthroughState(
+        onTargetRequired = { targetId ->
+            if (targetId == "config_medication" || targetId == "config_death") {
+                isSanityCollapsed = true
+            }
+        },
         steps = listOf(
             WalkthroughStep(
                 id = "screen_overview",
@@ -555,42 +562,52 @@ private fun InvestigationContent(
                         targetIds = listOf("configs")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_map,
                         descriptionRes = R.string.walkthrough_desc_configs_map,
                         targetIds = listOf("config_map")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_difficulty,
                         descriptionRes = R.string.walkthrough_desc_configs_difficulty,
                         targetIds = listOf("config_difficulty")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_weather,
                         descriptionRes = R.string.walkthrough_desc_configs_weather,
                         targetIds = listOf("config_weather")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_temperature,
                         descriptionRes = R.string.walkthrough_desc_configs_temperature,
                         targetIds = listOf("config_temperature")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_timer,
                         descriptionRes = R.string.walkthrough_desc_configs_timer,
                         targetIds = listOf("config_timer")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_power,
                         descriptionRes = R.string.walkthrough_desc_configs_power,
                         targetIds = listOf("config_power")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_death,
                         descriptionRes = R.string.walkthrough_desc_configs_death,
                         targetIds = listOf("config_death")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_medication,
                         descriptionRes = R.string.walkthrough_desc_configs_medication,
                         targetIds = listOf("config_medication")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_sanity,
                         descriptionRes = R.string.walkthrough_desc_sanity_1,
                         targetIds = listOf("sanity")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_status,
                         descriptionRes = R.string.walkthrough_desc_status_1,
                         targetIds = listOf("status_bar")
                     )
@@ -986,6 +1003,8 @@ private fun InvestigationContent(
                     "configs",
                     RoundedCornerShape(8.dp)
                 ),
+            isSanityCollapsed = isSanityCollapsed,
+            onToggleSanityExpansion = { isSanityCollapsed = !isSanityCollapsed },
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
                     modifier = modifier
@@ -1867,6 +1886,8 @@ fun OperationConfigsBottomSheet(
 @Composable
 fun OperationConfigsSideSheetCompact(
     modifier: Modifier = Modifier,
+    isSanityCollapsed: Boolean,
+    onToggleSanityExpansion: () -> Unit,
     sanityMedicationComponent: @Composable (Modifier) -> Unit = {},
     playerDeathButtonComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
@@ -1882,9 +1903,6 @@ fun OperationConfigsSideSheetCompact(
     showChallengeTitleComponent: Boolean,
     showEditCustomDifficultyComponent: Boolean
 ) {
-    var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
-    val toggleSanityExpansion = { isSanityCollapsed = !isSanityCollapsed }
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
@@ -1999,7 +2017,7 @@ fun OperationConfigsSideSheetCompact(
                                 .height(48.dp)
                                 .weight(1f)
                                 .widthIn(max = 224.dp),
-                            toggleSanityExpansion
+                            onToggleSanityExpansion
                         )
 
                         Surface(
@@ -2037,7 +2055,7 @@ fun OperationConfigsSideSheetCompact(
                             CollapseButton(
                                 modifier = Modifier.size(24.dp),
                                 isCollapsed = isSanityCollapsed,
-                                onClick = toggleSanityExpansion,
+                                onClick = onToggleSanityExpansion,
                                 enabledRotationAddition = 90
                             )
 
@@ -2046,7 +2064,7 @@ fun OperationConfigsSideSheetCompact(
                                     .height(48.dp)
                                     .weight(1f)
                                     .padding(8.dp),
-                                toggleSanityExpansion
+                                onToggleSanityExpansion
                             )
                         }
 
