@@ -45,6 +45,8 @@ import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
+import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
@@ -54,6 +56,7 @@ import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
 @Composable
 fun TimerTools(
     modifier: Modifier = Modifier,
+    walkthroughState: WalkthroughState? = null,
     // Timers state SMUDGE
     smudgeHuntPreventionTitle: String,
     smudgeHuntPreventionMax: Long,
@@ -104,7 +107,14 @@ fun TimerTools(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Row(
-            modifier = Modifier,
+            modifier = Modifier
+                .then(
+                    if (walkthroughState != null) Modifier.walkthroughTarget(
+                        walkthroughState,
+                        "timer_cursed",
+                        RoundedCornerShape(8.dp)
+                    ) else Modifier
+                ),
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -143,6 +153,7 @@ fun TimerTools(
         }
 
         HuntTimersComponent(
+            walkthroughState,
             timersLinked,
             onLinkToggle,
             huntDurationTitle,
@@ -167,6 +178,7 @@ fun TimerTools(
         )
 
         CleanseTimerComponent(
+            walkthroughState,
             smudgeHuntPreventionTitle,
             smudgeHuntPreventionMax,
             smudgeHuntPreventionRemaining,
@@ -178,6 +190,7 @@ fun TimerTools(
         )
 
         FingerprintTimerComponent(
+            walkthroughState,
             fingerprintTimerTitle,
             fingerprintTimerMax,
             fingerprintTimerRemaining,
@@ -193,6 +206,7 @@ fun TimerTools(
 
 @Composable
 private fun FingerprintTimerComponent(
+    walkthroughState: WalkthroughState? = null,
     fingerprintTimerTitle: String,
     fingerprintTimerMax: Long,
     fingerprintTimerRemaining: Long,
@@ -204,7 +218,14 @@ private fun FingerprintTimerComponent(
     fingerprintDuration: DifficultySettingResources.FingerprintDuration
 ) {
     Surface(
-        modifier = Modifier,
+        modifier = Modifier
+            .then(
+                if (walkthroughState != null) Modifier.walkthroughTarget(
+                    walkthroughState,
+                    "timer_fingerprint",
+                    RoundedCornerShape(8.dp)
+                ) else Modifier
+            ),
         color = LocalPalette.current.surfaceContainer,
         shape = RoundedCornerShape(8.dp)
     ) {
@@ -245,6 +266,7 @@ private fun FingerprintTimerComponent(
 
 @Composable
 private fun CleanseTimerComponent(
+    walkthroughState: WalkthroughState? = null,
     smudgeHuntPreventionTitle: String,
     smudgeHuntPreventionMax: Long,
     smudgeHuntPreventionRemaining: Long,
@@ -255,7 +277,14 @@ private fun CleanseTimerComponent(
     notchedProgressBarUiColors: NotchedProgressBarUiColors
 ) {
     Surface(
-        modifier = Modifier,
+        modifier = Modifier
+            .then(
+                if (walkthroughState != null) Modifier.walkthroughTarget(
+                    walkthroughState,
+                    "timer_smudge",
+                    RoundedCornerShape(8.dp)
+                ) else Modifier
+            ),
         color = LocalPalette.current.surfaceContainer,
         shape = RoundedCornerShape(8.dp)
     ) {
@@ -284,6 +313,7 @@ private fun CleanseTimerComponent(
 
 @Composable
 private fun HuntTimersComponent(
+    walkthroughState: WalkthroughState? = null,
     timersLinked: Boolean,
     onLinkToggle: () -> Unit,
     huntDurationTitle: String,
@@ -337,6 +367,13 @@ private fun HuntTimersComponent(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(22.dp)
+                    .then(
+                        if (walkthroughState != null) Modifier.walkthroughTarget(
+                            walkthroughState,
+                            "timer_link",
+                            RoundedCornerShape(8.dp)
+                        ) else Modifier
+                    )
                     .clickable { onLinkToggle() }
             ) {
                 val strokeWidth = 2.dp.toPx()
@@ -398,7 +435,15 @@ private fun HuntTimersComponent(
             verticalArrangement = Arrangement.spacedBy(if (timersLinked) 0.dp else 8.dp)
         ) {
             Surface(
-                modifier = Modifier,
+                modifier = Modifier
+                    .then(
+                        if (walkthroughState != null) Modifier.walkthroughTarget(
+                            walkthroughState,
+                            "timer_hunt_duration",
+                            if (timersLinked) RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)
+                            else RoundedCornerShape(8.dp)
+                        ) else Modifier
+                    ),
                 color = LocalPalette.current.surfaceContainer,
                 shape =
                     if (timersLinked) RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)
@@ -502,7 +547,15 @@ private fun HuntTimersComponent(
             }
 
             Surface(
-                modifier = Modifier,
+                modifier = Modifier
+                    .then(
+                        if (walkthroughState != null) Modifier.walkthroughTarget(
+                            walkthroughState,
+                            "timer_hunt_cooldown",
+                            if (timersLinked) RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
+                            else RoundedCornerShape(8.dp)
+                        ) else Modifier
+                    ),
                 color = LocalPalette.current.surfaceContainer,
                 shape = if (timersLinked) RoundedCornerShape(
                     bottomStart = 8.dp,

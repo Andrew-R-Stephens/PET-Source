@@ -34,6 +34,8 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
+import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toGhostTitle
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
@@ -49,6 +51,7 @@ import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
 @Composable
 internal fun TraitConfig(
     modifier: Modifier = Modifier,
+    walkthroughState: WalkthroughState? = null,
     uniqueOnly: Boolean,
     categories: List<CategoryOption>,
     list: List<ValidatedGhostTrait>,
@@ -83,6 +86,13 @@ internal fun TraitConfig(
                     modifier = Modifier
                         .wrapContentHeight()
                         .heightIn(min = 36.dp)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "traits_unique",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        )
                         .clickable(onClick = {
                             onToggleUniqueOnly()
                         }),
@@ -112,7 +122,14 @@ internal fun TraitConfig(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight()
-                        .heightIn(min = 36.dp),
+                        .heightIn(min = 36.dp)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "traits_filter",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        ),
                     color = LocalPalette.current.surfaceContainerHigh,
                     shape = RoundedCornerShape(8.dp),
                 ) {

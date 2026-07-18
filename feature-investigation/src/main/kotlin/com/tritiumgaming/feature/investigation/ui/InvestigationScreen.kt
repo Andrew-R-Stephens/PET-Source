@@ -510,12 +510,30 @@ private fun InvestigationContent(
     val onClearPopup = uiActions.onClearPopup
     val onStartTutorial = uiActions.onStartTutorial
 
+    val toolbarCategory = toolbarUiState.category
+
     var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
 
     val walkthroughState = rememberWalkthroughState(
         onTargetRequired = { targetId ->
             if (targetId == "config_medication" || targetId == "config_death") {
                 isSanityCollapsed = true
+            }
+
+            val targetCategory = when {
+                targetId.startsWith("traits") -> OperationToolbarUiState.Category.TOOL_TRAITS
+                targetId.startsWith("analyzer") -> OperationToolbarUiState.Category.TOOL_ANALYZER
+                targetId.startsWith("timers") -> OperationToolbarUiState.Category.TOOL_TIMERS
+                targetId.startsWith("footstep") -> OperationToolbarUiState.Category.TOOL_FOOTSTEP
+                targetId.startsWith("config") || targetId == "sanity" ->
+                    OperationToolbarUiState.Category.TOOL_CONFIG
+                else -> null
+            }
+
+            targetCategory?.let { category ->
+                if (toolbarCategory != category) {
+                    onChangeToolbarCategory(category, false)
+                }
             }
         },
         steps = listOf(
@@ -620,6 +638,16 @@ private fun InvestigationContent(
                     WalkthroughPage(
                         descriptionRes = R.string.walkthrough_desc_traits_1,
                         targetIds = listOf("traits")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_traits_unique,
+                        descriptionRes = R.string.walkthrough_desc_traits_unique,
+                        targetIds = listOf("traits_unique")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_traits_filter,
+                        descriptionRes = R.string.walkthrough_desc_traits_filter,
+                        targetIds = listOf("traits_filter")
                     )
                 ),
                 titleRes = R.string.walkthrough_title_traits
@@ -640,6 +668,31 @@ private fun InvestigationContent(
                     WalkthroughPage(
                         descriptionRes = R.string.walkthrough_desc_timers_1,
                         targetIds = listOf("timers")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_timers_smudge,
+                        descriptionRes = R.string.walkthrough_desc_timers_smudge,
+                        targetIds = listOf("timer_smudge")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_timers_hunt_duration,
+                        descriptionRes = R.string.walkthrough_desc_timers_hunt_duration,
+                        targetIds = listOf("timer_hunt_duration")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_timers_hunt_cooldown,
+                        descriptionRes = R.string.walkthrough_desc_timers_hunt_cooldown,
+                        targetIds = listOf("timer_hunt_cooldown")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_timers_link,
+                        descriptionRes = R.string.walkthrough_desc_timers_link,
+                        targetIds = listOf("timer_hunt_duration", "timer_hunt_cooldown", "timer_link")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_timers_fingerprint,
+                        descriptionRes = R.string.walkthrough_desc_timers_fingerprint,
+                        targetIds = listOf("timer_fingerprint")
                     )
                 ),
                 titleRes = R.string.walkthrough_title_timers
@@ -656,8 +709,6 @@ private fun InvestigationContent(
             )
         )
     )
-
-    val toolbarCategory = toolbarUiState.category
 
     val weather = weatherUiState.weather
     val weatherIcon = weather.toDrawable()
@@ -758,6 +809,7 @@ private fun InvestigationContent(
                     "traits",
                     RoundedCornerShape(8.dp)
                 ),
+            walkthroughState = walkthroughState,
             uniqueOnly = traitFilterOptions.uniqueOnly ?: false,
             categories = traitFilterOptions.category,
             list = traitListUiStates,
@@ -823,6 +875,7 @@ private fun InvestigationContent(
                     "timers",
                     RoundedCornerShape(8.dp)
                 ),
+            walkthroughState = walkthroughState,
             smudgeHuntPreventionTitle = smudgeHuntPreventionTitle,
             smudgeHuntPreventionMax = smudgeHuntPreventionMax,
             smudgeHuntPreventionRemaining = smudgeHuntPreventionRemaining,

@@ -40,12 +40,26 @@
 
     <string name="walkthrough_title_traits">Secondary Evidence</string>
     <string name="walkthrough_desc_traits_1">Identify secondary evidence traits to narrow down the ghost type. Some traits are unique to specific ghosts.</string>
+    <string name="walkthrough_subtitle_traits_unique">Unique Traits Only</string>
+    <string name="walkthrough_desc_traits_unique">Filter the list to only show traits that are unique to a single ghost. This is often the fastest way to confirm a specific identity.</string>
+    <string name="walkthrough_subtitle_traits_filter">Category Filter</string>
+    <string name="walkthrough_desc_traits_filter">Narrow down the list by selecting a specific category, such as "Behavior" or "Abilities", to find relevant evidence faster.</string>
 
     <string name="walkthrough_title_analyzer">Operation Details</string>
     <string name="walkthrough_desc_analyzer_1">Review the specific details of your current operation, including ghost behavior and investigation settings.</string>
 
     <string name="walkthrough_title_timers">Investigation Timers</string>
     <string name="walkthrough_desc_timers_1">Use these timers to track smudge stick effectiveness, hunt durations, and fingerprint persistence.</string>
+    <string name="walkthrough_subtitle_timers_smudge">Smudge Stick Timer</string>
+    <string name="walkthrough_desc_timers_smudge">Track how long a smudge stick prevents the ghost from hunting. Different ghosts have different prevention durations.</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Hunt Duration</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Monitor the length of an active hunt. This helps you know when it\'s safe to come out of hiding.</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">Hunt Cooldown</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">Track the minimum time between hunts. Use this window to move between hiding spots or gather evidence.</string>
+    <string name="walkthrough_subtitle_timers_link">Linked Timers</string>
+    <string name="walkthrough_desc_timers_link">When linked, the cooldown timer starts automatically as soon as the hunt duration timer finishes, providing a seamless timeline.</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">Fingerprint Timer</string>
+    <string name="walkthrough_desc_timers_fingerprint">Track how long fingerprints will remain visible. This helps you know if you need to re-check a door or window.</string>
 
     <string name="walkthrough_title_footstep">Footstep Analyzer</string>
     <string name="walkthrough_desc_footstep_1">Measure the ghost\'s movement speed (BPM) to help identify it. Different ghosts have distinct walking speeds.</string>
