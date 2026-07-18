@@ -206,8 +206,8 @@ private fun WalkthroughOverlay(
                             )
                         }
 
-                        val descriptionRes = step.descriptionPagesRes.getOrNull(state.currentPageIndex)
-                        descriptionRes?.let {
+                        val page = step.pages.getOrNull(state.currentPageIndex)
+                        page?.descriptionRes?.let {
                             Text(
                                 text = stringResource(it),
                                 style = MaterialTheme.typography.bodyMedium,

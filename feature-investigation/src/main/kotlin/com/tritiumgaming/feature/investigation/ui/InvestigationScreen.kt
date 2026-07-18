@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -55,6 +56,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUi
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughHost
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughPage
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughStep
 import com.tritiumgaming.core.ui.widgets.walkthrough.rememberWalkthroughState
@@ -512,67 +514,128 @@ private fun InvestigationContent(
         steps = listOf(
             WalkthroughStep(
                 id = "screen_overview",
-                targetIds = listOf("journal", "status_bar", "toolbar"),
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_investigation_1,
+                        targetIds = listOf("journal", "status_bar", "toolbar")
+                    )
+                ),
                 titleRes = R.string.walkthrough_title_investigation,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_investigation_1),
                 isMajor = true
             ),
             WalkthroughStep(
                 id = "journal",
-                targetIds = listOf("journal"),
-                titleRes = R.string.walkthrough_title_journal,
-                descriptionPagesRes = listOf(
-                    R.string.walkthrough_desc_journal_1,
-                    R.string.walkthrough_desc_journal_2
-                )
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_journal_1,
+                        targetIds = listOf("journal")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_journal_2,
+                        targetIds = listOf("journal")
+                    )
+                ),
+                titleRes = R.string.walkthrough_title_journal
             ),
             WalkthroughStep(
                 id = "toolbar",
-                targetIds = listOf("toolbar"),
-                titleRes = R.string.walkthrough_title_toolbar,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_toolbar_1)
-            ),
-            WalkthroughStep(
-                id = "status_bar",
-                targetIds = listOf("status_bar"),
-                titleRes = R.string.walkthrough_title_status,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_status_1)
-            ),
-            WalkthroughStep(
-                id = "sanity",
-                targetIds = listOf("sanity"),
-                titleRes = R.string.walkthrough_title_sanity,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_sanity_1)
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_toolbar_1,
+                        targetIds = listOf("toolbar")
+                    )
+                ),
+                titleRes = R.string.walkthrough_title_toolbar
             ),
             WalkthroughStep(
                 id = "configs",
-                targetIds = listOf("configs"),
-                titleRes = R.string.investigation_label_contract,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_configs_1)
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_1,
+                        targetIds = listOf("configs")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_map,
+                        targetIds = listOf("config_map")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_difficulty,
+                        targetIds = listOf("config_difficulty")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_weather,
+                        targetIds = listOf("config_weather")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_temperature,
+                        targetIds = listOf("config_temperature")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_timer,
+                        targetIds = listOf("config_timer")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_power,
+                        targetIds = listOf("config_power")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_death,
+                        targetIds = listOf("config_death")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_configs_medication,
+                        targetIds = listOf("config_medication")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_sanity_1,
+                        targetIds = listOf("sanity")
+                    ),
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_status_1,
+                        targetIds = listOf("status_bar")
+                    )
+                ),
+                titleRes = R.string.investigation_label_contract
             ),
             WalkthroughStep(
                 id = "traits",
-                targetIds = listOf("traits"),
-                titleRes = R.string.walkthrough_title_traits,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_traits_1)
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_traits_1,
+                        targetIds = listOf("traits")
+                    )
+                ),
+                titleRes = R.string.walkthrough_title_traits
             ),
             WalkthroughStep(
                 id = "analyzer",
-                targetIds = listOf("analyzer"),
-                titleRes = R.string.walkthrough_title_analyzer,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_analyzer_1)
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_analyzer_1,
+                        targetIds = listOf("analyzer")
+                    )
+                ),
+                titleRes = R.string.walkthrough_title_analyzer
             ),
             WalkthroughStep(
                 id = "timers",
-                targetIds = listOf("timers"),
-                titleRes = R.string.walkthrough_title_timers,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_timers_1)
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_timers_1,
+                        targetIds = listOf("timers")
+                    )
+                ),
+                titleRes = R.string.walkthrough_title_timers
             ),
             WalkthroughStep(
                 id = "footstep",
-                targetIds = listOf("footstep"),
-                titleRes = R.string.walkthrough_title_footstep,
-                descriptionPagesRes = listOf(R.string.walkthrough_desc_footstep_1)
+                pages = listOf(
+                    WalkthroughPage(
+                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        targetIds = listOf("footstep")
+                    )
+                ),
+                titleRes = R.string.walkthrough_title_footstep
             )
         )
     )
@@ -793,7 +856,8 @@ private fun InvestigationContent(
                 ),
             mapConfigComponent = { modifier ->
                 MapConfigControl(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_map", RoundedCornerShape(8.dp)),
                     dropdownOptions = mapDropdownOptions,
                     isDropdownEnabled = isMapEnabled,
                     dropdownLabel = mapLabel,
@@ -803,7 +867,8 @@ private fun InvestigationContent(
             },
             difficultyConfigComponent = { modifier ->
                 DifficultyConfigControl(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_difficulty", RoundedCornerShape(8.dp)),
                     dropdownOptions = difficultyDropdownOptions,
                     isDropdownEnabled = isDifficultyEnabled,
                     dropdownLabel = difficultyLabel,
@@ -844,7 +909,8 @@ private fun InvestigationContent(
             },
             weatherConfigComponent = { modifier ->
                 WeatherConfigComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_weather", RoundedCornerShape(8.dp)),
                     icon = weatherIcon,
                     dropdownOptions = weatherDropdownOptions,
                     isDropdownEnabled = isWeatherEnabled,
@@ -868,7 +934,8 @@ private fun InvestigationContent(
             },
             timerComponent = { modifier ->
                 OperationTimerColumn(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_timer", RoundedCornerShape(8.dp)),
                     remainingTime = timerRemainingTime,
                     paused = timerPaused,
                     onToggle = onTimerToggle,
@@ -878,25 +945,29 @@ private fun InvestigationContent(
             },
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_medication", RoundedCornerShape(8.dp)),
                     onClick = onUseSanityMedication
                 )
             },
             playerDeathButtonComponent = { modifier ->
                 PlayerDeathButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_death", CircleShape),
                     onClick = onPlayerDeath
                 )
             },
             temperatureMeterComponent = { modifier ->
                 TemperatureComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_temperature", RoundedCornerShape(8.dp)),
                     state = temperatureStateBundle
                 )
             },
             fuseBoxControlComponent = { modifier ->
                 FuseBoxButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_power", CircleShape),
                     flag = fuseBoxFlag,
                     onTogglePower = onTogglePower
                 )
@@ -917,13 +988,15 @@ private fun InvestigationContent(
                 ),
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_medication", RoundedCornerShape(8.dp)),
                     onClick = onUseSanityMedication
                 )
             },
             mapConfigComponent = { modifier ->
                 MapConfigControl(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_map", RoundedCornerShape(8.dp)),
                     dropdownOptions = mapDropdownOptions,
                     isDropdownEnabled = isMapEnabled,
                     dropdownLabel = mapLabel,
@@ -933,7 +1006,8 @@ private fun InvestigationContent(
             },
             difficultyConfigComponent = { modifier ->
                 DifficultyConfigControl(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_difficulty", RoundedCornerShape(8.dp)),
                     dropdownOptions = difficultyDropdownOptions,
                     isDropdownEnabled = isDifficultyEnabled,
                     dropdownLabel = difficultyLabel,
@@ -974,7 +1048,8 @@ private fun InvestigationContent(
             },
             weatherConfigComponent = { modifier ->
                 WeatherConfigComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_weather", RoundedCornerShape(8.dp)),
                     icon = weatherIcon,
                     dropdownOptions = weatherDropdownOptions,
                     isDropdownEnabled = isWeatherEnabled,
@@ -998,7 +1073,8 @@ private fun InvestigationContent(
             },
             timerComponent = { modifier ->
                 OperationTimerRow(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_timer", RoundedCornerShape(8.dp)),
                     remainingTime = timerRemainingTime,
                     paused = timerPaused,
                     onToggle = onTimerToggle,
@@ -1008,19 +1084,22 @@ private fun InvestigationContent(
             },
             playerDeathButtonComponent = { modifier ->
                 PlayerDeathButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_death", CircleShape),
                     onClick = onPlayerDeath
                 )
             },
             temperatureMeterComponent = { modifier ->
                 TemperatureComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_temperature", RoundedCornerShape(8.dp)),
                     state = temperatureStateBundle
                 )
             },
             fuseBoxControlComponent = { modifier ->
                 FuseBoxButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_power", CircleShape),
                     flag = fuseBoxFlag,
                     onTogglePower = onTogglePower
                 )
@@ -1041,13 +1120,15 @@ private fun InvestigationContent(
                 ),
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_medication", RoundedCornerShape(8.dp)),
                     onClick = onUseSanityMedication
                 )
             },
             mapConfigComponent = { modifier ->
                 MapConfigControl(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_map", RoundedCornerShape(8.dp)),
                     dropdownOptions = mapDropdownOptions,
                     isDropdownEnabled = isMapEnabled,
                     dropdownLabel = mapLabel,
@@ -1057,7 +1138,8 @@ private fun InvestigationContent(
             },
             difficultyConfigComponent = { modifier ->
                 DifficultyConfigControl(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_difficulty", RoundedCornerShape(8.dp)),
                     dropdownOptions = difficultyDropdownOptions,
                     isDropdownEnabled = isDifficultyEnabled,
                     dropdownLabel = difficultyLabel,
@@ -1098,7 +1180,8 @@ private fun InvestigationContent(
             },
             weatherConfigComponent = { modifier ->
                 WeatherConfigComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_weather", RoundedCornerShape(8.dp)),
                     icon = weatherIcon,
                     dropdownOptions = weatherDropdownOptions,
                     isDropdownEnabled = isWeatherEnabled,
@@ -1122,7 +1205,8 @@ private fun InvestigationContent(
             },
             timerComponent = { modifier ->
                 OperationTimerRow(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_timer", RoundedCornerShape(8.dp)),
                     remainingTime = timerRemainingTime,
                     paused = timerPaused,
                     onToggle = onTimerToggle,
@@ -1132,19 +1216,22 @@ private fun InvestigationContent(
             },
             playerDeathButtonComponent = { modifier ->
                 PlayerDeathButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_death", CircleShape),
                     onClick = onPlayerDeath
                 )
             },
             temperatureMeterComponent = { modifier ->
                 TemperatureComponent(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_temperature", RoundedCornerShape(8.dp)),
                     state = temperatureStateBundle
                 )
             },
             fuseBoxControlComponent = { modifier ->
                 FuseBoxButton(
-                    modifier = modifier,
+                    modifier = modifier
+                        .walkthroughTarget(walkthroughState, "config_power", CircleShape),
                     flag = fuseBoxFlag,
                     onTogglePower = onTogglePower
                 )

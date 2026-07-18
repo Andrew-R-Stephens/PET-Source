@@ -70,7 +70,7 @@ class WalkthroughState(
 
     fun next() {
         val step = currentStep ?: return
-        if (currentPageIndex < step.descriptionPagesRes.size - 1) {
+        if (currentPageIndex < step.pages.size - 1) {
             currentPageIndex++
         } else {
             if (isIsolated) {
@@ -96,7 +96,7 @@ class WalkthroughState(
                 if (prevIndex >= 0) {
                     currentStepIndex = prevIndex
                     val prevStep = steps[prevIndex]
-                    currentPageIndex = (prevStep.descriptionPagesRes.size - 1).coerceAtLeast(0)
+                    currentPageIndex = (prevStep.pages.size - 1).coerceAtLeast(0)
                 }
             }
         }
@@ -116,9 +116,9 @@ class WalkthroughState(
     val canGoPrevious: Boolean get() = currentPageIndex > 0 || (!isIsolated && (currentStepIndex ?: 0) > 0)
 
     val pageCount: Int get() = if (isIsolated) {
-        currentStep?.descriptionPagesRes?.size ?: 0
+        currentStep?.pages?.size ?: 0
     } else {
-        steps.sumOf { it.descriptionPagesRes.size }
+        steps.sumOf { it.pages.size }
     }
 
     val pageIndex: Int get() = if (isIsolated) {
@@ -127,7 +127,7 @@ class WalkthroughState(
         val currentStepIdx = currentStepIndex ?: 0
         var count = 0
         for (i in 0 until currentStepIdx) {
-            count += steps[i].descriptionPagesRes.size
+            count += steps[i].pages.size
         }
         count + currentPageIndex
     }
@@ -140,7 +140,9 @@ class WalkthroughState(
         val hostBounds = host.boundsInWindow()
         val hostPosition = host.positionInWindow()
 
-        return step.targetIds.mapNotNull { id ->
+        val page = step.pages.getOrNull(currentPageIndex) ?: return emptyList()
+
+        return page.targetIds.mapNotNull { id ->
             val targetInfo = targetInfoMap[id] ?: return@mapNotNull null
             val coordinates = targetInfo.coordinates
             if (coordinates.isAttached) {
