@@ -63,4 +63,10 @@
 
     <string name="walkthrough_title_footstep">Footstep Analyzer</string>
     <string name="walkthrough_desc_footstep_1">Measure the ghost\'s movement speed (BPM) to help identify it. Different ghosts have distinct walking speeds.</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">Active Modifiers</string>
+    <string name="walkthrough_desc_footstep_modifiers">See how the current investigation settings, such as weather or ghost speed modifiers, are affecting the ghost\'s movement.</string>
+    <string name="walkthrough_subtitle_footstep_apply">Apply Measurement</string>
+    <string name="walkthrough_desc_footstep_apply">Choose which measurement (Instant, Average, or Weighted) to apply to your investigation to help narrow down the ghost type.</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">BPM Visualizer</string>
+    <string name="walkthrough_desc_footstep_visualizer">Tap along with the ghost\'s footsteps to see its movement speed graphed in real-time. Use the dropdowns to adjust the view.</string>
 </resources>

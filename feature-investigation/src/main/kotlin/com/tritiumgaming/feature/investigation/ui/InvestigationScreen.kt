@@ -205,64 +205,73 @@ private fun InvestigationScreenPreview(
                     weather = WeatherUiState(
                         weather = Weather.HEAVY_RAIN
                     ),
-                    ghostsSorted = GhostResources.GhostIdentifier.entries.take(10).map { identifier ->
-                        GhostState(
-                            ghostEvidence = GhostEvidence(
-                                ghost = Ghost(
-                                    id = identifier,
-                                    name = GhostResources.GhostTitle.valueOf(identifier.name),
-                                    icon = GhostResources.GhostIcon.valueOf(identifier.name),
-                                    info = GhostResources.GhostDescription.valueOf(identifier.name),
-                                    strengthData = GhostResources.GhostStrength.valueOf(identifier.name),
-                                    weaknessData = GhostResources.GhostWeakness.valueOf(identifier.name),
-                                    huntData = GhostResources.GhostHuntInfo.valueOf(identifier.name),
-                                    normalEvidence = listOf(
-                                        EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
-                                        EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
-                                        EvidenceResources.EvidenceIdentifier.DOTS,
+                    ghostsSorted = GhostResources.GhostIdentifier.entries.take(10)
+                        .map { identifier ->
+                            GhostState(
+                                ghostEvidence = GhostEvidence(
+                                    ghost = Ghost(
+                                        id = identifier,
+                                        name = GhostResources.GhostTitle.valueOf(identifier.name),
+                                        icon = GhostResources.GhostIcon.valueOf(identifier.name),
+                                        info = GhostResources.GhostDescription.valueOf(identifier.name),
+                                        strengthData = GhostResources.GhostStrength.valueOf(
+                                            identifier.name
+                                        ),
+                                        weaknessData = GhostResources.GhostWeakness.valueOf(
+                                            identifier.name
+                                        ),
+                                        huntData = GhostResources.GhostHuntInfo.valueOf(identifier.name),
+                                        normalEvidence = listOf(
+                                            EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
+                                            EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
+                                            EvidenceResources.EvidenceIdentifier.DOTS,
+                                        ),
+                                        strictEvidence = listOf(
+                                            EvidenceResources.EvidenceIdentifier.EMF_5
+                                        ),
+                                        speed = GhostResources.GhostSpeed.valueOf(identifier.name),
+                                        huntSanityBounds = GhostResources.HuntSanityBounds.valueOf(
+                                            identifier.name
+                                        ),
+                                        huntCooldown = GhostResources.HuntCooldown.valueOf(
+                                            identifier.name
+                                        )
                                     ),
-                                    strictEvidence = listOf(
-                                        EvidenceResources.EvidenceIdentifier.EMF_5
-                                    ),
-                                    speed = GhostResources.GhostSpeed.valueOf(identifier.name),
-                                    huntSanityBounds = GhostResources.HuntSanityBounds.valueOf(identifier.name),
-                                    huntCooldown = GhostResources.HuntCooldown.valueOf(identifier.name)
-                                ),
-                                normalEvidenceList = listOf(
-                                    EvidenceType(
+                                    normalEvidenceList = listOf(
+                                        EvidenceType(
                                             id = EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
                                             name = EvidenceResources.EvidenceTitle.GHOST_WRITING,
                                             icon = EvidenceResources.EvidenceIcon.GHOST_WRITING
 
-                                    ),
-                                    EvidenceType(
+                                        ),
+                                        EvidenceType(
                                             id = EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
                                             name = EvidenceResources.EvidenceTitle.FREEZING_TEMPERATURE,
                                             icon = EvidenceResources.EvidenceIcon.FREEZING_TEMPERATURE
 
-                                    ),
-                                    EvidenceType(
+                                        ),
+                                        EvidenceType(
                                             id = EvidenceResources.EvidenceIdentifier.DOTS,
                                             name = EvidenceResources.EvidenceTitle.DOTS,
                                             icon = EvidenceResources.EvidenceIcon.DOTS
+                                        ),
                                     ),
-                                ),
-                                strictEvidenceList = listOf(
-                                    EvidenceType(
-                                        id = EvidenceResources.EvidenceIdentifier.DOTS,
-                                        name = EvidenceResources.EvidenceTitle.DOTS,
-                                        icon = EvidenceResources.EvidenceIcon.DOTS
+                                    strictEvidenceList = listOf(
+                                        EvidenceType(
+                                            id = EvidenceResources.EvidenceIdentifier.DOTS,
+                                            name = EvidenceResources.EvidenceTitle.DOTS,
+                                            icon = EvidenceResources.EvidenceIcon.DOTS
 
+                                        ),
                                     ),
                                 ),
-                            ),
-                            score = 0,
-                            manualRejection = false,
-                            bpmIsValid = false,
-                            traitScore = TraitScore(),
-                            traits = emptySet()
-                        )
-                    },
+                                score = 0,
+                                manualRejection = false,
+                                bpmIsValid = false,
+                                traitScore = TraitScore(),
+                                traits = emptySet()
+                            )
+                        },
                     evidenceList = listOf(
                         EvidenceState(
                             evidence = EvidenceType(
@@ -286,7 +295,7 @@ private fun InvestigationScreenPreview(
                             )
                         ),
 
-                    ),
+                        ),
                     traitFilterOptions = GhostTraitFilterUiOptions(
                         category = listOf(
                             CategoryOption(
@@ -316,7 +325,10 @@ private fun InvestigationScreenPreview(
                         challengeTitle = ChallengeTitle.TORTOISE_AND_THE_HARE_TORTOISE
                     )
                 ),
-                uiActions = InvestigationUiActions()
+                uiActions = InvestigationUiActions(),
+                walkthroughState = rememberWalkthroughState(emptyList()),
+                isSanityCollapsed = false,
+                onToggleSanityCollapse = {}
             )
         }
     }
@@ -351,6 +363,8 @@ fun InvestigationSoloScreen(
     val huntGapTimerState by investigationViewModel.huntCooldownTimerUiState.collectAsStateWithLifecycle()
     val fingerprintTimerState by investigationViewModel.fingerprintTimerUiState.collectAsStateWithLifecycle()
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
+
+    var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
 
     val uiState = InvestigationUiState(
         popup = popupUiState,
@@ -431,89 +445,6 @@ fun InvestigationSoloScreen(
         onClearPopup = { investigationViewModel.onEvent(ClearPopup) }
     )
 
-    InvestigationContent(
-        uiState = uiState,
-        uiActions = uiActions
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun InvestigationContent(
-    uiState: InvestigationUiState,
-    uiActions: InvestigationUiActions
-) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
-    val popupUiState = uiState.popup
-
-    val toolbarUiState = uiState.toolbar
-
-    val operationTimerUiState = uiState.operationTimer
-    val phaseUiState = uiState.phase
-    val mapConfigUiState = uiState.mapConfig
-    val operationDetailsUiState = uiState.operationDetails
-    val difficultyUiState = uiState.difficultyConfig
-    val customDifficultyConfigUiState = uiState.customDifficultyConfig
-    val weatherUiState = uiState.weather
-    val temperatureUiState = uiState.temperature
-    val difficultyOverrideUiState = uiState.difficultyOverrides
-    val sanityUiState = uiState.playerSanity
-    val evidenceListUiStates = uiState.evidenceList
-
-    val traitFilterOptions = uiState.traitFilterOptions
-    val traitListUiStates = uiState.traitList
-    val ghostOrder = uiState.ghostsSorted
-    val evidenceStates = uiState.ghostEvidenceStates
-
-    val timersLinked = uiState.timersLinked
-    val smudgeHuntProtectionTimerState = uiState.smudgeHuntProtectionTimer
-    val huntDurationTimerState = uiState.huntDurationTimer
-    val huntGapTimerState = uiState.huntCooldownTimer
-    val fingerprintTimerState = uiState.fingerprintTimer
-
-    val bpmToolUiState = uiState.bpmTool
-
-    val onWeatherDropdownSelect = uiActions.onWeatherDropdownSelect
-    val onMapDropdownSelect = uiActions.onMapDropdownSelect
-    val onDifficultyDropdownSelect = uiActions.onDifficultyDropdownSelect
-    val onCustomDifficultyDropdownSelect = uiActions.onCustomDifficultyDropdownSelect
-    val onNavigateToEditCustomDifficulty = uiActions.onNavigateToEditCustomDifficulty
-    val onSanityChange = uiActions.onSanityChange
-    val onUseSanityMedication = uiActions.onUseSanityMedication
-    val onPlayerDeath = uiActions.onPlayerDeath
-    val onTimerToggle = uiActions.onTimerToggle
-    val onTimerSkip = uiActions.onTimerSkip
-    val onTogglePower = uiActions.onTogglePower
-    val onSelectTraitCategory = uiActions.onSelectTraitCategory
-    val onToggleTrait = uiActions.onToggleTrait
-    val onToggleUniqueOnly = uiActions.onToggleUniqueOnly
-    val onSmudgeToggle = uiActions.onSmudgeToggle
-    val onHuntDurationToggle = uiActions.onHuntDurationToggle
-    val onHuntCooldownToggle = uiActions.onHuntCooldownToggle
-    val onFingerprintToggle = uiActions.onFingerprintToggle
-    val onLinkToggle = uiActions.onLinkToggle
-    val onToggleCursed = uiActions.onToggleCursed
-    val onBpmUpdate = uiActions.onBpmUpdate
-    val onBpmChangeMeasurementType = uiActions.onBpmChangeMeasurementType
-    val onBpmToggleApplyMeasurement = uiActions.onBpmToggleApplyMeasurement
-    val onBpmChangeDomain = uiActions.onBpmChangeDomain
-    val onBpmChangeSampleInterval = uiActions.onBpmChangeSampleInterval
-    val onToggleCollapseToolbar = uiActions.onToggleCollapseToolbar
-    val onChangeToolbarCategory = uiActions.onChangeToolbarCategory
-    val onReset = uiActions.onReset
-    val onGhostNameClick = uiActions.onGhostNameClick
-    val onToggleNegateGhost = uiActions.onToggleNegateGhost
-    val onChangeEvidenceRuling = uiActions.onChangeEvidenceRuling
-    val onEvidenceClick = uiActions.onEvidenceClick
-    val onClearPopup = uiActions.onClearPopup
-    val onStartTutorial = uiActions.onStartTutorial
-
-    val toolbarCategory = toolbarUiState.category
-
-    var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
-
     val walkthroughState = rememberWalkthroughState(
         onTargetRequired = { targetId ->
             if (targetId == "config_medication" || targetId == "config_death") {
@@ -531,8 +462,8 @@ private fun InvestigationContent(
             }
 
             targetCategory?.let { category ->
-                if (toolbarCategory != category) {
-                    onChangeToolbarCategory(category, false)
+                if (toolbarUiState.category != category) {
+                    uiActions.onChangeToolbarCategory(category, false)
                 }
             }
         },
@@ -670,11 +601,6 @@ private fun InvestigationContent(
                         targetIds = listOf("timers")
                     ),
                     WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_timers_smudge,
-                        descriptionRes = R.string.walkthrough_desc_timers_smudge,
-                        targetIds = listOf("timer_smudge")
-                    ),
-                    WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_timers_hunt_duration,
                         descriptionRes = R.string.walkthrough_desc_timers_hunt_duration,
                         targetIds = listOf("timer_hunt_duration")
@@ -688,6 +614,11 @@ private fun InvestigationContent(
                         subtitleRes = R.string.walkthrough_subtitle_timers_link,
                         descriptionRes = R.string.walkthrough_desc_timers_link,
                         targetIds = listOf("timer_hunt_duration", "timer_hunt_cooldown", "timer_link")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_timers_smudge,
+                        descriptionRes = R.string.walkthrough_desc_timers_smudge,
+                        targetIds = listOf("timer_smudge")
                     ),
                     WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_timers_fingerprint,
@@ -709,6 +640,95 @@ private fun InvestigationContent(
             )
         )
     )
+
+    InvestigationContent(
+        uiState = uiState,
+        uiActions = uiActions,
+        walkthroughState = walkthroughState,
+        isSanityCollapsed = isSanityCollapsed,
+        onToggleSanityCollapse = {
+            isSanityCollapsed = !isSanityCollapsed
+        }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun InvestigationContent(
+    uiState: InvestigationUiState,
+    uiActions: InvestigationUiActions,
+    walkthroughState: WalkthroughState,
+    isSanityCollapsed: Boolean,
+    onToggleSanityCollapse: () -> Unit
+) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+    val popupUiState = uiState.popup
+
+    val toolbarUiState = uiState.toolbar
+
+    val operationTimerUiState = uiState.operationTimer
+    val phaseUiState = uiState.phase
+    val mapConfigUiState = uiState.mapConfig
+    val operationDetailsUiState = uiState.operationDetails
+    val difficultyUiState = uiState.difficultyConfig
+    val customDifficultyConfigUiState = uiState.customDifficultyConfig
+    val weatherUiState = uiState.weather
+    val temperatureUiState = uiState.temperature
+    val difficultyOverrideUiState = uiState.difficultyOverrides
+    val sanityUiState = uiState.playerSanity
+    val evidenceListUiStates = uiState.evidenceList
+
+    val traitFilterOptions = uiState.traitFilterOptions
+    val traitListUiStates = uiState.traitList
+    val ghostOrder = uiState.ghostsSorted
+    val evidenceStates = uiState.ghostEvidenceStates
+
+    val timersLinked = uiState.timersLinked
+    val smudgeHuntProtectionTimerState = uiState.smudgeHuntProtectionTimer
+    val huntDurationTimerState = uiState.huntDurationTimer
+    val huntGapTimerState = uiState.huntCooldownTimer
+    val fingerprintTimerState = uiState.fingerprintTimer
+
+    val bpmToolUiState = uiState.bpmTool
+
+    val onWeatherDropdownSelect = uiActions.onWeatherDropdownSelect
+    val onMapDropdownSelect = uiActions.onMapDropdownSelect
+    val onDifficultyDropdownSelect = uiActions.onDifficultyDropdownSelect
+    val onCustomDifficultyDropdownSelect = uiActions.onCustomDifficultyDropdownSelect
+    val onNavigateToEditCustomDifficulty = uiActions.onNavigateToEditCustomDifficulty
+    val onSanityChange = uiActions.onSanityChange
+    val onUseSanityMedication = uiActions.onUseSanityMedication
+    val onPlayerDeath = uiActions.onPlayerDeath
+    val onTimerToggle = uiActions.onTimerToggle
+    val onTimerSkip = uiActions.onTimerSkip
+    val onTogglePower = uiActions.onTogglePower
+    val onSelectTraitCategory = uiActions.onSelectTraitCategory
+    val onToggleTrait = uiActions.onToggleTrait
+    val onToggleUniqueOnly = uiActions.onToggleUniqueOnly
+    val onSmudgeToggle = uiActions.onSmudgeToggle
+    val onHuntDurationToggle = uiActions.onHuntDurationToggle
+    val onHuntCooldownToggle = uiActions.onHuntCooldownToggle
+    val onFingerprintToggle = uiActions.onFingerprintToggle
+    val onLinkToggle = uiActions.onLinkToggle
+    val onToggleCursed = uiActions.onToggleCursed
+    val onBpmUpdate = uiActions.onBpmUpdate
+    val onBpmChangeMeasurementType = uiActions.onBpmChangeMeasurementType
+    val onBpmToggleApplyMeasurement = uiActions.onBpmToggleApplyMeasurement
+    val onBpmChangeDomain = uiActions.onBpmChangeDomain
+    val onBpmChangeSampleInterval = uiActions.onBpmChangeSampleInterval
+    val onToggleCollapseToolbar = uiActions.onToggleCollapseToolbar
+    val onChangeToolbarCategory = uiActions.onChangeToolbarCategory
+    val onReset = uiActions.onReset
+    val onGhostNameClick = uiActions.onGhostNameClick
+    val onToggleNegateGhost = uiActions.onToggleNegateGhost
+    val onChangeEvidenceRuling = uiActions.onChangeEvidenceRuling
+    val onEvidenceClick = uiActions.onEvidenceClick
+    val onClearPopup = uiActions.onClearPopup
+    val onStartTutorial = uiActions.onStartTutorial
+
+    val toolbarCategory = toolbarUiState.category
 
     val weather = weatherUiState.weather
     val weatherIcon = weather.toDrawable()
@@ -1057,7 +1077,7 @@ private fun InvestigationContent(
                     RoundedCornerShape(8.dp)
                 ),
             isSanityCollapsed = isSanityCollapsed,
-            onToggleSanityExpansion = { isSanityCollapsed = !isSanityCollapsed },
+            onToggleSanityExpansion = { onToggleSanityCollapse() },
             sanityMedicationComponent = { modifier ->
                 SanityMedicationButton(
                     modifier = modifier

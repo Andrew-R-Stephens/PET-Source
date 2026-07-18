@@ -43,6 +43,8 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
+import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
@@ -58,6 +60,7 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 internal fun BpmTool(
     modifier: Modifier = Modifier,
+    walkthroughState: WalkthroughState? = null,
     realtimeState: RealtimeUiState<BpmPoint>,
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
