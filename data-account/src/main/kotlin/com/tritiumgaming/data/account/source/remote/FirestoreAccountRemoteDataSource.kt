@@ -79,9 +79,7 @@ class FirestoreAccountRemoteDataSource(
         return try {
 
             val docRef = purchaseDocumentRef
-
-            if(docRef == null)
-                return Result.failure(Exception("User Marketplace Preferences document null!"))
+                ?: return Result.failure(Exception("User Marketplace Preferences document null!"))
 
             firestore.runTransaction { transaction ->
 

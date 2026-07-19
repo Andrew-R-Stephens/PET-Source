@@ -511,14 +511,14 @@ fun InvestigationSoloScreen(
                         targetIds = listOf("configs")
                     ),
                     WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_map,
-                        descriptionRes = R.string.walkthrough_desc_configs_map,
-                        targetIds = listOf("config_map")
-                    ),
-                    WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_configs_difficulty,
                         descriptionRes = R.string.walkthrough_desc_configs_difficulty,
                         targetIds = listOf("config_difficulty")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_map,
+                        descriptionRes = R.string.walkthrough_desc_configs_map,
+                        targetIds = listOf("config_map")
                     ),
                     WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_configs_weather,
@@ -541,6 +541,11 @@ fun InvestigationSoloScreen(
                         targetIds = listOf("config_power")
                     ),
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_configs_sanity,
+                        descriptionRes = R.string.walkthrough_desc_sanity_1,
+                        targetIds = listOf("sanity")
+                    ),
+                    WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_configs_death,
                         descriptionRes = R.string.walkthrough_desc_configs_death,
                         targetIds = listOf("config_death")
@@ -549,11 +554,6 @@ fun InvestigationSoloScreen(
                         subtitleRes = R.string.walkthrough_subtitle_configs_medication,
                         descriptionRes = R.string.walkthrough_desc_configs_medication,
                         targetIds = listOf("config_medication")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_sanity,
-                        descriptionRes = R.string.walkthrough_desc_sanity_1,
-                        targetIds = listOf("sanity")
                     ),
                     WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_configs_status,
@@ -632,8 +632,29 @@ fun InvestigationSoloScreen(
                 id = "footstep",
                 pages = listOf(
                     WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_title_footstep,
                         descriptionRes = R.string.walkthrough_desc_footstep_1,
                         targetIds = listOf("footstep")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_title_footstep,
+                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        targetIds = listOf("footstep_modifiers")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_title_footstep,
+                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        targetIds = listOf("footstep_apply")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_title_footstep,
+                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        targetIds = listOf("footstep_visualizer")
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_title_footstep,
+                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        targetIds = listOf("footstep_viewport", "footstep_sample")
                     )
                 ),
                 titleRes = R.string.walkthrough_title_footstep
@@ -868,6 +889,7 @@ private fun InvestigationContent(
                     RoundedCornerShape(8.dp)
                 )
                 .preferredFrameRate(FrameRateCategory.Normal),
+            walkthroughState = walkthroughState,
             realtimeState = bpmToolUiState.realtimeState,
             measurementType = bpmMeasurementType,
             applyMeasurement = bpmApplyMeasurement,

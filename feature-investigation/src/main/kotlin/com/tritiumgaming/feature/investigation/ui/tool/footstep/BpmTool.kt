@@ -156,7 +156,14 @@ internal fun BpmTool(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 8.dp),
+                    .padding(horizontal = 8.dp)
+                    .then(
+                        if (walkthroughState != null) Modifier.walkthroughTarget(
+                            walkthroughState,
+                            "footstep_modifiers",
+                            RoundedCornerShape(8.dp)
+                        ) else Modifier
+                    ),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
@@ -250,7 +257,14 @@ internal fun BpmTool(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+                .padding(horizontal = 8.dp)
+                .then(
+                    if (walkthroughState != null) Modifier.walkthroughTarget(
+                        walkthroughState,
+                        "footstep_apply",
+                        RoundedCornerShape(8.dp)
+                    ) else Modifier
+                ),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
@@ -452,7 +466,14 @@ internal fun BpmTool(
             BpmVisualizer(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp),
+                    .height(200.dp)
+                    .then(
+                        if (walkthroughState != null) Modifier.walkthroughTarget(
+                            walkthroughState,
+                            "footstep_visualizer",
+                            RoundedCornerShape(8.dp)
+                        ) else Modifier
+                    ),
                 stateBundle = bpmVisualizerStateBundle,
                 colorBundle = bpmVisualizerColorBundle,
                 actions = BpmVisualizerUiActions(
@@ -468,7 +489,15 @@ internal fun BpmTool(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Surface(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .weight(1f)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "footstep_viewport",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        ),
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp)
                 ) {
@@ -500,7 +529,15 @@ internal fun BpmTool(
                 }
 
                 Surface(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .weight(1f)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "footstep_sample",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        ),
                     color = LocalPalette.current.surfaceContainer,
                     shape = RoundedCornerShape(8.dp)
                 ) {

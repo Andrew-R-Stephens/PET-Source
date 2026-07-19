@@ -140,8 +140,8 @@ internal fun TraitConfig(
                             stringResource(it.toStringResource()).uppercase()
                         },
                         true,
-                        label = categories.find { it.state }?.data?.let { stringResource(it.toStringResource()) }
-                            ?: "",
+                        label = categories.find { it.state }?.data?.let {
+                            stringResource(it.toStringResource()) } ?: "",
                         onSelect = { onSelectCategory(categories[it].data) },
                         color = LocalPalette.current.surfaceContainerHighest,
                         onColor = LocalPalette.current.onSurface,

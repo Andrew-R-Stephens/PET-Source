@@ -61,7 +61,7 @@ class NewsletterRepositoryImpl(
 
         val currentCache = getLocalInboxes().getOrThrow() // Use the current value from the flow
 
-        currentCache.map { inbox ->
+        currentCache.forEach { inbox ->
             inbox.url?.let { rawURL ->
                 val result = fetchRemoteInbox(Url(rawURL))
                 result.getOrThrow().let { remote ->
@@ -126,7 +126,7 @@ class NewsletterRepositoryImpl(
     override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     private companion object {
-        val REFRESH_DELTA_MIN = 30000L
+        const val REFRESH_DELTA_MIN = 30000L
     }
 
 }

@@ -23,16 +23,13 @@ class ConnectivityManagerHelper(
             "ConnectivityManagerHelper",
             "Active Network Available: Determining Active Network..."
         )
+
         val activeNetwork =
             connectivityManager.getNetworkCapabilities(network) ?: return Result.failure(
                 ConnectivityManagerHelperException(
-                    "Active Network Available: Determining Active Network..."
+                    "Active Network Capabilities are unavailable."
                 )
             )
-        Log.d(
-            "ConnectivityManagerHelper",
-            "Active Network Available: Determining Active Network..."
-        )
 
         return when {
             activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
