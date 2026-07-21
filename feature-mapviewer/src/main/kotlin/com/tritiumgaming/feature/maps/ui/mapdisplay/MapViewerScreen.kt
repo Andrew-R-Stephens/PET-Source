@@ -312,7 +312,7 @@ private fun MapCanvas(
 
     val wallPath = Path()
     val wallPathColor = LocalPalette.current.primary
-    val wallFillColor = LocalPalette.current.primary.copy(alpha = .75f)
+    val wallFillColor = LocalPalette.current.primary.copy(alpha = .45f)
 
     Canvas(
         modifier = Modifier
