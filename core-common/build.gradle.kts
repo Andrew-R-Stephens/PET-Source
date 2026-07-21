@@ -38,6 +38,8 @@ configure<LibraryExtension> {
 
 dependencies {
 
+    implementation(libs.androidx.navigation3.runtime)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat.core)
     implementation(libs.android.material)
