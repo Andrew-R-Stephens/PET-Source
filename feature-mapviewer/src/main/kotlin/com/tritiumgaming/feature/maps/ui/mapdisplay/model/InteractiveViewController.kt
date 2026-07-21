@@ -33,9 +33,15 @@ class InteractiveViewController {
     private var pan = Point2D.Point2DFloat(x = 1f, y = 1f)
 
     private var canSetDefaultZoomLevel = true
-    private var zoom: Float = 1f
-    private var zoomMin = 1f
-    private var zoomMax = 1f
+    var zoom: Float = 1f
+        private set
+    var zoomMin = 1f
+        private set
+    var zoomMax = 1f
+        private set
+
+    val zoomProgress: Float
+        get() = if (zoomMax > zoomMin) (zoom - zoomMin) / (zoomMax - zoomMin) else 0f
 
     fun deepCopy(otherData: InteractiveViewController) {
         this.canSetDefaultZoomLevel = otherData.canSetDefaultZoomLevel
@@ -143,19 +149,7 @@ class InteractiveViewController {
         }
     }
 
-    fun postTranslateOriginMatrix(imgW: Float, imgH: Float, viewportW: Float, viewportH: Float) {
-        val values = FloatArray(9)
-        matrix.getValues(values)
-
-        var scale = 1f
-        if (viewportW < viewportH) {
-            scale = values[Matrix.MSCALE_X] * (viewportH * .1f) / viewportW
-            scale = max(scale.toDouble(), (75 / viewportH).toDouble()).toFloat()
-        }
-        if (viewportH < viewportW) {
-            scale = values[Matrix.MSCALE_Y] * (viewportH * .1f) / viewportW
-            scale = max(scale.toDouble(), (75 / viewportH).toDouble()).toFloat()
-        }
+    fun postTranslateOriginMatrix(scale: Float, imgW: Float, imgH: Float) {
         matrix.setScale(scale, scale)
         matrix.postTranslate(
             pan.x.toFloat() - (imgW * scale * .5f),

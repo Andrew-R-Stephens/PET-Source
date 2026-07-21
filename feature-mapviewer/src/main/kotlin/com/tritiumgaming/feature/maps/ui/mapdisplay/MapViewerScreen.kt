@@ -53,12 +53,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.drawscope.DrawStyle
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
@@ -66,6 +68,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -280,8 +283,16 @@ private fun MapCanvas(
 ) {
     val context = LocalContext.current
     val resources = LocalResources.current
+    val density = LocalDensity.current
 
-    val poiFillColor = LocalPalette.current.primary
+    val poiFillColor = LocalPalette.current.tertiary
+    val poiStrokeColor = LocalPalette.current.surface
+
+    val wallPathColor = LocalPalette.current.primary
+    val wallFillColor = LocalPalette.current.primary.copy(alpha = .45f)
+
+    val minPoiSizePx = with(density) { 12.dp.toPx() }
+    val maxPoiSizePx = with(density) { 24.dp.toPx() }
 
     val selectedFloor = onGetFloorByIndex(mapDisplayUiState.floorIndex)
     val selectedRoom = onGetRoomById(mapDisplayUiState.roomId)
@@ -311,8 +322,6 @@ private fun MapCanvas(
     poiTransformationManager.updateMatrix()
 
     val wallPath = Path()
-    val wallPathColor = LocalPalette.current.primary
-    val wallFillColor = LocalPalette.current.primary.copy(alpha = .45f)
 
     Canvas(
         modifier = Modifier
@@ -360,6 +369,17 @@ private fun MapCanvas(
         val scaleY = matrix[Matrix.MSCALE_Y]
         val panX = matrix[Matrix.MTRANS_X]
         val panY = matrix[Matrix.MTRANS_Y]
+
+        val zoomProgress = mapTransformationManager.zoomProgress
+        val targetPoiSizePx = minPoiSizePx + (maxPoiSizePx - minPoiSizePx) * zoomProgress
+
+        val outlineWidth = with(density) { 1.dp.toPx() }
+        val outlineOffsets = listOf(
+            Offset(-outlineWidth, 0f), Offset(outlineWidth, 0f),
+            Offset(0f, -outlineWidth), Offset(0f, outlineWidth),
+            Offset(-outlineWidth, -outlineWidth), Offset(-outlineWidth, outlineWidth),
+            Offset(outlineWidth, -outlineWidth), Offset(outlineWidth, outlineWidth)
+        )
 
         drawContext.canvas.save()
         drawContext.canvas.nativeCanvas.concat(mapTransformationManager.matrix)
@@ -421,12 +441,28 @@ private fun MapCanvas(
                 }
 
                 poiImages[poi.type]?.let { poiImage ->
+                    val poiScale = targetPoiSizePx / poiImage.width.toFloat()
+
                     poiTransformationManager.deepCopy(mapTransformationManager)
                     poiTransformationManager.setPan(x, y)
                     poiTransformationManager.postTranslateOriginMatrix(
-                        poiImage.width.toFloat(), poiImage.height.toFloat(),
-                        displayWidth.toFloat(), displayHeight.toFloat()
+                        poiScale,
+                        poiImage.width.toFloat(), poiImage.height.toFloat()
                     )
+
+                    outlineOffsets.forEach { offset ->
+                        drawContext.canvas.save()
+                        drawContext.canvas.translate(offset.x, offset.y)
+                        drawContext.canvas.nativeCanvas.concat(
+                            poiTransformationManager.matrix)
+                        drawImage(
+                            image = poiImage,
+                            filterQuality = FilterQuality.Low,
+                            colorFilter = ColorFilter.tint(poiStrokeColor)
+                        )
+                        drawContext.canvas.restore()
+                    }
+
                     drawContext.canvas.save()
                     drawContext.canvas.nativeCanvas.concat(
                         poiTransformationManager.matrix)
