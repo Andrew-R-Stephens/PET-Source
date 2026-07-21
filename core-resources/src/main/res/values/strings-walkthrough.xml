@@ -5,68 +5,75 @@
 
     <string name="walkthrough_title_journal">The Journal</string>
     <string name="walkthrough_desc_journal_1">The Journal is where you record evidence found during the investigation.</string>
-    <string name="walkthrough_desc_journal_2">Select evidence to filter the list of possible ghosts. You can also tap on ghost names to see more details.</string>
+    <string name="walkthrough_desc_journal_2">Select evidence to filter the list of possible ghosts. You can also tap on ghost names to see more details. Tap on Evidence to see more details for those as well. This list will show Evidence as disabled if the Difficulty settings dictate that.</string>
 
     <string name="walkthrough_title_status">Status Bar</string>
-    <string name="walkthrough_desc_status_1">Keep an eye on the status bar for your current sanity, the remaining preparation time, and the current weather.</string>
+    <string name="walkthrough_desc_status_1">Keep an eye on the status bar for your current sanity, the remaining preparation time, the current weather, etc.</string>
 
-    <string name="walkthrough_title_toolbar">Tools &amp; Configs</string>
-    <string name="walkthrough_desc_toolbar_1">The toolbar gives you access to various tools like the BPM counter, Timers, and Operation Configurations.</string>
+    <string name="walkthrough_title_toolbar">Tools and Configs</string>
+    <string name="walkthrough_desc_toolbar_1">The toolbar gives you access to various tools like the Operation Configurations, BPM counter, Timers, and Difficulty analysis.</string>
 
-    <string name="walkthrough_title_configs">Investigation Setup</string>
-    <string name="walkthrough_desc_configs_1">Configure the map, difficulty, and weather for your investigation here. These settings affect the ghost\'s behavior and your rewards.</string>
+    <string name="walkthrough_title_configs">Operation Config</string>
+    <string name="walkthrough_desc_configs_1">Configure the map, difficulty, and weather to match your ongoing investigation.</string>
     <string name="walkthrough_subtitle_configs_map">Map Selection</string>
-    <string name="walkthrough_desc_configs_map">Select the location for your next investigation. Larger maps offer higher rewards but are more dangerous.</string>
+    <string name="walkthrough_desc_configs_map">Select the location of the current investigation. This affects the Sanity drain rate modifier.</string>
     <string name="walkthrough_subtitle_configs_difficulty">Difficulty Settings</string>
-    <string name="walkthrough_desc_configs_difficulty">Choose how challenging the investigation will be. Higher difficulties increase ghost aggression and multiplier.</string>
+    <string name="walkthrough_desc_configs_difficulty">Select the difficulty of the current investigation. This will affect the Sanity drain rate modifier.</string>
     <string name="walkthrough_subtitle_configs_weather">Weather Control</string>
-    <string name="walkthrough_desc_configs_weather">Check or select the weather conditions. Weather affects visibility and can impact certain ghost behaviors.</string>
+    <string name="walkthrough_desc_configs_weather">Select the Weather of the current investigation. When set, this will show the Temperature tracker. Note: Only the Blood Moon will affect the Sanity drain rate modifier.</string>
     <string name="walkthrough_subtitle_configs_temperature">Temperature Meter</string>
-    <string name="walkthrough_desc_configs_temperature">Monitor the ambient temperature. Freezing temperatures are a key piece of evidence.</string>
-    <string name="walkthrough_subtitle_configs_timer">Preparation Timer</string>
-    <string name="walkthrough_desc_configs_timer">Track the remaining preparation time. Once it hits zero, the ghost can start hunting!</string>
+    <string name="walkthrough_desc_configs_temperature">This will show a rough approximation of the temperature of indoor rooms, but only when both the Weather is configured and the Operation Timer is running. It will either raise or lower depending on the state of the Fuse Box. Note: For more accurate approximations, keep the Fuse Box toggle up\-to\-date.</string>
+    <string name="walkthrough_subtitle_configs_timer">Operation Timer</string>
+    <string name="walkthrough_desc_configs_timer">This feature simulates an ongoing investigation. The Timer represents the remaining preparation time. This must be running to track both Sanity and Temperature.</string>
     <string name="walkthrough_subtitle_configs_power">Fuse Box Button</string>
-    <string name="walkthrough_desc_configs_power">Control the building\'s main fuse box. Keep the lights on to preserve your sanity!</string>
+    <string name="walkthrough_desc_configs_power">This represents the state of the main fuse box. If the difficulty has a Broken fuse box, this will be disabled. The state of this will affect the Temperature meter.</string>
     <string name="walkthrough_subtitle_configs_death">Teammate Death</string>
-    <string name="walkthrough_desc_configs_death">Record a teammate\'s unfortunate passing to adjust your investigation strategy.</string>
+    <string name="walkthrough_desc_configs_death">Press this for when a Teammate meets their demise. It will remove the appropriate amount of Sanity from the Sanity tracker.</string>
     <string name="walkthrough_subtitle_configs_medication">Sanity Medication</string>
-    <string name="walkthrough_desc_configs_medication">Use sanity pills to restore your mental state and delay the onset of ghost hunts.</string>
+    <string name="walkthrough_desc_configs_medication">Press this for when you consume a Sanity Medication. It will increase the appropriate amount of Sanity for the Sanity tracker.</string>
 
     <string name="walkthrough_subtitle_configs_sanity">Sanity Meter</string>
     <string name="walkthrough_subtitle_configs_status">Status Bar</string>
 
     <string name="walkthrough_title_sanity">Sanity Management</string>
-    <string name="walkthrough_desc_sanity_1">Your sanity drops over time in the dark. Use sanity pills to restore it, and be careful – low sanity makes you a target!</string>
+    <string name="walkthrough_desc_sanity_1">Your approximate Sanity levels are represented here, and can be manually adjusted. Sanity drain rate is affected by the combination of Difficulty and Map size, as well as the ghost\'s behaviors.</string>
 
     <string name="walkthrough_title_traits">Secondary Evidence</string>
-    <string name="walkthrough_desc_traits_1">Identify secondary evidence traits to narrow down the ghost type. Some traits are unique to specific ghosts.</string>
+    <string name="walkthrough_desc_traits_1">Identify secondary evidence traits to narrow down the ghost type. Some traits are unique to specific ghosts, while others simply provide a higher or lower likelihood. The Journal will reorder to accommodate any selections.</string>
     <string name="walkthrough_subtitle_traits_unique">Unique Traits Only</string>
-    <string name="walkthrough_desc_traits_unique">Filter the list to only show traits that are unique to a single ghost. This is often the fastest way to confirm a specific identity.</string>
+    <string name="walkthrough_desc_traits_unique">Filter the list to only show traits that are unique to a single ghost. This is often the fastest way to confirm a specific ghost.</string>
     <string name="walkthrough_subtitle_traits_filter">Category Filter</string>
-    <string name="walkthrough_desc_traits_filter">Narrow down the list by selecting a specific category, such as "Behavior" or "Abilities", to find relevant evidence faster.</string>
+    <string name="walkthrough_desc_traits_filter">Narrow down the list by selecting a specific category, such as "Behavior" or "Abilities", to find relevant traits faster.</string>
 
     <string name="walkthrough_title_analyzer">Operation Details</string>
     <string name="walkthrough_desc_analyzer_1">Review the specific details of your current operation, including ghost behavior and investigation settings.</string>
 
     <string name="walkthrough_title_timers">Investigation Timers</string>
-    <string name="walkthrough_desc_timers_1">Use these timers to track smudge stick effectiveness, hunt durations, and fingerprint persistence.</string>
-    <string name="walkthrough_subtitle_timers_smudge">Smudge Stick Timer</string>
-    <string name="walkthrough_desc_timers_smudge">Track how long a smudge stick prevents the ghost from hunting. Different ghosts have different prevention durations.</string>
+    <string name="walkthrough_desc_timers_1">Use these timers to track protection time from a room cleansing, hunt durations, hunt cooldowns, and fingerprint lifetimes. If you see ghost names displayed with each timer, it means the ghost might modify the timer in some way.</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Cursed Operation</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Enable this if a Cursed Possession has been used and a hunt is triggered by it, as the Operation is considered Cursed. Cursed hunts last longer than a standard hunt.</string>
     <string name="walkthrough_subtitle_timers_hunt_duration">Hunt Duration</string>
-    <string name="walkthrough_desc_timers_hunt_duration">Monitor the length of an active hunt. This helps you know when it\'s safe to come out of hiding.</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Monitor the length of an active hunt. This helps you know when it\'s safe to come out of hiding. Some ghosts have different durations. This is affected by the Difficulty level, Map size, and if the operation is Cursed.</string>
     <string name="walkthrough_subtitle_timers_hunt_cooldown">Hunt Cooldown</string>
     <string name="walkthrough_desc_timers_hunt_cooldown">Track the minimum time between hunts. Use this window to move between hiding spots or gather evidence.</string>
     <string name="walkthrough_subtitle_timers_link">Linked Timers</string>
-    <string name="walkthrough_desc_timers_link">When linked, the cooldown timer starts automatically as soon as the hunt duration timer finishes, providing a seamless timeline.</string>
+    <string name="walkthrough_desc_timers_link">When linked, the hunt cooldown timer starts automatically as soon as the hunt duration timer finishes, providing a seamless timeline. This does not work well with an Obambo in its Aggressive state.</string>
+    <string name="walkthrough_subtitle_timers_smudge">Room Cleanse Timer</string>
+    <string name="walkthrough_desc_timers_smudge">Track the duration of protection after cleansing a room with a Smudge Stick. Different ghosts have different prevention durations.</string>
     <string name="walkthrough_subtitle_timers_fingerprint">Fingerprint Timer</string>
-    <string name="walkthrough_desc_timers_fingerprint">Track how long fingerprints will remain visible. This helps you know if you need to re-check a door or window.</string>
+    <string name="walkthrough_desc_timers_fingerprint">Track how long fingerprints will remain visible. This helps you know if you need to re-check a door or window. An Obake has the potential to make a fingerprint appear for a shorter period. Time is affected by the Fingerprint Duration difficulty settings.</string>
 
     <string name="walkthrough_title_footstep">Footstep Analyzer</string>
     <string name="walkthrough_desc_footstep_1">Measure the ghost\'s movement speed (BPM) to help identify it. Different ghosts have distinct walking speeds.</string>
     <string name="walkthrough_subtitle_footstep_modifiers">Active Modifiers</string>
-    <string name="walkthrough_desc_footstep_modifiers">See how the current investigation settings, such as weather or ghost speed modifiers, are affecting the ghost\'s movement.</string>
+    <string name="walkthrough_desc_footstep_modifiers">See how the current investigation settings, such as Weather or ghost speed modifiers, are affecting the ghost\'s movement. Be sure to configure the Operation to get the most accurate readings!</string>
     <string name="walkthrough_subtitle_footstep_apply">Apply Measurement</string>
     <string name="walkthrough_desc_footstep_apply">Choose which measurement (Instant, Average, or Weighted) to apply to your investigation to help narrow down the ghost type.</string>
+    <string name="walkthrough_desc_footstep_apply_instant">Instant takes the latest BPM.</string>
+    <string name="walkthrough_desc_footstep_apply_average">Average takes the average of all BPMs within the Sample interval.</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">Weighted takes the average of all averaged BPMs within the Sample interval. This is best used with a smaller Sample interval.</string>
     <string name="walkthrough_subtitle_footstep_visualizer">BPM Visualizer</string>
     <string name="walkthrough_desc_footstep_visualizer">Tap along with the ghost\'s footsteps to see its movement speed graphed in real-time. Use the dropdowns to adjust the view.</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">Configure Window</string>
+    <string name="walkthrough_desc_footstep_visualizer">Configure the Viewport time to set the visible time range. Configure the Sampling interval to set the time range for sampling Averaged and Weighted measurements.</string>
 </resources>
