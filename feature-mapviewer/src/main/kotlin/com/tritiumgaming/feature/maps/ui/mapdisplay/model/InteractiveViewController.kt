@@ -3,6 +3,9 @@ package com.tritiumgaming.feature.maps.ui.mapdisplay.model
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.util.Size
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import com.tritiumgaming.core.common.graphics.geometry.Point2D
 import kotlin.math.max
 import kotlin.math.min
@@ -16,7 +19,9 @@ class InteractiveViewController {
 
     private val bitmapFactoryOptions: BitmapFactory.Options = BitmapFactory.Options()
 
-    val matrix: Matrix = Matrix()
+    var matrix: Matrix by mutableStateOf(Matrix())
+        private set
+
     val matrixValues: FloatArray
         get() {
             val values = FloatArray(9)
@@ -30,14 +35,17 @@ class InteractiveViewController {
     private var imageDim = Size(0, 0)
     private var containerDim = Size(0, 0)
 
-    private var pan = Point2D.Point2DFloat(x = 1f, y = 1f)
+    private var viewportW = 0f
+    private var viewportH = 0f
+
+    private var pan by mutableStateOf(Point2D.Point2DFloat(x = 0f, y = 0f))
 
     private var canSetDefaultZoomLevel = true
-    var zoom: Float = 1f
+    var zoom: Float by mutableStateOf(1f)
         private set
-    var zoomMin = 1f
+    var zoomMin by mutableStateOf(1f)
         private set
-    var zoomMax = 1f
+    var zoomMax by mutableStateOf(1f)
         private set
 
     val zoomProgress: Float
@@ -47,19 +55,25 @@ class InteractiveViewController {
         this.canSetDefaultZoomLevel = otherData.canSetDefaultZoomLevel
         this.zoom = otherData.zoom
 
-        pan.setLocation(x = otherData.pan.x, y = otherData.pan.y)
+        pan = Point2D.Point2DFloat(otherData.pan.x.toFloat(), otherData.pan.y.toFloat())
 
         val matrixVals = FloatArray(9)
         otherData.matrix.getValues(matrixVals)
-        matrix.setValues(matrixVals)
+        val newMatrix = Matrix()
+        newMatrix.setValues(matrixVals)
+        matrix = newMatrix
 
         bitmapFactoryOptions.inJustDecodeBounds = otherData.bitmapFactoryOptions.inJustDecodeBounds
         bitmapFactoryOptions.outWidth = otherData.bitmapFactoryOptions.outWidth
         bitmapFactoryOptions.outHeight = otherData.bitmapFactoryOptions.outHeight
         bitmapFactoryOptions.inSampleSize = otherData.bitmapFactoryOptions.inSampleSize
 
-        setImageSize(otherData.imageDim.width, otherData.imageDim.height)
-        setContainerSize(otherData.containerDim.width, otherData.containerDim.height)
+        imageDim = Size(otherData.imageDim.width, otherData.imageDim.height)
+        containerDim = Size(otherData.containerDim.width, otherData.containerDim.height)
+        viewportW = otherData.viewportW
+        viewportH = otherData.viewportH
+
+        updateZoomConstraints()
         setZoomConstraints(otherData.zoomMin, otherData.zoomMax)
     }
 
@@ -71,35 +85,40 @@ class InteractiveViewController {
         this.zoom = (this.zoom + zoomNormal)
             .coerceIn(minimumValue = zoomMin, maximumValue = zoomMax)
 
-        updateMatrix()
+        refreshMatrix()
     }
 
     fun doPan(addX: Float, addY: Float) {
         val panSense = 1f
 
-        pan.apply {
-            setLocation(
-                pan.x + (addX * panSense),
-                pan.y + (addY * panSense)
-            )
-        }
+        pan = Point2D.Point2DFloat(
+            (pan.x + (addX * panSense)).toFloat(),
+            (pan.y + (addY * panSense)).toFloat()
+        )
 
-        updateMatrix()
+        refreshMatrix()
     }
 
     fun setPan(x: Float, y: Float) {
-        pan.setLocation(x, y)
+        pan = Point2D.Point2DFloat(x, y)
 
-        updateMatrix()
+        refreshMatrix()
     }
 
     fun updateMatrix() {
         setAutoInSampleSize(containerDim.width, containerDim.height)
         bitmapFactoryOptions.inJustDecodeBounds = false
+        refreshMatrix()
     }
 
-    fun postCenterTranslateMatrix(imgW: Float, imgH: Float, viewportW: Float, viewportH: Float) {
-        if (canSetDefaultZoomLevel && viewportW > 0f && viewportH > 0f) {
+    fun refreshMatrix() {
+        val imgW = imageDim.width.toFloat()
+        val imgH = imageDim.height.toFloat()
+
+        if (imgW <= 0f || imgH <= 0f || viewportW <= 0f || viewportH <= 0f) return
+
+        val newMatrix = Matrix()
+        if (canSetDefaultZoomLevel) {
             val zoomW = viewportW / imgW
             val zoomH = viewportH / imgH
             zoom = min(zoomW.toDouble(), zoomH.toDouble()).toFloat()
@@ -107,53 +126,61 @@ class InteractiveViewController {
             canSetDefaultZoomLevel = false
         }
 
-        matrix.setScale(zoom, zoom)
-        matrix.postTranslate(
+        newMatrix.setScale(zoom, zoom)
+        newMatrix.postTranslate(
             (viewportW / 2f) - (imgW / 2f * zoom) + (pan.x.toFloat() * zoom),
             (viewportH / 2f) - (imgH / 2f * zoom) + (pan.y.toFloat() * zoom)
         )
 
         val vals = FloatArray(9)
-        matrix.getValues(vals)
+        newMatrix.getValues(vals)
 
         var distance: Float
+        var newPanX = pan.x
+        var newPanY = pan.y
 
         //RIGHT
         val boundsPadding = .2f
         if ((((vals[2]) + (imgW * zoom)).also {
                 distance = it
             }) < viewportW * boundsPadding) {
-            pan.apply {
-                x -= distance - (viewportW * boundsPadding)
-            }
+            newPanX -= (distance - (viewportW * boundsPadding)) / zoom
         }
         //LEFT
         if ((vals[2]) > viewportW - (viewportW * boundsPadding)) {
-            pan.apply {
-                x += ((viewportW) - (vals[2])) - (viewportW * boundsPadding)
-            }
+            newPanX += ((viewportW) - (vals[2]) - (viewportW * boundsPadding)) / zoom
         }
         //BOTTOM
         if ((((vals[5]) + (imgH * zoom)).also {
                 distance = it
             }) < viewportH * boundsPadding) {
-            pan.apply {
-                y -= distance - (viewportH * boundsPadding)
-            }
+            newPanY -= (distance - (viewportH * boundsPadding)) / zoom
         }
         //TOP
         if ((vals[5]) > viewportH - (viewportH * boundsPadding)) {
-            pan.apply {
-                y += ((viewportH) - (vals[5])) - (viewportH * boundsPadding)
-            }
+            newPanY += ((viewportH) - (vals[5]) - (viewportH * boundsPadding)) / zoom
         }
+
+        if (newPanX != pan.x || newPanY != pan.y) {
+            pan = Point2D.Point2DFloat(newPanX.toFloat(), newPanY.toFloat())
+            // Re-calculate matrix with new pan
+            newMatrix.setScale(zoom, zoom)
+            newMatrix.postTranslate(
+                (viewportW / 2f) - (imgW / 2f * zoom) + (pan.x.toFloat() * zoom),
+                (viewportH / 2f) - (imgH / 2f * zoom) + (pan.y.toFloat() * zoom)
+            )
+        }
+
+        matrix = newMatrix
     }
 
     fun postTranslateOriginMatrix(scale: Float, imgW: Float, imgH: Float) {
-        matrix.setScale(scale, scale)
-        matrix.postTranslate(
+        val newMatrix = Matrix()
+        newMatrix.setScale(scale, scale)
+        newMatrix.postTranslate(
             pan.x.toFloat() - (imgW * scale * .5f),
             pan.y.toFloat() - (imgH * scale * .5f))
+        matrix = newMatrix
     }
 
     fun setAutoInSampleSize(reqWidth: Int, reqHeight: Int) {
@@ -177,14 +204,18 @@ class InteractiveViewController {
 
     fun setContainerSize(w: Int, h: Int) {
         containerDim = Size(w, h)
+        viewportW = w.toFloat()
+        viewportH = h.toFloat()
 
         updateZoomConstraints()
+        refreshMatrix()
     }
 
     fun setImageSize(w: Int, h: Int) {
         imageDim = Size(w, h)
 
         updateZoomConstraints()
+        refreshMatrix()
     }
 
     fun setZoomConstraints(min: Float, max: Float) {

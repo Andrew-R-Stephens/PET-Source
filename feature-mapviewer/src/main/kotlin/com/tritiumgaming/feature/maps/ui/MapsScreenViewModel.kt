@@ -220,6 +220,8 @@ class MapsScreenViewModel(
         viewModelScope.launch {
             try {
                 complexMaps = fetchComplexMapsUseCase().getOrThrow()
+                // Re-trigger current map update to populate room and POI data once complexMaps are loaded
+                setCurrentMap(interactiveMapUiState.value.mapId)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

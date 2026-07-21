@@ -193,11 +193,7 @@ private fun MapViewerContent(
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val mapTransformationManager = remember(mapDisplayUiState.mapId) { InteractiveViewController() }
-    val poiTransformationManager = remember(mapDisplayUiState.mapId) { InteractiveViewController() }
 
-    var interactionSourceMillis by remember {
-        mutableLongStateOf(System.currentTimeMillis())
-    }
     var displayWidth by remember {
         mutableIntStateOf(0)
     }
@@ -217,11 +213,8 @@ private fun MapViewerContent(
         MapCanvas(
             mapDisplayUiState = mapDisplayUiState,
             mapTransformationManager = mapTransformationManager,
-            poiTransformationManager = poiTransformationManager,
-            interactionSourceMillis = interactionSourceMillis,
             displayWidth = displayWidth,
             displayHeight = displayHeight,
-            onSetInteractionMillis = { interactionSourceMillis = it },
             onSetDisplaySize = { width, height ->
                 displayWidth = width
                 displayHeight = height
@@ -269,11 +262,8 @@ private fun MapViewerContent(
 private fun MapCanvas(
     mapDisplayUiState: InteractiveMapUiState,
     mapTransformationManager: InteractiveViewController,
-    poiTransformationManager: InteractiveViewController,
-    interactionSourceMillis: Long,
     displayWidth: Int,
     displayHeight: Int,
-    onSetInteractionMillis: (Long) -> Unit,
     onSetDisplaySize: (Int, Int) -> Unit,
     onSetSelectedRoomAtPoint: (point: Point2D.Point2DFloat, scaleX: Float, scaleY: Float,
         translateX: Float, translateY: Float) -> Unit,
@@ -285,7 +275,7 @@ private fun MapCanvas(
     val resources = LocalResources.current
     val density = LocalDensity.current
 
-    val poiFillColor = LocalPalette.current.tertiary
+    val poiFillColor = LocalPalette.current.onSurfaceVariant
     val poiStrokeColor = LocalPalette.current.surface
 
     val wallPathColor = LocalPalette.current.primary
@@ -318,9 +308,6 @@ private fun MapCanvas(
     mapTransformationManager.setImageSize(floorImage.width, floorImage.height)
     mapTransformationManager.updateMatrix()
 
-    poiTransformationManager.setImageSize(floorImage.width, floorImage.height)
-    poiTransformationManager.updateMatrix()
-
     val wallPath = Path()
 
     Canvas(
@@ -349,20 +336,9 @@ private fun MapCanvas(
                     )
 
                 }
-            ) {
-                onSetInteractionMillis(System.currentTimeMillis())
-            }
+            )
     ) {
         if (displayWidth <= 0 || displayHeight <= 0) return@Canvas
-
-        Log.d("MapCanvas", "$interactionSourceMillis")
-
-        mapTransformationManager.postCenterTranslateMatrix(
-            floorImage.width.toFloat(),
-            floorImage.height.toFloat(),
-            displayWidth.toFloat(),
-            displayHeight.toFloat()
-        )
 
         val matrix: FloatArray = mapTransformationManager.matrixValues
         val scaleX = matrix[Matrix.MSCALE_X]
@@ -433,28 +409,25 @@ private fun MapCanvas(
 
             currentFloor.getPois().forEach { poi ->
 
-                var x = panX
-                var y = panY
+                var screenX = panX
+                var screenY = panY
                 poi.point?.let { point ->
-                    x = (panX) + point.x * scaleX
-                    y = (panY) + point.y * scaleY
+                    screenX = (panX) + point.x * scaleX
+                    screenY = (panY) + point.y * scaleY
                 }
 
                 poiImages[poi.type]?.let { poiImage ->
                     val poiScale = targetPoiSizePx / poiImage.width.toFloat()
-
-                    poiTransformationManager.deepCopy(mapTransformationManager)
-                    poiTransformationManager.setPan(x, y)
-                    poiTransformationManager.postTranslateOriginMatrix(
-                        poiScale,
-                        poiImage.width.toFloat(), poiImage.height.toFloat()
-                    )
+                    val halfWidth = (poiImage.width * poiScale) / 2f
+                    val halfHeight = (poiImage.height * poiScale) / 2f
 
                     outlineOffsets.forEach { offset ->
                         drawContext.canvas.save()
-                        drawContext.canvas.translate(offset.x, offset.y)
-                        drawContext.canvas.nativeCanvas.concat(
-                            poiTransformationManager.matrix)
+                        drawContext.canvas.translate(
+                            screenX + offset.x - halfWidth,
+                            screenY + offset.y - halfHeight
+                        )
+                        drawContext.canvas.nativeCanvas.scale(poiScale, poiScale)
                         drawImage(
                             image = poiImage,
                             filterQuality = FilterQuality.Low,
@@ -464,8 +437,11 @@ private fun MapCanvas(
                     }
 
                     drawContext.canvas.save()
-                    drawContext.canvas.nativeCanvas.concat(
-                        poiTransformationManager.matrix)
+                    drawContext.canvas.translate(
+                        screenX - halfWidth,
+                        screenY - halfHeight
+                    )
+                    drawContext.canvas.nativeCanvas.scale(poiScale, poiScale)
                     drawImage(
                         image = poiImage,
                         filterQuality = FilterQuality.Low,
@@ -483,8 +459,7 @@ private fun MapCanvas(
 
 private fun Modifier.mapControlInput(
     interactiveViewController: InteractiveViewController,
-    onTap: (Float, Float) -> Unit,
-    onInteraction: () -> Unit
+    onTap: (Float, Float) -> Unit
 ): Modifier {
 
     var pointerCount = 0
@@ -504,7 +479,6 @@ private fun Modifier.mapControlInput(
                 detectTapGestures { tap ->
                     if (pointerCount == 1) {
                         onTap(tap.x, tap.y)
-                        onInteraction()
                     }
                 }
             }
@@ -512,11 +486,9 @@ private fun Modifier.mapControlInput(
                 detectTransformGestures { _, pan, zoom, _ ->
                     if (pointerCount == 1) {
                         interactiveViewController.doPan(pan.x, pan.y)
-                        onInteraction()
                     }
                     if (pointerCount == 2) {
                         interactiveViewController.doZoom(zoom)
-                        onInteraction()
                     }
                 }
             }
