@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">Экран расследования</string>
+    <string name="walkthrough_desc_investigation_1">Добро пожаловать на экран расследования! Это ваша главная панель для отслеживания улик и идентификации призрака.</string>
+
+    <string name="walkthrough_title_journal">Журнал</string>
+    <string name="walkthrough_desc_journal_1">В журнале вы записываете улики, найденные во время расследования.</string>
+    <string name="walkthrough_desc_journal_2">Выбирайте улики, чтобы отфильтровать список возможных призраков. Вы также можете нажимать на имена призраков, чтобы увидеть подробности. Нажимайте на улики, чтобы увидеть информацию и о них. Улики будут отображаться как отключенные, если этого требуют настройки сложности.</string>
+
+    <string name="walkthrough_title_status">Панель состояния</string>
+    <string name="walkthrough_desc_status_1">Следите за панелью состояния, чтобы знать свой текущий рассудок, оставшееся время подготовки, текущую погоду и т. д.</string>
+
+    <string name="walkthrough_title_toolbar">Инструменты и настройки</string>
+    <string name="walkthrough_desc_toolbar_1">Панель инструментов дает доступ к различным функциям, таким как конфигурации операции, счетчик BPM, таймеры и анализ сложности.</string>
+
+    <string name="walkthrough_title_configs">Конфиг. операции</string>
+    <string name="walkthrough_desc_configs_1">Настройте карту, сложность и погоду в соответствии с вашим текущим расследованием.</string>
+    <string name="walkthrough_subtitle_configs_map">Выбор карты</string>
+    <string name="walkthrough_desc_configs_map">Выберите место проведения текущего расследования. Это влияет на множитель скорости потери рассудка.</string>
+    <string name="walkthrough_subtitle_configs_difficulty">Настройки сложности</string>
+    <string name="walkthrough_desc_configs_difficulty">Выберите сложность текущего расследования. Это повлияет на множитель скорости потери рассудка.</string>
+    <string name="walkthrough_subtitle_configs_weather">Управление погодой</string>
+    <string name="walkthrough_desc_configs_weather">Выберите погоду для текущего расследования. После установки отобразится датчик температуры. Примечание: только Кровавая луна влияет на множитель скорости потери рассудка.</string>
+    <string name="walkthrough_subtitle_configs_temperature">Датчик температуры</string>
+    <string name="walkthrough_desc_configs_temperature">Показывает приблизительную температуру в помещениях, но только если настроена погода и запущен таймер операции. Температура будет расти или падать в зависимости от состояния щитка. Примечание: для более точных данных держите переключатель щитка в актуальном состоянии.</string>
+    <string name="walkthrough_subtitle_configs_timer">Таймер операции</string>
+    <string name="walkthrough_desc_configs_timer">Эта функция симулирует идущее расследование. Таймер представляет собой оставшееся время подготовки. Он должен быть запущен для отслеживания рассудка и температуры.</string>
+    <string name="walkthrough_subtitle_configs_power">Кнопка щитка</string>
+    <string name="walkthrough_desc_configs_power">Отображает состояние главного электрощитка. Если на данной сложности щиток сломан, кнопка будет отключена. Состояние щитка влияет на датчик температуры.</string>
+    <string name="walkthrough_subtitle_configs_death">Смерть напарника</string>
+    <string name="walkthrough_desc_configs_death">Нажмите эту кнопку, когда напарник погибает. Это отнимет соответствующее количество рассудка на счетчике.</string>
+    <string name="walkthrough_subtitle_configs_medication">Успокоительное</string>
+    <string name="walkthrough_desc_configs_medication">Нажмите эту кнопку при приеме успокоительного. Это восстановит соответствующее количество рассудка на счетчике.</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">Счетчик рассудка</string>
+    <string name="walkthrough_subtitle_configs_status">Панель состояния</string>
+
+    <string name="walkthrough_title_sanity">Управление рассудком</string>
+    <string name="walkthrough_desc_sanity_1">Здесь отображается ваш примерный уровень рассудка, который можно регулировать вручную. На скорость потери рассудка влияет сочетание сложности и размера карты, а также поведение призрака.</string>
+
+    <string name="walkthrough_title_traits">Вторичные улики</string>
+    <string name="walkthrough_desc_traits_1">Определяйте черты вторичных улик, чтобы сузить круг поиска типа призрака. Некоторые черты уникальны для конкретных призраков, другие лишь указывают на вероятность. Журнал перестроится в соответствии с вашим выбором.</string>
+    <string name="walkthrough_subtitle_traits_unique">Только уникальные черты</string>
+    <string name="walkthrough_desc_traits_unique">Отфильтровать список, чтобы показать только черты, уникальные для одного призрака. Часто это самый быстрый способ подтвердить конкретного призрака.</string>
+    <string name="walkthrough_subtitle_traits_filter">Фильтр категорий</string>
+    <string name="walkthrough_desc_traits_filter">Сузьте список, выбрав определенную категорию, например «Поведение» или «Способности», чтобы быстрее находить нужные черты.</string>
+
+    <string name="walkthrough_title_analyzer">Детали операции</string>
+    <string name="walkthrough_desc_analyzer_1">Просматривайте подробности текущей операции, включая поведение призрака и настройки расследования.</string>
+
+    <string name="walkthrough_title_timers">Таймеры расследования</string>
+    <string name="walkthrough_desc_timers_1">Используйте эти таймеры для отслеживания времени защиты после окуривания комнаты, длительности охоты, перезарядки охоты и времени жизни отпечатков. Если рядом с таймером отображаются имена призраков, значит, этот призрак может как-то изменять данный таймер.</string>
+    <string name="walkthrough_subtitle_timers_cursed">Проклятая операция</string>
+    <string name="walkthrough_desc_timers_cursed">Включите это, если был использован проклятый предмет и им была спровокована охота, так как операция считается проклятой. Проклятая охота длится дольше обычной.</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Длительность охоты</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Следите за продолжительностью активной охоты. Это поможет понять, когда можно безопасно выйти из укрытия. У некоторых призраков длительность отличается. На нее влияют сложность, размер карты и статус проклятой операции.</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">Перезарядка охоты</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">Отслеживайте минимальное время между охотами. Используйте это окно, чтобы сменить укрытие или собрать улики.</string>
+    <string name="walkthrough_subtitle_timers_link">Связанные таймеры</string>
+    <string name="walkthrough_desc_timers_link">При активации связи таймер перезарядки охоты запустится автоматически сразу после окончания таймера длительности охоты. Это плохо работает с Обанбо в его агрессивном состоянии.</string>
+    <string name="walkthrough_subtitle_timers_smudge">Таймер окуривания</string>
+    <string name="walkthrough_desc_timers_smudge">Отслеживайте длительность защиты после окуривания комнаты благовониями. У разных призраков разная длительность предотвращения охоты.</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">Таймер отпечатков</string>
+    <string name="walkthrough_desc_timers_fingerprint">Отслеживайте, как долго отпечатки пальцев будут оставаться видимыми. Это поможет понять, нужно ли повторно проверять дверь или окно. Обаке может оставлять отпечатки на более короткий срок. Время зависит от настроек сложности «Длительность отпечатков».</string>
+
+    <string name="walkthrough_title_footstep">Анализатор шагов</string>
+    <string name="walkthrough_desc_footstep_1">Измеряйте скорость передвижения призрака (BPM) для идентификации. У разных призраков разная скорость ходьбы.</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">Активные модификаторы</string>
+    <string name="walkthrough_desc_footstep_modifiers">Смотрите, как настройки расследования, такие как погода или модификаторы скорости призрака, влияют на его передвижение. Обязательно настройте параметры операции для наиболее точных показаний!</string>
+    <string name="walkthrough_subtitle_footstep_apply">Применить измерение</string>
+    <string name="walkthrough_desc_footstep_apply">Выберите, какой тип измерения (мгновенное, среднее или взвешенное) применить к расследованию, чтобы помочь сузить список призраков.</string>
+    <string name="walkthrough_desc_footstep_apply_instant">Мгновенное берет последнее значение BPM.</string>
+    <string name="walkthrough_desc_footstep_apply_average">Среднее берет среднее значение всех BPM в интервале выборки.</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">Взвешенное берет среднее значение всех усредненных BPM в интервале выборки. Лучше всего использовать с коротким интервалом выборки.</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">Визуализатор BPM</string>
+    <string name="walkthrough_desc_footstep_visualizer">Нажимайте в такт шагам призрака, чтобы увидеть график его скорости в реальном времени. Используйте выпадающие списки для настройки вида.</string>
+    <string name="walkthrough_subtitle_footstep_configure">Настройка окна</string>
+    <string name="walkthrough_desc_footstep_configure">Настройте время просмотра (Viewport), чтобы задать видимый диапазон времени. Настройте интервал выборки (Sampling), чтобы задать диапазон времени для усредненных и взвешенных измерений.</string>
+</resources>

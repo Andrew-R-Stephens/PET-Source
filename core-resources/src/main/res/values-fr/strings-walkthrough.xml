@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">Écran d\'Enquête</string>
+    <string name="walkthrough_desc_investigation_1">Bienvenue sur l\'écran d\'enquête ! C\'est votre tableau de bord principal pour suivre les preuves et identifier le fantôme.</string>
+
+    <string name="walkthrough_title_journal">Le Journal</string>
+    <string name="walkthrough_desc_journal_1">Le Journal est l\'endroit où vous enregistrez les preuves trouvées pendant l\'enquête.</string>
+    <string name="walkthrough_desc_journal_2">Sélectionnez des preuves pour filtrer la liste des fantômes possibles. Vous pouvez également appuyer sur les noms des fantômes pour voir plus de détails. Appuyer sur Preuves pour voir plus de détails pour celles-ci également. Cette liste affichera les preuves comme désactivées si les paramètres de difficulté le dictent.</string>
+
+    <string name="walkthrough_title_status">Barre d\'État</string>
+    <string name="walkthrough_desc_status_1">Gardez un œil sur la barre d\'état pour votre santé mentale actuelle, le temps de préparation restant, la météo actuelle, etc.</string>
+
+    <string name="walkthrough_title_toolbar">Outils et Configs</string>
+    <string name="walkthrough_desc_toolbar_1">La barre d\'outils vous donne accès à divers outils comme les Configurations d\'Opération, le compteur de BPM, les Temporisateurs et l\'analyse de difficulté.</string>
+
+    <string name="walkthrough_title_configs">Config. d\'Opération</string>
+    <string name="walkthrough_desc_configs_1">Configurez la carte, la difficulté et la météo pour correspondre à votre enquête en cours.</string>
+    <string name="walkthrough_subtitle_configs_map">Sélection de Carte</string>
+    <string name="walkthrough_desc_configs_map">Sélectionnez le lieu de l\'enquête actuelle. Cela affecte le modificateur de taux de perte de santé mentale.</string>
+    <string name="walkthrough_subtitle_configs_difficulty">Paramètres de Difficulté</string>
+    <string name="walkthrough_desc_configs_difficulty">Sélectionnez la difficulté de l\'enquête actuelle. Cela affectera le modificateur de taux de perte de santé mentale.</string>
+    <string name="walkthrough_subtitle_configs_weather">Contrôle de la Météo</string>
+    <string name="walkthrough_desc_configs_weather">Sélectionnez la météo de l\'enquête actuelle. Une fois réglée, elle affichera le suivi de la température. Note : Seule la Lune de Sang affectera le modificateur de taux de perte de santé mentale.</string>
+    <string name="walkthrough_subtitle_configs_temperature">Thermomètre</string>
+    <string name="walkthrough_desc_configs_temperature">Ceci affichera une approximation grossière de la température des pièces intérieures, mais seulement lorsque la météo est configurée et que le temporisateur d\'opération est en marche. Elle montera ou descendra selon l\'état du tableau électrique. Note : Pour des approximations plus précises, gardez l\'interrupteur du tableau électrique à jour.</string>
+    <string name="walkthrough_subtitle_configs_timer">Temporisateur d\'Opération</string>
+    <string name="walkthrough_desc_configs_timer">Cette fonction simule une enquête en cours. Le temporisateur représente le temps de préparation restant. Il doit être en marche pour suivre la santé mentale et la température.</string>
+    <string name="walkthrough_subtitle_configs_power">Bouton du Tableau Électrique</string>
+    <string name="walkthrough_desc_configs_power">Ceci représente l\'état du tableau électrique principal. Si la difficulté comporte un tableau électrique cassé, ceci sera désactivé. Son état affectera le thermomètre.</string>
+    <string name="walkthrough_subtitle_configs_death">Mort d\'un Coéquipier</string>
+    <string name="walkthrough_desc_configs_death">Appuyez ici lorsqu\'un coéquipier décède. Cela retirera la quantité appropriée de santé mentale du suivi.</string>
+    <string name="walkthrough_subtitle_configs_medication">Médicament de Santé Mentale</string>
+    <string name="walkthrough_desc_configs_medication">Appuyez ici lorsque vous consommez un médicament de santé mentale. Cela augmentera la quantité appropriée de santé mentale sur le suivi.</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">Indicateur de Santé Mentale</string>
+    <string name="walkthrough_subtitle_configs_status">Barre d\'État</string>
+
+    <string name="walkthrough_title_sanity">Gestion de la Santé Mentale</string>
+    <string name="walkthrough_desc_sanity_1">Vos niveaux approximatifs de santé mentale sont représentés ici et peuvent être ajustés manuellement. Le taux de perte de santé mentale est affecté par la combinaison de la difficulté et de la taille de la carte, ainsi que par les comportements du fantôme.</string>
+
+    <string name="walkthrough_title_traits">Preuves Secondaires</string>
+    <string name="walkthrough_desc_traits_1">Identifiez les traits de preuves secondaires pour réduire le type de fantôme. Certains traits sont uniques à des fantômes spécifiques, tandis que d\'autres fournissent simplement une probabilité plus ou moins élevée. Le Journal se réorganisera pour s\'adapter à toutes les sélections.</string>
+    <string name="walkthrough_subtitle_traits_unique">Traits Uniques Uniquement</string>
+    <string name="walkthrough_desc_traits_unique">Filtrez la liste pour ne montrer que les traits qui sont uniques à un seul fantôme. C\'est souvent le moyen le plus rapide de confirmer un fantôme spécifique.</string>
+    <string name="walkthrough_subtitle_traits_filter">Filtre de Catégorie</string>
+    <string name="walkthrough_desc_traits_filter">Réduisez la liste en sélectionnant une catégorie spécifique, comme \"Comportement\" ou \"Capacités\", pour trouver les traits pertinents plus rapidement.</string>
+
+    <string name="walkthrough_title_analyzer">Détails de l\'Opération</string>
+    <string name="walkthrough_desc_analyzer_1">Examinez les détails spécifiques de votre opération actuelle, y compris le comportement du fantôme et les paramètres d\'enquête.</string>
+
+    <string name="walkthrough_title_timers">Temporisateurs d\'Enquête</string>
+    <string name="walkthrough_desc_timers_1">Utilisez ces temporisateurs pour suivre le temps de protection après une purification, les durées de chasse, les délais de récupération entre les chasses et la durée de vie des empreintes. Si vous voyez des noms de fantômes affichés avec chaque temporisateur, cela signifie que le fantôme pourrait modifier le temporisateur d\'une manière ou d\'une autre.</string>
+    <string name="walkthrough_subtitle_timers_cursed">Opération Maudite</string>
+    <string name="walkthrough_desc_timers_cursed">Activez ceci si une Possession Maudite a été utilisée et qu\'une chasse est déclenchée par celle-ci, car l\'opération est considérée comme maudite. Les chasses maudites durent plus longtemps qu\'une chasse standard.</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Durée de la Chasse</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Surveillez la durée d\'une chasse active. Cela vous aide à savoir quand vous pouvez sortir de votre cachette en toute sécurité. Certains fantômes ont des durées différentes. Ceci est affecté par le niveau de difficulté, la taille de la carte et si l\'opération est maudite.</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">Récupération de Chasse</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">Suivez le temps minimum entre les chasses. Utilisez cette fenêtre pour vous déplacer entre les cachettes ou recueillir des preuves.</string>
+    <string name="walkthrough_subtitle_timers_link">Temporisateurs Liés</string>
+    <string name="walkthrough_desc_timers_link">Lorsqu\'ils sont liés, le temporisateur de récupération de chasse démarre automatiquement dès que celui de la durée de chasse se termine, offrant une chronologie continue. Cela ne fonctionne pas bien avec un Obambo dans son état agressif.</string>
+    <string name="walkthrough_subtitle_timers_smudge">Temporisateur de Purification</string>
+    <string name="walkthrough_desc_timers_smudge">Suivez la durée de la protection après avoir purifié une pièce avec un bâton d\'encens. Différents fantômes ont différentes durées de prévention.</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">Temporisateur d\'Empreintes</string>
+    <string name="walkthrough_desc_timers_fingerprint">Suivez combien de temps les empreintes digitales resteront visibles. Cela vous aide à savoir si vous devez vérifier à nouveau une porte ou une fenêtre. Un Obake a le potentiel de faire apparaître une empreinte pendant une période plus courte. Le temps est affecté par les paramètres de difficulté de durée des empreintes.</string>
+
+    <string name="walkthrough_title_footstep">Analyseur de Pas</string>
+    <string name="walkthrough_desc_footstep_1">Mesurez la vitesse de déplacement du fantôme (BPM) pour aider à l\'identifier. Différents fantômes ont des vitesses de marche distinctes.</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">Modificateurs Actifs</string>
+    <string name="walkthrough_desc_footstep_modifiers">Voyez comment les paramètres d\'enquête actuels, tels que la météo ou les modificateurs de vitesse du fantôme, affectent le mouvement du fantôme. Assurez-vous de configurer l\'opération pour obtenir les relevés les plus précis !</string>
+    <string name="walkthrough_subtitle_footstep_apply">Appliquer la Mesure</string>
+    <string name="walkthrough_desc_footstep_apply">Choisissez quelle mesure (Instantanée, Moyenne ou Pondérée) appliquer à votre enquête pour aider à réduire le type de fantôme.</string>
+    <string name="walkthrough_desc_footstep_apply_instant">L\'instantanée prend le dernier BPM.</string>
+    <string name="walkthrough_desc_footstep_apply_average">La moyenne prend la moyenne de tous les BPM dans l\'intervalle d\'échantillonnage.</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">La pondérée prend la moyenne de tous les BPM moyennés dans l\'intervalle d\'échantillonnage. Elle est mieux utilisée avec un intervalle d\'échantillonnage plus court.</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">Visualiseur de BPM</string>
+    <string name="walkthrough_desc_footstep_visualizer">Appuyez au rythme des pas du fantôme pour voir sa vitesse de déplacement représentée graphiquement en temps réel. Utilisez les menus déroulants pour ajuster la vue.</string>
+    <string name="walkthrough_subtitle_footstep_configure">Configurer la Fenêtre</string>
+    <string name="walkthrough_desc_footstep_configure">Configurez le temps du Viewport pour définir la plage de temps visible. Configurez l\'intervalle d\'échantillonnage pour définir la plage de temps pour l\'échantillonnage des mesures moyennes et pondérées.</string>
+</resources>

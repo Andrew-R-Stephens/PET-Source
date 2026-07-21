@@ -637,23 +637,23 @@ fun InvestigationSoloScreen(
                         targetIds = listOf("footstep")
                     ),
                     WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_title_footstep,
-                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        subtitleRes = R.string.walkthrough_subtitle_footstep_modifiers,
+                        descriptionRes = R.string.walkthrough_desc_footstep_modifiers,
                         targetIds = listOf("footstep_modifiers")
                     ),
                     WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_title_footstep,
-                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        subtitleRes = R.string.walkthrough_subtitle_footstep_apply,
+                        descriptionRes = R.string.walkthrough_desc_footstep_apply,
                         targetIds = listOf("footstep_apply")
                     ),
                     WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_title_footstep,
-                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        subtitleRes = R.string.walkthrough_subtitle_footstep_visualizer,
+                        descriptionRes = R.string.walkthrough_desc_footstep_visualizer,
                         targetIds = listOf("footstep_visualizer")
                     ),
                     WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_title_footstep,
-                        descriptionRes = R.string.walkthrough_desc_footstep_1,
+                        subtitleRes = R.string.walkthrough_subtitle_footstep_configure,
+                        descriptionRes = R.string.walkthrough_desc_footstep_configure,
                         targetIds = listOf("footstep_viewport", "footstep_sample")
                     )
                 ),

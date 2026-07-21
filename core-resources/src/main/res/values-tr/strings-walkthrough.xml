@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">Araştırma Ekranı</string>
+    <string name="walkthrough_desc_investigation_1">Araştırma ekranına hoş geldiniz! Burası kanıtları takip etmek ve hayaleti tanımlamak için ana panelinizdir.</string>
+
+    <string name="walkthrough_title_journal">Günlük</string>
+    <string name="walkthrough_desc_journal_1">Günlük, araştırma sırasında bulunan kanıtları kaydettiğiniz yerdir.</string>
+    <string name="walkthrough_desc_journal_2">Olası hayaletler listesini filtrelemek için kanıtları seçin. Ayrıca daha fazla ayrıntı görmek için hayalet isimlerine dokunabilirsiniz. Kanıtlar hakkında daha fazla ayrıntı görmek için Kanıtlar\'a da dokunabilirsiniz. Zorluk ayarları bunu gerektiriyorsa bu liste Kanıtları devre dışı olarak gösterecektir。</string>
+
+    <string name="walkthrough_title_status">Durum Çubuğu</string>
+    <string name="walkthrough_desc_status_1">Mevcut akıl sağlığınız, kalan hazırlık süresi, mevcut hava durumu vb. için durum çubuğuna göz atın.</string>
+
+    <string name="walkthrough_title_toolbar">Araçlar ve Yapılandırmalar</string>
+    <string name="walkthrough_desc_toolbar_1">Araç çubuğu; Operasyon Yapılandırmaları, BPM sayacı, Zamanlayıcılar ve Zorluk analizi gibi çeşitli araçlara erişmenizi sağlar.</string>
+
+    <string name="walkthrough_title_configs">Operasyon Yapılandırması</string>
+    <string name="walkthrough_desc_configs_1">Devam eden araştırmanıza uyacak şekilde haritayı, zorluğu ve hava durumunu yapılandırın.</string>
+    <string name="walkthrough_subtitle_configs_map">Harita Seçimi</string>
+    <string name="walkthrough_desc_configs_map">Mevcut araştırmanın yerini seçin. Bu, Akıl Sağlığı azalma oranı çarpanını etkiler.</string>
+    <string name="walkthrough_subtitle_configs_difficulty">Zorluk Ayarları</string>
+    <string name="walkthrough_desc_configs_difficulty">Mevcut araştırmanın zorluğunu seçin. Bu, Akıl Sağlığı azalma oranı çarpanını etkileyecektir.</string>
+    <string name="walkthrough_subtitle_configs_weather">Hava Durumu Kontrolü</string>
+    <string name="walkthrough_desc_configs_weather">Mevcut araştırmanın Hava Durumunu seçin. Ayarlandığında bu, Sıcaklık takibini gösterecektir. Not: Akıl Sağlığı azalma oranı çarpanını yalnızca Kanlı Ay etkileyecektir.</string>
+    <string name="walkthrough_subtitle_configs_temperature">Sıcaklık Ölçer</string>
+    <string name="walkthrough_desc_configs_temperature">Bu, iç mekan odalarının sıcaklığının kabaca bir tahminini gösterecektir ancak yalnızca hem Hava Durumu yapılandırıldığında hem de Operasyon Zamanlayıcısı çalışırken gösterir. Sigorta Kutusu\'nun durumuna bağlı olarak yükselecek veya düşecektir. Not: Daha doğru tahminler için Sigorta Kutusu anahtarını güncel tutun。</string>
+    <string name="walkthrough_subtitle_configs_timer">Operasyon Zamanlayıcısı</string>
+    <string name="walkthrough_desc_configs_timer">Bu özellik devam eden bir araştırmayı simüle eder. Zamanlayıcı, kalan hazırlık süresini temsil eder. Hem Akıl Sağlığını hem de Sıcaklığı takip etmek için bu çalışıyor olmalıdır。</string>
+    <string name="walkthrough_subtitle_configs_power">Sigorta Kutusu Düğmesi</string>
+    <string name="walkthrough_desc_configs_power">Bu, ana sigorta kutusunun durumunu temsil eder. Zorlukta Bozuk bir sigorta kutusu varsa bu devre dışı kalacaktır. Bunun durumu Sıcaklık ölçeri etkileyecektir。</string>
+    <string name="walkthrough_subtitle_configs_death">Takım Arkadaşı Ölümü</string>
+    <string name="walkthrough_desc_configs_death">Bir Takım Arkadaşı öldüğünde buna basın. Akıl Sağlığı takipçisinden uygun miktarda Akıl Sağlığını düşürecektir。</string>
+    <string name="walkthrough_subtitle_configs_medication">Akıl Sağlığı İlacı</string>
+    <string name="walkthrough_desc_configs_medication">Bir Akıl Sağlığı İlacı tükettiğinizde buna basın. Akıl Sağlığı takipçisi için uygun miktarda Akıl Sağlığını artıracaktır。</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">Akıl Sağlığı Ölçer</string>
+    <string name="walkthrough_subtitle_configs_status">Durum Çubuğu</string>
+
+    <string name="walkthrough_title_sanity">Akıl Sağlığı Yönetimi</string>
+    <string name="walkthrough_desc_sanity_1">Yaklaşık Akıl Sağlığı seviyeleriniz burada temsil edilir ve manuel olarak ayarlanabilir. Akıl Sağlığı azalma oranı, Zorluk ve Harita boyutunun birleşiminin yanı sıra hayaletin davranışlarından da etkilenir。</string>
+
+    <string name="walkthrough_title_traits">İkincil Kanıtlar</string>
+    <string name="walkthrough_desc_traits_1">Hayalet türünü daraltmak için ikincil kanıt özelliklerini belirleyin. Bazı özellikler belirli hayaletlere özgüdür, diğerleri ise sadece daha yüksek veya daha düşük bir olasılık sağlar. Günlük, yapılan seçimlere göre kendini yeniden düzenleyecektir。</string>
+    <string name="walkthrough_subtitle_traits_unique">Sadece Benzersiz Özellikler</string>
+    <string name="walkthrough_desc_traits_unique">Listeyi yalnızca tek bir hayalete özgü özellikleri gösterecek şekilde filtreleyin. Bu genellikle belirli bir hayaleti onaylamanın en hızlı yoludur。</string>
+    <string name="walkthrough_subtitle_traits_filter">Kategori Filtresi</string>
+    <string name="walkthrough_desc_traits_filter">İlgili özellikleri daha hızlı bulmak için \"Davranış\" veya \"Yetenekler\" gibi belirli bir kategori seçerek listeyi daraltın。</string>
+
+    <string name="walkthrough_title_analyzer">Operasyon Detayları</string>
+    <string name="walkthrough_desc_analyzer_1">Hayalet davranışı ve araştırma ayarları dahil olmak üzere mevcut operasyonunuzun özel ayrıntılarını gözden geçirin。</string>
+
+    <string name="walkthrough_title_timers">Araştırma Zamanlayıcıları</string>
+    <string name="walkthrough_desc_timers_1">Bir odayı tütsüledikten sonraki koruma süresini, av sürelerini, av bekleme sürelerini ve parmak izi ömürlerini takip etmek için bu zamanlayıcıları kullanın. Her zamanlayıcıyla birlikte hayalet isimlerinin görüntülendiğini görürseniz bu, hayaletin zamanlayıcıyı bir şekilde değiştirebileceği anlamına gelir。</string>
+    <string name="walkthrough_subtitle_timers_cursed">Lanetli Operasyon</string>
+    <string name="walkthrough_desc_timers_cursed">Lanetli bir Eşya kullanılmışsa ve bu nedenle bir av tetiklenmişse bunu etkinleştirin, çünkü Operasyon Lanetli sayılır. Lanetli avlar, standart bir avdan daha uzun sürer。</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Av Süresi</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Aktif bir avın uzunluğunu izleyin. Bu, saklandığınız yerden ne zaman çıkmanın güvenli olduğunu bilmenize yardımcı olur. Bazı hayaletlerin farklı süreleri vardır. Bu; Zorluk seviyesinden, Harita boyutundan ve operasyonun Lanetli olup olmamasından etkilenir。</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">Av Bekleme Süresi</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">Avlar arasındaki minimum süreyi takip edin. Saklanma yerleri arasında hareket etmek veya kanıt toplamak için bu pencereyi kullanın。</string>
+    <string name="walkthrough_subtitle_timers_link">Bağlantılı Zamanlayıcılar</string>
+    <string name="walkthrough_desc_timers_link">Bağlandığında, av bekleme süresi zamanlayıcısı, av süresi zamanlayıcısı biter bitmez otomatik olarak başlar ve kesintisiz bir zaman çizelgesi sağlar. Bu, Agresif durumundaki bir Obambo ile pek iyi çalışmaz。</string>
+    <string name="walkthrough_subtitle_timers_smudge">Tütsü Zamanlayıcısı</string>
+    <string name="walkthrough_desc_timers_smudge">Bir odayı Tütsü ile temizledikten sonraki koruma süresini takip edin. Farklı hayaletlerin farklı önleme süreleri vardır。</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">Parmak İzi Zamanlayıcısı</string>
+    <string name="walkthrough_desc_timers_fingerprint">Parmak izlerinin ne kadar süre görünür kalacağını takip edin. Bu, bir kapıyı veya pencereyi yeniden kontrol etmeniz gerekip gerekmediğini bilmenize yardımcı olur. Bir Obake, parmak izinin daha kısa bir süre görünmesini sağlama potansiyeline sahiptir. Süre, Parmak İzi Süresi zorluk ayarlarından etkilenir。</string>
+
+    <string name="walkthrough_title_footstep">Adım Analizörü</string>
+    <string name="walkthrough_desc_footstep_1">Tanımlamaya yardımcı olması için hayaletin hareket hızını (BPM) ölçün. Farklı hayaletlerin farklı yürüme hızları vardır。</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">Aktif Modifikatörler</string>
+    <string name="walkthrough_desc_footstep_modifiers">Hava Durumu veya hayalet hızı modifikatörleri gibi mevcut araştırma ayarlarının hayaletin hareketini nasıl etkilediğini görün. En doğru okumaları almak için Operasyonu yapılandırdığınızdan emin olun!</string>
+    <string name="walkthrough_subtitle_footstep_apply">Ölçümü Uygula</string>
+    <string name="walkthrough_desc_footstep_apply">Hayalet türünü daraltmaya yardımcı olması için araştırmanıza hangi ölçümün (Anlık, Ortalama veya Ağırlıklı) uygulanacağını seçin。</string>
+    <string name="walkthrough_desc_footstep_apply_instant">Anlık, en son BPM\'yi alır。</string>
+    <string name="walkthrough_desc_footstep_apply_average">Ortalama, Örnek aralığındaki tüm BPM\'lerin ortalamasını alır。</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">Ağırlıklı, Örnek aralığındaki tüm ortalaması alınmış BPM\'lerin ortalamasını alır. Bu, en iyi şekilde daha küçük bir Örnek aralığı ile kullanılır。</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">BPM Görselleştirici</string>
+    <string name="walkthrough_desc_footstep_visualizer">Hayaletin hareket hızını gerçek zamanlı olarak grafikte görmek için hayaletin ayak sesleriyle birlikte ekrana dokunun. Görünümü ayarlamak için açılır menüleri kullanın。</string>
+    <string name="walkthrough_subtitle_footstep_configure">Pencereyi Yapılandır</string>
+    <string name="walkthrough_desc_footstep_configure">Görünür zaman aralığını ayarlamak için Viewport süresini yapılandırın. Ortalama ve Ağırlıklı ölçümleri örneklemek için zaman aralığını ayarlamak üzere Sampling aralığını yapılandırın。</string>
+</resources>

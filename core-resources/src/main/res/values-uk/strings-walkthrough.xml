@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">Екран розслідування</string>
+    <string name="walkthrough_desc_investigation_1">Ласкаво просимо на екран розслідування! Це ваша головна панель для відстеження доказів та ідентифікації привида.</string>
+
+    <string name="walkthrough_title_journal">Журнал</string>
+    <string name="walkthrough_desc_journal_1">У журналі ви записуєте докази, знайдені під час розслідування.</string>
+    <string name="walkthrough_desc_journal_2">Вибирайте докази, щоб відфільтрувати список можливих привидів. Ви також можете натискати на імена привидів, щоб побачити подробиці. Натискайте на Докази, щоб побачити інформацію і про них. Цей список показуватиме докази як вимкнені, якщо цього вимагають налаштування складності.</string>
+
+    <string name="walkthrough_title_status">Панель стану</string>
+    <string name="walkthrough_desc_status_1">Стежте за панеллю стану, щоб знати свій поточний рівень глузду, час підготовки, що залишився, поточну погоду тощо.</string>
+
+    <string name="walkthrough_title_toolbar">Інструменти та налаштування</string>
+    <string name="walkthrough_desc_toolbar_1">Панель інструментів дає доступ до різних функцій, таких як конфігурації операції, лічильник BPM, таймери та аналіз складності.</string>
+
+    <string name="walkthrough_title_configs">Конфіг. операції</string>
+    <string name="walkthrough_desc_configs_1">Налаштуйте мапу, складність та погоду відповідно до вашого поточному розслідуванню.</string>
+    <string name="walkthrough_subtitle_configs_map">Вибір мапи</string>
+    <string name="walkthrough_desc_configs_map">Виберіть місце проведення поточному розслідуванню. Це впливає на множник швидкості втрати глузду.</string>
+    <string name="walkthrough_subtitle_configs_difficulty">Налаштування складності</string>
+    <string name="walkthrough_desc_configs_difficulty">Виберіть складність поточному розслідуванню. Це вплине на множник швидкості втрати глузду.</string>
+    <string name="walkthrough_subtitle_configs_weather">Керування погодою</string>
+    <string name="walkthrough_desc_configs_weather">Виберіть погоду для поточному розслідуванню. Після встановлення відобразиться датчик температури. Примітка: тільки Кривавий місяць впливає на множник швидкості втрати глузду.</string>
+    <string name="walkthrough_subtitle_configs_temperature">Датчик температури</string>
+    <string name="walkthrough_desc_configs_temperature">Показує приблизну температуру в приміщеннях, але тільки якщо налаштована погода і запущено таймер операції. Температура буде зростати або падати залежно від стану щитка. Примітка: для точніших даних тримайте перемикач щитка в актуальному стані.</string>
+    <string name="walkthrough_subtitle_configs_timer">Таймер операції</string>
+    <string name="walkthrough_desc_configs_timer">Ця функція симулює розслідування, що триває. Таймер відображає час підготовки, що залишився. Він повинюн бути запущений для відстеження глузду та температури.</string>
+    <string name="walkthrough_subtitle_configs_power">Кнопка щитка</string>
+    <string name="walkthrough_desc_configs_power">Відображає стан головного електрощитка. Якщо на даній складності щиток зламаний, кнопка буде вимкнена. Стан щитка впливає на датчик температури.</string>
+    <string name="walkthrough_subtitle_configs_death">Смерть напарника</string>
+    <string name="walkthrough_desc_configs_death">Натисніть цю кнопку, коли напарник гине. Це відніме відповідну кількість глузду на лічильнику.</string>
+    <string name="walkthrough_subtitle_configs_medication">Заспокійливе</string>
+    <string name="walkthrough_desc_configs_medication">Натисніть цю кнопку при прийомі заспокійливого. Це відновить відповідну кількість глузду на лічильнику.</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">Лічильник глузду</string>
+    <string name="walkthrough_subtitle_configs_status">Панель стану</string>
+
+    <string name="walkthrough_title_sanity">Керування глуздом</string>
+    <string name="walkthrough_desc_sanity_1">Тут відображається ваш приблизний рівень глузду, який можна регулювати вручну. На швидкість втрати глузду впливає поєднання складності та розміру мапи, а також поведінка привида.</string>
+
+    <string name="walkthrough_title_traits">Вторинні докази</string>
+    <string name="walkthrough_desc_traits_1">Визначайте риси вторинних доказів, щоб звузити коло пошуку типу привида. Деякі риси унікальні для конкретних привидів, інші лише вказують на ймовірність. Журнал перелаштується відповідно до вашого вибору.</string>
+    <string name="walkthrough_subtitle_traits_unique">Тільки унікальні риси</string>
+    <string name="walkthrough_desc_traits_unique">Відфільтрувати список, щоб показати тільки риси, унікальні для одного привида. Часто це найшвидший спосіб підтвердити конкретного привида.</string>
+    <string name="walkthrough_subtitle_traits_filter">Фільтр категорій</string>
+    <string name="walkthrough_desc_traits_filter">Звузьте список, вибравши певну категорію, наприклад «Поведінка» або «Здібності», щоб швидше знаходити потрібні риси.</string>
+
+    <string name="walkthrough_title_analyzer">Деталі операції</string>
+    <string name="walkthrough_desc_analyzer_1">Переглядайте подробиці поточної операції, включаючи поведінку привида та налаштування розслідування.</string>
+
+    <string name="walkthrough_title_timers">Таймери розслідування</string>
+    <string name="walkthrough_desc_timers_1">Використовуйте ці таймери для відстеження часу захисту після окурювання кімнати, тривалості полювання, перезарядки полювання та часу життя відбитків. Якщо поруч із таймером відображаються імена привидів, значить, цей привид може якось змінювати даний таймер.</string>
+    <string name="walkthrough_subtitle_timers_cursed">Проклята операція</string>
+    <string name="walkthrough_desc_timers_cursed">Увімкніть це, якщо було використано проклятий предмет і ним було спровоковано полювання, оскільки операція вважається проклятою. Прокляте полювання триває довше, ніж стандартне.</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Тривалість полювання</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Стежте за тривалістю активного полювання. Це допоможе зрозуміти, коли можна безпечно вийти з укриття. У деяких привидів тривалість відрізняється. На неї впливають складність, розмір мапи та статус проклятої операції.</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">Перезарядка полювання</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">Відстежуйте мінімальний час між полюваннями. Використовуйте це вікно, щоб змінити укриття або зібрати докази.</string>
+    <string name="walkthrough_subtitle_timers_link">Пов\'язані таймери</string>
+    <string name="walkthrough_desc_timers_link">При активації зв\'язку таймер перезарядки полювання запуститься автоматично відразу після закінчення таймера тривалості полювання. Це погано працює з Обанбо в його агресивному стані.</string>
+    <string name="walkthrough_subtitle_timers_smudge">Таймер окурювання</string>
+    <string name="walkthrough_desc_timers_smudge">Відстежуйте тривалість захисту після окурювання кімнати пахощами. У різних привидів різна тривалість запобігання полюванню.</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">Таймер відбитків</string>
+    <string name="walkthrough_desc_timers_fingerprint">Відстежуйте, як довго відбитки пальців залишатимуться видимими. Це допоможе зрозуміти, чи потрібно повторно перевіряти двері або вікно. Обаке може залишати відбитки на коротший термін. Час залежить від налаштувань складності «Тривалість відбитків».</string>
+
+    <string name="walkthrough_title_footstep">Аналізатор кроків</string>
+    <string name="walkthrough_desc_footstep_1">Вимірюйте швидкість пересування привида (BPM), щоб ідентифікувати його. У різних привидів різна швидкість ходьби.</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">Активні модифікатори</string>
+    <string name="walkthrough_desc_footstep_modifiers">Дивіться, як налаштування розслідування, такі як погода або модифікатори швидкості привида, впливають на його пересування. Обов\'язково налаштуйте параметри операції для отримання найточніших свідчень!</string>
+    <string name="walkthrough_subtitle_footstep_apply">Застосувати вимірювання</string>
+    <string name="walkthrough_desc_footstep_apply">Виберіть, який тип вимірювання (миттєве, середнє або зважене) застосувати до розслідування, щоб допомогти звузити список привидів.</string>
+    <string name="walkthrough_desc_footstep_apply_instant">Миттєве бере останнє значення BPM.</string>
+    <string name="walkthrough_desc_footstep_apply_average">Середнє бере середнє значення всіх BPM в інтервалі вибірки.</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">Зважене бере середнє значення всіх усереднених BPM в інтервалі вибірки. Найкраще використовувати з коротким інтервалом вибірки.</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">Візуалізатор BPM</string>
+    <string name="walkthrough_desc_footstep_visualizer">Натискайте в такт крокам привида, щоб побачити графік його швидкості в реальному часі. Використовуйте випадаючі списки для налаштування вигляду.</string>
+    <string name="walkthrough_subtitle_footstep_configure">Налаштування вікна</string>
+    <string name="walkthrough_desc_footstep_configure">Налаштуйте час перегляду (Viewport), щоб задати видимий діапазон часу. Налаштуйте інтервал вибірки (Sampling), щоб задати діапазон часу для усереднених і зважених вимірювань.</string>
+</resources>

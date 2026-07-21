@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">调查界面</string>
+    <string name="walkthrough_desc_investigation_1">欢迎来到调查界面！这是你追踪证据和识别鬼魂的主要面板。</string>
+
+    <string name="walkthrough_title_journal">日志</string>
+    <string name="walkthrough_desc_journal_1">日志是你记录调查过程中发现的证据的地方。</string>
+    <string name="walkthrough_desc_journal_2">选择证据以过滤可能的鬼魂列表。你也可以点击鬼魂的名字来查看更多细节。点击证据也可以查看它们的更多细节。如果难度设置有规定，此列表会将证据显示为禁用状态。</string>
+
+    <string name="walkthrough_title_status">状态栏</string>
+    <string name="walkthrough_desc_status_1">留意状态栏，查看当前的理智值、剩余准备时间、当前天气等。</string>
+
+    <string name="walkthrough_title_toolbar">工具与配置</string>
+    <string name="walkthrough_desc_toolbar_1">工具栏让你可以访问各种工具，如行动配置、BPM 计数器、计时器和难度分析。</string>
+
+    <string name="walkthrough_title_configs">行动配置</string>
+    <string name="walkthrough_desc_configs_1">配置地图、难度和天气，以匹配你正在进行的调查。</string>
+    <string name="walkthrough_subtitle_configs_map">地图选择</string>
+    <string name="walkthrough_desc_configs_map">选择当前调查的地点。这会影响理智值下降率修正系数。</string>
+    <string name="walkthrough_subtitle_configs_difficulty">难度设置</string>
+    <string name="walkthrough_desc_configs_difficulty">选择当前调查的难度。这会影响理智值下降率修正系数。</string>
+    <string name="walkthrough_subtitle_configs_weather">天气控制</string>
+    <string name="walkthrough_desc_configs_weather">选择当前调查的天气。设置后，将显示温度追踪。注意：只有血月会影响理智值下降率修正系数。</string>
+    <string name="walkthrough_subtitle_configs_temperature">温度计</string>
+    <string name="walkthrough_desc_configs_temperature">这会显示室内房间温度的大致数值，但仅在配置了天气且行动计时器正在运行时。它会根据电闸的状态上升或下降。注意：为了获得更准确的估算，请保持电闸开关状态同步。</string>
+    <string name="walkthrough_subtitle_configs_timer">行动计时器</string>
+    <string name="walkthrough_desc_configs_timer">此功能模拟正在进行的调查。计时器代表剩余的准备时间。必须运行此计时器才能追踪理智值和温度。</string>
+    <string name="walkthrough_subtitle_configs_power">电闸按钮</string>
+    <string name="walkthrough_desc_configs_power">这代表主电闸的状态。如果难度设置为电闸损坏，此按钮将被禁用。此状态会影响温度计。</string>
+    <string name="walkthrough_subtitle_configs_death">队友死亡</string>
+    <string name="walkthrough_desc_configs_death">当队友遇难时按下此按钮。它将从理智值追踪器中扣除相应数值。</string>
+    <string name="walkthrough_subtitle_configs_medication">理智药丸</string>
+    <string name="walkthrough_desc_configs_medication">当你服用理智药丸时按下此按钮。它将增加理智值追踪器中相应的理智值。</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">理智计</string>
+    <string name="walkthrough_subtitle_configs_status">状态栏</string>
+
+    <string name="walkthrough_title_sanity">理智值管理</string>
+    <string name="walkthrough_desc_sanity_1">你的大致理智值水平显示在这里，可以手动调整。理智值下降率受难度、地图大小以及鬼魂行为的共同影响。</string>
+
+    <string name="walkthrough_title_traits">次要证据</string>
+    <string name="walkthrough_desc_traits_1">识别次要证据特征以缩小鬼魂类型范围。有些特征是某些鬼魂特有的，而有些则只是提供更高或更低的可能性。日志将根据选择重新排序。</string>
+    <string name="walkthrough_subtitle_traits_unique">仅限唯一特征</string>
+    <string name="walkthrough_desc_traits_unique">过滤列表，仅显示单个鬼魂特有的特征。这通常是确认特定鬼魂的最快方法。</string>
+    <string name="walkthrough_subtitle_traits_filter">分类过滤</string>
+    <string name="walkthrough_desc_traits_filter">通过选择特定类别（如“行为”或“能力”）来缩小列表范围，从而更快地找到相关特征。</string>
+
+    <string name="walkthrough_title_analyzer">行动详情</string>
+    <string name="walkthrough_desc_analyzer_1">回顾当前行动的具体细节，包括鬼魂行为和调查设置。</string>
+
+    <string name="walkthrough_title_timers">调查计时器</string>
+    <string name="walkthrough_desc_timers_1">使用这些计时器追踪驱邪后的保护时间、猎杀持续时间、猎杀冷却时间和指纹留存时间。如果你看到计时器旁显示鬼魂名字，意味着该鬼魂可能会以某种方式修改该计时器。</string>
+    <string name="walkthrough_subtitle_timers_cursed">诅咒行动</string>
+    <string name="walkthrough_desc_timers_cursed">如果使用了诅咒道具并由此触发了猎杀，请启用此项，因为该行动被视为诅咒状态。诅咒猎杀比普通猎杀持续时间更长。</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">猎杀持续时间</string>
+    <string name="walkthrough_desc_timers_hunt_duration">监测当前猎杀的时长。这有助于你了解何时从藏身点出来是安全的。某些鬼魂的持续时间不同。这受难度等级、地图大小以及是否为诅咒行动的影响。</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">猎杀冷却时间</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">追踪猎杀之间的最短时间。利用这段时间在藏身点之间移动或收集证据。</string>
+    <string name="walkthrough_subtitle_timers_link">关联计时器</string>
+    <string name="walkthrough_desc_timers_link">关联时，猎杀冷却计时器会在猎杀持续计时器结束时自动启动，提供无缝的时间线。这在 Obambo 处于攻击状态时效果不佳。</string>
+    <string name="walkthrough_subtitle_timers_smudge">驱邪计时器</string>
+    <string name="walkthrough_desc_timers_smudge">追踪使用圣木驱邪后的保护时长。不同的鬼魂有不同的预防时长。</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">指纹计时器</string>
+    <string name="walkthrough_desc_timers_fingerprint">追踪指纹保持可见的时间。这有助于你了解是否需要重新检查门或窗。化身鬼（Obake）可能会缩短指纹出现的时间。时间受指纹持续时间难度设置的影响。</string>
+
+    <string name="walkthrough_title_footstep">脚步分析器</string>
+    <string name="walkthrough_desc_footstep_1">测量鬼魂的移动速度 (BPM) 以帮助识别。不同的鬼魂有不同的行走速度。</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">活跃修正</string>
+    <string name="walkthrough_desc_footstep_modifiers">查看当前的调查设置（如天气或鬼魂速度修正）如何影响鬼魂的移动。请务必配置行动参数以获得最准确的读数！</string>
+    <string name="walkthrough_subtitle_footstep_apply">应用测量值</string>
+    <string name="walkthrough_desc_footstep_apply">选择要应用于调查的测量值（瞬时、平均或加权），以帮助缩小鬼魂类型范围。</string>
+    <string name="walkthrough_desc_footstep_apply_instant">瞬时值取最新的 BPM。</string>
+    <string name="walkthrough_desc_footstep_apply_average">平均值取样本间隔内所有 BPM 的平均值。</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">加权值取样本间隔内所有平均 BPM 的平均值。配合较小的样本间隔使用效果最佳。</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">BPM 可视化</string>
+    <string name="walkthrough_desc_footstep_visualizer">跟随鬼魂的脚步点击，实时查看其移动速度图表。使用下拉菜单调整视图。</string>
+    <string name="walkthrough_subtitle_footstep_configure">配置窗口</string>
+    <string name="walkthrough_desc_footstep_configure">配置视口时间以设置可见的时间范围。配置采样间隔以设置平均值和加权值测量的采样范围。</string>
+</resources>

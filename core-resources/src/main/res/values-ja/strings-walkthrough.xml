@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">調査画面</string>
+    <string name="walkthrough_desc_investigation_1">調査画面へようこそ！ここは証拠を記録し、ゴーストを特定するためのメインダッシュボードです。</string>
+
+    <string name="walkthrough_title_journal">日記</string>
+    <string name="walkthrough_desc_journal_1">日記は、調査中に見つけた証拠を記録する場所です。</string>
+    <string name="walkthrough_desc_journal_2">証拠を選択して、可能性のあるゴーストのリストを絞り込みます。ゴーストの名前をタップすると詳細が表示されます。証拠をタップしても詳細を確認できます。難易度設定によっては、証拠が「無効」として表示される場合があります。</string>
+
+    <string name="walkthrough_title_status">ステータスバー</string>
+    <string name="walkthrough_desc_status_1">現在の正気度、残りの準備時間、現在の天候などはステータスバーで確認できます。</string>
+
+    <string name="walkthrough_title_toolbar">ツールと設定</string>
+    <string name="walkthrough_desc_toolbar_1">ツールバーからは、調査設定、BPMカウンター、タイマー、難易度分析などのさまざまなツールにアクセスできます。</string>
+
+    <string name="walkthrough_title_configs">調査設定</string>
+    <string name="walkthrough_desc_configs_1">進行中の調査に合わせて、マップ、難易度、天候を設定します。</string>
+    <string name="walkthrough_subtitle_configs_map">マップ選択</string>
+    <string name="walkthrough_desc_configs_map">現在の調査場所を選択します。これは正気度の減少率に影響します。</string>
+    <string name="walkthrough_subtitle_configs_difficulty">難易度設定</string>
+    <string name="walkthrough_desc_configs_difficulty">現在の調査の難易度を選択します。これは正気度の減少率に影響します。</string>
+    <string name="walkthrough_subtitle_configs_weather">天候管理</string>
+    <string name="walkthrough_desc_configs_weather">現在の調査の天候を選択します。設定すると温度計が表示されます。注：ブラッドムーンのみが正気度の減少率に影響を与えます。</string>
+    <string name="walkthrough_subtitle_configs_temperature">温度計</string>
+    <string name="walkthrough_desc_configs_temperature">室内の温度の概算を表示します。ただし、天候が設定され、調査タイマーが作動している場合に限ります。ブレーカーの状態に応じて温度が上下します。注：より正確な概算を得るには、ブレーカーの状態を最新に保ってください。</string>
+    <string name="walkthrough_subtitle_configs_timer">調査タイマー</string>
+    <string name="walkthrough_desc_configs_timer">この機能は進行中の調査をシミュレートします。タイマーは残りの準備時間を表します。正気度と温度の両方を追跡するには、これを作動させる必要があります。</string>
+    <string name="walkthrough_subtitle_configs_power">ブレーカーボタン</string>
+    <string name="walkthrough_desc_configs_power">メインブレーカーの状態を表します。難易度で「壊れたブレーカー」が設定されている場合、これは無効になります。この状態は温度計に影響します。</string>
+    <string name="walkthrough_subtitle_configs_death">仲間の死亡</string>
+    <string name="walkthrough_desc_configs_death">仲間が死亡したときにこれを押します。正気度カウンターから適切な量の正気度が差し引かれます。</string>
+    <string name="walkthrough_subtitle_configs_medication">正気度薬</string>
+    <string name="walkthrough_desc_configs_medication">正気度薬を服用したときにこれを押します。正気度カウンターの正気度が適切な量増加します。</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">正気度メーター</string>
+    <string name="walkthrough_subtitle_configs_status">ステータスバー</string>
+
+    <string name="walkthrough_title_sanity">正気度管理</string>
+    <string name="walkthrough_desc_sanity_1">現在の推定正気度が表示され、手動で調整できます。正気度の減少率は、難易度とマップサイズの組み合わせ、およびゴーストの行動によって影響を受けます。</string>
+
+    <string name="walkthrough_title_traits">特殊証拠</string>
+    <string name="walkthrough_desc_traits_1">特殊証拠（特徴）を特定して、ゴーストのタイプを絞り込みます。一部の特徴は特定のゴーストに固有ですが、他の特徴は単に可能性が高いか低いかを示します。選択に応じて日記の順序が変更されます。</string>
+    <string name="walkthrough_subtitle_traits_unique">固有の特徴のみ</string>
+    <string name="walkthrough_desc_traits_unique">単一のゴーストに固有の特徴のみを表示するようにリストをフィルタリングします。これは特定のゴーストを確認する最も速い方法です。</string>
+    <string name="walkthrough_subtitle_traits_filter">カテゴリーフィルター</string>
+    <string name="walkthrough_desc_traits_filter">「行動」や「能力」などの特定のカテゴリーを選択してリストを絞り込み、関連する特徴をより速く見つけます。</string>
+
+    <string name="walkthrough_title_analyzer">調査詳細</string>
+    <string name="walkthrough_desc_analyzer_1">ゴーストの行動や調査設定など、現在の調査の具体的な詳細を確認します。</string>
+
+    <string name="walkthrough_title_timers">調査タイマー</string>
+    <string name="walkthrough_desc_timers_1">浄化後の保護時間、ハント時間、ハントのクールダウン、指紋の消失時間を追跡します。各タイマーにゴーストの名前が表示されている場合、そのゴーストがタイマーに何らかの影響を与える可能性があることを意味します。</string>
+    <string name="walkthrough_subtitle_timers_cursed">呪いの調査</string>
+    <string name="walkthrough_desc_timers_cursed">呪いのアイテムが使用され、それによってハントが引き起こされた場合に有効にします。調査は「呪われた状態」とみなされます。呪いのハントは通常のハントよりも長く続きます。</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">ハント時間</string>
+    <string name="walkthrough_desc_timers_hunt_duration">アクティブなハントの長さを監視します。これにより、いつ隠れ場所から出ても安全かがわかります。一部のゴーストは持続時間が異なります。これは難易度、マップサイズ、および調査が呪われているかどうかに影響されます。</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">ハントのクールダウン</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">ハント間の最小時間を追跡します。この時間を利用して隠れ場所を移動したり、証拠を集めたりしてください。</string>
+    <string name="walkthrough_subtitle_timers_link">連携タイマー</string>
+    <string name="walkthrough_desc_timers_link">連携すると、ハント時間が終了するとすぐにハントクールダウンタイマーが自動的に開始され、シームレスなタイムラインが提供されます。これは、攻撃状態のオバンボ（Obambo）ではうまく機能しません。</string>
+    <string name="walkthrough_subtitle_timers_smudge">浄化タイマー</string>
+    <string name="walkthrough_desc_timers_smudge">浄化用香（スマッジスティック）で部屋を浄化した後の保護時間を追跡します。ゴーストによってハント防止時間が異なります。</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">指紋タイマー</string>
+    <string name="walkthrough_desc_timers_fingerprint">指紋がいつまで表示されるかを追跡します。これにより、ドアや窓を再確認する必要があるかどうかがわかります。オバケは指紋の表示時間を短くする可能性があります。時間は難易度設定の「指紋の持続時間」に影響されます。</string>
+
+    <string name="walkthrough_title_footstep">足音分析</string>
+    <string name="walkthrough_desc_footstep_1">ゴーストの移動速度（BPM）を測定して、特定に役立てます。ゴーストによって歩行速度が異なります。</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">アクティブな補正</string>
+    <string name="walkthrough_desc_footstep_modifiers">天候やゴーストの速度補正など、現在の調査設定がゴーストの移動にどのように影響しているかを確認します。正確な読み取り値を得るために、必ず調査設定を行ってください！</string>
+    <string name="walkthrough_subtitle_footstep_apply">測定値を適用</string>
+    <string name="walkthrough_desc_footstep_apply">ゴーストのタイプを絞り込むために、調査に適用する測定値（瞬時、平均、または加重）を選択します。</string>
+    <string name="walkthrough_desc_footstep_apply_instant">「瞬時」は最新のBPMを採用します。</string>
+    <string name="walkthrough_desc_footstep_apply_average">「平均」はサンプル期間内のすべてのBPMの平均を採用します。</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">「加重」はサンプル期間内のすべての平均化されたBPMの平均を採用します。これはサンプル期間が短い場合に最適です。</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">BPMビジュアライザー</string>
+    <string name="walkthrough_desc_footstep_visualizer">ゴーストの足音に合わせてタップすると、移動速度がリアルタイムでグラフ化されます。ドロップダウンを使用して表示を調整します。</string>
+    <string name="walkthrough_subtitle_footstep_configure">ウィンドウ設定</string>
+    <string name="walkthrough_desc_footstep_configure">ビューポート時間を設定して、表示される時間範囲を指定します。サンプリング間隔を設定して、平均および加重測定のサンプリング範囲を指定します。</string>
+</resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">Ermittlungsbildschirm</string>
+    <string name="walkthrough_desc_investigation_1">Willkommen auf dem Ermittlungsbildschirm! Dies ist dein Haupt-Dashboard, um Beweise zu verfolgen und den Geist zu identifizieren.</string>
+
+    <string name="walkthrough_title_journal">Das Journal</string>
+    <string name="walkthrough_desc_journal_1">Im Journal hältst du die während der Ermittlung gefundenen Beweise fest.</string>
+    <string name="walkthrough_desc_journal_2">Wähle Beweise aus, um die Liste der möglichen Geister zu filtern. Du kannst auch auf Geisternamen tippen, um weitere Details zu sehen. Tippe auf Beweise, um auch für diese mehr Details anzuzeigen. In dieser Liste werden Beweise als deaktiviert angezeigt, wenn die Schwierigkeitseinstellungen dies vorschreiben.</string>
+
+    <string name="walkthrough_title_status">Statusleiste</string>
+    <string name="walkthrough_desc_status_1">Behalte die Statusleiste im Auge für deine aktuelle geistige Gesundheit, die verbleibende Vorbereitungszeit, das aktuelle Wetter usw.</string>
+
+    <string name="walkthrough_title_toolbar">Werkzeuge und Konfigs</string>
+    <string name="walkthrough_desc_toolbar_1">Die Symbolleiste gibt dir Zugriff auf verschiedene Werkzeuge wie die Einsatzkonfigurationen, den BPM-Zähler, Timer und die Schwierigkeitsanalyse.</string>
+
+    <string name="walkthrough_title_configs">Einsatzkonfig</string>
+    <string name="walkthrough_desc_configs_1">Konfiguriere die Karte, die Schwierigkeit und das Wetter passend zu deiner laufenden Ermittlung.</string>
+    <string name="walkthrough_subtitle_configs_map">Kartenauswahl</string>
+    <string name="walkthrough_desc_configs_map">Wähle den Ort der aktuellen Ermittlung aus. Dies beeinflusst den Modifikator für den Entzug der geistigen Gesundheit.</string>
+    <string name="walkthrough_subtitle_configs_difficulty">Schwierigkeitseinstellungen</string>
+    <string name="walkthrough_desc_configs_difficulty">Wähle den Schwierigkeitsgrad der aktuellen Ermittlung aus. Dies beeinflusst den Modifikator für den Entzug der geistigen Gesundheit.</string>
+    <string name="walkthrough_subtitle_configs_weather">Wetterkontrolle</string>
+    <string name="walkthrough_desc_configs_weather">Wähle das Wetter der aktuellen Ermittlung aus. Wenn eingestellt, wird der Temperatur-Tracker angezeigt. Hinweis: Nur der Blutmond beeinflusst den Modifikator für den Entzug der geistigen Gesundheit.</string>
+    <string name="walkthrough_subtitle_configs_temperature">Temperaturmesser</string>
+    <string name="walkthrough_desc_configs_temperature">Dies zeigt eine grobe Annäherung der Temperatur in Innenräumen an, aber nur, wenn sowohl das Wetter konfiguriert ist als auch der Einsatz-Timer läuft. Sie steigt oder fällt je nach Zustand des Sicherungskastens. Hinweis: Für genauere Annäherungen halte den Schalter für den Sicherungskasten aktuell.</string>
+    <string name="walkthrough_subtitle_configs_timer">Einsatz-Timer</string>
+    <string name="walkthrough_desc_configs_timer">Diese Funktion simuliert eine laufende Ermittlung. Der Timer stellt die verbleibende Vorbereitungszeit dar. Dieser muss laufen, um sowohl die geistige Gesundheit als auch die Temperatur zu verfolgen.</string>
+    <string name="walkthrough_subtitle_configs_power">Sicherungskasten-Taste</string>
+    <string name="walkthrough_desc_configs_power">Dies stellt den Zustand des Hauptsicherungskastens dar. Wenn die Schwierigkeit einen defekten Sicherungskasten vorsieht, ist dies deaktiviert. Der Zustand hiervon beeinflusst den Temperaturmesser.</string>
+    <string name="walkthrough_subtitle_configs_death">Tod eines Teammitglieds</string>
+    <string name="walkthrough_desc_configs_death">Drücke dies, wenn ein Teammitglied stirbt. Es zieht den entsprechenden Betrag von der Anzeige der geistigen Gesundheit ab.</string>
+    <string name="walkthrough_subtitle_configs_medication">Sanitätsmedikament</string>
+    <string name="walkthrough_desc_configs_medication">Drücke dies, wenn du ein Medikament für die geistige Gesundheit einnimmst. Es erhöht den entsprechenden Betrag in der Anzeige der geistigen Gesundheit.</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">Messgerät für geistige Gesundheit</string>
+    <string name="walkthrough_subtitle_configs_status">Statusleiste</string>
+
+    <string name="walkthrough_title_sanity">Management der geistigen Gesundheit</string>
+    <string name="walkthrough_desc_sanity_1">Deine ungefähre geistige Gesundheit wird hier dargestellt und kann manuell angepasst werden. Die Rate des Entzugs der geistigen Gesundheit wird durch die Kombination aus Schwierigkeit und Kartengröße sowie dem Verhalten des Geistes beeinflusst.</string>
+
+    <string name="walkthrough_title_traits">Sekundäre Beweise</string>
+    <string name="walkthrough_desc_traits_1">Identifiziere sekundäre Beweise, um den Geistertyp einzugrenzen. Einige Merkmale sind einzigartig für bestimmte Geister, während andere lediglich eine höhere oder niedrigere Wahrscheinlichkeit bieten. Das Journal wird neu geordnet, um alle Auswahlen zu berücksichtigen.</string>
+    <string name="walkthrough_subtitle_traits_unique">Nur einzigartige Merkmale</string>
+    <string name="walkthrough_desc_traits_unique">Filtere die Liste, um nur Merkmale anzuzeigen, die für einen einzelnen Geist einzigartig sind. Dies ist oft der schnellste Weg, um einen bestimmten Geist zu bestätigen.</string>
+    <string name="walkthrough_subtitle_traits_filter">Kategoriefilter</string>
+    <string name="walkthrough_desc_traits_filter">Grenze die Liste ein, indem du eine bestimmte Kategorie auswählst, wie „Verhalten“ oder „Fähigkeiten“, um relevante Merkmale schneller zu finden.</string>
+
+    <string name="walkthrough_title_analyzer">Einsatzdetails</string>
+    <string name="walkthrough_desc_analyzer_1">Überprüfe die spezifischen Details deines aktuellen Einsatzes, einschließlich des Geisterverhaltens und der Ermittlungseinstellungen.</string>
+
+    <string name="walkthrough_title_timers">Ermittlungs-Timer</string>
+    <string name="walkthrough_desc_timers_1">Verwende diese Timer, um die Schutzzeit nach einer Räucherung, Jagddauern, Jagd-Abklingzeiten und Fingerabdruck-Lebensdauern zu verfolgen. Wenn Geisternamen bei jedem Timer angezeigt werden, bedeutet dies, dass der Geist den Timer in irgendeiner Weise modifizieren könnte.</string>
+    <string name="walkthrough_subtitle_timers_cursed">Verfluchter Einsatz</string>
+    <string name="walkthrough_desc_timers_cursed">Aktiviere dies, wenn ein verfluchter Gegenstand verwendet wurde und dadurch eine Jagd ausgelöst wird, da der Einsatz dann als verflucht gilt. Verfluchte Jagden dauern länger als eine Standardjagd.</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Jagddauer</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Überwache die Länge einer aktiven Jagd. Dies hilft dir zu wissen, wann es sicher ist, aus dem Versteck zu kommen. Einige Geister haben unterschiedliche Dauer. Dies wird durch den Schwierigkeitsgrad, die Kartengröße und ob der Einsatz verflucht ist, beeinflusst.</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">Jagd-Abklingzeit</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">Verfolgt die Mindestzeit zwischen den Jagden. Nutze dieses Zeitfenster, um zwischen Verstecken zu wechseln oder Beweise zu sammeln.</string>
+    <string name="walkthrough_subtitle_timers_link">Verknüpfte Timer</string>
+    <string name="walkthrough_desc_timers_link">Wenn verknüpft, startet der Jagd-Abklingzeit-Timer automatisch, sobald der Jagddauer-Timer endet, was einen nahtlosen Zeitablauf ermöglicht. Dies funktioniert nicht gut mit einem Obambo in seinem aggressiven Zustand.</string>
+    <string name="walkthrough_subtitle_timers_smudge">Räucherungs-Timer</string>
+    <string name="walkthrough_desc_timers_smudge">Verfolgt die Dauer des Schutzes nach dem Räuchern eines Raums mit einem Räucherstäbchen. Verschiedene Geister haben unterschiedliche Präventionsdauern.</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">Fingerabdruck-Timer</string>
+    <string name="walkthrough_desc_timers_fingerprint">Verfolgt, wie lange Fingerabdrücke sichtbar bleiben. Dies hilft dir zu wissen, ob du eine Tür oder ein Fenster erneut überprüfen musst. Ein Obake hat das Potenzial, einen Fingerabdruck für eine kürzere Zeit erscheinen zu lassen. Die Zeit wird durch die Schwierigkeitseinstellungen für die Fingerabdruckdauer beeinflusst.</string>
+
+    <string name="walkthrough_title_footstep">Schritt-Analysator</string>
+    <string name="walkthrough_desc_footstep_1">Miss die Bewegungsgeschwindigkeit des Geistes (BPM), um ihn zu identifizieren. Verschiedene Geister haben unterschiedliche Gehgeschwindigkeiten.</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">Aktive Modifikatoren</string>
+    <string name="walkthrough_desc_footstep_modifiers">Sieh dir an, wie die aktuellen Ermittlungseinstellungen, wie das Wetter oder Geschwindigkeitsmodifikatoren des Geistes, die Bewegung des Geistes beeinflussen. Achte darauf, den Einsatz zu konfigurieren, um die genauesten Messwerte zu erhalten!</string>
+    <string name="walkthrough_subtitle_footstep_apply">Messung anwenden</string>
+    <string name="walkthrough_desc_footstep_apply">Wähle aus, welche Messung (Sofort, Durchschnitt oder Gewichtet) du auf deine Ermittlung anwenden möchtest, um den Geistertyp einzugrenzen.</string>
+    <string name="walkthrough_desc_footstep_apply_instant">Sofort nimmt den aktuellsten BPM-Wert.</string>
+    <string name="walkthrough_desc_footstep_apply_average">Durchschnitt nimmt den Durchschnitt aller BPM-Werte innerhalb des Stichprobenintervalls.</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">Gewichtet nimmt den Durchschnitt aller gemittelten BPM-Werte innerhalb des Stichprobenintervalls. Dies wird am besten mit einem kleineren Stichprobenintervall verwendet.</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">BPM-Visualisierer</string>
+    <string name="walkthrough_desc_footstep_visualizer">Tippe im Rhythmus der Schritte des Geistes, um seine Bewegungsgeschwindigkeit in Echtzeit grafisch darzustellen. Verwende die Dropdowns, um die Ansicht anzupassen.</string>
+    <string name="walkthrough_subtitle_footstep_configure">Fenster konfigurieren</string>
+    <string name="walkthrough_desc_footstep_configure">Konfiguriere die Viewport-Zeit, um den sichtbaren Zeitbereich festzulegen. Konfiguriere das Stichprobenintervall, um den Zeitbereich für die Stichprobenahme von gemittelten und gewichteten Messungen festzulegen.</string>
+</resources>

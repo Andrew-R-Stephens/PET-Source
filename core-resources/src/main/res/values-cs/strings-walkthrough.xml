@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="walkthrough_title_investigation">Obrazovka vyšetřování</string>
+    <string name="walkthrough_desc_investigation_1">Vítejte na obrazovce vyšetřování! Toto je váš hlavní panel pro sledování důkazů a identifikaci ducha.</string>
+
+    <string name="walkthrough_title_journal">Deník</string>
+    <string name="walkthrough_desc_journal_1">Do deníku zaznamenáváte důkazy nalezené během vyšetřování.</string>
+    <string name="walkthrough_desc_journal_2">Vyberte důkazy pro filtrování seznamu možných duchů. Klepnutím na jména duchů zobrazíte další podrobnosti. Klepnutím na Důkazy zobrazíte podrobnosti i o nich. Tento seznam zobrazí důkazy jako zakázané, pokud to vyžaduje nastavení obtížnosti.</string>
+
+    <string name="walkthrough_title_status">Stavový řádek</string>
+    <string name="walkthrough_desc_status_1">Sledujte stavový řádek pro vaši aktuální úroveň duševního zdraví, zbývající čas přípravy, aktuální počasí atd.</string>
+
+    <string name="walkthrough_title_toolbar">Nástroje a konfigurace</string>
+    <string name="walkthrough_desc_toolbar_1">Panel nástrojů vám poskytuje přístup k různým nástrojům, jako jsou konfigurace operace, počítadlo BPM, časovače a analýza obtížnosti.</string>
+
+    <string name="walkthrough_title_configs">Konfigurace operace</string>
+    <string name="walkthrough_desc_configs_1">Nakonfigurujte mapu, obtížnost a počasí tak, aby odpovídaly vašemu probíhajícímu vyšetřování.</string>
+    <string name="walkthrough_subtitle_configs_map">Výběr mapy</string>
+    <string name="walkthrough_desc_configs_map">Vyberte místo aktuálního vyšetřování. To ovlivňuje modifikátor rychlosti poklesu duševního zdraví.</string>
+    <string name="walkthrough_subtitle_configs_difficulty">Nastavení obtížnosti</string>
+    <string name="walkthrough_desc_configs_difficulty">Vyberte obtížnost aktuálního vyšetřování. To ovlivní modifikátor rychlosti poklesu duševního zdraví.</string>
+    <string name="walkthrough_subtitle_configs_weather">Ovládání počasí</string>
+    <string name="walkthrough_desc_configs_weather">Vyberte počasí aktuálního vyšetřování. Po nastavení se zobrazí sledování teploty. Poznámka: Pouze Krvavý měsíc ovlivní modifikátor rychlosti poklesu duševního zdraví.</string>
+    <string name="walkthrough_subtitle_configs_temperature">Teploměr</string>
+    <string name="walkthrough_desc_configs_temperature">Toto zobrazí hrubý odhad teploty vnitřních místností, ale pouze tehdy, když je nakonfigurováno počasí i spuštěn časovač operace. Teplota bude stoupat nebo klesat v závislosti na stavu pojistek. Poznámka: Pro přesnější odhady udržujte přepínač pojistek aktuální.</string>
+    <string name="walkthrough_subtitle_configs_timer">Časovač operace</string>
+    <string name="walkthrough_desc_configs_timer">Tato funkce simuluje probíhající vyšetřování. Časovač představuje zbývající čas přípravy. Musí běžet, aby bylo možné sledovat duševní zdraví i teplotu.</string>
+    <string name="walkthrough_subtitle_configs_power">Tlačítko pojistek</string>
+    <string name="walkthrough_desc_configs_power">Představuje stav hlavních pojistek. Pokud má obtížnost rozbité pojistky, bude toto zakázáno. Stav pojistek ovlivní teploměr.</string>
+    <string name="walkthrough_subtitle_configs_death">Smrt spoluhráče</string>
+    <string name="walkthrough_desc_configs_death">Stiskněte toto, když spoluhráč zemře. Odečte odpovídající množství duševního zdraví z počítadla.</string>
+    <string name="walkthrough_subtitle_configs_medication">Léky na duševní zdraví</string>
+    <string name="walkthrough_desc_configs_medication">Stiskněte toto, když užijete léky na duševní zdraví. Zvýší odpovídající množství duševního zdraví v počítadle.</string>
+
+    <string name="walkthrough_subtitle_configs_sanity">Ukazatel duševního zdraví</string>
+    <string name="walkthrough_subtitle_configs_status">Stavový řádek</string>
+
+    <string name="walkthrough_title_sanity">Správa duševního zdraví</string>
+    <string name="walkthrough_desc_sanity_1">Zde jsou zobrazeny vaše přibližné úrovně duševního zdraví, které lze ručně upravit. Rychlost poklesu duševního zdraví je ovlivněna kombinací obtížnosti a velikosti mapy a také chováním ducha.</string>
+
+    <string name="walkthrough_title_traits">Sekundární důkazy</string>
+    <string name="walkthrough_desc_traits_1">Identifikujte znaky sekundárních důkazů pro zúžení typu ducha. Některé znaky jsou jedinečné pro konkrétní duchy, zatímco jiné pouze poskytují vyšší nebo nižší pravděpodobnost. Deník se přeuspořádá podle vašeho výběru.</string>
+    <string name="walkthrough_subtitle_traits_unique">Pouze jedinečné znaky</string>
+    <string name="walkthrough_desc_traits_unique">Filtrujte seznam tak, aby se zobrazovaly pouze znaky, které jsou jedinečné pro jednoho ducha. Toto je často nejrychlejší způsob, jak potvrdit konkrétního ducha.</string>
+    <string name="walkthrough_subtitle_traits_filter">Filtr kategorií</string>
+    <string name="walkthrough_desc_traits_filter">Zúžte seznam výběrem konkrétní kategorie, jako je „Chování“ nebo „Schopnosti“, abyste rychleji našli relevantní znaky.</string>
+
+    <string name="walkthrough_title_analyzer">Podrobnosti operace</string>
+    <string name="walkthrough_desc_analyzer_1">Zkontrolujte konkrétní podrobnosti vaší aktuální operace, včetně chování ducha a nastavení vyšetřování.</string>
+
+    <string name="walkthrough_title_timers">Časovače vyšetřování</string>
+    <string name="walkthrough_desc_timers_1">Pomocí těchto časovačů můžete sledovat dobu ochrany po vykouření místnosti, dobu trvání lovu, dobu zotavení po lovu a životnost otisků prstů. Pokud u každého časovače vidíte jména duchů, znamená to, že duch může časovač nějakým způsobem ovlivnit.</string>
+    <string name="walkthrough_subtitle_timers_cursed">Prokletá operace</string>
+    <string name="walkthrough_desc_timers_cursed">Povolte toto, pokud byl použit prokletý předmět a byl jím vyvolán lov, protože operace je považována za prokletou. Prokleté lovy trvají déle než standardní lov.</string>
+    <string name="walkthrough_subtitle_timers_hunt_duration">Doba trvání lovu</string>
+    <string name="walkthrough_desc_timers_hunt_duration">Sledujte délku aktivního lovu. To vám pomůže vědět, kdy je bezpečné vyjít z úkrytu. Někteří duchové mají různou dobu trvání. To je ovlivněno úrovní obtížnosti, velikostí mapy a tím, zda je operace prokletá.</string>
+    <string name="walkthrough_subtitle_timers_hunt_cooldown">Doba zotavení po lovu</string>
+    <string name="walkthrough_desc_timers_hunt_cooldown">Sledujte minimální čas mezi lovy. Toto okno využijte k přesunu mezi úkryty nebo ke sběru důkazů.</string>
+    <string name="walkthrough_subtitle_timers_link">Propojené časovače</string>
+    <string name="walkthrough_desc_timers_link">Při propojení se časovač zotavení po lovu spustí automaticky, jakmile skončí časovač trvání lovu, což zajišťuje plynulou časovou osu. To nefunguje dobře s Obambem v jeho agresivním stavu.</string>
+    <string name="walkthrough_subtitle_timers_smudge">Časovač vykouření</string>
+    <string name="walkthrough_desc_timers_smudge">Sledujte dobu ochrany po vykouření místnosti vykuřovadlem. Různí duchové mají různou dobu prevence.</string>
+    <string name="walkthrough_subtitle_timers_fingerprint">Časovač otisků prstů</string>
+    <string name="walkthrough_desc_timers_fingerprint">Sledujte, jak dlouho zůstanou otisky prstů viditelné. To vám pomůže vědět, zda potřebujete znovu zkontrolovat dveře nebo okno. Obake má potenciál nechat otisk prstu zobrazit na kratší dobu. Čas je ovlivněn nastavením obtížnosti Délka trvání otisků prstů.</string>
+
+    <string name="walkthrough_title_footstep">Analyzátor kroků</string>
+    <string name="walkthrough_desc_footstep_1">Změřte rychlost pohybu ducha (BPM), což vám pomůže s jeho identifikací. Různí duchové mají odlišnou rychlost chůze.</string>
+    <string name="walkthrough_subtitle_footstep_modifiers">Aktivní modifikátory</string>
+    <string name="walkthrough_desc_footstep_modifiers">Podívejte se, jak nastavení aktuálního vyšetřování, jako je počasí nebo modifikátory rychlosti ducha, ovlivňují pohyb ducha. Nezapomeňte nakonfigurovat operaci, abyste získali co nejpřesnější údaje!</string>
+    <string name="walkthrough_subtitle_footstep_apply">Použít měření</string>
+    <string name="walkthrough_desc_footstep_apply">Vyberte, které měření (Okamžité, Průměrné nebo Vážené) chcete použít ve svém vyšetřování, abyste pomohli zúžit typ ducha.</string>
+    <string name="walkthrough_desc_footstep_apply_instant">Okamžité bere nejnovější BPM.</string>
+    <string name="walkthrough_desc_footstep_apply_average">Průměrné bere průměr všech BPM v intervalu vzorkování.</string>
+    <string name="walkthrough_desc_footstep_apply_weighted">Vážené bere průměr všech průměrných BPM v intervalu vzorkování. Nejlépe se používá s menším intervalem vzorkování.</string>
+    <string name="walkthrough_subtitle_footstep_visualizer">BPM vizualizátor</string>
+    <string name="walkthrough_desc_footstep_visualizer">Klepejte do rytmu kroků ducha, abyste viděli jeho rychlost pohybu v grafu v reálném čase. Pomocí rozbalovacích nabídek upravte zobrazení.</string>
+    <string name="walkthrough_subtitle_footstep_configure">Konfigurovat okno</string>
+    <string name="walkthrough_desc_footstep_configure">Nakonfigurujte čas Viewportu pro nastavení viditelného časového rozsahu. Nakonfigurujte interval vzorkování pro nastavení časového rozsahu pro vzorkování průměrných a vážených měření.</string>
+</resources>

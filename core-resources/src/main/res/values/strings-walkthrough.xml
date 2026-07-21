@@ -50,8 +50,8 @@
 
     <string name="walkthrough_title_timers">Investigation Timers</string>
     <string name="walkthrough_desc_timers_1">Use these timers to track protection time from a room cleansing, hunt durations, hunt cooldowns, and fingerprint lifetimes. If you see ghost names displayed with each timer, it means the ghost might modify the timer in some way.</string>
-    <string name="walkthrough_subtitle_timers_hunt_duration">Cursed Operation</string>
-    <string name="walkthrough_desc_timers_hunt_duration">Enable this if a Cursed Possession has been used and a hunt is triggered by it, as the Operation is considered Cursed. Cursed hunts last longer than a standard hunt.</string>
+    <string name="walkthrough_subtitle_timers_cursed">Cursed Operation</string>
+    <string name="walkthrough_desc_timers_cursed">Enable this if a Cursed Possession has been used and a hunt is triggered by it, as the Operation is considered Cursed. Cursed hunts last longer than a standard hunt.</string>
     <string name="walkthrough_subtitle_timers_hunt_duration">Hunt Duration</string>
     <string name="walkthrough_desc_timers_hunt_duration">Monitor the length of an active hunt. This helps you know when it\'s safe to come out of hiding. Some ghosts have different durations. This is affected by the Difficulty level, Map size, and if the operation is Cursed.</string>
     <string name="walkthrough_subtitle_timers_hunt_cooldown">Hunt Cooldown</string>
@@ -74,6 +74,6 @@
     <string name="walkthrough_desc_footstep_apply_weighted">Weighted takes the average of all averaged BPMs within the Sample interval. This is best used with a smaller Sample interval.</string>
     <string name="walkthrough_subtitle_footstep_visualizer">BPM Visualizer</string>
     <string name="walkthrough_desc_footstep_visualizer">Tap along with the ghost\'s footsteps to see its movement speed graphed in real-time. Use the dropdowns to adjust the view.</string>
-    <string name="walkthrough_subtitle_footstep_visualizer">Configure Window</string>
-    <string name="walkthrough_desc_footstep_visualizer">Configure the Viewport time to set the visible time range. Configure the Sampling interval to set the time range for sampling Averaged and Weighted measurements.</string>
+    <string name="walkthrough_subtitle_footstep_configure">Configure Window</string>
+    <string name="walkthrough_desc_footstep_configure">Configure the Viewport time to set the visible time range. Configure the Sampling interval to set the time range for sampling Averaged and Weighted measurements.</string>
 </resources>
