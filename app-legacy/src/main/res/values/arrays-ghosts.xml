@@ -9,6 +9,7 @@
         <item>@string/ghost_type_aswang</item>
         <item>@string/ghost_type_banshee</item>
         <item>@string/ghost_type_dayan</item>
+        <item>@string/ghost_type_deildegast</item>
         <item>@string/ghost_type_demon</item>
         <item>@string/ghost_type_deogen</item>
         <item>@string/ghost_type_gallu</item>
@@ -42,6 +43,7 @@
         <item>@string/ghost_info_aswang</item>
         <item>@string/ghost_info_banshee</item>
         <item>@string/ghost_info_dayan</item>
+        <item>@string/ghost_info_deildegast</item>
         <item>@string/ghost_info_demon</item>
         <item>@string/ghost_info_deogen</item>
         <item>@string/ghost_info_gallu</item>
@@ -75,6 +77,7 @@
         <item>@string/ghost_strengths_aswang</item>
         <item>@string/ghost_strengths_banshee</item>
         <item>@string/ghost_strengths_dayan</item>
+        <item>@string/ghost_strengths_deildegast</item>
         <item>@string/ghost_strengths_demon</item>
         <item>@string/ghost_strengths_deogen</item>
         <item>@string/ghost_strengths_gallu</item>
@@ -108,6 +111,7 @@
         <item>@string/ghost_weaknesses_aswang</item>
         <item>@string/ghost_weaknesses_banshee</item>
         <item>@string/ghost_weaknesses_dayan</item>
+        <item>@string/ghost_weaknesses_deildegast</item>
         <item>@string/ghost_weaknesses_demon</item>
         <item>@string/ghost_weaknesses_deogen</item>
         <item>@string/ghost_weaknesses_gallu</item>
@@ -141,6 +145,7 @@
         <item>@string/ghost_huntingdata_aswang</item>
         <item>@string/ghost_huntingdata_banshee</item>
         <item>@string/ghost_huntingdata_dayan</item>
+        <item>@string/ghost_huntingdata_deildegast</item>
         <item>@string/ghost_huntingdata_demon</item>
         <item>@string/ghost_huntingdata_deogen</item>
         <item>@string/ghost_huntingdata_gallu</item>
@@ -174,6 +179,7 @@
         <item>@array/ghost_evidence_aswang</item>
         <item>@array/ghost_evidence_banshee</item>
         <item>@array/ghost_evidence_dayan</item>
+        <item>@array/ghost_evidence_deildegast</item>
         <item>@array/ghost_evidence_demon</item>
         <item>@array/ghost_evidence_deogen</item>
         <item>@array/ghost_evidence_gallu</item>
@@ -207,6 +213,7 @@
         <item>@array/ghost_requiredevidence_aswang</item>
         <item>@array/ghost_requiredevidence_banshee</item>
         <item>@array/ghost_requiredevidence_dayan</item>
+        <item>@array/ghost_requiredevidence_deildegast</item>
         <item>@array/ghost_requiredevidence_demon</item>
         <item>@array/ghost_requiredevidence_deogen</item>
         <item>@array/ghost_requiredevidence_gallu</item>
@@ -252,6 +259,11 @@
         <item>@integer/evidence_id_emf</item>
         <item>@integer/evidence_id_orbs</item>
         <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_deildegast">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_book</item>
+        <item>@integer/evidence_id_emf</item>
     </integer-array>
     <integer-array name="ghost_evidence_demon">
         <item>@integer/evidence_id_ultraviolet</item>
@@ -453,6 +465,8 @@
     <integer-array name="ghost_requiredevidence_banshee">
     </integer-array>
     <integer-array name="ghost_requiredevidence_dayan">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_deildegast">
     </integer-array>
     <integer-array name="ghost_requiredevidence_demon">
     </integer-array>

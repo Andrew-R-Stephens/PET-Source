@@ -16,6 +16,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostIdentifier.ASWANG -> R.string.ghost_id_aswang
         GhostIdentifier.BANSHEE -> R.string.ghost_id_banshee
         GhostIdentifier.DAYAN -> R.string.ghost_id_dayan
+        GhostIdentifier.DEILDEGAST -> R.string.ghost_id_deildegast
         GhostIdentifier.DEMON -> R.string.ghost_id_demon
         GhostIdentifier.DEOGEN -> R.string.ghost_id_deogen
         GhostIdentifier.GALLU -> R.string.ghost_id_gallu
@@ -49,6 +50,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostIdentifier.ASWANG -> GhostTitle.ASWANG
         GhostIdentifier.BANSHEE -> GhostTitle.BANSHEE
         GhostIdentifier.DAYAN -> GhostTitle.DAYAN
+        GhostIdentifier.DEILDEGAST -> GhostTitle.DEILDEGAST
         GhostIdentifier.DEMON -> GhostTitle.DEMON
         GhostIdentifier.DEOGEN -> GhostTitle.DEOGEN
         GhostIdentifier.GALLU -> GhostTitle.GALLU
@@ -82,6 +84,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostTitle.ASWANG -> R.string.ghost_type_aswang
         GhostTitle.BANSHEE -> R.string.ghost_type_banshee
         GhostTitle.DAYAN -> R.string.ghost_type_dayan
+        GhostTitle.DEILDEGAST -> R.string.ghost_type_deildegast
         GhostTitle.DEMON -> R.string.ghost_type_demon
         GhostTitle.DEOGEN -> R.string.ghost_type_deogen
         GhostTitle.GALLU -> R.string.ghost_type_gallu
@@ -115,6 +118,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostIcon.ASWANG -> R.drawable.icon_ghost_unknown
         GhostIcon.BANSHEE -> R.drawable.icon_ghost_banshee
         GhostIcon.DAYAN -> R.drawable.icon_ghost_unknown
+        GhostIcon.DEILDEGAST -> R.drawable.icon_ghost_unknown
         GhostIcon.DEMON -> R.drawable.icon_ghost_demon
         GhostIcon.DEOGEN -> R.drawable.icon_ghost_deogen
         GhostIcon.GALLU -> R.drawable.icon_ghost_unknown
@@ -148,6 +152,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostDescription.ASWANG -> R.string.ghost_info_aswang
         GhostDescription.BANSHEE -> R.string.ghost_info_banshee
         GhostDescription.DAYAN -> R.string.ghost_info_dayan
+        GhostDescription.DEILDEGAST -> R.string.ghost_info_deildegast
         GhostDescription.DEMON -> R.string.ghost_info_demon
         GhostDescription.DEOGEN -> R.string.ghost_info_deogen
         GhostDescription.GALLU -> R.string.ghost_info_gallu
@@ -181,6 +186,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostStrength.ASWANG -> R.string.ghost_strengths_aswang
         GhostStrength.BANSHEE -> R.string.ghost_strengths_banshee
         GhostStrength.DAYAN -> R.string.ghost_strengths_dayan
+        GhostStrength.DEILDEGAST -> R.string.ghost_strengths_deildegast
         GhostStrength.DEMON -> R.string.ghost_strengths_demon
         GhostStrength.DEOGEN -> R.string.ghost_strengths_deogen
         GhostStrength.GALLU -> R.string.ghost_strengths_gallu
@@ -214,6 +220,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostWeakness.ASWANG -> R.string.ghost_weaknesses_aswang
         GhostWeakness.BANSHEE -> R.string.ghost_weaknesses_banshee
         GhostWeakness.DAYAN -> R.string.ghost_weaknesses_dayan
+        GhostWeakness.DEILDEGAST -> R.string.ghost_weaknesses_deildegast
         GhostWeakness.DEMON -> R.string.ghost_weaknesses_demon
         GhostWeakness.DEOGEN -> R.string.ghost_weaknesses_deogen
         GhostWeakness.GALLU -> R.string.ghost_weaknesses_gallu
@@ -247,6 +254,7 @@ fun GhostIdentifier.toGhostTitle(): GhostTitle =
         GhostHuntInfo.ASWANG -> R.string.ghost_huntingdata_aswang
         GhostHuntInfo.BANSHEE -> R.string.ghost_huntingdata_banshee
         GhostHuntInfo.DAYAN -> R.string.ghost_huntingdata_dayan
+        GhostHuntInfo.DEILDEGAST -> R.string.ghost_huntingdata_deildegast
         GhostHuntInfo.DEMON -> R.string.ghost_huntingdata_demon
         GhostHuntInfo.DEOGEN -> R.string.ghost_huntingdata_deogen
         GhostHuntInfo.GALLU -> R.string.ghost_huntingdata_gallu

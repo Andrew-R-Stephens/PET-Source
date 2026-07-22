@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_confirm">Onayla</string>
+    <string name="settings_cancel">İptal</string>
+    <string name="settings_generalsettings">Genel Ayarlar</string>
+    <string name="settings_devicesettings">Cihaz</string>
+    <string name="settings_extrasettings">Ek ​​Ayarlar</string>
+    <string name="settings_interfacesettings">Arayüz</string>
+    <string name="settings_appearancesettings">Görünüm</string>
+    <string name="settings_fontstylesettings">Yazı Tipi Stili</string>
+    <string name="settings_adsconsentcontrolsection">Gizlilik</string>
+    <string name="settings_adsgdprcontrolsection">Gizlilik Seçenekleri</string>
+    <string name="settings_gdprsettings_button">Gizlilik Ayarları</string>
+    <string name="settings_screenalwayson">Ekranı her zaman açık tut</string>
+    <string name="settings_networktitle">Mobil Veriye İzin Ver</string>
+    <string name="settings_huntwarningflashtimeout">Av Uyarısı Süresi</string>
+    <string name="settings_huntwarningflashtimeout_never">Asla Zaman Aşımı Yok</string>
+    <string name="settings_enableLeftHandSupport">Sol El Modunu Etkinleştir</string>
+    <string name="settings_uiDensity">Kompakt Arayüzü Etkinleştir</string>
+    <string name="settings_enablehuntaudioqueue">Av Uyarısı Sesini Etkinleştir</string>
+    <string name="settings_enableGhostReorder">Hayalet Listesi Yeniden Sıralamayı Etkinleştir</string>
+    <string name="settings_enablePersonalizedAds">Kişiselleştirilmiş Reklamları Etkinleştir</string>
+    <string name="settings_enableAnalytics">Analitiği Etkinleştir</string>
+    <string name="settings_colorblindnessmode_title">Renk Körlüğü Modu</string>
+    <string name="settings_colorblindnessmode_note">(Ayarlardan çıktıktan sonra geçerli olur)</string>
+    <string name="settings_colortheme_title">Tema</string>
+    <string name="settings_colortheme_note">(Renk körlüğü seçimi önceliklidir)</string>
+    <string name="settings_colorblindnessmode_normal">Yok</string>
+</resources>

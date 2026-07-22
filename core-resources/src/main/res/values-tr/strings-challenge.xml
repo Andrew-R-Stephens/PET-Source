@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="challenge_lights_out_description">Mumlarınızı hazırlayın, tüm ışıklar söndü!</string>
+    <string name="challenge_speed_demons_description">Havada bir şeyler olmalı, herkes çıldırıyor!</string>
+    <string name="challenge_detectives_only_description">Dedektiflik becerilerinizi test edin, bu hayalet hiçbir ipucu vermiyor!</string>
+    <string name="challenge_hide_and_seek_seeker_description">Bir yerlerde çok sessiz bir hayalet saklanıyor, onu bulabilir misiniz?</string>
+    <string name="challenge_hide_and_seek_hide_description">Bu hayalet bir oyun oynamak istiyor, çabuk saklansanız iyi olur!</string>
+    <string name="challenge_frostbitten_description">Hava o kadar soğuk ki, hayalet de dahil herkesi yavaşlatıyor!</string>
+    <string name="challenge_do_as_i_command_description">Bu hayaleti size kanıt vermeye zorlamanız gerekecek, neyse ki size yardımcı olacak bazı ek eşyalar bulduk.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Elinizden gelenin en iyisini yapın, bu hayalet özellikle zayıf hissediyor.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Geçen haftadan sonra biraz yorgun hissediyorsunuz ve işleri daha da kötüleştiren şey, hayaletin iyileşmiş olması!</string>
+    <string name="challenge_gotta_go_fast_description">Saklanmak yok, akıl sağlığı yok, hadi gidin!</string>
+    <string name="challenge_sanity_survival_description">Hap veya ışık yokken akıl sağlığı kıt bir kaynak. Bu Kabus hayaletini bulurken dikkatli olun.</string>
+    <string name="challenge_speedrun_description">Belki bir zamanlayıcı başlatabilirsiniz, bu hayaletin kimliğini ne kadar hızlı bulabilirsiniz?</string>
+    <string name="challenge_survival_of_the_fittest_description">Elinizde ilaç yok, akıl sağlığınız yok ve kullanabileceğiniz hiçbir kanıt yok. Çok zor olacak!</string>
+    <string name="challenge_primitive_description">Korkarım ki tüm elektronik ekipmanlar kısa devre yaptı, onlarsız idare etmek zorunda kalacaksınız.</string>
+    <string name="challenge_vulnerable_description">Bu işe savunmasız gireceksiniz, dikkatli olun.</string>
+    <string name="challenge_missed_delivery_description">Bu hafta tüm ekipman teslimatımızı alamadık, bu yüzden ihtiyacınız olabilecek her şeye sahip olmayacaksınız!</string>
+    <string name="challenge_audio_only_description">Biraz ekstra ses ekipmanı ele geçirmeyi başardık. Bu sefer kulaklarınızı kullanmanız gerekecek.</string>
+    <string name="challenge_technophilia_description">Tüm o tarih öncesi eşyaları attık, bu sözleşme tamamen teknolojiyle ilgili!</string>
+    <string name="challenge_no_evidence_description">Bu hayaletler size gerçekten yardım etmek istemiyor, ama eminiz ki siz bu görevin üstesinden gelebilirsiniz.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">Mümkün olan en zorlu meydan okuma, ama normal bir araştırmacı hızıyla. İyi şanslar.</string>
+    <string name="challenge_slow_and_steady_description">Bu hayalet yavaş olabilir, ama öfkeli. Tetikte olun!</string>
+    <string name="challenge_paranormal_paparazzi_description">Kameralarınız, ışıklarınız ve ses sisteminiz var. Şu hayalet türünü bulun!</string>
+    <string name="challenge_hide_and_seek_extreme_description">Bu hayalet oyun oynamak istiyor, saklansanız iyi olur.</string>
+    <string name="challenge_glow_in_the_dark_description">Bazı ekipmanlarımız çalışmayı durdurdu, umarım bu görmeniz için yeterlidir.</string>
+    <string name="challenge_deja_vu_description">Bu oldukça nostaljik hissettiriyor, sizce de öyle değil mi?</string>
+    <string name="challenge_tag_youre_it_description">Bu hayalet sizi hemen kovalayacak, koşsanız iyi olur!</string>
+</resources>

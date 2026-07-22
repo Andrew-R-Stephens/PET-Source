@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toast_discardchanges">Değişiklikler atıldı</string>
+    <string name="alert_error_generic">Hata!</string>
+    <string name="alert_success_generic">Başarılı!</string>
+    <string name="alert_account_welcome">Hoş Geldiniz</string>
+    <string name="alert_account_data_failure">Veriler alınamadı.</string>
+    <string name="alert_account_remove_success">Hesap başarıyla kaldırıldı.</string>
+    <string name="alert_account_remove_failure">Hesap kaldırma başarısız oldu.</string>
+    <string name="alert_account_logout_success">Kullanıcı çıkış yaptı.</string>
+    <string name="alert_account_login_failure">Giriş Hatası.</string>
+    <string name="alert_internet_unavailable">İnternet bağlantısı yok.</string>
+    <string name="alert_marketplace_access_failure">Pazaryerine erişilemedi.</string>
+    <string name="alert_marketplace_transaction_failure">Pazaryeri işleminde hata.</string>
+    <string name="alert_marketplace_purchase_success_skin">Kostüm satın alındı!</string>
+    <string name="alert_marketplace_purchase_success_generic">Satın alma başarılı!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Satın alma için yeterli kredi yok!</string>
+    <string name="alert_gui_palette_error">Palet ayarlanmadı!</string>
+    <string name="alert_gui_typography_error">Yazı tipi ayarlanmadı!</string>
+</resources>

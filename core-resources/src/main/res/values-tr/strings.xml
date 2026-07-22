@@ -1,2 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="aboutinfo_aboutapp_info">
+
+<![CDATA[
+
+<p><font color=#CC3C3C>Phasmophobia</font>, <font color=#CC3C3C>Kinetic Games</font> tarafından geliştirilen benzersiz bir korku oyunudur.</p>
+
+<p><font color=#CC3C3C>P.E.T.</font>, hem yeni oyuncular için bir rehber hem de deneyimli oyuncular için bir yardımcı görevi gören resmi olmayan bir yardımcı araçtır.</p>
+
+<p><font color=#CC3C3C>P.E.T.'i kullandığınız için çok teşekkür ederiz!</font></p>
+
+]]>
+
+</string>
+<string name="ghost_info_deildegast">
+
+<![CDATA[
+
+<a>Bu hayalet haritadaki eşyaları yerinden oynatmayı sever. Diğer hayaletlere kıyasla eşyalarla etkileşime girme olasılığı daha yüksektir ve kapılara ve ışık anahtarlarına dokunma olasılığı daha düşüktür.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>Bu hayalet doğal olarak hızlıdır ve görüş hattına bağlı değildir. Genel bir kural olarak, etkileşimler oyuncunun Akıl Sağlığını düşürür; Bu hayaletin eşyalarla etkileşime girme olasılığının daha yüksek olması nedeniyle, oyuncunun Akıl Sağlığının çok hızlı bir şekilde tükenme olasılığı artar.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>Hayalet, yerinden oynattığı her eşya için kendini giderek daha fazla yorar.</a>
+<a>Zamanla, hayalet av sırasında çok daha yavaşlar.</a><br>
+<a>Oyuncu, hayalet yerine nesneleri hareket ettirebilir. Bir oyuncunun bunun için manipüle edebileceği nesne sayısı 30 ile sınırlıdır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>Daha fazla nesne yer değiştirdikçe, hayaletin av hızı önemli ölçüde azalacaktır.</a><br>
+
+<a>Hayaletin başlangıç hızı 3,0 m/s, minimum hızı ise 0,4 m/s\'dir.</a><br>
+
+<a>Etkileşimde bulunulan her nesne için hayaletin hızı 0,1 m/s azalacaktır.</a><br>
+
+<a>Hayalet sabit bir hıza sahiptir ve görüş hattına bağlı değildir.</a>
+
+]]>
+
+</string>
+    <string name="navigation_open_state">Gezinti Çekmecesi açıldı.</string>
+    <string name="navigation_closed_state">Gezinti Çekmecesi kapatıldı.</string>
+    <string name="general_label_evidence">Kanıt</string>
+    <string name="general_label_maps">Haritalar</string>
+    <string name="general_label_objectiveboard">Hedef Panosu</string>
+    <string name="general_label_codex">Kodeks</string>
+    <string name="general_navigation_menu">Menü</string>
+    <string name="general_navigation_home">Ana Sayfa</string>
+    <string name="general_navigation_primary">Birincil</string>
+    <string name="general_navigation_secondary">İkincil</string>
+    <string name="general_navigation_alternative">Alternatif</string>
+    <string name="general_navigation_tools">Araçlar</string>
+    <string name="general_navigation_settings">Ayarlar</string>
+    <string name="general_navigation_system">Sistem</string>
+    <string name="general_navigation_customdifficultyeditor">Zorluk Düzenleyici</string>
+    <string name="general_label_reset">Sıfırla</string>
+    <string name="general_label_preset_slot">Ön Ayar Yuvası</string>
+    <string name="general_label_save">Kaydet</string>
+    <string name="general_label_revert">Geri Al</string>
+    <string name="general_label_discard">İptal Et</string>
+    <string name="general_label_modifiers">Değiştiriciler</string>
+    <string name="general_label_power">Güç</string>
+    <string name="general_label_temperature">Sıcaklık</string>
+    <string name="general_label_edit">Düzenle</string>
+    <string name="titlescreen_beta_label">Beta</string>
+    <string name="titlescreen_description">En üstün kanıt aracı</string>
+    <string name="titlescreen_button">Avlanmaya Başla</string>
+    <string name="titlescreen_languages_label">Dil Seç</string>
+    <string name="review_requesttitle">Lütfen P.E.T.\'i değerlendirmeyi düşünün!</string>
+    <string name="review_accept">Elbette!</string>
+    <string name="review_decline">Hayır teşekkürler</string>
+    <string name="aboutinfo_title_about">Hakkında</string>
+    <string name="aboutinfo_version">Sürüm</string>
+    <string name="aboutinfo_developerinfo_title">Geliştirici Bilgileri</string>
+    <string name="aboutinfo_developerinfo_developer">Geliştirici</string>
+    <string name="aboutinfo_developerinfo_contact">İletişim</string>
+    <string name="aboutinfo_discord_join">Discord\'a Katılın</string>
+    <string name="aboutinfo_specialthanks_title">Özel Teşekkürler</string>
+    <string name="investigation_average_sanity_title">Ortalama Akıl Sağlığı</string>
+    <string name="investigation_prep_time_title">Hazırlık Süresi</string>
+    <string name="investigation_your_sanity_level_title">Akıl Sağlığı Seviyeniz</string>
+    <string name="investigation_timer_label">Hazırlık Süresi</string>
+    <string name="investigation_timer_difficulty_label">Zorluk Seviyesi</string>
+    <string name="investigation_timer_maplabel">Harita</string>
+    <string name="investigation_phase_label_action">Eylem</string>
+    <string name="investigation_phase_label_setup">Kurulum</string>
+    <string name="investigation_phase_label_hunt">Av</string>
+    <string name="investigation_sanity_huntwarn">Av Uyarısı</string>
+    <string name="investigation_sanitymeter_title">Maksimum Akıl Sağlığı</string>
+    <string name="investigation_sanity_player_death">Öldürülen Oyuncu</string>
+    <string name="investigation_section_title_ghosts">Hayaletler</string>
+    <string name="investigation_section_title_evidence">Kanıt</string>
+    <string name="investigation_section_title_active_ghosts">Aktif Hayaletler</string>
+    <string name="investigation_section_title_hunt_sanity">Av Akıl Sağlığı</string>
+    <string name="investigation_section_title_movement_speed">Hareket Hızı</string>
+    <string name="investigation_label_phase">Aşama</string>
+    <string name="investigation_label_all">Tümü</string>
+    <string name="investigation_label_journal">Günlük</string>
+    <string name="investigation_label_contract">Sözleşmeyi Yapılandır</string>
+    <string name="investigation_label_tool_operation_details">Sözleşme Ayrıntıları</string>
+    <string name="investigation_label_tool_secondary_evidence">İkincil Kanıt</string>
+    <string name="investigation_label_tool_timers">Zamanlayıcılar</string>
+    <string name="investigation_label_timer_run">Çalıştırma Zamanlayıcısı</string>
+    <string name="investigation_label_timer_pause">Duraklatma Zamanlayıcısı</string>
+    <string name="investigation_label_timer_skip">Atlama Zamanlayıcısı</string>
+    <string name="investigation_label_timer_reset">Sıfırlama Zamanlayıcısı</string>
+    <string name="investigation_label_tool_footstep">Ayak İzi Aracı</string>
+    <string name="footstep_label_apply">BPM Uygula</string>
+    <string name="footstep_label_none">Yok</string>
+    <string name="footstep_label_instant">Anında</string>
+    <string name="footstep_label_instant_description">En son anlık değer, Üstel Hareketli Ortalama ile düzeltilerek kullanılır.</string>
+    <string name="footstep_label_average">Ortalama</string>
+    <string name="footstep_label_average_description">Hareketli Ortalama hesaplaması kullanılır. Örnekleme aralığı içindeki her dokunuşun ham anlık değerlerinin ortalaması alınarak hesaplanır.</string>
+    <string name="footstep_label_weighted">Ağırlıklı</string>
+    <string name="footstep_label_weighted_description">Ağırlıklı Ortalama hesaplaması kullanılır. Örnekleme aralığı içindeki her dokunuş için hesaplanan Hareketli Ortalama değerlerinin ortalaması alınarak hesaplanır.</string>
+    <string name="footstep_label_domain">Görünüm Alanı</string>
+    <string name="footstep_label_sample_interval">Örnekleme</string>
+    <string name="tool_timer_label_smudge_cleanse">Leke Temizleme</string>
+    <string name="tool_timer_label_hunt_duration">Av Süresi</string>
+    <string name="tool_timer_label_hunt_cooldown">Av Bekleme Süresi</string>
+    <string name="tool_timer_label_uv_lifetime">UV Ömrü</string>
+    <string name="tool_timer_label_hunt_timer_link">Av Bekleme Süresi sayacı, Av Süresi sayacı sona erdiğinde otomatik olarak başlar.</string>
+    <string name="tool_timer_label_linked">Bağlantılı</string>
+    <string name="tool_timer_label_unlinked">Bağlantısız</string>
+    <string name="tool_timer_label_standard">Standart</string>
+    <string name="tool_timer_label_toggle_cursed">Lanetli İşlem Durumunu Aç/Kapat</string>
+    <string name="tool_timer_label_cursed">Lanetli İşlem mi?</string>
+    <string name="codex_section_equipment">Ekipman</string>
+    <string name="codex_section_more">Daha fazlası yakında</string>
+    <string name="settings_adsconsentcontrolsettings_button">Düzenle</string>
+</resources>

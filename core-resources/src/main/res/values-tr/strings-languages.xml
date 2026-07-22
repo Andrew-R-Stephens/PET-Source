@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="language_name_localized_en">İngilizce</string>
+    <string name="language_name_localized_es">İspanyolca</string>
+    <string name="language_name_localized_fr">Fransızca</string>
+    <string name="language_name_localized_it">İtalyanca</string>
+    <string name="language_name_localized_ja">Japonca</string>
+    <string name="language_name_localized_pt">Portekizce</string>
+    <string name="language_name_localized_ru">Rusça</string>
+    <string name="language_name_localized_tr">Turkish</string>
+    <string name="language_name_localized_zh_Hans">Basitleştirilmiş Çince</string>
+    <string name="language_name_localized_cs">Çekçe</string>
+    <string name="language_name_localized_de">Almanca</string>
+    <string name="language_name_localized_uk">Türkçe</string>
+</resources>

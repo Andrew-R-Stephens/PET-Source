@@ -15,6 +15,7 @@
     <string name="language_name_localized_ja">Japanese</string>
     <string name="language_name_localized_pt">Portuguese</string>
     <string name="language_name_localized_ru">Russian</string>
+    <string name="language_name_localized_tr">Turkish</string>
     <string name="language_name_localized_uk">Ukrainian</string>
 
     <!-- Native Title -->
@@ -28,6 +29,7 @@
     <string name="language_name_native_ja" translatable="false">日本語</string>
     <string name="language_name_native_pt" translatable="false">Português</string>
     <string name="language_name_native_ru" translatable="false">Русский язык</string>
+    <string name="language_name_native_tk" translatable="false">Türkçe</string>
     <string name="language_name_native_uk" translatable="false">українська</string>
 
     <!-- Localized Code -->
@@ -41,6 +43,7 @@
     <string name="language_code_ja" translatable="false">ja</string>
     <string name="language_code_pt" translatable="false">pt</string>
     <string name="language_code_ru" translatable="false">ru</string>
+    <string name="language_code_tk" translatable="false">tk</string>
     <string name="language_code_uk" translatable="false">uk</string>
 
 

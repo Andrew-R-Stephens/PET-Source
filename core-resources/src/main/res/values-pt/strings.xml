@@ -1395,5 +1395,38 @@
     <string name="investigation_label_timer_skip">Pular Cronômetro</string>
     <string name="tool_timer_label_hunt_timer_link">O cronômetro de recarga da Caçada inicia automaticamente quando o cronômetro de duração da Caçada termina.</string>
     <string name="tool_timer_label_linked">Vinculado</string>
+    <string name="ghost_info_deildegast">
 
+<![CDATA[
+<a>Este fantasma gosta de deslocar objetos pelo mapa. Ele tem uma probabilidade maior de interagir com objetos em comparação com outros fantasmas e uma probabilidade menor de tocar em portas e interruptores de luz.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+<a>Este fantasma é naturalmente rápido e não depende de linha de visão. Como regra geral, as interações diminuem a Sanidade do jogador; devido à maior probabilidade deste fantasma interagir com objetos, há uma chance maior de drenar a Sanidade do jogador muito rapidamente.</a>
+
+]]>
+</string>
+
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+<a>O fantasma fica cada vez mais exausto a cada objeto deslocado. Com o tempo, o fantasma fica muito mais lento durante as caçadas.</a><br>
+<a>Um jogador pode mover objetos em vez do fantasma. O número de objetos que um jogador pode manipular para isso é limitado a 30.</a>
+
+]]>
+</string>
+    <string name="ghost_huntingdata_deildegast">
+<![CDATA[
+<a>À medida que mais objetos são deslocados, a velocidade de caça do fantasma diminui drasticamente.</a><br>
+<a>A velocidade inicial do fantasma é de 3,0 m/s e a sua velocidade mínima é de 0,4 m/s.</a><br>
+<a>Para cada objeto com o qual o fantasma interage, a sua velocidade diminui em 0,1 m/s.</a><br>
+<a>O fantasma tem uma velocidade fixa e não depende da linha de visão.</a>
+
+]]>
+</string>
 </resources>

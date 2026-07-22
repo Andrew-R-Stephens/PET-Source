@@ -73,6 +73,24 @@ class GhostLocalDataSource: GhostDataSource {
                 huntCooldown = HuntCooldown.DAYAN
             ),
             GhostResourceDto(
+                id = GhostIdentifier.DEILDEGAST,
+                name = GhostTitle.DEILDEGAST,
+                icon = GhostIcon.DEILDEGAST,
+                info = GhostDescription.DEILDEGAST,
+                strengthData = GhostStrength.DEILDEGAST,
+                weaknessData = GhostWeakness.DEILDEGAST,
+                huntData = GhostHuntInfo.DEILDEGAST,
+                normalEvidence = listOf(
+                    EvidenceIdentifier.GHOST_WRITING,
+                    EvidenceIdentifier.DOTS,
+                    EvidenceIdentifier.EMF_5,
+                ),
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.DEILDEGAST,
+                sanityBounds = HuntSanityBounds.DEILDEGAST,
+                huntCooldown = HuntCooldown.DEILDEGAST
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.DEMON,
                 name = GhostTitle.DEMON,
                 icon = GhostIcon.DEMON,

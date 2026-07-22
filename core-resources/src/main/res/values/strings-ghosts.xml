@@ -11,6 +11,7 @@
     <string name="ghost_type_aswang">Aswang</string>
     <string name="ghost_type_banshee">Banshee</string>
     <string name="ghost_type_dayan">Dayan</string>
+    <string name="ghost_type_deildegast">Deildegast</string>
     <string name="ghost_type_demon">Demon</string>
     <string name="ghost_type_deogen">Deogen</string>
     <string name="ghost_type_gallu">Gallu</string>
@@ -42,32 +43,33 @@
     <string name="ghost_id_aswang" translatable="false">0</string>
     <string name="ghost_id_banshee" translatable="false">1</string>
     <string name="ghost_id_dayan" translatable="false">2</string>
-    <string name="ghost_id_demon" translatable="false">3</string>
-    <string name="ghost_id_deogen" translatable="false">4</string>
-    <string name="ghost_id_gallu" translatable="false">5</string>
-    <string name="ghost_id_goryo" translatable="false">6</string>
-    <string name="ghost_id_hantu" translatable="false">7</string>
-    <string name="ghost_id_jinn" translatable="false">8</string>
-    <string name="ghost_id_kormos" translatable="false">9</string>
-    <string name="ghost_id_mare" translatable="false">10</string>
-    <string name="ghost_id_moroi" translatable="false">11</string>
-    <string name="ghost_id_myling" translatable="false">12</string>
-    <string name="ghost_id_obake" translatable="false">13</string>
-    <string name="ghost_id_obambo" translatable="false">14</string>
-    <string name="ghost_id_oni" translatable="false">15</string>
-    <string name="ghost_id_onryo" translatable="false">16</string>
-    <string name="ghost_id_phantom" translatable="false">17</string>
-    <string name="ghost_id_poltergeist" translatable="false">18</string>
-    <string name="ghost_id_raiju" translatable="false">19</string>
-    <string name="ghost_id_revenant" translatable="false">20</string>
-    <string name="ghost_id_shade" translatable="false">21</string>
-    <string name="ghost_id_spirit" translatable="false">22</string>
-    <string name="ghost_id_thaye" translatable="false">23</string>
-    <string name="ghost_id_thetwins" translatable="false">24</string>
-    <string name="ghost_id_themimic" translatable="false">25</string>
-    <string name="ghost_id_wraith" translatable="false">26</string>
-    <string name="ghost_id_yokai" translatable="false">27</string>
-    <string name="ghost_id_yurei" translatable="false">28</string>
+    <string name="ghost_id_deildegast" translatable="false">3</string>
+    <string name="ghost_id_demon" translatable="false">4</string>
+    <string name="ghost_id_deogen" translatable="false">5</string>
+    <string name="ghost_id_gallu" translatable="false">6</string>
+    <string name="ghost_id_goryo" translatable="false">7</string>
+    <string name="ghost_id_hantu" translatable="false">8</string>
+    <string name="ghost_id_jinn" translatable="false">9</string>
+    <string name="ghost_id_kormos" translatable="false">10</string>
+    <string name="ghost_id_mare" translatable="false">11</string>
+    <string name="ghost_id_moroi" translatable="false">12</string>
+    <string name="ghost_id_myling" translatable="false">13</string>
+    <string name="ghost_id_obake" translatable="false">14</string>
+    <string name="ghost_id_obambo" translatable="false">15</string>
+    <string name="ghost_id_oni" translatable="false">16</string>
+    <string name="ghost_id_onryo" translatable="false">17</string>
+    <string name="ghost_id_phantom" translatable="false">18</string>
+    <string name="ghost_id_poltergeist" translatable="false">19</string>
+    <string name="ghost_id_raiju" translatable="false">20</string>
+    <string name="ghost_id_revenant" translatable="false">21</string>
+    <string name="ghost_id_shade" translatable="false">22</string>
+    <string name="ghost_id_spirit" translatable="false">23</string>
+    <string name="ghost_id_thaye" translatable="false">24</string>
+    <string name="ghost_id_thetwins" translatable="false">25</string>
+    <string name="ghost_id_themimic" translatable="false">26</string>
+    <string name="ghost_id_wraith" translatable="false">27</string>
+    <string name="ghost_id_yokai" translatable="false">28</string>
+    <string name="ghost_id_yurei" translatable="false">29</string>
 
 
     <!-- Ghost description -->
@@ -84,6 +86,11 @@
     <string name="ghost_info_dayan">
             <![CDATA[
                 <a>The Dayan\'s unique trait allows it to speed up when players move near it but also makes it slow down when players stop moving.</a>
+            ]]>
+        </string>
+    <string name="ghost_info_deildegast">
+            <![CDATA[
+                <a>This ghost likes to displace items around the map. It has a higher likelihood to interact with props compared to other ghosts, and has a lower likelihood of touching doors and light switches.</a>
             ]]>
         </string>
     <string name="ghost_info_demon" >
@@ -236,6 +243,11 @@
                 <a>Moves faster when a player moves near the Dayan.</a>
             ]]>
         </string>
+    <string name="ghost_strengths_deildegast">
+            <![CDATA[
+                <a>This ghost is naturally fast and does not rely on a line\-of\-sight. As a general rule, interactions lower player Sanity; Due to this ghost\'s higher likelihood to interact with props, there is an increased chance to drain player Sanity very quickly.</a>
+            ]]>
+        </string>
     <string name="ghost_strengths_demon" >
             <![CDATA[
                 <a>They can be difficult to gather clues on as they will attack players very frequently. The Demon can early\-hunt at any sanity, but it\'s minimum target is normally around 70\% average sanity. It\'s hunt cooldown, or the time between hunts, is 20 seconds, which is 5 seconds faster than any other ghost. Smudge sticks also have a shorter protection period, granting 60 seconds of safety rather than the normal 90 seconds for non\-Spirit ghosts.</a>
@@ -382,6 +394,12 @@
     <string name="ghost_weaknesses_dayan">
             <![CDATA[
                 <a>Moves slower when a player stands still near the Dayan.</a>
+            ]]>
+        </string>
+    <string name="ghost_weaknesses_deildegast">
+            <![CDATA[
+                <a>The ghost makes itself more and more exhausted for each prop displaced. Overtime, the ghost becomes much slower during hunts.</a><br>
+                <a>A player can move props instead of the ghost. The number of props that a player can manipulate for this is capped at 30.</a>
             ]]>
         </string>
     <string name="ghost_weaknesses_demon" >
@@ -536,6 +554,14 @@
                 <a>Hunts at 50\% Sanity by default, and is modified with a combination of player proximity and player movement.</a><br>
                 <a>Hunt threshold increases to 65\% Sanity if any nearby player (within 10 meters) is walking.</a><br>
                 <a>Hunt threshold decreases to 45\% Sanity if all nearby players (within 10 meters) are standing still.</a>
+            ]]>
+        </string>
+    <string name="ghost_huntingdata_deildegast">
+            <![CDATA[
+                <a>As more props are displaced, the ghost\'s hunt speed will drastically reduce.</a><br>
+                <a>The ghost\'s starting speed is 3.0 m\/s, and it\'s minimum speed is 0.4 m\/s.</a><br>
+                <a>For each prop interacted with, the ghost will decrease in speed by 0.1 m\/s.</a><br>
+                <a>The ghost has a fixed speed and does not rely on Line\-of\-sight.</a>
             ]]>
         </string>
     <string name="ghost_huntingdata_demon" >

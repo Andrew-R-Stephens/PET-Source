@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ghost_type_dayan">Dayan</string>
+    <string name="ghost_type_deildegast">Deildegast</string>
+    <string name="popup_ghost_strength">Güçlü Yönler</string>
+    <string name="popup_ghost_weakness">Zayıf Yönler</string>
+    <string name="popup_ghost_info">Bilgi</string>
+    <string name="popup_ghost_huntdata">Av Verileri</string>
+    <string name="ghost_type_aswang">Aswang</string>
+    <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_demon">Demon</string>
+    <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_gallu">Gallu</string>
+    <string name="ghost_type_goryo">Goryo</string>
+    <string name="ghost_type_hantu">Hantu</string>
+    <string name="ghost_type_jinn">Jinn</string>
+    <string name="ghost_type_kormos">Kormos</string>
+    <string name="ghost_type_mare">Mare</string>
+    <string name="ghost_type_moroi">Moroi</string>
+    <string name="ghost_type_myling">Myling</string>
+    <string name="ghost_type_obake">Obake</string>
+    <string name="ghost_type_obambo">Obambo</string>
+    <string name="ghost_type_oni">Oni</string>
+    <string name="ghost_type_onryo">Onryo</string>
+    <string name="ghost_type_phantom">Phantom</string>
+    <string name="ghost_type_poltergeist">Poltergeist</string>
+    <string name="ghost_type_raiju">Raiju</string>
+    <string name="ghost_type_revenant">Revenant</string>
+    <string name="ghost_type_shade">Shade</string>
+    <string name="ghost_type_spirit">Spirit</string>
+    <string name="ghost_type_thaye">Thaye</string>
+    <string name="ghost_type_thetwins">The Twins</string>
+    <string name="ghost_type_themimic">The Mimic</string>
+    <string name="ghost_type_wraith">Wraith</string>
+    <string name="ghost_type_yokai">Yokai</string>
+    <string name="ghost_type_yurei">Yurei</string>
+    <string name="ghost_info_aswang" >
+
+<![CDATA[
+
+<a>Aswang, oyuncuları saklandıkları yerlerden aramak yerine kovalamacanın heyecanını tercih eden vahşi bir avcıdır. Sizi görürse bu hayaletten asla kaçamazsınız, bu yüzden her zaman bir saklanma yeri hazır olmalıdır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_banshee" >
+
+<![CDATA[
+
+<a>Banshee\'ler doğal avcılar olarak tanımlanır.</a> Yavaşça takip edip hayalet avcılarını teker teker avlamaya çalışacaklar, <font color=#ff6161>her seferinde bir araştırmacıyı hedef alarak</font>.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_dayan">
+
+<![CDATA[
+
+<a>Dayan\'ın benzersiz özelliği, oyuncular yaklaştığında hızlanmasına, ancak oyuncular hareket etmeyi bıraktığında yavaşlamasına olanak tanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_deildegast">
+
+<![CDATA[
+
+<a>Bu hayalet haritadaki eşyaları yerinden oynatmayı sever.</a> Diğer hayaletlere kıyasla eşyalarla etkileşime girme olasılığı daha yüksek, kapılara ve ışık anahtarlarına dokunma olasılığı ise daha düşüktür.
+
+]]> </string>
+<string name="ghost_info_demon">
+
+<![CDATA[
+
+<a>Bir Şeytan, karşılaşılabilecek en kötü hayaletlerden biridir. Son derece agresif olduğu için <font color=#ff6161>diğer tüm Hayaletlerden daha sık saldıracaktır</font>, bu nedenle Avlanmayı önlemek için bir haç önerilir. Ancak, Şeytana Ouija Tahtası\'ndan başarılı sorular sormak oyuncunun akıl sağlığını tüketmeyecektir.</a>
+
+]]> </string>
+<string name="ghost_info_deogen">
+
+<![CDATA[
+
+<a>Deogen doğal bir avcıdır. Avını koklayarak bulma konusunda keskin bir duyusu olduğu için geleneksel saklanma yöntemleri işe yaramayacaktır. Kaçabilirsiniz… ama saklanamazsınız. Tekrar ediyorum: SAKLANMAYA ÇALIŞMAYIN.</a> Eğer davul sesi gibi son derece hızlı ayak sesleri duyarsanız, HEMEN saklandığınız yerden çıkın.
+
+]]>
+
+</string>
+
+    <string name="ghost_info_gallu">
+
+<![CDATA[
+
+<a>Bu hayaletin, oyuncular haç veya tütsü gibi koruyucu ekipman kullandıklarında av sırasında daha hızlı hale geldiği bilinmektedir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_goryo">
+
+<![CDATA[
+
+<a>Bir Goryo, tercih ettiği odanın dışında nadiren görülür. Bir Goryo ayrıca, insanlar yakındayken kendini göstermekten çok hoşlanmaz.</font> Bu, D.O.T.S.\'yi görmeyi zorlaştırır. Uzaktan bir video kamera aracılığıyla görüntülenmeden imkansız.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_hantu">
+
+<![CDATA[
+
+<a>Hantu, av sırasında hızlı hareket etme yeteneğini güçlendirecek olan daha soğuk sıcaklıkları tercih eder.</font> Bu, perili alanın dışındaki genel sıcaklığı artırmak için Devre Kesicinin etkinleştirilmesi gerektiği anlamına gelir, böylece Hantu\'nun hareket hızı azalır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_jinn" >
+
+<![CDATA[
+
+<a>Bir Cin, yeteneklerini gücün açık olmasından alır. Avlanırken çok hızlı hareket edebilir ve akıl sağlığını inanılmaz derecede hızlı tüketebilir. Cinler, Phasmophobia\'nın önceki sürümlerinde en üst düzey yırtıcıydı ve bunun iyi bir nedeni var. Uzaktaki bir oyuncuyu kovalarken ve jeneratör açıkken 2,5 m/s hızla, jeneratör kapalıyken ve kimseyi kovalamıyorken ise 1,7 m/s hızla hareket eder.
+
+]]> </string>
+<string name="ghost_info_kormos">
+
+<![CDATA[
+
+<a>Kormos kördür ancak gelişmiş işitme duyusunu kurbanlarını avlamak için kullanır. Dikkatli olmayanlara karşı daha agresif olacaktır.</a>
+
+]]> </string>
+
+<string name="ghost_info_mare">
+
+<![CDATA[
+
+<a>Mare, karanlıkta daha agresifleşen bir hayalettir.</a>
+
+]]> </string>
+
+<string name="ghost_info_moroi">
+
+<![CDATA[
+
+<a>Moroi, yaşayanların akıl sağlığını emer.</a> Kurbanlarının akıl sağlığı düştükçe Moroi güçlenir. İstenmeyen saldırganlıktan kaçınmak için akıl sağlığınızı mümkün olduğunca yüksek tutun.
+
+]]> </string>
+
+<string name="ghost_info_myling">
+
+<![CDATA[
+
+<a>Myling, Parabolik Mikrofon tarafından algılanabilen garip sesler çıkaracaktır. Av sırasında ayak sesleri de yalnızca elektronik parazit aralığı (yaklaşık 10 metre) içinde duyulabilir.</a>
+
+]]> </string>
+
+<string name="ghost_info_obake">
+
+<![CDATA[
+
+<a>Obake, zaman zaman alışılmadık kanıtlar ortaya çıkaran bir şekil değiştiricidir. Bir Obake\'nin hiç parmak izi bırakmama olasılığı vardır; bu da parmak izlerini çok erken yok sayarsanız kanıt toplama konusunda sorunlara neden olabilir.
+
+]]>
+
+</string>
+
+    <string name="ghost_info_obambo">
+
+<![CDATA[
+
+<a>Obambo\'nun benzersiz yeteneği, avlar sırasında daha az agresif ve daha yavaş olduğu "sakin" bir durum ile avlar sırasında daha agresif ve daha hızlı olduğu "agresif" bir durum arasında geçiş yapma etrafında döner.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_oni" >
+
+<![CDATA[
+
+<a>Oni, yakındaki araştırmacıların sayısıyla aktivite seviyesini ölçeklendiren agresif bir hayalettir.</font> Hayalet Odası\'nın yakınlarında dolaşması da muhtemeldir.
+
+</a>
+
+]]> </string>
+<string name="ghost_info_onryo">
+
+<![CDATA[
+
+<a>Onryo, her türlü alevden (mumlar, çakmak vb. dahil) hem hoşlanmaz hem de son derece tehdit altında hisseder.</font> Alev kaynağına 4 metreden daha yakın bir mesafede avlanmaya çalışmaz.
+
+]]>
+
+</string>
+
+    <string name="ghost_info_phantom">
+
+<![CDATA[
+
+<a>Hayalet, korku uyandıran bir hayalettir ve ona bakanların akıl sağlığını hızla tüketir.</font>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_poltergeist">
+
+<![CDATA[
+
+<a>En ünlü hayaletlerden biri olan Poltergeist, gürültülü hayalet olarak da bilinir ve kurbanlarına korku yaymak için çevresindeki birden fazla nesneyi manipüle edebilir.</font>
+
+]]>
+
+</string>
+    <string name="ghost_info_raiju">
+
+<![CDATA[
+
+<a>Raiju, çevresindeki cihazlardan elektrik enerjisi çeken bir hayalettir. Yakınında çok fazla elektrik uyarımı olması, onu huzursuz eder ve daha sık avlanmasına neden olur.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_revenant">
+
+<![CDATA[
+
+<a>Revenant, araştırmacıları ararken yavaş avlanma davranışı ile bilinir. Arama sırasında metodik olarak yavaş hareket eder ve bu da bu hayalet türünü belirlemeye yardımcı olan belirgin avlanma sesleri sağlar.</a>
+
+]]>
+
+</string>
+
+<string name="ghost_info_shade">
+
+<![CDATA[
+
+<a>Bir Shade, <font color="ghost_info_shade">"utangaç bir hayalet" olarak kabul edilir.</font> Araştırmacılar gruplar halinde kaldığı sürece kanıt bulmak daha zor olsa da, <font color=#ff6161>yakınlarda birden fazla kişi varsa bir Gölgenin saldırma olasılığı çok daha düşüktür.</font>
+
+]]> </string>
+
+<string name="ghost_info_spirit" >
+
+<![CDATA[
+
+<a>Bir Ruhun özel bir gücü yoktur, ancak yine de diğer tüm hayaletler kadar tehlikelidir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_thaye">
+
+<![CDATA[
+
+<a>Thaye, yaşayanların yanında hızla yaşlanan bir hayalettir. Bu yaşlanmanın dünyevi temsili, bir görevin ilk aşamalarında güç olarak, sonraki aşamalarında ise zayıflık olarak kendini gösterecektir. Bir Thaye\'ye Ouija tahtasında kaç yaşında olduğunu sormak, ilerleyen yaşıyla orantılı bir yanıt üretecektir. Yaşlanmanın her ilerleyen aşamasında, Thaye etkili hızını saniyede 0,175 metre azaltacaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_info_thetwins">
+
+<![CDATA[
+
+<a>İkizler, çevrelerini ayrı ayrı manipüle etme yeteneğine sahip iki hayaletten oluşan bir çifttir. İkizlerden biri hareket sensörlerini manipüle edemez ve kesin kanıt bırakmaz.</a> İkizlerden herhangi biri Avı başlatabilir ve katılabilir, ancak <font color=#ff6161>ikisi aynı anda</font> yapamaz.</a>
+
+]]> </string>
+
+<string name="ghost_info_themimic">
+
+<![CDATA[
+
+<a>Taklitçi, diğer hayalet türlerinin özelliklerini ve davranışlarını yansıtan, gizemli ve ele geçirilmesi zor bir taklitçi hayalettir. Davranış değişikliklerine dikkat edin. Hayalet Küreleri, bu hayalet için mevcut olması gereken dördüncü, gizli bir kanıttır.</a>
+
+]]> </string>
+
+<string name="ghost_info_wraith" >
+
+<![CDATA[
+
+<a>Hayalet, <font color=#ff6161>uçma yeteneğini koruyan</font> bilinen tek Hayalettir.</a> Tıpkı diğer hayaletler gibi, bir Hayalet de duvarlardan geçemez, ancak bu yeteneğe sahip olduğu söylenir.
+
+]]> </string>
+<string name="ghost_info_yokai">
+
+<![CDATA[
+
+<a>Yokai, seslere karşı oldukça hassastır</font>, bu da Yokai\'yi son derece tehlikeli hale getirir. Ancak, yakınında konuşmak da aktiviteyi tetikleyebilir ve Hayalet odasını bulmayı kolaylaştırabilir.</a>
+
+]]> </string>
+
+<string name="ghost_info_yurei">
+
+<![CDATA[
+
+<a>Yurei, yeteneği oyuncunun akıl sağlığının pasif tüketimini artıran bir hayalettir</font> (Çoğu hayalet akıl sağlığınızı oldukça hızlı tüketir). Bir Yurei\'nin bulunduğu odayı tütsülemek, uzun süre o konumdan uzaklaşmasını engelleyecektir.</a>
+
+]]> </string>
+
+
+<string name="ghost_strengths_aswang">
+
+<![CDATA[
+
+<a>Aswang, tüm hayaletler arasında en hızlı görüş hattı ivmesine sahiptir.</a>
+
+<a>Eğer bir oyuncu resmi bir saklanma yeri kullanırsa, bir sonraki avda bekleme süresi olmayacaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_banshee">
+
+<![CDATA[
+
+<a>Banshee bir oyuncuya odaklanacak ve seçtiği hedef oyun alanında değilse yeni bir hedefe geçecektir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_dayan">
+
+<![CDATA[
+
+<a>Bir oyuncu Dayan\'ın yakınına geldiğinde daha hızlı hareket eder.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>Bu hayalet doğal olarak hızlıdır ve görüş hattına bağlı değildir. Genel bir kural olarak, etkileşimler oyuncunun Akıl Sağlığını düşürür; Bu hayaletin eşyalarla etkileşime girme olasılığının daha yüksek olması nedeniyle, oyuncunun Akıl Sağlığını çok hızlı bir şekilde tüketme şansı artar.
+
+]]> </string>
+
+<string name="ghost_strengths_demon" >
+
+<![CDATA[
+
+<a>Oyunculara çok sık saldırdıkları için ipuçları toplamak zor olabilir. Şeytan herhangi bir akıl sağlığı seviyesinde erken avlanabilir, ancak minimum hedefi normalde ortalama %70 akıl sağlığı civarındadır. Avlanma bekleme süresi veya avlar arasındaki süre 20 saniyedir, bu da diğer hayaletlerden 5 saniye daha hızlıdır. Tütsü çubuklarının koruma süresi de daha kısadır; normalde Ruh olmayan hayaletler için 90 saniye olan güvenlik süresi 60 saniyedir.
+
+]]> </string>
+<string name="ghost_strengths_deogen">
+
+<![CDATA[
+
+<a>Deojen, ne kadar iyi gizlenmiş olursa olsun, herhangi bir canlıyı algılar. Bir Deojen\'e karşı hareketsiz kalmayı seçmek sizi öldürür. Görüş hattını kesmeye güvenmeyin, çünkü bu kovalamacayı durdurmayacak ve sadece Deogen'in çok daha hızlı hareket etmesine izin verecektir.
+
+]]> </string>
+<string name="ghost_strengths_gallu">
+
+<![CDATA[
+
+<a>Koruyucu ekipman kullanıldığında agresifleşir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_goryo">
+
+<![CDATA[
+
+<a>Bir Goryo genellikle yalnızca yakınlarda insan olmadığında kamerada görünür. Bu, uygun kanıtların toplanmasında sorunlara neden olabilir, çünkü D.O.T.S.\'nin çok erken geçersiz kılınmasına yol açabilir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_hantu">
+
+<![CDATA[
+
+<a>Düşük sıcaklıklar Hantu\'nun daha hızlı hareket etmesine olanak tanır. Görüş hattı Hantu'nun hızını etkilemez.
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_jinn" >
+
+<![CDATA[
+
+<a>Bir Cin\'in hızı, avlanmaya başladıktan sonra ondan kaçmayı son derece zorlaştırır. Cin bir oyuncuya yetiştiğinde, kademeli olarak yavaşlayacak ve normal avlanma hızlarına geçecektir. Güç açıksa, bir Cin yakındaki bir oyuncunun akıl sağlığının %25\'ini anında kaldırabilir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_kormos" >
+
+<![CDATA[
+
+<a>Kör olmasına rağmen, bir Kormos\'un işitme duyusu eşsizdir. Oyuncular, bu hayaletten kaçınmak için daha dikkatli ve bilinçli hareketler yapmak zorunda kalacaklar.
+
+]]>
+    </string>
+<string name="ghost_strengths_mare">
+
+<![CDATA[
+
+<a>Bir Mare, kendini güçlendirmek için ışıkları kapatmaya çalışacak ve güç kapalıysa %60 oranında avlanacaktır. Ayrıca diğer odalara veya tercih ettiği odanın karanlık bölgelerine de girecek ve bu konumlardan avlanmaya başlayabilir. Bir Mare\'nin bir olay yoluyla bir odanın ışık kaynağını yok etme olasılığı daha yüksektir.</a>
+
+]]>
+    </string>
+<string name="ghost_strengths_moroi">
+
+<![CDATA[
+
+<a>Moroi, kaybedilen her bir Akıl Sağlığı puanından tam olarak faydalanacaktır. Daha düşük takım Akıl Sağlığı, daha yüksek düzeyde saldırganlık üretecektir. Ortalama Akıl Sağlığı %0 olduğunda, hayalet avlanma sırasında yıldırım hızına ulaşacaktır. Ortalama takım akıl sağlığına bağlı olarak, hızı en yavaş 1,5 m/sn ile en hızlı 2,25 m/sn arasında değişmektedir.</a><br>
+
+<a>Hayaletin gizli bir yeteneği vardır - bir lanet - bu lanet, etkilenen oyuncu oyun alanında olduğu sürece herhangi bir oyuncunun akıl sağlığının saniyede %0,03 oranında azalmasına neden olur. Bu etki, oyuncu Ruh Kutusu'nu kullandığında ve ondan bir yanıt aldığında ortaya çıkar. Etki, oyuncuların akıl sağlığının azalma hızının üzerine eklenir. Mumlar etkileri durdurmaz, ancak lanet Akıl Sağlığı Hapları kullanılarak kaldırılabilir.</a>
+
+]]>
+</string>
+
+<string name="ghost_weaknesses_aswang" >
+
+<![CDATA[
+
+<a>Aswang, bir oyuncu resmi bir saklanma yerine girdikten hemen sonra avı bırakır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_banshee" >
+
+<![CDATA[
+
+<a>Bir Banshee, hedefini takip etmek için odasından çok uzaklara gider. Banshee\'ler asla hedef olmayan oyuncuyu öldürmez ve av sırasında ilgilenmediği herhangi bir araştırmacının içinden doğrudan geçer. Ayrıca avını, takımın ortalama akıl sağlığı yerine hedefinin akıl sağlığına göre belirler.</a> Bir Banshee, Parabolik Mikrofon ile özel bir etkileşime girer; hafif, tiz bir feryat çıkarma şansı vardır.
+
+]]>
+    </string>
+<string name="ghost_weaknesses_dayan">
+
+<![CDATA[
+
+<a>Oyuncu Dayan\'ın yanında hareketsiz durduğunda daha yavaş hareket eder.</a>
+
+]]>
+    </string>
+<string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>Hayalet, yerinden oynatılan her nesne için kendini giderek daha fazla yorar. Zamanla, avlar sırasında hayalet çok daha yavaş hareket eder.</a><br>
+
+<a>Oyuncu, hayalet yerine nesneleri hareket ettirebilir.</a> Bir oyuncunun bu yetenek için manipüle edebileceği nesne sayısı 30 ile sınırlıdır.
+
+]]> </string>
+<string name="ghost_weaknesses_demon">
+
+<![CDATA[
+
+<a>Diğer hayaletlerin aksine, bir Şeytana Ouija Tahtası aracılığıyla başarılı bir soru sormak oyuncuların akıl sağlığını düşürmez. Bu, Ouija Tahtasını Şeytanlara karşı çok kullanışlı bir araç haline getirir. Şeytanlar <font color=#ff6161>Haç\'tan korkarlar</font>, bu da Haç'ın etkili menzilini diğer hayaletler için normal 3 metreden 5 metreye çıkararak onlara karşı etkinliğini artırır.</a>
+
+]]>
+    </string>
+<string name="ghost_weaknesses_deogen">
+
+<![CDATA[
+
+<a>Deogen avını yorulana kadar takip eder, ancak asla avını geçemez. Bu hayalete karşı sürekli hareket halinde kalın ve rotalarınızı önceden planladığınızdan emin olun. Bu hayaletle görüş alanınızda kalın ve sorun yaşamazsınız, çünkü görüş alanınızdaki en yakın oyuncuya yakınken sadece 0,4 m/s hızla hareket edebilecektir. Görüş alanınızda olduğunuz sürece, yürüyor olsanız bile sizi asla yakalayamayacaktır. Deogen sadece %40 akıl sağlığında avlanır.
+
+]]>
+    </string>
+
+<string name="ghost_weaknesses_gallu">
+
+<![CDATA[
+
+<a>Avdan sonra daha az agresif hale gelir.</a>
+
+]]>
+</string>
+
+<string name="ghost_weaknesses_goryo">
+
+<![CDATA[
+
+<a>Goryo\'lar normalde musallat oldukları konumun içinde veya çok yakınında kalırlar.</a> Bu, kanıt toplamayı kolaylaştırır.
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_hantu" >
+
+<![CDATA[
+
+<a>Bir Hantu\'nun hareketi daha sıcak bölgelerde normalden daha yavaş olacaktır. Avlanırken ve devre kesici kapalıysa, Hantu tıpkı bir oyuncunun yaptığı gibi dondurucu nefes üretecektir, ancak bu etki hayalet odası veya odanın sıcaklığıyla sınırlı değildir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_jinn" >
+
+<![CDATA[
+
+<a>Cinler yüksek hızlarına ulaşmak için haritanın güç kaynağına güvenirler, bu nedenle oyuncular Cin\'in yeteneğini kaldırmak için binanın devre kesicisini aramalıdır. Bir Cin kendi gücünü açamaz.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_kormos" >
+
+<![CDATA[
+
+<a>Kormos kördür, bu nedenle avlanırken görsel algıya göre hareket etmez. Bunun yerine, oyuncuları tespit etmek için işitme duyusuna güvenir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_mare" >
+
+<![CDATA[
+
+<a>Bir Mare\'nin bulunduğu alanda ışıkları açık tutmak, avlanma tercihini %60\'tan %40\'a düşürür. Bu nedenle, saldırganlığını sınırlamak için aydınlık alanlarda kalın.</a>
+
+<a>Bir Mare, ışık anahtarlarına doğrudan dokunmaz ve yalnızca uzaktan manipüle eder. Bu nedenle, ışık anahtarlarında parmak izi bırakmaz.</a>
+
+<a>Bir Mare, bir oyuncu tarafından etkinleştirildiğinde ışık anahtarlarını anında kapatma yeteneğine sahiptir; bu, çok kolay bir şekilde fark edilebilen bir olaydır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_moroi">
+
+<![CDATA[
+
+<a>Moroi\'ler, Smudge Stick\'e karşı aşırı hassastır. Yakındaki birini aydınlatmak Moroi\'yi 12 saniye boyunca kör edecektir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_myling" >
+
+<![CDATA[
+
+<a>Myling\'ler parabolik mikrofonda daha sık paranormal sesler çıkaracaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_obake" >
+
+<![CDATA[
+
+<a>Tesadüfen, bir Obake bazen normal 5 parmak yerine <font color=#ff6161>6 parmaklı el izleri</font> bırakabilir. 5 parmaklı el izleri Obake\'yi dışlamak için kullanılmamalıdır. Obake ayrıca av sırasında herhangi bir anda kısa bir saniyeliğine hayalet modelini değiştirebilir. Obake bir yüzeye dokunursa, parmak izlerinin görünmeme olasılığı vardır; Bu, sonraki etkileşimler parmak izi üretirse hayalet için kanıt olarak kullanılabilir.
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_obambo">
+
+<![CDATA[
+
+"Sakin" halindeyken daha geç avlanır ve daha yavaş hareket eder.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_oni" >
+
+<![CDATA[
+
+Oniler, oyuncular yakındayken gürültü çıkarmaya karşı koyamadıkları için kolayca bulunur. Oni, "Hayalet Sisi" veya "Hayalet Topu" etkinliği yapamaz. Hayalet etkinlikleri sırasında gölge tezahürleri veya görünmez tezahürler yerine tam tezahürleri tercih edecektir. Bu davranış avlara da yansır ve Oni'nin avlar sırasında daha uzun süreler boyunca kendini göstermesine ve çok kısa aralıklarla kaybolmasına neden olur.
+
+]]>
+    </string>
+<string name="ghost_weaknesses_onryo">
+
+<![CDATA[
+
+<a>Bir alev kaynağı, bir Onryo\'nun saldırı şansını bastırmak için kullanılır. Bir Haç kullanmadan önce (bir Haç yükü kullanmak gibi) önce tüm alevleri söndürür.</a>
+
+]]>
+    </string>
+<string name="ghost_weaknesses_phantom">
+
+<![CDATA[
+
+<a><font color=#ff6161>Bir Hayaletin fotoğrafını çekmek, onu geçici olarak ortadan kaldıracak ve fotoğrafta asla görünmeyecektir.</font> Bir Hayalet, av sırasında da kendini ele verir, çünkü kısa süreler için fiziksel olarak ortaya çıkar ve daha uzun süreler için kaybolur.
+
+]]>
+</string>
+
+<string name="ghost_weaknesses_poltergeist" >
+
+<![CDATA[
+
+<a>Oyuncular odadaki fiziksel nesneleri kaldırarak bir Poltergeist\'i etkisiz hale getirebilirler. Bir Poltergeist, eşyalarla şiddetli bir şekilde etkileşime girebilir ve bir eşyayı normal bir hayaletten çok daha büyük bir kuvvetle fırlatabilir. Aynı anda birden fazla eşyayla etkileşime girebilir, bu da "Poltergeist patlama olayı" olarak bilinir ve çok sayıda eşyayı bir yığına toplayıp davranışını gözlemleyerek kolayca test edilebilir. Av sırasında eşyaların manipüle edilme olasılığı çok daha yüksektir, bu nedenle av yolunda çok sayıda hareketli eşya olup olmadığını kontrol edin.
+
+]]>
+    </string>
+<string name="ghost_weaknesses_raiju">
+
+<![CDATA[
+
+<a>Bir Raiju\'yu takip etmek daha kolaydır çünkü avlanırken sürekli olarak elektrikli cihazları manipüle ederler.</a>
+
+]]>
+    </string>
+<string name="ghost_weaknesses_revenant">
+
+<![CDATA[
+
+<a>Oyuncunun konumu bilinmediğinde bir Revenant çok yavaş olur ve çok belirgin, yavaş ayak sesleri duyulabilir. Bir Revenant\'ınız olup olmadığını belirlemenin en iyi yolu av sırasındadır.</a>
+
+]]>
+    </string>
+<string name="ghost_weaknesses_shade">
+
+<![CDATA[
+
+<a>Bir Shade\'e karşı sayıca üstünlük vardır, çünkü bir grup insana saldırmazlar.</a> Bir avı engellemek istiyorsanız, en az bir oyuncunun hayalete yakın olması gerekir. Bir Gölge, gölge biçimli modelleri gösterme olasılığı daha yüksekken, tam modelini gösterme olasılığı daha düşüktür.
+
+]]>
+    </string>
+<string name="ghost_weaknesses_spirit">
+
+<![CDATA[
+
+<a>Bir Ruh lekelendiğinde, 180 saniye boyunca avlanmaz. Buna karşılık, diğer tüm hayaletler 90 saniyede avlanmaya başlar (60 saniyede avlanmaya başlayabilen Şeytan hariç).</a>
+
+]]>
+</string>
+
+<string name="ghost_weaknesses_thaye">
+
+<![CDATA[
+
+<a>Hayalet, yaşayanların yanında ne kadar uzun süre kalırsa, saldırganlığı, hızı ve gücü o kadar azalır. Her yaş, hızı 0,175 m/s düşürür. Thaye\'nin ayrıca görüş hattı ivmesi yoktur.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_thetwins" >
+
+<![CDATA[
+
+<a>Birleşik faaliyetleri nedeniyle, İkizleri bulmak çok daha kolay olmalıdır. İkizlerin avlanma hızı, avlar arasında rastgele değişir.</a> İkizlerden biri normal hızının %90\'ı (1,5 m/s) ile avlanırken, diğer İkiz normal hızının %110'u (1,9 m/s) ile avlanır.
+
+]]>
+    </string>
+<string name="ghost_weaknesses_themimic">
+
+<![CDATA[
+
+<a>Taklitçi\'nin belirleyici Kanıtı\'nın yanında bir Hayalet Küresi görünecektir; bu da Taklitçi\'yi (teknik olarak) dördüncü bir Kanıt parçasına sahip tek hayalet türü yapar. Hayalet Küresi de normalden farklı davranır. Taklitçi dolaşırken onu takip eder, bu nedenle yüksek Takım Akıl Sağlığındayken dolaşan bir Hayalet Küresi'ne dikkat edin.</a>
+
+]]>
+    </string>
+<string name="ghost_weaknesses_wraith">
+
+<![CDATA[
+
+<a><font color=#ff6161>Tuz, bir Hayalet için zehirlidir</font>, bu nedenle asla hiçbirinin içinden geçmeyecektir. Bir Hayaleti doğrulamak için, tuz yığınlarının üzerine bir hareket sensörü yerleştirin. Hareket sensörü, tuzlar yerinden oynatılmadan hareket algılarsa, hayalet bir Hayalet olabilir!
+
+]]>
+</string>
+<string name="ghost_weaknesses_yokai">
+
+<![CDATA[
+
+<a>Avlanırken, bir Yokai yalnızca kendisine yakın mesafedeki sesleri duyabilir. Yalnızca 2,5 metre yakınındaki yakınlık sohbetini duyabilir veya elektronik ekipmanı algılayabilir. Müzik Kutusu lanetli ele geçirmesi de, oyuncu diğer herhangi bir hayaletin gerektirdiğinden çok daha yakın bir mesafede olana kadar Yokai\'nin hareket etmesine neden olmaz.</a>
+
+]]>
+</string>
+
+<string name="ghost_weaknesses_yurei">
+
+<![CDATA[
+
+<a>Yureiler Tütsü Çubuklarına karşı savunmasızdır ve odayı başarıyla tütsülemek, Yurei\'nin bir süre yerinde kalmasına neden olur.</a>
+
+]]>
+</string>
+
+<string name="ghost_huntingdata_banshee" >
+
+<![CDATA[
+
+<a>Hedeflediği oyuncunun akıl sağlığının %50\'sinde avlanır.</a><br>
+
+<a>Ortalama akıl sağlığını tamamen göz ardı eder.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_aswang" >
+
+<![CDATA[
+
+<a>Bu hayaletten kaçamayacaksınız, çünkü diğer tüm hayaletlerden daha hızlı ivme kazanacak.</a> Görüş alanından uzak durun veya en yakın saklanma yerini bulun.</a>
+
+<a>Eğer bir oyuncu resmi bir saklanma yeri kullanırsa, av hemen sona erer.</a>
+
+<a>Erken sona eren bir av, Aswang'ın bir sonraki avı için tanınan süreyi ortadan kaldırır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_dayan">
+
+<![CDATA[
+
+<a>Varsayılan olarak %50 Akıl Sağlığı seviyesinde avlanır ve oyuncu yakınlığı ve oyuncu hareketinin bir kombinasyonuyla değiştirilir.</a><br>
+
+<a>Yakındaki herhangi bir oyuncu (10 metre içinde) yürüyorsa, av eşiği %65 Akıl Sağlığı seviyesine yükselir.</a><br>
+
+<a>Yakındaki tüm oyuncular (10 metre içinde) hareketsiz duruyorsa, av eşiği %45 Akıl Sağlığı seviyesine düşer.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>Daha fazla nesne yerinden oynatıldıkça, hayaletin avlanma hızı önemli ölçüde azalacaktır.</a><br>
+
+<a>Hayaletin başlangıç hızı 3,0 m/s, minimum hızı ise 0,4 m/s\'dir.</a><br>
+
+<a>Etkileşimde bulunulan her nesne için hayaletin hızı 0,1 m/s azalacaktır.</a><br>
+
+<a>Hayalet sabit bir hıza sahiptir ve görüş hattına bağlı değildir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_demon" >
+
+<![CDATA[
+
+<a>Normalde %70 Akıl Sağlığı seviyesinde avlanır.</a><br>
+
+<a>Yetenek etkinleştirildiğinde herhangi bir Akıl Sağlığı seviyesinde avlanabilir.</a>
+
+]]>
+
+</string> <string name="ghost_huntingdata_deogen">
+
+<![CDATA[
+<a>%40 Akıl Sağlığı ile avlanır.</a>
+
+<ul>
+
+<li>Gizli bir oyuncunun konumuna doğru koşarken 3,0 m/sn hızla hareket eder.</li>
+
+<li>Bir araştırmacıyı yakından takip ederken 0,4 m/sn veya daha fazla hızla hareket eder.</li>
+
+<li>Araştırmacıya yakınlığı korumak için 3,0 m/sn veya daha az hızla hareket eder.</li>
+
+</ul>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_gallu">
+
+<![CDATA[
+<a>Bu hayaletin 3 durumu vardır: Normal, Öfkeli ve Zayıflamış.</a><br>
+
+<br>
+
+<a>Normal:</a><br>
+
+<a>%50 Akıl Sağlığı ile avlanır. Avlanma hareket hızı 1,7 m/sn\'dir.</a> Tütsü etkileri 5 saniye sürer.</a><br>
+
+<br>
+
+<a>Öfkeli:</a><br>
+
+<a>%60 Akıl Sağlığı ile avlanır. Haç menzili 2 metre azalır. Avlanma hareket hızı 1,96 m/s\'ye yükselir. Tütsü etkileri 4 saniyeye düşer. Tuza basamaz.</a><br>
+
+<br>
+
+<a>Zayıflamış:</a><br>
+
+<a>%40 Akıl Sağlığı ile avlanır. Haç etkili menzili 1 metre artar. Avlanma hareket hızı 1,36 m/s'ye düşer. Tütsü etkileri 6 saniyeye yükselir.</a><br>
+
+<br>
+
+<a>Gallu, oyuncunun Tütsü aktivasyonu veya hayaletin Tuz veya Haç ile etkileşimi yoluyla öfkelendiğinde Zayıflamış, Normal ve Öfkeli durumları arasında yukarı doğru hareket eder.</a>
+
+]]>
+
+</string>
+    <string name="ghost_huntingdata_goryo">
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığında Avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_hantu">
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığında Avlanır.</a>
+
+<ul>
+
+<li>15°C+ = 1,40 m/s</li>
+
+<li>12°C = 1,75 m/s</li>
+
+<li> 9°C = 2,10 m/s</li>
+
+<li> 6°C = 2,30 m/s</li>
+
+<li> 3°C = 2,50 m/s</li>
+
+<li> 0°C = 2,70 m/s</li>
+
+</ul>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_jinn" >
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığı ile Avlanır.</a>
+
+<ul>
+
+<li>3 metreden fazla uzaktaki bir araştırmacıyı kovalarken ve Sigorta Kutusu açıkken 2,5 m/sn hızla hareket eder.</li>
+
+<li>Kimseyi kovalamıyorsa 1,7 m/sn hızla hareket eder.</li>
+
+</ul>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_kormos" >
+
+<![CDATA[
+
+<a>Av sırasında Kormos, oyuncuları yalnızca sesli sohbet, aktif elektronik ekipman veya oyuncu hareketi yoluyla algılar.</a>
+
+<a>Bir Kormos\'un favori odasında koşmak onu kızdırır ve avlanma eşiğini %50 Akıl Sağlığından %70\'e yükseltir.</a>
+
+<a>Hareket algılama menzili, oyuncunun duruşuna bağlı olarak değişir.</a>
+
+<ul>
+
+<li>Çömelerek yürüme: 10 m</li>
+
+<li>Ayakta yürüme: 15 m</li>
+
+<li>Koşma: 30 m</li>
+
+</ul>
+
+<a>Oyuncuları takip etmek için Kormos, aşağıdaki oyuncu eylemlerinden herhangi birinden sonra (öncelik sırası yukarıdan aşağıya doğru) her 5-10 saniyede bir yol noktası yerleştirmek için yukarıdaki Hareket aralıklarını kullanır:</a>
+
+<ul>
+
+<li>Koşma</li>
+
+<li>Ayakta yürüme</li>
+
+<li>Çömelerek yürüme</li>
+
+<li>Ses/Elektronik</li>
+
+</ul>
+
+<a>Kormos en yakın yol noktasını takip edecektir.</a> Geleneksel görüş hattı (LOS) kullanmasa da, ses algılama görüş hattı olarak sayılır ve bu da takip hızının artmasına yol açar.
+
+]]>
+    </string>
+<string name="ghost_huntingdata_mare">
+
+<![CDATA[
+
+<a>Güç açıkken %40 akıl sağlığıyla avlanır.</a><br>
+
+<a>Güç kapalıyken %60 akıl sağlığıyla avlanır.</a>
+
+]]>
+</string>
+
+<string name="ghost_huntingdata_moroi">
+
+<![CDATA[
+<a>%50 Akıl Sağlığında Avlanma.</a>
+
+<ul>
+
+<li>Akıl Sağlığı %0 - %5 : 2.25 m/s</li>
+
+<li>Akıl Sağlığı %5 - %10 : 2.164 m/s</li>
+
+<li>Akıl Sağlığı %10 - %15 : 2.081 m/s</li>
+
+<li>Akıl Sağlığı %15 - %20 : 1.998 m/s</li>
+
+<li>Akıl Sağlığı %20 - %25 : 1.915 m/s</li>
+
+<li>Akıl Sağlığı %25 - %30 : 1.832 m/s</li>
+
+<li>Akıl Sağlığı %30 - %35 : 1.749 m/s</li>
+
+<li>Akıl sağlığı %35 - %40: 1.66 m/s</li>
+
+<li>Akıl sağlığı %40 - %45: 1.583 m/s</li>
+
+<li>Akıl sağlığı %45 - %100: 1.5 m/s</li>
+
+</ul>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_myling">
+
+<![CDATA[
+<a>%50 Akıl sağlığında avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_obake">
+
+<![CDATA[
+<a>%50 Akıl sağlığında avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_obambo">
+
+<![CDATA[
+<a>Bu hayaletin 2 hali vardır: Sakin ve Saldırgan.</a><br>
+
+<br>
+
+<a>Sakin: %10 Akıl Sağlığı ile avlanır.</a><br>
+
+<a>Avlanma hareket hızı 1,45 m/s\'dir. Tütsü etkileri 5 saniye sürer.</a><br>
+
+<br>
+
+<a>Saldırgan:</a><br>
+
+<a>%65 Akıl Sağlığı ile avlanır. Haç menzili 2 metre azalır. Avlanma hareket hızı 1,96 m/s\'ye çıkar. Avlanma bu haldeyken başlarsa avlanma süresi %20 daha kısadır.</a><br>
+
+<a>Obambo, oyuncunun ilk girişinden sonra 1 dakika süren Sakin halde başlar. Ardından, her 2 dakikada bir Sakin ve Saldırgan halleri arasında geçiş yapar.</a><br> Bu, av sırasında bile olabilir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_oni" >
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığında Avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_onryo" >
+
+<![CDATA[
+
+<a>Normalde %60 Akıl Sağlığında Avlanır.</a><br>
+
+<a>Ateş söndürülürse herhangi bir Akıl Sağlığında avlanabilir.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_phantom" >
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığında Avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_poltergeist" >
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığında Avlanır Akıl sağlığı.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_raiju" >
+
+<![CDATA[
+
+<a>Normalde %50 Akıl Sağlığı ile avlanır.</a><br>
+
+<a>Yakınında açık elektronik cihaz varsa %65 Akıl Sağlığı ile avlanır.</a>
+
+<ul>
+
+<li>Yakınında elektronik ekipman varsa 2,5 m/s hızla hareket eder.</li>
+
+<li>Yakınında elektronik ekipman yoksa 1,7 m/s hızla hareket eder.</li>
+
+</ul>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_revenant" >
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığı ile avlanır.</a><br>
+
+<a>Hareket hızı: Kovalamıyorsa 1 m/s; 3.0 m/s kovalıyorsa.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_shade">
+
+<![CDATA[
+
+<a>%35 Akıl Sağlığı ile avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_spirit">
+
+<![CDATA[
+
+<a>%50 Akıl Sağlığı ile avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_thaye">
+
+<![CDATA[
+
+<a>10 aşamada kademeli olarak yaşlanır ve her aşamada 0.175 m/s hareket hızını kaybeder.</a><br>
+
+<a>En genç yaşında %75 Akıl Sağlığı ile avlanır.</a> Maksimum hareket hızı: 2,7 m/s</a><br>
+
+<a>En yaşlı halindeyken %15 akıl sağlığıyla avlanır. Maksimum hareket hızı: 1,0 m/s</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_thetwins" >
+
+<![CDATA[
+
+<a>%50 akıl sağlığıyla avlanır.</a><br>
+
+<a>Av sırasında ikizlerden biri olma olasılığı %50</a>
+
+<ul>
+
+<li>İkiz A: Minimum 1,5 m/s</li>
+
+<li>İkiz B: Minimum 1,9 m/s</li>
+
+</ul>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_themimic" >
+
+<![CDATA[
+
+<a>Av tercihleri ​​taklit edilen hayalete göre belirlenir. Bu nedenle, Taklitçi %15 ile %100 arasında herhangi bir akıl sağlığı seviyesinde avlanabilir.
+
+]]>
+    </string>
+<string name="ghost_huntingdata_wraith">
+
+<![CDATA[
+
+<a>%50 akıl sağlığı seviyesinde avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_yokai">
+
+<![CDATA[
+
+<a>%50 akıl sağlığı seviyesinde avlanır.</a><br>
+
+<a>Araştırmacıları duyamaz veya elektronik ekipmanları algılayamaz.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_yurei">
+
+<![CDATA[
+
+<a>%50 akıl sağlığı seviyesinde avlanır.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_phantom" >
+
+<![CDATA[
+
+<a>Hayaletler oyuncuların akıl sağlığı üzerinde aşırı derecede olumsuz etki yaratacaktır. Bir Hayaletin yanında bulunmaktan veya ona çok uzun süre doğrudan bakmaktan kaçının. Ayrıca oyuncuları pasif olarak takip etme eğilimindedir, bu da seçtiği odanın dışına çıkmasına ve kanıt toplamayı zorlaştırmasına yardımcı olur.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_poltergeist" >
+
+<![CDATA[
+
+<a>Poltergeistler, oyuncuların bulunduğu alanda büyük bir etkiye sahip olabilir; çok sayıda nesne fırlatabilir ve yüksek sesler çıkarabilirler. Fırlatılan her nesne için yakındaki oyuncuların akıl sağlığında anında %2\'lik bir azalma olur.</a> Bu durum hem dışarıda hem de av sırasında meydana gelebilir.
+]]> </string>
+<string name="ghost_strengths_raiju">
+
+<![CDATA[
+
+<a>Raiju\'lar elektrikli cihazların yakınındayken çok daha hızlı hareket ederler, ancak harita gücü veya oda ışıkları yakınındayken değil ve bu tür elektrikli cihazların yakınındayken tercih edilen avlanma akıl sağlığı seviyesini %65\'e çıkarırlar. Elektronik bir ekipmanın yakınındaysa 2,5 m/s hızla hareket eder; aksi takdirde 1,7 m/s hızla hareket eder.</a>
+]]> </string>
+<string name="ghost_strengths_revenant">
+
+<![CDATA[
+
+<a>Bir Revenant, oyuncuları avlarken 1 m/s hızla hareket eder ve bir oyuncunun konumu biliniyorsa (görüş hattı, yakınlık sohbeti veya elektronik cihaz kullanımı yoluyla) anında 3 m/s hızla hareket eder.</a> Oyuncunun son bilinen konumuna ulaştıktan sonra oyuncunun konumu yeniden tespit edilmedikçe, hızı kademeli olarak 1 m/s\'ye düşecektir.
+]]> </string>
+<string name="ghost_strengths_shade">
+
+<![CDATA[
+
+<a>Gölgeleri bulmak zor olabilir ve bu nedenle kanıt toplamak veya hatta yerini bulmak zor olabilir. Genel olarak daha düşük bir aktiviteye sahiptir; ancak, daha düşük oyuncu akıl sağlığı seviyeleri daha fazla hayalet olayına yol açacaktır. Bir oyuncu tercih ettiği odadayken etkileşime girmeyecek veya nesne fırlatmayacaktır.</a>
+]]> </string>
+<string name="ghost_strengths_spirit">
+
+<![CDATA[
+
+<a>Ruhların özellikle güçlü yönleri yoktur, çünkü yeni oyunculara yöneliktirler. Ancak aldanmayın. Uzmanlık alanının olmaması onu eşit bir eşleşme haline getiriyor.
+]]> </string>
+<string name="ghost_strengths_thaye">
+
+<![CDATA[
+
+<a>Thaye, bir görevin başında en aktif ve tehlikeli olacaktır. Bu, onu erken dönemde son derece tehditkar hale getirir. Thaye, bir soruşturmanın başlangıcında %75 oranında avlanacak ve yaşlanmayı tamamladıktan sonra en az %15\'e düşecektir. Genç bir Thaye 2,7 m/s hızla çok hızlı olurken, yaşlı bir Thaye oyuncudan daha yavaş, 1,0 m/s hızla hareket edecektir.</a>
+]]> </string>
+<string name="ghost_strengths_thetwins">
+
+<![CDATA[
+
+<a>İkizlerden herhangi biri kızabilir ve bu nedenle, her iki İkiz de bir Av başlatabilir. Bu, bir avın iki farklı konumdan başlayabileceği anlamına gelir.
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_themimic">
+
+<![CDATA[
+
+<a>Taklitçi, bir araştırma sırasında herhangi bir hayalet türünü birden fazla kez hızla taklit edebilir, bu da onu son derece tehlikeli ve tamamen tahmin edilemez kılar. Kopyaladığı davranış, av sırasında veya dışında mevcut olabilir. Taklitçi, avın ortasında farklı bir hayaleti taklit etmek için geçiş yapamaz.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_wraith" >
+
+<![CDATA[
+
+<a>Hayalet, seçtiği odanın küçük bir mesafesindeki herhangi bir yakındaki oyuncunun konumuna ışınlanma yeteneğine sahiptir. Bu, odasının çok dışında, hatta katlar arasında bile gerçekleşebilir. Bu aktivite sessiz bir aktivite olabileceğinden fark edilmeyebilir, ancak iniş konumunda bir EMF okuması oluşturacaktır. Bu aktiviteden sonra, Hayalet odasına geri dönecek ve bu süre zarfında nesnelerle etkileşime girebilir. Bir Hayaletin ışınlandıktan hemen sonra avlanabileceği söylenir, ancak bu doğru olmayabilir.
+]]> </string>
+<string name="ghost_strengths_yokai">
+
+<![CDATA[
+
+<a>Bir Yokai\'nin yakınında konuşmak onu kızdıracak ve avlanma için tercih edilen minimum akıl sağlığı seviyesini %80\'e çıkararak saldırma olasılığını artıracaktır.</a>
+]]> </string>
+<string name="ghost_strengths_yurei">
+
+<![CDATA[
+
+<a>Yurei\'ler, oyuncular ona bakarken akıl sağlıklarını diğer hayaletlerden çok daha hızlı düşürür - ancak oyuncu arkasını döndüğünde bile akıl sağlığını azaltabilir. Bir Yurei ayrıca yakındaki herhangi bir oyuncudan anında %15 akıl sağlığı alabilir; Ve bu olduğunda, odanın kapıları her zaman kendiliğinden kapanacaktır (herhangi bir hayalet bunu yapabilir, ancak Yurei\'nin bunu yapma olasılığı daha yüksektir).
+
+]]> </string>
+
+<string name="ghost_strengths_myling">
+
+<![CDATA[
+
+<a>Bir Myling, avlanırken diğer Hayaletler kadar sesli değildir. Ayak seslerini ve sesli gürültülerini yalnızca elektronik parazitin yakınındayken tespit edebilirsiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_obake">
+
+<![CDATA[
+
+<a>Bir Obake, çevreyi manipüle ederken iz bırakmayabilir. Bu, parmak izi kanıtı bırakmama olasılığı olduğu anlamına gelir.</a> Obake ayrıca parmak izi ömrünü yarıya indirebilir.</a>
+
+]]> </string>
+
+<string name="ghost_strengths_obambo">
+
+<![CDATA[
+
+<a>"Saldırgan" durumundayken daha erken avlanır ve daha hızlı hareket eder.</a>
+
+]]> </string>
+
+<string name="ghost_strengths_oni" >
+
+<![CDATA[
+
+<a>Oni\'ler, bir Poltergeist gibi fiziksel nesneleri hareket ettirme yeteneğine sahipken aynı zamanda bir Şeytanın saldırganlığını da sergilerler. Bu, onları kızdırmadan etraflarında kanıt toplamayı zorlaştırır. Bu, en büyük zayıflığıdır, çünkü muhtemelen turda erken kendini gösterecektir.</a> Bir oyuncu hayalet etkinliği sırasında bir Oni tarafından dokunulursa, oyuncunun akıl sağlığı iki kat azalır.
+
+]]> </string>
+
+<string name="ghost_strengths_onryo">
+
+<![CDATA[
+
+<a>Onryo, alev kaynağını hedef alacak ve söndürecektir. Onryo 3 alevi söndürürse, yakınlarda başka bir alev veya haç yoksa, akıl sağlığı seviyesine bakılmaksızın bir Av başlatabilir. Bir oyuncu öldüğünde, mumların söndürülme olasılığı o andan itibaren artar.</a>
+
+]]> </string>
+
+</resources>

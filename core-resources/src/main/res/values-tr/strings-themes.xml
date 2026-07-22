@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="theme_palette_colorblind_monochromacy">Akromatopsi</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Deuteranopi</string>
+    <string name="theme_palette_colorblind_protanomaly">Protanopi</string>
+    <string name="theme_palette_colorblind_tritanomaly">Tritanopi</string>
+    <string name="theme_typography_classic">P.E.T. Klasik</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Günlük</string>
+    <string name="theme_typography_brick">Tuğla</string>
+    <string name="theme_typography_clean">Temizle</string>
 </resources>

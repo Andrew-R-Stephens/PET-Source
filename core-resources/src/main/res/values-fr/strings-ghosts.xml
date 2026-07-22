@@ -11,6 +11,7 @@
     <string name="ghost_type_aswang">Aswang</string>
     <string name="ghost_type_banshee">Banshee</string>
     <string name="ghost_type_dayan">Dayan</string>
+    <string name="ghost_type_deildegast">Deildegast</string>
     <string name="ghost_type_demon">Démon</string>
     <string name="ghost_type_deogen">Deogen</string>
     <string name="ghost_type_gallu">Gallu</string>
@@ -689,5 +690,49 @@ Il existe 3 états pour ce fantôme : Normal, Enragé et Affaibli.</a><br>
 </string>
     <string name="ghost_info_kormos"><![CDATA[  <a>Le Kormos est aveugle, mais utilise son ouïe fine pour traquer ses victimes. Il se montrera plus agressif envers ceux qui ne font pas preuve de prudence.</a>  ]]></string>
     <string name="ghost_weaknesses_kormos"><![CDATA[  <a>Le Kormos est aveugle, il ne se fie donc pas à la vue pour chasser. Il utilise plutôt son ouïe pour détecter les joueurs.</a>  ]]></string>
+    <string name="ghost_info_deildegast">
 
+<![CDATA[
+
+<a>Ce fantôme aime déplacer les objets sur la carte. Il est plus susceptible d\'interagir avec les éléments du décor que les autres fantômes, et moins susceptible de toucher les portes et les interrupteurs.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>Ce fantôme est naturellement rapide et n\'a pas besoin de ligne de mire. En règle générale, les interactions diminuent la santé mentale du joueur; comme ce fantôme est plus susceptible d\'interagir avec les éléments du décor, il y a une chance accrue de drainer la santé mentale du joueur très rapidement.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>Le fantôme s\'épuise de plus en plus à chaque élément du décor déplacé. Au fil du temps, le fantôme devient beaucoup plus lent pendant les chasses.</a><br>
+
+<a>Un joueur peut déplacer des objets au lieu du fantôme. Le nombre d'objets qu\'un joueur peut manipuler est limité à 30.</a>
+
+]]>
+</string>
+
+    <string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>Plus le nombre d\'objets déplacés est élevé, plus la vitesse de chasse du fantôme diminue drastiquement.</a><br>
+
+<a>La vitesse initiale du fantôme est de 3,0 m/s et sa vitesse minimale est de 0,4 m/s.</a><br>
+
+<a>Pour chaque objet avec lequel le fantôme interagit, sa vitesse diminue de 0,1 m/s.</a><br>
+
+<a>La vitesse du fantôme est fixe et ne dépend pas de la ligne de mire.</a>
+
+]]>
+</string>
 </resources>

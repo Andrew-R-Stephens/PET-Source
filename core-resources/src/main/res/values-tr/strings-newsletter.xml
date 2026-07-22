@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="newsletter_title">Mesaj Merkezi</string>
+    <string name="newsletter_inbox_title_general">Genel Haberler</string>
+    <string name="newsletter_inbox_title_pet">P.E.T. Değişiklik Günlüğü</string>
+    <string name="newsletter_inbox_title_phasmophobia">Phasmophobia Değişiklik Günlüğü</string>
+    <string name="newsletter_markallread">Tümünü Okundu Olarak İşaretle</string>
+</resources>

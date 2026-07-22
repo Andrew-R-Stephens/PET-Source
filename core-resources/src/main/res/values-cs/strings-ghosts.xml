@@ -11,6 +11,7 @@
     <string name="ghost_type_aswang">Aswang</string>
     <string name="ghost_type_banshee">Banshee</string>
     <string name="ghost_type_dayan">Dayan</string>
+    <string name="ghost_type_deildegast">Deildegast</string>
     <string name="ghost_type_demon">Démon</string>
     <string name="ghost_type_deogen">Deogen</string>
     <string name="ghost_type_gallu">Gallu</string>
@@ -652,4 +653,28 @@
 </string>
     <string name="ghost_info_kormos"><![CDATA[ <a>Kormos je slepý, ale k lovu obětí využívá svůj zvýšený sluch. Bude agresivnější s těmi, kteří nechodí lehkovážně.</a> ]]></string>
 
+    <string name="ghost_info_deildegast">
+<![CDATA[
+<a>Tento duch rád přemisťuje předměty po mapě. Ve srovnání s jinými duchy má vyšší pravděpodobnost interakce s rekvizitami a nižší pravděpodobnost dotyku dveří a vypínačů.</a>
+]]>
+</string>
+    <string name="ghost_strengths_deildegast">
+<![CDATA[
+<a>Tento duch je přirozeně rychlý a nespoléhá se na přímou viditelnost. Obecně platí, že interakce snižují hráčovo duševní zdraví; Vzhledem k vyšší pravděpodobnosti interakce tohoto ducha s rekvizitami existuje zvýšená šance velmi rychle vysát hráčovo duševní zdraví.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_deildegast">
+<![CDATA[
+<a>S každou přemístěnou rekvizitou se duch stále více vyčerpává. Postupem času se duch během lovu výrazně zpomalí.</a><br>
+<a>Hráč může místo ducha pohybovat rekvizitami. Počet rekvizit, se kterými může hráč manipulovat, je omezen na 30.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_deildegast">
+<![CDATA[
+<a>S tím, jak se pohybuje více rekvizit, se rychlost ducha při lovu drasticky sníží.</a><br>
+<a>Počáteční rychlost ducha je 3,0 m/s a jeho minimální rychlost je 0,4 m/s.</a><br>
+<a>Pro každou rekvizitu, se kterou duch interaguje, se rychlost ducha sníží o 0,1 m/s.</a><br>
+<a>Duch má pevnou rychlost a nespoléhá se na přímou viditelnost.</a>
+]]>
+</string>
 </resources>

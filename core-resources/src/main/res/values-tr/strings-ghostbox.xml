@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ghostbox_title">Hayalet Kutusu</string>
+    <string name="spiritbox_entry_q01">Kanlı Mary.</string>
+    <string name="spiritbox_entry_q02">Korkuyorum!</string>
+    <string name="spiritbox_entry_q03">Saklan!</string>
+    <string name="spiritbox_entry_q04">Panik!</string>
+    <string name="spiritbox_entry_q05">Kaç!</string>
+    <string name="spiritbox_entry_q06">Kızgın mısın?</string>
+    <string name="spiritbox_entry_q07">Mutlu musun?</string>
+    <string name="spiritbox_entry_q08">Dost canlısı mısın?</string>
+    <string name="spiritbox_entry_q09">Bize zarar vermek mi istiyorsun?</string>
+    <string name="spiritbox_entry_q10">Burada olmamızı mı istiyorsun?</string>
+    <string name="spiritbox_entry_q11">Adın ne?</string>
+    <string name="spiritbox_entry_q12">Kaç yaşındasın?</string>
+    <string name="spiritbox_entry_q13">Neredesin?</string>
+    <string name="spiritbox_entry_q14">Burada mısın?</string>
+    <string name="spiritbox_entry_q15">Burada tek başına mısın?</string>
+    <string name="spiritbox_entry_q16">Neredesin?</string>
+    <string name="spiritbox_entry_q17">Bize saldır!</string>
+    <string name="spiritbox_entry_q18">Bizimle konuşabilir misin?</string>
+    <string name="spiritbox_entry_q19">Bir şey yap!</string>
+    <string name="spiritbox_entry_q20">Bize işaret ver!</string>
+    <string name="spiritbox_entry_q21">Bizi avla!</string>
+    <string name="spiritbox_entry_q22">Neden buradasın?</string>
+    <string name="spiritbox_entry_q23">Ses çıkar!</string>
+    <string name="spiritbox_entry_q24">Kapıyı aç!</string>
+    <string name="spiritbox_entry_q25">Kendini göster!</string>
+    <string name="spiritbox_entry_q26">Bir şey fırlat.</string>
+    <string name="spiritbox_entry_q27">Işığı kapat.</string>
+    <string name="spiritbox_entry_q28">Işığı aç.</string>
+    <string name="spiritbox_entry_q29">Merhaba?</string>
+    <string name="spiritbox_entry_q30">Nasıl yardımcı olabiliriz?</string>
+    <string name="spiritbox_entry_q31">Ne istiyorsunuz?</string>
+    <string name="spiritbox_entry_q32">Neden buradasınız?</string>
+    <string name="spiritbox_entry_q33">Akıl sağlığım ne durumda?</string>
+    <string name="spiritbox_entry_q34">Ne kadar delirmişim?</string>
+    <string name="spiritbox_entry_q35">Ne kadar akıl hastasıyım?</string>
+    <string name="spiritbox_entry_q36">Deli miyim?</string>
+</resources>

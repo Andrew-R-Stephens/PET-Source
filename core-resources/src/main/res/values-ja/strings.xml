@@ -1386,5 +1386,51 @@
     <string name="investigation_label_timer_skip">スキップタイマー</string>
     <string name="tool_timer_label_hunt_timer_link">「ハント継続時間」タイマーの終了後、「ハント・クールダウン」タイマーが自動的に開始されます。</string>
     <string name="tool_timer_label_linked">リンク済み</string>
+    <string name="ghost_info_deildegast">
 
+<![CDATA[
+
+<a>このゴーストはマップ上のアイテムを動かすのが好きです。他のゴーストと比べて小道具とインタラクトする可能性が高く、ドアや照明スイッチに触れる可能性は低くなっています。</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>このゴーストは生まれつき素早く、視線に依存しません。一般的に、インタラクトするとプレイヤーの正気度が低下します。このゴーストは小道具とインタラクトする可能性が高いため、プレイヤーの正気度が非常に速く低下する可能性が高くなります。</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>ゴーストは動かした小道具ごとにどんどん疲弊していきます。時間が経つにつれて、ゴーストは狩りの際に非常に遅くなります。</a><br>
+
+<a>プレイヤーはゴーストの代わりに小道具を動かすことができます。プレイヤーが操作できる小道具の数は30個までです。</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>小道具が移動するほど、ゴーストの狩りの速度は大幅に低下します。</a><br>
+
+<a>ゴーストの初期速度は3.0m/s、最低速度は0.4m/sです。</a><br>
+
+<a>小道具を操作するたびに、ゴーストの速度は0.1m/sずつ低下します。</a><br>
+
+<a>ゴーストの速度は固定されており、視線に依存しません。</a>
+
+]]>
+
+</string>
 </resources>

@@ -53,7 +53,7 @@ realm-kotlin = "3.0.0" # Latest: 1.16.0
 realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
 
-nav3Core = "1.0.0"
+nav3Core = "1.1.4"
 lifecycleViewmodelNav3 = "2.11.0"
 
 agp = "9.3.0" # Latest: 8.12.0

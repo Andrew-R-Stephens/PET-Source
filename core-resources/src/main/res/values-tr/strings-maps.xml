@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mapview_instruction_zoom">Yakınlaştırma: İki parmağınızı sıkıştırın</string>
+    <string name="mapview_instruction_pan">Kaydırma: Tek parmağınızı sürükleyin</string>
+    <string name="map_floor_name_ground">Zemin Kat</string>
+    <string name="map_floor_name_first">Birinci Kat</string>
+    <string name="map_floor_name_second">İkinci Kat</string>
+    <string name="map_floor_name_third">Üçüncü Kat</string>
+    <string name="map_floor_name_fourth">Dördüncü Kat</string>
+    <string name="map_floor_name_fifth">Beşinci Kat</string>
+    <string name="map_floor_name_sixth">Altıncı Kat</string>
+    <string name="map_floor_name_seventh">Yedinci Kat</string>
+    <string name="map_floor_name_eighth">Sekizinci Kat</string>
+    <string name="map_floor_name_ninth">Dokuzuncu Kat</string>
+    <string name="map_floor_name_tenth">Onuncu Kat</string>
+    <string name="map_floor_name_attic">Çatı Katı</string>
+    <string name="map_floor_name_basement">Bodrum</string>
+    <string name="map_info_help_title">Etkileşimli Harita Yardımı</string>
+    <string name="map_info_help_pan">Haritayı tek parmağınızla kaydırın.</string>
+    <string name="map_info_help_zoom">İki parmağınızı sıkıştırarak veya açarak haritayı yakınlaştırın ve uzaklaştırın.</string>
+    <string name="map_info_help_click">Herhangi bir odanın adını ve sınırını almak için haritada tek parmağınızla dokunun.</string>
+    <string name="map_info_help_rooms">O odanın konumunu ve sınırını göstermek için Odalar açılır menüsünden bir oda seçin.</string>
+    <string name="map_info_help_floors">Katlar arasında geçiş yaparak katları görüntüleyin ve etkileşimde bulunun.</string>
+    <string name="map_info_help_pois">Sigorta Kutularının ve Lanetli Eşyaların konumları ilgili simgelerle gösterilir.</string>
+    <string name="map_setting_label_size">Boyut</string>
+    <string name="map_setting_label_modifier">Değiştirici</string>
+    <string name="map_setting_label_drainrate">Tahliye Oranı</string>
+    <string name="map_setting_label_multiplier">Çarpan</string>
+    <string name="map_setting_state_small">Küçük</string>
+    <string name="map_setting_state_medium">Orta</string>
+    <string name="map_setting_state_large">Büyük</string>
+    <string name="map_setting_state_setup">Kurulum</string>
+    <string name="map_setting_state_action">Eylem</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="objectives_title_objective_board">Hedef Panosu</string>
+    <string name="objectives_title_optional_objectives">İsteğe Bağlı Hedefler</string>
+    <string name="objectives_title_ghost_details">Hayalet Detayları</string>
+    <string name="objectives_title_ghost_name">Hayaletin Adı</string>
+    <string name="objectives_ghostname_note">Hayalet Adını Buraya Girin</string>
+    <string name="objectives_title_response">Şu Kişilere Tepki Verir:</string>
+    <string name="objectives_title_response_type">Tepki Türü</string>
+    <string name="objectives_title_optional_objective">Hedef</string>
+    <string name="objectives_title_optional_objective_1">Hedef 1</string>
+    <string name="objectives_title_optional_objective_2">Hedef 2</string>
+    <string name="objectives_title_optional_objective_3">Hedef 3</string>
+    <string name="objectives_title_firstname">Ad</string>
+    <string name="objectives_title_surname">Soyad</string>
+    <string name="objectives_title_response_alone">Yalnız</string>
+    <string name="objectives_title_response_everyone">Gruplu</string>
+    <string name="objectives_notice_response_type">Not: Orta seviyenin üzerindeki zorluk seviyelerinde tepki türü belirtilmez.</string>
+    <string name="objective_info_ghostevent">Ekibinizin bir üyesinin bir Hayalet olayına tanık olmasını sağlayın</string>
+    <string name="objective_info_ghostphotograph">Hayaletin fotoğrafını çekin</string>
+    <string name="objective_info_motionsensor">Hayaletin varlığını Hareket Sensörü ile tespit edin</string>
+    <string name="objective_info_smudgestick">Hayaletin yakınındaki alanı Tütsü kullanarak temizleyin</string>
+    <string name="objective_info_crucifix">Hayaletin avlanmasını Haç ile engelleyin</string>
+    <string name="objective_info_escapehunt">Ekibinizin bir üyesinin Av sırasında Hayaletten kaçmasını sağlayın</string>
+    <string name="objective_info_repelwithsmudge">Hayalet birini kovalarken Tütsü ile onu püskürtün</string>
+    <string name="objective_info_extinguishcandle">Hayaletin bir Ateş Işığını söndürmesini sağlayın</string>
+    <string name="objective_info_lowsanity">Ortalama Takım Akıl Sağlığını %25\'in altına indirin</string>
+    <string name="objective_info_paranormalsound">Parabolik Mikrofon ile paranormal bir ses tespit edin</string>
+    <string name="objective_info_uniqueaudio">2 benzersiz paranormal ses kaydedin Ses Kaydedici</string>
+    <string name="objective_info_uniquephotograph">Fotoğraf Makinesi ile 3 benzersiz fotoğraf çekin</string>
+    <string name="objective_info_uniquevideo">Video Kamera ile 3 benzersiz video çekin</string>
+    <string name="objective_info_emfphotograph">EMF Okuyucuda başarılı bir okumanın fotoğrafını çekin</string>
+    <string name="objective_info_ghostvideo">Hayaletin videosunu çekin</string>
+</resources>

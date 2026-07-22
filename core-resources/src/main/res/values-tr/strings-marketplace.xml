@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="marketplace_title">Pazar Yeri</string>
+    <string name="marketplace_list_bundles">Tema Paketleri</string>
+    <string name="marketplace_list_prestige">Prestij Temaları</string>
+    <string name="marketplace_list_event">Etkinlik Temaları</string>
+    <string name="marketplace_list_community">Topluluk Temaları</string>
+    <string name="marketplace_connection_error">Eyvah! Pazar yerine bağlanırken bir hata oluştu.</string>
+    <string name="marketplace_error_login_required">Pazar yeri içeriğini talep etmek için lütfen giriş yapın.</string>
+    <string name="marketplace_button_watch_ad">Kredi Kazan</string>
+    <string name="marketplace_button_item_get">Al</string>
+    <string name="marketplace_button_purchase_credits">Kredi Satın Al</string>
+    <string name="marketplace_label_purchased">Kilidi Açıldı</string>
+    <string name="marketplace_label_bundle_includes">İçerir</string>
+    <string name="marketplace_purchase_equip">%1$s temasıyla donatın?</string>
+    <string name="marketplace_description_watch_ad">%s %s kazanmak için bir reklam izleyin.</string>
+    <string name="marketplace_description_purchase_credits">Kredileri doğrudan satın alın.</string>
+    <string name="marketplace_acknowledgement_title">Pazar Yeri Sözleşmesi</string>
+    <string name="marketplace_acknowledgement_warning">Phasmophobia Kanıt Aracı\'nın \"Pazar\" bölümünü kullanarak, aşağıdakileri zımnen kabul etmiş olursunuz:</string>
+    <string name="marketplace_acknowledgement_button_confirm">Anladım!</string>
+    <plurals name="marketplace_description_watch_ad">
+
+        <item quantity="one">Yoldaş Kredisi</item>
+
+        <item quantity="other">Yoldaş Kredileri</item>
+
+    </plurals>
+    <string name="marketplace_acknowledgement_warning_list_1">
+
+"İçerik", "öğeler" ve "kilit açma" terimleri, resimleri, isimleri ve diğer varlıkları ifade eder.
+
+"Geliştirici" terimi, Tritium Studios'u ifade eder. "P.E.T." veya "bu uygulama" terimi,
+
+"Phasmophobia Evidence Tool" uygulamasını ifade eder.
+
+</string>
+
+    <string name="marketplace_acknowledgement_warning_list_2">
+
+"P.E.T.", sağlanan içeriğin benzerliğini paylaşabilecek veya paylaşmayabilecek herhangi bir başka kuruluşla bağlantılı değildir.
+
+</string>
+
+    <string name="marketplace_acknowledgement_warning_list_3">
+Geçmişteki veya şimdiki tüm içerik, yalnızca "P.E.T." içinde kozmetik amaçlarla mevcuttur.
+
+İçerik, "P.E.T." dışında kullanılamaz veya transfer edilemez ve "Phasmophobia" gibi oyunlar da dahil olmak üzere, ancak bunlarla sınırlı olmamak üzere, harici kuruluşlar üzerinde hiçbir etkisi yoktur.
+
+</string>
+
+    <string name="marketplace_acknowledgement_warning_list_4">
+
+Tüm işlemler kesindir. İçerik kısmen tamamlanmış, bozuk veya hatalı olabilir.
+İçerik, geliştirici tarafından gelecekte devre dışı bırakılabilir, kaldırılabilir veya değiştirilebilir.
+Hesabınızın içeriğe erişimini kaybetmesi veya içerikte herhangi bir değişiklik olması durumunda sorumluluk,
+geliştiricinin takdirine bırakılmıştır.
+
+</string>
+</resources>

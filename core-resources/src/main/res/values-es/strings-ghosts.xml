@@ -12,6 +12,7 @@
     <string name="ghost_type_aswang">Aswang</string>
     <string name="ghost_type_banshee">Banshee</string>
     <string name="ghost_type_dayan">Dayan</string>
+    <string name="ghost_type_deildegast">Deildegast</string>
     <string name="ghost_type_demon">Demonio</string>
     <string name="ghost_type_deogen">Deogen</string>
     <string name="ghost_type_gallu">Gallu</string>
@@ -679,5 +680,49 @@
 </string>
     <string name="ghost_weaknesses_aswang"><![CDATA[ <a>El Aswang abandona la caza inmediatamente después de que un jugador entre en un escondite oficial.</a>  ]]></string>
     <string name="ghost_huntingdata_aswang"><![CDATA[  <a>No podrás escapar de este fantasma, ya que acelerará más rápido que cualquier otro. Mantente fuera de su línea de visión o busca el escondite más cercano.</a>  <a>Si un jugador usa un escondite oficial, la cacería terminará inmediatamente.</a>  <a>Una cacería que haya terminado prematuramente eliminará el período de gracia para la siguiente cacería del Aswang.</a>  ]]></string>
+    <string name="ghost_info_deildegast">
 
+<![CDATA[
+
+<a>A este fantasma le gusta desplazar objetos por el mapa. Tiene una mayor probabilidad de interactuar con objetos en comparación con otros fantasmas, y una menor probabilidad de tocar puertas e interruptores de luz.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>Este fantasma es naturalmente rápido y no depende de la línea de visión. Como regla general, las interacciones reducen la cordura del jugador; debido a la mayor probabilidad de que este fantasma interactúe con objetos, existe una mayor probabilidad de agotar la cordura del jugador muy rápidamente.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>El fantasma se agota cada vez más por cada objeto desplazado. Con el tiempo, el fantasma se vuelve mucho más lento durante las cacerías.</a><br>
+
+<a>Un jugador puede mover objetos en lugar del fantasma. El número de objetos que un jugador puede manipular para esto está limitado a 30.</a>
+
+]]>
+</string>
+
+    <string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>A medida que se desplazan más objetos, la velocidad de caza del fantasma se reducirá drásticamente.</a><br>
+
+<a>La velocidad inicial del fantasma es de 3,0 m/s y su velocidad mínima es de 0,4 m/s.</a><br>
+
+<a>Por cada objeto con el que se interactúa, la velocidad del fantasma disminuye en 0,1 m/s.</a><br>
+
+<a>El fantasma tiene una velocidad fija y no depende de la línea de visión.</a>
+
+]]>
+</string>
 </resources>

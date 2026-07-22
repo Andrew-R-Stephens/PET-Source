@@ -4,6 +4,7 @@
     <integer name="ghost_hunt_speed_min_aswang">95</integer>
     <integer name="ghost_hunt_speed_min_banshee">102</integer>
     <integer name="ghost_hunt_speed_min_dayan">72</integer>
+    <integer name="ghost_hunt_speed_min_deildegast">24</integer>
     <integer name="ghost_hunt_speed_min_demon">24</integer>
     <integer name="ghost_hunt_speed_min_deogen">102</integer>
     <integer name="ghost_hunt_speed_min_gallu">22</integer>
@@ -34,6 +35,7 @@
     <integer name="ghost_hunt_speed_max_aswang">-1</integer>
     <integer name="ghost_hunt_speed_max_banshee">-1</integer>
     <integer name="ghost_hunt_speed_max_dayan">135</integer>
+    <integer name="ghost_hunt_speed_max_deildegast">180</integer>
     <integer name="ghost_hunt_speed_max_demon">180</integer>
     <integer name="ghost_hunt_speed_max_deogen">-1</integer>
     <integer name="ghost_hunt_speed_max_gallu">117</integer>

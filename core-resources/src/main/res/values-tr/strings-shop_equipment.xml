@@ -1,0 +1,1379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="equipment_info_name_dots">D.O.T.S. Projektör</string>
+    <string name="equipment_info_name_emf">EMF Okuyucu</string>
+    <string name="equipment_info_name_flashlight">El Feneri</string>
+    <string name="equipment_info_name_photocamera">Fotoğraf Makinesi</string>
+    <string name="equipment_info_name_igniter">Ateşleyici</string>
+    <string name="equipment_info_name_firelight">Ateş Işığı</string>
+    <string name="equipment_info_name_uvlight">UV Işık</string>
+    <string name="equipment_info_name_crucifix">Haç</string>
+    <string name="equipment_info_name_videocamera">Video Kamera</string>
+    <string name="equipment_info_name_spiritbox">Ruh Kutusu</string>
+    <string name="equipment_info_name_thermometer">Termometre</string>
+    <string name="equipment_info_name_salt">Tuz</string>
+    <string name="equipment_info_name_incense">Tütsü</string>
+    <string name="equipment_info_name_tripod">Tripod</string>
+    <string name="equipment_info_name_motionsensor">Hareket Sensörü</string>
+    <string name="equipment_info_name_soundrecorder">Ses Kaydedici</string>
+    <string name="equipment_info_name_soundsensor">Ses Sensörü</string>
+    <string name="equipment_info_name_sanitymedication">Akıl Sağlığı İlacı</string>
+    <string name="equipment_info_name_ghostwritingbook">Hayalet Yazma Kitabı</string>
+    <string name="equipment_info_name_parabolicmicrophone">Parabolik Mikrofon</string>
+    <string name="equipment_info_name_headgear">Başlık</string>
+    <string name="shop_equipment_attribute_spotight_narrow">Spot Işığı: Dar</string>
+    <string name="shop_equipment_attribute_spotight_wide">Spot Işığı: Geniş</string>
+    <string name="shop_equipment_attribute_spotight_area">Alan Işığı</string>
+    <string name="shop_equipment_attribute_intensity_low">Yoğunluk: Düşük</string>
+    <string name="shop_equipment_attribute_intensity_med">Yoğunluk: Orta</string>
+    <string name="shop_equipment_attribute_intensity_high">Yoğunluk: Yüksek</string>
+    <string name="shop_equipment_attribute_interactionrate_low">Etkileşim Oranı: Düşük</string>
+    <string name="shop_equipment_attribute_interactionrate_med">Etkileşim Oranı: Orta</string>
+    <string name="shop_equipment_attribute_interactionrate_high">Etkileşim Oranı: Yüksek</string>
+    <string name="shop_equipment_attribute_audioquality_low">Ses Kalitesi: Düşük</string>
+    <string name="shop_equipment_attribute_audioquality_med">Ses Kalitesi: Orta</string>
+    <string name="shop_equipment_attribute_audioquality_high">Ses Kalitesi: Yüksek</string>
+    <string name="shop_equipment_attribute_responserate_low">Tepki Oranı: Düşük</string>
+    <string name="shop_equipment_attribute_responserate_med">Tepki Oranı: Orta</string>
+    <string name="shop_equipment_attribute_responserate_high">Tepki Oranı: Yüksek</string>
+    <string name="shop_equipment_attribute_samplespeed_low">Örnekleme Hızı: Düşük</string>
+    <string name="shop_equipment_attribute_samplespeed_med">Örnekleme Hızı: Orta</string>
+    <string name="shop_equipment_attribute_samplespeed_high">Örnekleme Hızı: Yüksek</string>
+    <string name="shop_equipment_attribute_imagequality_low">Görüntü Kalitesi: Düşük</string>
+    <string name="shop_equipment_attribute_imagequality_med">Görüntü Kalitesi: Orta</string>
+    <string name="shop_equipment_attribute_imagequality_high">Görüntü Kalitesi: Yüksek</string>
+    <string name="shop_equipment_attribute_interference_low">Paranormal Girişim: Düşük</string>
+    <string name="shop_equipment_attribute_interference_med">Paranormal Girişim: Orta</string>
+    <string name="shop_equipment_attribute_interference_high">Paranormal Parazit: Yüksek</string>
+    <string name="shop_equipment_attribute_knockdownchance_low">Devirme şansı: Düşük</string>
+    <string name="shop_equipment_attribute_knockdownchance_med">Devirme şansı: Orta</string>
+    <string name="shop_equipment_attribute_knockdownchance_high">Devirme şansı: Yüksek</string>
+    <string name="shop_equipment_attribute_accuracy_low">Doğruluk: Düşük</string>
+    <string name="shop_equipment_attribute_accuracy_med">Doğruluk: Orta</string>
+    <string name="shop_equipment_attribute_accuracy_high">Doğruluk: Yüksek</string>
+    <string name="shop_equipment_attribute_indicator_audio">Ses Göstergesi</string>
+    <string name="shop_equipment_attribute_indicator_light">Işık Göstergesi</string>
+    <string name="shop_equipment_attribute_indicator_distance">Mesafe Göstergesi</string>
+    <string name="shop_equipment_attribute_indicator_directional">Yön Göstergesi</string>
+    <string name="shop_equipment_attribute_range_1_7">Menzil (M): 1.7</string>
+    <string name="shop_equipment_attribute_range_2">Menzil (M): 2</string>
+    <string name="shop_equipment_attribute_range_2_5">Menzil (M): 2.5</string>
+    <string name="shop_equipment_attribute_range_3">Menzil (M): 3</string>
+    <string name="shop_equipment_attribute_range_3_5">Menzil (M): 3.5</string>
+    <string name="shop_equipment_attribute_range_4">Menzil (M): 4</string>
+    <string name="shop_equipment_attribute_range_5">Menzil (M): 5</string>
+    <string name="shop_equipment_attribute_range_7">Menzil (M): 7</string>
+    <string name="shop_equipment_attribute_range_20">Menzil (M): 20</string>
+    <string name="shop_equipment_attribute_range_30">Menzil (M): 30</string>
+    <string name="shop_equipment_attribute_range_5_10">Menzil (M): 5, 10</string>
+    <string name="shop_equipment_attribute_range_5_10_15">Menzil (M): 5, 10, 15</string>
+    <string name="shop_equipment_attribute_uvchargetime_1_5">UV Şarj Süresi: 1.5</string>
+    <string name="shop_equipment_attribute_uvchargetime_5">UV Şarj Süresi: 5</string>
+    <string name="shop_equipment_attribute_uvchargetime_10">UV Şarj Süresi: 10</string>
+    <string name="shop_equipment_attribute_phototime_low">Fotoğraflar Arası Süre: Düşük</string>
+    <string name="shop_equipment_attribute_phototime_med">Fotoğraflar Arası Süre: Orta</string>
+    <string name="shop_equipment_attribute_phototime_high">Fotoğraflar Arası Süre: Yüksek</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_33">Sanity Enerji Tüketimi Azaltma (%): 33</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_50">Sanity Enerji Tüketimi Azaltma (%): 50</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_66">Akıl Sağlığı Tüketimi Azaltma (%): 66</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10">Akıl Sağlığı Geri Kazanım Uykusu (S): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20">Akıl Sağlığı Geri Kazanım Uykusu (S): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30">Akıl Sağlığı Geri Kazanım Uykusu (S): 30</string>
+    <string name="shop_equipment_attribute_sensorshape_line">Sensör Şekli: Çizgi</string>
+    <string name="shop_equipment_attribute_sensorshape_line_cone">Sensör Şekli: Koni</string>
+    <string name="shop_equipment_attribute_sensorshape_circle">Sensör Şekli: Daire</string>
+    <string name="shop_equipment_attribute_sensorshape_circle_cone_sides">Sensör Şekli: Daire, Koni, Kenarlar</string>
+    <string name="shop_equipment_attribute_duration_3_s">Süre (S): 7</string>
+    <string name="shop_equipment_attribute_duration_5_s">Süre (S): 5</string>
+    <string name="shop_equipment_attribute_duration_6_s">Süre (S): 6</string>
+    <string name="shop_equipment_attribute_duration_7_s">Süre (S): 7</string>
+    <string name="shop_equipment_attribute_duration_10_s">Süre (S): 10</string>
+    <string name="shop_equipment_attribute_duration_60_s">Süre (S): 60</string>
+    <string name="shop_equipment_attribute_duration_3_m">Süre (M): 3</string>
+    <string name="shop_equipment_attribute_duration_5_m">Süre (M): 5</string>
+    <string name="shop_equipment_attribute_duration_10_m">Süre (M): 10</string>
+    <string name="shop_equipment_attribute_uses_1">Kullanım Sayısı: 1</string>
+    <string name="shop_equipment_attribute_uses_2">Kullanım Sayısı: 2</string>
+    <string name="shop_equipment_attribute_uses_3">Kullanım Sayısı: 3</string>
+    <string name="shop_equipment_attribute_uses_10">Kullanım Sayısı: 10</string>
+    <string name="shop_equipment_attribute_placeable">Yerleştirilebilir</string>
+    <string name="shop_equipment_attribute_handheld">Elde Taşınabilir</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_slows">Avlar Sırasında Hayaleti Yavaşlatır</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_halts">Avlar Sırasında Hayaleti Durdurur</string>
+    <string name="shop_equipment_attribute_property_displayscreen">Ekran Görüntüsü</string>
+    <string name="shop_equipment_attribute_property_preventscursedhunt">Bir Laneti Önler Av</string>
+    <string name="shop_equipment_attribute_property_electronic">Elektronik</string>
+    <string name="shop_equipment_attribute_property_consumable">Tüketilebilir</string>
+    <string name="shop_equipment_attribute_property_waterproof">Su Geçirmez</string>
+    <string name="shop_equipment_attribute_property_headslot">Başlık Yuvası</string>
+    <string name="shop_equipment_attribute_property_nightvision">Gece Görüşü</string>
+    <string name="shop_equipment_attribute_property_sprintboost">Hızlanma Takviyesi (S): 10</string>
+    <string name="shop_equipment_attribute_property_rotationcontrol">Dönme Kontrolü</string>
+    <string name="shop_equipment_attribute_property_scanning">Tarama</string>
+    <string name="store_title_equipment">Ekipman Mağazası</string>
+    <string name="equipment_section_tiers">Kademeler</string>
+    <string name="equipment_section_equipment">Ekipman</string>
+    <string name="evidence_requirement_level_title">Kilidi Açma Seviyesi:</string>
+    <string name="evidence_requirement_cost_title">Maliyet:</string>
+    <string name="equipment_tiers_1">Kademe 1</string>
+    <string name="equipment_tiers_2">Kademe 2</string>
+    <string name="equipment_tiers_3">Kademe 3</string>
+    <string name="shop_equipment_salt_data_info_1" >
+
+<![CDATA[
+
+<a>Bu kabı tutarken, hayaleti takip etme umuduyla yere tuz yığınları yerleştirebilirsiniz. Tepki alma şansınızı en üst düzeye çıkarmak için bunları kapı girişlerine ve koridor veya odalardaki dönüş noktalarına yakın yerleştirmenizi öneririz.
+]]>
+</string>
+
+<string name="shop_equipment_salt_data_info_2" >
+
+<![CDATA[
+
+<a>Bu daha büyük kap, önceki modele göre daha fazla tuz içerir ve daha geniş geçitleri kolayca kapatmak için uzun tuz çizgileri yerleştirmenizi sağlar.</a>
+]]>
+</string>
+
+<string name="shop_equipment_salt_data_info_3" >
+
+<![CDATA[
+
+<a>Bu tuz o kadar güçlüdür ki bir hayaletin hareketliliğini iki şekilde etkileyebilir.</a><br><br>
+
+<a>Bir hayalet pasif hareket ederken, bu çizgiler bir bariyer gibi davranarak hayaletin bunlardan birine girdiğinde geri dönmesini zorlar.</a> Oda içinde dolaşan hayaletleri tuzağa düşürmek ve kanıtlarınızı bulmak için harika.</a><br><br>
+
+<a>Eğer bir saldırı sırasındaysa, hayalet yavaşlayacak ve kaçmak için size ekstra zaman kazandıracaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_incense_data_info_1" >
+
+<![CDATA[
+
+<a>Herhangi bir ateşleyici ile tütsü yakarak bir hayaletin uzun süre av başlatmasını engelleyebilirsiniz; ayrıca, bir hayaletin yakınındayken av sırasında birkaç saniyeliğine onu şaşırtmak için de kullanabilirsiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_incense_data_info_2" >
+
+<![CDATA[
+
+<a>Bu tütsü demetini oluşturmak için çok daha fazla adaçayı kullanılmıştır, bu da daha uzun yanma süresi sağlayarak saldırılar sırasında sizi daha uzun süre güvende tutar.</a><br><br>
+
+<a>Ayrıca, etki süresinin bir kısmında hayaletin hareketini yavaşlatacaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_incense_data_info_3" >
+
+<![CDATA[
+
+<a>Çok daha geniş bir menzil ve daha uzun yanma süresiyle, saldırıya uğradığınızda hayaletleri çok daha güvenli bir şekilde uzaklaştırabilirsiniz. Hayalet ilk püskürtüldüğünde sersemleyecek ve kısa bir süre için hareketini durduracaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_tripod_data_info_1" >
+
+<![CDATA[
+
+<a>Üstüne yerleştirerek bu Tripod\'a bir Video Kamera takın. Ardından tripodu taşıyabilir ve paranormal aktiviteyi izlemek için uygun bir yüzeye sahip olmayan yerlere yerleştirebilirsiniz.</a><br><br>
+
+<a>Hayaletler yerleştirdiğiniz kameralara müdahale edebilir ve onları devirmeye çalışabilir, yere itildiklerinde tekrar yerine oturttuğunuzdan emin olun.</a>
+]]>
+</string>
+
+<string name="shop_equipment_tripod_data_info_2" >
+
+<![CDATA[
+
+<a>Bu tripod, döner bir motorla yükseltilmiştir. Kamyondan video kameranın görüntüsünü izlerken, ekrandaki kontrolleri kullanarak tripod motorunu döndürebilir ve yeni bir açı elde edebilirsiniz.
+]]>
+</string>
+
+<string name="shop_equipment_tripod_data_info_3" >
+
+<![CDATA[
+
+<a>Önceki versiyonlarına benzer şekilde, bu tripod da çok daha sağlamdır, bu sayede o sinir bozucu hayaletler onu çok daha az sıklıkla devirecektir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_motionsensor_data_info_1" >
+
+<![CDATA[
+
+<a>Bu hareket sensörünü duvarlara veya zemine yerleştirin ve önünden bir şey hareket ettiğinde, hatta göremediğiniz şeyler bile hareket ettiğinde yanıp sönecektir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_motionsensor_data_info_2" >
+
+<![CDATA[
+
+<a>İle İki farklı modu, daha uzun menzili ve sesli göstergesiyle bu sensör, paranormal izleme için mükemmeldir.</a><br><br>
+
+<a>Yerleştirildikten sonra sensörle etkileşim kurarak lazer şeklini değiştirebilirsiniz.</a>
+]]>
+</string>
+
+<string name="shop_equipment_motionsensor_data_info_3" >
+
+<![CDATA[
+
+<a>Bu Hareket Algılama kamerasını, bulabileceğiniz herhangi bir hayalet aktivitesinin yakınındaki zemine yerleştirin. Etkinleştirildiğinde, bir hayalet algılama menziline girdiğinde veya çıktığında döner ve parlak bir ışık yakar.
+]]>
+</string>
+
+<string name="shop_equipment_soundrecorder_data_info_1" >
+
+<![CDATA[
+
+<a>Bu Ses Kaydediciyi, araştırmalar sırasında paranormal sesleri bulmak ve kaydetmek için kullanın. Başarılı kayıtlar, sözleşmenin sonunda ekstra para kazandıracaktır.</a><br><br>
+
+<a>Hatta kaydedilen sesi Günlük\'te tekrar dinleyebilirsiniz!</a>
+]]>
+</string>
+
+<string name="shop_equipment_soundrecorder_data_info_2" >
+
+<![CDATA[
+
+<a>Bu Ses Kaydedici, daha yüksek doğruluk, daha iyi menzil ve modern bir arayüzle yükseltildi. Bu, paranormal sesleri bulmayı kolaylaştırmalıdır!</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+
+<![CDATA[
+
+<a>Aktifken, bu Ses Kaydedici paranormal sesler hakkında ek bilgiler sağlar.</a><br><br>
+
+<a>Eklenen yön ve menzil göstergeleri, paranormal sesleri bulmayı ve kaydetmeyi verimli ve tatmin edici hale getirir!</a>
+
+]]>
+
+</string>
+
+<string name="shop_equipment_thermometer_data_info_3">
+
+<![CDATA[
+
+<a>Sıcaklık taramalarını selefine göre iki kat daha hızlı sağlar, doğrudan Seviye II\'ye yükseltir. Ek olarak, bu daha modern Termometrenin okumada daha doğru olup olmadığı, olayların hayaleti bulunması veya Günlük\'te "Dondurucu Sıcaklıklar"ı işaretlemek için odaların hızlı ve verimli bir şekilde taramalarına olanak tanır.</a>
+]]>
+</string>
+
+    <string name="shop_equipment_dots_data_info_1">
+
+<![CDATA[
+
+<a>El fenerine benzer bir Lazer Izgara Kalem. Etrafta dolaşabilir ve hızlı bir şekilde kanıt arayabilirsiniz, tek menzilli kısa menzilli ve düşük ışık yoğunluğudur.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_dots_data_info_2">
+
+<![CDATA[
+
+<a>Bu, orijinal D.O.T.S. Bu ortalama, büyüklükte bir ışık küresi yayan yer olabilir bir görünebilirdir; Ancak artık yakında durarak hayaletin sisteme dahil edilmesini teşvik edebilirsiniz.</a><br><br>
+
+<a>Küçük ila orta büyüklükteki odalar için en önemlisi.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_dots_data_info_3">
+
+<![CDATA[
+
+<a>Bu yer görülürse, geniş ve taramalı bir ışık huzmesiyle odayı çok daha uzun bir mesafeden tarayarak, daha büyük odalarda hayalet bulmayı çok daha iyi görürler. En iyi kapsama alanı için, bu kayıtlı bir kullanıcı veya düz bir para yerinde, yakında durun ve hayalet silüetlerini izleyin.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_emf_data_info_1">
+
+<![CDATA[
+
+<a>Küçük algılama aralığına, düşük doğruluğa ve düşük ses emisyonuna sahip eski, analog bir metre. Seviye 5 EMF algılandığında hızlı bir şekilde seviye 5\'i geçecektir.
+]]>
+</string>
+
+<string name="shop_equipment_emf_data_info_2">
+
+<![CDATA[
+
+<a>Güvenilir K2 Metre, EMF okumalarını algılamak için daha geniş bir menzile ve beş LED aydınlatmaya, ayrıca ek bir hoparlör modülüne sahiptir. Cihazı etkinleştirdiğinizde bir ışık yanacaktır. K2\'nin EMF algılamasının algılama menzili içinde hareket ederken, ikiden beşe kadar doğru bir değer yayılacak ve net, duyulabilir bir ses çıkaracaktır.</a>
+]]>
+</string>
+
+<string name="shop_equipment_emf_data_info_3">
+
+<![CDATA[
+
+<a>Yüksek teknoloji ürünü bir ParaReader. Bu cihaz aynı anda üç adede kadar EMF noktasını takip edebilir ve en uzak menzile sahiptir.</a><br><br>
+
+<a>Her okumanın yönü, menzili ve değeri aynı anda gösterecektir.</a> Her bir EMF algılaması için ses çıkarır, böylece uzaktan kaç tane ve ne kadar güçlü okuma olduğunu duyabilirsiniz.</a><br><br>
+
+<a>Bir EMF noktası oluşursa, daha yeni bir EMF noktası dinlemenin yerine yerleştirilir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_uvlight_data_info_1">
+
+<![CDATA[
+
+<a>Daha parlak, dar bir Işın yayan ve daha uzun menzile sahip klasik UV El Feneri, çok daha hızlı UV şarj süresiyle öne çıkıyor!</a><br><br>
+
+<a>Bu cihaz, maruz kalmanın 5 saniye içinde bir UV ışınlarına maruz kalmasını sağlar.</a>
+
+]]>
+
+</string>
+
+    <string name = "shop_equipment_uvlight_data_info_2">
+
+        <![CDATA[
+
+<a>Klasik UV ışık çekmek. Açmak için düğmeyi bastıktan sonra, yaklaşık bir dakika süren ve ardından sönen kısa menzilli bir alan ışığı yayar. Işığını yeniden canlandırmak için her zaman tekrar sallayabilirsiniz.</a><br><br>
+
+<a>Bu cihaz maruz kaldıktan sonra 10 saniye içinde bir UV lekesini şarj eder.</a>
+
+]]>
+
+    </string>
+
+    <string name="shop_equipment_uvlight_data_info_3">
+
+<![CDATA[
+
+<a>UV Light Pro, çok daha parlak ve geniş bir ışık konisine ve daha da hızlı şarj süresine sahip, iri bir el feneridir. Ultraviyole kanıtlarını daha büyük ölçekte hızlı bir şekilde bulunabilir.</a><br><br><a>Bu cihaz, maruz kalmanın 1,5 saniye içinde bir UV ışınlarına karşı şarj olacaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_thermometer_data_info_1">
+
+<![CDATA[
+
+<a>Eski bir ev termometresi, doğrudan araştırmacınızın oturma odası duvarından sökülmüştür. Bu termometrenin çevirme hızı yavaştır, yani doğru bir okuma almak için daha uzun süre beklemeniz gerekecek. Birini yanınızda getirip sözleşmesinin ilerleyen aşamalarında tekrar kontrol etmek için giriş yapın.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_thermometer_data_info_2">
+
+<![CDATA[
+
+<a>Klasik sıcaklık okuyucusunun güncellenmiş bir versiyonu, ancak çok daha hızlı tepki veriyor. Cihazın yazılımı her iki bilgisayardan bir okuma almak yerine, sıcaklıkları taramak için \'Kullan\' anahtarını basılı tutun. Bu, sürekli olarak çalıştırıldığında, aydınlatmanın kontrol edilmesi Seviye I\'e göre çok daha hızlı hale gelir.
+]]>
+</string>
+
+    <string name="shop_equipment_ghostwritingbook_data_info_1">
+
+<![CDATA[
+
+<a>Bu kağıt not defteri, paranormal yazılar yazmayı teşvik etmek için bir hayaletin yakınına yerleştirilebilir. Gördüğünüz herhangi bir aktivitenin yakınına yerleştirdiğinizden emin olun. Bazı hayaletler küçük not defterini ve kalemi fark etmeyebilir, bu nedenle bir şey olmadan önce biraz zaman geçebilir.<p/>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_ghostwritingbook_data_info_2">
+
+<![CDATA[
+
+<a>Daha güzel sayfalar ve bir kalemle, hayaletler bu kitabı önceki versiyona göre biraz daha sık fark ediyor gibi görünüyor. Kanıtların ortaya çıkması için bekleme sürelerini biraz kısaltıyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_ghostwritingbook_data_info_3">
+
+<![CDATA[
+
+<a>Büyük profili, yüksek kaliteli malzemelerin karışımı ve süslü kalemiyle bu kitap, hayaletler tarafından yazılma olasılığı en yüksek olan kitaptır. Önceki iki kademeden daha geniş bir menzile sahip olduğundan, bu kitabı bir hayaletin etkileşim menziline yerleştirmek çok daha kolaydır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_videocamera_data_info_1">
+
+<![CDATA[
+
+<a>Ghost Huntin\' Distribution\'ın eski ofisin tavan arasında bulduğu eski bir video kamera. Küçük ve biraz yıpranmış, ama işini gayet iyi yapıyor.</a><br><br>
+
+<a>Ekranının berbat kalitesi ve küçük boyutları nedeniyle video akışını analiz etmek zorlu bir iş, bu yüzden acele etmeyin!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_videocamera_data_info_2">
+
+<![CDATA[
+
+<a>Parasonic video kamera, küreleri bulmayı çok daha kolaylaştıran HD bir video kamerasıdır. Aktif bir hayaletten hala çok fazla parazit alıyor, ancak 1. Seviye\'ye göre çok daha az.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_videocamera_data_info_3">
+
+<![CDATA[
+
+<a>Bony\'nin kendi film kalitesindeki video kamerası, büyük gövdesiyle çok daha büyük bir ekranı destekliyor. Çok daha net bir video görüntüsü sunar ve hayalet görüntülerinden daha az parazit alır.
+
+]]>
+</string>
+
+
+<string name="shop_equipment_spiritbox_data_info_1">
+
+<![CDATA[
+
+<a>Bu Ruh Kutusu\'nu açtığınızda, farklı radyo frekanslarını taramaya başlayacaktır. Paranormal aktivitenin yakınında durduğunuzdan, odadaki tüm ışıkları kapattığınızdan ve bir yanıt alma umuduyla bazı sorular sorduğunuzdan emin olun.</a><br><br>
+
+<a>Soru duyulduysa, Ruh Kutusu\'nda kırmızı bir ışık yanıp sönecektir. Beyaz yanıp sönüyorsa, hayaletten bir yanıt aldınız demektir.</a><br><br>
+
+<a>"Neredesin?" veya "Arkadaş canlısı mısın?" diye sormayı deneyin.</a><br><br> Uyarı: Aldığınız cevap hoşunuza gitmeyebilir.</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_spiritbox_data_info_2">
+
+<![CDATA[
+
+<a>Bu daha modern Ruh Kutusu, frekansları taramada çok daha verimli olan daha yüksek kaliteli bir hoparlöre sahiptir ve paranormal yanıtları çözmeyi kolaylaştırır.</a><br><br>
+
+<a>Bir soru duyulduysa, ekranda siyah bir 'X' yanıp sönecektir. Bir yanıt alırsanız, bunun yerine küçük hayalet simgesi yanıp sönecektir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_spiritbox_data_info_3">
+
+<![CDATA[
+
+<a>Açıldığında, bu Ruh Kutusu her iki frekansı da aynı anda tarar ve soru sorarken paranormal bir yanıt alma şansını artırır. Ayrıca, etkileşimler arasında duyduğunuz statik gürültüyü azaltmak için dahili bir filtreye de sahiptir.</a><br><br>
+
+<a>Bir soru duyulursa ve yanıt verilmezse, YANIT LED\'leri kırmızı renkte yanıp söner. Bir yanıt verilirse, LED'ler sesle eş zamanlı olarak beyaz renkte yanıp söner.</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_flashlight_data_info_1" >
+
+<![CDATA[
+
+<a>Az miktarda ışık sağlayan retro metalik bir el feneri. Sadece etrafta dolaşmak için yeterli.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_flashlight_data_info_2" >
+
+<![CDATA[
+
+<a>Bu el feneri çok daha parlak bir ışık huzmesi yayar.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_flashlight_data_info_3" >
+
+<![CDATA[
+
+<a>Çok daha geniş bir ışık konisi yansıtan bu el feneri, büyük odalar ve açık alanlar için mükemmeldir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_photocamera_data_info_1" >
+
+<![CDATA[
+
+<a>Bu kamerayı bulduğunuz her türlü delilin fotoğrafını çekmek için kullanabilirsiniz. Bu, yalnızca fotoğraf çekme işlemi sırasında hayaletle etkileşime girecektir, bu nedenle fotoğraf çekmeye karar verdiğinizde dikkatli olun.</a><br><br>
+
+<a>Fotoğraf çekme hakkında daha fazla bilgi için Günlüğünüzdeki 'Fotoğraflar' bölümüne bakın.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_photocamera_data_info_2" >
+
+<![CDATA[
+
+<a>Bu dijital fotoğraf makinesiyle, önceki Seviyeye göre kanıtların ve paranormal varlıkların fotoğraflarını çok daha hızlı çekebilirsiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_photocamera_data_info_3" >
+
+<![CDATA[
+
+<a>Bu üst düzey kamera, fotoğraflar arasında en düşük gecikme süresini sağlayarak hızlı kanıt toplama olanağı sunar.</a><br><br>
+
+<a>Ayrıca, paranormal varlıkların tezahürler sırasında ekrana müdahale etmesine daha az duyarlı olacak şekilde değiştirilmiştir.</a>
+]]>
+
+</string>
+
+    <string name="shop_equipment_igniter_data_info_1" >
+
+<![CDATA[
+
+<a>Bu kibritler ateş yakmak ve tütsü yakmak için mükemmeldir, ancak unutmayın, sadece on kullanımla çabuk bitecekler!</a><br><br>
+
+<a>Ayrıca küçük bir ışık kaynağı olarak da kullanılabilirler, sadece parmaklarınızı yakmamaya dikkat edin.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_igniter_data_info_2" >
+
+<![CDATA[
+
+<a>Bir gaz çakmağı. Kibritlerden biraz daha fazla ışık sağlar ve çok daha uzun süre dayanır.</a><br><br>
+
+<a>Kullandıkça içindeki sıvının boşaldığını görebilirsiniz, sıkışık bir durumda yeterli miktarda sıvınız olduğundan emin olun!</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_igniter_data_info_3" >
+
+<![CDATA[
+
+<a>Bu Çakmak, israf etmediğiniz sürece tüm bir sözleşme boyunca size yetebilir!</a><br><br>
+
+<a>Daha büyük bir alevle, sağladığı ışık daha parlak ve daha geniş bir menzile sahiptir, bir saldırı sırasında karanlık kaçışlar için mükemmeldir.</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_firelight_data_info_1" >
+
+<![CDATA[
+
+<a>Bu küçük mum ışık ve bir süre için akıl sağlığı kaybını önlemeye yardımcı olur, ancak sadece bir süreliğine, mum oldukça hızlı yanar!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_firelight_data_info_2" >
+
+<![CDATA[
+
+<a>Tek mum yerine üç mumla, sağlanan ışık çok daha parlak, daha uzun menzilli ve daha uzun süre dayanır.</a><br><br>
+
+<a>Ayrıca, bu Ateş Işığının etkilerini elde etmek için tutulması gerekmez, bu nedenle onu yerleştirip yakınında durarak yine de akıl sağlığı faydalarından yararlanabilirsiniz!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_firelight_data_info_3" >
+
+<![CDATA[
+
+<a>Bu fener, bir sözleşmenin tamamı boyunca dayanır, bu nedenle en çok ihtiyacınız olduğunda sönmesi konusunda endişelenmenize gerek yoktur. Önceki model gibi, etkilerinden yararlanmak için yakınında durabilirsiniz.</a><br><br>
+
+<a>Son olarak, su geçirmez olduğu için yağmurda bile çalışır!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_crucifix_data_info_1" >
+
+<![CDATA[
+
+<a>Bu haç, hayaletin tek bir saldırı başlatmasını engellemek için tutulabilir veya yerleştirilebilir.</a><br><br>
+
+<a>Karşılaştığınız herhangi bir aktivitenin yakınında tuttuğunuzdan emin olun.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_crucifix_data_info_2" >
+
+<![CDATA[
+
+<a>Daha geniş bir menzile sahip, iki saldırıyı engellemek için kullanılabilen metal bir haç.</a><br><br>
+
+<a>Karşılaştığınız herhangi bir aktivitenin yakınında tutmayı unutmayın.</a>
+
+]]>
+</string>
+
+    <string name="shop_equipment_crucifix_data_info_3" >
+
+<![CDATA[
+
+<a>Bu haç, önceki sürümüne göre daha geniş bir menzile sahip. Ayrıca, kullanılmamış bir haç, her iki kullanım hakkını da tüketerek lanetli bir avı önleyebilir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_soundsensor_data_info_1" >
+
+<![CDATA[
+
+<a>Bu ses sensörlerini, ses etkileşimlerini izlemek istediğiniz yerlere yerleştirin.</a><br><br>
+
+<a>Yerleştirdikten sonra, kamyona geri dönün; uzaktan oynatmayı dinlerken, sensörlerden herhangi birinin okuma alıp almadığını görmek için Ses Sensörü ekranını kontrol edebilirsiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_soundsensor_data_info_2" >
+
+<![CDATA[
+
+<a>Bu ses sensörü, kamyondaki Ses Sensörü ekranındaki bir boyut düğmesiyle değiştirilebilen üç farklı boyut ayarına sahip olacak şekilde geliştirilmiştir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_soundsensor_data_info_3" >
+
+<![CDATA[
+
+<a>Tripodun üzerinde döner eklemler bulunur, bu da onunla etkileşim kurmanıza olanak tanır. Ses Sensörünün şeklini değiştirmek için.</a><br><br>
+
+<a>Her şekil, mikrofonların baktığı yönlerle temsil edilir:</a><br><br>
+
+<a>Öne: Koni / Dışa: Yanlar / İçeriye: Küre</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_sanitymedication_data_info_1" >
+
+<![CDATA[
+
+<a>Akıl sağlığınızın bir kısmını geri kazanmak için bu eski yılan yağı şişesini için. Geri kazanım birkaç saniye sürecek ve geri kazanılan miktar oynadığınız zorluğa bağlı olacaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_sanitymedication_data_info_2" >
+
+<![CDATA[
+
+<a>Bu hapları almak akıl sağlığınızı daha hızlı geri kazandıracaktır.</a> Etki süresi boyunca iyileşen akıl sağlığı miktarını artırmak için birkaç iksir alabilirsiniz.
+
+]]>
+</string>
+
+<string name="shop_equipment_sanitymedication_data_info_3" >
+
+<![CDATA[
+
+<a>Bu Adrenalin İğnesi, önceki iki versiyona göre akıl sağlığınızı çok daha hızlı iyileştirecek ve ayrıca, etkisinin tüm süresi boyunca koşma dayanıklılığınızı kaybetmeyeceksiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_parabolicmicrophone_data_info_1" >
+
+<![CDATA[
+
+<a>Parabolik Mikrofon ve takılı kulaklıkları kullanırken, mikrofonu hangi yöne doğru tuttuğunuza bağlı olarak normalden daha uzaktaki sesleri duyabileceksiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_parabolicmicrophone_data_info_2" >
+<![CDATA[
+
+<a>Bu Parabolik Mikrofonu birkaç geliştirme ile iyileştirdik: daha iyi bir sensör ve küçük bir ekran.</a><br><br>
+
+<a>Açtığınızda, uzaktaki sesleri duyabilir ve bu sesin ne kadar yüksek olduğunu görsel olarak görebilirsiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_parabolicmicrophone_data_info_3" >
+
+<![CDATA[
+
+<a>Bu Parabolik Mikrofon, görsel bir ses göstergesi ile geliştirilmiştir.</a><br><br>
+
+<a>Mikrofonun menzili içinde bir ses algılandığında, ekranda mesafe ve ses seviyesi de dahil olmak üzere görsel bir gösterge gösterilecek ve sesin nereden geldiğini kolayca takip etmenizi sağlayacaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_headgear_data_info_1" >
+
+<![CDATA[
+
+<a>Bu küçük başlığı takmak… Kafanıza takılan kamera, takım arkadaşlarınızın kamyonun güvenliğinden görüşünüzün canlı video görüntüsünü izlemesine olanak tanır; çoklu görev yapmak ve kaçırabileceğiniz şeyleri yakalamak için harika!
+
+]]>
+</string>
+
+<string name="shop_equipment_headgear_data_info_2" >
+
+<![CDATA[
+
+<a>Envanter yuvası kaplamayan küçük, başa takılan bir el feneri. Tek dezavantajı, ışığın çok parlak veya geniş olmaması.</a><br><br>
+
+<a>Özel tuş atamanızı basılı tutarak açıp kapatabilirsiniz.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_headgear_data_info_3" >
+
+<![CDATA[
+
+<a>El fenerine ihtiyaç duymadan karanlıkta görmenizi sağlayan bir çift Gece Görüş gözlüğü.</a><br><br>
+
+<a>Ancak dikkatli olun, aktif bir hayaletin menzilindeyseniz görüşünüz bozulabilir ve gözlükler işe yaramaz hale gelebilir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_photocamera_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Bony\'nin en iyi SLR kameralarından biri, daha geniş bir lens, daha yüksek görüntü kalitesi ve hızlı işlem gücüyle birlikte.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_igniter_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Ghost Huntin\' Distribution\'ın kendi kibrit kutusu, ürkütücü küçük bir hayaletle birlikte.</a> maskot olarak. Çok sevimli!
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_dots_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Ortama küçük ışık huzmeleri yansıtan küçük bir lazer kalem.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_dots_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Bu kızılötesi hareket sensörü, ışık yansıtmak için yoğun bir şekilde uyarlanmıştır.</a> Küçük ve kompakttır ve çoğu yüzeye yapışabilir.</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_dots_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Geniş bir ışık kapsamı için üç lensli motorlu bir projektör.</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_emf_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Havadaki farklı parazitleri kontrol etmek için çeşitli modlara sahip bir EMF Ölçer.</a> <a>Ne yazık ki, eski ve sadece biri çalışıyor, neyse ki paranormal okumalar için ihtiyacımız olan da o!
+
+]]>
+</string>
+
+<string name="shop_equipment_emf_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Güvenilir K2, dünyanın dört bir yanındaki paranormal araştırmacılar tarafından tutarlı sonuçlarla kullanılmıştır.</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_emf_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Ghost Huntin\' Distribution\'dan özel yapım bir cihaz.</a> <a>Büyük ekranında EMF değerlerini göstermekten çok daha fazlasını yapabiliyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_flashlight_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Nesiller boyunca aktarıldı, hala çalışıyor olmasına şaşırdık.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_flashlight_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Kompakt ve hafif, daha taktiksel bir tutuş için arka düğmesi bulunuyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_flashlight_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Çok daha büyük bir el feneri, hatta taşıma kolu bile var!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_photocamera_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Eski bir Polteroid fotoğraf makinesi, biraz tozlu ve çizik. Fotoğrafın basılmasını beklemeniz gerekecek, ardından başka bir fotoğraf çekebilirsiniz.
+
+]]>
+</string>
+
+<string name="shop_equipment_photocamera_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Bony GhostShot, karanlıkta panik içinde çekilen hayalet fotoğrafları için mükemmel, kompakt ve kullanımı kolay bir dijital fotoğraf makinesidir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_salt_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Kutsanmış siyah tuz içeren cam bir şişe, ekstra temizleyici etkiler için diğer minerallerle birleştirilmiştir. Ayrıca daha güzel görünüyor, ışıltılı!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_incense_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Küçük bir demet siyah adaçayı, neredeyse tüm yaprakları dökülmüş gibi görünüyor, umarım hala işe yarıyordur.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_incense_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Büyük bir demet beyaz adaçayı, yakıldığında kompakt ve etkili bir yanma için düzgünce iple bağlanmıştır.</a> Tatlı ve acı bir aroması var.
+
+]]>
+</string>
+
+<string name="shop_equipment_incense_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Özellikle paranormal varlıkları uzaklaştırmak için tasarlanmış özel bir karışımla doldurulmuş kutsal bir tütsü yakıcı. Yakıldığında sallandığında büyük miktarda caydırıcı duman yayacaktır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_tripod_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Ucuz ve neşeli, neredeyse kendi başına ayakta duruyor. Devrilmemesi için dikkat edin.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_tripod_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Çok daha modern, temiz ve sağlam. Hatta elektronik bir motoru bile var!
+
+]]>
+</string>
+
+<string name="shop_equipment_tripod_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Daha büyük profilli kameraları taşımak için mükemmel, uzatılabilir ayaklara sahip güçlendirilmiş metal ayaklar.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_motionsensor_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Daha önce vahşi yaşam kamerası olan sensör, önünde hareket eden paranormal varlıkları izlemek için modifiye edildi.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_motionsensor_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Önceki versiyonu değiştirerek öğrendiklerimizden yola çıkarak, paranormal izleme ihtiyaçlarımız için daha gelişmiş bir kamera geliştirmeyi başardık.</a>
+
+]]>
+
+</string> <string name="shop_equipment_motionsensor_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Parçalarına ayrılıp sıfırdan yeniden inşa edilen ve paranormal aleme görüş sağlayan bir güvenlik kamerası.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Eski, hasarlı ve bantla birleştirilmiş. Bu eski Paracord Ses Kaydedici çok daha iyi günler görmüştü, neyse ki hala çalışıyor…</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Ghost Huntin\' Distribution\'ın kendi markası olan Ses Kaydedici. Önceki modeline göre daha verimli; dijital ekran ve yeni arayüz, o ürkütücü sesleri avlamayı kolaylaştırıyor.
+
+]]>
+</string>
+
+<string name="shop_equipment_soundrecorder_data_flavortext_3" >
+
+<![CDATA[
+
+<a>BONY\'nin en yeni Ses Kayıt donanımı. Bu cihaz, ses avlamayı olabildiğince kolaylaştırmak için çeşitli özelliklerle donatılmıştır. Çift mikrofon kurulumu, çok daha kolay izleme ve hızlı kayıtlar sağlar, hatta neredeyse duyulmayacak kadar düşük sesli kayıtlar bile yapılabilir.
+
+]]>
+</string>
+
+<string name="shop_equipment_soundsensor_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Mini bir tripoda takılı küçük bir mikrofon, ucuz ve verimli.</a>
+
+]]>
+</string>
+
+<string name="shop_equipment_soundsensor_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Özel yapım bir tripod üzerine iki adet yüksek kaliteli mikrofon birlikte takılmıştır.</a> Bu cihazı oluşturmak için fazladan zaman ve para harcadılar.
+
+]]>
+</string>
+
+<string name="shop_equipment_soundsensor_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Pahalı av tüfeği mikrofonları küçük bir alıcıya bağlıdır ve kamyona yüksek kaliteli ses akışları sağlar.</a>
+
+]]>
+
+</string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Bu Insane Away formülünün ne kadar güvenli olduğundan emin değiliz, ancak panik halindeki hayalet avı seanslarında yardımcı oluyor gibi görünüyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_sanitymedication_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Çok daha düzenlenmiş ve seri üretilen bir ürün.</a> Hayalet Avı Dağıtımı bu iş için kesinlikle bazı uzmanlar tutmuş olmalı.
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_sanitymedication_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Dünya çapındaki uzmanlar tarafından oluşturulan yeni bir formül, küçük bir enjeksiyonun içinde düzgün bir şekilde saklanıyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Dünyanın en göz alıcı şeyi olmayabilir, ama işini görüyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Parşömen sayfaları deri bir kılıfla korunmaktadır.</a> Sırlarınızı ekstra güvenli tutmak için ipi dışarıdan bağlayın.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Çok fazla geçmişi olan bir büyü kitabı. Metalik detaylar bu ağır kitabı çok daha zarif kılıyor.
+]]>
+</string>
+
+<string name="shop_equipment_parabolicmicrophone_data_flavortext_1" >
+
+<![CDATA[
+
+<a>8X21 parabolik mikrofon, çıplak kulağın duyabileceğinden çok daha uzak mesafelerdeki sesleri yükseltebilir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Yükseltilmiş ve geliştirilmiş bu parabolik mikrofon, paranormal konuşmaları dinlemek için mükemmeldir!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Özel olarak tasarlanmış bir arayüze sahip ekranla birlikte yüksek kaliteli bir mikrofon.</a>
+
+]]>
+</string>
+
+    <string name="shop_equipment_headgear_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Bir GhostPro kamera, bir çift kafa bandına monte edilmiş, en şıkı değil ama kullanışlı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_headgear_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Bağlantı bantları daha sağlam ve kamera küçük bir LED el feneriyle değiştirildi.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_headgear_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Askeri birlikler tarafından kullanılan bu gözlükler, çıplak gözle görülemeyen şeyleri görmenizi sağlar.</a>
+
+]]>
+
+</string>
+    <string name="shop_equipment_igniter_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Bir DiK çakmak; Küçük, kompakt ve kullanışlı!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_igniter_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Piyasaya sürüldüğünden beri Zippy Çakmaklar, ordunun ve şimdi de Hayalet Araştırmacılarının vazgeçilmezi olmuştur.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_firelight_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Eski, paslanmış bir mumluk, küçük bir mumu destekliyor; umarım başka bir ışık yoksa yeterince uzun süre dayanır.</a> Yakmak için bir şey unutmayın!
+]]>
+</string>
+
+<string name="shop_equipment_firelight_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Üç uzun mum takılı şamdan. Süslemeli metal ve daha yüksek kaliteli mum mumu, çok daha güvenilir bir akıl sağlığı koruyucusu sağlıyor!
+]]>
+</string>
+
+<string name="shop_equipment_firelight_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Eski görünebilir, ancak bu benzinle çalışan fener, bulduğumuz en güvenilir ateş ışığıdır, saatlerce dayanabilir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_uvlight_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Kullanışlı bir kemer klipsi olan taktiksel küçük bir UV el feneri.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_uvlight_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Floresan boya ile karıştırılmış şeffaf, yağlı bir sıvı ile doldurulmuş küçük bir ışık çubuğu.</a> Çubuğu kırmak, çevredeki alanı parlak bir renkle aydınlatan bir reaksiyona neden olur.
+]]>
+</string>
+
+<string name="shop_equipment_uvlight_data_flavortext_3" >
+
+<![CDATA[
+
+<a>UV Light Pro el feneri, geniş alanları aydınlatan yaklaşık 80 ayrı ampule sahiptir.</a>
+]]>
+</string>
+
+<string name="shop_equipment_crucifix_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Sadece birbirine bağlanmış iki tahta parçası.</a> Sadece şekli bile bazı doğaüstü varlıkları uzaklaştırmak için yeterli görünüyor.
+]]>
+</string>
+
+<string name="shop_equipment_crucifix_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Ahşaptan dökme demire yükseltilen bu haç, çok daha güvenilir bir savunma sağlıyor.</a>
+]]>
+</string>
+
+<string name="shop_equipment_crucifix_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Bu süslü haç, altın ve gümüş işlemelerle süslenmiştir. Bu karmaşık tasarımların, öteki dünyadan gelen varlıklara karşı savunmayı artırdığı kanıtlanmıştır.
+]]>
+</string>
+
+<string name="shop_equipment_videocamera_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Eski ofisteki bir kutuda bir sürü eski video kamera bulduk, umarım işlerini yeterince iyi yaparlar.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_videocamera_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Parasonic, tüm Bony video kameralarının yerini alması umuduyla bu video kamerayı piyasaya sürdü, çoğunlukla işe yaramış gibi görünüyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_videocamera_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Bony, hayalet avcıları için özel olarak modifiye edilmiş son teknoloji ürünü bir kamerayla geri döndü. Aynı zamanda harika bir film kamerası da olurdu.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_spiritbox_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Eski bir FM/AM radyo. Küçük ve kompakt, ancak hoparlörün kalitesi en iyi değil.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_spiritbox_data_flavortext_2" >
+
+<![CDATA[
+
+<a>P-SB7T Spirit Box, yalnızca bilinmeyenle konuşmalar için üretilmiştir.</a> Arkadan aydınlatmalı ekran, karanlıkta yapılan araştırmalara yardımcı olur.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_spiritbox_data_flavortext_3" >
+
+<![CDATA[
+
+<a>SB11-Z, aynı anda iki frekans kanalını tarayabilen çok daha büyük bir Spirit Box'tır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_thermometer_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Normalde duvara asılarak yıl boyunca oda sıcaklıklarını ölçmek için kullanılan eski bir duvar termometresi. Taşınırken de mükemmel çalışır!</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_thermometer_data_flavortext_2" >
+
+<![CDATA[
+
+<a>Normalde tıp uzmanları tarafından hızlı sıcaklık ölçümleri için kullanılan bu Kızılötesi Termometre, acil durumlarda hızlı ölçümler için harika bir üründür.</a> Biraz hatalı okumalar veriyor gibi görünüyor, belki de sadece eskidir.
+]]>
+</string>
+
+<string name="shop_equipment_thermometer_data_flavortext_3" >
+
+<![CDATA[
+
+<a>Daha modern, daha teknik ve daha doğru. Bundan daha iyisi yok.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_salt_data_flavortext_1" >
+
+<![CDATA[
+
+<a>Ghost Huntin\' Distribution\'ın kendi markası olan tuz muhtemelen en iyi tada sahip değil, ama hayaletler için harika.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_equipment_salt_data_flavortext_2" >
+
+<![CDATA[
+
+<a>İnce öğütülmüş pembe Himalaya tuzunun o sinir bozucu ayak izlerini ortaya çıkarmada harika olduğunu keşfettik.</a>
+
+]]>
+
+</string>
+
+</resources>

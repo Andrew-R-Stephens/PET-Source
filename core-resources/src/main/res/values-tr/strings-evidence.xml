@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="evidence_section_overview">Genel Bakış</string>
+    <string name="evidence_type_dots">D.O.T.S.</string>
+    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_ultraviolet">Ultraviyole</string>
+    <string name="evidence_type_temperatures">Dondurucu Sıcaklıklar</string>
+    <string name="evidence_type_orbs">Hayalet Küreler</string>
+    <string name="evidence_type_book">Hayalet Yazısı</string>
+    <string name="evidence_type_box">Ruh Kutusu</string>
+    <string name="evidence_trait_description_always_finds_players_if_hunt">Av sırasında her zaman oyuncuları bulur</string>
+    <string name="evidence_trait_description_audible_long_range_if_hunt">Av sırasında uzaktan duyulabilir</string>
+    <string name="evidence_trait_description_hunt_start_distant_from_favorite_room">Avı Favori Odanın çok dışında başlatır</string>
+    <string name="evidence_trait_description_candle_works_like_crucifix_if_hunt">Bir mum veya haç avı engeller</string>
+    <string name="evidence_trait_description_age_change">Yaşı değiştirir</string>
+    <string name="evidence_trait_description_changes_favorite_room">Favori Odayı değiştirir</string>
+    <string name="evidence_trait_description_interaction_moroi_curse">Lanetli: Ruh Kutusu kullandıktan sonra, Işıkta iken Akıl sağlığı azalır</string>
+    <string name="evidence_trait_description_interaction_poltergeist_explosion">Eşya yığınlarını şiddetli bir \"patlama\" ile dağıtır</string>
+    <string name="evidence_trait_description_interaction_disturb_salt">Tuzu rahatsız eder</string>
+    <string name="evidence_trait_description_event_ghost_ball">Hayalet Sis Olayı yapar</string>
+    <string name="evidence_trait_description_interaction_does_not_disturb_salt">Tuzu rahatsız etmez</string>
+    <string name="evidence_trait_description_event_singing">Şarkı söyleme Olayı yapar</string>
+    <string name="evidence_trait_description_interaction_sanity_drain_if_event_door_slam">Kapı kapatma Olayları %15 Akıl sağlığını azaltır</string>
+    <string name="evidence_trait_description_interaction_dots_visible_if_without_camera">Zehir noktaları çıplak gözle görülebilir</string>
+    <string name="evidence_trait_description_interaction_drain_sanity_if_emf_at_circuit_breaker">Devre kesicideki EMF Olayları %25 Akıl sağlığını azaltır</string>
+    <string name="evidence_trait_description_interaction_heavy_breathing_in_spirit_box">Ruh Kutusunda ağır nefes alır</string>
+    <string name="evidence_trait_description_interaction_emits_wail_into_parabolic">Parabolik Mikrofonda yüksek sesli çığlık atar</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_light_switch">Işık anahtarında UV parmak izi bırakır</string>
+    <string name="evidence_trait_description_interaction_uv_footprint">UV ayak izi bırakır</string>
+    <string name="evidence_trait_description_speed_wander_extremely_slow_if_hunt">Gezme hızı son derece yavaştır</string>
+    <string name="evidence_trait_description_event_light_bulb_explosion">Ampul patlaması Olayını destekler</string>
+    <string name="evidence_trait_description_event_shadow">Gölge Olaylarını destekler</string>
+    <string name="evidence_trait_description_interaction_not_visible_in_ghost_photo">Hayalet Fotoğrafında görünmez</string>
+    <string name="evidence_trait_description_freezing_ghost_breath_if_hunt">Av sırasında dondurucu nefes yayar</string>
+    <string name="evidence_trait_description_speed_high_if_chase_and_breaker_active">Aktif Kırıcı daha yüksek takip hızı sağlar</string>
+    <string name="evidence_trait_description_visibility_high_if_hunt">Av sırasında oldukça görünür</string>
+    <string name="evidence_trait_description_seek_specific_player_if_hunt">Belirli bir oyuncuyu avlar</string>
+    <string name="evidence_trait_description_hunt_after_smudge_180">Tütsüleme Odası\'ndan 180 saniye sonra avlanır</string>
+    <string name="evidence_trait_description_hunt_early">Erken avlanır</string>
+    <string name="evidence_trait_description_hunt_before_smudge_60">Tütsüleme Odası\'ndan 60 saniye sonra avlanır</string>
+    <string name="evidence_trait_description_interaction_ignite_flame">Alevleri tutuşturur</string>
+    <string name="evidence_trait_description_interaction_uv_inconsistent">Etkileşimlerle tutarsız bir şekilde UV kanıtı yayar</string>
+    <string name="evidence_trait_description_interaction_parabolic_emission_increase">Parabolik Mikrofon Etkileşimleri artar</string>
+    <string name="evidence_trait_description_activity_increase_if_close_to_player_voice">Yakın mesafedeki Sesli sohbete yakınsa Aktivitesi artar</string>
+    <string name="evidence_trait_description_speed_increase_if_hunt_in_low_temperature">Daha düşük Oda Sıcaklıklarında Av hızını artırır</string>
+    <string name="evidence_trait_description_interaction_door_open_slightly">Etkileşim kurulan Kapılar hafifçe açılır</string>
+    <string name="evidence_trait_description_is_male">Erkektir</string>
+    <string name="evidence_trait_description_sanity_drain_if_player_look_at">Hayalete doğrudan bakmak Akıl Sağlığını tüketir</string>
+    <string name="evidence_trait_description_activity_low_if_player_nearby">Oyuncuların yakınındayken daha az aktiftir</string>
+    <string name="evidence_trait_description_visibility_low_if_hunt">Av sırasında çoğunlukla görünmezdir</string>
+    <string name="evidence_trait_description_interaction_close_exit_door">Av dışı Çıkış Kapısı kapanır</string>
+    <string name="evidence_trait_description_simultaneous_favorite_rooms">Görünüşe göre aynı anda Favori Odaları vardır</string>
+    <string name="evidence_trait_description_shapeshift_if_hunt">Av sırasında Hayalet modelleri arasında geçiş yapar</string>
+    <string name="evidence_trait_description_seek_electronics_and_voice_range_limited_if_hunt">Av sırasında Elektronik ve Sese olan çekim menzili küçülür</string>
+    <string name="evidence_trait_description_speed_increase_if_active_electronics_nearby">Aktif Elektronik Cihazların Yakınında Hızlanır</string>
+    <string name="evidence_trait_description_favors_dark_of_favorite_room">Favori Odanın karanlık alanlarında daha sık kalır</string>
+    <string name="evidence_trait_description_interaction_emf_if_teleports_to_player">Oyuncuya ışınlanır ve EMF yayar</string>
+    <string name="evidence_trait_description_interaction_item_thrown_harder">Eşyaları daha sert fırlatır</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_off">Sigortayı Kapatır</string>
+    <string name="evidence_trait_description_interaction_turn_breaker_on">Sigortayı Açar</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_off_if_player_turns_on">Oyuncu tarafından açıldıktan hemen sonra ışık anahtarını kapatır</string>
+    <string name="evidence_trait_description_interaction_turn_light_switch_on">Işık anahtarını açar</string>
+    <string name="evidence_trait_description_interaction_uv_short_lifetime">UV emisyon ömrü kısaltılmıştır (~%50)</string>
+    <string name="evidence_trait_description_interaction_uv_fingerprint_2_fingers">UV parmak izi ile 2 parmak izi yayar</string>
+    <string name="evidence_trait_description_interaction_uv_footprint_2_feet_per_audio">Ayak izi başına 2 UV ayak izi yayar</string>
+    <string name="evidence_trait_description_interaction_uv_handprint_6_fingers">UV el izi ile 6 parmak izi yayar</string>
+    <string name="evidence_trait_description_interaction_vanish_if_photo_taken">Fotoğraf çekildikten sonra kaybolur</string>
+    <string name="evidence_trait_label_evidence">İkincil Kanıt</string>
+    <string name="evidence_trait_category_unique">Eşsiz</string>
+    <string name="evidence_trait_category_behavior">Davranış</string>
+    <string name="evidence_trait_category_characteristic">Özellik</string>
+    <string name="evidence_trait_category_hunt">Av</string>
+    <string name="evidence_trait_category_interaction">Etkileşim</string>
+    <string name="evidence_trait_state_confirm">Onayla</string>
+    <string name="evidence_trait_state_reject">Reddet</string>
+    <string name="evidence_trait_weight_probable">Olası</string>
+    <string name="evidence_trait_weight_definitive">Kesin</string>
+    <string name="evidence_trait_weight_likely">Daha olası</string>
+    <string name="evidence_trait_weight_unlikely">Daha az olası</string>
+    <string name="evidence_info_overview_dots">
+
+<![CDATA[
+
+<a>D.O.T.S. Projektörü, elde tutulabilen, duvarlara veya zemine yerleştirilebilen bir cihazdır. Parlak noktalardan oluşan bir matris yansıtır ve bu noktaları çevresindeki yüzeylere dağıtır.</a><br>
+
+<a>Bu Kanıtı kesin olarak tanımlamak için, <font color=#ff6161>hayalet silüetinin projeksiyonun ışınları arasından hızla koşarken veya sürünürken görüleceği</font> belirtilmelidir. Silüet çıplak gözle veya bir Video Kamera aracılığıyla görülebilir, ancak <font color=#ff6161>Video Kameranın Termal Görüntüleri aracılığıyla uzaktan daha kolay görülür</font>. Bu kanıtı uzaktan bulmaya çalışmak en iyisidir, çünkü aksi takdirde bir Goryo\'nun davranışı Kanıt çelişkilerine neden olabilir. Hayaletin gerçek konumu, silüet animasyonlarının ne zaman gerçekleşeceğini belirlemeyecektir.
+
+D.O.T.S. görselleri artık gerçek hayaleti temsil ediyor; yani kızılötesi ışıklarınızı hayaletin gerçek konumuna yakın bir yere tutmanız gerekecek. Bu, oyuncular için çok daha ilgi çekici bir oyun deneyimi yaratıyor. Hayaletinizin nerede olduğunu görmek için D.O.T.S.\'yi kullanabilir veya kanıt bulmakta zorlanıyorsanız, projektörünüz için daha iyi bir yer bulmak için Tuz, Hareket Sensörleri veya diğer ekipmanları kullanabilirsiniz. D.O.T.S. kanıtı olan hayaletler, dolaşırken kısa bir "D.O.T.S. durumuna" girebilirler. Bu süre zarfında, geçici olarak kızılötesi ışıkla görünür hale gelirler; bu süre zarfında, kaybolmadan önce en yakın oyuncuya (veya oda boşsa rastgele bir noktaya) doğru dolaşırlar.
+]]>
+</string>
+
+
+<string name="evidence_info_overview_emf">
+
+<![CDATA[
+
+<a>EMF-5, bir <font color=#ff6161>EMF Okuyucu</font>dan alınan en yüksek Seviye okumasıdır.</a><br>
+
+<a>Bir hayalet, odayla veya Ouija tahtasıyla bir şekilde etkileşime girdiğinde 1 ila 5 arasında EMF emisyonu üretir. Işık titremeleri, ayak sesleri ve diğer küçük pasif etkileşimler genellikle daha düşük bir okuma verir. Görünme veya telefon çalması gibi daha ağır etkileşimler neredeyse her zaman daha yüksek bir okuma verir. Bu kanıtı taşıyan hayaletler, EMF Seviye 5'i yalnızca şans eseri verecektir, bu nedenle bu kanıtı elde etmek biraz zaman alabilir.
+
+]]>
+
+</string>
+
+    <string name="evidence_info_overview_ultraviolet">
+
+<![CDATA[
+
+<a>Ultraviyole kanıtlar yalnızca UV ışığı veya bir ışık çubuğu etkilenen yüzeylere tutularak görülebilir.</font> Ultraviyole kanıt parçaları, UV ışığıyla şarj edildiğinde yeşil renkte parlayacak ve zamanla solacaktır.</a><br>
+
+<a>Hayaletler tarafından nesneler ve yüzeyler üzerinde bırakılan Ultraviyole kanıtlar, küçük eşyalarda veya büyük odalarda görülmesi zor olabilir. Tuz yığınları tarafından takip edilen ayak izleri de ultraviyole kanıtı olarak sayılır.</a><br>
+
+<a>Parmak izlerine veya ayak izlerine UV ışığı tuttuğunuzda, izi hemen göreceksiniz, ancak ek olarak ışık izi şarj edecektir. UV ışığınızı kaldırdıktan sonra, iz kısa bir süre (ne kadar süreyle şarj ettiğinize bağlı olarak) görünür kalacak ve fotoğraf çekmenize olanak tanıyacaktır!</a><br>
+
+<a>6 parmaklı bir el izi bulunabilir ve bu da hayalet türünü hemen Obake olarak tanımlayacaktır.</a>
+]]>
+</string>
+    <string name="evidence_info_overview_thermometer">
+
+<![CDATA[
+
+<a>Dondurucu sıcaklıklar <font color=#ff6161>0 Santigrat derecenin altındadır</font>. Sıcaklık, <font color=#ff6161>Termometre</font> kullanılarak belirlenebilir.</a><br>
+
+<a>Hayaletler çevredeki alandan ısı çektikçe, <font color=#ff6161>hayaletin zamanının çoğunu geçirdiği</font> odada veya koridorlarda sıcaklıklar düşer. Tüm hayaletler sonunda sıcaklıkları 13 Santigrat derecenin altına düşürecektir, ancak yalnızca belirli hayalet türleri sıcaklıkları 0 Santigrat derecenin altına düşürecektir.</a><br>
+<a>Soğuk Nefes yeniden düzenlendi. 5 Santigrat derece veya daha düşük sıcaklıklarda, perili alandaki herkes <font color=#ff6161>nefeslerini görebilecektir</font>. Kar yağıyorsa ve sigorta kutusu çalışmaya başlarsa, kamyon da dahil olmak üzere her yerde anında Soğuk Nefes bulacaksınız. Alternatif olarak, sigorta kutusu açıksa, yani ev güzel ve sıcaksa, Soğuk Nefes yalnızca hayaletin sıcaklığını düşürecek kadar uzun süre kaldığı odalarda görünecektir.</a><br>
+
+<a>Bir odanın soğuması, az miktarda bile olsa, bir araştırma sırasında ilk birkaç dakikadan daha uzun sürebilir. İlk odalardaki garip derecede düşük sıcaklıkları not almak ve daha sonra onlara geri dönmek iyi bir fikirdir.</a>
+
+]]>
+
+</string>
+
+    <string name="evidence_info_overview_book">
+
+<![CDATA[
+<a>Hayalet Yazı Defteri kullanılarak belirlenmiştir.</a><br>
+
+<a>Hayaletler, defterin yere bırakılması veya elde tutulması fark etmeksizin deftere yazabilirler.</font> Hayalet kitaba yazı yazarsa, bu o hayalet türü için bir kanıttır. Şeytani semboller yazılmışsa, bu bir şeytan için kanıt olabilir, ancak bu kesinlikle kesin değildir çünkü hayalet yazı stilleri rastgele sapma eğilimindedir.
+]]>
+    </string>
+
+
+
+<string name="evidence_info_overview_vcam">
+
+<![CDATA[
+
+<a>Hayaletin musallat olduğu odada bulunan küçük, yüzen bir küre. Hayalet küreler, yalnızca video kamera veya baş üstü kameranın termal görüntüleme özelliği kullanılarak ve kamyonun canlı kamera görüntüsü üzerinden gece görüşüyle ​​görülebilir.
+
+Hayalet küreler hızlıca fark edilebilir, ancak çok çabuk göz ardı etmek ileride sorunlara yol açabilir.
+
+]]>
+
+</string>
+
+    <string name="evidence_info_overview_sbox">
+
+<![CDATA[
+
+Ruh Kutusu, hayaletle iletişim kurmak için kullanılan bir eşyadır.</a><br>
+
+Oyuncu, hem hayaletin yakınındayken hem de ışıklar kapalıyken, aktif bir Ruh Kutusu\'na Yakınlık Sohbeti\'nde sorular sormalıdır.</font> Bunu denemeden önce, Kamyonun beyaz tahtasında listelenen "Yalnız olan kişilere yanıt verir" veya "Herkese yanıt verir" gibi hayaletin yanıt parametrelerini kontrol edin.</a><br>
+
+Hayalet yanıt verirse, Ruh Kutusu\'nun kanıtı doğrulanmış olur.</a><br>
+
+"Kaç yaşındasın?" veya "Neredesin?" gibi hedefli sorular makul sorulardır. Oyuncunun Ruh Kutusu'na konuşup konuşmadığına bakılmaksızın hayaletin her zaman dinlediğini unutmayın, bu nedenle oyuncular Yakınlık sohbetinde konuşurken dikkatli olmalıdır. Bir hayaleti ortaya çıkarmak, adını birçok kez söyleyerek (böylece onu kızdırarak) ve "Kendini göster" veya "Bize bir işaret ver" gibi komutlar vererek yapılabilir.</a>
+]]>
+</string>
+</resources>

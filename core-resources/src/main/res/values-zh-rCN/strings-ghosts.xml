@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ghost_type_deildegast">Deildegast</string>
+    <string name="ghost_info_deildegast">
+
+<![CDATA[
+
+<a>这个幽灵喜欢在地图上移动物品。与其他幽灵相比，它与道具互动的概率更高，但触碰门和灯开关的概率更低。</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>这个幽灵天生速度很快，而且不需要视线。一般来说，互动会降低玩家的理智值；由于这个幽灵与道具互动的概率更高，因此玩家理智值快速下降的几率也更高。</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>幽灵每移动一个道具，就会消耗更多的精力。</a>随着时间的推移，幽灵在狩猎过程中速度会大幅降低。</a><br>
+
+<a>玩家可以移动道具而不是幽灵。玩家最多可以操控 30 个道具。</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>随着移动的道具越来越多，幽灵的狩猎速度会大幅降低。</a><br>
+
+<a>幽灵的初始速度为 3.0 米/秒，最低速度为 0.4 米/秒。</a><br>
+
+<a>每与一个道具互动，幽灵的速度就会降低 0.1 米/秒。</a><br>
+
+<a>幽灵的速度是固定的，不依赖于视线。</a>
+
+]]>
+
+</string>
+</resources>

@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="store_title_cursedpossessions">Lanetli Eşyalar</string>
+    <string name="cursedpossessions_info_name_mirror">Perili Ayna</string>
+    <string name="cursedpossessions_info_name_monkeypaw">Maymunun Pençesi</string>
+    <string name="cursedpossessions_info_name_musicbox">Müzik Kutusu</string>
+    <string name="cursedpossessions_info_name_ouijaboard">Ouija Tahtası</string>
+    <string name="cursedpossessions_info_name_summoningcircle">Çağırma Çemberi</string>
+    <string name="cursedpossessions_info_name_tarotcards">Tarot Kartlar</string>
+    <string name="cursedpossessions_info_name_voodoodoll">Voodoo Bebeği</string>
+
+    <string name="shop_cursedpossessions_mirror_data_flavortext">
+
+<![CDATA[
+
+<a>Büyük, yuvarlak bir ayna. Tutulduğunda, kullanan kişi içine bakmaya çekilir… ama bir bedeli vardır.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext">
+
+<![CDATA[
+
+<a>Doğrudan folklorik öykülerden alınmış bir nesne olan bu eşya, "kötüye giden bir dileğin" fiziksel tezahürüdür.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">
+
+<![CDATA[
+
+<a>Maymun Pençesi\'nin dilekleri nasıl anlayabildiği bilinmiyor, ancak bu onlardan biri.</a> Bunlar Maymun Pençesi\'nin yaratıcısı tarafından mı yoksa bir kurbanı tarafından mı yazıldı?
+]]>
+</string>
+
+<string name="shop_cursedpossessions_musicbox_data_flavortext">
+
+<![CDATA[
+
+<a>İçinde bir melodi çalmasını sağlayan mekanizmalara sahip ahşap bir kutu. Bu, "Sürüklenen" adlı bir melodi çalıyor.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext">
+
+<![CDATA[
+
+<a>Eşleşen bir planchette ile birlikte gelen, üzerine yazılar kazınmış ahşap bir tahta.</a> Nedense, onunla gerçekten oynanmaması gerektiği hissine kapılıyorsunuz.
+]]>
+</string>
+
+<string name="shop_cursedpossessions_summoningcircle_data_flavortext">
+
+<![CDATA[
+
+<a>Yere kan gibi görünen bir şeyle çizilmiş bir pentagram. Daha önce kullanılmış gibi görünen beş adet kırmızı mumla tamamlanmıştır.
+]]>
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">
+
+<![CDATA[
+
+<a>Büyük bir ağaç dalından ayağından asılı bir adamın görüntüsüyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">
+
+<![CDATA[
+
+<a>Bir meleğin kanatlarının görüntüsüyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">
+
+<![CDATA[
+
+<a>Korkmuş bir kişinin görüntüsüyle işaretlenmiş bir Tarot oyun kartı sıkıntı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">
+
+<![CDATA[
+
+<a>Gizlenen, gölgeli bir figürün görüntüsüyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">
+
+<![CDATA[
+
+<a>Yan yana güneş ve ay görüntüsüyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">
+
+<![CDATA[
+
+<a>Sıkı bir gömleğe sarılmış bir kişinin görüntüsüyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string> <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">
+
+<![CDATA[
+
+<a>Ortaçağ soytarısının resmiyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">
+
+<![CDATA[
+
+<a>Ay resmiyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">
+
+<![CDATA[
+
+<a>Güneş resmiyle işaretlenmiş bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">
+
+<![CDATA[
+<a>Üzerinde Kale Kulesi resmi bulunan bir Tarot oyun kartı.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext">
+
+<![CDATA[
+
+<a>Hayaletin özüyle aşılanmış, iki varlığı sonsuza dek birbirine bağlayan küçük bir oyuncak bebek.</a>
+
+]]>
+
+</string>
+    <string name="shop_cursedpossessions_mirror_data_info">
+
+<![CDATA[
+
+<p>Perili ayna, hayaletin odasının/favori odasının hangisi olduğunu gösterir! Ayrıca, bir araştırma sırasında hayaletin favori odasını değiştirip değiştirmediğini doğrulamaya yardımcı olur.</p>
+
+<p>Hayaletin şu anda nerede olduğunu GÖSTERMEZ.</p>
+
+<p>Aynaya bakarken, saniyede %7 akıl sağlığınızı ve kullanım başına minimum %20'sini tüketir.</p>
+
+<p>Akıl sağlığınız biterse, ayna kırılır ve lanetli bir av başlar.</p>
+
+]]>
+
+</string>
+    <string name="shop_cursedpossessions_monkeypaw_data_info">
+
+<![CDATA[
+
+<h2>Sahip olduğunuz dilek sayısı, zorluk seviyenize veya ödül çarpanınıza bağlı olarak aşağıdaki gibidir:</h2>
+
+<a>
+
+<br>
+
+0x - 1.9x Çarpan = 5 dilek<br>
+
+2x - 2.9x Çarpan = 4 dilek<br>
+
+3x ve üzeri Çarpan = 3 dilek
+
+</a>
+
+<h2>TÜM DİLEKLER</h2>
+
+<h4>Hayalet görmek istiyorum:</h4>
+
+<a>
+
++ Hayalet konumunda bir hayalet olayı tetikler.<br>
+
+- Çıkış kapılarını anında kilitler.<br>
+
+- Hayalet olayının hemen ardından bir av başlatır.<br>
+
+- Oyuncunun görüşünü, avın geri kalanında siyah bir sisle azaltır.
+
+</a>
+
+<h4>Etkinlik diliyorum.</h4>
+
+<a>
+
++ Tüm hayalet etkinliklerini 2 dakika boyunca ikiye katlar; bu, etkileşimleri, dolaşmayı ve yetenekleri içerir.<br>
+
+- Sigorta kutusunu kırar ve çıkış kapılarını 2 dakika boyunca kilitler.
+
+</a>
+
+<h4>Akıl sağlığı diliyorum.</h4>
+
+<a>
+~ Takım akıl sağlığını ortalama %50\'ye çıkarır.<br>
+
+- Hayaletlerin favori odasını yeni, rastgele bir odaya ayarlar.<br>
+
+- Tüm grup için akıl sağlığı kaybını mevcut oranın %50\'si kadar artırır.<br>
+
+- Not: Bu dilek, Goryo\'nun zayıflığını geçersiz kılacaktır. Yani Goryo kendi başına oda değiştiremese de, akıl sağlığı dileği kullanıldığında değiştirebilir.
+
+</a>
+
+<h4>Hayaletin hapsedilmesini diliyorum.</h4>
+
+<a>
+
++ Hayaleti odasına ışınlar ve tüm kapılarını 1 dakika boyunca kilitler.<br>
+
++ Hayalet, odasında kilitliyken avlanamaz, dolaşamaz veya yeteneklerini kullanamaz.<br>
+
+- Dileği yapan oyuncunun bulunduğu odanın tüm kapılarını 1 dakika boyunca kilitler.<br>
+
+- Hayalet 1 dakika sonra tüm kapıları açar ve avlanmaya başlar.<br>
+
+~ Kapıların bekleme süresinden SONRA açılma olasılığı %25\'tir.
+
+</a>
+
+<h4>Hayat diliyorum. / Arkadaşımı diriltmeyi diliyorum.</h4>
+
+<a>
+
++ Ölü bir oyuncuyu diriltir.<br>
+
+- Dileği kullanan oyuncuyu öldürme olasılığı %50\'dir.
+
+</a>
+
+<h4>Güvende olmak istiyorum</h4>
+
+<a>
+
++ En yakın saklanma yerini açar.<br>
+
+- Odadaki ışıkları kırar.<br>
+
+- Hayalet, av sırasında haritanın herhangi bir yerinden, dileği dileyen oyuncunun ekipmanını duyabilir ve hissedebilir; bu durum avın geri kalanında devam eder.<br>
+
++ Not: Bu özellik, av hedeflerini tamamlamak için bir hayaleti kasıtlı olarak daha güvenli bir alana çekmek için avantajınıza kullanılabilir.
+
+</a>
+
+<h4>Ayrılmak istiyorum.</h4>
+
+<a>
+
++ Av sırasında da dahil olmak üzere, istediğiniz zaman tüm çıkış kapılarını açar.<br>
+
+- Anında hareket etmenizi engeller, ardından 5 saniye içinde hareket hızınızı yavaşça geri kazandırır.<br>
+
+- Dileği dileyen kişinin görüşünü 5 saniye boyunca azaltır.
+
+</a>
+
+<h4>Bilgi istiyorum.</h4>
+
+<a>
+
++ Günlüğünüzden 1 yanlış kanıtı ve ilgili hayalet türlerini kaldırarak seçeneklerinizi daraltır.<br>
+
+- Oyuncunun yakınında bir av başlatır.<br>
+
+- Turun geri kalanında, dileği dileyen oyuncunun görüşü azalır ve sesi boğuklaşır.<br>
+
+- Not: Ölmek, ses ve görüntü azalmalarını normale döndürür ve diriltilirse normal kalır.
+
+</a>
+
+<h4>[Hava durumu] istiyorum.</h4>
+
+<a>
+
++ Hava durumu hoşunuza gitmiyorsa, onu Yağmur (x2), Kar, Açık, Sis veya Gün Doğumu olarak değiştirmeyi isteyebilirsiniz.<br>
+
+- Dileği dileyen kişinin Akıl Sağlığını %25 azaltır.<br>
+
+~ Not: Yağmur dilemek, hafif veya şiddetli yağmur alma şansınızı %50 artırır.
+</a>
+
+<h4>Herhangi bir şey diliyorum.</h4>
+
+<a>
+
++ Ne dileyeceğinize karar veremiyor musunuz? Bırakın pati sizin için karar versin. Herhangi bir şey dilemek, o tur için kalan (kullanılmamış) dileklerden birini size verecektir.<br>
+
+~ Not: Herhangi bir şey dileğini birden fazla kullanabilirsiniz, ancak o turda zaten kullanılmış bir dileği size vermeyecektir.
+
+</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_info">
+
+<![CDATA[
+
+<a>Sunny Meadows\'da, Maymun Pençesi lanetli ele geçirme özelliğini kullanırken ne dileyebileceğiniz konusunda size fikir verecek etiketler gizlenmiştir. Bunları bulmak için Sunny Meadows\'a girin ve etrafa bakın. Bulunduğunda, kalıcı olarak günlüğünüzün 12. sayfasına eklenecektir.</a>
+
+<ul>
+
+<li>Hayalet görmek istiyorum.</li>
+
+<li>Aktivite istiyorum.</li>
+
+<li>Akıl sağlığı istiyorum.</li>
+
+<li>Hayaletin hapsedilmesini istiyorum.</li>
+
+<li>Hayat istiyorum.</li>
+
+<li>Güvende olmak istiyorum.</li>
+
+<li>Ayrılmak istiyorum.</li>
+
+<li>Bilgi istiyorum.</li>
+
+<li>(Hava durumu) istiyorum.</li>
+
+<li>Herhangi bir şey istiyorum.</li>
+
+</ul>
+
+<a>Not: Dilekleri kullanmak için etiketleri bulmanıza gerek yoktur.</a> Sadece size olası seçeneklerin bir listesini sunmak için oradalar.
+]]>
+</string>
+
+<string name="shop_cursedpossessions_musicbox_data_info">
+
+<![CDATA[
+
+<p>Müzik kutusu hayaleti cezbediyor! Çalarken, hayalet müzik kutusunu arayacak. Fotoğraflar için ve bir avı kontrol etmek/zorlamak için harika.</p>
+
+<p>Müzik kutusu çalarken ona yakın olmak akıl sağlığınızı tüketecektir.</p>
+
+<p>Müzik kutusunu yerleştirmek yerine fırlatırsanız, kırılacak ve lanetli bir av başlayacaktır.</p>
+]]>
+</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_info">
+
+<![CDATA[
+
+<p>Ouija tahtası, avı zorlamak, hayalet odasını bulmak, etkileşim fotoğrafları toplamak vb. için kullanılabilir.</p>
+
+<p>Tahtayı etkinleştirin, ardından sorular sorun veya isteklerde bulunun. Planchette mevcut olduğunda tahta aktif olacaktır. Tahtayı devre dışı bırakmak için "güle güle" deyin ve planchette geri alınacaktır.</p>
+
+<p>HER ZAMAN HOŞÇA DEYİN!</p> Planchette\'i çağıran kişi aktif bir ouija tahtasından çok uzaklaşırsa, tahta kendini yok eder ve lanetli bir av başlatır.</p>
+
+<p>Yakındaki herkes tahtayla konuşabilir.</p>
+
+<p>Farklı sorular veya istekler diğerlerinden daha fazla akıl sağlığı tüketir.</p>
+
+<a>Sorabileceğiniz bazı sorular</a>
+
+<ul>
+
+<li>Neredesin?</li>
+
+<li>Kemik nerede?</li>
+
+<li>Nasıl öldün?</li>
+
+<li>Deli miyim?</li>
+
+<li>Odada kaç kişi var?</li>
+
+<li>Kaç yaşındasın?</li>
+
+<li>Akıl sağlığım ne durumda?</li>
+
+</ul>
+
+<p>"Saklambaç" diyerek Lanetli Avı tetikleyebilirsiniz.</p> Hayalet avlanma fırsatı bulmadan önce kaçmak için 5 saniyeniz olacak.</p>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_info">
+
+<![CDATA[
+
+<p>Mumlar yandığında çağırma çemberinin yakınında bulunan herkes akıl sağlığını da kaybedecektir.</p>
+
+<p>Tüm mumlar yandığında, Lanetli Av tetiklenecektir.</p> Hayalet, dolaşmaya başlamadan önce 1 saniye veya daha fazla süreyle çemberin içinde hapsolacaktır.</p>
+
+<p>Hayalet hapsolduğu süre boyunca fotoğraflarını çekmeniz önerilir.</p>
+
+<p>Lanetli Av, 3. Seviye bir Haç ile iptal edilebilir.</p>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">
+
+<![CDATA[
+
+<a>Sizi anında öldürür</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess">
+
+<![CDATA[
+
+<a>Ölü bir oyuncuyu diriltir. Birden fazla ölü oyuncu varsa, kart rastgele bir ölü oyuncuyu diriltir. Ölü oyuncu yoksa, kart bir sonraki ölen oyuncuyu diriltir.
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_death">
+
+<![CDATA[
+
+<a>Hayalet avını zorlar.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil">
+
+<![CDATA[
+
+<a>Hayalet olayını zorlar.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune">
+
+<![CDATA[
+
+<a>%25 akıl sağlığı kazanır [Yeşil Yanık], %25 akıl sağlığı kaybeder [Kırmızı Yanık]</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit">
+
+<![CDATA[
+
+<a>Hayalet\'i en sevdiği odaya ışınlar ve bir dakikalığına hapseder.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker">
+
+<![CDATA[
+
+<a>Hiçbir şey yapmaz.</a> Aptal kartı teknik olarak zaten çekilmiş durumda ve oyun, aptal kartını göstermeden önce hangi kartı göstereceğini belirlemek için rastgele 1/9 zar atıyor.
+]]>
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_info_moon">
+
+<![CDATA[
+
+<a>Akıl sağlığınızı %0\'a düşürür</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun">
+
+<![CDATA[
+
+<a>Akıl sağlığınızı %100\'e geri getirir.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower">
+
+<![CDATA[
+
+<a>Etkileşimi zorlar ve hayalet aktivitesini 20 saniye boyunca ikiye katlar.</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_info"> <![CDATA[
+
+<p>Voodoo bebeğini delmek bir etkileşimi zorlar!</p>
+
+<p>Voodoo bebeğini en fazla 10 kez delebilirsiniz. Her delme işleminde kalbi delme şansı vardır ve bu da lanetli bir avı başlatır.</p>
+
+<p>Bebeği kullanarak akıl sağlığınızı %0'a düşürmek tüm iğneleri etkinleştirir ve lanetli bir avı başlatır.</p>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_mirror_data_sanitydrain">
+
+<![CDATA[
+
+<a>%7/s</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">
+
+<![CDATA[
+
+<a>%0 - %25</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_musicbox_data_sanitydrain">
+
+<![CDATA[
+
+<a>~2,5m içinde %2,5/s</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">
+
+<![CDATA[
+
+<a>%0 - %50</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">
+
+<![CDATA[
+
+<a>Yakılan her mum için %16</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">
+
+<![CDATA[
+
+<a>Anında Ölüm</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">
+
+<![CDATA[
+
+<a>%0</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">
+
+<![CDATA[
+
+<a>%0</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">
+
+<![CDATA[
+
+<a>0%</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">
+
+<![CDATA[
+
+<a>+25% or -25%</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">
+
+<![CDATA[
+
+<a>0%</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">
+
+<![CDATA[
+
+<a>%0</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">
+
+<![CDATA[
+
+<a>%0</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">
+
+<![CDATA[
+
+<a>%100 olarak ayarlandı</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">
+
+<![CDATA[
+
+<a>%0 olarak ayarlandı</a>
+
+]]>
+
+</string>
+
+<string name="shop_cursedpossessions_voodoodoll_data_sanitydrain"> <![CDATA[
+
+    <a>Kullanım başına %5</a>
+
+    ]]>
+
+    </string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname">
+
+<![CDATA[
+
+<a>Temel El</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname">
+
+<![CDATA[
+
+<a>Dilek Koleksiyonu</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">
+
+<![CDATA[
+
+<a>Asılmış Adam</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">
+
+<![CDATA[
+
+<a>Yüksek Rahibe</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death">
+
+<![CDATA[
+
+<a>Ölüm</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil">
+
+<![CDATA[
+
+<a>Şeytan</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">
+
+<![CDATA[
+
+<a>Kader Çarkı</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">
+
+<![CDATA[
+
+<a>Keşiş</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker">
+
+<![CDATA[
+
+<a>Ahmak</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon">
+
+<![CDATA[
+
+<a>Ay</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun">
+
+<![CDATA[
+
+<a>Güneş</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower">
+
+<![CDATA[
+
+<a>Kule</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_mirror_data_attribute">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_attribute">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">
+
+<![CDATA[
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute">
+
+<![CDATA[
+
+<a></a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_mirror_data_drawchance">
+
+<![CDATA[
+
+<a>-</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance">
+
+<![CDATA[
+
+<a>11 - 55%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">
+
+<![CDATA[
+
+<a>11 - 55%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_musicbox_data_drawchance">
+
+<![CDATA[
+
+<a>-</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">
+
+<![CDATA[
+
+<a>-</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">
+
+<![CDATA[
+
+<a>-</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">
+
+<![CDATA[
+
+<a>1%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">
+
+<![CDATA[
+
+<a>2%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">
+
+<![CDATA[
+
+<a>10%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">
+
+<![CDATA[
+
+<a>10%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">
+
+<![CDATA[
+
+<a>20%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">
+
+<![CDATA[
+
+<a>10%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">
+
+<![CDATA[
+
+<a>17% / 100%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">
+
+<![CDATA[
+
+<a>5%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">
+
+<![CDATA[
+
+<a>5%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">
+
+<![CDATA[
+
+<a>20%</a>
+
+]]>
+
+</string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance">
+
+<![CDATA[
+
+<a>10%</a>
+
+]]>
+
+</string>
+
+</resources>

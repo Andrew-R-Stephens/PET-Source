@@ -11,6 +11,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -43,6 +44,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -75,6 +77,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -107,6 +110,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -139,6 +143,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -171,6 +176,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -203,6 +209,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -235,6 +242,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -267,6 +275,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -299,6 +308,7 @@ class GhostResources {
         ASWANG,
         BANSHEE,
         DAYAN,
+        DEILDEGAST,
         DEMON,
         DEOGEN,
         GALLU,
@@ -334,6 +344,7 @@ fun GhostSpeed.toMinimumAsInt(): Int =
         GhostSpeed.ASWANG -> 95
         GhostSpeed.BANSHEE -> 102
         GhostSpeed.DAYAN -> 72
+        GhostSpeed.DEILDEGAST -> 24
         GhostSpeed.DEMON -> 102
         GhostSpeed.DEOGEN -> 24
         GhostSpeed.GALLU -> 81
@@ -367,6 +378,7 @@ fun GhostSpeed.toMaximumAsInt(): Int =
         GhostSpeed.ASWANG -> -1
         GhostSpeed.BANSHEE -> -1
         GhostSpeed.DAYAN -> 135
+        GhostSpeed.DEILDEGAST -> 180
         GhostSpeed.DEMON -> -1
         GhostSpeed.DEOGEN -> 180
         GhostSpeed.GALLU -> 118
@@ -400,6 +412,7 @@ fun GhostSpeed.toHasLosMultiplierBoolean(): Boolean =
         GhostSpeed.ASWANG -> true
         GhostSpeed.BANSHEE -> true
         GhostSpeed.DAYAN -> false
+        GhostSpeed.DEILDEGAST -> false
         GhostSpeed.DEMON -> false
         GhostSpeed.DEOGEN -> true
         GhostSpeed.GALLU -> true
@@ -436,6 +449,8 @@ fun HuntSanityBounds.toSanityBounds(): SanityBounds =
             normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
         HuntSanityBounds.DAYAN -> SanityBounds(
             normal = SanityBounds.STANDARD, suppressed = 45, empowered = 65)
+        HuntSanityBounds.DEILDEGAST -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
         HuntSanityBounds.DEMON -> SanityBounds(
             normal = 70, suppressed = SanityBounds.UNSET, empowered = 100)
         HuntSanityBounds.DEOGEN -> SanityBounds(
@@ -495,6 +510,7 @@ fun HuntCooldown.toLong(): Long =
         HuntCooldown.ASWANG -> 25000L
         HuntCooldown.BANSHEE -> 25000L
         HuntCooldown.DAYAN -> 25000L
+        HuntCooldown.DEILDEGAST -> 25000L
         HuntCooldown.DEMON -> 20000L
         HuntCooldown.DEOGEN -> 25000L
         HuntCooldown.GALLU -> 25000L

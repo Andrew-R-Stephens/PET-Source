@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_title">Hesabım</string>
+    <string name="account_label_information">Hesap Bilgileri</string>
+    <string name="account_label_name">Ad</string>
+    <string name="account_label_email">E-posta</string>
+    <string name="account_button_login">Giriş Yap</string>
+    <string name="account_button_logout">Çıkış Yap</string>
+    <string name="account_button_deactivate">Hesabı Devre Dışı Bırak</string>
+    <string name="account_button_visit_marketplace">Pazaryerini Ziyaret Et</string>
+    <string name="account_button_get_skins">Daha Fazla Kostüm Al!</string>
+    <string name="account_deactivate_title">Hesap Devre Dışı Bırakma</string>
+    <string name="account_deactivate_warning">Hesabınızı devre dışı bırakmayı seçerek aşağıdakileri kabul etmiş olursunuz:</string>
+    <string name="account_deactivate_warning_list_1">Tüm P.E.T. hesap verileri kurtarılamaz hale gelecektir.</string>
+    <string name="account_deactivate_warning_list_2">Satın alımlarınıza, kilidini açtığınız öğelere ve diğer tüm ilgili öğelere erişiminizi kaybedeceksiniz.</string>
+    <string name="account_deactivate_warning_list_3">Aynı giriş bilgileriyle tekrar katılırsanız, önceki hesap verileriniz aktarılmayacaktır.</string>
+    <string name="account_deactivate_button_confirm">Devre Dışı Bırakmayı Onayla</string>
+    <string name="account_deactivate_button_cancel">Önemsiz</string>
+    <string name="account_logout_title">Çıkış Yap</string>
+    <string name="account_logout_warning">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="account_logout_button_confirm">Çıkış Yap</string>
+    <string name="account_logout_button_cancel">İptal</string>
+</resources>

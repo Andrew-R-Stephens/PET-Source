@@ -11,6 +11,7 @@
     <string name="ghost_type_aswang">Aswang</string>
     <string name="ghost_type_banshee">Banshee</string>
     <string name="ghost_type_dayan">Dayan</string>
+    <string name="ghost_type_deildegast">Deildegast</string>
     <string name="ghost_type_demon">Dämon</string>
     <string name="ghost_type_deogen">Deogen</string>
     <string name="ghost_type_gallu">Gallu</string>
@@ -702,6 +703,53 @@
 <a>Jagt ab 65 % geistiger Gesundheit. Die Reichweite des Kruzifixes ist um 2 Meter verringert. Die Bewegungsgeschwindigkeit während der Jagd ist auf 1,96 m/s erhöht. Die Jagddauer ist 20 % kürzer, wenn die Jagd in diesem Zustand beginnt.</a><br>
 <a>Der Obambo beginnt im Zustand „Ruhig“, der 1 Minute nach dem ersten Betreten des Spielers anhält. Anschließend wechselt er alle 2 Minuten zwischen den Zuständen „Ruhig“ und „Aggressiv“. Dies kann sogar während einer Jagd geschehen.</a>
 ]]>
+</string>
+    <string name="ghost_info_deildegast">
+
+<![CDATA[
+
+<a>Dieser Geist verschiebt gerne Gegenstände auf der Karte. Er interagiert häufiger mit Objekten als andere Geister und berührt seltener Türen und Lichtschalter.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>Dieser Geist ist von Natur aus schnell und benötigt keine Sichtlinie. Interaktionen senken in der Regel die geistige Gesundheit des Spielers. Da dieser Geist häufiger mit Objekten interagiert, besteht eine erhöhte Wahrscheinlichkeit, dass die geistige Gesundheit des Spielers sehr schnell sinkt.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>Der Geist erschöpft sich mit jedem verschobenen Objekt immer mehr. Mit der Zeit wird der Geist bei der Jagd deutlich langsamer.</a><br>
+
+<a>Ein Spieler kann Objekte anstelle des Geistes bewegen. Die Anzahl der Objekte, die ein Spieler hierfür manipulieren kann, ist auf 30 begrenzt.</a>
+
+]]>
+
+</string>
+
+    <string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>Je mehr Objekte bewegt werden, desto geringer wird die Jagdgeschwindigkeit des Geistes.</a><br>
+
+<a>Die Startgeschwindigkeit des Geistes beträgt 3,0 m/s, die Mindestgeschwindigkeit 0,4 m/s.</a><br>
+
+<a>Für jedes Objekt, mit dem interagiert wird, verringert sich die Geschwindigkeit des Geistes um 0,1 m/s.</a><br>
+
+<a>Der Geist hat eine feste Geschwindigkeit und ist nicht auf Sichtlinie angewiesen.</a>
+
+]]>
+
 </string>
 
 </resources>

@@ -1390,4 +1390,47 @@
     <string name="investigation_label_timer_skip">Timer salta</string>
     <string name="tool_timer_label_hunt_timer_link">Il timer di recupero della Caccia si avvia automaticamente al termine del timer di durata della Caccia.</string>
     <string name="tool_timer_label_linked">Collegato</string>
+
+    <string name="ghost_info_deildegast">
+
+<![CDATA[
+
+<a>Questo fantasma ama spostare oggetti sulla mappa. Ha una maggiore probabilità di interagire con gli oggetti rispetto agli altri fantasmi e una minore probabilità di toccare porte e interruttori della luce.</a>
+
+]]>
+
+</string>
+    <string name="ghost_strengths_deildegast">
+
+<![CDATA[
+
+<a>Questo fantasma è naturalmente veloce e non si basa sulla linea di vista. In generale, le interazioni riducono la Sanità del giocatore; a causa della maggiore probabilità di questo fantasma di interagire con gli oggetti, c\'è una maggiore probabilità di esaurire la Sanità del giocatore molto rapidamente.</a>
+
+]]>
+
+</string>
+    <string name="ghost_weaknesses_deildegast">
+
+<![CDATA[
+
+<a>Il fantasma si stanca sempre di più per ogni oggetto spostato.</a><br>
+<a>Col passare del tempo, il fantasma diventa molto più lento durante le cacce.</a><br>
+<a>Un giocatore può spostare gli oggetti al posto del fantasma. Il numero di oggetti che un giocatore può manipolare a questo scopo è limitato a 30.</a>
+]]>
+</string>
+
+<string name="ghost_huntingdata_deildegast">
+
+<![CDATA[
+
+<a>Man mano che vengono spostati più oggetti, la velocità di caccia del fantasma si ridurrà drasticamente.</a><br>
+
+<a>La velocità iniziale del fantasma è di 3,0 m/s e la sua velocità minima è di 0,4 m/s.</a><br>
+
+<a>Per ogni oggetto con cui interagisce, la velocità del fantasma diminuirà di 0,1 m/s.</a><br>
+
+<a>Il fantasma ha una velocità fissa e non dipende dalla linea di vista.</a>
+]]>
+</string>
+
 </resources>
