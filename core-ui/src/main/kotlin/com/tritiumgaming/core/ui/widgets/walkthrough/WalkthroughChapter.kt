@@ -16,7 +16,7 @@ data class WalkthroughPage(
  * Represents a single step (category) in a walkthrough tutorial.
  */
 @Immutable
-data class WalkthroughStep(
+data class WalkthroughChapter(
     val id: String,
     val pages: List<WalkthroughPage>,
     val titleRes: Int? = null,

@@ -9,20 +9,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.layout.positionInWindow
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Stable
 class WalkthroughState(
-    val steps: List<WalkthroughStep>,
+    val steps: List<WalkthroughChapter>,
     private val scope: CoroutineScope,
     private val onTargetRequired: (targetId: String) -> Unit = {},
     private val onFinish: () -> Unit = {}
@@ -48,7 +45,7 @@ class WalkthroughState(
     var currentPageIndex by mutableStateOf(0)
         private set
 
-    val currentStep: WalkthroughStep? get() = currentStepIndex?.let { steps.getOrNull(it) }
+    val currentStep: WalkthroughChapter? get() = currentStepIndex?.let { steps.getOrNull(it) }
 
     fun registerHost(coordinates: LayoutCoordinates) {
         hostCoordinates = coordinates
@@ -199,7 +196,7 @@ class WalkthroughState(
 
 @Composable
 fun rememberWalkthroughState(
-    steps: List<WalkthroughStep>,
+    steps: List<WalkthroughChapter>,
     onTargetRequired: (targetId: String) -> Unit = {},
     onFinish: () -> Unit = {}
 ): WalkthroughState {

@@ -58,7 +58,7 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughHost
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughPage
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
-import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughStep
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughChapter
 import com.tritiumgaming.core.ui.widgets.walkthrough.rememberWalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
 import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
@@ -468,7 +468,7 @@ fun InvestigationSoloScreen(
             }
         },
         steps = listOf(
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "screen_overview",
                 pages = listOf(
                     WalkthroughPage(
@@ -479,7 +479,7 @@ fun InvestigationSoloScreen(
                 titleRes = R.string.walkthrough_title_investigation,
                 isMajor = true
             ),
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "journal",
                 pages = listOf(
                     WalkthroughPage(
@@ -493,7 +493,7 @@ fun InvestigationSoloScreen(
                 ),
                 titleRes = R.string.walkthrough_title_journal
             ),
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "toolbar",
                 pages = listOf(
                     WalkthroughPage(
@@ -503,7 +503,7 @@ fun InvestigationSoloScreen(
                 ),
                 titleRes = R.string.walkthrough_title_toolbar
             ),
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "configs",
                 pages = listOf(
                     WalkthroughPage(
@@ -563,7 +563,7 @@ fun InvestigationSoloScreen(
                 ),
                 titleRes = R.string.investigation_label_contract
             ),
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "traits",
                 pages = listOf(
                     WalkthroughPage(
@@ -583,7 +583,7 @@ fun InvestigationSoloScreen(
                 ),
                 titleRes = R.string.walkthrough_title_traits
             ),
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "analyzer",
                 pages = listOf(
                     WalkthroughPage(
@@ -593,7 +593,7 @@ fun InvestigationSoloScreen(
                 ),
                 titleRes = R.string.walkthrough_title_analyzer
             ),
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "timers",
                 pages = listOf(
                     WalkthroughPage(
@@ -628,7 +628,7 @@ fun InvestigationSoloScreen(
                 ),
                 titleRes = R.string.walkthrough_title_timers
             ),
-            WalkthroughStep(
+            WalkthroughChapter(
                 id = "footstep",
                 pages = listOf(
                     WalkthroughPage(
