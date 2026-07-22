@@ -18,6 +18,7 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTi
         LocalizedTitle.JA -> R.string.language_name_localized_ja
         LocalizedTitle.PT -> R.string.language_name_localized_pt
         LocalizedTitle.RU -> R.string.language_name_localized_ru
+        LocalizedTitle.TR -> R.string.language_name_localized_tr
         LocalizedTitle.UK -> R.string.language_name_localized_uk
     }
 
@@ -33,6 +34,7 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTi
         NativeTitle.JA -> R.string.language_name_native_ja
         NativeTitle.PT -> R.string.language_name_native_pt
         NativeTitle.RU -> R.string.language_name_native_ru
+        NativeTitle.TR -> R.string.language_name_native_tr
         NativeTitle.UK -> R.string.language_name_native_uk
     }
 
@@ -48,5 +50,6 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTi
         LocalizationCode.JA -> R.string.language_code_ja
         LocalizationCode.PT -> R.string.language_code_pt
         LocalizationCode.RU -> R.string.language_code_ru
+        LocalizationCode.TR -> R.string.language_code_tr
         LocalizationCode.UK -> R.string.language_code_uk
     }

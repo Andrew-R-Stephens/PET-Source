@@ -65,6 +65,11 @@ class LanguageLocalDataSource(
                 code = "ru"
             ),
             LanguageResourceDto(
+                localizedName = LocalizedTitle.TR,
+                nativeName = NativeTitle.TR,
+                code = "tr"
+            ),
+            LanguageResourceDto(
                 localizedName = LocalizedTitle.UK,
                 nativeName = NativeTitle.UK,
                 code = "uk"

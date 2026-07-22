@@ -42,7 +42,7 @@ configure<ApplicationExtension> {
 
         minSdk = 23
         targetSdk = 37
-        versionCode = 146
+        versionCode = 147
         versionName = "1.0.0-alpha.5"
 
         ndk {

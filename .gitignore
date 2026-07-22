@@ -10,6 +10,7 @@
 /.idea/assetWizardSettings.xml
 /.kotlin/
 /build
+/.artifacts/
 
 /app-legacy/build/
 /app-legacy/release/

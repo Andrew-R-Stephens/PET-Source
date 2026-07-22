@@ -13,6 +13,7 @@ class LanguageResources {
         JA,
         PT,
         RU,
+        TR,
         UK
     }
 
@@ -27,6 +28,7 @@ class LanguageResources {
         JA,
         PT,
         RU,
+        TR,
         UK
     }
 
@@ -41,6 +43,7 @@ class LanguageResources {
         JA,
         PT,
         RU,
+        TR,
         UK
     }
 

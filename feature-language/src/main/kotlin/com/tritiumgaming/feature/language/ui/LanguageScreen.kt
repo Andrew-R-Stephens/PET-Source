@@ -52,7 +52,6 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.Localize
 import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTitle
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 
-
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
 @Preview(name = "Small Phone", device = "id:small_phone")
