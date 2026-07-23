@@ -603,7 +603,8 @@ class InvestigationScreenViewModel private constructor(
 
         val words = searchText.trim().lowercase().split(Regex("\\s+"))
         allGhostTraits.associate { trait ->
-            val description = getGhostTraitDescriptionUseCase(trait.description.toStringResource()).lowercase()
+            val description = getGhostTraitDescriptionUseCase(
+                trait.description.toStringResource()).lowercase()
             val score = words.count { it in description }
             trait.id to score
         }
