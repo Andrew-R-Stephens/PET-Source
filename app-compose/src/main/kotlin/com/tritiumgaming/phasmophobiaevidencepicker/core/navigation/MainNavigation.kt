@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.navigation
 import android.util.Log
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -53,8 +52,7 @@ import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 @Composable
 fun RootNavigation(
     investigationViewModel: InvestigationScreenViewModel =
-        viewModel(factory = InvestigationScreenViewModel.Factory),
-    windowInsets: WindowInsets = WindowInsets()
+        viewModel(factory = InvestigationScreenViewModel.Factory)
 ) {
 
     val navController = rememberNavController()
@@ -74,7 +72,6 @@ fun RootNavigation(
 
         operationNavigation(
             navController = navController,
-            windowInsets = windowInsets,
             investigationViewModel = investigationViewModel
         )
 
@@ -260,7 +257,6 @@ private fun NavGraphBuilder.homeNavigation(
 
 private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
-    windowInsets: WindowInsets,
     investigationViewModel: InvestigationScreenViewModel,
 ) {
     navigation(
@@ -278,9 +274,8 @@ private fun NavGraphBuilder.operationNavigation(
 
             OperationScreen(
                 modifier = Modifier
-                    .padding(horizontal = 8.dp),
+                    .padding(/*horizontal = 8.dp*/),
                 navController = navController,
-                windowInsets = windowInsets
             ) {
                 InvestigationSoloScreen(
                     navController = navController,
@@ -299,9 +294,8 @@ private fun NavGraphBuilder.operationNavigation(
 
             OperationScreen(
                 modifier = Modifier
-                    .padding(horizontal = 8.dp),
+                    .padding(/*horizontal = 8.dp*/),
                 navController = navController,
-                windowInsets = windowInsets
             ) {
                 ObjectivesScreen(
                     objectiveBoardViewModel = objectiveBoardViewModel
@@ -312,9 +306,8 @@ private fun NavGraphBuilder.operationNavigation(
         composable(route = NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route) {
             OperationScreen(
                 modifier = Modifier
-                    .padding(horizontal = 8.dp),
+                    .padding(/*horizontal = 8.dp*/),
                 navController = navController,
-                windowInsets = windowInsets
             ) {
                 CustomDifficultyScreen(
                     navController = navController,
@@ -339,9 +332,8 @@ private fun NavGraphBuilder.operationNavigation(
 
                 OperationScreen(
                     modifier = Modifier
-                        .padding(horizontal = 8.dp),
+                        .padding(/*horizontal = 8.dp*/),
                     navController = navController,
-                    windowInsets = windowInsets
                 ) {
                     MapMenuScreen(
                         navController = navController,
@@ -369,7 +361,6 @@ private fun NavGraphBuilder.operationNavigation(
                 if(mapId != null) {
                     OperationScreen(
                         navController = navController,
-                        windowInsets = windowInsets
                     ) {
                         MapViewerScreen(
                             navController = navController,
@@ -403,7 +394,6 @@ private fun NavGraphBuilder.operationNavigation(
                     modifier = Modifier
                         .padding(horizontal = 8.dp),
                     navController = navController,
-                    windowInsets = windowInsets
                 ) {
                     CodexMenuScreen(
                         navController = navController
@@ -437,7 +427,6 @@ private fun NavGraphBuilder.operationNavigation(
                         modifier = Modifier
                             .padding(horizontal = 8.dp),
                         navController = navController,
-                        windowInsets = windowInsets
                     ) {
                         CodexCatalogScreen(
                             navController = navController,

@@ -4,9 +4,7 @@ import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.exclude
+import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -47,7 +46,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun OperationNavigationBar(
     navController: NavHostController = rememberNavController(),
-    windowInsets: WindowInsets = WindowInsets(),
     content: @Composable () -> Unit
 ) {
     val scope = rememberCoroutineScope()
@@ -73,7 +71,7 @@ fun OperationNavigationBar(
         }
 
     Scaffold(
-        contentWindowInsets = windowInsets,
+        containerColor = LocalPalette.current.surface,
         bottomBar = {
             if (bottomNavigationBarEnabled) {
                 OperationNavigationBottomBar(
@@ -82,8 +80,7 @@ fun OperationNavigationBar(
                     navController = navController,
                     scope = scope,
                     rememberDrawerState = rememberDrawerState,
-                    destinations = destinations,
-                    windowInsets = windowInsets
+                    destinations = destinations
                 )
             }
         }
@@ -92,13 +89,13 @@ fun OperationNavigationBar(
         if (bottomNavigationBarEnabled) {
 
             AppScreen(
-                modifier = Modifier
+                modifier = Modifier.padding(contentPadding)
             ) {
 
                 OperationNavigationDrawer(
                     navController = navController,
                     drawerState = rememberDrawerState,
-                    modifier = Modifier.padding(contentPadding)
+                    modifier = Modifier
                 ) {
                     content()
                 }
@@ -106,14 +103,21 @@ fun OperationNavigationBar(
 
         } else {
 
+            val layoutDirection = LocalLayoutDirection.current
             OperationNavigationRail(
                 navController = navController,
                 scope = scope,
                 rememberDrawerState = rememberDrawerState,
-                destinations = destinations,
-                windowInsets = windowInsets
+                destinations = destinations
             ) {
-                AppScreen {
+                AppScreen(
+                    modifier = Modifier.padding(
+                        start = 0.dp,
+                        top = contentPadding.calculateTopPadding(),
+                        end = contentPadding.calculateEndPadding(layoutDirection),
+                        bottom = contentPadding.calculateBottomPadding()
+                    )
+                ) {
 
                     OperationNavigationDrawer(
                         navController = navController,
@@ -136,8 +140,7 @@ private fun OperationNavigationBottomBar(
     navController: NavHostController = rememberNavController(),
     scope: CoroutineScope,
     rememberDrawerState: DrawerState,
-    destinations: List<Destination>,
-    windowInsets: WindowInsets
+    destinations: List<Destination>
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -145,12 +148,7 @@ private fun OperationNavigationBottomBar(
     NavigationBar(
         modifier = modifier,
         contentColor = LocalPalette.current.surfaceContainerHigh,
-        containerColor = LocalPalette.current.surfaceContainer,
-        windowInsets = windowInsets.exclude(
-            insets = WindowInsets(
-                bottom = windowInsets.asPaddingValues().calculateBottomPadding()
-            )
-        )
+        containerColor = LocalPalette.current.surfaceContainer
     ) {
 
         NavigationBarItem(
@@ -229,7 +227,6 @@ private fun OperationNavigationRail(
     scope: CoroutineScope,
     rememberDrawerState: DrawerState,
     destinations: List<Destination>,
-    windowInsets: WindowInsets,
     content: @Composable () -> Unit
 ) {
 
@@ -241,8 +238,7 @@ private fun OperationNavigationRail(
         NavigationRail(
             modifier = Modifier,
             contentColor = LocalPalette.current.surfaceContainerHigh,
-            containerColor = LocalPalette.current.surfaceContainer,
-            windowInsets = windowInsets
+            containerColor = LocalPalette.current.surfaceContainer
         ) {
 
             NavigationRailItem(
