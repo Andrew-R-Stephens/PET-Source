@@ -154,38 +154,60 @@ internal fun TraitConfig(
                     )
                 }
 
-                /*categories.forEach { option ->
-                    Surface(
+                Surface(
+                    modifier = Modifier
+                        .weight(1f)
+                        .wrapContentHeight()
+                        .heightIn(min = 36.dp)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "traits_filter",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        ),
+                    color = LocalPalette.current.surfaceContainerHigh,
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    DropdownList(
                         modifier = Modifier
-                            .wrapContentHeight()
-                            .heightIn(min = 36.dp)
-                            .clickable(onClick = {
-                                option.data?.let { category ->
-                                    onSelectCategory(category)
-                                }
-                            }),
-                        color = if (option.state) LocalPalette.current.surfaceContainerLow
-                        else LocalPalette.current.surfaceContainerHigh,
-                        shape = RoundedCornerShape(8.dp),
-                    ) {
-                        option.data?.let {
-                            Text(
-                                modifier = Modifier
-                                    .wrapContentSize()
-                                    .padding(8.dp)
-                                    .align(Alignment.CenterVertically),
-                                text = stringResource(it.toStringResource()).uppercase(),
-                                color = if (option.state) colors.selectedOnColor
-                                    else colors.unselectedOnColor,
-                                style = LocalTypography.current.quaternary.bold.copy(
-                                    textAlign = TextAlign.Center
-                                ),
-                                fontSize = 14.sp,
-                                maxLines = 1
-                            )
-                        }
-                    }
-                }*/
+                            .padding(4.dp),
+                        options = categories.map { it.data }.map {
+                            stringResource(it.toStringResource()).uppercase()
+                        },
+                        true,
+                        label = categories.find { it.state }?.data?.let {
+                            stringResource(it.toStringResource()) } ?: "",
+                        onSelect = { onSelectCategory(categories[it].data) },
+                        color = LocalPalette.current.surfaceContainerHighest,
+                        onColor = LocalPalette.current.onSurface,
+                        textStyle = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center,
+                            fontSize = 14.sp
+                        ),
+                        selectionFontSize = 14.sp,
+                        optionsFontSize = 14.sp
+                    )
+                }
+
+                Surface(
+                    modifier = Modifier
+                        .weight(1f)
+                        .wrapContentHeight()
+                        .heightIn(min = 36.dp)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "traits_filter",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        ),
+                    color = LocalPalette.current.surfaceContainerHigh,
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    //TODO Add search box. Search box should send string to viewmodel
+                }
+
             }
         }
 
