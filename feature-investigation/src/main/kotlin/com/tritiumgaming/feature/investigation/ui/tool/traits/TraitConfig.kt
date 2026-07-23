@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.investigation.ui.tool.traits
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
@@ -178,7 +179,7 @@ internal fun TraitConfig(
                     color = LocalPalette.current.surfaceContainerHigh,
                     shape = RoundedCornerShape(8.dp),
                 ) {
-                    val interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
+                    val interactionSource = remember { MutableInteractionSource() }
 
                     BasicTextField(
                         value = searchText,
