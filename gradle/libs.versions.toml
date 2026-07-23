@@ -56,7 +56,7 @@ realm-kotlin-sync = "2.3.0"
 nav3Core = "1.1.4"
 lifecycleViewmodelNav3 = "2.11.0"
 
-agp = "9.3.0" # Latest: 8.12.0
+agp = "9.3.1" # Latest: 8.12.0
 kotlin = "2.4.10" # Latest: 2.4.0
 ksp = "2.3.2" # Latest: 2.2.10-2.0.2 -> 2.2.21-2.0.4
 composeMP = "1.11.1" # Latest: 1.11.0
