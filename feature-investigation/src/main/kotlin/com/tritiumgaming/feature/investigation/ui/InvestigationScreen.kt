@@ -1566,6 +1566,7 @@ private fun CompactPortraitContent(
 
         HorizontalToolbar(
             modifier = Modifier
+                .padding(8.dp)
                 .walkthroughTarget(walkthroughState, "toolbar"),
             selectBarComponent = { modifier ->
                 toolbarComponent(modifier) },
