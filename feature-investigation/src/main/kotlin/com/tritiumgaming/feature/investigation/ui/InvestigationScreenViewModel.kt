@@ -98,6 +98,8 @@ import com.tritiumgaming.shared.data.operation.model.SanityTimerData.Companion.T
 import com.tritiumgaming.shared.data.operation.model.StateOption
 import com.tritiumgaming.shared.data.operation.model.TagOption
 import com.tritiumgaming.shared.data.operation.model.TemperatureData
+import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitDescriptionUseCase
 import com.tritiumgaming.shared.data.operation.model.ToolTimerData
 import com.tritiumgaming.shared.data.operation.model.ToolTimerType
 import com.tritiumgaming.shared.data.operation.model.TraitFilter
@@ -162,6 +164,7 @@ class InvestigationScreenViewModel private constructor(
     private val getGhostUseCase: GetGhostUseCase = journalUseCaseBundle.getGhostUseCase
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase
     private val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase = journalUseCaseBundle.getAllGhostTraitsUseCase
+    private val getGhostTraitDescriptionUseCase: GetGhostTraitDescriptionUseCase = journalUseCaseBundle.getGhostTraitDescriptionUseCase
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase
     private val setDifficultyIndexUseCase: SetDifficultyIndexUseCase = difficultyUseCaseBundle.setDifficultyIndexUseCase
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase = simpleMapUseCaseBundle.fetchSimpleMapsUseCase
@@ -592,6 +595,24 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Trait Filter
      */
+    private val _traitSearchText = MutableStateFlow("")
+    val traitSearchText = _traitSearchText.asStateFlow()
+
+    private val traitSearchRelevance = _traitSearchText.map { searchText ->
+        if (searchText.isBlank()) return@map emptyMap()
+
+        val words = searchText.trim().lowercase().split(Regex("\\s+"))
+        allGhostTraits.associate { trait ->
+            val description = getGhostTraitDescriptionUseCase(trait.description.toStringResource()).lowercase()
+            val score = words.count { it in description }
+            trait.id to score
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = emptyMap()
+    )
+
     private val _traitFilterOptions = traitData.map { traits ->
         val categories = GhostTraitResources.TraitCategory.entries
         val weights = traits.map { it.weight }.distinct().sortedBy { it }
@@ -998,7 +1019,11 @@ class InvestigationScreenViewModel private constructor(
     val traitFilterOptionsUiState = _traitFilterOptionsUiState
 
     private val _traitListUiState: StateFlow<List<ValidatedGhostTrait>> =
-        combine(selectedTraits, traitFilterUiState) { traits, filter ->
+        combine(
+            selectedTraits,
+            traitFilterUiState,
+            traitSearchRelevance
+        ) { traits, filter, relevance ->
             traits.asSequence().filter { (trait, _) ->
                 val matchesCategory = filter.category == GhostTraitResources.TraitCategory.ALL || trait.category == filter.category
                 val matchesWeight = filter.weight == null || trait.weight == filter.weight
@@ -1007,9 +1032,14 @@ class InvestigationScreenViewModel private constructor(
 
                 val matchesTags = filter.tags.isEmpty() || trait.tags.any { it in filter.tags }
 
-                matchesCategory && matchesWeight && matchesState && matchesUnique && matchesTags
+                val relevanceScore = relevance[trait.id] ?: 0
+                val matchesSearch = relevance.isEmpty() || relevanceScore > 0
+
+                matchesCategory && matchesWeight && matchesState && matchesUnique && matchesTags && matchesSearch
             }.sortedWith (
-                compareByDescending <ValidatedGhostTrait> { it.validationType }
+                compareBy<ValidatedGhostTrait> { it.ghostTrait.category }
+                    .thenByDescending { relevance[it.ghostTrait.id] ?: 0 }
+                    .thenByDescending { it.validationType }
                     .thenBy {
                         val ghosts = it.ghostTrait.affectedGhosts
                         when(ghosts.size) {
@@ -1019,7 +1049,6 @@ class InvestigationScreenViewModel private constructor(
                     }
                     .thenBy { it.ghostTrait.weight }
                     .thenBy { it.ghostTrait.state }
-                    .thenBy { it.ghostTrait.category }
                     .thenByDescending { it.ghostTrait.isUnique }
             ).toList()
     }
@@ -1980,6 +2009,7 @@ class InvestigationScreenViewModel private constructor(
             // Trait Logic
             is InvestigationEvent.ToggleTrait -> toggleTraitSelection(event.trait)
             is InvestigationEvent.SetTraitFilter -> updateTraitFilter(event.filter)
+            is InvestigationEvent.OnSearchTextChanged -> _traitSearchText.value = event.text
             is InvestigationEvent.ToggleUniqueTraitFilter -> toggleUniqueOnly()
 
             // BPM Ui
@@ -2269,6 +2299,7 @@ class InvestigationScreenViewModel private constructor(
         // Trait Logic Events
         data class ToggleTrait(val trait: ValidatedGhostTrait) : InvestigationEvent()
         data class SetTraitFilter(val filter: TraitFilter) : InvestigationEvent()
+        data class OnSearchTextChanged(val text: String) : InvestigationEvent()
         object ToggleUniqueTraitFilter : InvestigationEvent()
 
         data class SetBpmData(val data: RealtimeUiState<BpmPoint>) : InvestigationEvent()

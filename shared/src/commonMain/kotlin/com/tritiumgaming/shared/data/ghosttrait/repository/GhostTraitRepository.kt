@@ -7,4 +7,6 @@ interface GhostTraitRepository {
     fun getAllTraits(): Result<List<GhostTrait>>
 
     fun getByCategory(category: TraitCategory): Result<List<GhostTrait>>
+
+    fun getString(resId: Int): String
 }

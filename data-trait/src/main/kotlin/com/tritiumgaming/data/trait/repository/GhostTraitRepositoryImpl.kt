@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.trait.repository
 
+import android.content.Context
 import com.tritiumgaming.data.trait.dto.toDomain
 import com.tritiumgaming.data.trait.source.GhostTraitDataSource
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
@@ -7,15 +8,13 @@ import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.repository.GhostTraitRepository
 
 class GhostTraitRepositoryImpl(
+    private val applicationContext: Context,
     private val localSource: GhostTraitDataSource
 ): GhostTraitRepository {
 
-    var ghostTraits: List<GhostTrait> = emptyList()
+    private var ghostTraits: List<GhostTrait> = emptyList()
 
     private fun populateCache(): List<GhostTrait> {
-        /*ghostTraits = ghostTraits.ifEmpty {
-            localSource.get().map { it.toDomain() }
-        }*/
         ghostTraits = ghostTraits.ifEmpty {
             localSource.get().map { it.toDomain() }
         }
@@ -32,6 +31,10 @@ class GhostTraitRepositoryImpl(
             .sortedBy { it.id }
 
         return Result.success(data)
+    }
+
+    override fun getString(resId: Int): String {
+        return applicationContext.getString(resId)
     }
 
 }

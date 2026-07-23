@@ -153,4 +153,5 @@
     </string>
     <string name="settings_adsconsentcontrolsettings_button">Edit</string>
 
+    <string name="search_placeholder" translatable="false">Search</string>
 </resources>

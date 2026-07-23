@@ -67,6 +67,7 @@ import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.CustomDifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ClearPopup
+import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.OnSearchTextChanged
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.PlayerDeath
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ResetInvestigation
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.SetBpmData
@@ -357,6 +358,7 @@ fun InvestigationSoloScreen(
     val traitListUiStates by investigationViewModel.traitListUiState.collectAsStateWithLifecycle()
     val ghostOrder by investigationViewModel.ghostsSortedUiState.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
+    val traitSearchText by investigationViewModel.traitSearchText.collectAsStateWithLifecycle()
     val timersLinkedUiState by investigationViewModel.timersLinked.collectAsStateWithLifecycle()
     val smudgeHuntProtectionTimerState by investigationViewModel.smudgeHuntProtectionTimerUiState.collectAsStateWithLifecycle()
     val huntDurationTimerState by investigationViewModel.huntDurationTimerUiState.collectAsStateWithLifecycle()
@@ -381,6 +383,7 @@ fun InvestigationSoloScreen(
         playerSanity = sanityUiState,
         evidenceList = evidenceListUiStates,
         traitFilterOptions = traitFilterOptions,
+        traitSearchText = traitSearchText,
         traitList = traitListUiStates,
         ghostsSorted = ghostOrder,
         ghostEvidenceStates = evidenceStates,
@@ -422,6 +425,7 @@ fun InvestigationSoloScreen(
             investigationViewModel.onEvent(ToggleTrait(trait))
         },
         onToggleUniqueOnly = { investigationViewModel.onEvent(ToggleUniqueTraitFilter) },
+        onTraitSearchTextChanged = { investigationViewModel.onEvent(OnSearchTextChanged(it)) },
         onSmudgeToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.SMUDGE_TIMER)) },
         onHuntDurationToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_DURATION)) },
         onHuntCooldownToggle = { investigationViewModel.onEvent(TriggerToolTimer(ToolTimerType.HUNT_COOLDOWN)) },
@@ -702,6 +706,7 @@ private fun InvestigationContent(
     val evidenceListUiStates = uiState.evidenceList
 
     val traitFilterOptions = uiState.traitFilterOptions
+    val traitSearchText = uiState.traitSearchText
     val traitListUiStates = uiState.traitList
     val ghostOrder = uiState.ghostsSorted
     val evidenceStates = uiState.ghostEvidenceStates
@@ -728,6 +733,7 @@ private fun InvestigationContent(
     val onSelectTraitCategory = uiActions.onSelectTraitCategory
     val onToggleTrait = uiActions.onToggleTrait
     val onToggleUniqueOnly = uiActions.onToggleUniqueOnly
+    val onTraitSearchTextChanged = uiActions.onTraitSearchTextChanged
     val onSmudgeToggle = uiActions.onSmudgeToggle
     val onHuntDurationToggle = uiActions.onHuntDurationToggle
     val onHuntCooldownToggle = uiActions.onHuntCooldownToggle
@@ -857,6 +863,8 @@ private fun InvestigationContent(
             onSelectCategory = onSelectTraitCategory,
             onSelectTrait = onToggleTrait,
             onToggleUniqueOnly = onToggleUniqueOnly,
+            searchText = traitSearchText,
+            onSearchTextChanged = onTraitSearchTextChanged,
             colors = TraitListItemUiColors(
                 unselectedColor = LocalPalette.current.surfaceContainerHigh,
                 unselectedOnColor = LocalPalette.current.onSurface,
@@ -2448,6 +2456,7 @@ internal data class InvestigationUiState(
     val playerSanity: PlayerSanityUiState = PlayerSanityUiState(),
     val evidenceList: List<EvidenceState> = emptyList(),
     val traitFilterOptions: GhostTraitFilterUiOptions = GhostTraitFilterUiOptions(),
+    val traitSearchText: String = "",
     val traitList: List<ValidatedGhostTrait> = emptyList(),
     val ghostsSorted: List<GhostState> = emptyList(),
     val ghostEvidenceStates: List<EvidenceState> = emptyList(),
@@ -2474,6 +2483,7 @@ internal data class InvestigationUiActions(
     val onSelectTraitCategory: (TraitCategory) -> Unit = {},
     val onToggleTrait: (ValidatedGhostTrait) -> Unit = {},
     val onToggleUniqueOnly: () -> Unit = {},
+    val onTraitSearchTextChanged: (String) -> Unit = {},
     val onSmudgeToggle: () -> Unit = {},
     val onHuntDurationToggle: () -> Unit = {},
     val onHuntCooldownToggle: () -> Unit = {},

@@ -48,6 +48,7 @@ import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidence
 import com.tritiumgaming.shared.data.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.data.ghosttrait.repository.GhostTraitRepository
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitDescriptionUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByGhostUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
@@ -116,10 +117,14 @@ class InvestigationContainer(
     private val ghostTraitsRepository: GhostTraitRepository by lazy {
         val dataSource = GhostTraitLocalDataSource()
         GhostTraitRepositoryImpl(
+            applicationContext = applicationContext,
             localSource = dataSource
         )
     }
     private val getAllGhostTraitsUseCase = GetAllGhostTraitsUseCase(
+        repository = ghostTraitsRepository
+    )
+    private val getGhostTraitDescriptionUseCase = GetGhostTraitDescriptionUseCase(
         repository = ghostTraitsRepository
     )
     private val getGhostTraitsByCategoryUseCase = GetGhostTraitsByCategoryUseCase(
@@ -171,6 +176,7 @@ class InvestigationContainer(
         fetchGhostTypesUseCase = fetchGhostTypesUseCase,
         getGhostTypeByIdUseCase = getGhostTypeByIdUseCase,
         getAllGhostTraitsUseCase = getAllGhostTraitsUseCase,
+        getGhostTraitDescriptionUseCase = getGhostTraitDescriptionUseCase,
         getGhostTraitsByCategoryUseCase = getGhostTraitsByCategoryUseCase,
         getGhostTraitsByGhostUseCase = getGhostTraitsByGhostUseCase,
         getGhostTraitsByTagUseCase = getGhostTraitsByTagUseCase,
@@ -362,6 +368,7 @@ internal data class JournalUseCaseBundle(
     val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
     val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
     val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase,
+    val getGhostTraitDescriptionUseCase: GetGhostTraitDescriptionUseCase,
     val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase,
     val getGhostTraitsByGhostUseCase: GetGhostTraitsByGhostUseCase,
     val getGhostTraitsByTagUseCase: GetGhostTraitsByTagUseCase,

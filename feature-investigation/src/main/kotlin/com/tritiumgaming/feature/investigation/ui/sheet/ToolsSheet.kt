@@ -85,7 +85,7 @@ internal fun ToolsBottomSheetComponent(
                 component = { modifier ->
                     traitsComponent(
                         modifier
-                            .fillMaxHeight(.5f)
+                            .fillMaxHeight(.6f)
                     )
                 }
             )

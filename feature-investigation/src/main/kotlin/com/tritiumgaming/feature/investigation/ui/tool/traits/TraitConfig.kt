@@ -17,15 +17,23 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,9 +63,11 @@ internal fun TraitConfig(
     uniqueOnly: Boolean,
     categories: List<CategoryOption>,
     list: List<ValidatedGhostTrait>,
+    searchText: String,
     onSelectCategory: (TraitCategory) -> Unit,
     onSelectTrait: (ValidatedGhostTrait) -> Unit,
     onToggleUniqueOnly: () -> Unit,
+    onSearchTextChanged: (String) -> Unit,
     colors: TraitListItemUiColors = TraitListItemUiColors()
 ) {
 
@@ -156,56 +166,55 @@ internal fun TraitConfig(
 
                 Surface(
                     modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight()
+                        .fillMaxWidth()
                         .heightIn(min = 36.dp)
                         .then(
                             if (walkthroughState != null) Modifier.walkthroughTarget(
                                 walkthroughState,
-                                "traits_filter",
+                                "traits_search",
                                 RoundedCornerShape(8.dp)
                             ) else Modifier
                         ),
                     color = LocalPalette.current.surfaceContainerHigh,
                     shape = RoundedCornerShape(8.dp),
                 ) {
-                    DropdownList(
-                        modifier = Modifier
-                            .padding(4.dp),
-                        options = categories.map { it.data }.map {
-                            stringResource(it.toStringResource()).uppercase()
-                        },
-                        true,
-                        label = categories.find { it.state }?.data?.let {
-                            stringResource(it.toStringResource()) } ?: "",
-                        onSelect = { onSelectCategory(categories[it].data) },
-                        color = LocalPalette.current.surfaceContainerHighest,
-                        onColor = LocalPalette.current.onSurface,
-                        textStyle = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Center,
-                            fontSize = 14.sp
-                        ),
-                        selectionFontSize = 14.sp,
-                        optionsFontSize = 14.sp
-                    )
-                }
+                    val interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
 
-                Surface(
-                    modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight()
-                        .heightIn(min = 36.dp)
-                        .then(
-                            if (walkthroughState != null) Modifier.walkthroughTarget(
-                                walkthroughState,
-                                "traits_filter",
-                                RoundedCornerShape(8.dp)
-                            ) else Modifier
+                    BasicTextField(
+                        value = searchText,
+                        onValueChange = onSearchTextChanged,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                            .align(Alignment.CenterVertically),
+                        textStyle = LocalTextStyle.current.copy(
+                            color = LocalPalette.current.onSurface,
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Start
                         ),
-                    color = LocalPalette.current.surfaceContainerHigh,
-                    shape = RoundedCornerShape(8.dp),
-                ) {
-                    //TODO Add search box. Search box should send string to viewmodel
+                        cursorBrush = SolidColor(LocalPalette.current.onSurface),
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                        singleLine = true,
+                        decorationBox = { innerTextField ->
+                            TextFieldDefaults.DecorationBox(
+                                value = searchText,
+                                innerTextField = innerTextField,
+                                enabled = true,
+                                singleLine = true,
+                                visualTransformation = VisualTransformation.None,
+                                interactionSource = interactionSource,
+                                placeholder = {
+                                    Text(
+                                        text = stringResource(R.string.search_placeholder),
+                                        fontSize = 14.sp,
+                                        color = LocalPalette.current.onSurface.copy(alpha = 0.5f)
+                                    )
+                                },
+                                container = {},
+                                contentPadding = PaddingValues(0.dp)
+                            )
+                        }
+                    )
                 }
 
             }
