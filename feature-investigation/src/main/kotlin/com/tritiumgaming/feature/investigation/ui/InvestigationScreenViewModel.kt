@@ -432,12 +432,16 @@ class InvestigationScreenViewModel private constructor(
     private val huntCooldownTimerProgressBarNotches = listOf(
         ProgressBarNotch(
             UiText.StringResource(R.string.tool_timer_label_standard),
-            (1.5).minutes.inWholeMilliseconds
+            25.seconds.inWholeMilliseconds
+        ),
+        ProgressBarNotch(
+            UiText.StringResource(GhostTitle.DEMON.toStringResource()),
+            20.seconds.inWholeMilliseconds
         )
     )
     private val _huntCooldownTimerState = MutableStateFlow(
         NotchedProgressBarData(
-            max = 72000,
+            max = 25.seconds.inWholeMilliseconds,
             origin = 0,
             notches = huntCooldownTimerProgressBarNotches,
             running = false
@@ -1038,9 +1042,7 @@ class InvestigationScreenViewModel private constructor(
 
                 matchesCategory && matchesWeight && matchesState && matchesUnique && matchesTags && matchesSearch
             }.sortedWith (
-                compareBy<ValidatedGhostTrait> { it.ghostTrait.category }
-                    .thenByDescending { relevance[it.ghostTrait.id] ?: 0 }
-                    .thenByDescending { it.validationType }
+                compareByDescending <ValidatedGhostTrait> { it.validationType }
                     .thenBy {
                         val ghosts = it.ghostTrait.affectedGhosts
                         when(ghosts.size) {
@@ -1050,7 +1052,9 @@ class InvestigationScreenViewModel private constructor(
                     }
                     .thenBy { it.ghostTrait.weight }
                     .thenBy { it.ghostTrait.state }
+                    .thenBy { it.ghostTrait.category }
                     .thenByDescending { it.ghostTrait.isUnique }
+                    .thenByDescending { relevance[it.ghostTrait.id] ?: 0 }
             ).toList()
     }
     .stateIn(
