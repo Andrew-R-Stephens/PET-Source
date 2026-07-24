@@ -57,10 +57,12 @@ import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.shared.data.ghost.mapper.toGender
 import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
 import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
 import com.tritiumgaming.shared.data.ghost.model.Ghost
+import com.tritiumgaming.shared.data.ghostname.model.GhostName.Gender
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
@@ -285,6 +287,13 @@ class InvestigationScreenViewModel private constructor(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = OperationOverrideData()
+        )
+
+    val ghostGender = _operationState.map { it.ghostDetails.firstName?.gender ?: Gender.UNSPECIFIED }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = Gender.UNSPECIFIED
         )
 
     private fun updateMap(
@@ -690,7 +699,8 @@ class InvestigationScreenViewModel private constructor(
         _bpmToolState,
         _explicitGhostRejects,
         selectedTraits,
-        operationOverridesState
+        operationOverridesState,
+        ghostGender
     ) { args ->
         val evidenceStates = args[0] as List<EvidenceState>
         val difficultyState = args[1] as DifficultyData
@@ -698,6 +708,7 @@ class InvestigationScreenViewModel private constructor(
         val explicitRejections = args[3] as Set<GhostResources.GhostIdentifier>
         val selectedTraits = args[4] as List<ValidatedGhostTrait>
         val overridesState = args[5] as OperationOverrideData
+        val selectedGender = args[6] as Gender
 
         ghostEvidences.map { ghostEvidence ->
             val isManuallyRejected = ghostEvidence.ghost.id in explicitRejections
@@ -710,6 +721,11 @@ class InvestigationScreenViewModel private constructor(
                 evidenceState = evidenceStates,
                 evidenceGiven = difficultyState.settings.evidenceGiven
             )
+
+            val genderMatch = if (selectedGender == Gender.MALE) {
+                ghostEvidence.ghost.id.toGender() != Gender.FEMALE
+            } else true
+            state = state.validateGender(genderMatch)
 
             // Apply BPM validation if enabled
             state = if (bpmToolUiState.applyMeasurement) {
@@ -1120,6 +1136,7 @@ class InvestigationScreenViewModel private constructor(
                 ghostScores
                     .sortedWith(
                         compareByDescending<GhostState> { it.score }
+                            .thenByDescending { it.genderIsValid }
                             .thenByDescending { it.bpmIsValid }
                             .thenByDescending {
                                 val traitScore = it.traitScore

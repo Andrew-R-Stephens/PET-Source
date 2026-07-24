@@ -20,9 +20,17 @@ data class GhostState(
     val score: Int = 0,
     val manualRejection: Boolean = false,
     val bpmIsValid: Boolean = false,
+    val genderIsValid: Boolean = true,
     val traitScore: TraitScore = TraitScore(),
     val traits: Set<GhostTrait> = emptySet()
 ) {
+    fun validateGender(
+        genderIsValid: Boolean
+    ): GhostState {
+        return this.copy(
+            genderIsValid = genderIsValid
+        )
+    }
 
     fun updateTraits(
         traits: Set<GhostTrait>

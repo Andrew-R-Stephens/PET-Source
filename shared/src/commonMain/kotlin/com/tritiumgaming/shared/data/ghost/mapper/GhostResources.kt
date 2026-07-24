@@ -4,6 +4,8 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntCooldown
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntSanityBounds
 import com.tritiumgaming.shared.data.ghost.model.SanityBounds
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
+import com.tritiumgaming.shared.data.ghostname.model.GhostName.Gender
 
 class GhostResources {
 
@@ -537,4 +539,38 @@ fun HuntCooldown.toLong(): Long =
         HuntCooldown.WRAITH -> 25000L
         HuntCooldown.YOKAI -> 25000L
         HuntCooldown.YUREI -> 25000L
+    }
+
+fun GhostResources.GhostIdentifier.toGender(): GhostName.Gender =
+    when(this) {
+        GhostResources.GhostIdentifier.ASWANG -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.BANSHEE -> Gender.FEMALE
+        GhostResources.GhostIdentifier.DAYAN -> Gender.FEMALE
+        GhostResources.GhostIdentifier.DEILDEGAST -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.DEMON -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.DEOGEN -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.GALLU -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.GORYO -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.HANTU -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.JINN -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.KORMOS -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.MARE -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.MOROI -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.MYLING -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.OBAKE -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.OBAMBO -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.ONI -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.ONRYO -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.PHANTOM -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.POLTERGEIST -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.RAIJU -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.REVENANT -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.SHADE -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.SPIRIT -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.THAYE -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.THE_TWINS -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.THE_MIMIC -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.WRAITH -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.YOKAI -> Gender.UNSPECIFIED
+        GhostResources.GhostIdentifier.YUREI -> Gender.UNSPECIFIED
     }

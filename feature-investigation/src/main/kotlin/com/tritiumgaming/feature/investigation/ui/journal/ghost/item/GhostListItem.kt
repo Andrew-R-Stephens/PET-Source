@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -74,6 +75,7 @@ internal fun LazyItemScope.GhostListItem(
     val traitScore = ghostState.traitScore
 
     val bpmState = ghostState.bpmIsValid
+    val genderState = !ghostState.genderIsValid
     val showTraitConfirm = traitScore.confirm > ZERO_EVIDENCE
     val showTraitReject = traitScore.reject > ZERO_EVIDENCE
     val showTraitProbableConfirm = traitScore.probableConfirm > ZERO_EVIDENCE
@@ -81,7 +83,7 @@ internal fun LazyItemScope.GhostListItem(
 
     val emitSpecialBadge = bpmState ||
             showTraitConfirm || showTraitReject ||
-            showTraitProbableConfirm || showTraitProbableReject
+            showTraitProbableConfirm || showTraitProbableReject || genderState
 
     Surface(
         modifier = modifier
@@ -189,6 +191,24 @@ internal fun LazyItemScope.GhostListItem(
                                     fillColor = LocalPalette.current.tertiary,
                                     strokeColor = LocalPalette.current.tertiary
                                 )
+                            )
+                        }
+                    }
+
+                    if (genderState) {
+                        Surface(
+                            modifier = Modifier
+                                .wrapContentSize(),
+                            shape = RoundedCornerShape(8.dp),
+                            color = LocalPalette.current.surfaceContainerHigh,
+                        ) {
+                            Image(
+                                modifier = Modifier
+                                    .padding(4.dp)
+                                    .size(16.dp),
+                                painter = painterResource(id = R.drawable.ic_gender_female),
+                                contentDescription = "Gender Icon",
+                                colorFilter = ColorFilter.tint(LocalPalette.current.primary)
                             )
                         }
                     }
