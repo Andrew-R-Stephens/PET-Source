@@ -3,11 +3,13 @@ package com.tritiumgaming.feature.investigation.ui.tool.footstep
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SegmentedButton
@@ -55,6 +57,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import kotlin.math.absoluteValue
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -153,104 +156,153 @@ internal fun BpmTool(
 
         if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED || weather == Weather.BLOOD_MOON ||
             ghostSpeedModifier != DifficultySettingResources.GhostSpeed.SPEED_100.toFloat()) {
-            Column(
+            Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
-                    .then(
-                        if (walkthroughState != null) Modifier.walkthroughTarget(
-                            walkthroughState,
-                            "footstep_modifiers",
-                            RoundedCornerShape(8.dp)
-                        ) else Modifier
-                    ),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    text = stringResource(R.string.general_label_modifiers).uppercase(),
-                    color = LocalPalette.current.onSurfaceVariant,
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Start
-                    ),
-                    fontSize = 14.sp,
-                    maxLines = 1
-                )
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
-                    verticalAlignment = Alignment.CenterVertically
+                        .weight(1f)
+                        .padding(horizontal = 8.dp)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "footstep_modifiers",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        ),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
+                    Text(
+                        modifier = Modifier,
+                        text = stringResource(R.string.general_label_modifiers).uppercase(),
+                        color = LocalPalette.current.onSurfaceVariant,
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Start
+                        ),
+                        fontSize = 14.sp,
+                        maxLines = 1
+                    )
 
-                    if (ghostSpeedModifier != DifficultySettingResources.GhostSpeed.SPEED_100.toFloat()) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_speed),
-                                contentDescription = null,
-                                modifier = Modifier.size(16.dp),
-                                tint = LocalPalette.current.onSurfaceVariant
-                            )
-                            Text(
-                                text = ghostSpeedModifier.toPercentageString(false),
-                                style = LocalTypography.current.quaternary.regular,
-                                fontSize = 12.sp,
-                                color = LocalPalette.current.onSurfaceVariant
-                            )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
+                        if (ghostSpeedModifier != DifficultySettingResources.GhostSpeed.SPEED_100.toFloat()) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_speed),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                    tint = LocalPalette.current.onSurfaceVariant
+                                )
+                                Text(
+                                    text = ghostSpeedModifier.toPercentageString(false),
+                                    style = LocalTypography.current.quaternary.regular,
+                                    fontSize = 12.sp,
+                                    color = LocalPalette.current.onSurfaceVariant
+                                )
+                            }
+                        }
+
+                        if (weather == Weather.BLOOD_MOON) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Icon(
+                                    painter = painterResource(weather.toDrawable()),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                    tint = LocalPalette.current.onSurfaceVariant
+                                )
+                                Text(
+                                    text = "+15%",
+                                    style = LocalTypography.current.quaternary.regular,
+                                    fontSize = 12.sp,
+                                    color = LocalPalette.current.onSurfaceVariant
+                                )
+                            }
+                        }
+
+                        if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED) {
+
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_map_power),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                    tint = LocalPalette.current.onSurfaceVariant
+                                )
+                                Text(
+                                    text = stringResource(
+                                        DifficultySettingResources.FuseBoxAtStartOfContract.ON
+                                            .toStringResource()
+                                    ),
+                                    style = LocalTypography.current.quaternary.regular,
+                                    fontSize = 12.sp,
+                                    color = LocalPalette.current.onSurfaceVariant
+                                )
+                            }
                         }
                     }
-
-                    if (weather == Weather.BLOOD_MOON) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            Icon(
-                                painter = painterResource(weather.toDrawable()),
-                                contentDescription = null,
-                                modifier = Modifier.size(16.dp),
-                                tint = LocalPalette.current.onSurfaceVariant
-                            )
-                            Text(
-                                text = "+15%",
-                                style = LocalTypography.current.quaternary.regular,
-                                fontSize = 12.sp,
-                                color = LocalPalette.current.onSurfaceVariant
-                            )
-                        }
-                    }
-
-                    if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED) {
-
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_map_power),
-                                contentDescription = null,
-                                modifier = Modifier.size(16.dp),
-                                tint = LocalPalette.current.onSurfaceVariant
-                            )
-                            Text(
-                                text = stringResource(
-                                    DifficultySettingResources.FuseBoxAtStartOfContract.ON
-                                        .toStringResource()
-                                ),
-                                style = LocalTypography.current.quaternary.regular,
-                                fontSize = 12.sp,
-                                color = LocalPalette.current.onSurfaceVariant
-                            )
-                        }
-                    }
-
                 }
+
+                Column(
+                    modifier = Modifier
+                        .width(IntrinsicSize.Max)
+                        .padding(horizontal = 8.dp)
+                        .then(
+                            if (walkthroughState != null) Modifier.walkthroughTarget(
+                                walkthroughState,
+                                "footstep_modifiers",
+                                RoundedCornerShape(8.dp)
+                            ) else Modifier
+                        ),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    horizontalAlignment = Alignment.End
+                ) {
+                    Text(
+                        modifier = Modifier,
+                        text = "BPM".uppercase(),
+                        color = LocalPalette.current.onSurfaceVariant,
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Start
+                        ),
+                        fontSize = 14.sp,
+                        maxLines = 1
+                    )
+
+                    val value = when (measurementType) {
+                        VisualizerMeasurementType.INSTANT -> realtimeState.instant
+                        VisualizerMeasurementType.AVERAGED -> realtimeState.average
+                        VisualizerMeasurementType.WEIGHTED -> realtimeState.weightedAverage
+                    }.toInt().coerceAtLeast(0).toString()
+
+                    Text(
+                        modifier = Modifier,
+                        text = value.uppercase(),
+                        color = LocalPalette.current.onSurface,
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.End
+                        ),
+                        fontSize = 14.sp,
+                        maxLines = 1
+                    )
+                }
+
             }
         }
 

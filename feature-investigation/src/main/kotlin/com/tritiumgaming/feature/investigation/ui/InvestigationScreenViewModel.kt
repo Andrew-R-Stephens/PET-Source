@@ -413,11 +413,11 @@ class InvestigationScreenViewModel private constructor(
             origin = 0,
             notches = listOf(
                 ProgressBarNotch(
-                    UiText.StringResource(R.string.ghost_type_obambo),
+                    UiText.StringResource(GhostTitle.OBAMBO.toStringResource()),
                     ((difficultyState.value.settings.huntDuration.toLong(mapState.value.size) * .8f) - 1).toLong()
                 ),
                 ProgressBarNotch(
-                    UiText.StringResource(R.string.ghost_type_obambo),
+                    UiText.StringResource(GhostTitle.OBAMBO.toStringResource()),
                     (difficultyState.value.settings.huntDuration.toLong(mapState.value.size) * .8f).toLong()
                 ),
                 ProgressBarNotch(
