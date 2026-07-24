@@ -55,10 +55,10 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.BpmPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
+import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughChapter
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughHost
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughPage
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
-import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughChapter
 import com.tritiumgaming.core.ui.widgets.walkthrough.rememberWalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
 import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource

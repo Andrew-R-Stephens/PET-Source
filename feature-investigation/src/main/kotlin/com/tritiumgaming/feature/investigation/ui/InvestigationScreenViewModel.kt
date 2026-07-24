@@ -22,6 +22,7 @@ import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundl
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
@@ -63,6 +64,7 @@ import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitDescriptionUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
@@ -98,8 +100,6 @@ import com.tritiumgaming.shared.data.operation.model.SanityTimerData.Companion.T
 import com.tritiumgaming.shared.data.operation.model.StateOption
 import com.tritiumgaming.shared.data.operation.model.TagOption
 import com.tritiumgaming.shared.data.operation.model.TemperatureData
-import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
-import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitDescriptionUseCase
 import com.tritiumgaming.shared.data.operation.model.ToolTimerData
 import com.tritiumgaming.shared.data.operation.model.ToolTimerType
 import com.tritiumgaming.shared.data.operation.model.TraitFilter
