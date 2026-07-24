@@ -6,13 +6,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
@@ -50,6 +53,7 @@ private data class CategoryPair(
     val component: @Composable (Modifier) -> Unit
 )
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun ToolsBottomSheetComponent(
     modifier: Modifier = Modifier,
@@ -61,6 +65,8 @@ internal fun ToolsBottomSheetComponent(
     footstepComponent: @Composable (Modifier) -> Unit,
     onStartTutorial: (String) -> Unit
 ) {
+    val isKeyboardVisible = WindowInsets.isImeVisible
+
     val categoryPair: CategoryPair = when (toolbarCategory) {
         OperationToolbarUiState.Category.TOOL_NONE -> {
             CategoryPair("") {}
@@ -85,7 +91,13 @@ internal fun ToolsBottomSheetComponent(
                 component = { modifier ->
                     traitsComponent(
                         modifier
-                            .fillMaxHeight(.6f)
+                            .then(
+                                if (isKeyboardVisible) {
+                                    Modifier.fillMaxHeight()
+                                } else {
+                                    Modifier.fillMaxHeight(.6f)
+                                }
+                            )
                     )
                 }
             )

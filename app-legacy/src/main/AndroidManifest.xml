@@ -66,6 +66,7 @@
             android:name=".presentation.ui.activities.mainmenus.MainMenuActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
 
             <intent-filter>
@@ -78,6 +79,7 @@
         <activity
             android:name=".presentation.ui.activities.investigation.InvestigationActivity"
             android:theme="@style/NonColorblind.Base"
+            android:windowSoftInputMode="adjustResize"
             android:configChanges="locale|orientation">
         </activity>
 

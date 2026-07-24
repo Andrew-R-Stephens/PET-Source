@@ -13,6 +13,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -105,6 +107,8 @@ class PETActivity : AppCompatActivity(),
                     Box(
                         modifier = Modifier
                             .background(LocalPalette.current.surface)
+                            .navigationBarsPadding()
+                            .imePadding()
                     ) {
                         RootNavigation()
                     }

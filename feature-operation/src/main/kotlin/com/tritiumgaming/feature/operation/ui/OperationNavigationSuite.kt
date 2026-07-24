@@ -3,9 +3,12 @@ package com.tritiumgaming.feature.operation.ui
 import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.DrawerState
@@ -43,6 +46,7 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun OperationNavigationBar(
     navController: NavHostController = rememberNavController(),
@@ -50,6 +54,8 @@ fun OperationNavigationBar(
 ) {
     val scope = rememberCoroutineScope()
     val rememberDrawerState = rememberDrawerState(DrawerValue.Closed)
+
+    val isKeyboardVisible = WindowInsets.isImeVisible
 
     val destinations = listOf(
         Destination.INVESTIGATION,
@@ -73,7 +79,7 @@ fun OperationNavigationBar(
     Scaffold(
         containerColor = LocalPalette.current.surface,
         bottomBar = {
-            if (bottomNavigationBarEnabled) {
+            if (bottomNavigationBarEnabled && !isKeyboardVisible) {
                 OperationNavigationBottomBar(
                     modifier = Modifier
                         .fillMaxWidth(),

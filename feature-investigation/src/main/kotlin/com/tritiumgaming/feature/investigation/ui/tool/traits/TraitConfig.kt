@@ -20,6 +20,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LocalTextStyle
@@ -89,7 +90,8 @@ internal fun TraitConfig(
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(8.dp)
+                    .verticalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
