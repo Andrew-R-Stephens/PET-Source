@@ -102,6 +102,10 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.androidx.navigation.compose)
 
+                // WEARABLE
+                implementation(libs.android.playServices.wearable)
+                implementation(libs.jetbrains.kotlinx.coroutines.play.services)
+
                 // GOOGLE FIREBASE FIRESTORE
                 implementation(project.dependencies.platform(libs.firebase.bom))
                 // GOOGLE FIREBASE AUTH

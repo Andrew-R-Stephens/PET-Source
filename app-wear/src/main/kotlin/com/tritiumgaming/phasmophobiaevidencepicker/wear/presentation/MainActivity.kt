@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun WearApp(viewModel: WearableViewModel = viewModel()) {
+fun WearApp(viewModel: WearableViewModel = viewModel(factory = WearableViewModel.Factory)) {
     val uiState by viewModel.uiState.collectAsState()
     val listState = rememberScalingLazyListState()
 

@@ -132,6 +132,11 @@ import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatu
 import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
+import com.tritiumgaming.shared.data.wearable.repository.WearableRepository
+import com.tritiumgaming.shared.data.wearable.repository.WearableRepositoryImpl
+import com.tritiumgaming.shared.data.wearable.usecase.PushOperationDataToWearableUseCase
+import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
+import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -524,6 +529,20 @@ class CoreContainer(
             localSource = missionLocalDataSource
         )
     }
+
+    private val wearableRepository: WearableRepository by lazy {
+        WearableRepositoryImpl(applicationContext)
+    }
+
+    val pushOperationDataToWearableUseCase = PushOperationDataToWearableUseCase(
+        repository = wearableRepository
+    )
+    val sendWearableToggleMessageUseCase = SendWearableToggleMessageUseCase(
+        repository = wearableRepository
+    )
+    val observeWearableOperationDataUseCase = ObserveWearableOperationDataUseCase(
+        repository = wearableRepository
+    )
 
     val investigationUseCaseBundle = InvestigationUseCaseBundle(
         getOperationStateUseCase = GetOperationStateUseCase(

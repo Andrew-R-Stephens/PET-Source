@@ -38,6 +38,13 @@ import com.tritiumgaming.feature.start.app.container.StartContainer
 import com.tritiumgaming.feature.start.app.container.StartContainerProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
+import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
+import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 
@@ -240,6 +247,25 @@ class PETApplication : Application(),
             updateCustomDifficultyUseCase = coreContainer.updateCustomDifficultyUseCase,
         )
 
+        initWearableSync()
+    }
+
+    private fun initWearableSync() {
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+        scope.launch {
+            coreContainer.investigationUseCaseBundle.getOperationStateUseCase().collectLatest { data ->
+                val wearableData = WearableOperationData(
+                    mapName = data.map.name.name,
+                    difficultyName = data.difficulty.title.name,
+                    setupTimeRemaining = data.phase.maxFlashTime - data.phase.elapsedFlashTime,
+                    sanityLevel = data.sanity.sanityLevel,
+                    evidenceStates = data.evidenceStates.map {
+                        WearableEvidenceState(it.evidence.id.name, it.state.name, it.enabled)
+                    }
+                )
+                coreContainer.pushOperationDataToWearableUseCase(wearableData)
+            }
+        }
     }
 
     override fun provideAppContainer(): AppContainer = appContainer
