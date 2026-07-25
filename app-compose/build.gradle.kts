@@ -259,6 +259,9 @@ dependencies {
     implementation(libs.coilKt.gif)
 
     implementation(libs.androidx.ui.graphics)
+    implementation(libs.android.playServices.wearable)
+    implementation(libs.jetbrains.kotlinx.serialization.json)
+    implementation(libs.jetbrains.kotlinx.coroutines.play.services)
 
     /*
         ----- END OF COMPOSE -----

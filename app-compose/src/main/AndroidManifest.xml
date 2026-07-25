@@ -61,6 +61,18 @@
         <meta-data android:name="google_analytics_default_allow_ad_user_data" android:value="eu_consent_policy" />
         <meta-data android:name="google_analytics_default_allow_ad_personalization_signals" android:value="eu_consent_policy" />
 
+        <service
+            android:name="com.tritiumgaming.phasmophobiaevidencepicker.core.ui.wearable.WearableSyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
+                <action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
+                <data android:scheme="wear" android:host="*" android:pathPrefix="/operation_state" />
+                <data android:scheme="wear" android:host="*" android:pathPrefix="/evidence_toggle" />
+            </intent-filter>
+        </service>
+
         <!--
             Activities
         -->

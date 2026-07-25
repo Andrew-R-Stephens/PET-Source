@@ -83,7 +83,7 @@ import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferences
 
 class InvestigationContainer(
     applicationContext: Context,
-    internal val investigationUseCaseBundle: InvestigationUseCaseBundle,
+    val investigationUseCaseBundle: InvestigationUseCaseBundle,
     private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase,
     internal val getCurrentChallengeUseCase: GetCurrentChallengeUseCase,
     internal val getCustomDifficultiesUseCase: GetCustomDifficultiesUseCase

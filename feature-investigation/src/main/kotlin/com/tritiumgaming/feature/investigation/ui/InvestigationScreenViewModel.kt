@@ -110,6 +110,7 @@ import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
 import com.tritiumgaming.shared.data.operation.model.WeightOption
 import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
+import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationEvidenceUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
 import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
@@ -182,6 +183,7 @@ class InvestigationScreenViewModel private constructor(
     private val updateOperationPhaseUseCase: UpdateOperationPhaseUseCase = investigationUseCaseBundle.updateOperationPhaseUseCase
     private val updateOperationHuntWarningUseCase: UpdateOperationHuntWarningUseCase = investigationUseCaseBundle.updateOperationHuntWarningUseCase
     private val updateOperationGhostDetailsUseCase: UpdateOperationGhostDetailsUseCase = investigationUseCaseBundle.updateOperationGhostDetailsUseCase
+    private val updateOperationEvidenceUseCase: UpdateOperationEvidenceUseCase = investigationUseCaseBundle.updateOperationEvidenceUseCase
     private val updateOperationMissionDataUseCase: UpdateOperationMissionDataUseCase = investigationUseCaseBundle.updateOperationMissionDataUseCase
     private val updateOperationOverridesUseCase: UpdateOperationOverridesUseCase = investigationUseCaseBundle.updateOperationOverridesUseCase
     private val updateOperationWeatherUseCase: UpdateOperationWeatherUseCase = investigationUseCaseBundle.updateOperationWeatherUseCase
@@ -1749,11 +1751,13 @@ class InvestigationScreenViewModel private constructor(
         evidenceValidationType: EvidenceValidationType
     ) {
         _evidenceStates.update {
-            it.map { e ->
+            val newList = it.map { e ->
                 if (evidence.id == e.evidence.id)
                     e.copy(state = evidenceValidationType)
                 else e
             }
+            updateOperationEvidenceUseCase(newList)
+            newList
         }
     }
 
@@ -2255,6 +2259,16 @@ class InvestigationScreenViewModel private constructor(
         // Handled by individual setters or other observers
     }
 
+    private fun observeEvidenceStates() {
+        _operationState.map { it.evidenceStates }
+            .distinctUntilChanged()
+            .onEach { states ->
+                if (states.isNotEmpty()) {
+                    _evidenceStates.update { states }
+                }
+            }.launchIn(viewModelScope)
+    }
+
     init {
         updateMap()
         updateDifficulty()
@@ -2263,6 +2277,7 @@ class InvestigationScreenViewModel private constructor(
         observeCustomDifficulty()
         observeDifficulty()
         observeConfigOverrides()
+        observeEvidenceStates()
         observePhase()
         observeWeather()
         observeHuntWarning()

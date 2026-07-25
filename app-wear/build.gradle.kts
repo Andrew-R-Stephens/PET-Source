@@ -57,10 +57,13 @@ dependencies {
     implementation(libs.androidx.wear.compose.material)
     implementation(libs.androidx.wear.compose.navigation)
     implementation(libs.android.playServices.wearable)
+    implementation(libs.jetbrains.kotlinx.serialization.json)
+    implementation(libs.jetbrains.kotlinx.coroutines.play.services)
     
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
+    implementation(project(":shared"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 }

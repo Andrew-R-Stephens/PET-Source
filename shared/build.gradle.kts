@@ -63,6 +63,7 @@ kotlin {
             dependencies {
                 implementation(libs.jetbrains.kotlin.stdlib)
                 implementation(libs.jetbrains.kotlinx.coroutines)
+                implementation(libs.jetbrains.kotlinx.serialization.json)
                 // Compose
                 implementation(libs.jetbrains.compose.runtime)
                 implementation(libs.jetbrains.compose.foundation)
