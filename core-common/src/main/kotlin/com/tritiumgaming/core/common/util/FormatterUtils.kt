@@ -84,4 +84,8 @@ object FormatterUtils {
         )
     }
 
+    fun Float.toDecimalString(): String {
+        val format = "%.1f"
+        return String.format(Locale.ROOT, format, this)
+    }
 }

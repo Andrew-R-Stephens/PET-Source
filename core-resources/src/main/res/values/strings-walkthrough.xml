@@ -69,6 +69,7 @@
     <string name="walkthrough_desc_footstep_modifiers">See how the current investigation settings, such as Weather or ghost speed modifiers, are affecting the ghost\'s movement. Be sure to configure the Operation to get the most accurate readings!</string>
     <string name="walkthrough_subtitle_footstep_apply">Apply Measurement</string>
     <string name="walkthrough_desc_footstep_apply">Choose which measurement (Instant, Average, or Weighted) to apply to your investigation to help narrow down the ghost type.</string>
+    <string name="walkthrough_desc_footstep_apply_bpm" translatable="false">This is the BPM that\'s being applied.</string>
     <string name="walkthrough_desc_footstep_apply_instant">Instant takes the latest BPM.</string>
     <string name="walkthrough_desc_footstep_apply_average">Average takes the average of all BPMs within the Sample interval.</string>
     <string name="walkthrough_desc_footstep_apply_weighted">Weighted takes the average of all averaged BPMs within the Sample interval. This is best used with a smaller Sample interval.</string>

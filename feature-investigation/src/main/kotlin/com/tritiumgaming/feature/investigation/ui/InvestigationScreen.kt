@@ -607,7 +607,7 @@ fun InvestigationSoloScreen(
                     WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_timers_hunt_duration,
                         descriptionRes = R.string.walkthrough_desc_timers_hunt_duration,
-                        targetIds = listOf("timer_hunt_duration")
+                        targetIds = listOf("timer_hunt_duration", "timer_cursed")
                     ),
                     WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_timers_hunt_cooldown,
@@ -628,7 +628,12 @@ fun InvestigationSoloScreen(
                         subtitleRes = R.string.walkthrough_subtitle_timers_fingerprint,
                         descriptionRes = R.string.walkthrough_desc_timers_fingerprint,
                         targetIds = listOf("timer_fingerprint")
-                    )
+                    ),
+                    WalkthroughPage(
+                        subtitleRes = R.string.walkthrough_subtitle_timers_cursed,
+                        descriptionRes = R.string.walkthrough_desc_timers_cursed,
+                        targetIds = listOf("timer_cursed")
+                    ),
                 ),
                 titleRes = R.string.walkthrough_title_timers
             ),
@@ -648,7 +653,7 @@ fun InvestigationSoloScreen(
                     WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_footstep_apply,
                         descriptionRes = R.string.walkthrough_desc_footstep_apply,
-                        targetIds = listOf("footstep_apply")
+                        targetIds = listOf("footstep_apply", "footstep_apply_bpm")
                     ),
                     WalkthroughPage(
                         subtitleRes = R.string.walkthrough_subtitle_footstep_visualizer,

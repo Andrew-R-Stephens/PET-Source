@@ -125,7 +125,16 @@ fun TimerTools(
             ) {
                 Button(
                     modifier = Modifier
-                        .size(32.dp),
+                        .size(32.dp)
+                        .then(
+                            if(walkthroughState != null)
+                                Modifier.walkthroughTarget(
+                                    walkthroughState,
+                                    "timer_cursed",
+                                    RoundedCornerShape(8.dp)
+                                )
+                            else Modifier
+                        ),
                     onClick = onToggleCursed,
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
