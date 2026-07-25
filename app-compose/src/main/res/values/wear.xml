@@ -1,0 +1,5 @@
+<resources>
+    <string-array name="android_wear_capabilities">
+        <item>phasmophobia_phone_app</item>
+    </string-array>
+</resources>

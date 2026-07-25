@@ -26,7 +26,8 @@ rootProject.name = "PhasmophobiaEvidencePicker"
 
 include(
     ":app-compose",
-    ":app-legacy"
+    ":app-legacy",
+    ":app-wear"
 )
 
 include(
