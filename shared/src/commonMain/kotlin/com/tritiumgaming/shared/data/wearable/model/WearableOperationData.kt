@@ -1,5 +1,7 @@
 package com.tritiumgaming.shared.data.wearable.model
 
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -13,7 +15,7 @@ data class WearableOperationData(
 
 @Serializable
 data class WearableEvidenceState(
-    val id: String, // EvidenceIdentifier.name
-    val state: String, // EvidenceValidationType.name
+    val type: EvidenceType, // EvidenceIdentifier.name
+    val state: EvidenceValidationType, // EvidenceValidationType.name
     val enabled: Boolean = true
 )

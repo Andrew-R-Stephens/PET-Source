@@ -513,3 +513,29 @@ fun EquipmentIdentifier.toEquipmentTitle(): EquipmentTitle =
         EquipmentIdentifier.PARABOLIC_MICROPHONE -> EquipmentTitle.PARABOLIC_MICROPHONE
         EquipmentIdentifier.HEAD_GEAR -> EquipmentTitle.HEAD_GEAR
     }
+
+fun EquipmentIdentifier.toEquipmentIcon(): EquipmentResources.EquipmentIcon =
+    when (this) {
+        EquipmentIdentifier.DOTS -> EquipmentResources.EquipmentIcon.DOTS
+        EquipmentIdentifier.EMF -> EquipmentResources.EquipmentIcon.EMF
+        EquipmentIdentifier.FLASHLIGHT -> EquipmentResources.EquipmentIcon.FLASHLIGHT
+        EquipmentIdentifier.PHOTO_CAMERA -> EquipmentResources.EquipmentIcon.PHOTO_CAMERA
+        EquipmentIdentifier.IGNITER -> EquipmentResources.EquipmentIcon.IGNITER
+        EquipmentIdentifier.FIRELIGHT -> EquipmentResources.EquipmentIcon.FIRELIGHT
+        EquipmentIdentifier.UV_LIGHT -> EquipmentResources.EquipmentIcon.UV_LIGHT
+        EquipmentIdentifier.CRUCIFIX -> EquipmentResources.EquipmentIcon.CRUCIFIX
+        EquipmentIdentifier.VIDEO_CAMERA -> EquipmentResources.EquipmentIcon.VIDEO_CAMERA
+        EquipmentIdentifier.SPIRIT_BOX -> EquipmentResources.EquipmentIcon.SPIRIT_BOX
+        EquipmentIdentifier.THERMOMETER -> EquipmentResources.EquipmentIcon.THERMOMETER
+        EquipmentIdentifier.SALT -> EquipmentResources.EquipmentIcon.SALT
+        EquipmentIdentifier.INCENSE -> EquipmentResources.EquipmentIcon.INCENSE
+        EquipmentIdentifier.TRIPOD -> EquipmentResources.EquipmentIcon.TRIPOD
+        EquipmentIdentifier.MOTION_SENSOR -> EquipmentResources.EquipmentIcon.MOTION_SENSOR
+        EquipmentIdentifier.SOUND_RECORDER -> EquipmentResources.EquipmentIcon.SOUND_RECORDER
+        EquipmentIdentifier.SOUND_SENSOR -> EquipmentResources.EquipmentIcon.SOUND_SENSOR
+        EquipmentIdentifier.SANITY_MEDICATION -> EquipmentResources.EquipmentIcon.SANITY_MEDICATION
+        EquipmentIdentifier.GHOST_WRITING_BOOK -> EquipmentResources.EquipmentIcon.GHOST_WRITING_BOOK
+        EquipmentIdentifier.PARABOLIC_MICROPHONE -> EquipmentResources.EquipmentIcon.PARABOLIC_MICROPHONE
+        EquipmentIdentifier.HEAD_GEAR -> EquipmentResources.EquipmentIcon.HEAD_GEAR
+
+    }

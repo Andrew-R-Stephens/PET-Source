@@ -6,6 +6,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.WearContainerProvider
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
 import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
 import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
@@ -26,15 +29,14 @@ class WearableViewModel(
             initialValue = WearableOperationData()
         )
 
-    fun toggleEvidence(evidenceId: String, currentState: String) {
-        val nextState = when (currentState) {
-            "NEUTRAL" -> "POSITIVE"
-            "POSITIVE" -> "NEGATIVE"
-            else -> "NEUTRAL"
-        }
+    fun toggleEvidence(
+        evidenceId: EvidenceType,
+        currentState: EvidenceValidationType
+    ) {
+        val ordinal = (currentState.ordinal + 1) % EvidenceValidationType.entries.size
         
         viewModelScope.launch {
-            sendWearableToggleMessageUseCase(evidenceId, nextState)
+            sendWearableToggleMessageUseCase(evidenceId, EvidenceValidationType.entries[ordinal])
         }
     }
 

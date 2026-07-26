@@ -260,7 +260,7 @@ class PETApplication : Application(),
                     setupTimeRemaining = data.phase.maxFlashTime - data.phase.elapsedFlashTime,
                     sanityLevel = data.sanity.sanityLevel,
                     evidenceStates = data.evidenceStates.map {
-                        WearableEvidenceState(it.evidence.id.name, it.state.name, it.enabled)
+                        WearableEvidenceState(it.evidence, it.state, it.enabled)
                     }
                 )
                 coreContainer.pushOperationDataToWearableUseCase(wearableData)

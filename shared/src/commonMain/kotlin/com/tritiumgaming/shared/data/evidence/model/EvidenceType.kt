@@ -3,10 +3,12 @@ package com.tritiumgaming.shared.data.evidence.model
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle
+import kotlinx.serialization.Serializable
 
 /**
  * Evidence enums
  */
+@Serializable
 data class EvidenceType(
     val id: EvidenceIdentifier,
     val name: EvidenceTitle,

@@ -8,6 +8,9 @@ import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.PutDataMapRequest
 import com.google.android.gms.wearable.Wearable
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.wearable.WearablePaths
 import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
 import kotlinx.coroutines.channels.awaitClose
@@ -79,7 +82,10 @@ class WearableRepositoryImpl(private val context: Context) : WearableRepository 
         }
     }
 
-    override suspend fun sendToggleMessage(evidenceId: String, newState: String) {
+    override suspend fun sendToggleMessage(
+        evidenceId: EvidenceType,
+        newState: EvidenceValidationType
+    ) {
         val message = "$evidenceId:$newState"
         try {
             val nodes = nodeClient.connectedNodes.await()
