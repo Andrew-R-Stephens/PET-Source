@@ -594,34 +594,12 @@ class CoreContainer(
         getOperationStateUseCase = GetOperationStateUseCase(
             repository = operationRepository
         ),
-        updateOperationMapUseCase = UpdateOperationMapUseCase(
-            repository = operationRepository
-        ),
-        updateOperationDifficultyUseCase = UpdateOperationDifficultyUseCase(
-            repository = operationRepository
-        ),
-        updateOperationSanityUseCase = UpdateOperationSanityUseCase(
-            repository = operationRepository
-        ),
-        updateOperationPhaseUseCase = UpdateOperationPhaseUseCase(
-            repository = operationRepository
-        ),
-        updateOperationHuntWarningUseCase = UpdateOperationHuntWarningUseCase(
-            repository = operationRepository
-        ),
-        updateOperationEvidenceUseCase = UpdateOperationEvidenceUseCase(
-            repository = operationRepository
-        ),
         updateOperationGhostDetailsUseCase = UpdateOperationGhostDetailsUseCase(
             repository = operationRepository
         ),
         updateOperationMissionDataUseCase = UpdateOperationMissionDataUseCase(
             repository = operationRepository
         ),
-        resetOperationUseCase = ResetOperationUseCase(
-            repository = operationRepository
-        ),
-        getCustomDifficultiesUseCase = getCustomDifficultiesUseCase
     )
 
 }

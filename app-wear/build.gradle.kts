@@ -55,6 +55,8 @@ dependencies {
     // Wear OS specific
     implementation(libs.androidx.wear.compose.foundation)
     implementation(libs.androidx.wear.compose.material)
+    implementation(libs.androidx.wear.compose.material3)
+    implementation(libs.androidx.wear.compose.tooling)
     implementation(libs.androidx.wear.compose.navigation)
     implementation(libs.androidx.wear.tooling.preview)
     implementation(libs.android.playServices.wearable)
@@ -65,6 +67,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
     implementation(project(":shared"))
+    implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 }

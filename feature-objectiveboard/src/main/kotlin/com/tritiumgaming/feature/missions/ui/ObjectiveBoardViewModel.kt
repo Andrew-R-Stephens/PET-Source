@@ -36,8 +36,6 @@ import kotlinx.coroutines.flow.stateIn
 class ObjectiveBoardViewModel(
     private val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
     private val fetchAllFirstNamesUseCase: FetchAllFirstNamesUseCase,
-    private val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase,
-    private val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
     private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
     private val missionsUseCaseBundle: MissionsUseCaseBundle,
     getOperationStateUseCase: GetOperationStateUseCase = missionsUseCaseBundle.getOperationStateUseCase,
@@ -220,16 +218,12 @@ class ObjectiveBoardViewModel(
 
                 val fetchAllMissionsUseCase: FetchAllMissionsUseCase = container.fetchAllMissionsUseCase
                 val fetchAllFirstNamesUseCase: FetchAllFirstNamesUseCase = container.fetchAllFirstNamesUseCase
-                val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase = container.fetchAllMaleNamesUseCase
-                val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase = container.fetchAllFemaleNamesUseCase
                 val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase = container.fetchAllSurnamesUseCase
                 val missionsStateUseCaseBundle: MissionsUseCaseBundle = container.missionsUseCaseBundle
 
                 ObjectiveBoardViewModel(
                     fetchAllMissionsUseCase = fetchAllMissionsUseCase,
                     fetchAllFirstNamesUseCase = fetchAllFirstNamesUseCase,
-                    fetchAllMaleNamesUseCase = fetchAllMaleNamesUseCase,
-                    fetchAllFemaleNamesUseCase = fetchAllFemaleNamesUseCase,
                     fetchAllSurnamesUseCase = fetchAllSurnamesUseCase,
                     missionsUseCaseBundle = missionsStateUseCaseBundle
                 )

@@ -1,26 +1,33 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.wear.presentation
 
 import android.os.Bundle
+import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathMeasure
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,17 +38,22 @@ import androidx.wear.compose.foundation.lazy.items
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.*
 import androidx.wear.tooling.preview.devices.WearDevices
+import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.presentation.viewmodel.WearableViewModel
 import com.tritiumgaming.shared.data.codex.mappers.toEquipmentIcon
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
 import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
+import kotlin.collections.listOf
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +65,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun WearApp(viewModel: WearableViewModel = viewModel(factory = WearableViewModel.Factory)) {
+fun WearApp(
+    viewModel: WearableViewModel = viewModel(factory = WearableViewModel.Factory)) {
     val uiState by viewModel.uiState.collectAsState()
     
     WearAppContent(
@@ -75,56 +88,73 @@ fun WearAppContent(
             vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
             positionIndicator = { PositionIndicator(scalingLazyListState = listState) }
         ) {
-            val isRound = LocalConfiguration.current.isScreenRound
-            val horizontalPadding = 12.dp
-            val verticalPadding = if (isRound) 24.dp else 12.dp
 
-            Box(modifier = Modifier.fillMaxSize()) {
+            Box(
+                modifier = Modifier.fillMaxSize()
+            ) {
                 ScalingLazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(12.dp),
                     state = listState,
-                    contentPadding = PaddingValues(
-                        start = horizontalPadding,
-                        end = horizontalPadding,
-                        top = verticalPadding,
-                        bottom = verticalPadding
-                    ),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     item {
-                        Text(
-                            modifier = Modifier.padding(vertical = 4.dp),
-                            text = "Sanity: ${(uiState.sanityLevel * 100).toInt()}%", 
-                            fontSize = 14.sp,
-                            textAlign = TextAlign.Center
+                        Chip(
+                            modifier = Modifier
+                                .width(IntrinsicSize.Max)
+                                .wrapContentHeight()
+                                .align(Alignment.Center),
+                            onClick = {},
+                            enabled = true,
+                            colors = ChipDefaults.chipColors(
+                                backgroundColor = LocalPalette.current.surfaceContainer,
+                            ),
+                            border = ChipDefaults.chipBorder(),
+                            contentPadding = PaddingValues(4.dp),
+                            shape = CircleShape,
+                            role = Role.Image,
+                            content = {
+                                Text(
+                                    modifier = Modifier
+                                        .wrapContentSize(),
+                                    text = uiState.sanityLevel.toPercentageString(),
+                                    style = LocalTypography.current.tertiary.bold,
+                                    fontSize = 12.sp,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
                         )
                     }
 
                     item {
-                        Row(
+                        LazyRow(
                             modifier = Modifier
                                 .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            uiState.evidenceStates.forEach {
-                                EvidenceItem(it) {
-                                    onToggleEvidence(it.type, it.state)
+                            items(
+                                items = uiState.evidenceStates,
+                                key = { it.type.id }
+                            ) { evidence ->
+                                EvidenceItem(
+                                    modifier = Modifier
+                                        .size(36.dp),
+                                    evidence = evidence
+                                ) {
+                                    onToggleEvidence(evidence.type, evidence.state)
                                 }
                             }
                         }
                     }
 
-                    items(uiState.evidenceStates) { evidence ->
-                        EvidenceItem(evidence) {
-                            onToggleEvidence(evidence.type, evidence.state)
-                        }
-                    }
                 }
 
                 SanityBorder(
                     sanityLevel = uiState.sanityLevel,
-                    color = LocalPalette.current.primary
+                    color = LocalPalette.current.surface,
+                    onColor = LocalPalette.current.primary
                 )
             }
         }
@@ -133,13 +163,12 @@ fun WearAppContent(
 
 @Composable
 fun EvidenceItem(
+    modifier: Modifier = Modifier,
     evidence: WearableEvidenceState,
     onClick: () -> Unit = {}
 ) {
     Chip(
-        modifier = Modifier
-            .size(36.dp)
-            .padding(4.dp),
+        modifier = modifier,
         onClick = onClick,
         enabled = evidence.enabled,
         colors = ChipDefaults.chipColors(
@@ -150,14 +179,16 @@ fun EvidenceItem(
         shape = CircleShape,
         content = {
             Image(
-                modifier = Modifier.size(24.dp),
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(4.dp),
                 painter = painterResource(
-                    evidence.type.id.toEquipmentIdentifier().toEquipmentIcon().toDrawableResource()),
+                    evidence.type.icon.toDrawableResource()),
                 colorFilter = ColorFilter.tint(
                     when(evidence.state) {
                         EvidenceValidationType.POSITIVE -> LocalPalette.current.tertiary
-                        EvidenceValidationType.NEGATIVE -> LocalPalette.current.onSurface
-                        EvidenceValidationType.NEUTRAL -> LocalPalette.current.primary
+                        EvidenceValidationType.NEUTRAL -> LocalPalette.current.onSurface
+                        EvidenceValidationType.NEGATIVE -> LocalPalette.current.primary
                     }
                 ),
                 contentDescription = "Evidence Icon"
@@ -167,9 +198,10 @@ fun EvidenceItem(
 }
 
 @Composable
-fun SanityBorder(
+private fun SanityBorder(
     sanityLevel: Float,
-    color: Color
+    color: Color,
+    onColor: Color
 ) {
     val isRound = LocalConfiguration.current.isScreenRound
     val strokeWidth = 6.dp
@@ -182,9 +214,24 @@ fun SanityBorder(
         val w = size.width
         val h = size.height
 
+        val bgSw = ins + sw
+        val bgOffset = bgSw / 2
+
         if (isRound) {
+            // Background ring extending to edge
             drawArc(
                 color = color,
+                startAngle = 0f,
+                sweepAngle = 360f,
+                useCenter = false,
+                style = Stroke(width = bgSw),
+                size = Size(w - bgSw, h - bgSw),
+                topLeft = Offset(bgOffset, bgOffset)
+            )
+
+            // Progress arc
+            drawArc(
+                color = onColor,
                 startAngle = -90f,
                 sweepAngle = 360f * sanityLevel,
                 useCenter = false,
@@ -193,48 +240,44 @@ fun SanityBorder(
                 topLeft = Offset(totalOffset, totalOffset)
             )
         } else {
+            // Background rect extending to edge
+            drawRect(
+                color = color,
+                topLeft = Offset(bgOffset, bgOffset),
+                size = Size(w - bgSw, h - bgSw),
+                style = Stroke(width = bgSw)
+            )
+
             // Square border logic
             val left = totalOffset
             val right = w - totalOffset
             val top = totalOffset
             val bottom = h - totalOffset
-            
-            val totalLen = (right - left) * 2 + (bottom - top) * 2
-            var currentLen = totalLen * sanityLevel
-            
-            val topHalf = (right - left) / 2
-            val rightSide = (bottom - top)
-            val bottomSide = (right - left)
-            val leftSide = (bottom - top)
-            
-            // Segment 1: Top middle to top right
-            val s1 = minOf(currentLen, topHalf)
-            drawLine(color, Offset(w / 2, top), Offset(w / 2 + s1, top), sw, cap = StrokeCap.Round)
-            currentLen -= s1
-            
-            if (currentLen > 0) {
-                // Segment 2: Top right to bottom right
-                val s2 = minOf(currentLen, rightSide)
-                drawLine(color, Offset(right, top), Offset(right, top + s2), sw, cap = StrokeCap.Round)
-                currentLen -= s2
+
+            val fullPath = Path().apply {
+                moveTo(w / 2f, top)
+                lineTo(right, top)
+                lineTo(right, bottom)
+                lineTo(left, bottom)
+                lineTo(left, top)
+                lineTo(w / 2f, top)
             }
-            if (currentLen > 0) {
-                // Segment 3: Bottom right to bottom left
-                val s3 = minOf(currentLen, bottomSide)
-                drawLine(color, Offset(right, bottom), Offset(right - s3, bottom), sw, cap = StrokeCap.Round)
-                currentLen -= s3
-            }
-            if (currentLen > 0) {
-                // Segment 4: Bottom left to top left
-                val s4 = minOf(currentLen, leftSide)
-                drawLine(color, Offset(left, bottom), Offset(left, bottom - s4), sw, cap = StrokeCap.Round)
-                currentLen -= s4
-            }
-            if (currentLen > 0) {
-                // Segment 5: Top left to top middle
-                val s5 = minOf(currentLen, topHalf)
-                drawLine(color, Offset(left, top), Offset(left + s5, top), sw, cap = StrokeCap.Round)
-            }
+
+            val pathMeasure = PathMeasure()
+            pathMeasure.setPath(fullPath, false)
+            val segmentPath = Path()
+            pathMeasure.getSegment(
+                0f,
+                pathMeasure.length * sanityLevel,
+                segmentPath,
+                true
+            )
+
+            drawPath(
+                path = segmentPath,
+                color = onColor,
+                style = Stroke(width = sw, cap = StrokeCap.Round)
+            )
         }
     }
 }
@@ -266,11 +309,11 @@ fun WearAppPreviewRect() {
 @Composable
 fun WearAppPreviewContent() {
     val sampleData = WearableOperationData(
-        mapName = "Tanglewood Drive",
-        difficultyName = "Professional",
+        mapName = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
+        difficultyName = DifficultyResources.DifficultyType.AMATEUR,
+        setupTimeRemaining = 0L,
         sanityLevel = 0.75f,
-        evidenceStates =
-            listOf(
+        evidenceStates = listOf(
             WearableEvidenceState(
                 EvidenceType(
                     EvidenceResources.EvidenceIdentifier.EMF_5,
@@ -291,28 +334,7 @@ fun WearAppPreviewContent() {
                     EvidenceResources.EvidenceTitle.DOTS,
                     EvidenceResources.EvidenceIcon.DOTS
                 ),
-                EvidenceValidationType.POSITIVE, true),
-            WearableEvidenceState(
-                EvidenceType(
-                    EvidenceResources.EvidenceIdentifier.ULTRAVIOLET_LIGHT,
-                    EvidenceResources.EvidenceTitle.ULTRAVIOLET_LIGHT,
-                    EvidenceResources.EvidenceIcon.ULTRAVIOLET_LIGHT
-                ),
-                EvidenceValidationType.NEGATIVE, false),
-            WearableEvidenceState(
-                EvidenceType(
-                    EvidenceResources.EvidenceIdentifier.ULTRAVIOLET_LIGHT,
-                    EvidenceResources.EvidenceTitle.ULTRAVIOLET_LIGHT,
-                    EvidenceResources.EvidenceIcon.ULTRAVIOLET_LIGHT
-                ),
-                EvidenceValidationType.NEUTRAL, false),
-            WearableEvidenceState(
-                EvidenceType(
-                    EvidenceResources.EvidenceIdentifier.ULTRAVIOLET_LIGHT,
-                    EvidenceResources.EvidenceTitle.ULTRAVIOLET_LIGHT,
-                    EvidenceResources.EvidenceIcon.ULTRAVIOLET_LIGHT
-                ),
-                EvidenceValidationType.POSITIVE, false),
+                EvidenceValidationType.POSITIVE, true)
         )
     )
     WearAppContent(

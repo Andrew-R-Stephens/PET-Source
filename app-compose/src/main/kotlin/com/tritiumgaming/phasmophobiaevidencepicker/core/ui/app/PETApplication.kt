@@ -255,8 +255,8 @@ class PETApplication : Application(),
         scope.launch {
             coreContainer.investigationUseCaseBundle.getOperationStateUseCase().collectLatest { data ->
                 val wearableData = WearableOperationData(
-                    mapName = data.map.name.name,
-                    difficultyName = data.difficulty.title.name,
+                    mapName = data.map.name,
+                    difficultyName = data.difficulty.type,
                     setupTimeRemaining = data.phase.maxFlashTime - data.phase.elapsedFlashTime,
                     sanityLevel = data.sanity.sanityLevel,
                     evidenceStates = data.evidenceStates.map {
