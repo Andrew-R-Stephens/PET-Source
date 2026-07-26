@@ -95,7 +95,7 @@ fun WearAppContent(
                 ScalingLazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(12.dp),
+                        .padding(8.dp),
                     state = listState,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -204,8 +204,8 @@ private fun SanityBorder(
     onColor: Color
 ) {
     val isRound = LocalConfiguration.current.isScreenRound
-    val strokeWidth = 6.dp
-    val inset = 6.dp
+    val strokeWidth = 4.dp
+    val inset = 5.dp
 
     Canvas(modifier = Modifier.fillMaxSize()) {
         val sw = strokeWidth.toPx()
