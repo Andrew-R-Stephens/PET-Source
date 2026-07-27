@@ -147,6 +147,7 @@ import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
@@ -324,7 +325,8 @@ private fun InvestigationScreenPreview(
                         type = DifficultyType.CHALLENGE,
                         name = DifficultyTitle.CHALLENGE,
                         challengeTitle = ChallengeTitle.TORTOISE_AND_THE_HARE_TORTOISE
-                    )
+                    ),
+                    ghostGender = GhostName.Gender.MALE
                 ),
                 uiActions = InvestigationUiActions(),
                 walkthroughState = rememberWalkthroughState(emptyList()),
@@ -365,6 +367,7 @@ fun InvestigationSoloScreen(
     val huntGapTimerState by investigationViewModel.huntCooldownTimerUiState.collectAsStateWithLifecycle()
     val fingerprintTimerState by investigationViewModel.fingerprintTimerUiState.collectAsStateWithLifecycle()
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
+    val ghostGender by investigationViewModel.ghostGender.collectAsStateWithLifecycle()
 
     var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
 
@@ -392,7 +395,8 @@ fun InvestigationSoloScreen(
         huntDurationTimer = huntDurationTimerState,
         huntCooldownTimer = huntGapTimerState,
         fingerprintTimer = fingerprintTimerState,
-        bpmTool = bpmToolUiState
+        bpmTool = bpmToolUiState,
+        ghostGender = ghostGender
     )
 
     val uiActions = InvestigationUiActions(
@@ -709,6 +713,7 @@ private fun InvestigationContent(
     val difficultyOverrideUiState = uiState.difficultyOverrides
     val sanityUiState = uiState.playerSanity
     val evidenceListUiStates = uiState.evidenceList
+    val ghostUiState = uiState.ghostGender
 
     val traitFilterOptions = uiState.traitFilterOptions
     val traitSearchText = uiState.traitSearchText
@@ -1436,7 +1441,8 @@ private fun InvestigationContent(
             sanityLevel = sanityUiState.sanityLevel,
             weatherType = weatherUiState.weather,
             temperature = temperatureUiState.currentAsString,
-            fuseBoxFlag = fuseBoxFlag
+            fuseBoxFlag = fuseBoxFlag,
+            gender = ghostUiState
         )
     }
 
@@ -2471,6 +2477,7 @@ internal data class InvestigationUiState(
     val huntCooldownTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
     val fingerprintTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
     val bpmTool: BpmToolUiState = BpmToolUiState(),
+    val ghostGender: GhostName.Gender = GhostName.Gender.UNSPECIFIED
 )
 
 internal data class InvestigationUiActions(

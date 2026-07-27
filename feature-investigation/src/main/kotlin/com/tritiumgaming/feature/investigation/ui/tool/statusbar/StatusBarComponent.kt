@@ -44,6 +44,7 @@ import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
 import com.tritiumgaming.shared.data.phase.mappers.PhaseResources
 
@@ -55,7 +56,8 @@ internal fun OperationStatusBar(
     phaseType: PhaseResources.PhaseIdentifier,
     weatherType: Weather,
     temperature: String,
-    fuseBoxFlag: FuseBoxFlag
+    fuseBoxFlag: FuseBoxFlag,
+    gender: GhostName.Gender
 ) {
 
     FlowRow(
@@ -82,6 +84,34 @@ internal fun OperationStatusBar(
             WeatherStatusComponent(
                 weatherType = weatherType,
                 temperature = temperature
+            )
+        }
+
+        if(gender == GhostName.Gender.MALE) {
+            GenderStatusComponent()
+        }
+
+    }
+}
+
+@Composable
+private fun GenderStatusComponent() {
+    CommonTooltip(
+        tooltipText = stringResource(R.string.difficulty_setting_title_name)
+    ) { tooltipModifier ->
+        Surface(
+            modifier = tooltipModifier,
+            color = LocalPalette.current.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp),
+        ) {
+            Image(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .height(18.dp)
+                    .aspectRatio(1f),
+                painter = painterResource(R.drawable.ic_female_non),
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant)
             )
         }
     }
