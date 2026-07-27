@@ -24,7 +24,6 @@ import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +35,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
@@ -48,12 +48,18 @@ import com.tritiumgaming.core.ui.icon.impl.composite.TraitLikelyIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.TraitRejectIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.TraitUnlikelyIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
+import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
+import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 import com.tritiumgaming.shared.data.operation.model.EvidenceState
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType.NEGATIVE
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType.NEUTRAL
@@ -206,7 +212,7 @@ internal fun LazyItemScope.GhostListItem(
                                 modifier = Modifier
                                     .padding(4.dp)
                                     .size(16.dp),
-                                painter = painterResource(id = R.drawable.ic_gender_female),
+                                painter = painterResource(id = R.drawable.ic_gender_female_non),
                                 contentDescription = "Gender Icon",
                                 colorFilter = ColorFilter.tint(LocalPalette.current.primary)
                             )
@@ -450,6 +456,10 @@ private fun EvidenceIconRow(
             .sortedWith(compareBy({ stateMap[it.id] }, { it.id }))
             .forEach { evidence ->
                 EvidenceIcon(
+                    modifier = Modifier
+                        .aspectRatio(1f)
+                        .padding(2.dp)
+                        .weight(.25f, false),
                     evidenceState = evidenceState,
                     evidence = evidence,
                     isStrict = evidence.id in strictIdSet,
@@ -462,6 +472,7 @@ private fun EvidenceIconRow(
 
 @Composable
 private fun RowScope.EvidenceIcon(
+    modifier: Modifier,
     evidenceState: List<EvidenceState>,
     evidence: EvidenceType,
     ghostScore: Int,
@@ -471,10 +482,7 @@ private fun RowScope.EvidenceIcon(
     val evidenceRuling = evidenceState.find { it.evidence.id == evidence.id }?.state
 
     Box(
-        modifier = Modifier
-            .aspectRatio(1f)
-            .padding(2.dp)
-            .weight(.25f, false)
+        modifier = modifier
     ) {
         Image(
             contentScale = ContentScale.Fit,
@@ -547,3 +555,71 @@ internal data class GhostListUiItemActions(
     val onNameClick: () -> Unit = {},
     val onRequestToolTip: () -> Unit = {}
 )
+
+@Preview
+@Composable
+private fun EvidenceIconRowPreview() {
+    val ghost = Ghost(
+        id = GhostResources.GhostIdentifier.SPIRIT,
+        name = GhostResources.GhostTitle.SPIRIT,
+        icon = GhostResources.GhostIcon.SPIRIT,
+        info = GhostResources.GhostDescription.SPIRIT,
+        strengthData = GhostResources.GhostStrength.SPIRIT,
+        weaknessData = GhostResources.GhostWeakness.SPIRIT,
+        huntData = GhostResources.GhostHuntInfo.SPIRIT,
+        normalEvidence = listOf(
+            EvidenceResources.EvidenceIdentifier.EMF_5,
+            EvidenceResources.EvidenceIdentifier.SPIRIT_BOX,
+            EvidenceResources.EvidenceIdentifier.GHOST_WRITING
+        ),
+        strictEvidence = emptyList(),
+        speed = GhostResources.GhostSpeed.SPIRIT,
+        huntSanityBounds = GhostResources.HuntSanityBounds.SPIRIT,
+        huntCooldown = GhostResources.HuntCooldown.SPIRIT
+    )
+
+    val emf5 = EvidenceType(
+        EvidenceResources.EvidenceIdentifier.EMF_5,
+        EvidenceResources.EvidenceTitle.EMF_5,
+        EvidenceResources.EvidenceIcon.EMF_5
+    )
+    val spiritBox = EvidenceType(
+        EvidenceResources.EvidenceIdentifier.SPIRIT_BOX,
+        EvidenceResources.EvidenceTitle.SPIRIT_BOX,
+        EvidenceResources.EvidenceIcon.SPIRIT_BOX
+    )
+    val writing = EvidenceType(
+        EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
+        EvidenceResources.EvidenceTitle.GHOST_WRITING,
+        EvidenceResources.EvidenceIcon.GHOST_WRITING
+    )
+
+    val ghostEvidence = GhostEvidence(
+        ghost = ghost,
+        normalEvidenceList = listOf(emf5, spiritBox, writing),
+        strictEvidenceList = emptyList()
+    )
+
+    val ghostState = GhostState(
+        ghostEvidence = ghostEvidence,
+        score = 0
+    )
+
+    val evidenceStates = listOf(
+        EvidenceState(evidence = emf5, state = POSITIVE),
+        EvidenceState(evidence = spiritBox, state = NEUTRAL),
+        EvidenceState(evidence = writing, state = NEGATIVE)
+    )
+
+    LocalThemeProvider {
+        Surface(color = LocalPalette.current.surface) {
+            EvidenceIconRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(36.dp),
+                ghostState = ghostState,
+                evidenceState = evidenceStates
+            )
+        }
+    }
+}

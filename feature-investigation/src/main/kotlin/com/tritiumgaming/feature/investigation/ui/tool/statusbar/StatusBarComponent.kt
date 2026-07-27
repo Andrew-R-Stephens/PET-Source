@@ -109,7 +109,7 @@ private fun GenderStatusComponent() {
                     .padding(8.dp)
                     .height(18.dp)
                     .aspectRatio(1f),
-                painter = painterResource(R.drawable.ic_female_non),
+                painter = painterResource(R.drawable.ic_gender_female_non),
                 contentDescription = "",
                 colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant)
             )
