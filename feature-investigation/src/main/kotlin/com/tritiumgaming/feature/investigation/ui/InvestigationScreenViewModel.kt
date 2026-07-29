@@ -1082,6 +1082,14 @@ class InvestigationScreenViewModel private constructor(
     )
     val traitListUiState = _traitListUiState
 
+    val areTraitsApplied: StateFlow<Boolean> = _selectedTraits.map { traits ->
+        traits.any { it.validationType == TraitValidationType.CONFIRMED }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = false
+    )
+
     private val _temperatureUiState = temperatureState.map { temperatureState ->
         TemperatureUiState(
             range = temperatureState.range,

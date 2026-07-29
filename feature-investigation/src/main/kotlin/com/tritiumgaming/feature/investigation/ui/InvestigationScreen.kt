@@ -368,6 +368,7 @@ fun InvestigationSoloScreen(
     val fingerprintTimerState by investigationViewModel.fingerprintTimerUiState.collectAsStateWithLifecycle()
     val bpmToolUiState by investigationViewModel.bpmToolUiState.collectAsStateWithLifecycle()
     val ghostGender by investigationViewModel.ghostGender.collectAsStateWithLifecycle()
+    val areTraitsApplied by investigationViewModel.areTraitsApplied.collectAsStateWithLifecycle()
 
     var isSanityCollapsed by rememberSaveable { mutableStateOf(false) }
 
@@ -396,7 +397,8 @@ fun InvestigationSoloScreen(
         huntCooldownTimer = huntGapTimerState,
         fingerprintTimer = fingerprintTimerState,
         bpmTool = bpmToolUiState,
-        ghostGender = ghostGender
+        ghostGender = ghostGender,
+        areTraitsApplied = areTraitsApplied
     )
 
     val uiActions = InvestigationUiActions(
@@ -1442,7 +1444,14 @@ private fun InvestigationContent(
             weatherType = weatherUiState.weather,
             temperature = temperatureUiState.currentAsString,
             fuseBoxFlag = fuseBoxFlag,
-            gender = ghostUiState
+            gender = ghostUiState,
+            bpmIsApplied = bpmToolUiState.applyMeasurement,
+            appliedBpmValue = when (bpmToolUiState.measurementType) {
+                VisualizerMeasurementType.INSTANT -> bpmToolUiState.realtimeState.instant
+                VisualizerMeasurementType.AVERAGED -> bpmToolUiState.realtimeState.average
+                VisualizerMeasurementType.WEIGHTED -> bpmToolUiState.realtimeState.weightedAverage
+            }.toInt(),
+            areTraitsApplied = uiState.areTraitsApplied
         )
     }
 
@@ -2477,7 +2486,8 @@ internal data class InvestigationUiState(
     val huntCooldownTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
     val fingerprintTimer: NotchedProgressBarUiState = NotchedProgressBarUiState(),
     val bpmTool: BpmToolUiState = BpmToolUiState(),
-    val ghostGender: GhostName.Gender = GhostName.Gender.UNSPECIFIED
+    val ghostGender: GhostName.Gender = GhostName.Gender.UNSPECIFIED,
+    val areTraitsApplied: Boolean = false
 )
 
 internal data class InvestigationUiActions(

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
@@ -29,11 +30,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.common.util.FormatterUtils.toDecimalString
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
+import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
@@ -57,7 +62,10 @@ internal fun OperationStatusBar(
     weatherType: Weather,
     temperature: String,
     fuseBoxFlag: FuseBoxFlag,
-    gender: GhostName.Gender
+    gender: GhostName.Gender,
+    bpmIsApplied: Boolean = false,
+    appliedBpmValue: Int = 0,
+    areTraitsApplied: Boolean = false
 ) {
 
     FlowRow(
@@ -87,9 +95,19 @@ internal fun OperationStatusBar(
             )
         }
 
+        if (bpmIsApplied) {
+            BpmStatusComponent(
+                bpmValue = appliedBpmValue
+            )
+        }
+
         if(gender == GhostName.Gender.MALE) {
             GenderStatusComponent()
         }
+
+        /*if(areTraitsApplied) {
+            TraitsAppliedComponent()
+        }*/
 
     }
 }
@@ -112,6 +130,30 @@ private fun GenderStatusComponent() {
                 painter = painterResource(R.drawable.ic_gender_female_non),
                 contentDescription = "",
                 colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant)
+            )
+        }
+    }
+}
+
+@Composable
+private fun TraitsAppliedComponent() {
+    CommonTooltip(
+        tooltipText = stringResource(R.string.walkthrough_title_traits)
+    ) { tooltipModifier ->
+        Surface(
+            modifier = tooltipModifier,
+            color = LocalPalette.current.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp),
+        ) {
+            GeneticsIcon(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .height(18.dp)
+                    .aspectRatio(1f),
+                IconVectorColors(
+                    fillColor = LocalPalette.current.onSurfaceVariant,
+                    strokeColor = LocalPalette.current.onSurfaceVariant
+                )
             )
         }
     }
@@ -298,6 +340,64 @@ private fun WeatherStatusComponent(
                         maxLines = 1,
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun BpmStatusComponent(
+    bpmValue: Int
+) {
+    val density = LocalDensity.current
+    var textHeight by remember { mutableStateOf(16.dp) }
+
+    CommonTooltip(
+        tooltipText = "${stringResource(
+            R.string.footstep_label_apply)}: $bpmValue") { tooltipModifier ->
+        Surface(
+            modifier = tooltipModifier,
+            color = LocalPalette.current.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp),
+        ) {
+
+            Row(
+                modifier = Modifier
+                    .height(IntrinsicSize.Min)
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                FootprintsIcon(
+                    modifier = Modifier
+                        .heightIn(min = 18.dp)
+                        .height(textHeight)
+                        .aspectRatio(1f),
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface
+                    )
+                )
+
+                val text =
+                    if(bpmValue > 0) (bpmValue.div(60f)).toDecimalString()
+                    else "--"
+
+                Text(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .onGloballyPositioned {
+                            textHeight = with(density) { it.size.height.toDp() }
+                        },
+                    text = text,
+                    color = LocalPalette.current.onSurfaceVariant,
+                    style = LocalTypography.current.tertiary.regular.copy(
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        fontFeatureSettings = "tnum"
+                    ),
+                    maxLines = 1,
+                )
             }
         }
     }
