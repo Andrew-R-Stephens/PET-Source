@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.functions.FirebaseFunctions
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
 import com.tritiumgaming.data.account.repository.CredentialsRepositoryImpl
@@ -54,6 +55,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCre
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository
@@ -146,6 +148,7 @@ class CoreContainer(
     dataStore: DataStore<Preferences>,
     firestore: FirebaseFirestore,
     firebaseAuth: FirebaseAuth,
+    firebaseFunctions: FirebaseFunctions,
     localDatabase: LocalDatabase
 ) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -350,7 +353,8 @@ class CoreContainer(
         )
         val firestoreAccountDataSource = FirestoreAccountRemoteDataSource(
             firestore = firestore,
-            firebaseAuth = firebaseAuth
+            firebaseAuth = firebaseAuth,
+            firebaseFunctions = firebaseFunctions
         )
 
         FirestoreAccountRepositoryImpl(
@@ -373,6 +377,9 @@ class CoreContainer(
         repository = firestoreAccountRepository)
     val observeAccountUnlockedTypographiesUseCase = ObserveAccountUnlockedTypographiesUseCase(
             repository = firestoreAccountRepository
+    )
+    val purchaseMarketplaceItemUseCase = PurchaseMarketplaceItemUseCase(
+        repository = firestoreAccountRepository
     )
 
     /**

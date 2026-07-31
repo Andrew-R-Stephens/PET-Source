@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.Transaction
+import com.google.firebase.functions.FirebaseFunctions
 import com.tritiumgaming.data.account.dto.AccountCreditTransactionDto
 import com.tritiumgaming.data.account.dto.AccountCreditsDto
 import com.tritiumgaming.data.account.dto.AccountMarketAgreementDto
@@ -26,7 +27,8 @@ import kotlinx.coroutines.tasks.await
 
 class FirestoreAccountRemoteDataSource(
     private val firestore: FirebaseFirestore,
-    private val firebaseAuth: FirebaseAuth
+    private val firebaseAuth: FirebaseAuth,
+    private val firebaseFunctions: FirebaseFunctions
 ) {
     val currentAuthUser: FirebaseUser?
         get() = firebaseAuth.currentUser
@@ -228,6 +230,29 @@ class FirestoreAccountRemoteDataSource(
             Result.failure(e)
         }
 
+    }
+
+    suspend fun purchaseItemWithCredits(
+        itemId: String,
+        itemType: String
+    ): Result<Boolean> {
+        return try {
+            val data = hashMapOf(
+                "itemId" to itemId,
+                "itemType" to itemType
+            )
+
+            val result = firebaseFunctions
+                .getHttpsCallable("purchaseItemWithCredits")
+                .call(data)
+                .await()
+
+            val success = (result.data as? Map<*, *>)?.get("success") as? Boolean ?: false
+            Result.success(success)
+        } catch (e: Exception) {
+            Log.e("Firestore", "Error purchasing item with credits", e)
+            Result.failure(e)
+        }
     }
 
     private fun Transaction.getOrCreateCreditsDocument(

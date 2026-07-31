@@ -22,6 +22,7 @@ import com.tritiumgaming.shared.data.account.model.AccountTypography
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import kotlinx.coroutines.Job
@@ -40,6 +41,7 @@ class MarketplaceViewModel(
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
+    private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
     private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
 
@@ -90,8 +92,23 @@ class MarketplaceViewModel(
     private val _marketCatalogBillablesUiState = MutableStateFlow(MarketCatalogBillablesUiState())
     val marketCatalogBillablesUiState = _marketCatalogBillablesUiState.asStateFlow()
 
-    private fun initMarketCatalogBillables() {
+    fun initMarketCatalogBillables() {
         // TODO
+    }
+
+    fun purchaseItem(itemId: String, itemType: String) {
+        viewModelScope.launch {
+            try {
+                val result = purchaseMarketplaceItemUseCase(itemId, itemType)
+                if (result.isSuccess) {
+                    Log.d("MarketplaceViewModel", "Purchase successful!")
+                } else {
+                    Log.d("MarketplaceViewModel", "Purchase failed: ${result.exceptionOrNull()?.message}")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
@@ -231,6 +248,7 @@ class MarketplaceViewModel(
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val observeAccountUnlockedTypographiesUseCase = container.observeAccountUnlockedTypographiesUseCase
+                val purchaseMarketplaceItemUseCase = container.purchaseMarketplaceItemUseCase
                 val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
                 val getMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
 
@@ -242,6 +260,7 @@ class MarketplaceViewModel(
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,
                     observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase,
+                    purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                     getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
                     getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase
                 )

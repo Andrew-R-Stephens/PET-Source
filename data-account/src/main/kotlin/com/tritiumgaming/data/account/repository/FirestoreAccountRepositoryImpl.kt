@@ -64,6 +64,21 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
+    override suspend fun purchaseItemWithCredits(
+        itemId: String,
+        itemType: String
+    ): Result<Boolean> {
+
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
+            Exception("An authorized user is not currently logged in!"))
+
+        userRemoteDataSource.getUserDocumentRef(uid) ?: return Result.failure(
+            Exception("The authorized user's data could not be located!"))
+
+        return accountRemoteDataSource.purchaseItemWithCredits(itemId, itemType)
+
+    }
+
     override fun observeCredits(): Flow<Result<AccountCredits>> {
 
         val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(

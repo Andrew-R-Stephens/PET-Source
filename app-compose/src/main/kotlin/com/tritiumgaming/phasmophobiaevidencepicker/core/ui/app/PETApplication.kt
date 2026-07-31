@@ -10,6 +10,7 @@ import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.google.firebase.functions.functions
 import com.tritiumgaming.database.LocalDatabase
 import com.tritiumgaming.feature.about.app.container.AboutContainer
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
@@ -85,6 +86,9 @@ class PETApplication : Application(),
     private val firebaseAuth by lazy {
         Firebase.auth
     }
+    private val firebaseFunctions by lazy {
+        Firebase.functions
+    }
     private val analytics by lazy {
         Firebase.analytics
     }
@@ -116,6 +120,7 @@ class PETApplication : Application(),
             dataStore = dataStore,
             firestore = firestore,
             firebaseAuth = firebaseAuth,
+            firebaseFunctions = firebaseFunctions,
             localDatabase = localDatabase
         )
 
@@ -210,6 +215,7 @@ class PETApplication : Application(),
             observeAccountCreditsUseCase = coreContainer.observeAccountCreditsUseCase,
             observeAccountUnlockedPalettesUseCase = coreContainer.observeAccountUnlockedPalettesUseCase,
             observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase,
+            purchaseMarketplaceItemUseCase = coreContainer.purchaseMarketplaceItemUseCase,
             // Typographies
             getMarketCatalogTypographiesUseCase = coreContainer.getMarketCatalogTypographiesUseCase,
             getMarketCatalogTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,

@@ -17,6 +17,11 @@ interface FirestoreAccountRepository {
         creditTransaction: AccountCreditTransaction
     ): Result<AccountCredits>
 
+    suspend fun purchaseItemWithCredits(
+        itemId: String,
+        itemType: String
+    ): Result<Boolean>
+
     fun observeCredits(): Flow<Result<AccountCredits>>
 
     suspend fun setMarketplaceAgreementState(
