@@ -25,6 +25,8 @@
 
 /app-compose/releaseTest/
 
+/app-wear/build/
+
 /data-customdifficulty/build/
 /database-local/build/
 
@@ -32,7 +34,11 @@
 keystore.jks
 Keystore_old.jks
 Keystore_old2.jks
+/iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/andrew.xcuserdatad/UserInterfaceState.xcuserstate
+
 /firestore.rules
 /firestore.indexes.json
-/iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/andrew.xcuserdatad/UserInterfaceState.xcuserstate
-/app-wear/build/
+/.agents/
+/.claude/
+/agent/
+/skills-lock.json
