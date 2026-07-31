@@ -1,115 +1,61 @@
 package com.tritiumgaming.data.palette.source.remote
 
-import android.util.Log
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.functions.FirebaseFunctions
 import com.tritiumgaming.data.palette.dto.MarketTypographyDto
 import com.tritiumgaming.shared.data.market.common.source.MarketFirestoreDataSource
 import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class MarketTypographyFirestoreDataSource(
-    private val firestore: FirebaseFirestore
+    private val firebaseFunctions: FirebaseFunctions,
 ): MarketFirestoreDataSource<MarketTypographyDto, TypographyQueryOptions> {
-
-    private val storeCollectionRef: CollectionReference
-        get() = firestore.collection(COLLECTION_STORE)
-
-    private val merchandiseDocumentRef: DocumentReference = storeCollectionRef
-        .document(DOCUMENT_MERCHANDISE)
-
-    private val typographyCollection: CollectionReference = merchandiseDocumentRef
-        .collection(COLLECTION_TYPOGRAPHIES)
 
     override suspend fun fetch(
         queryOptions: TypographyQueryOptions
-    ): Result<List<MarketTypographyDto>> = withContext(Dispatchers.IO) {
+    ): Result<List<MarketTypographyDto>> {
 
-        try {
+        return try {
+            val data = hashMapOf(
+                "filterField" to queryOptions.filterField.value,
+                "filterValue" to queryOptions.filterValue.value,
+                "orderField" to queryOptions.orderField.value,
+                "orderDirection" to queryOptions.orderDirection.name,
+                "limit" to queryOptions.limit.value
+            )
+
+            val result = firebaseFunctions
+                .getHttpsCallable("fetchTypographies")
+                .call(data)
+                .await()
+
             val typographies = mutableListOf<MarketTypographyDto>()
 
-            createQuery(queryOptions)
-                .await()
-                .documents
-                .forEach { documentSnapshot: DocumentSnapshot ->
-                    if (!documentSnapshot.exists()) {
-                        Log.d("Firestore", "Typographies document snapshot DNE.")
-                    } else {
+            val resultList = result.data as? List<*> ?: emptyList<Any>()
 
-                        val uuid = documentSnapshot.reference.id
+            resultList.forEach { item ->
+                (item as? Map<*, *>)?.let { map ->
+                    val uuid = (map["uuid"] as? String) ?: ""
+                    val name = (map["name"] as? String) ?: ""
+                    val group = (map["group"] as? String) ?: ""
+                    val buyCredits = (map["buyCredits"] as? Number)?.toLong() ?: 0L
 
-                        try {
-                            var name = ""
-                            var group = ""
-                            var buyCredits = 0L
-
-                            documentSnapshot.data?.let { map ->
-                                map["name"]?.let { name = it as String }
-                                map["group"]?.let { group = it as String }
-                                map["buyCredits"]?.let { buyCredits = it as Long }
-                            }
-
-                            val dto = MarketTypographyDto(
-                                uuid = uuid,
-                                name = name,
-                                group = group,
-                                buyCredits = buyCredits
-                            )
-
-                            typographies.add(dto)
-
-                        } catch (e: Exception) {
-                            Log.d("Firestore", "Error obtaining remote typographies!")
-                            e.printStackTrace()
-                            return@withContext Result.failure(
-                                Exception("Error obtaining remote typographies!", e))
-                        }
-                    }
+                    typographies.add(
+                        MarketTypographyDto(
+                            uuid = uuid,
+                            name = name,
+                            group = group,
+                            buyCredits = buyCredits
+                        )
+                    )
                 }
+            }
 
             Result.success(typographies)
 
-        } catch (e: FirebaseFirestoreException) {
-            e.printStackTrace()
+        } catch (e: Exception) {
             Result.failure(Exception("Error obtaining remote typographies!", e))
         }
 
-    }
-
-    private fun createQuery(
-        options: TypographyQueryOptions
-    ): Task<QuerySnapshot> {
-
-        var query: Query = typographyCollection
-
-        val filterField = options.filterField.value
-        query = if(filterField != null && options.filterValue.value != null) {
-            query.whereEqualTo(filterField, options.filterValue.value)
-        } else query
-
-        val orderField = options.orderField.value
-        query = if(orderField != null) {
-            query.whereEqualTo(orderField, options.orderDirection)
-        } else query
-
-        query = query.limit(options.limit.value.toLong())
-
-        return query
-            .get()
-    }
-
-    private companion object {
-        private const val COLLECTION_STORE = "Store"
-        private const val DOCUMENT_MERCHANDISE = "Merchandise"
-        private const val COLLECTION_TYPOGRAPHIES = "Typographies"
     }
 
 }

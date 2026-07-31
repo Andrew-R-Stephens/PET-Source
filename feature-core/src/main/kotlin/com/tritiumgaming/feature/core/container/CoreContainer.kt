@@ -434,7 +434,7 @@ class CoreContainer(
     internal val typographyRepository: MarketCatalogTypographyRepository by lazy {
         val typographyLocalDataSource = MarketTypographyLocalDataSource()
         val typographyFirestoreDataSource = MarketTypographyFirestoreDataSource(
-            firestore = firestore
+            firebaseFunctions = firebaseFunctions
         )
 
         MarketCatalogTypographyRepositoryImpl(
@@ -465,7 +465,7 @@ class CoreContainer(
     internal val paletteRepository: MarketCatalogPaletteRepository by lazy {
         val paletteLocalDataSource = MarketPaletteLocalDataSource()
         val paletteFirestoreDataSource = MarketPaletteFirestoreDataSource(
-            firestore = firestore
+            firebaseFunctions = firebaseFunctions
         )
 
         MarketCatalogPaletteRepositoryImpl(

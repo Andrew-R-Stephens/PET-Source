@@ -115,3 +115,103 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
     throw new HttpsError("internal", "An internal error occurred during purchase.");
   }
 });
+
+/**
+ * Interface for Typography query options
+ */
+interface TypographyQueryRequest {
+  filterField?: string;
+  filterValue?: any;
+  orderField?: string;
+  orderDirection?: "ASCENDING" | "DESCENDING";
+  limit?: number;
+}
+
+export const fetchTypographies = onCall<TypographyQueryRequest>(async (request) => {
+  const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
+
+  const db = admin.firestore();
+  let query: admin.firestore.Query = db.collection("Store/Merchandise/Typographies");
+
+  if (filterField && filterValue !== undefined && filterValue !== null) {
+    query = query.where(filterField, "==", filterValue);
+  }
+
+  if (orderField) {
+    const direction = orderDirection === "DESCENDING" ? "desc" : "asc";
+    query = query.orderBy(orderField, direction);
+  }
+
+  if (limit) {
+    query = query.limit(limit);
+  }
+
+  try {
+    const snapshot = await query.get();
+    const typographies = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        uuid: doc.id,
+        name: data.name || "",
+        group: data.group || "",
+        buyCredits: data.buyCredits || 0,
+      };
+    });
+
+    return typographies;
+  } catch (error) {
+    logger.error("Error fetching typographies:", error);
+    throw new HttpsError("internal", "An error occurred while fetching typographies.");
+  }
+});
+
+/**
+ * Interface for Palette query options
+ */
+interface PaletteQueryRequest {
+  filterField?: string;
+  filterValue?: any;
+  orderField?: string;
+  orderDirection?: "ASCENDING" | "DESCENDING";
+  limit?: number;
+}
+
+export const fetchPalettes = onCall<PaletteQueryRequest>(async (request) => {
+  const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
+
+  const db = admin.firestore();
+  let query: admin.firestore.Query = db.collection("Store/Merchandise/Themes");
+
+  if (filterField && filterValue !== undefined && filterValue !== null) {
+    query = query.where(filterField, "==", filterValue);
+  }
+
+  if (orderField) {
+    const direction = orderDirection === "DESCENDING" ? "desc" : "asc";
+    query = query.orderBy(orderField, direction);
+  }
+
+  if (limit) {
+    query = query.limit(limit);
+  }
+
+  try {
+    const snapshot = await query.get();
+    const palettes = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        uuid: doc.id,
+        name: data.name || "",
+        group: data.group || "",
+        buyCredits: data.buyCredits || 0,
+      };
+    });
+
+    return palettes;
+  } catch (error) {
+    logger.error("Error fetching palettes:", error);
+    throw new HttpsError("internal", "An error occurred while fetching palettes.");
+  }
+});
+
+
