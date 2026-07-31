@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.firebase.auth)
     // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
+    // GOOGLE FIREBASE FUNCTIONS
+    implementation(libs.firebase.functions)
 
     // --- Google Credential Manager ----
     //noinspection LoginCredentials

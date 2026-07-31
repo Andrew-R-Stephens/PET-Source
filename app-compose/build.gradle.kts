@@ -161,6 +161,8 @@ dependencies {
     implementation(libs.firebase.auth)
     // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
+    // GOOGLE FIREBASE FUNCTIONS
+    implementation(libs.firebase.functions)
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     // GOOGLE FIREBASE ANALYTICS

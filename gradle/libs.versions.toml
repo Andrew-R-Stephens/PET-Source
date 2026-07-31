@@ -155,6 +155,7 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-analytics = { group = "com.google.firebase", name="firebase-analytics" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-functions = { group = "com.google.firebase", name = "firebase-functions" }
 firebase-crashlytics-core = { group = "com.google.firebase", name="firebase-crashlytics" }
 firebase-perfCore = { group = "com.google.firebase", name="firebase-perf" }
 # Firebase: Other
