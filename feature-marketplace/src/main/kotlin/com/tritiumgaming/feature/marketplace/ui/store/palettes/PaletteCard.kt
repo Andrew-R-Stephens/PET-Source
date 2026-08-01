@@ -53,6 +53,7 @@ fun PaletteCard(
     badgeRes: Int,
     title: String,
     surfaceContainerHigh: Color,
+    scrim: Color,
     onSurfaceVariant: Color,
     onSurface: Color,
     primary: Color,
@@ -208,7 +209,7 @@ fun PaletteCard(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(vertical = 4.dp)
-                        .background(surfaceContainerHigh.copy(alpha = .3f))
+                        .background(scrim.copy(alpha = .3f))
                         .padding(horizontal = 8.dp),
                     horizontalArrangement = Arrangement.spacedBy(
                         8.dp,
@@ -305,6 +306,7 @@ private fun Test1() {
         badgeRes = palette.extrasFamily.badge,
         title = stringResource(palette.extrasFamily.title),
         surfaceContainerHigh = palette.surfaceContainerHigh,
+        scrim = palette.scrim,
         onSurfaceVariant = palette.onSurfaceVariant,
         onSurface = palette.onSurface,
         primary = palette.primary,
@@ -340,6 +342,7 @@ private fun Test2() {
         badgeRes = palette.extrasFamily.badge,
         title = stringResource(palette.extrasFamily.title),
         surfaceContainerHigh = palette.surfaceContainerHigh,
+        scrim = palette.scrim,
         onSurfaceVariant = palette.onSurfaceVariant,
         onSurface = palette.onSurface,
         primary = palette.primary,
@@ -384,6 +387,7 @@ private fun Test3() {
             badgeRes = palette1.extrasFamily.badge,
             title = stringResource(palette1.extrasFamily.title),
             surfaceContainerHigh = palette1.surfaceContainerHigh,
+            scrim = palette1.scrim,
             onSurfaceVariant = palette1.onSurfaceVariant,
             onSurface = palette1.onSurface,
             primary = palette1.primary,
@@ -404,6 +408,7 @@ private fun Test3() {
             badgeRes = palette2.extrasFamily.badge,
             title = stringResource(palette2.extrasFamily.title),
             surfaceContainerHigh = palette2.surfaceContainerHigh,
+            scrim = palette2.scrim,
             onSurfaceVariant = palette2.onSurfaceVariant,
             onSurface = palette2.onSurface,
             primary = palette2.primary,

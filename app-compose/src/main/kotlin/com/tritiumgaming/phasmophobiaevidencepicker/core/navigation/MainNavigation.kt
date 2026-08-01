@@ -34,7 +34,9 @@ import com.tritiumgaming.feature.language.ui.LanguageScreenViewModel
 import com.tritiumgaming.feature.maps.ui.MapMenuScreen
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
+import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
+import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteShopScreen
 import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
@@ -235,10 +237,16 @@ private fun NavGraphBuilder.homeNavigation(
                 }*/
             }
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) {
+            composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) { navBackStackEntry ->
                 HomeScreen {
                     MarketplaceBillingScreen(
-                        navController = navController
+                        navController = navController,
+                        marketplaceViewModel = viewModel(
+                            viewModelStoreOwner = remember(navBackStackEntry) {
+                                navController.getBackStackEntry(
+                                    NavRoute.NAVIGATION_MARKETPLACE.route)
+                            },
+                            factory = MarketplaceViewModel.Factory)
                     )
                 }
             }
@@ -249,6 +257,20 @@ private fun NavGraphBuilder.homeNavigation(
                         navController = navController
                     )
                 }*/
+            }
+
+            composable(route = NavRoute.SCREEN_MARKETPLACE_PALETTE.route) { navBackStackEntry ->
+                HomeScreen {
+                    PaletteShopScreen(
+                        navController = navController,
+                        marketplaceViewModel = viewModel(
+                            viewModelStoreOwner = remember(navBackStackEntry) {
+                                navController.getBackStackEntry(
+                                    NavRoute.NAVIGATION_MARKETPLACE.route)
+                            },
+                            factory = MarketplaceViewModel.Factory)
+                    )
+                }
             }
 
         }

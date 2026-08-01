@@ -6,12 +6,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogBillablesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogTypographiesUiState
+import com.tritiumgaming.feature.marketplace.ui.store.PaletteShopUiItem
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
@@ -23,13 +26,17 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -44,31 +51,60 @@ class MarketplaceViewModel(
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
     private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
-
-    ): ViewModel() {
+): ViewModel() {
 
     private var observeCreditsJob: Job? = null
     private var observeUnlockedPalettesJob: Job? = null
     private var observeUnlockedTypographiesJob: Job? = null
 
-    private val _marketCatalogPalettesUiState = MutableStateFlow(MarketCatalogPalettesUiState())
-    val marketCatalogPalettesUiState = _marketCatalogPalettesUiState.asStateFlow()
-
+    private val _marketCatalogPalettes = MutableStateFlow(emptyList<MarketPalette>())
     private fun initMarketCatalogPalettes() {
+        Log.d("MarketplaceViewModel", "initMarketCatalogPalettes")
         viewModelScope.launch {
-            try {
-                val result = getMarketCatalogPalettesUseCase().getOrThrow()
-
-                _marketCatalogPalettesUiState.update {
-                    it.copy(
-                        palettes = result
-                    )
+            getMarketCatalogPalettesUseCase()
+                .onSuccess { palettes ->
+                    Log.d("MarketplaceViewModel", "initMarketCatalogPalettes success: $palettes")
+                    _marketCatalogPalettes.update { palettes }
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+                .onFailure { it.printStackTrace() }
         }
     }
+
+    private val _marketCatalogPalettesUiState = _marketCatalogPalettes
+        .map { palettes ->
+            val grouped = palettes
+                .sortedBy { it.priority }
+                .groupBy { it.group ?: "" }
+
+            val items = mutableListOf<PaletteShopUiItem>()
+            grouped.forEach { (groupName, groupPalettes) ->
+                if (groupName.isNotEmpty()) {
+                    items.add(PaletteShopUiItem.Header(groupName))
+                }
+                groupPalettes.forEach { marketPalette ->
+                    marketPalette.group?.let { group ->
+                        if(group.isNotBlank()) {
+                            items.add(
+                                PaletteShopUiItem.Palette(
+                                    marketPalette = marketPalette,
+                                    paletteResource = marketPalette.palette?.toPaletteResource()
+                                        ?: ClassicPalette
+                                )
+                            )
+                        }
+                    }
+                }
+            }
+
+            MarketCatalogPalettesUiState(items = items)
+        }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            MarketCatalogPalettesUiState()
+        )
+    val marketCatalogPalettesUiState = _marketCatalogPalettesUiState
+
 
     private val _marketCatalogTypographiesUiState = MutableStateFlow(MarketCatalogTypographiesUiState())
     val marketCatalogTypographiesUiState = _marketCatalogTypographiesUiState.asStateFlow()

@@ -7,7 +7,7 @@ class GetMarketCatalogPalettesUseCase(
     private val repository: MarketCatalogPaletteRepository
 ) {
 
-    suspend operator fun invoke(): Result<List<MarketPalette>> {
+    operator fun invoke(): Result<List<MarketPalette>> {
         return try {
             Result.success(repository.get().getOrThrow() ) }
         catch (e: Exception) {

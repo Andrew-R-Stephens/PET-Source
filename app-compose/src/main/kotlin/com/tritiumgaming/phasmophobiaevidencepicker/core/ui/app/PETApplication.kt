@@ -131,7 +131,9 @@ class PETApplication : Application(),
             gatherAdsConsentUseCase = coreContainer.gatherAdsConsentUseCase,
             initializeMobileAdsUseCase = coreContainer.initializeMobileAdsUseCase,
             getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
-            getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase
+            getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
+            saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
+            saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase
         )
 
         accountContainer = AccountContainer(

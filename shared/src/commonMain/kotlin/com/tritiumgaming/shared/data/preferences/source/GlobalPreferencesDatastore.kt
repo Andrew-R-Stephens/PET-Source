@@ -1,6 +1,10 @@
 package com.tritiumgaming.shared.data.preferences.source
 
 import com.tritiumgaming.shared.data.datastore.DatastoreDataSource
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
+import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
 import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
 
@@ -28,8 +32,8 @@ interface GlobalPreferencesDatastore:
         val uiDensity: DensityType = DensityType.COMFORTABLE,
         val maxHuntWarnFlashTime: Long = 300L,
         val uiDensityType: DensityType = DensityType.COMFORTABLE,
-        val typographyUuid: String,
-        val paletteUuid: String
+        val typographyUuid: String = PaletteResources.PaletteType.CLASSIC.asUuid(),
+        val paletteUuid: String = TypographyResources.TypographyType.CLASSIC.asUuid()
     )
 
 }

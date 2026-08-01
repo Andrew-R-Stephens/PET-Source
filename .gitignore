@@ -38,6 +38,8 @@ Keystore_old2.jks
 
 /firestore.rules
 /firestore.indexes.json
+/functions/.idea/
+
 /.agents/
 /.claude/
 /agent/

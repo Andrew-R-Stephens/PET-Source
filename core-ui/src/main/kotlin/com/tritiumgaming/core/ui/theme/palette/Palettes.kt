@@ -2467,7 +2467,7 @@ val Whiteboard = Skin.copy(
     inverseOnSurface = Color.Unspecified,
     inversePrimary = Color.Unspecified,
 
-    scrim = white_M50,
+    scrim = black,
     shadow = Color.Unspecified,
 
     extrasFamily = Skin.extrasFamily.copy(

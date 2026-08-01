@@ -12,6 +12,10 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
+import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
 import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
@@ -19,6 +23,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlin.String
 
 class GlobalPreferencesDatastoreDataSource(
     context: Context,
@@ -129,8 +134,8 @@ class GlobalPreferencesDatastoreDataSource(
             enableRTL = preferences[KEY_ENABLE_RTL] == true,
             maxHuntWarnFlashTime = preferences[KEY_HUNT_WARN_MAX_TIMEOUT] ?: 300,
             uiDensityType = preferences[KEY_UI_DENSITY_TYPE]?.let { DensityType.entries[it] } ?: DensityType.COMFORTABLE,
-            typographyUuid = preferences[KEY_TYPOGRAPHY] ?: "",
-            paletteUuid = preferences[KEY_PALETTE] ?: ""
+            typographyUuid = preferences[KEY_TYPOGRAPHY] ?: PaletteResources.PaletteType.CLASSIC.asUuid(),
+            paletteUuid = preferences[KEY_PALETTE] ?: TypographyResources.TypographyType.CLASSIC.asUuid()
         )
     }
 

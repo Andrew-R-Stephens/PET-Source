@@ -16,7 +16,7 @@ class GetMarketCatalogPaletteByUUIDUseCase(
             return Result.failure(Exception("Palette with uuid $uuid not found"))
 
         cachedPalette.palette ?:
-            return Result.failure(Exception("Market Palette does not have a palette"))
+            return Result.failure(Exception("Market Palette with uuid $uuid does not exist"))
 
         return Result.success(cachedPalette.palette)
     }

@@ -782,15 +782,15 @@ private fun HeaderNavBar(
                 personIcon()
             }
 
-            if(BuildConfig.USE_MARKETPLACE) {
+            //if(BuildConfig.USE_MARKETPLACE) {
                 SecondarySelector(
                     modifier = Modifier
                         .size(48.dp)
                         .padding(4.dp),
-                    onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
+                    onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route) }) {
                     storeIcon()
                 }
-            }
+            //}
         },
         colors = IconDropdownMenuColors(
             primaryContentBackground = LocalPalette.current.surfaceContainer,

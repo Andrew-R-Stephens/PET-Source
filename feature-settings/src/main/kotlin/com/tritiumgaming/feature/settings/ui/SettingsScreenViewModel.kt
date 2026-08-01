@@ -16,11 +16,13 @@ import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvide
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
+import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
+import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
 import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
@@ -44,6 +46,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -83,12 +87,17 @@ class SettingsScreenViewModel(
     private val _unlockedTypographies = MutableStateFlow(UnlockedTypographies())
     private val unlockedTypographies = _unlockedTypographies
 
-    private val _settingsScreenUiState : StateFlow<SettingsScreenUiState> =
-        combine(
-            initFlowGlobalPreferencesUseCase(),
-            initFlowPolicyUseCase()
-        ) { preferences, policy ->
-                SettingsScreenUiState(
+    private val _userPreferencesState : StateFlow<UserPreferencesState> =
+            combine(
+                initFlowGlobalPreferencesUseCase(),
+                initFlowPolicyUseCase()
+            ) { preferences, policy ->
+
+                val paletteUuid = preferences.paletteUuid.ifEmpty { LocalDefaultPalette.asUuid() }
+                val typographyUuid =
+                    preferences.typographyUuid.ifEmpty { LocalDefaultTypography.asUuid() }
+
+                UserPreferencesState(
                     screensaverPreference = preferences.disableScreenSaver,
                     networkPreference = preferences.allowCellularData,
                     huntWarningAudioPreference = preferences.allowHuntWarnAudio,
@@ -96,6 +105,31 @@ class SettingsScreenViewModel(
                     introductionPermissionPreference = preferences.allowIntroduction,
                     rTLPreference = preferences.enableRTL,
                     huntWarnDurationPreference = preferences.maxHuntWarnFlashTime,
+                    paletteUuid = paletteUuid,
+                    typographyUuid = typographyUuid,
+                    uiDensityType = preferences.uiDensityType,
+                    analyticsPreference = policy.allowAnalytics,
+                    adPrivacyPreference = policy.allowPersonalizedAds,
+                    isPrivacyOptionsRequired = isPrivacyOptionsRequiredUseCase()
+                )
+            }
+            .distinctUntilChanged()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = UserPreferencesState()
+            )
+
+    private val _settingsScreenUiState = _userPreferencesState.map { preferences ->
+
+                SettingsScreenUiState(
+                    screensaverPreference = preferences.screensaverPreference,
+                    networkPreference = preferences.networkPreference,
+                    huntWarningAudioPreference = preferences.huntWarningAudioPreference,
+                    ghostReorderPreference = preferences.ghostReorderPreference,
+                    introductionPermissionPreference = preferences.introductionPermissionPreference,
+                    rTLPreference = preferences.rTLPreference,
+                    huntWarnDurationPreference = preferences.huntWarnDurationPreference,
                     paletteUiState = PaletteUiState(
                         uuid = preferences.paletteUuid,
                         palette = getPaletteByUUID(preferences.paletteUuid)
@@ -105,11 +139,12 @@ class SettingsScreenViewModel(
                         typography = getTypographyByUUID(preferences.typographyUuid)
                     ),
                     uiDensityType = preferences.uiDensityType,
-                    analyticsPreference = policy.allowAnalytics,
-                    adPrivacyPreference = policy.allowPersonalizedAds,
-                    isPrivacyOptionsRequired = isPrivacyOptionsRequiredUseCase()
+                    analyticsPreference = preferences.analyticsPreference,
+                    adPrivacyPreference = preferences.adPrivacyPreference,
+                    isPrivacyOptionsRequired = preferences.isPrivacyOptionsRequired
                 )
             }
+            .distinctUntilChanged()
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
@@ -233,8 +268,12 @@ class SettingsScreenViewModel(
         return try {
             getPaletteByUUIDUseCase(uuid).getOrThrow().toPaletteResource()
         } catch (e: Exception) {
-            e.printStackTrace()
-            LocalDefaultPalette.toPaletteResource()
+            Log.e("SettingsScreenViewModel",
+                "GetMarketCatalogPaletteByUUIDUseCase: ${e.message}. Defaulting.", e)
+
+            val palette = LocalDefaultPalette
+            saveCurrentPaletteUUID(palette.asUuid())
+            palette.toPaletteResource()
         }
     }
 
@@ -285,8 +324,12 @@ class SettingsScreenViewModel(
             getTypographyByUUIDUseCase(uuid).getOrThrow()
                 .toTypographyResource()
         } catch (e: Exception) {
-            e.printStackTrace()
-            LocalDefaultTypography.toTypographyResource()
+            Log.e("SettingsScreenViewModel",
+                "GetMarketCatalogTypographyByUUIDUseCase: ${e.message}. Defaulting.", e)
+
+            val typography = LocalDefaultTypography
+            saveCurrentTypographyUUID(typography.asUuid())
+            typography.toTypographyResource()
         }
     }
 
@@ -378,5 +421,21 @@ class SettingsScreenViewModel(
                 time = time, maxTime = maxTime)
         }
     }
+
+    private data class UserPreferencesState(
+        val screensaverPreference: Boolean = false,
+        val networkPreference: Boolean = true,
+        val huntWarningAudioPreference: Boolean = true,
+        val ghostReorderPreference: Boolean = true,
+        val introductionPermissionPreference: Boolean = true,
+        val rTLPreference: Boolean = true,
+        val uiDensityType: DensityType = DensityType.COMFORTABLE,
+        val huntWarnDurationPreference: Long = FOREVER,
+        val paletteUuid: String = LocalDefaultPalette.asUuid(),
+        val typographyUuid: String = LocalDefaultTypography.asUuid(),
+        val analyticsPreference: Boolean = false,
+        val adPrivacyPreference: Boolean = false,
+        val isPrivacyOptionsRequired: Boolean? = null,
+    )
 
 }

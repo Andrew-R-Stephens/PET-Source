@@ -1,7 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.container
 
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
@@ -15,5 +17,7 @@ class AppContainer(
     internal val gatherAdsConsentUseCase: GatherAdsConsentUseCase,
     internal val initializeMobileAdsUseCase: InitializeMobileAdsUseCase,
     internal val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
-    internal val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase
+    internal val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
+    internal val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
+    internal val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase
 )

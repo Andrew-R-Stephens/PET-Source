@@ -14,10 +14,10 @@ class GetMarketCatalogTypographyByUUIDUseCase(
 
         val typographyCache = repository.get().getOrDefault(emptyList())
         val cachedTypography: MarketTypography = typographyCache.find { it.uuid == uuid } ?:
-            return Result.failure(Exception("MarketTypography not found"))
+            return Result.failure(Exception("MarketTypography with uuid $uuid not found"))
 
         val typography = cachedTypography.typography ?:
-            return Result.failure(Exception("Typography Type not found in Market Typography"))
+            return Result.failure(Exception("Market Typography with uuid $uuid does not exist"))
 
         return Result.success(typography)
 
