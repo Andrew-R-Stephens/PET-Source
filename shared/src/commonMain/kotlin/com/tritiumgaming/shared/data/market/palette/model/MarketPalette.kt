@@ -13,14 +13,6 @@ data class MarketPalette(
     val palette: PaletteResources.PaletteType? = null
 )
 
-fun MarketPalette.toPair(): Pair<String, MarketPalette> {
-    return Pair(uuid, this)
-}
-
-fun List<MarketPalette>.toPair() = associate {
-    it.toPair()
-}
-
 fun List<MarketPalette>.toAccountMarketPalette() = map {
     it.toAccountMarketPalette()
 }

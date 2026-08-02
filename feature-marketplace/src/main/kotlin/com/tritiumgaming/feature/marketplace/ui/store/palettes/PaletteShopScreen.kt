@@ -1,6 +1,8 @@
 package com.tritiumgaming.feature.marketplace.ui.store.palettes
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,18 +13,24 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
+import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.PaletteShopUiItem
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
@@ -68,7 +76,8 @@ private fun PaletteShopPreview() {
                 PaletteShopUiItem.Header("Specialist"),
                 PaletteShopUiItem.Palette(marketPalette1, palette1.toPaletteResource()),
             )
-        )
+        ),
+        onBuyClick = {}
     )
 }
 
@@ -78,21 +87,57 @@ fun PaletteShopScreen(
     navController: NavHostController,
     marketplaceViewModel: MarketplaceViewModel
 ) {
+    val context = LocalContext.current
+
     val paletteUnlocks by marketplaceViewModel.marketCatalogPalettesUiState.collectAsStateWithLifecycle()
+    var pendingEquipPalette by remember { mutableStateOf<PaletteType?>(null) }
 
-    PaletteShopContent(
-        modifier = modifier
-            .fillMaxSize(),
-        unlocks = paletteUnlocks
-    )
+    Box(modifier = modifier.fillMaxSize()) {
+        PaletteShopContent(
+            modifier = Modifier.fillMaxSize(),
+            unlocks = paletteUnlocks,
+            onBuyClick = { marketPalette ->
+                //Show progress bar
+                marketplaceViewModel.obtainItemWithCredits(
+                    marketPalette.uuid, "theme",
+                    onSuccess = { _ ->
+                        pendingEquipPalette = marketPalette.palette
+                    },
+                    onFailure = { message ->
+                        Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                    },
+                    onComplete = {
+                        //Hide progress bar
+                    }
+                )
+            }
+        )
 
+        pendingEquipPalette?.let { palette ->
+            val paletteResource = palette.toPaletteResource()
+            EquipConfirmationDialog(
+                targetTitle = String.format(
+                    stringResource(R.string.marketplace_purchase_equip),
+                    stringResource(paletteResource.extrasFamily.title)
+                ),
+                onConfirm = {
+                    marketplaceViewModel.updatePalette(palette)
+                    pendingEquipPalette = null
+                    Toast.makeText(context, "Theme Equipped!", Toast.LENGTH_SHORT).show()
+                },
+                onDismiss = {
+                    pendingEquipPalette = null
+                }
+            )
+        }
+    }
 }
 
 @Composable
 private fun PaletteShopContent(
     modifier: Modifier,
     unlocks: MarketCatalogPalettesUiState,
-    onBuyClick: (uuid:String, type:String) -> Unit = { _, _ -> }
+    onBuyClick: (marketPalette: MarketPalette) -> Unit = { }
 ) {
     LazyColumn(
         modifier = modifier,
@@ -141,7 +186,9 @@ private fun PaletteShopContent(
                         surfaceContainerHigh = palette.surfaceContainerHigh,
                         scrim = palette.scrim,
                         isUnlocked = marketCatalogEntry.unlocked,
-                        onBuyClick = { onBuyClick(marketCatalogEntry.uuid, "theme") }
+                        onBuyClick = {
+                            onBuyClick(marketCatalogEntry)
+                        }
                     )
                 }
 

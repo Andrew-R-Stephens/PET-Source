@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
@@ -29,14 +30,21 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
+import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.stateIn
@@ -54,11 +62,21 @@ class MarketplaceViewModel(
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
     private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
+    private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
+    private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase
 ): ViewModel() {
 
     private var observeCreditsJob: Job? = null
     private var observeUnlockedPalettesJob: Job? = null
     private var observeUnlockedTypographiesJob: Job? = null
+
+    private val _accountUnlockedPalettes = observeAccountUnlockedPalettesUseCase()
+        .map { it.getOrNull() }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            emptyList()
+        )
 
     private val _marketCatalogPalettes = MutableStateFlow(emptyList<MarketPalette>())
     private fun initMarketCatalogPalettes() {
@@ -72,42 +90,6 @@ class MarketplaceViewModel(
                 .onFailure { it.printStackTrace() }
         }
     }
-
-    private val _marketCatalogPalettesUiState = _marketCatalogPalettes
-        .map { palettes ->
-            val grouped = palettes
-                .sortedBy { it.priority }
-                .groupBy { it.group ?: "" }
-
-            val items = mutableListOf<PaletteShopUiItem>()
-            grouped.forEach { (groupName, groupPalettes) ->
-                if (groupName.isNotEmpty()) {
-                    items.add(PaletteShopUiItem.Header(groupName))
-                }
-                groupPalettes.forEach { marketPalette ->
-                    marketPalette.group?.let { group ->
-                        if(group.isNotBlank()) {
-                            items.add(
-                                PaletteShopUiItem.Palette(
-                                    marketPalette = marketPalette,
-                                    paletteResource = marketPalette.palette?.toPaletteResource()
-                                        ?: ClassicPalette
-                                )
-                            )
-                        }
-                    }
-                }
-            }
-
-            MarketCatalogPalettesUiState(items = items)
-        }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
-            MarketCatalogPalettesUiState()
-        )
-    val marketCatalogPalettesUiState = _marketCatalogPalettesUiState
-
 
     private val _marketCatalogTypographiesUiState = MutableStateFlow(MarketCatalogTypographiesUiState())
     val marketCatalogTypographiesUiState = _marketCatalogTypographiesUiState.asStateFlow()
@@ -135,7 +117,12 @@ class MarketplaceViewModel(
         // TODO
     }
 
-    fun obtainItemWithCredits(itemId: String, itemType: String) {
+    fun obtainItemWithCredits(
+        itemId: String, itemType: String,
+        onSuccess: (msg: String) -> Unit = {},
+        onFailure: (msg: String) -> Unit = {},
+        onComplete: () -> Unit = {}
+    ) {
         viewModelScope.launch {
             try {
                 val result = purchaseMarketplaceItemUseCase(
@@ -144,13 +131,16 @@ class MarketplaceViewModel(
                     itemType
                 )
                 if (result.isSuccess) {
+                    onSuccess("Purchase successful!")
                     Log.d("MarketplaceViewModel", "Purchase successful!")
                 } else {
+                    onFailure("Purchase failed: ${result.exceptionOrNull()?.message}")
                     Log.d("MarketplaceViewModel", "Purchase failed: ${result.exceptionOrNull()?.message}")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+            onComplete()
         }
     }
 
@@ -188,6 +178,81 @@ class MarketplaceViewModel(
     val accountUnlockedTypographiesUiState = _accountUnlockedTypographiesUiState.asStateFlow()
     private fun setUnlockedTypographiesUiStatDefault() =
         _accountUnlockedTypographiesUiState.update { AccountUnlockedTypographiesUiState() }
+
+    private val _marketCatalogPalettesUiState = combine(
+        _marketCatalogPalettes,
+        _accountUnlockedPalettes
+    ) { marketPalettes, unlockedPalettes ->
+
+        val unlockedUUIDs = unlockedPalettes?.map { it.uuid } ?: emptyList()
+        unlockedUUIDs.forEach {
+            Log.d("MarketplaceViewModel", "unlockedPalette: $it")
+        }
+
+        val updatedPalettes = marketPalettes.map {
+            val found = it.uuid in unlockedUUIDs
+            Log.d("MarketplaceViewModel", "marketPalette: $it | unlocked: $found")
+            it.copy(
+                unlocked = found
+            )
+        }
+
+        val grouped = updatedPalettes
+            .sortedBy { it.priority }
+            .groupBy { it.group ?: "" }
+
+        val items = mutableListOf<PaletteShopUiItem>()
+        grouped.forEach { (groupName, groupPalettes) ->
+            if (groupName.isNotEmpty()) {
+                items.add(PaletteShopUiItem.Header(groupName))
+            }
+            groupPalettes.forEach { marketPalette ->
+                marketPalette.group?.let { group ->
+                    if(group.isNotBlank()) {
+                        items.add(
+                            PaletteShopUiItem.Palette(
+                                marketPalette = marketPalette,
+                                paletteResource = marketPalette.palette?.toPaletteResource()
+                                    ?: ClassicPalette
+                            )
+                        )
+                    }
+                }
+            }
+        }
+
+        MarketCatalogPalettesUiState(items = items)
+    }
+    .stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        MarketCatalogPalettesUiState()
+    )
+    val marketCatalogPalettesUiState = _marketCatalogPalettesUiState
+
+    fun updatePalette(
+        palette: PaletteResources.PaletteType,
+        onComplete: () -> Unit = {}
+    ) {
+        val uuid = palette.asUuid()
+        Log.d("MarketplaceViewModel", "updatePalette: $uuid")
+        viewModelScope.launch {
+            saveCurrentPaletteUseCase(uuid)
+            onComplete()
+        }
+    }
+
+    fun updateTypography(
+        typography: TypographyResources.TypographyType,
+        onComplete: () -> Unit = {}
+    ) {
+        val uuid = typography.asUuid()
+        Log.d("MarketplaceViewModel", "updateTypography: $uuid")
+        viewModelScope.launch {
+            saveCurrentTypographyUseCase(uuid)
+            onComplete()
+        }
+    }
 
     private fun startObservingCredits() {
         observeCreditsJob = viewModelScope.launch {
@@ -237,6 +302,7 @@ class MarketplaceViewModel(
                     }
                 }
         }
+        observeUnlockedPalettesJob?.start()
     }
 
     private fun stopObservingUnlockedPalettes() {
@@ -313,6 +379,8 @@ class MarketplaceViewModel(
                 val purchaseMarketplaceItemUseCase = container.purchaseMarketplaceItemUseCase
                 val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
                 val getMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
+                val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
+                val saveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
 
                 MarketplaceViewModel(
                     getSignInCredentialsUseCase = getSignInCredentialsUseCase,
@@ -324,7 +392,9 @@ class MarketplaceViewModel(
                     observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase,
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                     getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
-                    getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase
+                    getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase,
+                    saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
+                    saveCurrentTypographyUseCase = saveCurrentTypographyUseCase
                 )
             }
         }
