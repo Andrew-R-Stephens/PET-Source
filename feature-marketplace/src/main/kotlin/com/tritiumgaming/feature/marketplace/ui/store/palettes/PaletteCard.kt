@@ -85,8 +85,9 @@ fun PaletteCard(
 
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(IntrinsicSize.Max),
+                    .matchParentSize()
+                    /*.fillMaxWidth()
+                    .height(IntrinsicSize.Max)*/,
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {

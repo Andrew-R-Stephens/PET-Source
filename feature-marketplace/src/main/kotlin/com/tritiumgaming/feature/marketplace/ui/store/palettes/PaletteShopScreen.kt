@@ -140,7 +140,7 @@ private fun PaletteShopContent(
                         tertiaryContainer = palette.tertiaryContainer,
                         surfaceContainerHigh = palette.surfaceContainerHigh,
                         scrim = palette.scrim,
-                        isUnlocked = !marketCatalogEntry.unlocked,
+                        isUnlocked = marketCatalogEntry.unlocked,
                         onBuyClick = { onBuyClick(marketCatalogEntry.uuid, "theme") }
                     )
                 }
