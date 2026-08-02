@@ -30,6 +30,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -86,6 +87,19 @@ class MarketplaceViewModel(
                 .onSuccess { palettes ->
                     Log.d("MarketplaceViewModel", "initMarketCatalogPalettes success: $palettes")
                     _marketCatalogPalettes.update { palettes }
+                }
+                .onFailure { it.printStackTrace() }
+        }
+    }
+
+    private val _marketCatalogBundles = MutableStateFlow(emptyList<MarketBundle>())
+    private fun initMarketCatalogBundles() {
+        Log.d("MarketplaceViewModel", "initMarketCatalogBundles")
+        viewModelScope.launch {
+            getMarketCatalogBundlesUseCase()
+                .onSuccess { palettes ->
+                    Log.d("MarketplaceViewModel", "initMarketCatalogPalettes success: $palettes")
+                    _marketCatalogBundles.update { palettes }
                 }
                 .onFailure { it.printStackTrace() }
         }
