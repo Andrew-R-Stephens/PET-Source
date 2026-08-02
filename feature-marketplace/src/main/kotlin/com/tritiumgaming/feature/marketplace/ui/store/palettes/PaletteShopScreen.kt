@@ -1,6 +1,8 @@
 package com.tritiumgaming.feature.marketplace.ui.store.palettes
 
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -91,13 +94,14 @@ fun PaletteShopScreen(
 
     val paletteUnlocks by marketplaceViewModel.marketCatalogPalettesUiState.collectAsStateWithLifecycle()
     var pendingEquipPalette by remember { mutableStateOf<PaletteType?>(null) }
+    var isLoading by remember { mutableStateOf(false) }
 
     Box(modifier = modifier.fillMaxSize()) {
         PaletteShopContent(
             modifier = Modifier.fillMaxSize(),
             unlocks = paletteUnlocks,
             onBuyClick = { marketPalette ->
-                //Show progress bar
+                isLoading = true
                 marketplaceViewModel.obtainItemWithCredits(
                     marketPalette.uuid, "theme",
                     onSuccess = { _ ->
@@ -107,7 +111,7 @@ fun PaletteShopScreen(
                         Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
                     },
                     onComplete = {
-                        //Hide progress bar
+                        isLoading = false
                     }
                 )
             }
@@ -129,6 +133,20 @@ fun PaletteShopScreen(
                     pendingEquipPalette = null
                 }
             )
+        }
+
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable(enabled = false) {}
+                    .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(
+                    color = LocalPalette.current.primary
+                )
+            }
         }
     }
 }
