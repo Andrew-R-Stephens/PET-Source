@@ -22,6 +22,11 @@ interface FirestoreAccountRepository {
         itemType: String
     ): Result<Boolean>
 
+    suspend fun purchaseItemWithLegalTender(
+        itemId: String,
+        itemType: String
+    ): Result<Boolean>
+
     fun observeCredits(): Flow<Result<AccountCredits>>
 
     suspend fun setMarketplaceAgreementState(

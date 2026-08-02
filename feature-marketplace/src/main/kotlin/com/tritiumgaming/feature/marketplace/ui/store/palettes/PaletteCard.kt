@@ -38,6 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalTypography
@@ -63,6 +64,7 @@ fun PaletteCard(
     primaryContainer: Color,
     secondaryContainer: Color,
     tertiaryContainer: Color,
+    isUnlocked: Boolean = true,
     onBuyClick: () -> Unit = {}
 ) {
 
@@ -204,64 +206,66 @@ fun PaletteCard(
                     }
                 }
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(vertical = 4.dp)
-                        .background(scrim.copy(alpha = .3f))
-                        .padding(horizontal = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(
-                        8.dp,
-                        Alignment.CenterHorizontally
-                    ),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-
-                    Button(
+                if(!isUnlocked) {
+                    Row(
                         modifier = Modifier
-                            .height(48.dp)
-                            .padding(8.dp)
-                            .weight(1f, false),
-                        onClick = onBuyClick,
-                        shape = RoundedCornerShape(2.dp),
-                        contentPadding = PaddingValues(4.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = surfaceContainerHigh
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                            .padding(vertical = 4.dp)
+                            .background(scrim.copy(alpha = .3f))
+                            .padding(horizontal = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(
+                            8.dp,
+                            Alignment.CenterHorizontally
                         ),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
+
+                        Button(
+                            modifier = Modifier
+                                .height(48.dp)
+                                .padding(8.dp)
+                                .weight(1f, false),
+                            onClick = { onBuyClick() },
+                            shape = RoundedCornerShape(2.dp),
+                            contentPadding = PaddingValues(4.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = surfaceContainerHigh
+                            ),
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically),
+                                text = stringResource(R.string.marketplace_button_item_get).uppercase(),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    textAlign = TextAlign.Center
+                                ),
+                                color = onSurface,
+                                autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                            )
+                        }
+
+                        Image(
+                            modifier = Modifier
+                                .height(48.dp)
+                                .aspectRatio(1f)
+                                .padding(8.dp),
+                            painter = painterResource(R.drawable.ic_shop_cost),
+                            contentDescription = "Cost",
+                            colorFilter = ColorFilter.tint(surfaceContainerHigh)
+                        )
+
                         Text(
                             modifier = Modifier
-                                .align(Alignment.CenterVertically),
-                            text = stringResource(R.string.marketplace_button_item_get).uppercase(),
+                                .weight(1f, false),
+                            text = "$buyCredits",
+                            fontSize = 24.sp,
+                            color = surfaceContainerHigh,
                             style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Center
-                            ),
-                            color = onSurface,
-                            autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                                textAlign = TextAlign.Start
+                            )
                         )
                     }
-
-                    Image(
-                        modifier = Modifier
-                            .height(48.dp)
-                            .aspectRatio(1f)
-                            .padding(8.dp),
-                        painter = painterResource(R.drawable.ic_shop_cost),
-                        contentDescription = "Cost",
-                        colorFilter = ColorFilter.tint(surfaceContainerHigh)
-                    )
-
-                    Text(
-                        modifier = Modifier
-                            .weight(1f, false),
-                        text = "$buyCredits",
-                        fontSize = 24.sp,
-                        color = surfaceContainerHigh,
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        )
-                    )
                 }
 
             }
@@ -316,6 +320,7 @@ private fun Test1() {
         primaryContainer = palette.primaryContainer,
         secondaryContainer = palette.secondaryContainer,
         tertiaryContainer = palette.tertiaryContainer,
+        isUnlocked = true,
         onBuyClick = {}
     )
 
@@ -373,7 +378,8 @@ private fun Test3() {
         uuid = "4324132",
         name = "Test",
         palette = PaletteResources.PaletteType.COMMISSIONER,
-        buyCredits = 69
+        buyCredits = 69,
+        unlocked = false
     )
     val palette2 = marketPalette2.palette?.toPaletteResource() ?: ClassicPalette
 
@@ -418,6 +424,7 @@ private fun Test3() {
             primaryContainer = palette2.primaryContainer,
             secondaryContainer = palette2.secondaryContainer,
             tertiaryContainer = palette2.tertiaryContainer,
+            isUnlocked = marketPalette2.unlocked,
             onBuyClick = {}
         )
 

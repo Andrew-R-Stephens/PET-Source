@@ -22,10 +22,13 @@ import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUs
 import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
+import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium
+import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
+import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.LEGAL_TENDER
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
@@ -132,10 +135,33 @@ class MarketplaceViewModel(
         // TODO
     }
 
-    fun purchaseItem(itemId: String, itemType: String) {
+    fun obtainItemWithCredits(itemId: String, itemType: String) {
         viewModelScope.launch {
             try {
-                val result = purchaseMarketplaceItemUseCase(itemId, itemType)
+                val result = purchaseMarketplaceItemUseCase(
+                    CREDITS,
+                    itemId,
+                    itemType
+                )
+                if (result.isSuccess) {
+                    Log.d("MarketplaceViewModel", "Purchase successful!")
+                } else {
+                    Log.d("MarketplaceViewModel", "Purchase failed: ${result.exceptionOrNull()?.message}")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun obtainItemWithLegalTender(itemId: String, itemType: String) {
+        viewModelScope.launch {
+            try {
+                val result = purchaseMarketplaceItemUseCase(
+                    LEGAL_TENDER,
+                    itemId,
+                    itemType
+                )
                 if (result.isSuccess) {
                     Log.d("MarketplaceViewModel", "Purchase successful!")
                 } else {

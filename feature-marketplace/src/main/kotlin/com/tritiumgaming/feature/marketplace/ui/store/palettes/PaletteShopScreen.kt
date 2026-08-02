@@ -2,11 +2,11 @@ package com.tritiumgaming.feature.marketplace.ui.store.palettes
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
@@ -87,11 +88,11 @@ fun PaletteShopScreen(
 
 }
 
-
 @Composable
 private fun PaletteShopContent(
     modifier: Modifier,
-    unlocks: MarketCatalogPalettesUiState
+    unlocks: MarketCatalogPalettesUiState,
+    onBuyClick: (uuid:String, type:String) -> Unit = { _, _ -> }
 ) {
     LazyColumn(
         modifier = modifier,
@@ -108,26 +109,28 @@ private fun PaletteShopContent(
                         shape = RoundedCornerShape(8.dp)
                     ) {
                         Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
                             text = item.name,
-                            modifier = Modifier.padding(8.dp),
                             style = LocalTypography.current.primary.bold,
-                            color = LocalPalette.current.primary
+                            color = LocalPalette.current.primary,
+                            maxLines = 1,
+                            fontSize = 36.sp
                         )
                     }
                 }
-
                 is PaletteShopUiItem.Palette -> {
                     val marketCatalogEntry = item.marketPalette
                     val palette = item.paletteResource
+
                     PaletteCard(
                         modifier = Modifier,
                         buyCredits = marketCatalogEntry.buyCredits,
                         badgeRes = palette.extrasFamily.badge,
                         title = stringResource(palette.extrasFamily.title),
-                        surfaceContainerHigh = palette.surfaceContainerHigh,
-                        scrim = palette.scrim,
-                        onSurfaceVariant = palette.onSurfaceVariant,
                         onSurface = palette.onSurface,
+                        onSurfaceVariant = palette.onSurfaceVariant,
                         primary = palette.primary,
                         secondary = palette.secondary,
                         tertiary = palette.tertiary,
@@ -135,9 +138,14 @@ private fun PaletteShopContent(
                         primaryContainer = palette.primaryContainer,
                         secondaryContainer = palette.secondaryContainer,
                         tertiaryContainer = palette.tertiaryContainer,
-                        onBuyClick = {}
+                        surfaceContainerHigh = palette.surfaceContainerHigh,
+                        scrim = palette.scrim,
+                        isUnlocked = !marketCatalogEntry.unlocked,
+                        onBuyClick = { onBuyClick(marketCatalogEntry.uuid, "theme") }
                     )
                 }
+
+                else -> {}
             }
         }
     }

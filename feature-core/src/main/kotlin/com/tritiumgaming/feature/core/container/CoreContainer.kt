@@ -55,7 +55,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCre
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository

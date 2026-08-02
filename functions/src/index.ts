@@ -100,10 +100,10 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
                     });
                 }
                 // Also mark the bundle as purchased if needed
-                transaction.set(unlockHistoryRef.doc(itemId), {
+                /* transaction.set(unlockHistoryRef.doc(itemId), {
                     type: "Theme Bundle",
                     dateUnlocked: now,
-                }, {merge: true});
+                }, {merge: true}); */
             }
 
             return {success: true, newBalance: earnedCredits - price};

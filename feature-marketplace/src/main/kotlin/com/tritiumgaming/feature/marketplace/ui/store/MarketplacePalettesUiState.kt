@@ -22,4 +22,11 @@ sealed interface PaletteShopUiItem {
     ) : PaletteShopUiItem {
         override val key: String = marketPalette.uuid
     }
+
+    data class Bundle(
+        val marketPalette: MarketPalette,
+        val paletteResource: ExtendedPalette
+    ) : PaletteShopUiItem {
+        override val key: String = marketPalette.uuid
+    }
 }
