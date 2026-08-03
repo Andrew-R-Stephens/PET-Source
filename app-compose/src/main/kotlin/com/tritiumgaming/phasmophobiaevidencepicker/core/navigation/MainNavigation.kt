@@ -272,8 +272,9 @@ private fun NavGraphBuilder.homeNavigation(
                         modifier = Modifier,
                         navController = navController,
                         marketplaceViewModel = marketplaceViewModel
-                    ) {
+                    ) { modifier ->
                         PaletteShopScreen(
+                            modifier = modifier,
                             navController = navController,
                             marketplaceViewModel = marketplaceViewModel
                         )

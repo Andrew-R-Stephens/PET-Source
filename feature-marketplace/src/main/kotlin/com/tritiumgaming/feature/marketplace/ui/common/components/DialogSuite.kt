@@ -47,6 +47,7 @@ import com.tritiumgaming.core.ui.modifier.progressGradient
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun EquipConfirmationDialog(
@@ -68,7 +69,7 @@ fun EquipConfirmationDialog(
 
     LaunchedEffect(isVisible) {
         if (!isVisible) {
-            delay(300) // Allow exit animation to finish
+            delay(300.milliseconds) // Allow exit animation to finish
             onDismiss()
         }
     }
@@ -113,7 +114,7 @@ fun EquipConfirmationDialog(
                         .height(48.dp)
                 ) {
                     Text(
-                        text = "$targetTitle?",
+                        text = String.format(stringResource(R.string.marketplace_purchase_equip), stringResource(LocalPalette.current.extrasFamily.title)),
                         fontSize = 18.sp,
                         color = LocalPalette.current.onSurface,
                         modifier = Modifier

@@ -1,8 +1,11 @@
 package com.tritiumgaming.feature.marketplace.ui.common.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,9 +15,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,12 +33,14 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.ShopCostIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
@@ -39,13 +49,40 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
+
+@Composable
+fun AccountBanner(
+    modifier: Modifier = Modifier,
+    authenticated: Boolean = false,
+    name: String = "",
+    credits: Int = 100,
+    onNavigate: (String) -> Unit = {}
+) {
+
+    if(authenticated) {
+        AccountBannerExpanded(
+            modifier = modifier,
+            name = name,
+            credits = credits,
+            onNavigate = onNavigate
+        )
+    } else {
+        AccountBannerLogin(
+            modifier = modifier,
+            onNavigate = onNavigate
+        )
+    }
+
+}
 
 @Composable
 private fun AccountBannerComposite(
     modifier: Modifier = Modifier,
     name: String = "",
-    credits: Int = 100
+    credits: Int = 100,
+    onNavigate: (String) -> Unit = {}
 ) {
 
     Row(
@@ -86,40 +123,117 @@ private fun AccountBannerComposite(
 fun AccountBannerExpanded(
     modifier: Modifier = Modifier,
     name: String = "",
-    credits: Int = 100
+    credits: Int = 100,
+    onNavigate: (String) -> Unit = {}
 ) {
 
-    Row(
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        contentAlignment = Alignment.TopCenter
     ) {
-        Box(
-            modifier = Modifier
-                .weight(1f)
-        ) {
-            AccountCredits(
-                credits = credits
-            )
-        }
-
-        AccountBannerIcon(
+        Row(
             modifier = Modifier,
-            name = name,
-            icon = { modifier ->
-                Image(
-                    modifier = modifier,
-                    painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
-                    contentDescription = "",
-                    contentScale = ContentScale.Inside,
-                    alpha = .75f
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                AccountCredits(
+                    credits = credits
                 )
             }
-        )
-    }
 
+            AccountBannerIcon(
+                modifier = Modifier
+                    .clickable(onClick = { onNavigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }),
+                name = name,
+                icon = { modifier ->
+                    Image(
+                        modifier = modifier,
+                        painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                        contentDescription = "",
+                        contentScale = ContentScale.Inside,
+                        alpha = .75f
+                    )
+                }
+            )
+        }
+    }
+}
+
+@Composable
+fun AccountBannerLogin(
+    modifier: Modifier = Modifier,
+    onNavigate: (String) -> Unit = {}
+) {
+    Surface(
+        modifier = modifier,
+        color = LocalPalette.current.surfaceContainer,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterVertically)
+        ) {
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.secondaryContainer,
+                shape = CircleShape
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(12.dp),
+                    painter = painterResource(id = R.drawable.ic_person),
+                    contentDescription = "",
+                    tint = LocalPalette.current.secondary
+                )
+            }
+
+            Text(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(16.dp),
+                text = stringResource(R.string.marketplace_error_login_required),
+                color = LocalPalette.current.primary,
+                style = LocalTypography.current.quaternary.bold,
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center
+            )
+
+            Button(
+                modifier = Modifier
+                    .wrapContentWidth(),
+                shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    contentColor = LocalPalette.current.onPrimaryContainer,
+                    containerColor = LocalPalette.current.primaryContainer
+                ),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                onClick = {
+                    onNavigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route)
+                }
+            ) {
+                Text(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    text = stringResource(R.string.account_button_login),
+                    style = LocalTypography.current.quaternary.bold,
+                    fontSize = 18.sp
+                )
+            }
+        }
+
+    }
 }
 
 @Composable
@@ -261,6 +375,18 @@ private fun AccountBannerIconPreview() {
                     alpha = .75f
                 )
             }
+        )
+    }
+}
+
+@Composable
+@Preview
+private fun AccountBannerLoginPreview() {
+    LocalThemeProvider {
+        AccountBannerLogin(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
         )
     }
 }

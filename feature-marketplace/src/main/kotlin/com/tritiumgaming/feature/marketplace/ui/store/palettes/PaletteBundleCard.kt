@@ -57,6 +57,7 @@ fun PaletteBundleCard(
     onSurface: Color,
     scrim: Color,
     items: List<MarketPalette>,
+    canUnlock: Boolean = false,
     isOwned: Boolean = false,
     onBuyClick: () -> Unit = {}
 ) {
@@ -147,6 +148,7 @@ fun PaletteBundleCard(
                                 .padding(8.dp)
                                 .weight(1f, false),
                             onClick = onBuyClick,
+                            enabled = canUnlock,
                             shape = RoundedCornerShape(2.dp),
                             contentPadding = PaddingValues(4.dp),
                             colors = ButtonDefaults.buttonColors(

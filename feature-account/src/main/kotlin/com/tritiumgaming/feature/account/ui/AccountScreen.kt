@@ -22,13 +22,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -73,6 +77,7 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.account.ui.component.AccountBannerComposite
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
+import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
@@ -184,7 +189,8 @@ fun AccountScreen(
                     }
                 }
             }
-        }
+        },
+        onNavigate = { route -> navController.navigate(route) }
     )
 }
 
@@ -203,7 +209,8 @@ fun AccountContent(
     onDismissDialog: () -> Unit,
     onConfirmSignOut: () -> Unit,
     onConfirmDeactivate: () -> Unit,
-    onSignInRequest: () -> Unit
+    onSignInRequest: () -> Unit,
+    onNavigate: (String) -> Unit = {}
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -244,7 +251,8 @@ fun AccountContent(
                                 earnedCredits = earnedCredits,
                                 unlockedPalettes = unlockedPalettes,
                                 onLogoutClicked = onLogoutRequest,
-                                onDeactivateClicked = onDeactivateRequest
+                                onDeactivateClicked = onDeactivateRequest,
+                                onNavigate = onNavigate
                             )
                         }
                         else -> {
@@ -253,7 +261,8 @@ fun AccountContent(
                                 userEmail = userEmail,
                                 earnedCredits = earnedCredits,
                                 onLogoutClicked = onLogoutRequest,
-                                onDeactivateClicked = onDeactivateRequest
+                                onDeactivateClicked = onDeactivateRequest,
+                                onNavigate = onNavigate
                             )
                         }
                     }
@@ -404,24 +413,25 @@ private fun AccountComponentPortrait(
     earnedCredits: Int,
     unlockedPalettes: List<AccountPalette>,
     onLogoutClicked: () -> Unit = {},
-    onDeactivateClicked: () -> Unit = {}
+    onDeactivateClicked: () -> Unit = {},
+    onNavigate: (String) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
-            .padding(8.dp)
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(32.dp, Alignment.Top)
     ) {
 
         AccountDetailsPortraitComponent(
             userName = userName,
             userEmail = userEmail,
-            earnedCredits = earnedCredits
-        )
+            earnedCredits = earnedCredits,
+            onNavigate = onNavigate
 
-        Spacer(modifier = Modifier.height(16.dp))
+        )
 
         SignOutComponent(
             modifier = Modifier
@@ -435,11 +445,6 @@ private fun AccountComponentPortrait(
             },
         )
 
-        Column {
-            UnlockHistoryPalettesComponent(
-                unlockedPalettes = unlockedPalettes
-            )
-        }
     }
 }
 
@@ -449,12 +454,12 @@ private fun AccountComponentLandscape(
     userEmail: String,
     earnedCredits: Int,
     onLogoutClicked: () -> Unit = {},
-    onDeactivateClicked: () -> Unit = {}
+    onDeactivateClicked: () -> Unit = {},
+    onNavigate: (String) -> Unit = {}
 ) {
     Row(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp),
+            .fillMaxSize(),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
     ) {
@@ -465,7 +470,8 @@ private fun AccountComponentLandscape(
                 .weight(1f, fill = true),
             userName = userName,
             userEmail = userEmail,
-            earnedCredits = earnedCredits
+            earnedCredits = earnedCredits,
+            onNavigate = onNavigate
         )
 
         SignOutComponent(
@@ -489,11 +495,12 @@ private fun AccountDetailsPortraitComponent(
     userName: String,
     userEmail: String,
     earnedCredits: Int,
+    onNavigate: (String) -> Unit = {}
 ) {
 
     Column (
         modifier = modifier,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -501,41 +508,107 @@ private fun AccountDetailsPortraitComponent(
             credits = earnedCredits
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
+        Surface(
             modifier = Modifier
-                .wrapContentHeight()
                 .fillMaxWidth()
-                .padding(8.dp),
-            text = stringResource(R.string.account_label_information),
-            style = LocalTypography.current.quaternary.bold,
-            color = LocalPalette.current.onSurface,
-            fontSize = 18.sp,
-            maxLines = 1,
-            textAlign = TextAlign.Start
-        )
+                .wrapContentHeight(),
+            shape = RoundedCornerShape(8.dp),
+            color = LocalPalette.current.surfaceContainerLow
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-        Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    text = stringResource(R.string.account_label_information),
+                    style = LocalTypography.current.quaternary.bold,
+                    color = LocalPalette.current.onSurface,
+                    fontSize = 18.sp,
+                    maxLines = 1,
+                    textAlign = TextAlign.Start
+                )
 
-        LabeledValue(
-            title = "${stringResource(R.string.account_label_name)}:",
-            value = userName,
-            containerColor = LocalPalette.current.surfaceContainer,
-            textColor = LocalPalette.current.onSurface
-        )
+                LabeledValue(
+                    title = "${stringResource(R.string.account_label_name)}:",
+                    value = userName,
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    textColor = LocalPalette.current.onSurface
+                )
 
-        Spacer(modifier = Modifier.height(16.dp))
+                LabeledValue(
+                    title = "${stringResource(R.string.account_label_email)}:",
+                    value = userEmail,
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    textColor = LocalPalette.current.onSurface
+                )
+            }
 
-        LabeledValue(
-            title = "${stringResource(R.string.account_label_email)}:",
-            value = userEmail,
-            containerColor = LocalPalette.current.surfaceContainer,
-            textColor = LocalPalette.current.onSurface
-        )
+        }
+
+        Button(
+            modifier = Modifier
+                .wrapContentWidth(),
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = LocalPalette.current.onPrimaryContainer,
+                containerColor = LocalPalette.current.primaryContainer
+            ),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+            onClick = {
+                onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route)
+            }
+        ) {
+            Row(
+                modifier = Modifier
+                    .height(IntrinsicSize.Min)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .heightIn(max = 36.dp)
+                        .aspectRatio(1f),
+                    painter = painterResource(R.drawable.ic_store),
+                    contentDescription = "",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.onPrimaryContainer)
+                )
+
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 8.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(R.string.marketplace_title).uppercase(),
+                        style = LocalTypography.current.quaternary.bold,
+                        fontSize = 24.sp
+                    )
+                }
+
+                Image(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .heightIn(max = 36.dp)
+                        .aspectRatio(1f),
+                    painter = painterResource(R.drawable.ic_arrow_chevron_right),
+                    contentDescription = "",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.onPrimaryContainer)
+                )
+            }
+
+        }
 
     }
-
 }
 
 @Composable
@@ -544,50 +617,118 @@ private fun AccountDetailsLandscapeComponent(
     userName: String,
     userEmail: String,
     earnedCredits: Int,
+    onNavigate: (String) -> Unit = {}
 ) {
 
     Column (
-        modifier = modifier,
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = modifier
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
-        AccountBannerComposite(
+        AccountBannerExpanded(
             credits = earnedCredits
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
+        Surface(
             modifier = Modifier
-                .wrapContentHeight()
                 .fillMaxWidth()
-                .padding(8.dp),
-            text = stringResource(R.string.account_label_information),
-            style = LocalTypography.current.quaternary.bold,
-            color = LocalPalette.current.onSurface,
-            fontSize = 18.sp,
-            maxLines = 1,
-            textAlign = TextAlign.Start
-        )
+                .wrapContentHeight(),
+            shape = RoundedCornerShape(8.dp),
+            color = LocalPalette.current.surfaceContainerLow
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-        Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    text = stringResource(R.string.account_label_information),
+                    style = LocalTypography.current.quaternary.bold,
+                    color = LocalPalette.current.onSurface,
+                    fontSize = 18.sp,
+                    maxLines = 1,
+                    textAlign = TextAlign.Start
+                )
 
-        LabeledValue(
-            title = "${stringResource(R.string.account_label_name)}:",
-            value = userName,
-            containerColor = LocalPalette.current.surfaceContainer,
-            textColor = LocalPalette.current.onSurface
-        )
+                LabeledValue(
+                    title = "${stringResource(R.string.account_label_name)}:",
+                    value = userName,
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    textColor = LocalPalette.current.onSurface
+                )
 
-        Spacer(modifier = Modifier.height(16.dp))
+                LabeledValue(
+                    title = "${stringResource(R.string.account_label_email)}:",
+                    value = userEmail,
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    textColor = LocalPalette.current.onSurface
+                )
+            }
+        }
 
-        LabeledValue(
-            title = "${stringResource(R.string.account_label_email)}:",
-            value = userEmail,
-            containerColor = LocalPalette.current.surfaceContainer,
-            textColor = LocalPalette.current.onSurface
-        )
+        Button(
+            modifier = Modifier
+                .wrapContentWidth(),
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = LocalPalette.current.onPrimaryContainer,
+                containerColor = LocalPalette.current.primaryContainer
+            ),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+            onClick = {
+                onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route)
+            }
+        ) {
+            Row(
+                modifier = Modifier
+                    .height(IntrinsicSize.Min)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .heightIn(max = 36.dp)
+                        .aspectRatio(1f),
+                    painter = painterResource(R.drawable.ic_store),
+                    contentDescription = "",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.onPrimaryContainer)
+                )
+
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 8.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(R.string.marketplace_title).uppercase(),
+                        style = LocalTypography.current.quaternary.bold,
+                        fontSize = 24.sp
+                    )
+                }
+
+                Image(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .heightIn(max = 36.dp)
+                        .aspectRatio(1f),
+                    painter = painterResource(R.drawable.ic_arrow_chevron_right),
+                    contentDescription = "",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.onPrimaryContainer)
+                )
+            }
+
+        }
 
     }
 

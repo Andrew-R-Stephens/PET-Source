@@ -1,16 +1,27 @@
 package com.tritiumgaming.feature.marketplace.ui.common
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.windowInsetsEndWidth
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,8 +31,10 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
+import com.tritiumgaming.feature.marketplace.ui.common.components.AccountBanner
 import com.tritiumgaming.feature.marketplace.ui.common.components.AccountBannerExpanded
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
@@ -40,7 +53,7 @@ fun MarketplaceScreen(
     modifier: Modifier,
     navController: NavHostController,
     marketplaceViewModel: MarketplaceViewModel,
-    content: @Composable () -> Unit
+    content: @Composable (Modifier) -> Unit
 ) {
 
     val user = if(!LocalInspectionMode.current)
@@ -50,46 +63,130 @@ fun MarketplaceScreen(
     MarketplaceContent(
         modifier = modifier
             .padding(8.dp),
+        authenticated = user != null,
         userName = user?.displayName ?: "",
-        credits = credits.earnedCredits
-    ) {
-        content()
+        credits = credits.earnedCredits,
+        onNavigate = { route ->
+            navController.navigate(route)
+        }
+    ) { modifier ->
+        content(modifier)
     }
 }
 
 @Composable
 fun MarketplaceContent(
     modifier: Modifier,
+    authenticated: Boolean = false,
     userName: String = "",
     credits: Int = 0,
-    content: @Composable () -> Unit,
+    onNavigate: (String) -> Unit = {},
+    content: @Composable (Modifier) -> Unit,
+) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+    when(deviceConfiguration) {
+        DeviceConfiguration.MOBILE_PORTRAIT,
+             DeviceConfiguration.TABLET_PORTRAIT -> {
+            PortraitContent(
+                modifier = modifier,
+                authenticated = authenticated,
+                userName = userName,
+                credits = credits,
+                onNavigate = onNavigate,
+                content = { modifier -> content(modifier) }
+            )
+        }
+        else -> {
+            LandscapeContent(
+                modifier = modifier,
+                authenticated = authenticated,
+                userName = userName,
+                credits = credits,
+                onNavigate = onNavigate,
+                content = { modifier -> content(modifier) }
+            )
+        }
+    }
+}
+
+@Composable
+fun PortraitContent(
+    modifier: Modifier,
+    authenticated: Boolean = false,
+    userName: String = "",
+    credits: Int = 0,
+    onNavigate: (String) -> Unit = {},
+    content: @Composable (Modifier) -> Unit,
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp, alignment = Alignment.Top)
+        verticalArrangement = Arrangement.spacedBy(24.dp, alignment = Alignment.Top)
     ) {
         AccountDetails(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            authenticated = authenticated,
             name = userName,
-            credits = credits
+            credits = credits,
+            onNavigate = onNavigate
         )
 
-        content()
+        content(Modifier)
+    }
+}
+
+@Composable
+fun LandscapeContent(
+    modifier: Modifier,
+    authenticated: Boolean = false,
+    userName: String = "",
+    credits: Int = 0,
+    onNavigate: (String) -> Unit = {},
+    content: @Composable (Modifier) -> Unit,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(24.dp, alignment = Alignment.CenterHorizontally)
+    ) {
+
+        content(
+            Modifier
+                .widthIn(max = 450.dp)
+                .fillMaxWidth()
+                .fillMaxHeight()
+        )
+
+        AccountDetails(
+            modifier = Modifier
+                .weight(1f),
+            authenticated = authenticated,
+            name = userName,
+            credits = credits,
+            onNavigate = onNavigate
+        )
+
     }
 }
 
 
 @Composable
 private fun AccountDetails(
+    modifier: Modifier = Modifier,
+    authenticated: Boolean = false,
     name: String = "",
-    credits: Int = 0
+    credits: Int = 0,
+    onNavigate: (String) -> Unit = {}
 ) {
 
-    AccountBannerExpanded(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
+    AccountBanner(
+        modifier = modifier,
+        authenticated = authenticated,
         credits = credits,
-        name = name
+        name = name,
+        onNavigate = onNavigate
     )
 
 }
@@ -101,8 +198,14 @@ private fun Preview() {
     LocalThemeProvider {
         MarketplaceContent(
             modifier = Modifier,
-            content = {
+            content = { modifier ->
+                Box(
+                    modifier = modifier
+                        .width(IntrinsicSize.Min),
+                    contentAlignment = Alignment.Center,
+                ) {
 
+                }
             }
         )
     }

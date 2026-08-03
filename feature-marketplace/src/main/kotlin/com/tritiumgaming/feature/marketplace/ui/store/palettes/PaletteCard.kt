@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
@@ -65,6 +66,7 @@ fun PaletteCard(
     secondaryContainer: Color,
     tertiaryContainer: Color,
     isUnlocked: Boolean = true,
+    canUnlock: Boolean = true,
     onBuyClick: () -> Unit = {}
 ) {
 
@@ -207,21 +209,21 @@ fun PaletteCard(
                     }
                 }
 
-                if(!isUnlocked) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(vertical = 4.dp)
-                            .background(scrim.copy(alpha = .3f))
-                            .padding(horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.spacedBy(
-                            8.dp,
-                            Alignment.CenterHorizontally
-                        ),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(vertical = 4.dp)
+                        .background(scrim.copy(alpha = .3f))
+                        .padding(horizontal = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(
+                        8.dp,
+                        Alignment.CenterHorizontally
+                    ),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
 
+                    if (!isUnlocked) {
                         Button(
                             modifier = Modifier
                                 .height(48.dp)
@@ -229,6 +231,7 @@ fun PaletteCard(
                                 .weight(1f, false),
                             onClick = { onBuyClick() },
                             shape = RoundedCornerShape(2.dp),
+                            enabled = canUnlock,
                             contentPadding = PaddingValues(4.dp),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = surfaceContainerHigh
@@ -266,6 +269,25 @@ fun PaletteCard(
                                 textAlign = TextAlign.Start
                             )
                         )
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .height(48.dp)
+                                .padding(8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .wrapContentHeight()
+                                    .padding(8.dp),
+                                text = "Acquired".uppercase(),
+                                fontSize = 18.sp,
+                                color = surfaceContainerHigh,
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    textAlign = TextAlign.Center
+                                )
+                            )
+                        }
                     }
                 }
 
