@@ -215,4 +215,64 @@ export const fetchPalettes = onCall<PaletteQueryRequest>(async (request) => {
     }
 });
 
+/**
+ * Interface for Bundle query options
+ */
+interface BundleQueryRequest {
+    filterField?: string;
+    filterValue?: any;
+    orderField?: string;
+    orderDirection?: "ASCENDING" | "DESCENDING";
+    limit?: number;
+}
+
+export const fetchBundles = onCall<BundleQueryRequest>(async (request) => {
+    const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
+
+    const db = getFirestore();
+    let query: Query = db.collection("Store/Merchandise/Bundles");
+
+    if (filterField && filterValue !== undefined && filterValue !== null) {
+        query = query.where(filterField, "==", filterValue);
+    }
+
+    if (orderField) {
+        const direction = orderDirection === "DESCENDING" ? "desc" : "asc";
+        query = query.orderBy(orderField, direction);
+    }
+
+    if (limit) {
+        query = query.limit(limit);
+    }
+
+    try {
+        const snapshot = await query.get();
+        const bundles = snapshot.docs.map((doc) => {
+            const data = doc.data();
+            const themeUUIDs: string[] = [];
+            if (data.items && Array.isArray(data.items)) {
+                data.items.forEach((item: any) => {
+                    if (item instanceof DocumentReference) {
+                        themeUUIDs.push(item.id);
+                    } else if (typeof item === "string") {
+                        themeUUIDs.push(item);
+                    }
+                });
+            }
+
+            return {
+                uuid: doc.id,
+                name: data.name || "",
+                buyCredits: data.buyCredits || 0,
+                items: themeUUIDs,
+            };
+        });
+
+        return bundles;
+    } catch (error) {
+        logger.error("Error fetching bundles:", error);
+        throw new HttpsError("internal", "An error occurred while fetching bundles.");
+    }
+});
+
 

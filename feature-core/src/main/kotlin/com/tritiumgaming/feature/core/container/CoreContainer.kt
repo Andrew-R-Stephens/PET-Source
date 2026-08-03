@@ -23,7 +23,7 @@ import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferenc
 import com.tritiumgaming.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
-import com.tritiumgaming.data.marketplace.bundle.repository.MarketBundleRepositoryImpl
+import com.tritiumgaming.data.marketplace.bundle.repository.MarketCatalogBundleRepositoryImpl
 import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
 import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
 import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
@@ -71,7 +71,8 @@ import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
-import com.tritiumgaming.shared.data.market.bundle.repository.MarketBundleRemoteRepository
+import com.tritiumgaming.shared.data.market.bundle.repository.MarketCatalogBundleRepository
+import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
 import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
 import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
@@ -418,15 +419,20 @@ class CoreContainer(
     /**
      *  Market Bundle
      */
-    internal val bundleRepository: MarketBundleRemoteRepository by lazy {
+    internal val bundleRepository: MarketCatalogBundleRepository by lazy {
         val firestoreBundleDataSource = MarketBundleFirestoreDataSourceImpl(
-            firestore = firestore
+            firebaseFunctions = firebaseFunctions
         )
 
-        MarketBundleRepositoryImpl(
-            firestoreDataSource = firestoreBundleDataSource
+        MarketCatalogBundleRepositoryImpl(
+            firestoreDataSource = firestoreBundleDataSource,
+            coroutineDispatcher = Dispatchers.IO
         )
     }
+
+    val getMarketCatalogBundlesUseCase = GetMarketCatalogBundlesUseCase(
+        repository = bundleRepository
+    )
 
     /**
      * Market Typography

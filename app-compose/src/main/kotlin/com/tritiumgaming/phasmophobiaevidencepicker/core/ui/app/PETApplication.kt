@@ -218,6 +218,7 @@ class PETApplication : Application(),
             observeAccountUnlockedPalettesUseCase = coreContainer.observeAccountUnlockedPalettesUseCase,
             observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase,
             purchaseMarketplaceItemUseCase = coreContainer.purchaseMarketplaceItemUseCase,
+            getMarketCatalogBundlesUseCase = coreContainer.getMarketCatalogBundlesUseCase,
             // Typographies
             getMarketCatalogTypographiesUseCase = coreContainer.getMarketCatalogTypographiesUseCase,
             getMarketCatalogTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,

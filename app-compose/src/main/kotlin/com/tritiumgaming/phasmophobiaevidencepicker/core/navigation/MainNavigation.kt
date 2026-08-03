@@ -36,6 +36,7 @@ import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
+import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteShopScreen
 import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
@@ -260,16 +261,23 @@ private fun NavGraphBuilder.homeNavigation(
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_PALETTE.route) { navBackStackEntry ->
+                val marketplaceViewModel: MarketplaceViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(NavRoute.NAVIGATION_MARKETPLACE.route)
+                    },
+                    factory = MarketplaceViewModel.Factory
+                )
                 HomeScreen {
-                    PaletteShopScreen(
+                    MarketplaceScreen(
+                        modifier = Modifier,
                         navController = navController,
-                        marketplaceViewModel = viewModel(
-                            viewModelStoreOwner = remember(navBackStackEntry) {
-                                navController.getBackStackEntry(
-                                    NavRoute.NAVIGATION_MARKETPLACE.route)
-                            },
-                            factory = MarketplaceViewModel.Factory)
-                    )
+                        marketplaceViewModel = marketplaceViewModel
+                    ) {
+                        PaletteShopScreen(
+                            navController = navController,
+                            marketplaceViewModel = marketplaceViewModel
+                        )
+                    }
                 }
             }
 

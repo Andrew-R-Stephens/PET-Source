@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
-import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
@@ -23,7 +22,6 @@ import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUs
 import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
-import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.LEGAL_TENDER
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
@@ -31,6 +29,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
+import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -63,6 +62,7 @@ class MarketplaceViewModel(
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
     private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
+    private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase
 ): ViewModel() {
@@ -97,9 +97,9 @@ class MarketplaceViewModel(
         Log.d("MarketplaceViewModel", "initMarketCatalogBundles")
         viewModelScope.launch {
             getMarketCatalogBundlesUseCase()
-                .onSuccess { palettes ->
-                    Log.d("MarketplaceViewModel", "initMarketCatalogPalettes success: $palettes")
-                    _marketCatalogBundles.update { palettes }
+                .onSuccess { bundles ->
+                    Log.d("MarketplaceViewModel", "initMarketCatalogBundles success: $bundles")
+                    _marketCatalogBundles.update { bundles }
                 }
                 .onFailure { it.printStackTrace() }
         }
@@ -128,11 +128,12 @@ class MarketplaceViewModel(
     val marketCatalogBillablesUiState = _marketCatalogBillablesUiState.asStateFlow()
 
     fun initMarketCatalogBillables() {
-        // TODO
+
     }
 
     fun obtainItemWithCredits(
-        itemId: String, itemType: String,
+        itemId: String,
+        itemType: String,
         onSuccess: (msg: String) -> Unit = {},
         onFailure: (msg: String) -> Unit = {},
         onComplete: () -> Unit = {}
@@ -194,9 +195,10 @@ class MarketplaceViewModel(
         _accountUnlockedTypographiesUiState.update { AccountUnlockedTypographiesUiState() }
 
     private val _marketCatalogPalettesUiState = combine(
+        _marketCatalogBundles,
         _marketCatalogPalettes,
         _accountUnlockedPalettes
-    ) { marketPalettes, unlockedPalettes ->
+    ) { marketBundles, marketPalettes, unlockedPalettes ->
 
         val unlockedUUIDs = unlockedPalettes?.map { it.uuid } ?: emptyList()
         unlockedUUIDs.forEach {
@@ -211,14 +213,50 @@ class MarketplaceViewModel(
             )
         }
 
+        val items = mutableListOf<PaletteShopUiItem>()
+
+        data class BundleState(
+            val uuid: String,
+            val bundle: MarketBundle,
+            val items: List<MarketPalette>,
+            val unlocked: Boolean
+        )
+        val bundleStates = marketBundles.map { marketBundle ->
+            val localPalettes = updatedPalettes.filter { palette ->
+                palette.uuid in marketBundle.items.map { item -> item }
+            }
+
+            BundleState(
+                uuid = marketBundle.uuid,
+                bundle = marketBundle,
+                items = localPalettes,
+                unlocked = localPalettes.all { it.unlocked }
+            )
+        }
+
         val grouped = updatedPalettes
             .sortedBy { it.priority }
             .groupBy { it.group ?: "" }
 
-        val items = mutableListOf<PaletteShopUiItem>()
+        items.add(
+            PaletteShopUiItem.Header("Bundles")
+        )
+        bundleStates.forEach { bundleState ->
+            items.add(
+                PaletteShopUiItem.Bundle(
+                    key = bundleState.uuid,
+                    marketBundle = bundleState.bundle,
+                    marketPalettes = bundleState.items,
+                    unlocked = bundleState.unlocked
+                )
+            )
+        }
+
         grouped.forEach { (groupName, groupPalettes) ->
             if (groupName.isNotEmpty()) {
-                items.add(PaletteShopUiItem.Header(groupName))
+                items.add(
+                    PaletteShopUiItem.Header(groupName)
+                )
             }
             groupPalettes.forEach { marketPalette ->
                 marketPalette.group?.let { group ->
@@ -371,6 +409,7 @@ class MarketplaceViewModel(
     init {
         startObservingAccount()
 
+        initMarketCatalogBundles()
         initMarketCatalogPalettes()
         initMarketCatalogTypographies()
         initMarketCatalogBillables()
@@ -393,6 +432,7 @@ class MarketplaceViewModel(
                 val purchaseMarketplaceItemUseCase = container.purchaseMarketplaceItemUseCase
                 val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
                 val getMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
+                val getMarketCatalogBundlesUseCase = container.getMarketCatalogBundlesUseCase
                 val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
                 val saveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
 
@@ -407,6 +447,7 @@ class MarketplaceViewModel(
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                     getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
                     getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase,
+                    getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase,
                     saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
                     saveCurrentTypographyUseCase = saveCurrentTypographyUseCase
                 )

@@ -2,6 +2,7 @@ package com.tritiumgaming.feature.marketplace.ui.store
 
 import androidx.compose.runtime.Immutable
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
+import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
 data class MarketCatalogPalettesUiState(
@@ -25,6 +26,8 @@ sealed interface PaletteShopUiItem {
 
     data class Bundle(
         override val key: String,
-        val marketPalettes: List<MarketPalette>
+        val marketBundle: MarketBundle,
+        val marketPalettes: List<MarketPalette>,
+        val unlocked: Boolean
     ) : PaletteShopUiItem
 }

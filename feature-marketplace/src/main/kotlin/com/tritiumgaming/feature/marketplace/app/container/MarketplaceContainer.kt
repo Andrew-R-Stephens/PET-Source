@@ -8,6 +8,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
@@ -27,8 +28,9 @@ class MarketplaceContainer(
     internal val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
     internal val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     internal val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
-    internal val getMarketCatalogTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     internal val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
+    internal val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
+    internal val getMarketCatalogTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     internal val getMarketCatalogPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
     internal val getNextUnlockedTypographyUseCase: GetNextUnlockedTypographyUseCase,
     internal val getNextUnlockedPaletteUseCase: GetNextUnlockedPaletteUseCase,

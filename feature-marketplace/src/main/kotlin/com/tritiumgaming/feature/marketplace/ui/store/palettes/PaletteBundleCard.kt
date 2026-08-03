@@ -55,7 +55,9 @@ fun PaletteBundleCard(
     surfaceContainerHigh: Color,
     onSurfaceVariant: Color,
     onSurface: Color,
+    scrim: Color,
     items: List<MarketPalette>,
+    isOwned: Boolean = false,
     onBuyClick: () -> Unit = {}
 ) {
     Card(
@@ -124,66 +126,68 @@ fun PaletteBundleCard(
                     }
                 }
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(vertical = 4.dp)
-                        .background(surfaceContainerHigh.copy(alpha = .3f))
-                        .padding(horizontal = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(
-                        8.dp,
-                        Alignment.CenterHorizontally
-                    ),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-
-                    Button(
+                if(!isOwned) {
+                    Row(
                         modifier = Modifier
-                            .height(48.dp)
-                            .padding(8.dp)
-                            .weight(1f, false),
-                        onClick = onBuyClick,
-                        shape = RoundedCornerShape(2.dp),
-                        contentPadding = PaddingValues(4.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = surfaceContainerHigh
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                            .padding(vertical = 4.dp)
+                            .background(scrim.copy(alpha = .3f))
+                            .padding(horizontal = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(
+                            8.dp,
+                            Alignment.CenterHorizontally
                         ),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
+
+                        Button(
+                            modifier = Modifier
+                                .height(48.dp)
+                                .padding(8.dp)
+                                .weight(1f, false),
+                            onClick = onBuyClick,
+                            shape = RoundedCornerShape(2.dp),
+                            contentPadding = PaddingValues(4.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = surfaceContainerHigh
+                            ),
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically),
+                                text = stringResource(R.string.marketplace_button_item_get).uppercase(),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    textAlign = TextAlign.Center
+                                ),
+                                color = onSurface,
+                                autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                            )
+                        }
+
+                        Image(
+                            modifier = Modifier
+                                .height(48.dp)
+                                .aspectRatio(1f)
+                                .padding(8.dp),
+                            painter = painterResource(R.drawable.ic_shop_cost),
+                            contentDescription = "Cost",
+                            colorFilter = ColorFilter.tint(surfaceContainerHigh)
+                        )
+
                         Text(
                             modifier = Modifier
-                                .align(Alignment.CenterVertically),
-                            text = stringResource(R.string.marketplace_button_item_get).uppercase(),
+                                .weight(1f, false),
+                            text = "$buyCredits",
+                            fontSize = 24.sp,
+                            color = surfaceContainerHigh,
                             style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Center
-                            ),
-                            color = onSurface,
-                            autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                                textAlign = TextAlign.Start
+                            )
                         )
                     }
 
-                    Image(
-                        modifier = Modifier
-                            .height(48.dp)
-                            .aspectRatio(1f)
-                            .padding(8.dp),
-                        painter = painterResource(R.drawable.ic_shop_cost),
-                        contentDescription = "Cost",
-                        colorFilter = ColorFilter.tint(surfaceContainerHigh)
-                    )
-
-                    Text(
-                        modifier = Modifier
-                            .weight(1f, false),
-                        text = "$buyCredits",
-                        fontSize = 24.sp,
-                        color = surfaceContainerHigh,
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        )
-                    )
                 }
-
             }
 
         }
@@ -276,7 +280,8 @@ private fun PreviewBundleCard() {
             ),
             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
-            onSurface = LocalPalette.current.onSurface
+            onSurface = LocalPalette.current.onSurface,
+            scrim = LocalPalette.current.scrim
         ) {
 
         }
