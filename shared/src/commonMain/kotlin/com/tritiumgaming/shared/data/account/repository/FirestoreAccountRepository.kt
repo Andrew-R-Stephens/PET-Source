@@ -11,11 +11,11 @@ interface FirestoreAccountRepository {
 
     suspend fun addCredits(
         creditTransaction: AccountCreditTransaction
-    ): Result<AccountCredits>
+    ): Result<Boolean>
 
-    suspend fun removeCredits(
+    /*suspend fun removeCredits(
         creditTransaction: AccountCreditTransaction
-    ): Result<AccountCredits>
+    ): Result<Boolean>*/
 
     suspend fun purchaseItemWithCredits(
         itemId: String,
@@ -33,10 +33,10 @@ interface FirestoreAccountRepository {
         marketAgreement: AccountMarketAgreement
     ): Result<AccountMarketAgreement>
 
-    suspend fun addUnlockedDocuments(
+    /*suspend fun addUnlockedDocuments(
         unlockUUIDs: List<String>?,
         type: String
-    ): Result<String>
+    ): Result<String>*/
 
     suspend fun fetchUnlockedPalettes(
         forceUpdate: Boolean = false

@@ -103,6 +103,9 @@
     <string name="investigation_section_title_movement_speed">Movement Speed</string>
     <string name="investigation_label_phase">Phase</string>
 
+    <string name="common_label_gender_male" translatable="false">Male</string>
+    <string name="common_label_gender_female" translatable="false">Female</string>
+
     <string name="investigation_label_all">All</string>
     <string name="investigation_label_journal">Journal</string>
     <string name="investigation_label_contract">Configure Contract</string>

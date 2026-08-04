@@ -34,7 +34,7 @@ class AccountTransactionsTesting {
             // Arrange
             val credits = 10L
             val transaction = AccountCreditTransaction(credits = credits)
-            val expectedCredits = AccountCredits(earnedCredits = credits, spentCredits = 0L)
+            val expectedCredits = true
             val expectedResult = Result.success(expectedCredits)
 
             whenever(addAccountCreditsUseCase(credits)).thenReturn(expectedResult)

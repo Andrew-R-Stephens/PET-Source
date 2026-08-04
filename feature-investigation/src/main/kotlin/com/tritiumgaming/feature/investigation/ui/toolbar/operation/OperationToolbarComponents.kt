@@ -62,7 +62,8 @@ internal fun ResetButton(
                 modifier = modifier
                     .fillMaxSize(),
                 onClick = { onReset(null) },
-                onLongClick = { showOptions = true }
+                onLongClick = { showOptions = true },
+                tintColor = LocalPalette.current.onSurface
             )
 
             DropdownMenu(

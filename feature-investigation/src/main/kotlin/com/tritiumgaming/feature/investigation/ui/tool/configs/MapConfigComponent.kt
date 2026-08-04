@@ -30,7 +30,7 @@ internal fun MapConfigControl(
 
         CommonTooltip(
             modifier = Modifier,
-            tooltipText = stringResource(R.string.map_setting_label_modifier)
+            tooltipText = stringResource(R.string.investigation_timer_maplabel)
         ) {
             Image(
                 modifier = modifier,

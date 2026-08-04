@@ -114,7 +114,7 @@ internal fun OperationStatusBar(
 @Composable
 private fun GenderStatusComponent() {
     CommonTooltip(
-        tooltipText = stringResource(R.string.difficulty_setting_title_name)
+        tooltipText = stringResource(R.string.common_label_gender_male)
     ) { tooltipModifier ->
         Surface(
             modifier = tooltipModifier,

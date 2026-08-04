@@ -136,40 +136,20 @@ class FirestoreAccountRemoteDataSource(
 
     suspend fun addCredits(
         creditTransaction: AccountCreditTransactionDto
-    ): Result<AccountCreditsDto> {
+    ): Result<Boolean> {
 
         return try {
-
-            val docRef = creditsDocumentRef
-                ?: return Result.failure(Exception("User Account Credits document null!"))
-
-            // Update document
-            firestore.runTransaction { transaction ->
-
-                transaction.getOrCreateCreditsDocument(docRef)
-
-                val updates = hashMapOf<String, Any>(
-                    FIELD_CREDITS_EARNED to FieldValue.increment(creditTransaction.credits)
-                )
-                transaction.update(docRef, updates)
-
-            }.await()
-
-            // Get updated document
-            val updatedSnapshot = docRef.get().await()
-            if (!updatedSnapshot.exists()) {
-                return Result.failure(
-                    FirebaseFirestoreException(
-                        "Document ${docRef.path} unexpectedly not found after update.",
-                        FirebaseFirestoreException.Code.NOT_FOUND
-                    )
-                )
-            }
-            val updatedDto = AccountCreditsDto(
-                earnedCredits = updatedSnapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
-                spentCredits = updatedSnapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
+            val data = hashMapOf(
+                "credits" to creditTransaction.credits
             )
-            Result.success(updatedDto)
+
+            val result = firebaseFunctions
+                .getHttpsCallable("addCredits")
+                .call(data)
+                .await()
+
+            val success = (result.data as? Map<*, *>)?.get("success") as? Boolean ?: false
+            Result.success(success)
 
         } catch (e: Exception) {
             Log.e("Firestore", "Error adding credits", e)
@@ -178,9 +158,9 @@ class FirestoreAccountRemoteDataSource(
 
     }
 
-    suspend fun removeCredits(
+    /*suspend fun removeCredits(
         creditTransaction: AccountCreditTransactionDto
-    ): Result<AccountCreditsDto> {
+    ): Result<Boolean> {
 
         return try {
 
@@ -230,7 +210,7 @@ class FirestoreAccountRemoteDataSource(
             Result.failure(e)
         }
 
-    }
+    }*/
 
     suspend fun purchaseItemWithCredits(
         itemId: String,
@@ -253,24 +233,6 @@ class FirestoreAccountRemoteDataSource(
             Log.e("Firestore", "Error purchasing item with credits", e)
             Result.failure(e)
         }
-    }
-
-    private fun Transaction.getOrCreateCreditsDocument(
-        reference: DocumentReference
-    ): DocumentSnapshot {
-
-        val snapshot = get(reference)
-
-        if (!snapshot.exists()) {
-            println("Credits document ${reference.path} not found. Creating with default values.")
-            val initialCreditsData = AccountCreditsDto(
-                earnedCredits = 0L,
-                spentCredits = 0L
-            )
-            set(reference, initialCreditsData) // Create the document in the transaction
-        }
-
-        return snapshot
     }
 
     fun observeCreditsDocument(): Flow<Result<AccountCreditsDto>> =
@@ -296,7 +258,7 @@ class FirestoreAccountRemoteDataSource(
             awaitClose { this.cancel() }
         }
 
-    suspend fun addUnlockedDocuments(
+    /*suspend fun addUnlockedDocuments(
         unlockUUIDs: List<String>?,
         type: String
     ): Result<String> {
@@ -323,7 +285,7 @@ class FirestoreAccountRemoteDataSource(
             Result.failure(e)
         }
 
-    }
+    }*/
 
     suspend fun fetchUnlockedPaletteDocuments(): Result<List<AccountPaletteDto>> {
 
@@ -375,7 +337,7 @@ class FirestoreAccountRemoteDataSource(
                 return@callbackFlow
             }
 
-            // Keep track of the listener registration to remove it when the flow is cancelled
+            // Keep track of the listener registration to remove it when the flow is canceled
             var listenerRegistration: ListenerRegistration? = null
 
             try {

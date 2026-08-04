@@ -7,10 +7,10 @@ class RemoveAccountCreditsUseCase(
     private val repository: FirestoreAccountRepository
 ) {
     suspend operator fun invoke(credits: Long) {
-        repository.removeCredits(
+        /*repository.removeCredits(
             AccountCreditTransaction(
                 credits
             )
-        )
+        )*/
     }
 }

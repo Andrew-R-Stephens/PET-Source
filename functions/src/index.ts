@@ -275,4 +275,56 @@ export const fetchBundles = onCall<BundleQueryRequest>(async (request) => {
     }
 });
 
+/**
+ * Interface for Add Credits request
+ */
+interface AddCreditsRequest {
+    credits: number;
+}
+
+export const addCredits = onCall<AddCreditsRequest>(async (request) => {
+    const auth = request.auth;
+    if (!auth) {
+        throw new HttpsError("unauthenticated", "User must be authenticated to add credits.");
+    }
+
+    const {credits} = request.data;
+    if (credits <= 0) {
+        throw new HttpsError("invalid-argument", "Credits must be a positive number.");
+    }
+
+    const uid = auth.uid;
+    const db = getFirestore();
+    const userCreditsRef = db.doc(`Users/${uid}/Account/Credits`);
+
+    try {
+        const result = await db.runTransaction(async (transaction) => {
+            const creditsSnap = await transaction.get(userCreditsRef);
+            let earnedCredits = 0;
+            let spentCredits = 0;
+
+            if (creditsSnap.exists) {
+                const creditsData = creditsSnap.data();
+                earnedCredits = creditsData?.earnedCredits || 0;
+                spentCredits = creditsData?.spentCredits || 0;
+            }
+
+            const newEarnedCredits = earnedCredits + credits;
+
+            transaction.set(userCreditsRef, {
+                earnedCredits: newEarnedCredits,
+                spentCredits: spentCredits,
+            }, {merge: true});
+
+            return {success: true, newBalance: newEarnedCredits};
+        });
+
+        return result;
+    } catch (error) {
+        logger.error("Add credits failed:", error);
+        if (error instanceof HttpsError) throw error;
+        throw new HttpsError("internal", "An internal error occurred while adding credits.");
+    }
+});
+
 

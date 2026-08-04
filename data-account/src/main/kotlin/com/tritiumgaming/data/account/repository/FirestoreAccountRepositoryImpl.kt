@@ -32,25 +32,32 @@ class FirestoreAccountRepositoryImpl(
 
     override suspend fun addCredits(
         creditTransaction: AccountCreditTransaction
-    ): Result<AccountCredits> {
+    ): Result<Boolean> {
         authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
             Exception("An authorized user is not currently logged in!"))
 
-        val result: Result<AccountCreditsDto> =
-            accountRemoteDataSource.addCredits(creditTransaction.toNetwork())
-
-        return result.map { dto -> dto.toDomain() }
-
+        return accountRemoteDataSource.addCredits(creditTransaction.toNetwork())
     }
 
-    override suspend fun removeCredits(
+    /*override suspend fun removeCredits(
         creditTransaction: AccountCreditTransaction
-    ): Result<AccountCredits> {
+    ): Result<Boolean> {
 
         val result: Result<AccountCreditsDto> =
             accountRemoteDataSource.removeCredits(creditTransaction.toNetwork())
 
         return result.map { dto -> dto.toDomain() }
+
+    }*/
+
+    override fun observeCredits(): Flow<Result<AccountCredits>> {
+        authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
+            Result.failure(
+                Exception("An authorized user is not currently logged in!")))
+
+        return accountRemoteDataSource.observeCreditsDocument().map { flow: Result<AccountCreditsDto> ->
+            flow.map { dto -> dto.toDomain() }
+        }
 
     }
 
@@ -68,18 +75,6 @@ class FirestoreAccountRepositoryImpl(
             Exception("An authorized user is not currently logged in!"))
 
         return accountRemoteDataSource.purchaseItemWithCredits(itemId, itemType)
-
-    }
-
-    override fun observeCredits(): Flow<Result<AccountCredits>> {
-        authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
-            Result.failure(
-                Exception("An authorized user is not currently logged in!")))
-
-        return accountRemoteDataSource.observeCreditsDocument().map { flow: Result<AccountCreditsDto> ->
-            flow.map { dto -> dto.toDomain() }
-        }
-
     }
 
     override suspend fun setMarketplaceAgreementState(
@@ -113,7 +108,7 @@ class FirestoreAccountRepositoryImpl(
 
     }*/
 
-    override suspend fun addUnlockedDocuments (
+    /*override suspend fun addUnlockedDocuments (
         unlockUUIDs: List<String>?,
         type: String
     ): Result<String> {
@@ -125,7 +120,7 @@ class FirestoreAccountRepositoryImpl(
 
         return accountRemoteDataSource.addUnlockedDocuments(unlockUUIDs, type)
 
-    }
+    }*/
 
     override suspend fun fetchUnlockedPalettes(
         forceUpdate: Boolean
