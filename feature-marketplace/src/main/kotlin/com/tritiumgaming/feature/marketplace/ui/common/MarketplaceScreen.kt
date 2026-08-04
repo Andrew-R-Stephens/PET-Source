@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.common
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,6 +49,8 @@ fun MarketplaceScreen(
     content: @Composable (Modifier) -> Unit
 ) {
 
+    val context = LocalContext.current
+
     val user = if(!LocalInspectionMode.current)
         Firebase.auth.currentUser else null
     val credits by marketplaceViewModel.accountCreditsUiState.collectAsState()
@@ -59,6 +63,19 @@ fun MarketplaceScreen(
         credits = credits.earnedCredits,
         onNavigate = { route ->
             navController.navigate(route)
+        },
+        onEarnCredits = {
+            marketplaceViewModel.addCredits(
+                credits = 100,
+                onSuccess = {
+                    Toast.makeText(context, "Credits Earned",
+                        Toast.LENGTH_SHORT).show()
+                },
+                onFailure = {
+                    Toast.makeText(context, "Error! $it",
+                        Toast.LENGTH_SHORT).show()
+                }
+            )
         }
     ) { modifier ->
         content(modifier)
@@ -72,6 +89,7 @@ fun MarketplaceContent(
     userName: String = "",
     credits: Int = 0,
     onNavigate: (String) -> Unit = {},
+    onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
 ) {
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -86,6 +104,7 @@ fun MarketplaceContent(
                 userName = userName,
                 credits = credits,
                 onNavigate = onNavigate,
+                onEarnCredits = onEarnCredits,
                 content = { modifier -> content(modifier) }
             )
         }
@@ -96,6 +115,7 @@ fun MarketplaceContent(
                 userName = userName,
                 credits = credits,
                 onNavigate = onNavigate,
+                onEarnCredits = onEarnCredits,
                 content = { modifier -> content(modifier) }
             )
         }
@@ -109,6 +129,7 @@ fun PortraitContent(
     userName: String = "",
     credits: Int = 0,
     onNavigate: (String) -> Unit = {},
+    onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
 ) {
     Column(
@@ -122,6 +143,7 @@ fun PortraitContent(
             authenticated = authenticated,
             name = userName,
             credits = credits,
+            onEarnCredits = onEarnCredits,
             onNavigate = onNavigate
         )
 
@@ -136,6 +158,7 @@ fun LandscapeContent(
     userName: String = "",
     credits: Int = 0,
     onNavigate: (String) -> Unit = {},
+    onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
 ) {
     Row(
@@ -156,6 +179,7 @@ fun LandscapeContent(
             authenticated = authenticated,
             name = userName,
             credits = credits,
+            onEarnCredits = onEarnCredits,
             onNavigate = onNavigate
         )
 
@@ -169,6 +193,7 @@ private fun AccountDetails(
     authenticated: Boolean = false,
     name: String = "",
     credits: Int = 0,
+    onEarnCredits: () -> Unit = {},
     onNavigate: (String) -> Unit = {}
 ) {
 
@@ -177,6 +202,7 @@ private fun AccountDetails(
         authenticated = authenticated,
         credits = credits,
         name = name,
+        onEarnCredits = onEarnCredits,
         onNavigate = onNavigate
     )
 

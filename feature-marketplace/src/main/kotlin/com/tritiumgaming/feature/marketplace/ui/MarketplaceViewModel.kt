@@ -24,6 +24,7 @@ import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.LEGAL_TENDER
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
@@ -56,6 +57,7 @@ class MarketplaceViewModel(
     private val signInAccountUseCase: SignInAccountUseCase,
     private val signOutAccountUseCase: SignOutAccountUseCase,
     private val deactivateAccountUseCase: DeactivateAccountUseCase,
+    private val addAccountCreditsUseCase: AddAccountCreditsUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
@@ -129,6 +131,22 @@ class MarketplaceViewModel(
 
     fun initMarketCatalogBillables() {
 
+    }
+
+    fun addCredits(
+        credits: Int,
+        onSuccess: () -> Unit = {},
+        onFailure: (msg: String) -> Unit = {}
+    ) {
+        viewModelScope.launch {
+            try {
+                addAccountCreditsUseCase(credits.toLong())
+                onSuccess()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                onFailure(e.message ?: "Unknown error")
+            }
+        }
     }
 
     fun obtainItemWithCredits(
@@ -426,6 +444,7 @@ class MarketplaceViewModel(
                 val signInAccountUseCase = container.signInAccountUseCase
                 val signOutAccountUseCase = container.signOutAccountUseCase
                 val deactivateAccountUseCase = container.deactivateAccountUseCase
+                val addAccountCreditsUseCase = container.addAccountCreditsUseCase
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val observeAccountUnlockedTypographiesUseCase = container.observeAccountUnlockedTypographiesUseCase
@@ -441,6 +460,7 @@ class MarketplaceViewModel(
                     signInAccountUseCase = signInAccountUseCase,
                     signOutAccountUseCase = signOutAccountUseCase,
                     deactivateAccountUseCase = deactivateAccountUseCase,
+                    addAccountCreditsUseCase = addAccountCreditsUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,
                     observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase,

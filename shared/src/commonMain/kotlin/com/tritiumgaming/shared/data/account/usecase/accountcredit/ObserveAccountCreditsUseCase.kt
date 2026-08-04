@@ -8,11 +8,6 @@ import kotlinx.coroutines.flow.map
 class ObserveAccountCreditsUseCase (
     private val repository: FirestoreAccountRepository
 ) {
-    operator fun invoke(): Flow<Result<AccountCredits>> {
-        val result = repository.observeCredits()
+    operator fun invoke(): Flow<Result<AccountCredits>> = repository.observeCredits()
 
-        result.map { it.exceptionOrNull()?.printStackTrace() }
-
-        return result
-    }
 }
