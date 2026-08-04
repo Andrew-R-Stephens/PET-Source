@@ -74,7 +74,6 @@ import com.tritiumgaming.core.ui.widgets.label.LabeledValue
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
-import com.tritiumgaming.feature.account.ui.component.AccountBannerComposite
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
 import com.tritiumgaming.shared.core.navigation.NavRoute

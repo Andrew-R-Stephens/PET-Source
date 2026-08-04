@@ -81,7 +81,6 @@ import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.widgets.menus.SecondarySelector
-import com.tritiumgaming.feature.start.BuildConfig
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale

@@ -55,9 +55,9 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCre
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository
 import com.tritiumgaming.shared.data.challenge.usecase.GetChallengesUseCase
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
@@ -137,9 +137,9 @@ import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTime
 import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.shared.data.wearable.repository.WearableRepository
 import com.tritiumgaming.shared.data.wearable.repository.WearableRepositoryImpl
+import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
 import com.tritiumgaming.shared.data.wearable.usecase.PushOperationDataToWearableUseCase
 import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
-import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

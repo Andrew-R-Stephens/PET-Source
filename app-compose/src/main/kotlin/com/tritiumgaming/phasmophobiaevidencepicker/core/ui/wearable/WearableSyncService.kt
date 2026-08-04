@@ -4,9 +4,9 @@ import android.util.Log
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.ui.app.PETApplication
-import com.tritiumgaming.shared.data.wearable.WearablePaths
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.wearable.WearablePaths
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

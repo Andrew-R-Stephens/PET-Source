@@ -10,7 +10,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.ump.ConsentInformation.PrivacyOptionsRequirementStatus
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleAdsConsentState
-import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
