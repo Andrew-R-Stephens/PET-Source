@@ -61,6 +61,7 @@ fun MarketplaceScreen(
         authenticated = user != null,
         userName = user?.displayName ?: "",
         credits = credits.earnedCredits,
+        showButton = user != null,
         onNavigate = { route ->
             navController.navigate(route)
         },
@@ -88,6 +89,7 @@ fun MarketplaceContent(
     authenticated: Boolean = false,
     userName: String = "",
     credits: Int = 0,
+    showButton: Boolean = false,
     onNavigate: (String) -> Unit = {},
     onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
@@ -103,6 +105,7 @@ fun MarketplaceContent(
                 authenticated = authenticated,
                 userName = userName,
                 credits = credits,
+                showButton = showButton,
                 onNavigate = onNavigate,
                 onEarnCredits = onEarnCredits,
                 content = { modifier -> content(modifier) }
@@ -128,6 +131,7 @@ fun PortraitContent(
     authenticated: Boolean = false,
     userName: String = "",
     credits: Int = 0,
+    showButton: Boolean = false,
     onNavigate: (String) -> Unit = {},
     onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
@@ -143,6 +147,7 @@ fun PortraitContent(
             authenticated = authenticated,
             name = userName,
             credits = credits,
+            showButton = showButton,
             onEarnCredits = onEarnCredits,
             onNavigate = onNavigate
         )
@@ -157,6 +162,7 @@ fun LandscapeContent(
     authenticated: Boolean = false,
     userName: String = "",
     credits: Int = 0,
+    showButton: Boolean = false,
     onNavigate: (String) -> Unit = {},
     onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
@@ -179,6 +185,7 @@ fun LandscapeContent(
             authenticated = authenticated,
             name = userName,
             credits = credits,
+            showButton = showButton,
             onEarnCredits = onEarnCredits,
             onNavigate = onNavigate
         )
@@ -193,6 +200,7 @@ private fun AccountDetails(
     authenticated: Boolean = false,
     name: String = "",
     credits: Int = 0,
+    showButton: Boolean = false,
     onEarnCredits: () -> Unit = {},
     onNavigate: (String) -> Unit = {}
 ) {
@@ -201,6 +209,7 @@ private fun AccountDetails(
         modifier = modifier,
         authenticated = authenticated,
         credits = credits,
+        showButton = showButton,
         name = name,
         onEarnCredits = onEarnCredits,
         onNavigate = onNavigate

@@ -69,6 +69,7 @@ fun AccountBanner(
     authenticated: Boolean = false,
     name: String = "",
     credits: Int = 100,
+    showButton: Boolean = false,
     onEarnCredits: () -> Unit = {},
     onNavigate: (String) -> Unit = {}
 ) {
@@ -80,7 +81,7 @@ fun AccountBanner(
             credits = credits,
             onNavigate = onNavigate,
             onEarnCredits = onEarnCredits,
-            showButton = true
+            showButton = showButton
         )
     } else {
         AccountBannerLogin(
@@ -159,12 +160,9 @@ fun AccountBannerExpanded(
             Column(
                 modifier = Modifier
                     .width(IntrinsicSize.Max)
-                    .then(
-                        if(showButton) Modifier.clickable(onClick = {
-                            onEarnCredits()
-                        })
-                        else Modifier
-                    ),
+                    .clickable(enabled = showButton, onClick = {
+                        onEarnCredits()
+                    }),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically)
             ) {
