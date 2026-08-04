@@ -41,6 +41,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
+import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.PaletteShopUiItem
@@ -74,9 +75,13 @@ fun PaletteShopScreen(
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
-    Box(modifier) {
+    MarketplaceScreen(
+        modifier = Modifier,
+        navController = navController,
+        marketplaceViewModel = marketplaceViewModel
+    ) { modifier ->
         PaletteShopContent(
-            modifier = Modifier,
+            modifier = modifier,
             unlocks = paletteUnlocks,
             authenticated = user != null,
             onBuyItem = { marketPalette ->

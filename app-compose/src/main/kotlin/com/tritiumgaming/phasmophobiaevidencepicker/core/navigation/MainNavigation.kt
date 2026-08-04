@@ -268,17 +268,11 @@ private fun NavGraphBuilder.homeNavigation(
                     factory = MarketplaceViewModel.Factory
                 )
                 HomeScreen {
-                    MarketplaceScreen(
+                    PaletteShopScreen(
                         modifier = Modifier,
                         navController = navController,
                         marketplaceViewModel = marketplaceViewModel
-                    ) { modifier ->
-                        PaletteShopScreen(
-                            modifier = modifier,
-                            navController = navController,
-                            marketplaceViewModel = marketplaceViewModel
-                        )
-                    }
+                    )
                 }
             }
 
