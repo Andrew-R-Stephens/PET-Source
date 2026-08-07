@@ -36,8 +36,9 @@ import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
-import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
+import com.tritiumgaming.feature.marketplace.ui.home.MarketplaceHomeScreen
 import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteShopScreen
+import com.tritiumgaming.feature.marketplace.ui.store.typographies.TypographyShopScreen
 import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
@@ -210,15 +211,22 @@ private fun NavGraphBuilder.homeNavigation(
 
         navigation(
             route = NavRoute.NAVIGATION_MARKETPLACE.route,
-            startDestination = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route
+            startDestination = NavRoute.SCREEN_MARKETPLACE_HOME.route
         ) {
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_HOME.route) {
-                /*HomeScreen {
+            composable(route = NavRoute.SCREEN_MARKETPLACE_HOME.route) { navBackStackEntry ->
+                val marketplaceViewModel: MarketplaceViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(
+                            NavRoute.NAVIGATION_MARKETPLACE.route)
+                    },
+                    factory = MarketplaceViewModel.Factory)
+                HomeScreen {
                     MarketplaceHomeScreen(
-                        navController = navController
+                        navController = navController,
+                        marketplaceViewModel = marketplaceViewModel
                     )
-                }*/
+                }
             }
 
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
@@ -252,12 +260,35 @@ private fun NavGraphBuilder.homeNavigation(
                 }
             }
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) {
-                /*HomeScreen {
-                    MarketplaceTypographyScreen(
-                        navController = navController
+            composable(route = NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) { navBackStackEntry ->
+                val marketplaceViewModel: MarketplaceViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(
+                            NavRoute.NAVIGATION_MARKETPLACE.route)
+                    },
+                    factory = MarketplaceViewModel.Factory)
+                HomeScreen {
+                    TypographyShopScreen(
+                        navController = navController,
+                        marketplaceViewModel = marketplaceViewModel
                     )
-                }*/
+                }
+            }
+
+            composable(route = NavRoute.SCREEN_MARKETPLACE_BUNDLES.route) { navBackStackEntry ->
+                val marketplaceViewModel: MarketplaceViewModel = viewModel(
+                    viewModelStoreOwner = remember(navBackStackEntry) {
+                        navController.getBackStackEntry(
+                            NavRoute.NAVIGATION_MARKETPLACE.route)
+                    },
+                    factory = MarketplaceViewModel.Factory)
+                HomeScreen {
+                    PaletteShopScreen(
+                        modifier = Modifier,
+                        navController = navController,
+                        marketplaceViewModel = marketplaceViewModel
+                    )
+                }
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_PALETTE.route) { navBackStackEntry ->

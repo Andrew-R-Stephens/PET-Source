@@ -786,7 +786,7 @@ private fun HeaderNavBar(
                     modifier = Modifier
                         .size(48.dp)
                         .padding(4.dp),
-                    onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route) }) {
+                    onClick = { onNavigate(NavRoute.NAVIGATION_MARKETPLACE.route) }) {
                     storeIcon()
                 }
             //}

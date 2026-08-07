@@ -162,8 +162,8 @@ fun PaletteCard(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             ColorSwatch(
-                                backgroundColor = onSurface
-                            )
+                                    backgroundColor = onSurface
+                                    )
 
                             ColorSwatch(
                                 backgroundColor = primary

@@ -14,6 +14,15 @@
     <string name="marketplace_label_bundle_includes">Includes</string>
     <string name="marketplace_purchase_equip">Equip %1$s theme?</string>
 
+    <string name="marketplace_home_storefront_palettes_title" translatable="false">Themes</string>
+    <string name="marketplace_home_storefront_palettes_description" translatable="false">Custom UI themes</string>
+    <string name="marketplace_home_storefront_bundles_title" translatable="false">Theme Bundles</string>
+    <string name="marketplace_home_storefront_bundles_description" translatable="false">Theme packs</string>
+    <string name="marketplace_home_storefront_typography_title" translatable="false">Typography</string>
+    <string name="marketplace_home_storefront_typography_description" translatable="false">Unique fonts</string>
+    <string name="marketplace_home_storefront_billing_title" translatable="false">Credits</string>
+    <string name="marketplace_home_storefront_billing_description" translatable="false">Top up your credits</string>
+
     <plurals name="marketplace_description_watch_ad">
         <item quantity="one">Companion Credit</item>
         <item quantity="other">Companion Credits</item>

@@ -167,6 +167,9 @@ fun LandscapeContent(
     onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
 ) {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(24.dp, alignment = Alignment.CenterHorizontally)
@@ -174,8 +177,11 @@ fun LandscapeContent(
 
         content(
             Modifier
-                .widthIn(max = 450.dp)
-                .fillMaxWidth()
+                .then(
+                    if (deviceConfiguration == DeviceConfiguration.MOBILE_LANDSCAPE)
+                        Modifier.widthIn(max = 600.dp)
+                    else Modifier.fillMaxWidth(0.7f)
+                )
                 .fillMaxHeight()
         )
 

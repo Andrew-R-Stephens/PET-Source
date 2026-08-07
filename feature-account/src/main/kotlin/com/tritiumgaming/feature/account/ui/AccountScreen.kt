@@ -561,7 +561,7 @@ private fun AccountDetailsPortraitComponent(
             ),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
             onClick = {
-                onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route)
+                onNavigate(NavRoute.NAVIGATION_MARKETPLACE.route)
             }
         ) {
             Row(
@@ -683,7 +683,7 @@ private fun AccountDetailsLandscapeComponent(
             ),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
             onClick = {
-                onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route)
+                onNavigate(NavRoute.NAVIGATION_MARKETPLACE.route)
             }
         ) {
             Row(
