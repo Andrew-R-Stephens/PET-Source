@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.home
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,6 +29,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -41,6 +44,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -49,6 +53,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
@@ -187,7 +192,7 @@ private fun MarketplaceHomeContentPortrait(
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
         columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
+        /*contentPadding = PaddingValues(8.dp),*/
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -280,7 +285,7 @@ private fun PaletteCard(
         background = { cardModifier ->
             SlantedSplitBackground(
                 modifier = cardModifier
-                    .alpha(.35f),
+                    .alpha(.5f),
                 {
                     Column(
                         modifier = Modifier
@@ -382,6 +387,7 @@ private fun PaletteCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
+        contentColor = LocalPalette.current.surfaceContainerHighest,
         isLarge = isLarge,
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route) }
@@ -402,7 +408,7 @@ private fun BundleCard(
         background = { cardModifier ->
             SlantedSplitBackground(
                 modifier = cardModifier
-                    .alpha(.35f),
+                    .alpha(.5f),
                 {
                     Image(
                         painter = painterResource(id = R.drawable.theme_badge_1_recruit),
@@ -456,6 +462,7 @@ private fun BundleCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
+        contentColor = LocalPalette.current.surfaceContainerHighest,
         isLarge = isLarge,
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BUNDLES.route) }
@@ -489,7 +496,7 @@ private fun TypographyCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
-        contentColor = LocalPalette.current.onSurface,
+        contentColor = LocalPalette.current.surfaceContainerHighest,
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) }
     )
@@ -522,7 +529,7 @@ private fun BillingCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
-        contentColor = LocalPalette.current.onSurface,
+        contentColor = LocalPalette.current.surfaceContainerHighest,
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) }
     )
@@ -541,18 +548,18 @@ fun StorefrontCard(
     onClick: () -> Unit
 ) {
     Surface(
+        onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .then(
                 if (useDefaultConstraints) {
                     if (isLarge) Modifier.height(160.dp) else Modifier.aspectRatio(1f)
                 } else Modifier
-            )
-            .clip(RoundedCornerShape(12.dp))
-            .clickable { onClick() },
+            ),
         color = containerColor,
         shape = RoundedCornerShape(12.dp),
-        shadowElevation = 4.dp
+        shadowElevation = 4.dp,
+        border = BorderStroke(3.dp, contentColor),
     ) {
         Box(
             modifier = Modifier.fillMaxSize()
@@ -572,16 +579,29 @@ fun StorefrontCard(
                     )
                     .padding(16.dp)
             ) {
+                val topWidth = remember { mutableIntStateOf(0) }
+                val bottomWidth = remember { mutableIntStateOf(0) }
+
                 Column(
                     modifier = Modifier.align(Alignment.BottomStart),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(0.dp)
                 ) {
                     Surface(
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(4.dp)
+                        modifier = Modifier
+                            .onGloballyPositioned {
+                                topWidth.intValue = it.size.width
+                            }
+                            .zIndex(1f),
+                        color = LocalPalette.current.surfaceContainerLow,
+                        shape = RoundedCornerShape(
+                            topStart = 8.dp, topEnd = 8.dp,
+                            bottomEnd = if (topWidth.intValue >= bottomWidth.intValue) 8.dp else 0.dp
+                        ),
+                        shadowElevation = 4.dp,
+                        tonalElevation = 8.dp
                     ) {
                         Text(
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp),
                             text = title.uppercase(),
                             style = LocalTypography.current.primary.bold.copy(
                                 fontSize = if (isLarge) 24.sp else 16.sp,
@@ -592,11 +612,21 @@ fun StorefrontCard(
                     }
 
                     Surface(
-                        color = LocalPalette.current.surfaceContainer,
-                        shape = RoundedCornerShape(4.dp)
+                        modifier = Modifier
+                            .onGloballyPositioned {
+                                bottomWidth.intValue = it.size.width
+                            }
+                            .zIndex(1f),
+                        color = LocalPalette.current.surfaceContainerLow,
+                        shape = RoundedCornerShape(
+                            bottomStart = 8.dp, bottomEnd = 8.dp,
+                            topEnd = if (bottomWidth.intValue >= topWidth.intValue) 8.dp else 0.dp
+                        ),
+                        shadowElevation = 4.dp,
+                        tonalElevation = 8.dp
                     ) {
                         Text(
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                             text = description,
                             style = LocalTypography.current.quaternary.regular.copy(
                                 fontSize = if (isLarge) 14.sp else 12.sp
