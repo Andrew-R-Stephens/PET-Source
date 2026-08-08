@@ -1,15 +1,15 @@
 package com.tritiumgaming.feature.marketplace.ui.home
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,14 +17,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -35,16 +36,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.innerShadow
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,6 +65,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isFinite
+import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
@@ -160,6 +175,64 @@ class SlantedLeftShape(private val angleDegrees: Float = 45f) : Shape {
             close()
         }
         return Outline.Generic(path)
+    }
+}
+
+@Composable
+fun StackedIcons(
+    modifier: Modifier = Modifier,
+    color: Color = LocalPalette.current.primary,
+    icon: Int
+) {
+    val painter: Painter = painterResource(id = icon)
+    val density = LocalDensity.current
+
+    val standardHeight = 48.dp
+
+    BoxWithConstraints(modifier = modifier) {
+        val actualHeight = if (maxHeight.isSpecified && maxHeight.isFinite) maxHeight else standardHeight
+        val scale = actualHeight / standardHeight
+
+        val iconSizePx = with(density) { actualHeight.toPx() }
+        val stepPx = with(density) { (8.dp * scale).toPx() }
+
+        val dpWidth = actualHeight + (8.dp * scale) * 2
+
+        Canvas(
+            modifier = Modifier
+                .size(width = dpWidth, height = actualHeight)
+        ) {
+            // Step 0: Left Sliver (I0 at x=0, masked by I1 at x=stepPx)
+            drawIntoCanvas { canvas ->
+                canvas.saveLayer(Rect(0f, 0f, size.width, size.height), Paint())
+
+                // Mask (I1 at x=stepPx)
+                canvas.translate(stepPx, 0f)
+                with(painter) {
+                    draw(size = Size(iconSizePx, iconSizePx), colorFilter = ColorFilter.tint(Color.Black))
+                }
+                canvas.translate(-stepPx, 0f)
+
+                // Source (I0 at x=0) with SrcOut
+                val paint = Paint().apply {
+                    this.blendMode = BlendMode.SrcOut
+                    this.colorFilter = ColorFilter.tint(color)
+                }
+                canvas.saveLayer(Rect(0f, 0f, size.width, size.height), paint)
+                with(painter) {
+                    draw(size = Size(iconSizePx, iconSizePx))
+                }
+                canvas.restore()
+                canvas.restore()
+            }
+
+            // Step 4: Full Vector (I1 at x=stepPx * 2)
+            translate(left = stepPx * 2) {
+                with(painter) {
+                    draw(size = Size(iconSizePx, iconSizePx), colorFilter = ColorFilter.tint(color))
+                }
+            }
+        }
     }
 }
 
@@ -282,6 +355,26 @@ private fun PaletteCard(
         modifier = modifier,
         title = stringResource(R.string.marketplace_home_storefront_palettes_title),
         description = stringResource(R.string.marketplace_home_storefront_palettes_description),
+        icon = { modifier ->
+            Surface(
+                modifier = modifier
+                    .fillMaxHeight(.25f)
+                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp)
+                    .aspectRatio(1f),
+                color = LocalPalette.current.surfaceContainerHigh,
+                shape = RoundedCornerShape(8.dp),
+                shadowElevation = 4.dp,
+                tonalElevation = 8.dp
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .padding(4.dp),
+                    painter = painterResource(R.drawable.ic_palette_fill),
+                    tint = LocalPalette.current.onSurface,
+                    contentDescription = null
+                )
+            }
+        },
         background = { cardModifier ->
             SlantedSplitBackground(
                 modifier = cardModifier
@@ -405,6 +498,24 @@ private fun BundleCard(
         modifier = modifier,
         title = stringResource(R.string.marketplace_home_storefront_bundles_title),
         description = stringResource(R.string.marketplace_home_storefront_bundles_description),
+        icon = { modifier ->
+            Surface(
+                modifier = modifier
+                    .fillMaxHeight(.25f)
+                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp),
+                color = LocalPalette.current.surfaceContainerHigh,
+                shape = RoundedCornerShape(8.dp),
+                shadowElevation = 4.dp,
+                tonalElevation = 8.dp
+            ) {
+                StackedIcons(
+                    modifier = Modifier
+                        .padding(4.dp),
+                    icon = R.drawable.ic_palette_fill,
+                    color = LocalPalette.current.onSurface
+                )
+            }
+        },
         background = { cardModifier ->
             SlantedSplitBackground(
                 modifier = cardModifier
@@ -479,6 +590,26 @@ private fun TypographyCard(
         modifier = modifier,
         title = stringResource(R.string.marketplace_home_storefront_typography_title),
         description = stringResource(R.string.marketplace_home_storefront_typography_description),
+        icon = { modifier ->
+            Surface(
+                modifier = modifier
+                    .fillMaxHeight(.25f)
+                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp)
+                    .aspectRatio(1f),
+                color = LocalPalette.current.surfaceContainerHigh,
+                shape = RoundedCornerShape(8.dp),
+                shadowElevation = 4.dp,
+                tonalElevation = 8.dp
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .padding(4.dp),
+                    painter = painterResource(R.drawable.ic_font_family),
+                    tint = LocalPalette.current.onSurface,
+                    contentDescription = null
+                )
+            }
+        },
         background = { cardModifier ->
             SlantedSplitBackground(
                 modifier = cardModifier,
@@ -512,6 +643,25 @@ private fun BillingCard(
         modifier = modifier,
         title = stringResource(R.string.marketplace_home_storefront_billing_title),
         description = stringResource(R.string.marketplace_home_storefront_billing_description),
+        icon = { modifier ->
+            Surface(
+                modifier = modifier
+                    .fillMaxHeight(.25f)
+                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp)
+                    .aspectRatio(1f),
+                color = LocalPalette.current.surfaceContainerHigh,
+                shape = RoundedCornerShape(8.dp),
+                shadowElevation = 4.dp,
+                tonalElevation = 8.dp
+            ) {
+                Icon(
+                    modifier = Modifier.padding(4.dp),
+                    painter = painterResource(R.drawable.ic_shop_cost),
+                    tint = LocalPalette.current.onSurface,
+                    contentDescription = null
+                )
+            }
+        },
         background = { cardModifier ->
             SlantedSplitBackground(
                 modifier = cardModifier,
@@ -540,6 +690,7 @@ fun StorefrontCard(
     modifier: Modifier = Modifier,
     title: String,
     description: String,
+    icon: @Composable (Modifier) -> Unit = {},
     background: @Composable (Modifier) -> Unit,
     containerColor: Color,
     contentColor: Color = Color.Transparent,
@@ -581,6 +732,12 @@ fun StorefrontCard(
             ) {
                 val topWidth = remember { mutableIntStateOf(0) }
                 val bottomWidth = remember { mutableIntStateOf(0) }
+
+                icon(
+                    Modifier
+                        .align(Alignment.TopEnd)
+                        .zIndex(1f)
+                )
 
                 Column(
                     modifier = Modifier.align(Alignment.BottomStart),
@@ -636,6 +793,25 @@ fun StorefrontCard(
                     }
                 }
             }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun StackedPaletteIconsPreview() {
+    LocalThemeProvider {
+        Box(
+            modifier = Modifier
+                .background(LocalPalette.current.surface),
+            contentAlignment = Alignment.Center
+        ) {
+            StackedIcons(
+                modifier = Modifier
+                    .height(96.dp),
+                icon = R.drawable.ic_palette_fill,
+                color = LocalPalette.current.primary
+            )
         }
     }
 }
