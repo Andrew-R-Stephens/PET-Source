@@ -336,10 +336,10 @@ private fun MarketplaceHomeContentExpanded(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            PaletteCard(modifier = Modifier.widthIn(max = 400.dp), isLarge = true, onNavigate = onNavigate)
-            BundleCard(modifier = Modifier.widthIn(max = 400.dp), isLarge = true, onNavigate = onNavigate)
-            TypographyCard(modifier = Modifier.widthIn(max = 200.dp), onNavigate = onNavigate)
-            BillingCard(modifier = Modifier.widthIn(max = 200.dp), onNavigate = onNavigate)
+            PaletteCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
+            BundleCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
+            TypographyCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 200.dp), onNavigate = onNavigate)
+            BillingCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 200.dp), onNavigate = onNavigate)
         }
     }
 }
@@ -480,7 +480,7 @@ private fun PaletteCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
-        contentColor = LocalPalette.current.surfaceContainerHighest,
+        contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         isLarge = isLarge,
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route) }
@@ -573,7 +573,7 @@ private fun BundleCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
-        contentColor = LocalPalette.current.surfaceContainerHighest,
+        contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         isLarge = isLarge,
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BUNDLES.route) }
@@ -627,7 +627,7 @@ private fun TypographyCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
-        contentColor = LocalPalette.current.surfaceContainerHighest,
+        contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) }
     )
@@ -679,7 +679,7 @@ private fun BillingCard(
             )
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
-        contentColor = LocalPalette.current.surfaceContainerHighest,
+        contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) }
     )
@@ -710,7 +710,7 @@ fun StorefrontCard(
         color = containerColor,
         shape = RoundedCornerShape(12.dp),
         shadowElevation = 4.dp,
-        border = BorderStroke(3.dp, contentColor),
+        border = BorderStroke(2.dp, contentColor),
     ) {
         Box(
             modifier = Modifier.fillMaxSize()
@@ -784,7 +784,7 @@ fun StorefrontCard(
                     ) {
                         Text(
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                            text = description,
+                            text = description.uppercase(),
                             style = LocalTypography.current.quaternary.regular.copy(
                                 fontSize = if (isLarge) 14.sp else 12.sp
                             ),
