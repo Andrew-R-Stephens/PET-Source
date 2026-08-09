@@ -39,12 +39,19 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
     const unlockHistoryRef = db.collection(`Users/${uid}/Account/TransactionHistory/UnlockHistory`);
 
     let itemRef: DocumentReference;
-    if (itemType === "theme") {
+
+    switch (itemType) {
+    case "theme": {
         itemRef = db.doc(`Store/Merchandise/Themes/${itemId}`);
-    } else if (itemType === "bundle") {
+        break;
+    }
+    case "bundle": {
         itemRef = db.doc(`Store/Merchandise/Bundles/${itemId}`);
-    } else {
+        break;
+    }
+    default: {
         throw new HttpsError("invalid-argument", "Invalid item type.");
+    }
     }
 
     try {
@@ -81,14 +88,18 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
 
             // 5. Unlock Item(s)
             const now = Timestamp.now();
-            if (itemType === "theme") {
-                transaction.set(unlockHistoryRef.doc(itemId), {
-                    type: "Single Theme",
-                    dateUnlocked: now,
-                }, {merge: true});
-            } else if (itemType === "bundle") {
-                // Unlock the bundle itself (or just its contents?)
-                // Based on app code, it seems themes are unlocked individually.
+
+            switch (itemType) {
+            case "theme": {
+                transaction.set(
+                    unlockHistoryRef.doc(itemId), {
+                        type: "Single Theme",
+                        dateUnlocked: now,
+                    }, {merge: true}
+                );
+                break;
+            }
+            case "bundle": {
                 const themeRefs = itemData?.items as DocumentReference[] | undefined;
                 if (themeRefs && Array.isArray(themeRefs)) {
                     themeRefs.forEach((ref) => {
@@ -99,11 +110,8 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
                         }, {merge: true});
                     });
                 }
-                // Also mark the bundle as purchased if needed
-                /* transaction.set(unlockHistoryRef.doc(itemId), {
-                    type: "Theme Bundle",
-                    dateUnlocked: now,
-                }, {merge: true}); */
+                break;
+            }
             }
 
             return {success: true, newBalance: earnedCredits - price};
@@ -117,18 +125,7 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
     }
 });
 
-/**
- * Interface for Typography query options
- */
-interface TypographyQueryRequest {
-    filterField?: string;
-    filterValue?: any;
-    orderField?: string;
-    orderDirection?: "ASCENDING" | "DESCENDING";
-    limit?: number;
-}
-
-export const fetchTypographies = onCall<TypographyQueryRequest>(async (request) => {
+export const fetchTypographies = onCall<QueryRequest>(async (request) => {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
     const db = getFirestore();
@@ -166,18 +163,7 @@ export const fetchTypographies = onCall<TypographyQueryRequest>(async (request) 
     }
 });
 
-/**
- * Interface for Palette query options
- */
-interface PaletteQueryRequest {
-    filterField?: string;
-    filterValue?: any;
-    orderField?: string;
-    orderDirection?: "ASCENDING" | "DESCENDING";
-    limit?: number;
-}
-
-export const fetchPalettes = onCall<PaletteQueryRequest>(async (request) => {
+export const fetchPalettes = onCall<QueryRequest>(async (request) => {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
     const db = getFirestore();
@@ -216,9 +202,9 @@ export const fetchPalettes = onCall<PaletteQueryRequest>(async (request) => {
 });
 
 /**
- * Interface for Bundle query options
+ * Interface for query options
  */
-interface BundleQueryRequest {
+interface QueryRequest {
     filterField?: string;
     filterValue?: any;
     orderField?: string;
@@ -226,7 +212,7 @@ interface BundleQueryRequest {
     limit?: number;
 }
 
-export const fetchBundles = onCall<BundleQueryRequest>(async (request) => {
+export const fetchBundles = onCall<QueryRequest>(async (request) => {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
     const db = getFirestore();
