@@ -75,6 +75,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.widgets.image.SlantedSplitBackground
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.shared.core.navigation.NavRoute
@@ -106,132 +107,6 @@ fun MarketplaceHomeScreen(
             modifier = contentModifier
         ) { route ->
             navController.navigate(route)
-        }
-    }
-}
-
-@Composable
-fun SlantedSplitBackground(
-    modifier: Modifier = Modifier,
-    vararg contents: @Composable () -> Unit
-) {
-    Layout(
-        modifier = modifier.fillMaxSize(),
-        content = {
-            contents.forEachIndexed { index, content ->
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .then(
-                            if (contents.size > 1 && index > 0) {
-                                Modifier.clip(SlantedLeftShape(45f))
-                            } else Modifier
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    content()
-                }
-            }
-        }
-    ) { measurables, constraints ->
-        val count = measurables.size
-        val h = constraints.maxHeight
-        val skew = (h * tan(Math.toRadians(45.0 / 2.0).toFloat())).toInt()
-
-        val baseWidth = constraints.maxWidth / count
-
-        val placeables = measurables.mapIndexed { index, measurable ->
-            val itemWidth = if (count > 1 && index < count - 1) {
-                baseWidth + skew
-            } else {
-                baseWidth
-            }
-            measurable.measure(constraints.copy(minWidth = itemWidth, maxWidth = itemWidth))
-        }
-
-        layout(constraints.maxWidth, constraints.maxHeight) {
-            var xPosition = 0
-            placeables.forEachIndexed { index, placeable ->
-                placeable.placeRelative(xPosition, 0)
-                xPosition += baseWidth
-            }
-        }
-    }
-}
-
-class SlantedLeftShape(private val angleDegrees: Float = 45f) : Shape {
-    override fun createOutline(
-        size: Size,
-        layoutDirection: LayoutDirection,
-        density: Density
-    ): Outline {
-        val path = Path().apply {
-            val skew = size.height * tan(Math.toRadians(angleDegrees.toDouble() / 2.0).toFloat())
-
-            moveTo(skew, 0f)
-            lineTo(size.width, 0f)
-            lineTo(size.width, size.height)
-            lineTo(0f, size.height)
-            close()
-        }
-        return Outline.Generic(path)
-    }
-}
-
-@Composable
-fun StackedIcons(
-    modifier: Modifier = Modifier,
-    color: Color = LocalPalette.current.primary,
-    icon: Int
-) {
-    val painter: Painter = painterResource(id = icon)
-    val density = LocalDensity.current
-
-    val standardHeight = 48.dp
-
-    BoxWithConstraints(modifier = modifier) {
-        val actualHeight = if (maxHeight.isSpecified && maxHeight.isFinite) maxHeight else standardHeight
-        val scale = actualHeight / standardHeight
-
-        val iconSizePx = with(density) { actualHeight.toPx() }
-        val stepPx = with(density) { (8.dp * scale).toPx() }
-
-        val dpWidth = actualHeight + (8.dp * scale) * 2
-
-        Canvas(
-            modifier = Modifier
-                .size(width = dpWidth, height = actualHeight)
-        ) {
-            // Step 0: Left Sliver (I0 at x=0, masked by I1 at x=stepPx)
-            drawIntoCanvas { canvas ->
-                canvas.saveLayer(Rect(0f, 0f, size.width, size.height), Paint())
-
-                // Mask (I1 at x=stepPx)
-                canvas.translate(stepPx, 0f)
-                with(painter) {
-                    draw(size = Size(iconSizePx, iconSizePx), colorFilter = ColorFilter.tint(Color.Black))
-                }
-                canvas.translate(-stepPx, 0f)
-
-                // Source (I0 at x=0) with SrcOut
-                val paint = Paint().apply {
-                    this.blendMode = BlendMode.SrcOut
-                    this.colorFilter = ColorFilter.tint(color)
-                }
-                canvas.saveLayer(Rect(0f, 0f, size.width, size.height), paint)
-                with(painter) {
-                    draw(size = Size(iconSizePx, iconSizePx))
-                }
-                canvas.restore()
-                canvas.restore()
-            }
-
-            // Step 4: Full Vector (I1 at x=stepPx * 2)
-            translate(left = stepPx * 2) {
-                with(painter) {
-                    draw(size = Size(iconSizePx, iconSizePx), colorFilter = ColorFilter.tint(color))
-                }
-            }
         }
     }
 }
@@ -522,51 +397,51 @@ private fun BundleCard(
                     .alpha(.5f),
                 {
                     Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .scale(2.5f),
                         painter = painterResource(id = R.drawable.theme_badge_1_recruit),
                         contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .scale(2.5f),
                         contentScale = ContentScale.Crop
                     )
                 },
                 {
                     Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .scale(2.5f),
                         painter = painterResource(id = R.drawable.theme_badge_4_detective),
                         contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .scale(2.5f),
                         contentScale = ContentScale.Crop
                     )
                 },
                 {
                     Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .scale(2.5f),
                         painter = painterResource(id = R.drawable.theme_badge_halloween23),
                         contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .scale(2.5f),
                         contentScale = ContentScale.Crop
                     )
                 },
                 {
                     Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .scale(2.5f),
                         painter = painterResource(id = R.drawable.theme_badge_5_technician),
                         contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .scale(2.5f),
                         contentScale = ContentScale.Crop
                     )
                 },
                 {
                     Image(
-                        painter = painterResource(id = R.drawable.theme_badge_easter),
-                        contentDescription = null,
                         modifier = Modifier
                             .fillMaxSize()
                             .scale(2.5f),
+                        painter = painterResource(id = R.drawable.theme_badge_easter),
+                        contentDescription = null,
                         contentScale = ContentScale.Crop
                     )
                 },
@@ -791,6 +666,64 @@ fun StorefrontCard(
                             color = LocalPalette.current.onSurface
                         )
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun StackedIcons(
+    modifier: Modifier = Modifier,
+    color: Color = LocalPalette.current.primary,
+    icon: Int
+) {
+    val painter: Painter = painterResource(id = icon)
+    val density = LocalDensity.current
+
+    val standardHeight = 48.dp
+
+    BoxWithConstraints(modifier = modifier) {
+        val actualHeight = if (maxHeight.isSpecified && maxHeight.isFinite) maxHeight else standardHeight
+        val scale = actualHeight / standardHeight
+
+        val iconSizePx = with(density) { actualHeight.toPx() }
+        val stepPx = with(density) { (8.dp * scale).toPx() }
+
+        val dpWidth = actualHeight + (8.dp * scale) * 2
+
+        Canvas(
+            modifier = Modifier
+                .size(width = dpWidth, height = actualHeight)
+        ) {
+            // Step 0: Left Sliver (I0 at x=0, masked by I1 at x=stepPx)
+            drawIntoCanvas { canvas ->
+                canvas.saveLayer(Rect(0f, 0f, size.width, size.height), Paint())
+
+                // Mask (I1 at x=stepPx)
+                canvas.translate(stepPx, 0f)
+                with(painter) {
+                    draw(size = Size(iconSizePx, iconSizePx), colorFilter = ColorFilter.tint(Color.Black))
+                }
+                canvas.translate(-stepPx, 0f)
+
+                // Source (I0 at x=0) with SrcOut
+                val paint = Paint().apply {
+                    this.blendMode = BlendMode.SrcOut
+                    this.colorFilter = ColorFilter.tint(color)
+                }
+                canvas.saveLayer(Rect(0f, 0f, size.width, size.height), paint)
+                with(painter) {
+                    draw(size = Size(iconSizePx, iconSizePx))
+                }
+                canvas.restore()
+                canvas.restore()
+            }
+
+            // Step 4: Full Vector (I1 at x=stepPx * 2)
+            translate(left = stepPx * 2) {
+                with(painter) {
+                    draw(size = Size(iconSizePx, iconSizePx), colorFilter = ColorFilter.tint(color))
                 }
             }
         }

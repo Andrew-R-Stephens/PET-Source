@@ -148,6 +148,7 @@
         Codex Fragment
     -->
     <string name="codex_section_equipment">Equipment</string>
+    <string name="codex_section_achievement">Achievements</string>
     <string name="codex_section_more">More coming soon</string>
     <string name="codex_label_gh_ost" translatable="false">
         <![CDATA[

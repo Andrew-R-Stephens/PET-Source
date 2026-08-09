@@ -1,4 +1,4 @@
-package com.tritiumgaming.data.palette.dto
+package com.tritiumgaming.data.marketplace.typography.dto
 
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.market.typography.mappers.asUuid

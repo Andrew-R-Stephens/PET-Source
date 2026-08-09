@@ -1,11 +1,11 @@
-package com.tritiumgaming.data.palette.repository
+package com.tritiumgaming.data.marketplace.typography.repository
 
 import android.util.Log
-import com.tritiumgaming.data.palette.dto.MarketTypographyDto
-import com.tritiumgaming.data.palette.dto.toDomain
-import com.tritiumgaming.data.palette.dto.toLocal
-import com.tritiumgaming.data.palette.source.local.MarketTypographyLocalDataSource
-import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.data.marketplace.typography.dto.MarketTypographyDto
+import com.tritiumgaming.data.marketplace.typography.dto.toDomain
+import com.tritiumgaming.data.marketplace.typography.dto.toLocal
+import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.data.typography.source.local.TypographyLocalDataSourceImpl
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
 import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class MarketCatalogTypographyRepositoryImpl(
     private val firestoreDataSource: MarketTypographyFirestoreDataSource,
-    private val localDataSource: MarketTypographyLocalDataSource,
+    private val localDataSource: TypographyLocalDataSourceImpl,
     coroutineDispatcher: CoroutineDispatcher
 ): MarketCatalogTypographyRepository {
 

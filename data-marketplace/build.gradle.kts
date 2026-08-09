@@ -73,4 +73,7 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
+
+    implementation(project(":data-palette"))
+    implementation(project(":data-typography"))
 }

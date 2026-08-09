@@ -34,12 +34,12 @@ import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceI
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
-import com.tritiumgaming.data.palette.repository.MarketCatalogPaletteRepositoryImpl
-import com.tritiumgaming.data.palette.repository.MarketCatalogTypographyRepositoryImpl
-import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
-import com.tritiumgaming.data.palette.source.local.MarketTypographyLocalDataSource
-import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.data.marketplace.palette.repository.MarketCatalogPaletteRepositoryImpl
+import com.tritiumgaming.data.marketplace.typography.repository.MarketCatalogTypographyRepositoryImpl
+import com.tritiumgaming.data.palette.source.local.PaletteLocalDataSourceImpl
+import com.tritiumgaming.data.typography.source.local.TypographyLocalDataSourceImpl
+import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
+import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.data.policy.repository.PolicyRepositoryImpl
 import com.tritiumgaming.data.policy.source.datastore.PolicyDatastoreDataSource
 import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
@@ -438,7 +438,7 @@ class CoreContainer(
      * Market Typography
      */
     internal val typographyRepository: MarketCatalogTypographyRepository by lazy {
-        val typographyLocalDataSource = MarketTypographyLocalDataSource()
+        val typographyLocalDataSource = TypographyLocalDataSourceImpl()
         val typographyFirestoreDataSource = MarketTypographyFirestoreDataSource(
             firebaseFunctions = firebaseFunctions
         )
@@ -469,7 +469,7 @@ class CoreContainer(
      * Market Palette
      */
     internal val paletteRepository: MarketCatalogPaletteRepository by lazy {
-        val paletteLocalDataSource = MarketPaletteLocalDataSource()
+        val paletteLocalDataSource = PaletteLocalDataSourceImpl()
         val paletteFirestoreDataSource = MarketPaletteFirestoreDataSource(
             firebaseFunctions = firebaseFunctions
         )

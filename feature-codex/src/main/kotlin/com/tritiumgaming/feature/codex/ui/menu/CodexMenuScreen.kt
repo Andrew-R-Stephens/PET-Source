@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.codex.ui.menu
 
+import android.graphics.Color
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
@@ -25,6 +27,14 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Green
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.StrokeJoin
@@ -48,6 +58,7 @@ import com.tritiumgaming.core.ui.theme.black
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.white
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.image.SlantedSplitBackground
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
@@ -253,8 +264,71 @@ private fun CodexMenuContentPortrait(
                     .weight(1f)
                     .height(64.dp),
                 codexMenuItemUiState = CodexMenuItemUiState(
-                    title = R.string.codex_section_more,
-                    image = null
+                    title = R.string.codex_section_achievement,
+                    content = @Composable { modifier ->
+                        Box(
+                            modifier = modifier
+                                .background(White),
+                        ) {
+                            SlantedSplitBackground(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(Black)
+                                    .alpha(.5f),
+                                {
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_hunter_3),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_devoted),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_paranormal_perfectionist),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_director),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_cash_2),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },
+                            )
+                        }
+                    }
                 )
             ) {
                 codexMenuItemUiActions.onNavigate(
@@ -317,8 +391,71 @@ private fun CodexMenuContentLandscape(
                     .weight(.3f)
                     .height(64.dp),
                 codexMenuItemUiState = CodexMenuItemUiState(
-                    title = R.string.codex_section_more,
-                    image = null
+                    title = R.string.codex_section_achievement,
+                    content = { modifier ->
+                        Box(
+                            modifier = modifier
+                                .background(White),
+                        ) {
+                            SlantedSplitBackground(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(Black)
+                                    .alpha(.5f),
+                                {
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_hunter_3),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_devoted),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_paranormal_perfectionist),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_director),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },{
+                                    Image(
+                                        modifier = Modifier
+                                            .fillMaxHeight()
+                                            .aspectRatio(1f)
+                                            .scale(1.5f),
+                                        painter = painterResource(id = R.drawable.icon_achievement_cash_2),
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop
+                                    )
+                                },
+                            )
+                        }
+                    }
                 )
             ) {
                 codexMenuItemUiActions.onNavigate(
@@ -373,7 +510,7 @@ private fun CodexMenuItem(
                     contentScale = ContentScale.Crop,
                     alpha = .5f
                 )
-            }
+            } ?: codexMenuItemUiState.content(Modifier.fillMaxSize())
 
             Row(
                 modifier = Modifier
@@ -394,11 +531,11 @@ private fun CodexMenuItem(
                             .wrapContentHeight()
                             .padding(horizontal = 8.dp),
                         text = stringResource(codexMenuItemUiState.title).uppercase(),
-                        style = LocalTypography.current.primary.regular.copy(
+                        style = LocalTypography.current.primary.bold.copy(
                             textAlign = TextAlign.Center,
                             drawStyle = Stroke(
                                 miter = 10f,
-                                width = 7f,
+                                width = 10f,
                                 join = StrokeJoin.Round
                             )
                         ),
@@ -415,7 +552,7 @@ private fun CodexMenuItem(
                             .wrapContentHeight()
                             .padding(horizontal = 8.dp),
                         text = stringResource(codexMenuItemUiState.title).uppercase(),
-                        style = LocalTypography.current.primary.regular.copy(
+                        style = LocalTypography.current.primary.bold.copy(
                             textAlign = TextAlign.Center
                         ),
                         color = white,

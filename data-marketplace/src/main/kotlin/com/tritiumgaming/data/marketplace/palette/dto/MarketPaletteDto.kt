@@ -1,4 +1,4 @@
-package com.tritiumgaming.data.palette.dto
+package com.tritiumgaming.data.marketplace.palette.dto
 
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
