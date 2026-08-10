@@ -37,7 +37,6 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.PaletteBundleCard
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogScreenUiState
@@ -62,19 +61,34 @@ private annotation class DevicePreviews
 fun BundleShopScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    marketplaceViewModel: MarketplaceViewModel
+    viewmodel: MarketplaceBundlesScreenViewModel
 ) {
     val context = LocalContext.current
 
-    val bundleUnlocks by marketplaceViewModel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
+    val bundleUnlocks by viewmodel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
     var isLoading by remember { mutableStateOf(false) }
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
+    val credits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+
     MarketplaceScreen(
         modifier = Modifier,
         navController = navController,
-        marketplaceViewModel = marketplaceViewModel
+        credits = credits.earnedCredits,
+        onEarnCredits = {
+            viewmodel.addCredits(
+                credits = 100,
+                onSuccess = {
+                    Toast.makeText(context, "Credits Earned",
+                        Toast.LENGTH_SHORT).show()
+                },
+                onFailure = {
+                    Toast.makeText(context, "Error! $it",
+                        Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
     ) { modifier ->
         BundleShopContent(
             modifier = modifier,
@@ -82,7 +96,7 @@ fun BundleShopScreen(
             authenticated = user != null,
             onBuyBundle = { marketPalette ->
                 isLoading = true
-                marketplaceViewModel.obtainItemWithCredits(
+                viewmodel.obtainItemWithCredits(
                     marketPalette.uuid, "bundle",
                     onSuccess = { _ ->
                         Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()

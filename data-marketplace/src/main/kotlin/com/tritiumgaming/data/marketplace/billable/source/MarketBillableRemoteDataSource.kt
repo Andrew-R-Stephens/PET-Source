@@ -6,7 +6,8 @@ import com.tritiumgaming.shared.data.market.billable.model.BillableQueryOptions
 interface MarketBillableRemoteDataSource {
 
     suspend fun fetch(
-        billableQueryOptions: BillableQueryOptions = BillableQueryOptions()
+        billableQueryOptions: BillableQueryOptions = BillableQueryOptions(),
+        version: Int
     ): Result<List<MarketBillableDto>>
 
 }

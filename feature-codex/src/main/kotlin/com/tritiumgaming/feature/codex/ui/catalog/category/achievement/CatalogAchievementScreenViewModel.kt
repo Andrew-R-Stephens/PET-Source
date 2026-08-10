@@ -94,6 +94,12 @@ class CatalogAchievementScreenViewModel(
         }
     }
 
+    fun clearDisplay() {
+        _displayUiState.update {
+            CatalogDisplayUiState.None()
+        }
+    }
+
     fun setScrollOffset(offset: Float? = null, index: Int? = null) {
         _scrollUiState.update {
             it.copy(

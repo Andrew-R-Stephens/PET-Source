@@ -245,7 +245,7 @@ private fun NavGraphBuilder.homeNavigation(
                 HomeScreen {
                     MarketplaceHomeScreen(
                         navController = navController,
-                        marketplaceViewModel = viewModel(factory = MarketplaceHomeScreenViewModel.Factory)
+                        viewmodel = viewModel(factory = MarketplaceHomeScreenViewModel.Factory)
                     )
                 }
             }
@@ -281,7 +281,7 @@ private fun NavGraphBuilder.homeNavigation(
                     BundleShopScreen(
                         modifier = Modifier,
                         navController = navController,
-                        marketplaceViewModel = viewModel(factory = MarketplaceBundlesScreenViewModel.Factory)
+                        viewmodel = viewModel(factory = MarketplaceBundlesScreenViewModel.Factory)
                     )
                 }
             }
@@ -291,7 +291,7 @@ private fun NavGraphBuilder.homeNavigation(
                     PaletteShopScreen(
                         modifier = Modifier,
                         navController = navController,
-                        marketplaceViewModel = viewModel(factory = MarketplacePaletteScreenViewModel.Factory)
+                        viewmodel = viewModel(factory = MarketplacePaletteScreenViewModel.Factory)
                     )
                 }
             }
@@ -414,7 +414,6 @@ private fun NavGraphBuilder.operationNavigation(
             startDestination = NavRoute.SCREEN_CODEX_MENU.route
         ) {
 
-
             composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
 
                 OperationScreen(
@@ -459,7 +458,11 @@ private fun NavGraphBuilder.operationNavigation(
                                         modifier = Modifier
                                             .fillMaxSize(),
                                         navController = navController,
-                                        viewmodel = viewModel(factory = CatalogEquipmentScreenViewModel.Factory)
+                                        viewmodel = viewModel(
+                                            viewModelStoreOwner = remember(navBackStackEntry) {
+                                                navController.getBackStackEntry(NavRoute.NAVIGATION_CODEX.route)
+                                            },
+                                            factory = CatalogEquipmentScreenViewModel.Factory)
                                     )
                                 }
                                 CodexResources.Category.POSSESSIONS -> {
@@ -467,7 +470,12 @@ private fun NavGraphBuilder.operationNavigation(
                                         modifier = Modifier
                                             .fillMaxSize(),
                                         navController = navController,
-                                        viewmodel = viewModel(factory = CatalogPossessionScreenViewModel.Factory)
+                                        viewmodel = viewModel(
+                                            viewModelStoreOwner = remember(navBackStackEntry) {
+                                                navController.getBackStackEntry(NavRoute.NAVIGATION_CODEX.route)
+                                            },
+                                            factory = CatalogPossessionScreenViewModel.Factory
+                                        )
                                     )
                                 }
                                 CodexResources.Category.ACHIEVEMENTS -> {
@@ -475,11 +483,16 @@ private fun NavGraphBuilder.operationNavigation(
                                         modifier = Modifier
                                             .fillMaxSize(),
                                         navController = navController,
-                                        viewmodel = viewModel(factory = CatalogAchievementScreenViewModel.Factory)
+                                        viewmodel = viewModel(
+                                            viewModelStoreOwner = remember(navBackStackEntry) {
+                                                navController.getBackStackEntry(NavRoute.NAVIGATION_CODEX.route)
+                                            },
+                                            factory = CatalogAchievementScreenViewModel.Factory
+                                        )
                                     )
                                 }
                                 else -> {
-                                    Text("oops", color = Color.White)
+
                                 }
                             }
                         }

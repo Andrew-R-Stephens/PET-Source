@@ -145,7 +145,7 @@ fun CatalogAchievementScreen(
 
     val displayUiActions = CatalogDisplayUiActions(
         onDismiss = {
-            //viewmodel.clearDisplay()
+            viewmodel.clearDisplay()
         }
     )
 
@@ -179,9 +179,11 @@ fun CatalogAchievementScreen(
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
-                    catalogUiState = catalogUiState.catalog as CatalogCategory.Achievements,
+                    catalogUiState = catalogUiState.catalog as?
+                            CatalogCategory.Achievements ?: CatalogCategory.Achievements(),
                     achievementsListUiActions = achievementsListUiActions,
-                    displayUiState = displayUiState as CatalogDisplayUiState.Achievements,
+                    displayUiState = displayUiState as? CatalogDisplayUiState.Achievements ?:
+                            CatalogDisplayUiState.Achievements(),
                     displayUiActions = displayUiActions
                 )
 
@@ -195,9 +197,11 @@ fun CatalogAchievementScreen(
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
-                    catalogUiState = catalogUiState.catalog as CatalogCategory.Achievements,
+                    catalogUiState = catalogUiState.catalog as?
+                            CatalogCategory.Achievements ?: CatalogCategory.Achievements(),
                     achievementsListUiActions = achievementsListUiActions,
-                    displayUiState = displayUiState as CatalogDisplayUiState.Achievements,
+                    displayUiState = displayUiState as? CatalogDisplayUiState.Achievements ?:
+                            CatalogDisplayUiState.Achievements(),
                     displayUiActions = displayUiActions
                 )
 

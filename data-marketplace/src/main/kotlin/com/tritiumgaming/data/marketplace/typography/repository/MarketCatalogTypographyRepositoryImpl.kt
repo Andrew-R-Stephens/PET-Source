@@ -37,7 +37,10 @@ class MarketCatalogTypographyRepositoryImpl(
     ): Result<List<MarketTypographyDto>> {
         Log.d("Typography", "Fetching remote typographies")
 
-        val result = firestoreDataSource.fetch(queryOptions)
+        val result = firestoreDataSource.fetch(
+            queryOptions = queryOptions,
+            version = 1
+        )
 
         return result
     }

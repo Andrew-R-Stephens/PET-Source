@@ -12,7 +12,8 @@ class MarketTypographyFirestoreDataSource(
 ): MarketFirestoreDataSource<MarketTypographyDto, TypographyQueryOptions> {
 
     override suspend fun fetch(
-        queryOptions: TypographyQueryOptions
+        queryOptions: TypographyQueryOptions,
+        version: Int
     ): Result<List<MarketTypographyDto>> {
 
         return try {
@@ -21,7 +22,8 @@ class MarketTypographyFirestoreDataSource(
                 "filterValue" to queryOptions.filterValue.value,
                 "orderField" to queryOptions.orderField.value,
                 "orderDirection" to queryOptions.orderDirection.name,
-                "limit" to queryOptions.limit.value
+                "limit" to queryOptions.limit.value,
+                "version" to version
             )
 
             val result = firebaseFunctions

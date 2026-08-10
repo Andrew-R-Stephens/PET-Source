@@ -10,7 +10,8 @@ class MarketBundleFirestoreDataSourceImpl(
 ): MarketBundleFirestoreDataSource {
 
     override suspend fun fetch(
-        options: BundleQueryOptions
+        options: BundleQueryOptions,
+        version: Int
     ): Result<List<MarketBundleDto>> {
 
         return try {
@@ -19,7 +20,8 @@ class MarketBundleFirestoreDataSourceImpl(
                 "filterValue" to options.filterValue.value,
                 "orderField" to options.orderField.value,
                 "orderDirection" to options.orderDirection.name,
-                "limit" to options.limit.value
+                "limit" to options.limit.value,
+                "version" to version
             )
 
             val result = firebaseFunctions

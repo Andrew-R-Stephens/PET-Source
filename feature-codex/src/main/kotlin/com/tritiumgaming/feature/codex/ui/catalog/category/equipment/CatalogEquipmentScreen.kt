@@ -179,9 +179,11 @@ fun CatalogEquipmentScreen(
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
-                    catalogUiState = catalogUiState.catalog as? CatalogCategory.Equipment ?: CatalogCategory.Equipment(),
+                    catalogUiState = catalogUiState.catalog as?
+                            CatalogCategory.Equipment ?: CatalogCategory.Equipment(),
                     equipmentListUiActions = equipmentListUiActions,
-                    displayUiState = displayUiState as? CatalogDisplayUiState.Equipment ?: CatalogDisplayUiState.Equipment(),
+                    displayUiState = displayUiState as?
+                            CatalogDisplayUiState.Equipment ?: CatalogDisplayUiState.Equipment(),
                     displayUiActions = displayUiActions
                 )
 
@@ -195,9 +197,11 @@ fun CatalogEquipmentScreen(
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
-                    catalogUiState = catalogUiState.catalog as? CatalogCategory.Equipment ?: CatalogCategory.Equipment(),
+                    catalogUiState = catalogUiState.catalog as?
+                            CatalogCategory.Equipment ?: CatalogCategory.Equipment(),
                     equipmentListUiActions = equipmentListUiActions,
-                    displayUiState = displayUiState as? CatalogDisplayUiState.Equipment ?: CatalogDisplayUiState.Equipment(),
+                    displayUiState = displayUiState as?
+                            CatalogDisplayUiState.Equipment ?: CatalogDisplayUiState.Equipment(),
                     displayUiActions = displayUiActions
                 )
 

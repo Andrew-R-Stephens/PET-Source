@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.marketplace.ui.common
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,11 +13,8 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,7 +23,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.common.components.AccountBanner
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
@@ -45,38 +40,25 @@ private annotation class DevicePreviews
 fun MarketplaceScreen(
     modifier: Modifier,
     navController: NavHostController,
-    marketplaceViewModel: MarketplaceViewModel,
+    credits: Int = 0,
+    onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit
 ) {
-
-    val context = LocalContext.current
-
     val user = if(!LocalInspectionMode.current)
         Firebase.auth.currentUser else null
-    val credits by marketplaceViewModel.accountCreditsUiState.collectAsState()
 
     MarketplaceContent(
         modifier = modifier
             .padding(8.dp),
         authenticated = user != null,
         userName = user?.displayName ?: "",
-        credits = credits.earnedCredits,
+        credits = credits,
         showButton = user != null,
         onNavigate = { route ->
             navController.navigate(route)
         },
         onEarnCredits = {
-            marketplaceViewModel.addCredits(
-                credits = 100,
-                onSuccess = {
-                    Toast.makeText(context, "Credits Earned",
-                        Toast.LENGTH_SHORT).show()
-                },
-                onFailure = {
-                    Toast.makeText(context, "Error! $it",
-                        Toast.LENGTH_SHORT).show()
-                }
-            )
+            onEarnCredits()
         }
     ) { modifier ->
         content(modifier)

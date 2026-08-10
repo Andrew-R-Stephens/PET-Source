@@ -17,8 +17,12 @@ class MarketBillableRepositoryImpl(
      * Ordering defaults to [Query.Direction.DESCENDING].
      */
     override suspend fun fetchBillables(
-        billableQueryOptions: BillableQueryOptions
+        billableQueryOptions: BillableQueryOptions,
+        version: Int
     ): Result<List<MarketBillable>> =
-        billableFirestoreDataSource.fetch(billableQueryOptions).map { it.toDomain() }
+        billableFirestoreDataSource.fetch(
+            billableQueryOptions = billableQueryOptions,
+            version = version
+        ).map { it.toDomain() }
 
 }

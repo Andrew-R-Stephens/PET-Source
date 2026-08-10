@@ -6,7 +6,8 @@ import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
 interface MarketBillableRepository {
 
     suspend fun fetchBillables(
-        billableQueryOptions: BillableQueryOptions = BillableQueryOptions()
+        billableQueryOptions: BillableQueryOptions = BillableQueryOptions(),
+        version: Int
     ): Result<List<MarketBillable>>
 
 }

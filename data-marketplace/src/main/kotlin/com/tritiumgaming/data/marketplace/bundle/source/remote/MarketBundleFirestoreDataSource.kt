@@ -6,7 +6,8 @@ import com.tritiumgaming.shared.data.market.bundle.model.BundleQueryOptions
 interface MarketBundleFirestoreDataSource {
 
     suspend fun fetch(
-        options: BundleQueryOptions = BundleQueryOptions()
+        options: BundleQueryOptions = BundleQueryOptions(),
+        version: Int
     ): Result<List<MarketBundleDto>>
 
 }

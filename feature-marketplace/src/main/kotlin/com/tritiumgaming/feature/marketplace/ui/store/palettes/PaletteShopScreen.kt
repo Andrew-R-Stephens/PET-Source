@@ -44,6 +44,7 @@ import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.PaletteBundleCard
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
+import com.tritiumgaming.feature.marketplace.ui.home.MarketplaceHomeScreenViewModel
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.store.ShopScreenUiItem
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
@@ -66,20 +67,35 @@ private annotation class DevicePreviews
 fun PaletteShopScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    marketplaceViewModel: MarketplaceViewModel
+    viewmodel: MarketplacePaletteScreenViewModel
 ) {
     val context = LocalContext.current
 
-    val paletteUnlocks by marketplaceViewModel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
+    val paletteUnlocks by viewmodel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
     var pendingEquipPalette by remember { mutableStateOf<PaletteType?>(null) }
     var isLoading by remember { mutableStateOf(false) }
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
+    val credits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+
     MarketplaceScreen(
         modifier = Modifier,
         navController = navController,
-        marketplaceViewModel = marketplaceViewModel
+        credits = credits.earnedCredits,
+        onEarnCredits = {
+            viewmodel.addCredits(
+                credits = 100,
+                onSuccess = {
+                    Toast.makeText(context, "Credits Earned",
+                        Toast.LENGTH_SHORT).show()
+                },
+                onFailure = {
+                    Toast.makeText(context, "Error! $it",
+                        Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
     ) { modifier ->
         PaletteShopContent(
             modifier = modifier,
@@ -87,7 +103,7 @@ fun PaletteShopScreen(
             authenticated = user != null,
             onBuyItem = { marketPalette ->
                 isLoading = true
-                marketplaceViewModel.obtainItemWithCredits(
+                viewmodel.obtainItemWithCredits(
                     marketPalette.uuid, "theme",
                     onSuccess = { _ ->
                         pendingEquipPalette = marketPalette.palette
@@ -102,7 +118,7 @@ fun PaletteShopScreen(
             },
             onBuyBundle = { marketPalette ->
                 isLoading = true
-                marketplaceViewModel.obtainItemWithCredits(
+                viewmodel.obtainItemWithCredits(
                     marketPalette.uuid, "bundle",
                     onSuccess = { _ ->
                         pendingEquipPalette = null
@@ -126,7 +142,7 @@ fun PaletteShopScreen(
                     stringResource(paletteResource.extrasFamily.title)
                 ),
                 onConfirm = {
-                    marketplaceViewModel.updatePalette(palette)
+                    viewmodel.updatePalette(palette)
                     pendingEquipPalette = null
                     Toast.makeText(context, "Theme Equipped!", Toast.LENGTH_SHORT).show()
                 },

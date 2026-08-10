@@ -8,7 +8,7 @@
  */
 
 import {setGlobalOptions} from "firebase-functions";
-import {onCall, HttpsError} from "firebase-functions/v2/https";
+import {onCall, HttpsError, CallableRequest} from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
 import {initializeApp} from "firebase-admin/app";
 import {getFirestore, Timestamp, Query, DocumentReference} from "firebase-admin/firestore";
@@ -23,9 +23,20 @@ setGlobalOptions({maxInstances: 10});
 interface PurchaseRequest {
     itemId: string;
     itemType: "theme" | "bundle";
+    version?: number;
 }
 
 export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) => {
+    const version = request.data.version || 1;
+    switch (version) {
+    case 1:
+        return purchaseItemWithCredits_v1(request);
+    default:
+        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+    }
+});
+
+async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseRequest>) {
     const auth = request.auth;
     if (!auth) {
         throw new HttpsError("unauthenticated", "User must be authenticated to purchase items.");
@@ -123,9 +134,31 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
         if (error instanceof HttpsError) throw error;
         throw new HttpsError("internal", "An internal error occurred during purchase.");
     }
-});
+}
+
+/**
+ * Interface for query options
+ */
+interface QueryRequest {
+    filterField?: string;
+    filterValue?: any;
+    orderField?: string;
+    orderDirection?: "ASCENDING" | "DESCENDING";
+    limit?: number;
+    version?: number;
+}
 
 export const fetchTypographies = onCall<QueryRequest>(async (request) => {
+    const version = request.data.version || 1;
+    switch (version) {
+    case 1:
+        return fetchTypographies_v1(request);
+    default:
+        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+    }
+});
+
+async function fetchTypographies_v1(request: CallableRequest<QueryRequest>) {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
     const db = getFirestore();
@@ -161,9 +194,19 @@ export const fetchTypographies = onCall<QueryRequest>(async (request) => {
         logger.error("Error fetching typographies:", error);
         throw new HttpsError("internal", "An error occurred while fetching typographies.");
     }
-});
+}
 
 export const fetchPalettes = onCall<QueryRequest>(async (request) => {
+    const version = request.data.version || 1;
+    switch (version) {
+    case 1:
+        return fetchPalettes_v1(request);
+    default:
+        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+    }
+});
+
+async function fetchPalettes_v1(request: CallableRequest<QueryRequest>) {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
     const db = getFirestore();
@@ -199,20 +242,19 @@ export const fetchPalettes = onCall<QueryRequest>(async (request) => {
         logger.error("Error fetching palettes:", error);
         throw new HttpsError("internal", "An error occurred while fetching palettes.");
     }
-});
-
-/**
- * Interface for query options
- */
-interface QueryRequest {
-    filterField?: string;
-    filterValue?: any;
-    orderField?: string;
-    orderDirection?: "ASCENDING" | "DESCENDING";
-    limit?: number;
 }
 
 export const fetchBundles = onCall<QueryRequest>(async (request) => {
+    const version = request.data.version || 1;
+    switch (version) {
+    case 1:
+        return fetchBundles_v1(request);
+    default:
+        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+    }
+});
+
+async function fetchBundles_v1(request: CallableRequest<QueryRequest>) {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
     const db = getFirestore();
@@ -259,16 +301,27 @@ export const fetchBundles = onCall<QueryRequest>(async (request) => {
         logger.error("Error fetching bundles:", error);
         throw new HttpsError("internal", "An error occurred while fetching bundles.");
     }
-});
+}
 
 /**
  * Interface for Add Credits request
  */
 interface AddCreditsRequest {
     credits: number;
+    version?: number;
 }
 
 export const addCredits = onCall<AddCreditsRequest>(async (request) => {
+    const version = request.data.version || 1;
+    switch (version) {
+    case 1:
+        return addCredits_v1(request);
+    default:
+        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+    }
+});
+
+async function addCredits_v1(request: CallableRequest<AddCreditsRequest>) {
     const auth = request.auth;
     if (!auth) {
         throw new HttpsError("unauthenticated", "User must be authenticated to add credits.");
@@ -311,6 +364,4 @@ export const addCredits = onCall<AddCreditsRequest>(async (request) => {
         if (error instanceof HttpsError) throw error;
         throw new HttpsError("internal", "An internal error occurred while adding credits.");
     }
-});
-
-
+}

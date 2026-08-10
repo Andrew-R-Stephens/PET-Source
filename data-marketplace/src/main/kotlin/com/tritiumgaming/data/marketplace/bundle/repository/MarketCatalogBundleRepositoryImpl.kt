@@ -22,7 +22,10 @@ class MarketCatalogBundleRepositoryImpl(
     ): Result<List<MarketBundle>> {
         Log.d("MarketBundle", "Fetching remote bundles")
 
-        val result = firestoreDataSource.fetch(queryOptions)
+        val result = firestoreDataSource.fetch(
+            options = queryOptions,
+            version = 1
+        )
             .map { it.toDomain() }
 
         return result

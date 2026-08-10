@@ -179,9 +179,11 @@ fun CatalogPossessionScreen(
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
-                    catalogUiState = catalogUiState.catalog as CatalogCategory.Possessions,
+                    catalogUiState = catalogUiState.catalog as?
+                            CatalogCategory.Possessions ?: CatalogCategory.Possessions(),
                     possessionsListUiActions = possessionsListUiActions,
-                    displayUiState = displayUiState as CatalogDisplayUiState.Possessions,
+                    displayUiState = displayUiState as?
+                            CatalogDisplayUiState.Possessions ?: CatalogDisplayUiState.Possessions(),
                     displayUiActions = displayUiActions
                 )
 
@@ -195,9 +197,11 @@ fun CatalogPossessionScreen(
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
-                    catalogUiState = catalogUiState.catalog as CatalogCategory.Possessions,
+                    catalogUiState = catalogUiState.catalog as?
+                            CatalogCategory.Possessions ?: CatalogCategory.Possessions(),
                     possessionsListUiActions = possessionsListUiActions,
-                    displayUiState = displayUiState as CatalogDisplayUiState.Possessions,
+                    displayUiState = displayUiState as?
+                            CatalogDisplayUiState.Possessions ?: CatalogDisplayUiState.Possessions(),
                     displayUiActions = displayUiActions
                 )
 

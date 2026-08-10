@@ -11,7 +11,8 @@ class MarketPaletteFirestoreDataSource(
 ) {
 
     suspend fun fetch(
-        options: PaletteQueryOptions = PaletteQueryOptions()
+        options: PaletteQueryOptions = PaletteQueryOptions(),
+        version: Int
     ): Result<List<MarketPaletteDto>> {
 
         return try {
@@ -20,7 +21,8 @@ class MarketPaletteFirestoreDataSource(
                 "filterValue" to options.filterValue.value,
                 "orderField" to options.orderField.value,
                 "orderDirection" to options.orderDirection.name,
-                "limit" to options.limit.value
+                "limit" to options.limit.value,
+                "version" to version
             )
 
             val result = firebaseFunctions

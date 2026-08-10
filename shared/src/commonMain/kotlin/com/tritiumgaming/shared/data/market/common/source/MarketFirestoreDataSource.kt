@@ -5,5 +5,5 @@ package com.tritiumgaming.shared.data.market.common.source
  * @param Q - Query Options
  */
 interface MarketFirestoreDataSource<D, Q> {
-    suspend fun fetch(queryOptions: Q): Result<List<D>>
+    suspend fun fetch(queryOptions: Q, version: Int): Result<List<D>>
 }

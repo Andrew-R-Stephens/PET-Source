@@ -37,7 +37,9 @@ class MarketCatalogPaletteRepositoryImpl(
     ): Result<List<MarketPaletteDto>> {
         Log.d("Palette", "Fetching remote palettes")
 
-        val result = firestoreDataSource.fetch(queryOptions ?: PaletteQueryOptions())
+        val result = firestoreDataSource.fetch(
+            options = queryOptions ?: PaletteQueryOptions(),
+            version = 1)
 
         return result
     }

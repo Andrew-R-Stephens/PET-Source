@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.home
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -30,6 +31,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -57,6 +59,7 @@ import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -69,6 +72,7 @@ import androidx.compose.ui.unit.isFinite
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
@@ -96,12 +100,28 @@ private annotation class DevicePreviews
 fun MarketplaceHomeScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    marketplaceViewModel: MarketplaceViewModel,
+    viewmodel: MarketplaceHomeScreenViewModel,
 ) {
+    val context = LocalContext.current
+    val credits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+
     MarketplaceScreen(
-        modifier = modifier,
+        modifier = Modifier,
         navController = navController,
-        marketplaceViewModel = marketplaceViewModel
+        credits = credits.earnedCredits,
+        onEarnCredits = {
+            viewmodel.addCredits(
+                credits = 100,
+                onSuccess = {
+                    Toast.makeText(context, "Credits Earned",
+                        Toast.LENGTH_SHORT).show()
+                },
+                onFailure = {
+                    Toast.makeText(context, "Error! $it",
+                        Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
     ) { contentModifier ->
         MarketplaceHomeContent(
             modifier = contentModifier

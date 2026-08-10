@@ -30,7 +30,8 @@ class MarketBillableFirestoreDataSource(
         .collection(COLLECTION_BILLABLE)
 
     override suspend fun fetch(
-        billableQueryOptions: BillableQueryOptions
+        billableQueryOptions: BillableQueryOptions,
+        version: Int
     ): Result<List<MarketBillableDto>> = withContext(Dispatchers.IO) {
 
         val billables = mutableListOf<MarketBillableDto>()

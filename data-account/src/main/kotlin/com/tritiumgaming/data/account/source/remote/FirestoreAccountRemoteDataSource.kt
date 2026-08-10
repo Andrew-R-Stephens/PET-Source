@@ -140,7 +140,8 @@ class FirestoreAccountRemoteDataSource(
 
         return try {
             val data = hashMapOf(
-                "credits" to creditTransaction.credits
+                "credits" to creditTransaction.credits,
+                "version" to 1
             )
 
             val result = firebaseFunctions
@@ -219,7 +220,8 @@ class FirestoreAccountRemoteDataSource(
         return try {
             val data = hashMapOf(
                 "itemId" to itemId,
-                "itemType" to itemType
+                "itemType" to itemType,
+                "version" to 1
             )
 
             val result = firebaseFunctions
