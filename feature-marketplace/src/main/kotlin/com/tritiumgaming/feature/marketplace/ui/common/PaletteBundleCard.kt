@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.store.palettes
+package com.tritiumgaming.feature.marketplace.ui.common
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui
+package com.tritiumgaming.feature.marketplace.ui.store.typographies
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
+import com.tritiumgaming.feature.marketplace.ui.AccountCreditsUiState
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogBillablesUiState
@@ -55,7 +56,7 @@ import kotlin.collections.component1
 import kotlin.collections.component2
 import kotlin.collections.emptyList
 
-class MarketplaceViewModel(
+class MarketplaceTypographiesScreenViewModel(
     private val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
     private val signInAccountUseCase: SignInAccountUseCase,
     private val signOutAccountUseCase: SignOutAccountUseCase,
@@ -484,7 +485,7 @@ class MarketplaceViewModel(
                 val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
                 val saveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
 
-                MarketplaceViewModel(
+                MarketplaceTypographiesScreenViewModel(
                     getSignInCredentialsUseCase = getSignInCredentialsUseCase,
                     signInAccountUseCase = signInAccountUseCase,
                     signOutAccountUseCase = signOutAccountUseCase,

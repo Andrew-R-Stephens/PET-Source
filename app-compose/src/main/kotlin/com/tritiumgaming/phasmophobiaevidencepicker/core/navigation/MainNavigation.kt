@@ -3,10 +3,18 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.navigation
 import android.util.Log
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
@@ -22,7 +30,12 @@ import com.tritiumgaming.feature.about.ui.InfoScreen
 import com.tritiumgaming.feature.account.ui.AccountScreen
 import com.tritiumgaming.feature.account.ui.AccountScreenViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreen
-import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreenViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.CatalogAchievementScreen
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.CatalogAchievementScreenViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentScreen
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentScreenViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionScreen
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionScreenViewModel
 import com.tritiumgaming.feature.codex.ui.menu.CodexMenuScreen
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
 import com.tritiumgaming.feature.customdifficulty.ui.screens.CustomDifficultyScreen
@@ -34,10 +47,15 @@ import com.tritiumgaming.feature.language.ui.LanguageScreenViewModel
 import com.tritiumgaming.feature.maps.ui.MapMenuScreen
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
+import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreenViewModel
 import com.tritiumgaming.feature.marketplace.ui.home.MarketplaceHomeScreen
+import com.tritiumgaming.feature.marketplace.ui.home.MarketplaceHomeScreenViewModel
+import com.tritiumgaming.feature.marketplace.ui.store.bundles.BundleShopScreen
+import com.tritiumgaming.feature.marketplace.ui.store.bundles.MarketplaceBundlesScreenViewModel
+import com.tritiumgaming.feature.marketplace.ui.store.palettes.MarketplacePaletteScreenViewModel
 import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteShopScreen
+import com.tritiumgaming.feature.marketplace.ui.store.typographies.MarketplaceTypographiesScreenViewModel
 import com.tritiumgaming.feature.marketplace.ui.store.typographies.TypographyShopScreen
 import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
@@ -214,21 +232,6 @@ private fun NavGraphBuilder.homeNavigation(
             startDestination = NavRoute.SCREEN_MARKETPLACE_HOME.route
         ) {
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_HOME.route) { navBackStackEntry ->
-                val marketplaceViewModel: MarketplaceViewModel = viewModel(
-                    viewModelStoreOwner = remember(navBackStackEntry) {
-                        navController.getBackStackEntry(
-                            NavRoute.NAVIGATION_MARKETPLACE.route)
-                    },
-                    factory = MarketplaceViewModel.Factory)
-                HomeScreen {
-                    MarketplaceHomeScreen(
-                        navController = navController,
-                        marketplaceViewModel = marketplaceViewModel
-                    )
-                }
-            }
-
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
                 HomeScreen {
                     AccountScreen(
@@ -238,7 +241,16 @@ private fun NavGraphBuilder.homeNavigation(
                 }
             }
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
+            composable(route = NavRoute.SCREEN_MARKETPLACE_HOME.route) {
+                HomeScreen {
+                    MarketplaceHomeScreen(
+                        navController = navController,
+                        marketplaceViewModel = viewModel(factory = MarketplaceHomeScreenViewModel.Factory)
+                    )
+                }
+            }
+
+            composable(route = NavRoute.SCREEN_ACCOUNT_TRANSACTION_HISTORY.route) {
                 /*HomeScreen {
                     MarketplaceStoreScreen(
                         navController = navController
@@ -246,63 +258,40 @@ private fun NavGraphBuilder.homeNavigation(
                 }*/
             }
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) { navBackStackEntry ->
+            composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) {
                 HomeScreen {
                     MarketplaceBillingScreen(
                         navController = navController,
-                        marketplaceViewModel = viewModel(
-                            viewModelStoreOwner = remember(navBackStackEntry) {
-                                navController.getBackStackEntry(
-                                    NavRoute.NAVIGATION_MARKETPLACE.route)
-                            },
-                            factory = MarketplaceViewModel.Factory)
+                        marketplaceViewModel = viewModel(factory = MarketplaceBillingScreenViewModel.Factory)
                     )
                 }
             }
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) { navBackStackEntry ->
-                val marketplaceViewModel: MarketplaceViewModel = viewModel(
-                    viewModelStoreOwner = remember(navBackStackEntry) {
-                        navController.getBackStackEntry(
-                            NavRoute.NAVIGATION_MARKETPLACE.route)
-                    },
-                    factory = MarketplaceViewModel.Factory)
+            composable(route = NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) {
                 HomeScreen {
                     TypographyShopScreen(
                         navController = navController,
-                        marketplaceViewModel = marketplaceViewModel
+                        marketplaceViewModel = viewModel(factory = MarketplaceTypographiesScreenViewModel.Factory)
                     )
                 }
             }
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_BUNDLES.route) { navBackStackEntry ->
-                val marketplaceViewModel: MarketplaceViewModel = viewModel(
-                    viewModelStoreOwner = remember(navBackStackEntry) {
-                        navController.getBackStackEntry(
-                            NavRoute.NAVIGATION_MARKETPLACE.route)
-                    },
-                    factory = MarketplaceViewModel.Factory)
+            composable(route = NavRoute.SCREEN_MARKETPLACE_BUNDLES.route) {
                 HomeScreen {
-                    PaletteShopScreen(
+                    BundleShopScreen(
                         modifier = Modifier,
                         navController = navController,
-                        marketplaceViewModel = marketplaceViewModel
+                        marketplaceViewModel = viewModel(factory = MarketplaceBundlesScreenViewModel.Factory)
                     )
                 }
             }
 
-            composable(route = NavRoute.SCREEN_MARKETPLACE_PALETTE.route) { navBackStackEntry ->
-                val marketplaceViewModel: MarketplaceViewModel = viewModel(
-                    viewModelStoreOwner = remember(navBackStackEntry) {
-                        navController.getBackStackEntry(NavRoute.NAVIGATION_MARKETPLACE.route)
-                    },
-                    factory = MarketplaceViewModel.Factory
-                )
+            composable(route = NavRoute.SCREEN_MARKETPLACE_PALETTE.route) {
                 HomeScreen {
                     PaletteShopScreen(
                         modifier = Modifier,
                         navController = navController,
-                        marketplaceViewModel = marketplaceViewModel
+                        marketplaceViewModel = viewModel(factory = MarketplacePaletteScreenViewModel.Factory)
                     )
                 }
             }
@@ -320,17 +309,9 @@ private fun NavGraphBuilder.operationNavigation(
         startDestination = NavRoute.SCREEN_INVESTIGATION.route
     ) {
 
-        composable(route = NavRoute.SCREEN_INVESTIGATION.route) { navBackStackEntry ->
-            /*val investigationViewModel: InvestigationScreenViewModel = viewModel(
-                viewModelStoreOwner = remember(navBackStackEntry) {
-                    navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
-                },
-                factory = InvestigationScreenViewModel.Factory
-            )*/
-
+        composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
             OperationScreen(
-                modifier = Modifier
-                    .padding(/*horizontal = 8.dp*/),
+                modifier = Modifier,
                 navController = navController,
             ) {
                 InvestigationSoloScreen(
@@ -349,8 +330,7 @@ private fun NavGraphBuilder.operationNavigation(
             )
 
             OperationScreen(
-                modifier = Modifier
-                    .padding(/*horizontal = 8.dp*/),
+                modifier = Modifier,
                 navController = navController,
             ) {
                 ObjectivesScreen(
@@ -361,8 +341,7 @@ private fun NavGraphBuilder.operationNavigation(
 
         composable(route = NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route) {
             OperationScreen(
-                modifier = Modifier
-                    .padding(/*horizontal = 8.dp*/),
+                modifier = Modifier,
                 navController = navController,
             ) {
                 CustomDifficultyScreen(
@@ -387,8 +366,7 @@ private fun NavGraphBuilder.operationNavigation(
                 )
 
                 OperationScreen(
-                    modifier = Modifier
-                        .padding(/*horizontal = 8.dp*/),
+                    modifier = Modifier,
                     navController = navController,
                 ) {
                     MapMenuScreen(
@@ -437,14 +415,7 @@ private fun NavGraphBuilder.operationNavigation(
         ) {
 
 
-            composable(route = NavRoute.SCREEN_CODEX_MENU.route) { navBackStackEntry ->
-
-                val codexCatalogScreenViewModel: CodexCatalogScreenViewModel = viewModel(
-                    viewModelStoreOwner = remember(navBackStackEntry) {
-                        navController.getBackStackEntry(NavRoute.NAVIGATION_CODEX.route)
-                    },
-                    factory = CodexCatalogScreenViewModel.Factory
-                )
+            composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
 
                 OperationScreen(
                     modifier = Modifier
@@ -470,25 +441,48 @@ private fun NavGraphBuilder.operationNavigation(
                 val category = CodexResources.Category.entries.firstOrNull { entry ->
                     entry.id == categoryId }
 
-                category?.let {
+                Log.d("MainNavigation", "category: ${category?.name}")
 
-                    val codexCatalogScreenViewModel: CodexCatalogScreenViewModel = viewModel(
-                        viewModelStoreOwner = remember(navBackStackEntry) {
-                            navController.getBackStackEntry(NavRoute.NAVIGATION_CODEX.route)
-                        },
-                        factory = CodexCatalogScreenViewModel.Factory
-                    )
-
+                category?.let { category ->
                     OperationScreen(
                         modifier = Modifier
                             .padding(horizontal = 8.dp),
                         navController = navController,
                     ) {
                         CodexCatalogScreen(
-                            navController = navController,
-                            codexCatalogScreenViewModel = codexCatalogScreenViewModel,
-                            category = category
-                        )
+                            modifier = Modifier,
+                            navController = navController
+                        ) {
+                            when(category) {
+                                CodexResources.Category.EQUIPMENT -> {
+                                    CatalogEquipmentScreen(
+                                        modifier = Modifier
+                                            .fillMaxSize(),
+                                        navController = navController,
+                                        viewmodel = viewModel(factory = CatalogEquipmentScreenViewModel.Factory)
+                                    )
+                                }
+                                CodexResources.Category.POSSESSIONS -> {
+                                    CatalogPossessionScreen(
+                                        modifier = Modifier
+                                            .fillMaxSize(),
+                                        navController = navController,
+                                        viewmodel = viewModel(factory = CatalogPossessionScreenViewModel.Factory)
+                                    )
+                                }
+                                CodexResources.Category.ACHIEVEMENTS -> {
+                                    CatalogAchievementScreen(
+                                        modifier = Modifier
+                                            .fillMaxSize(),
+                                        navController = navController,
+                                        viewmodel = viewModel(factory = CatalogAchievementScreenViewModel.Factory)
+                                    )
+                                }
+                                else -> {
+                                    Text("oops", color = Color.White)
+                                }
+                            }
+                        }
                     }
                 } ?: navController.popBackStack()
 

@@ -5,29 +5,29 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
-data class MarketCatalogPalettesUiState(
-    val items: List<PaletteShopUiItem> = emptyList()
+data class MarketCatalogScreenUiState(
+    val items: List<ShopScreenUiItem> = emptyList()
 )
 
 @Immutable
-sealed interface PaletteShopUiItem {
+sealed interface ShopScreenUiItem {
     val key: String
 
-    data class Header(val name: String) : PaletteShopUiItem {
+    data class Header(val name: String) : ShopScreenUiItem {
         override val key: String = "header_$name"
     }
 
     data class Palette(
         val marketPalette: MarketPalette,
         val paletteResource: ExtendedPalette
-    ) : PaletteShopUiItem {
+    ) : ShopScreenUiItem {
         override val key: String = marketPalette.uuid
     }
 
-    data class Bundle(
+    data class PaletteBundle(
         override val key: String,
         val marketBundle: MarketBundle,
         val marketPalettes: List<MarketPalette>,
         val unlocked: Boolean
-    ) : PaletteShopUiItem
+    ) : ShopScreenUiItem
 }

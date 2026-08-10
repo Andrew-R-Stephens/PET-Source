@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.store.palettes
+package com.tritiumgaming.feature.marketplace.ui.store.bundles
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,15 +34,12 @@ import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
-import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.PaletteBundleCard
-import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.store.ShopScreenUiItem
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
@@ -63,15 +59,14 @@ import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 private annotation class DevicePreviews
 
 @Composable
-fun PaletteShopScreen(
+fun BundleShopScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     marketplaceViewModel: MarketplaceViewModel
 ) {
     val context = LocalContext.current
 
-    val paletteUnlocks by marketplaceViewModel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
-    var pendingEquipPalette by remember { mutableStateOf<PaletteType?>(null) }
+    val bundleUnlocks by marketplaceViewModel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
     var isLoading by remember { mutableStateOf(false) }
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
@@ -81,31 +76,15 @@ fun PaletteShopScreen(
         navController = navController,
         marketplaceViewModel = marketplaceViewModel
     ) { modifier ->
-        PaletteShopContent(
+        BundleShopContent(
             modifier = modifier,
-            unlocks = paletteUnlocks,
+            unlocks = bundleUnlocks,
             authenticated = user != null,
-            onBuyItem = { marketPalette ->
-                isLoading = true
-                marketplaceViewModel.obtainItemWithCredits(
-                    marketPalette.uuid, "theme",
-                    onSuccess = { _ ->
-                        pendingEquipPalette = marketPalette.palette
-                    },
-                    onFailure = { message ->
-                        Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
-                    },
-                    onComplete = {
-                        isLoading = false
-                    }
-                )
-            },
             onBuyBundle = { marketPalette ->
                 isLoading = true
                 marketplaceViewModel.obtainItemWithCredits(
                     marketPalette.uuid, "bundle",
                     onSuccess = { _ ->
-                        pendingEquipPalette = null
                         Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
                     },
                     onFailure = { message ->
@@ -117,24 +96,6 @@ fun PaletteShopScreen(
                 )
             }
         )
-
-        pendingEquipPalette?.let { palette ->
-            val paletteResource = palette.toPaletteResource()
-            EquipConfirmationDialog(
-                targetTitle = String.format(
-                    stringResource(R.string.marketplace_purchase_equip),
-                    stringResource(paletteResource.extrasFamily.title)
-                ),
-                onConfirm = {
-                    marketplaceViewModel.updatePalette(palette)
-                    pendingEquipPalette = null
-                    Toast.makeText(context, "Theme Equipped!", Toast.LENGTH_SHORT).show()
-                },
-                onDismiss = {
-                    pendingEquipPalette = null
-                }
-            )
-        }
 
         if (isLoading) {
             Box(
@@ -153,11 +114,10 @@ fun PaletteShopScreen(
 }
 
 @Composable
-private fun PaletteShopContent(
+private fun BundleShopContent(
     modifier: Modifier,
     authenticated: Boolean = false,
     unlocks: MarketCatalogScreenUiState,
-    onBuyItem: (marketPalette: MarketPalette) -> Unit = { },
     onBuyBundle: (marketBundle: MarketBundle) -> Unit = { }
 ) {
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -169,7 +129,6 @@ private fun PaletteShopContent(
                 modifier = modifier,
                 authenticated = authenticated,
                 unlocks = unlocks,
-                onBuyItem = onBuyItem,
                 onBuyBundle = onBuyBundle
             )
         }
@@ -182,7 +141,6 @@ private fun PortraitContent(
     modifier: Modifier,
     authenticated: Boolean = false,
     unlocks: MarketCatalogScreenUiState,
-    onBuyItem: (marketPalette: MarketPalette) -> Unit = { },
     onBuyBundle: (marketBundle: MarketBundle) -> Unit = { }
 ) {
     Box(
@@ -220,34 +178,6 @@ private fun PortraitContent(
                         }
                     }
 
-                    is ShopScreenUiItem.Palette -> {
-                        val marketCatalogEntry = item.marketPalette
-                        val palette = item.paletteResource
-
-                        PaletteCard(
-                            modifier = Modifier,
-                            buyCredits = marketCatalogEntry.buyCredits,
-                            badgeRes = palette.extrasFamily.badge,
-                            title = stringResource(palette.extrasFamily.title),
-                            onSurface = palette.onSurface,
-                            onSurfaceVariant = palette.onSurfaceVariant,
-                            primary = palette.primary,
-                            secondary = palette.secondary,
-                            tertiary = palette.tertiary,
-                            surfaceContainer = palette.surfaceContainer,
-                            primaryContainer = palette.primaryContainer,
-                            secondaryContainer = palette.secondaryContainer,
-                            tertiaryContainer = palette.tertiaryContainer,
-                            surfaceContainerHigh = palette.surfaceContainerHigh,
-                            scrim = palette.scrim,
-                            isUnlocked = marketCatalogEntry.unlocked,
-                            canUnlock = authenticated,
-                            onBuyClick = {
-                                onBuyItem(marketCatalogEntry)
-                            }
-                        )
-                    }
-
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
@@ -266,6 +196,7 @@ private fun PortraitContent(
                             }
                         )
                     }
+                    else -> {}
                 }
             }
         }
@@ -278,7 +209,6 @@ private fun LandscapeContent(
     modifier: Modifier,
     authenticated: Boolean = false,
     unlocks: MarketCatalogScreenUiState,
-    onBuyItem: (marketPalette: MarketPalette) -> Unit = { },
     onBuyBundle: (marketBundle: MarketBundle) -> Unit = { }
 ) {
     Box(
@@ -316,34 +246,6 @@ private fun LandscapeContent(
                         }
                     }
 
-                    is ShopScreenUiItem.Palette -> {
-                        val marketCatalogEntry = item.marketPalette
-                        val palette = item.paletteResource
-
-                        PaletteCard(
-                            modifier = Modifier,
-                            buyCredits = marketCatalogEntry.buyCredits,
-                            badgeRes = palette.extrasFamily.badge,
-                            title = stringResource(palette.extrasFamily.title),
-                            onSurface = palette.onSurface,
-                            onSurfaceVariant = palette.onSurfaceVariant,
-                            primary = palette.primary,
-                            secondary = palette.secondary,
-                            tertiary = palette.tertiary,
-                            surfaceContainer = palette.surfaceContainer,
-                            primaryContainer = palette.primaryContainer,
-                            secondaryContainer = palette.secondaryContainer,
-                            tertiaryContainer = palette.tertiaryContainer,
-                            surfaceContainerHigh = palette.surfaceContainerHigh,
-                            scrim = palette.scrim,
-                            isUnlocked = marketCatalogEntry.unlocked,
-                            canUnlock = authenticated,
-                            onBuyClick = {
-                                onBuyItem(marketCatalogEntry)
-                            }
-                        )
-                    }
-
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
@@ -362,6 +264,7 @@ private fun LandscapeContent(
                             }
                         )
                     }
+                    else -> {}
                 }
             }
         }
@@ -372,7 +275,7 @@ private fun LandscapeContent(
 @DevicePreviews
 @Composable
 @Preview
-private fun PaletteShopPreview() {
+private fun BundleShopPreview() {
     val palette1 = PaletteType.HALLOWEEN_23
     val marketPalette1 = MarketPalette(
         uuid = palette1.asUuid(),
@@ -388,7 +291,7 @@ private fun PaletteShopPreview() {
     )
 
     LocalThemeProvider {
-        PaletteShopContent(
+        BundleShopContent(
             modifier = Modifier
                 .widthIn(max = 450.dp)
                 .fillMaxSize(),
@@ -400,9 +303,7 @@ private fun PaletteShopPreview() {
                         MarketBundle("", ""),
                         listOf(marketPalette2),
                         false
-                    ),
-                    ShopScreenUiItem.Header("Specialist"),
-                    ShopScreenUiItem.Palette(marketPalette1, palette1.toPaletteResource()),
+                    )
                 )
             )
         )
