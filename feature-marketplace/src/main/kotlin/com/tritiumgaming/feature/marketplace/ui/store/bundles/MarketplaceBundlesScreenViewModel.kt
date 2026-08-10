@@ -239,8 +239,6 @@ class MarketplaceBundlesScreenViewModel(
         SharingStarted.WhileSubscribed(5000),
         emptyList()
     )
-    val marketAccountPaletteState = MutableStateFlow(emptyList<MarketCatalogScreenUiState>())
-
 
     data class BundleState(
         val uuid: String,
@@ -276,15 +274,10 @@ class MarketplaceBundlesScreenViewModel(
     )
     val marketPaletteBundlesState = _marketPaletteBundlesState
 
-    private val _marketCatalogScreenUiState = MutableStateFlow(MarketCatalogScreenUiState())
-    val marketCatalogScreenUiState = combine(
+    private val _marketCatalogScreenUiState = combine(
         _marketPaletteBundlesState,
         _marketAccountPaletteState
     ){ paletteBundles, unlockedPalettes ->
-
-        val grouped = unlockedPalettes
-            .sortedBy { it.priority }
-            .groupBy { it.group ?: "" }
 
         val items = mutableListOf<ShopScreenUiItem>()
 
@@ -302,33 +295,13 @@ class MarketplaceBundlesScreenViewModel(
             )
         }
 
-        grouped.forEach { (groupName, groupPalettes) ->
-            if (groupName.isNotEmpty()) {
-                items.add(
-                    ShopScreenUiItem.Header(groupName)
-                )
-            }
-            groupPalettes.forEach { marketPalette ->
-                marketPalette.group?.let { group ->
-                    if(group.isNotBlank()) {
-                        items.add(
-                            ShopScreenUiItem.Palette(
-                                marketPalette = marketPalette,
-                                paletteResource = marketPalette.palette?.toPaletteResource()
-                                    ?: ClassicPalette
-                            )
-                        )
-                    }
-                }
-            }
-        }
-
         MarketCatalogScreenUiState(items = items)
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
         MarketCatalogScreenUiState()
     )
+    val marketCatalogScreenUiState = _marketCatalogScreenUiState
 
     fun updatePalette(
         palette: PaletteResources.PaletteType,

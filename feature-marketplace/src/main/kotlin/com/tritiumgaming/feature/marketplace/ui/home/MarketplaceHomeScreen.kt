@@ -164,8 +164,8 @@ private fun MarketplaceHomeContentPortrait(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        item(span = { GridItemSpan(2) }) { PaletteCard(isLarge = true, onNavigate = onNavigate) }
         item(span = { GridItemSpan(2) }) { BundleCard(isLarge = true, onNavigate = onNavigate) }
+        item(span = { GridItemSpan(2) }) { PaletteCard(isLarge = true, onNavigate = onNavigate) }
         //item { TypographyCard(onNavigate = onNavigate) }
         //item { BillingCard(onNavigate = onNavigate) }
     }
@@ -185,7 +185,7 @@ private fun MarketplaceHomeContentLandscape(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            PaletteCard(
+            BundleCard(
                 modifier = Modifier.weight(1f),
                 isLarge = true,
                 useDefaultConstraints = false,
@@ -201,7 +201,7 @@ private fun MarketplaceHomeContentLandscape(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            BundleCard(
+            PaletteCard(
                 modifier = Modifier.weight(1f),
                 isLarge = true,
                 useDefaultConstraints = false,
@@ -231,8 +231,8 @@ private fun MarketplaceHomeContentExpanded(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            PaletteCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
             BundleCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
+            PaletteCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
             //TypographyCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 200.dp), onNavigate = onNavigate)
             //BillingCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 200.dp), onNavigate = onNavigate)
         }

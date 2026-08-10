@@ -10,9 +10,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
 import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
@@ -21,12 +21,12 @@ import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
 internal fun MapModifierDetails(
     state: OperationDetailsUiState.MapDetails
 ) {
-    ExpandableCategoryColumn(
+    ExpandableColumn(
         modifier = Modifier.fillMaxWidth(),
         containerColor = LocalPalette.current.surfaceContainer,
         expanded = false,
         defaultContent = { modifier, expanded ->
-            ExpandableCategoryRow(
+            ExpandableRow(
                 modifier = modifier,
                 isExpanded = expanded
             ) { rowModifier ->

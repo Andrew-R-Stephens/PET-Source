@@ -12,11 +12,11 @@ import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
 import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
@@ -37,11 +37,11 @@ internal fun DifficultyModifierDetails(
     mapState: OperationDetailsUiState.MapDetails,
     weatherDetails: OperationDetailsUiState.WeatherDetails
 ) {
-    ExpandableCategoryColumn(
+    ExpandableColumn(
         expanded = false,
         containerColor = LocalPalette.current.surfaceContainer,
         defaultContent = { modifier, expanded ->
-            ExpandableCategoryRow(
+            ExpandableRow(
                 modifier = modifier,
                 isExpanded = expanded
             ) { rowModifier ->
@@ -67,11 +67,11 @@ internal fun DifficultyModifierDetails(
             }
         }
     ) {
-        ExpandableCategoryColumn(
+        ExpandableColumn(
             expanded = false,
             containerColor = LocalPalette.current.surfaceContainerHigh,
             defaultContent = { modifier, expanded ->
-                ExpandableCategoryRow(
+                ExpandableRow(
                     modifier = modifier,
                     isExpanded = expanded
                 ) { rowModifier ->
@@ -113,11 +113,11 @@ internal fun DifficultyModifierDetails(
             )
         }
 
-        ExpandableCategoryColumn(
+        ExpandableColumn(
             expanded = false,
             containerColor = LocalPalette.current.surfaceContainerHigh,
             defaultContent = { modifier, expanded ->
-                ExpandableCategoryRow(
+                ExpandableRow(
                     modifier = modifier,
                     isExpanded = expanded
                 ) { rowModifier ->
@@ -185,11 +185,11 @@ internal fun DifficultyModifierDetails(
             )
         }
 
-        ExpandableCategoryColumn(
+        ExpandableColumn(
             expanded = false,
             containerColor = LocalPalette.current.surfaceContainerHigh,
             defaultContent = { modifier, expanded ->
-                ExpandableCategoryRow(
+                ExpandableRow(
                     modifier = modifier,
                     isExpanded = expanded
                 ) { rowModifier ->

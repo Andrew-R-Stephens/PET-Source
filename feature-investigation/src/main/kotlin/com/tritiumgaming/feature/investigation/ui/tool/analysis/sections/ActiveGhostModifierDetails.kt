@@ -13,14 +13,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.core.ui.widgets.text.UiText
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
@@ -43,11 +43,11 @@ internal fun ActiveGhostModifierDetails(
 ) {
     val rememberGhostDetails = state.activeGhosts
 
-    ExpandableCategoryColumn(
+    ExpandableColumn(
         expanded = false,
         containerColor = LocalPalette.current.surfaceContainer,
         defaultContent = { modifier, expanded ->
-            ExpandableCategoryRow(
+            ExpandableRow(
                 modifier = modifier,
                 isExpanded = expanded
             ) { rowModifier ->
@@ -69,11 +69,11 @@ internal fun ActiveGhostModifierDetails(
 
                 val sanityBounds = ghostState.ghostEvidence.ghost.huntSanityBounds.toSanityBounds()
 
-                ExpandableCategoryColumn(
+                ExpandableColumn(
                     expanded = false,
                     containerColor = LocalPalette.current.surfaceContainerHigh,
                     defaultContent = { modifier, expanded ->
-                        ExpandableCategoryRow(
+                        ExpandableRow(
                             modifier = modifier,
                             isExpanded = expanded
                         ) { rowModifier ->

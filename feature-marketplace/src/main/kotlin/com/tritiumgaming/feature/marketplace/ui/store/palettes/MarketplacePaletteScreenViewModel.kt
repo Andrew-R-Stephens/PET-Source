@@ -288,8 +288,8 @@ class MarketplacePaletteScreenViewModel(
 
         val items = mutableListOf<ShopScreenUiItem>()
 
-        items.add(
-            ShopScreenUiItem.Header("Bundles")
+        /*items.add(
+            ShopScreenUiItem.Header("Theme Bundles")
         )
         paletteBundles.forEach { bundleState ->
             items.add(
@@ -300,7 +300,7 @@ class MarketplacePaletteScreenViewModel(
                     unlocked = bundleState.unlocked
                 )
             )
-        }
+        }*/
 
         grouped.forEach { (groupName, groupPalettes) ->
             if (groupName.isNotEmpty()) {
