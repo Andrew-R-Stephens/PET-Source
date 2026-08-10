@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
@@ -244,14 +245,14 @@ private fun CodexItemScreenContentPortrait(
                 listUiActions = achievementsListUiActions
             )
 
-                CatalogAchievementItemDisplay(
-                    modifier = Modifier
-                        .fillMaxHeight(.8f)
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter),
-                    displayUiState = displayUiState,
-                    displayUiActions = displayUiActions
-                )
+            CatalogAchievementItemDisplay(
+                modifier = Modifier
+                    .fillMaxHeight(.8f)
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter),
+                displayUiState = displayUiState,
+                displayUiActions = displayUiActions
+            )
 
         }
     }
@@ -360,7 +361,8 @@ private fun VerticalPaginator(
                 colorFilter = ColorFilter.tint(
                     if (index == scrollUiState.itemIndex)
                         LocalPalette.current.codexFamily.primary
-                    else { unselColor }
+                    else { unselColor },
+                    BlendMode.Multiply
                 )
             )
         }
@@ -418,7 +420,8 @@ private fun HorizontalPaginator(
                         LocalPalette.current.codexFamily.primary
                     else {
                         LocalPalette.current.codexFamily.onSurfaceVariant
-                    }
+                    },
+                    BlendMode.Multiply
                 ),
                 contentScale = ContentScale.Fit
             )

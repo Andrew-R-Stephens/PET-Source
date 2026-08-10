@@ -83,7 +83,7 @@ fun CatalogAchievementItemDisplay(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (selectedGroup.exclusivity and AchievementExclusivity.STEAM.value != 0) {
+                if (selectedItem.exclusivity and AchievementExclusivity.STEAM.value != 0) {
                     Icon(
                         modifier = Modifier
                             .fillMaxHeight()
@@ -97,7 +97,7 @@ fun CatalogAchievementItemDisplay(
                         tint = LocalPalette.current.codexFamily.onSurface,
                     )
                 }
-                if (selectedGroup.exclusivity and AchievementExclusivity.XBOX.value != 0) {
+                if (selectedItem.exclusivity and AchievementExclusivity.XBOX.value != 0) {
                     Icon(
                         modifier = Modifier
                             .fillMaxHeight()
@@ -111,7 +111,7 @@ fun CatalogAchievementItemDisplay(
                         tint = LocalPalette.current.codexFamily.onSurface,
                     )
                 }
-                if (selectedGroup.exclusivity and AchievementExclusivity.PLAYSTATION.value != 0) {
+                if (selectedItem.exclusivity and AchievementExclusivity.PLAYSTATION.value != 0) {
                     Icon(
                         modifier = Modifier
                             .fillMaxHeight()
@@ -127,7 +127,7 @@ fun CatalogAchievementItemDisplay(
                 }
             }
 
-            if (selectedGroup.visibility == AchievementVisibility.HIDDEN) {
+            if (selectedItem.visibility == AchievementVisibility.HIDDEN) {
                 Row(
                     modifier = modifier
                         .padding(4.dp),

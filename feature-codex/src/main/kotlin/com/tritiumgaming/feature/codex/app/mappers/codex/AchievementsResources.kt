@@ -3,10 +3,27 @@ package com.tritiumgaming.feature.codex.app.mappers.codex
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementContent
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementIcon
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementTitle
+
+@StringRes fun AchievementsResources.AchievementCategory.toStringResource(): Int =
+    when (this) {
+        AchievementsResources.AchievementCategory.TRAINING_WHEELS -> R.string.achievements_category_training_wheels
+        AchievementsResources.AchievementCategory.COMPLETED_CONTRACTS -> R.string.achievements_category_completed_contracts
+        AchievementsResources.AchievementCategory.OBJECTIVES_BOARD -> R.string.achievements_category_objectives_board
+        AchievementsResources.AchievementCategory.WEEKLY_CHALLENGE -> R.string.achievements_category_weekly_challenge
+        AchievementsResources.AchievementCategory.SPEND_CASH -> R.string.achievements_category_spend_cash
+        AchievementsResources.AchievementCategory.UNLOCKED_ALL_EQUIPMENT_TIER -> R.string.achievements_category_unlocked_all_equipmenttier
+        AchievementsResources.AchievementCategory.DIRECTOR -> R.string.achievements_category_director
+        AchievementsResources.AchievementCategory.APOCALYPSE_TROPHY -> R.string.achievements_category_apocalypse_trophy
+        AchievementsResources.AchievementCategory.GHOSTS -> R.string.achievements_category_ghosts
+        AchievementsResources.AchievementCategory.PRESTIGE -> R.string.achievements_category_prestige
+        AchievementsResources.AchievementCategory.HIDDEN_ACHIEVEMENT -> R.string.achievements_category_hidden_achievement
+        AchievementsResources.AchievementCategory.EXCLUSIVE -> R.string.achievements_category_exclusive
+    }
 
 @StringRes fun AchievementTitle.toStringResource(): Int =
     when (this) {

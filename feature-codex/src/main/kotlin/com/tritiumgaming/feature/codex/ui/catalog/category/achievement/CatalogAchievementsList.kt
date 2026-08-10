@@ -49,7 +49,7 @@ fun CatalogAchievementsList(
                     .padding(start = 8.dp, top = 8.dp, end = 8.dp),
                 state = scrollState,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
 
                 items(
@@ -62,17 +62,21 @@ fun CatalogAchievementsList(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(min = 48.dp, max = 96.dp),
-                            itemCount = 1
+                            itemCount = group.items.size
                         ) {
-                            CodexGroupItem(
-                                modifier = Modifier
-                                    .widthIn(min = 32.dp, max = 96.dp)
-                                    .aspectRatio(1f)
-                                    .weight(1f, false),
-                                isBordered = true,
-                                image = group.icon.toDrawableResource()
-                            ) {
-                                listUiActions.onSelect(group, group.item)
+                            group.items.forEach { item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .sizeIn(
+                                            minWidth = 64.dp, maxWidth = 96.dp,
+                                            minHeight = 64.dp, maxHeight = 96.dp
+                                        )
+                                        .aspectRatio(1f),
+                                    isBordered = true,
+                                    image = item.icon.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
                             }
                         }
                     }
@@ -104,20 +108,22 @@ fun CatalogAchievementsList(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .width(96.dp),
-                            itemCount = 1
+                            itemCount = group.items.size
                         ) {
-                            CodexGroupItem(
-                                modifier = Modifier
-                                    .sizeIn(
-                                        minWidth = 64.dp, maxWidth = 96.dp,
-                                        minHeight = 64.dp, maxHeight = 96.dp
-                                    )
-                                    .aspectRatio(1f)/*
+                            group.items.forEach { item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .sizeIn(
+                                            minWidth = 64.dp, maxWidth = 96.dp,
+                                            minHeight = 64.dp, maxHeight = 96.dp
+                                        )
+                                        .aspectRatio(1f)/*
                                         .weight(1f, false)*/,
-                                isBordered = true,
-                                image = group.icon.toDrawableResource()
-                            ) {
-                                listUiActions.onSelect(group, group.item)
+                                    isBordered = true,
+                                    image = item.icon.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
                             }
                         }
                     }

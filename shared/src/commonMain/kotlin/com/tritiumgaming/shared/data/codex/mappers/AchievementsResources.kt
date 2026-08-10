@@ -2,6 +2,21 @@ package com.tritiumgaming.shared.data.codex.mappers
 
 class AchievementsResources {
 
+    enum class AchievementCategory {
+        TRAINING_WHEELS,
+        COMPLETED_CONTRACTS,
+        OBJECTIVES_BOARD,
+        WEEKLY_CHALLENGE,
+        SPEND_CASH,
+        UNLOCKED_ALL_EQUIPMENT_TIER,
+        DIRECTOR,
+        APOCALYPSE_TROPHY,
+        GHOSTS,
+        PRESTIGE,
+        HIDDEN_ACHIEVEMENT,
+        EXCLUSIVE
+    }
+
     enum class AchievementTitle {
         TRAINING_WHEELS,
         ROOKIE,

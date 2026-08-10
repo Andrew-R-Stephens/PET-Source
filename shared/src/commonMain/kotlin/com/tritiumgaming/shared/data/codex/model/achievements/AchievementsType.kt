@@ -1,13 +1,12 @@
 package com.tritiumgaming.shared.data.codex.model.achievements
 
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementCategory
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementIcon
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementTitle
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
 
 data class AchievementsType(
-    val name: AchievementTitle,
+    val name: AchievementCategory,
     val icon: AchievementIcon,
-    val visibility: AchievementVisibility,
-    val exclusivity: Int,
-    val item: CodexAchievementsGroupItem
+    val items: List<CodexAchievementsGroupItem>
 )
