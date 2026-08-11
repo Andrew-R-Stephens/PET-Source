@@ -52,13 +52,48 @@ fun CatalogPossessionsList(
             ) {
 
                 items(
-                    items = groups
+                    items = groups,
+                    key = { it.name }
                 ) { group ->
+                    val itemCount = group.items.size
+
+                    val arrangement = when {
+                        (itemCount == 1) -> Arrangement.Center
+                        (itemCount == 2) -> Arrangement.SpaceEvenly
+                        (itemCount > 3) -> Arrangement.spacedBy(4.dp)
+                        else -> Arrangement.SpaceBetween
+                    }
 
                     CodexGroup(
                         groupTitle = group.name.toStringResource()
                     ) {
-                        CodexGroupItemsPortrait(
+                        LazyRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(min = 48.dp, max = 96.dp),
+                            horizontalArrangement = arrangement
+                        ) {
+                            items(
+                                items = group.items,
+                                key = { it.infoText }
+                            ) { item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .sizeIn(
+                                            minWidth = 64.dp, maxWidth = 96.dp,
+                                            minHeight = 64.dp, maxHeight = 96.dp
+                                        )
+                                        .aspectRatio(1f),
+                                    isBackground = true,
+                                    isBordered = true,
+                                    image = item.image.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
+                            }
+                        }
+
+                        /*CodexGroupItemsPortrait(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(min = 48.dp, max = 96.dp),
@@ -81,7 +116,7 @@ fun CatalogPossessionsList(
                                 }
 
                             }
-                        }
+                        }*/
                     }
 
                 }
@@ -102,16 +137,41 @@ fun CatalogPossessionsList(
             ) {
 
                 items(
-                    items = groups
+                    items = groups,
+                    key = { it.name }
                 ) { group ->
                     CodexGroup(
                         groupTitle = group.name.toStringResource()
                     ) {
-                        CodexGroupItemsLandscape(
+                        LazyColumn(
                             modifier = Modifier
                                 .fillMaxHeight()
-                                .width(96.dp),
-                            itemCount = group.size
+                                .width(96.dp)
+                        ) {
+                            items(
+                                items = group.items,
+                                key = { it.infoText }
+                            ) { item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .sizeIn(
+                                            minWidth = 64.dp, maxWidth = 96.dp,
+                                            minHeight = 64.dp, maxHeight = 96.dp
+                                        )
+                                        .aspectRatio(1f),
+                                    isBackground = true,
+                                    isBordered = true,
+                                    image = item.image.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
+                            }
+                        }
+
+                        /*CodexGroupItemsLandscape(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(96.dp)
                         ) {
                             group.items.forEach { item ->
                                 CodexGroupItem(
@@ -128,7 +188,7 @@ fun CatalogPossessionsList(
                                     listUiActions.onSelect(group, item)
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
             }

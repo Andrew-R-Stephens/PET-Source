@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
@@ -26,8 +25,6 @@ import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItem
-import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsLandscape
-import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsPortrait
 
 @Composable
 fun CatalogAchievementsList(
@@ -51,20 +48,32 @@ fun CatalogAchievementsList(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-
                 items(
-                    items = groups
+                    items = groups,
+                    key = { it.name }
                 ) { group ->
+                    val itemCount = group.items.size
+
+                    val arrangement = when {
+                        (itemCount == 1) -> Arrangement.Center
+                        (itemCount == 2) -> Arrangement.SpaceEvenly
+                        (itemCount > 3) -> Arrangement.spacedBy(4.dp)
+                        else -> Arrangement.SpaceBetween
+                    }
+
                     CodexGroup(
                         groupTitle = group.name.toStringResource()
                     ) {
-                        CodexGroupItemsPortrait(
+                        LazyRow(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(min = 48.dp, max = 96.dp),
-                            itemCount = group.items.size
+                            horizontalArrangement = arrangement
                         ) {
-                            group.items.forEach { item ->
+                            items(
+                                items = group.items,
+                                key = { it.title }
+                            ) { item ->
                                 CodexGroupItem(
                                     modifier = Modifier
                                         .sizeIn(
@@ -97,28 +106,29 @@ fun CatalogAchievementsList(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-
                 items(
-                    items = groups
+                    items = groups,
+                    key = { it.name }
                 ) { group ->
                     CodexGroup(
                         groupTitle = group.name.toStringResource()
                     ) {
-                        CodexGroupItemsLandscape(
+                        LazyColumn(
                             modifier = Modifier
                                 .fillMaxHeight()
-                                .width(96.dp),
-                            itemCount = group.items.size
+                                .width(96.dp)
                         ) {
-                            group.items.forEach { item ->
+                            items(
+                                items = group.items,
+                                key = { it.title }
+                            ) { item ->
                                 CodexGroupItem(
                                     modifier = Modifier
                                         .sizeIn(
                                             minWidth = 64.dp, maxWidth = 96.dp,
                                             minHeight = 64.dp, maxHeight = 96.dp
                                         )
-                                        .aspectRatio(1f)/*
-                                        .weight(1f, false)*/,
+                                        .aspectRatio(1f),
                                     isBordered = true,
                                     image = item.icon.toDrawableResource()
                                 ) {

@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -53,23 +54,35 @@ fun CatalogEquipmentList(
             ) {
 
                 items(
-                    items = groups
+                    items = groups,
+                    key = { it.name }
                 ) { group ->
+                    val itemCount = group.items.size
+
+                    val arrangement = when {
+                        (itemCount == 1) -> Arrangement.Center
+                        (itemCount == 2) -> Arrangement.SpaceEvenly
+                        (itemCount > 3) -> Arrangement.spacedBy(4.dp)
+                        else -> Arrangement.SpaceBetween
+                    }
+
                     CodexGroup(
                         groupTitle = group.name.toStringResource()
                     ) {
-                        CodexGroupItemsPortrait(
+                        LazyRow(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(min = 48.dp, max = 96.dp),
-                            itemCount = group.size
+                            horizontalArrangement = arrangement
                         ) {
-                            group.items.forEachIndexed { index, item ->
+                            itemsIndexed(
+                                items = group.items,
+                                key = { index, _ -> index }
+                            ) { index, item ->
                                 CodexGroupItem(
                                     modifier = Modifier
                                         .widthIn(min = 32.dp, max = 96.dp)
-                                        .aspectRatio(1f)
-                                        .weight(1f, false),
+                                        .aspectRatio(1f),
                                     isBackground = true,
                                     isBordered = true,
                                     tierLevel = index + 1,
@@ -78,6 +91,21 @@ fun CatalogEquipmentList(
                                     listUiActions.onSelect(group, item)
                                 }
                             }
+
+                            /*group.items.forEachIndexed { index, item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .widthIn(min = 32.dp, max = 96.dp)
+                                        .aspectRatio(1f),
+                                    .weight(1f, false),
+                                    isBackground = true,
+                                    isBordered = true,
+                                    tierLevel = index + 1,
+                                    image = item.image.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
+                            }*/
                         }
                     }
                 }
@@ -98,26 +126,32 @@ fun CatalogEquipmentList(
             ) {
 
                 items(
-                    items = groups
+                    items = groups,
+                    key = { it.name }
                 ) { group ->
+                    val arrangement = Arrangement.spacedBy(4.dp)
+
                     CodexGroup(
                         groupTitle = group.name.toStringResource()
                     ) {
-                        CodexGroupItemsLandscape(
+                        LazyColumn(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .width(96.dp),
-                            itemCount = group.size
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = arrangement
                         ) {
-                            group.items.forEachIndexed { index, item ->
+                            itemsIndexed(
+                                items = group.items,
+                                key = { index, _ -> index }
+                            ) { index, item ->
                                 CodexGroupItem(
                                     modifier = Modifier
                                         .sizeIn(
                                             minWidth = 64.dp, maxWidth = 96.dp,
                                             minHeight = 64.dp, maxHeight = 96.dp
                                         )
-                                        .aspectRatio(1f)/*
-                                        .weight(1f, false)*/,
+                                        .aspectRatio(1f),
                                     isBackground = true,
                                     isBordered = true,
                                     tierLevel = index + 1,
@@ -126,6 +160,24 @@ fun CatalogEquipmentList(
                                     listUiActions.onSelect(group, item)
                                 }
                             }
+
+                            /*group.items.forEachIndexed { index, item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .sizeIn(
+                                            minWidth = 64.dp, maxWidth = 96.dp,
+                                            minHeight = 64.dp, maxHeight = 96.dp
+                                        )
+                                        .aspectRatio(1f)*//*
+                                        .weight(1f, false)*//*,
+                                    isBackground = true,
+                                    isBordered = true,
+                                    tierLevel = index + 1,
+                                    image = item.image.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
+                            }*/
                         }
                     }
                 }

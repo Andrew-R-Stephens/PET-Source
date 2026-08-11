@@ -2,7 +2,6 @@ package com.tritiumgaming.core.ui.widgets.admob
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,7 +9,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -64,7 +67,9 @@ private fun AdBanner(
     adId: String
 ) {
     val adConsent = LocalAdConsent.current
-    val adView = remember(adConsent) {
+    val currentAdConsent by rememberUpdatedState(adConsent)
+
+    val adView = remember(adConsent, adId) {
         AdView(localContext).apply {
             adUnitId = adId
             val displayMetrics = context.resources.displayMetrics
@@ -73,29 +78,35 @@ private fun AdBanner(
             val adWidth = (adWidthPixels / density).toInt()
 
             setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
-            val adRequest = AdRequest.Builder().apply {
-                addNetworkExtrasBundle(AdMobAdapter::class.java, Bundle().apply {
-                    val isOptOut = adConsent.allowPersonalizedAds
-
-                    putString("npa", if (!isOptOut) "0" else "1")
-                    putInt("rdp", if (!isOptOut) 0 else 1)
-                })
-            }.build()
-
-            loadAd(adRequest)
         }
     }
 
-    Log.d("TAG", "BannerAd Loaded: $adView")
+    LaunchedEffect(adView) {
+        val adRequest = AdRequest.Builder().apply {
+            addNetworkExtrasBundle(AdMobAdapter::class.java, Bundle().apply {
+                val isOptOut = currentAdConsent.allowPersonalizedAds
+
+                putString("npa", if (!isOptOut) "0" else "1")
+                putInt("rdp", if (!isOptOut) 0 else 1)
+            })
+        }.build()
+
+        adView.loadAd(adRequest)
+    }
 
     LifecycleResumeEffect(adView) {
         adView.resume()
         onPauseOrDispose { adView.pause() }
     }
 
-    AndroidView(
-        modifier = modifier.wrapContentSize(),
-        factory = { adView },
-        onRelease = { it.destroy() }
-    )
+    key(adView) {
+        AndroidView(
+            modifier = modifier.fillMaxWidth(),
+            factory = { adView },
+            update = {
+                // No-op, we handle everything via remember keys and LaunchedEffect
+            },
+            onRelease = { it.destroy() }
+        )
+    }
 }
