@@ -59,6 +59,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -189,7 +190,12 @@ fun AccountScreen(
                 }
             }
         },
-        onNavigate = { route -> navController.navigate(route) }
+        onNavigate = { route ->
+            navController.navigate(route) {
+                launchSingleTop = true
+                restoreState = true
+            }
+        }
     )
 }
 

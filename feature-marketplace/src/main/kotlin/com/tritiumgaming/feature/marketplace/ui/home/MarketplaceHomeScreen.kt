@@ -126,7 +126,9 @@ fun MarketplaceHomeScreen(
         MarketplaceHomeContent(
             modifier = contentModifier
         ) { route ->
-            navController.navigate(route)
+            navController.navigate(route) {
+                launchSingleTop = true
+            }
         }
     }
 }
