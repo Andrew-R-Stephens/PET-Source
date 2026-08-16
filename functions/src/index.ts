@@ -18,11 +18,60 @@ initializeApp();
 setGlobalOptions({maxInstances: 10});
 
 /**
+ * Interface for marketplace agreement request
+ */
+interface MarketplaceAgreementRequest {
+    isAgreementShown: boolean;
+    version?: number;
+}
+
+export const setMarketplaceAgreementState = onCall<MarketplaceAgreementRequest>(async (request) => {
+    const version = request.data.version || 1;
+    switch (version) {
+    case 1:
+        return setMarketplaceAgreementState_v1(request);
+    default:
+        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+    }
+});
+
+async function setMarketplaceAgreementState_v1(request: CallableRequest<MarketplaceAgreementRequest>) {
+    const auth = request.auth;
+    if (!auth) {
+        throw new HttpsError("unauthenticated", "User must be authenticated to update preferences.");
+    }
+
+    const {isAgreementShown} = request.data;
+    const uid = auth.uid;
+
+    const db = getFirestore();
+    const purchaseDocRef = db.doc(`Users/${uid}/Account/TransactionHistory/PurchaseHistory/PurchaseItem`);
+
+    try {
+        await db.runTransaction(async (transaction) => {
+            const snapshot = await transaction.get(purchaseDocRef);
+            if (!snapshot.exists) {
+                transaction.set(purchaseDocRef, {
+                    marketplaceAgreementShown: isAgreementShown,
+                });
+            }
+        });
+
+        return {success: true, isAgreementShown};
+    } catch (error) {
+        logger.error("Set marketplace agreement state failed:", error);
+        if (error instanceof HttpsError) throw error;
+        throw new HttpsError("internal", "An internal error occurred while updating marketplace agreement state.");
+    }
+}
+
+/**
  * Interface for purchase request
+ */
  */
 interface PurchaseRequest {
     itemId: string;
-    itemType: "theme" | "bundle";
+    itemType: "theme" | "typography" | "bundle";
     version?: number;
 }
 

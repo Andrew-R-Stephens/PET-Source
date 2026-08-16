@@ -1,9 +1,11 @@
 package com.tritiumgaming.shared.data.market.palette.mappers
 
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import kotlinx.serialization.Serializable
 
 class PaletteResources {
 
+    @Serializable
     enum class PaletteType {
         CLASSIC,
         MONOCHROMACY,

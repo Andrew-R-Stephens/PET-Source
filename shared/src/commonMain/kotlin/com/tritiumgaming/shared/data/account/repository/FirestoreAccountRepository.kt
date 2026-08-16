@@ -49,8 +49,4 @@ interface FirestoreAccountRepository {
     fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>>
     fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>>
 
-    suspend fun addPurchasedDocument(
-        orderID: String
-    ): Result<String>
-
 }

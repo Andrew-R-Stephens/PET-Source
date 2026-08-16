@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.store
+package com.tritiumgaming.feature.marketplace.ui.common
 
 import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
 

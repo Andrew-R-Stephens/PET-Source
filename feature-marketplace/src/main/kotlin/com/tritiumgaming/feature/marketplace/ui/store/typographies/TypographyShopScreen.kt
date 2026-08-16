@@ -12,12 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
-import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogTypographiesUiState
+import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
@@ -55,9 +53,9 @@ private fun TypographyShopPreview() {
 @Composable
 fun TypographyShopScreen(
     navController: NavHostController = rememberNavController(),
-    marketplaceViewModel: MarketplaceViewModel = viewModel(factory = MarketplaceViewModel.Factory)
+    viewmodel: MarketplaceTypographiesScreenViewModel
 ) {
-    val unlocks by marketplaceViewModel.marketCatalogTypographiesUiState.collectAsStateWithLifecycle()
+    val unlocks by viewmodel.marketCatalogTypographiesUiState.collectAsStateWithLifecycle()
 
     TypographyShopContent(
         unlocks = unlocks

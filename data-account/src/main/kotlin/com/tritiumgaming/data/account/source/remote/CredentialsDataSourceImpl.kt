@@ -61,7 +61,7 @@ class CredentialsDataSourceImpl(
 
             is CustomCredential -> {
 
-                return if (credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)  {
+                if (credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)  {
 
                     try {
                         val idTokenCredential =

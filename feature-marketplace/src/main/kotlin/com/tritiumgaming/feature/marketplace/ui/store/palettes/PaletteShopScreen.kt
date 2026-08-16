@@ -40,13 +40,11 @@ import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
-import com.tritiumgaming.feature.marketplace.ui.common.PaletteBundleCard
+import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
-import com.tritiumgaming.feature.marketplace.ui.home.MarketplaceHomeScreenViewModel
-import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogScreenUiState
-import com.tritiumgaming.feature.marketplace.ui.store.ShopScreenUiItem
+import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
+import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid

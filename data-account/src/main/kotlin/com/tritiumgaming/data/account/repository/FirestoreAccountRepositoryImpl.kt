@@ -16,8 +16,10 @@ import com.tritiumgaming.shared.data.account.model.AccountMarketAgreement
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
 import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
@@ -39,26 +41,19 @@ class FirestoreAccountRepositoryImpl(
         return accountRemoteDataSource.addCredits(creditTransaction.toNetwork())
     }
 
-    /*override suspend fun removeCredits(
-        creditTransaction: AccountCreditTransaction
-    ): Result<Boolean> {
-
-        val result: Result<AccountCreditsDto> =
-            accountRemoteDataSource.removeCredits(creditTransaction.toNetwork())
-
-        return result.map { dto -> dto.toDomain() }
-
-    }*/
-
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun observeCredits(): Flow<Result<AccountCredits>> {
-        authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
-            Result.failure(
-                Exception("An authorized user is not currently logged in!")))
-
-        return accountRemoteDataSource.observeCreditsDocument().map { flow: Result<AccountCreditsDto> ->
-            flow.map { dto -> dto.toDomain() }
-        }
-
+        return authRemoteDataSource.observeAuthState()
+            .flatMapLatest { user ->
+                if (user == null) {
+                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+                } else {
+                    accountRemoteDataSource.observeCreditsDocument()
+                        .map { flow: Result<AccountCreditsDto> ->
+                            flow.map { dto -> dto.toDomain() }
+                        }
+                }
+            }
     }
 
     override suspend fun purchaseItemWithCredits(
@@ -90,37 +85,6 @@ class FirestoreAccountRepositoryImpl(
     }
 
     //TODO: Get Marketplace Agreement State
-
-    /*override suspend fun addUnlockDocument(unlockUUID: String?, type: String): Result<String> {
-
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return Result.failure(Exception("An authorized user is not currently logged in!"))
-
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return Result.failure(Exception("The authorized user's data could not be located!"))
-
-        if(unlockUUID == null)
-            return Result.failure(Exception("No UUID found!"))
-
-        return accountRemoteDataSource.addUnlockedDocument(userDocumentRef, unlockUUID, type)
-
-    }*/
-
-    /*override suspend fun addUnlockedDocuments (
-        unlockUUIDs: List<String>?,
-        type: String
-    ): Result<String> {
-        authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
-            Exception("An authorized user is not currently logged in!"))
-
-        if(unlockUUIDs.isNullOrEmpty())
-            return Result.failure(Exception("No UUIDs found!"))
-
-        return accountRemoteDataSource.addUnlockedDocuments(unlockUUIDs, type)
-
-    }*/
 
     override suspend fun fetchUnlockedPalettes(
         forceUpdate: Boolean
@@ -154,56 +118,31 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>> {
-        authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
-            Result.failure(
-                Exception("An authorized user is not currently logged in!")))
-
-        return accountRemoteDataSource.observeUnlockedPaletteDocuments().map { flow ->
-            flow.map { dto -> dto.toDomain() } }
-
-    }
-
-    override fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>> {
-        authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
-            Result.failure(
-                Exception("An authorized user is not currently logged in!")))
-
-        return accountRemoteDataSource.observeUnlockedTypographyDocuments().map { flow ->
-            flow.map { dto -> dto.toDomain() } }
-
-    }
-
-
-    //TODO: Get Unlock History Snapshot Observer
-    /*try {
-        unlockHistoryCollection.addSnapshotListener(EventListener {
-                value: QuerySnapshot?, _: FirebaseFirestoreException? ->
-            if (value == null) { return@EventListener }
-
-            for (documentSnapshot in value.documents) {
-                val uuid = documentSnapshot.reference.id
-                globalPreferencesViewModel.colorThemeControl.let { control ->
-                    val customTheme = control.getThemeByUUID(uuid)
-                    customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
+        return authRemoteDataSource.observeAuthState()
+            .flatMapLatest { user ->
+                if (user == null) {
+                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+                } else {
+                    accountRemoteDataSource.observeUnlockedPaletteDocuments().map { flow ->
+                        flow.map { dto -> dto.toDomain() }
+                    }
                 }
             }
-
-            CoroutineScope(Dispatchers.Main).launch {
-                revalidateBundles()
-                revalidateThemes()
-            }.start()
-        })
-    } catch (e: Exception) { e.printStackTrace() }*/
-
-    override suspend fun addPurchasedDocument(
-        orderID: String
-    ): Result<String> {
-        authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
-            Exception("An authorized user is not currently logged in!")
-        )
-
-        return accountRemoteDataSource.addPurchaseDocument(orderID)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>> {
+        return authRemoteDataSource.observeAuthState()
+            .flatMapLatest { user ->
+                if (user == null) {
+                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+                } else {
+                    accountRemoteDataSource.observeUnlockedTypographyDocuments().map { flow ->
+                        flow.map { dto -> dto.toDomain() }
+                    }
+                }
+            }
+    }
 }

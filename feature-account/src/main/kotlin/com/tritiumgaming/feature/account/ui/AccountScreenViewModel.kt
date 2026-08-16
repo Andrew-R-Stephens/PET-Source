@@ -19,7 +19,6 @@ import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccoun
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUseCase
-import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
 import com.tritiumgaming.shared.data.account.model.SignInOptions
@@ -33,9 +32,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -51,23 +53,47 @@ class AccountScreenViewModel(
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
 ): ViewModel() {
 
-    private var observeCreditsJob: Job? = null
-    private var observeUnlockedPalettesJob: Job? = null
-    private var observeUnlockedTypographiesJob: Job? = null
+    private val _accountCreditsUiState = observeAccountCreditsUseCase()
+        .map { result ->
+            if(result.isSuccess) {
+                Log.d("AccountViewModel", "Credits observation updated successfully")
+            }
+            result.exceptionOrNull()?.let { error ->
+                Log.e("AccountViewModel", "Error observing credits: ${error.message}")
+            }
 
-    private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
-    val accountCreditsUiState = _accountCreditsUiState.asStateFlow()
-    private fun setAccountUiStateDefault() = _accountCreditsUiState.update { AccountCreditsUiState() }
+            result.getOrNull()?.let { credits ->
+                AccountCreditsUiState(
+                    spentCredits = credits.spentCredits.toInt(),
+                    earnedCredits = credits.earnedCredits.toInt()
+                )
+            } ?: AccountCreditsUiState(-1, -1)
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = AccountCreditsUiState(-2, -2)
+        )
+    val accountCreditsUiState = _accountCreditsUiState
 
-    private val _accountUnlockedPalettesUiState = MutableStateFlow(AccountUnlockedPalettesUiState())
-    val accountUnlockedPalettesUiState = _accountUnlockedPalettesUiState.asStateFlow()
-    private fun setUnlockedPalettesUiStatDefault() =
-        _accountUnlockedPalettesUiState.update { AccountUnlockedPalettesUiState() }
+    private val _accountUnlockedPalettesUiState = observeAccountUnlockedPalettesUseCase()
+        .map { result ->
+            AccountUnlockedPalettesUiState(unlockedPalettes = result.getOrNull() ?: emptyList())
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = AccountUnlockedPalettesUiState()
+        )
+    val accountUnlockedPalettesUiState = _accountUnlockedPalettesUiState
 
-    private val _accountUnlockedTypographiesUiState = MutableStateFlow(AccountUnlockedTypographiesUiState())
-    val accountUnlockedTypographiesUiState = _accountUnlockedTypographiesUiState.asStateFlow()
-    private fun setUnlockedTypographiesUiStatDefault() =
-        _accountUnlockedTypographiesUiState.update { AccountUnlockedTypographiesUiState() }
+    private val _accountUnlockedTypographiesUiState = observeAccountUnlockedTypographiesUseCase()
+        .map { result ->
+            AccountUnlockedTypographiesUiState(unlockedTypographies = result.getOrNull() ?: emptyList())
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = AccountUnlockedTypographiesUiState()
+        )
+    val accountUnlockedTypographiesUiState = _accountUnlockedTypographiesUiState
 
     fun getSignInCredentials(
         signInOption: SignInOptions,
@@ -97,8 +123,6 @@ class AccountScreenViewModel(
     ) = viewModelScope.launch {
         val result = signInAccountUseCase(credentialResponse).getOrDefault(false)
         onComplete(result)
-
-        if(result) { startObservingAccount() }
     }
 
     fun signOutAccount(
@@ -110,8 +134,6 @@ class AccountScreenViewModel(
         if(result) {
             saveCurrentPaletteUseCase(LocalDefaultPalette.asUuid())
         }
-
-        if (result) { stopObservingAccount() }
     }
 
     fun deactivateAccount(onComplete: (Boolean) -> Unit) =
@@ -122,110 +144,7 @@ class AccountScreenViewModel(
             if(result) {
                 saveCurrentPaletteUseCase(LocalDefaultPalette.asUuid())
             }
-
-            if (result) { stopObservingAccount() }
         }
-
-    private fun startObservingCredits() {
-        observeCreditsJob?.cancel("Ending old observeCreditsJob")
-        observeCreditsJob = viewModelScope.launch {
-            observeAccountCreditsUseCase()
-                .onCompletion {
-                    Log.d("AccountViewModel", "observeCreditsJob completed")
-                    observeCreditsJob?.cancel() }
-                .catch { it.printStackTrace() }
-                .collect { result: Result<AccountCredits> ->
-                    if(result.isSuccess) {
-                        _accountCreditsUiState.update {
-                            accountCreditsUiState.value.copy(
-                                spentCredits = result.getOrNull()?.spentCredits?.toInt() ?: 0,
-                                earnedCredits = result.getOrNull()?.earnedCredits?.toInt() ?: 0
-                            )
-                        }
-                        Log.d("AccountViewModel", "observeCreditsJob updating accountUiState")
-                    }
-                }
-        }
-    }
-
-    private fun stopObservingCredits() {
-        observeCreditsJob?.cancel("Ending old observeCreditsJob")
-
-        setAccountUiStateDefault()
-
-        Log.d("AccountViewModel", "observeCreditsJob stopping")
-    }
-
-    private fun startObservingUnlockedPalettes() {
-        observeUnlockedPalettesJob?.cancel("Ending old observeUnlockedPalettesJob")
-        observeUnlockedPalettesJob = viewModelScope.launch {
-            observeAccountUnlockedPalettesUseCase()
-                .onCompletion {
-                    Log.d("AccountViewModel", "observeCreditsJob completed")
-                    observeUnlockedPalettesJob?.cancel() }
-                .catch { it.printStackTrace() }
-                .collect { result: Result<List<AccountPalette>> ->
-                    if(result.isSuccess) {
-                        _accountUnlockedPalettesUiState.update {
-                            accountUnlockedPalettesUiState.value.copy(
-                                unlockedPalettes = result.getOrNull() ?: emptyList()
-                            )
-                        }
-                        Log.d("AccountViewModel", "observeUnlockedPalettesJob updating " +
-                                "accountUnlockedPalettesUiState")
-                    }
-                }
-        }
-    }
-
-    private fun stopObservingUnlockedPalettes() {
-        observeUnlockedPalettesJob?.cancel("Ending old observeUnlockedPalettesJob")
-        setUnlockedPalettesUiStatDefault()
-
-        Log.d("AccountViewModel", "observeUnlockedPalettesJob stopping")
-    }
-
-    private fun startObservingUnlockedTypographies() {
-        observeUnlockedTypographiesJob?.cancel("Ending old observeUnlockedTypographiesJob")
-        observeUnlockedTypographiesJob = viewModelScope.launch {
-            observeAccountUnlockedTypographiesUseCase()
-                .onCompletion {
-                    Log.d("AccountViewModel", "observeCreditsJob completed")
-                    observeUnlockedTypographiesJob?.cancel() }
-                .catch { it.printStackTrace() }
-                .collect { result: Result<List<AccountTypography>> ->
-                    if(result.isSuccess) {
-                        _accountUnlockedTypographiesUiState.update {
-                            accountUnlockedTypographiesUiState.value.copy(
-                                unlockedTypographies = result.getOrNull() ?: emptyList()
-                            )
-                        }
-                        Log.d("AccountViewModel", "observeUnlockedTypographiesJob updating " +
-                                "accountUnlockedTypographiesUiState")
-                    }
-                }
-        }
-    }
-
-    private fun stopObservingUnlockedTypographies() {
-        observeUnlockedTypographiesJob?.cancel("Ending old observeUnlockedTypographiesJob")
-
-        setUnlockedTypographiesUiStatDefault()
-
-        Log.d("AccountViewModel", "observeUnlockedTypographiesJob stopping")
-    }
-
-    private fun startObservingAccount() {
-        startObservingCredits()
-        startObservingUnlockedPalettes()
-        startObservingUnlockedTypographies()
-    }
-
-    private fun stopObservingAccount() {
-        stopObservingCredits()
-        stopObservingUnlockedPalettes()
-        stopObservingUnlockedTypographies()
-    }
 
     private suspend fun signInWithCredential(
         activity: Activity,
@@ -262,7 +181,7 @@ class AccountScreenViewModel(
     }
 
     init {
-        startObservingAccount()
+        Log.d("AccountViewModel", "AccountScreenViewModel initialized")
     }
 
     companion object {

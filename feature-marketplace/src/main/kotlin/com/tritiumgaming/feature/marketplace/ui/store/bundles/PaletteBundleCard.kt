@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.common
+package com.tritiumgaming.feature.marketplace.ui.store.bundles
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateContentSize
@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
@@ -36,7 +35,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -61,10 +59,6 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
-import com.tritiumgaming.core.ui.widgets.text.ExpandableText
-import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteCard
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType.*
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid

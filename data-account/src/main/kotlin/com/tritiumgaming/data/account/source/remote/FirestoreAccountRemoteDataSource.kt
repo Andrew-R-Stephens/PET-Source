@@ -79,25 +79,17 @@ class FirestoreAccountRemoteDataSource(
     ): Result<AccountMarketAgreementDto> {
 
         return try {
+            val data = hashMapOf(
+                "isAgreementShown" to marketAgreementDto.isAgreementShown,
+                "version" to 1
+            )
 
-            val docRef = purchaseDocumentRef
-                ?: return Result.failure(Exception("User Marketplace Preferences document null!"))
+            firebaseFunctions
+                .getHttpsCallable("setMarketplaceAgreementState")
+                .call(data)
+                .await()
 
-            firestore.runTransaction { transaction ->
-
-                val snapshot = transaction.get(docRef)
-                if(!snapshot.exists()) {
-                    val data: MutableMap<String, Any> = HashMap()
-                    data[FIELD_MARKETPLACE_AGREEMENT_SHOWN] = marketAgreementDto.isAgreementShown
-
-                    transaction.set(docRef, data)
-
-                    marketAgreementDto
-                }
-
-            }.await()
-
-            return Result.success(marketAgreementDto)
+            Result.success(marketAgreementDto)
 
         } catch (e: Exception) {
             Log.e("Firestore", "Error marketplace agreement modification unsuccessful.", e)
@@ -159,60 +151,6 @@ class FirestoreAccountRemoteDataSource(
 
     }
 
-    /*suspend fun removeCredits(
-        creditTransaction: AccountCreditTransactionDto
-    ): Result<Boolean> {
-
-        return try {
-
-            val docRef = creditsDocumentRef
-                ?: return Result.failure(Exception("User Account Credits document null!"))
-
-            // Update document
-            firestore.runTransaction { transaction ->
-
-                val snapshot = transaction.getOrCreateCreditsDocument(docRef)
-
-                val currentCredits = AccountCreditsDto(
-                    earnedCredits = snapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
-                    spentCredits = snapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
-                )
-
-                // Check if there are enough credits to remove
-                if (currentCredits.earnedCredits >= creditTransaction.credits) {
-                    val updates = hashMapOf<String, Any>(
-                        FIELD_CREDITS_EARNED to FieldValue.increment(-creditTransaction.credits),
-                        FIELD_CREDITS_SPENT to FieldValue.increment(creditTransaction.credits)
-                    )
-                    transaction.update(docRef, updates)
-                }
-
-            }.await()
-
-            // Get updated document
-            val updatedSnapshot = docRef.get().await()
-
-            if (!updatedSnapshot.exists()) {
-                return Result.failure(
-                    FirebaseFirestoreException(
-                        "Document ${docRef.path} unexpectedly not found after update.",
-                        FirebaseFirestoreException.Code.NOT_FOUND
-                    )
-                )
-            }
-            val updatedDto = AccountCreditsDto(
-                earnedCredits = updatedSnapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
-                spentCredits = updatedSnapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
-            )
-            Result.success(updatedDto)
-
-        } catch (e: Exception) {
-            Log.e("Firestore", "Error adding credits", e)
-            Result.failure(e)
-        }
-
-    }*/
-
     suspend fun purchaseItemWithCredits(
         itemId: String,
         itemType: String
@@ -236,58 +174,6 @@ class FirestoreAccountRemoteDataSource(
             Result.failure(e)
         }
     }
-
-    fun observeCreditsDocument(): Flow<Result<AccountCreditsDto>> =
-        callbackFlow {
-
-            creditsDocumentRef?.addSnapshotListener { snapshot, error ->
-                error?.let {
-                    this.close(it)
-                }
-
-                snapshot?.let {
-                    val data = AccountCreditsDto(
-                        earnedCredits = it.getLong(FIELD_CREDITS_EARNED) ?: 0L,
-                        spentCredits = it.getLong(FIELD_CREDITS_SPENT) ?: 0L
-                    )
-                    this.trySend(Result.success(data))
-                }
-
-                this.trySend(Result.failure(Exception("Document not found or deleted.")))
-
-            }
-
-            awaitClose { this.cancel() }
-        }
-
-    /*suspend fun addUnlockedDocuments(
-        unlockUUIDs: List<String>?,
-        type: String
-    ): Result<String> {
-
-        val docRef = unlockHistoryCollectionRef
-            ?: return Result.failure(Exception("Unlock history collection not found!"))
-
-        if(unlockUUIDs == null)
-            return Result.failure(Exception("No UUIDs found!"))
-
-        return try {
-
-            val documentData: MutableMap<String, Any> = HashMap()
-            documentData[FIELD_TYPE] = type
-            documentData[FIELD_DATE_UNLOCKED] = Timestamp.now()
-
-            for (uuid in unlockUUIDs) {
-                val purchasedDocument = docRef.document(uuid)
-                purchasedDocument.set(documentData, SetOptions.merge()).await()
-            }
-            Result.success("Unlocked documents GENERATED / LOCATED!")
-        } catch (e: Exception) {
-            Log.e("Firestore", "Unlocked document of could NOT be GENERATED / LOCATED!")
-            Result.failure(e)
-        }
-
-    }*/
 
     suspend fun fetchUnlockedPaletteDocuments(): Result<List<AccountPaletteDto>> {
 
@@ -326,6 +212,39 @@ class FirestoreAccountRemoteDataSource(
 
         return Result.success(accountTypographyDtoList)
     }
+
+    fun observeCreditsDocument(): Flow<Result<AccountCreditsDto>> =
+        callbackFlow {
+
+            val docRef = creditsDocumentRef
+
+            if (docRef == null) {
+                trySend(Result.failure(Exception("Credits document reference is null!")))
+                close()
+                return@callbackFlow
+            }
+
+            val listenerRegistration = docRef.addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    trySend(Result.failure(error))
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    val data = AccountCreditsDto(
+                        earnedCredits = snapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
+                        spentCredits = snapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
+                    )
+                    trySend(Result.success(data))
+                } else {
+                    trySend(Result.success(AccountCreditsDto(0L, 0L)))
+                }
+            }
+
+            awaitClose {
+                listenerRegistration.remove()
+            }
+        }
 
     fun observeUnlockedPaletteDocuments(): Flow<Result<List<AccountPaletteDto>>> =
 
@@ -458,63 +377,6 @@ class FirestoreAccountRemoteDataSource(
         }
 
     }
-
-    /*private fun buildAccountCreditDocument(): DocumentReference {
-
-        creditsDocumentRef
-            .get()
-            .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
-
-                val creditsMap: MutableMap<Any, Any> = HashMap()
-
-                if (documentSnapshot[FIELD_CREDITS_EARNED] == null) {
-                    creditsMap[FIELD_CREDITS_EARNED] = 0
-                }
-                if (documentSnapshot[FIELD_CREDITS_SPENT] == null) {
-                    creditsMap[FIELD_CREDITS_SPENT] = 0
-                }
-                documentSnapshot.reference.set(creditsMap, SetOptions.merge())
-                    .addOnSuccessListener { unused: Void? ->
-                        Log.d("Firestore",
-                            "$DOCUMENT_CREDITS successfully INITIALIZED!") }
-                    .addOnFailureListener { e: Exception ->
-                        Log.e("Firestore",
-                            "$DOCUMENT_CREDITS failed INITIALIZATION")
-                        e.printStackTrace() }
-                    .addOnCompleteListener { task: Task<Void?>? ->
-                        Log.d("Firestore",
-                            "$DOCUMENT_CREDITS INITIALIZATION process complete!") }
-            }
-            .addOnFailureListener { obj: Exception -> obj.printStackTrace() }
-
-        return creditsDocumentRef
-
-    }*/
-
-    /*private fun buildAccountTransactionHistoryDocument(): DocumentReference {
-
-        transactionHistoryDocumentRef
-            .get()
-            .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
-
-                val emptyMap: Map<Any, Any> = HashMap()
-
-                documentSnapshot.reference.set(emptyMap, SetOptions.merge())
-                    .addOnSuccessListener { unused: Void? ->
-                        Log.d("Firestore",
-                            "$DOCUMENT_TRANSACTION_HISTORY successfully INITIALIZED!") }
-                    .addOnFailureListener { e: Exception ->
-                        Log.e("Firestore",
-                            "$DOCUMENT_TRANSACTION_HISTORY failed INITIALIZATION")
-                        e.printStackTrace() }
-                    .addOnCompleteListener { task: Task<Void?>? ->
-                        Log.d("Firestore",
-                            "$DOCUMENT_TRANSACTION_HISTORY INITIALIZATION process complete!") }
-            }
-            .addOnFailureListener { obj: Exception -> obj.printStackTrace() }
-
-        return transactionHistoryDocumentRef
-    }*/
 
     private companion object {
 

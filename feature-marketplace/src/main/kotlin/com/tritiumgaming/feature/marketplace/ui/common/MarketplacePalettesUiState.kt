@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.store
+package com.tritiumgaming.feature.marketplace.ui.common
 
 import androidx.compose.runtime.Immutable
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette

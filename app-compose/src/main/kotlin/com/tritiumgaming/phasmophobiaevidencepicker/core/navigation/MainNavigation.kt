@@ -3,18 +3,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.navigation
 import android.util.Log
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
@@ -236,7 +229,7 @@ private fun NavGraphBuilder.homeNavigation(
                 HomeScreen {
                     AccountScreen(
                         navController = navController,
-                        accountViewModel = viewModel(factory = AccountScreenViewModel.Factory)
+                        viewmodel = viewModel(factory = AccountScreenViewModel.Factory)
                     )
                 }
             }
@@ -262,7 +255,7 @@ private fun NavGraphBuilder.homeNavigation(
                 HomeScreen {
                     MarketplaceBillingScreen(
                         navController = navController,
-                        marketplaceViewModel = viewModel(factory = MarketplaceBillingScreenViewModel.Factory)
+                        viewmodel = viewModel(factory = MarketplaceBillingScreenViewModel.Factory)
                     )
                 }
             }
@@ -271,7 +264,7 @@ private fun NavGraphBuilder.homeNavigation(
                 HomeScreen {
                     TypographyShopScreen(
                         navController = navController,
-                        marketplaceViewModel = viewModel(factory = MarketplaceTypographiesScreenViewModel.Factory)
+                        viewmodel = viewModel(factory = MarketplaceTypographiesScreenViewModel.Factory)
                     )
                 }
             }

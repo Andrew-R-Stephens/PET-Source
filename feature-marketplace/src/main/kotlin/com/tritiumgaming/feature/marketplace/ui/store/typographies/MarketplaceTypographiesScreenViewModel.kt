@@ -9,17 +9,13 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
-import com.tritiumgaming.feature.marketplace.ui.AccountCreditsUiState
-import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
-import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState
-import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogBillablesUiState
-import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogScreenUiState
-import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogTypographiesUiState
-import com.tritiumgaming.feature.marketplace.ui.store.ShopScreenUiItem
-import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUseCase
+import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
+import com.tritiumgaming.feature.marketplace.ui.common.AccountUnlockedPalettesUiState
+import com.tritiumgaming.feature.marketplace.ui.common.AccountUnlockedTypographiesUiState
+import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogBillablesUiState
+import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
+import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
+import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
@@ -57,10 +53,6 @@ import kotlin.collections.component2
 import kotlin.collections.emptyList
 
 class MarketplaceTypographiesScreenViewModel(
-    private val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
-    private val signInAccountUseCase: SignInAccountUseCase,
-    private val signOutAccountUseCase: SignOutAccountUseCase,
-    private val deactivateAccountUseCase: DeactivateAccountUseCase,
     private val addAccountCreditsUseCase: AddAccountCreditsUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
@@ -470,10 +462,6 @@ class MarketplaceTypographiesScreenViewModel(
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                 val container = (application as MarketplaceContainerProvider).provideMarketplaceContainer()
 
-                val getSignInCredentialsUseCase = container.getSignInCredentialsUseCase
-                val signInAccountUseCase = container.signInAccountUseCase
-                val signOutAccountUseCase = container.signOutAccountUseCase
-                val deactivateAccountUseCase = container.deactivateAccountUseCase
                 val addAccountCreditsUseCase = container.addAccountCreditsUseCase
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
@@ -486,10 +474,6 @@ class MarketplaceTypographiesScreenViewModel(
                 val saveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
 
                 MarketplaceTypographiesScreenViewModel(
-                    getSignInCredentialsUseCase = getSignInCredentialsUseCase,
-                    signInAccountUseCase = signInAccountUseCase,
-                    signOutAccountUseCase = signOutAccountUseCase,
-                    deactivateAccountUseCase = deactivateAccountUseCase,
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,

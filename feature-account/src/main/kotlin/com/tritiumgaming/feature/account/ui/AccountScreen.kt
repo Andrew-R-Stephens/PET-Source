@@ -59,7 +59,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -123,14 +122,14 @@ private fun AccountPreview() {
 @Composable
 fun AccountScreen(
     navController: NavController = rememberNavController(),
-    accountViewModel: AccountScreenViewModel
+    viewmodel: AccountScreenViewModel
 ) {
     val activity = LocalActivity.current
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
-    val accountCreditsUiState by accountViewModel.accountCreditsUiState.collectAsStateWithLifecycle()
-    val accountPalettesUiState by accountViewModel.accountUnlockedPalettesUiState.collectAsStateWithLifecycle()
+    val accountCreditsUiState by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+    val accountPalettesUiState by viewmodel.accountUnlockedPalettesUiState.collectAsStateWithLifecycle()
 
     var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
     var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
@@ -149,7 +148,7 @@ fun AccountScreen(
         onDeactivateRequest = { rememberDialog = AccountOverviewDialog.DEACTIVATE_ACCOUNT },
         onDismissDialog = { rememberDialog = AccountOverviewDialog.NONE },
         onConfirmSignOut = {
-            accountViewModel.signOutAccount { success ->
+            viewmodel.signOutAccount { success ->
                 rememberAccount = Firebase.auth.currentUser?.uid
                 rememberDialog = AccountOverviewDialog.NONE
                 if (success) {
@@ -158,7 +157,7 @@ fun AccountScreen(
             }
         },
         onConfirmDeactivate = {
-            accountViewModel.deactivateAccount { success ->
+            viewmodel.deactivateAccount { success ->
                 rememberAccount = Firebase.auth.currentUser?.uid
                 rememberDialog = AccountOverviewDialog.NONE
                 if (success) {
@@ -170,16 +169,18 @@ fun AccountScreen(
         },
         onSignInRequest = {
             isLoading = true
-            accountViewModel.getSignInCredentials(SignInOptions.GOOGLE) { credentialOption ->
+            viewmodel.getSignInCredentials(SignInOptions.GOOGLE) { credentialOption ->
                 coroutineScope.launch {
                     try {
-                        accountViewModel.signInWithCredentials(activity!!, context, credentialOption) { result ->
-                            rememberAccount = Firebase.auth.currentUser?.uid
-                            isLoading = false
-                            if (result) {
-                                Toast.makeText(activity, "${activity.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(activity, activity.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
+                        activity?.let {
+                            viewmodel.signInWithCredentials(activity, context, credentialOption) { result ->
+                                rememberAccount = Firebase.auth.currentUser?.uid
+                                isLoading = false
+                                if (result) {
+                                    Toast.makeText(activity, "${activity.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(activity, activity.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
                     } catch (e: Exception) {

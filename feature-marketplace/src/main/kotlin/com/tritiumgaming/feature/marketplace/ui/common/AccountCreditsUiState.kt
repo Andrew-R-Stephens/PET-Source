@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui
+package com.tritiumgaming.feature.marketplace.ui.common
 
 data class AccountCreditsUiState(
     val spentCredits: Int = 0,

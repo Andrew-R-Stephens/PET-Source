@@ -23,13 +23,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
 
 @Composable
@@ -52,9 +50,9 @@ private fun MarketplaceBillingScreenPreview() {
 @Composable
 fun MarketplaceBillingScreen(
     navController: NavHostController = rememberNavController(),
-    marketplaceViewModel: MarketplaceViewModel = viewModel(factory = MarketplaceViewModel.Factory)
+    viewmodel: MarketplaceBillingScreenViewModel
 ) {
-    val billables by marketplaceViewModel.marketCatalogBillablesUiState.collectAsStateWithLifecycle()
+    val billables by viewmodel.marketCatalogBillablesUiState.collectAsStateWithLifecycle()
 
     MarketplaceBillingContent(
         billables = billables.billables,
