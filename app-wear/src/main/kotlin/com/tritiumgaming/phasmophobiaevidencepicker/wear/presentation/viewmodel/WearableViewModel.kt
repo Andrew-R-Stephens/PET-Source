@@ -6,10 +6,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.WearContainerProvider
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
 import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
 import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
 import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
@@ -28,11 +31,15 @@ class WearableViewModel(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = WearableOperationData(
-                mapName = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
-                difficultyName = DifficultyResources.DifficultyType.AMATEUR,
-                setupTimeRemaining = 0L,
-                sanityLevel = 1f,
-                evidenceStates = emptyList()
+                investigationData = WearableInvestigationData(
+                    mapName = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
+                    difficultyName = DifficultyResources.DifficultyType.AMATEUR,
+                    setupTimeRemaining = 0L,
+                    sanityLevel = 1f,
+                    evidenceStates = emptyList()
+                ),
+                palette = PaletteType.CLASSIC,
+                typography = TypographyType.CLASSIC
             )
         )
 

@@ -54,6 +54,8 @@ import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.presentation.viewmodel.WearableViewModel
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
@@ -62,6 +64,7 @@ import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
+import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
 import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
 
 class MainActivity : ComponentActivity() {
@@ -92,7 +95,10 @@ fun WearAppContent(
 ) {
     val listState = rememberScalingLazyListState()
 
-    LocalThemeProvider {
+    LocalThemeProvider(
+        palette = uiState.palette,
+        typography = uiState.typography
+    ) {
         Scaffold(
             vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
             positionIndicator = { PositionIndicator(scalingLazyListState = listState) }
@@ -127,7 +133,7 @@ fun WearAppContent(
                                 Text(
                                     modifier = Modifier
                                         .wrapContentSize(),
-                                    text = uiState.sanityLevel.toPercentageString(),
+                                    text = uiState.investigationData.sanityLevel.toPercentageString(),
                                     style = LocalTypography.current.tertiary.bold,
                                     fontSize = 12.sp,
                                     textAlign = TextAlign.Center
@@ -144,7 +150,7 @@ fun WearAppContent(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             items(
-                                items = uiState.evidenceStates,
+                                items = uiState.investigationData.evidenceStates,
                                 key = { it.type.id }
                             ) { evidence ->
                                 EvidenceItem(
@@ -161,7 +167,7 @@ fun WearAppContent(
                 }
 
                 SanityBorder(
-                    sanityLevel = uiState.sanityLevel,
+                    sanityLevel = uiState.investigationData.sanityLevel,
                     color = LocalPalette.current.surface,
                     onColor = LocalPalette.current.primary
                 )
@@ -318,33 +324,40 @@ fun WearAppPreviewRect() {
 @Composable
 fun WearAppPreviewContent() {
     val sampleData = WearableOperationData(
-        mapName = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
-        difficultyName = DifficultyResources.DifficultyType.AMATEUR,
-        setupTimeRemaining = 0L,
-        sanityLevel = 0.75f,
-        evidenceStates = listOf(
-            WearableEvidenceState(
-                EvidenceType(
-                    EvidenceResources.EvidenceIdentifier.EMF_5,
-                    EvidenceResources.EvidenceTitle.EMF_5,
-                    EvidenceResources.EvidenceIcon.EMF_5
+        investigationData = WearableInvestigationData(
+            mapName = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
+            difficultyName = DifficultyResources.DifficultyType.AMATEUR,
+            setupTimeRemaining = 0L,
+            sanityLevel = 0.75f,
+            evidenceStates = listOf(
+                WearableEvidenceState(
+                    EvidenceType(
+                        EvidenceResources.EvidenceIdentifier.EMF_5,
+                        EvidenceResources.EvidenceTitle.EMF_5,
+                        EvidenceResources.EvidenceIcon.EMF_5
+                    ),
+                    EvidenceValidationType.NEGATIVE, true
                 ),
-                EvidenceValidationType.NEGATIVE, true),
-            WearableEvidenceState(
-                EvidenceType(
-                    EvidenceResources.EvidenceIdentifier.GHOST_ORBS,
-                    EvidenceResources.EvidenceTitle.GHOST_ORBS,
-                    EvidenceResources.EvidenceIcon.GHOST_ORBS
+                WearableEvidenceState(
+                    EvidenceType(
+                        EvidenceResources.EvidenceIdentifier.GHOST_ORBS,
+                        EvidenceResources.EvidenceTitle.GHOST_ORBS,
+                        EvidenceResources.EvidenceIcon.GHOST_ORBS
+                    ),
+                    EvidenceValidationType.NEUTRAL, true
                 ),
-                EvidenceValidationType.NEUTRAL, true),
-            WearableEvidenceState(
-                EvidenceType(
-                    EvidenceResources.EvidenceIdentifier.DOTS,
-                    EvidenceResources.EvidenceTitle.DOTS,
-                    EvidenceResources.EvidenceIcon.DOTS
-                ),
-                EvidenceValidationType.POSITIVE, true)
-        )
+                WearableEvidenceState(
+                    EvidenceType(
+                        EvidenceResources.EvidenceIdentifier.DOTS,
+                        EvidenceResources.EvidenceTitle.DOTS,
+                        EvidenceResources.EvidenceIcon.DOTS
+                    ),
+                    EvidenceValidationType.POSITIVE, true
+                )
+            )
+        ),
+        palette = PaletteType.CLASSIC,
+        typography = TypographyType.CLASSIC
     )
     WearAppContent(
         uiState = sampleData,

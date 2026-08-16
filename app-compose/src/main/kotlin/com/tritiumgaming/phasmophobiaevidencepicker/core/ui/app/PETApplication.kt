@@ -39,12 +39,16 @@ import com.tritiumgaming.feature.start.app.container.StartContainer
 import com.tritiumgaming.feature.start.app.container.StartContainerProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
+import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
 import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
@@ -263,8 +267,25 @@ class PETApplication : Application(),
     private fun initWearableSync() {
         val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
         scope.launch {
-            coreContainer.investigationUseCaseBundle.getOperationStateUseCase().collectLatest { data ->
-                val wearableData = WearableOperationData(
+            combine(
+                coreContainer.investigationUseCaseBundle.getOperationStateUseCase(),
+                coreContainer.initFlowGlobalPreferencesUseCase()
+            ) { data, preferences ->
+                val palette = try {
+                    coreContainer.getMarketCatalogPaletteByUUIDUseCase(preferences.paletteUuid).getOrNull()
+                        ?: PaletteType.CLASSIC
+                } catch (e: Exception) {
+                    PaletteType.CLASSIC
+                }
+
+                val typography = try {
+                    coreContainer.getMarketCatalogTypographyByUUIDUseCase(preferences.typographyUuid).getOrNull()
+                        ?: TypographyType.CLASSIC
+                } catch (e: Exception) {
+                    TypographyType.CLASSIC
+                }
+
+                val investigationData = WearableInvestigationData(
                     mapName = data.map.name,
                     difficultyName = data.difficulty.type,
                     setupTimeRemaining = data.phase.maxFlashTime - data.phase.elapsedFlashTime,
@@ -273,6 +294,13 @@ class PETApplication : Application(),
                         WearableEvidenceState(it.evidence, it.state, it.enabled)
                     }
                 )
+
+                WearableOperationData(
+                    investigationData = investigationData,
+                    palette = palette,
+                    typography = typography
+                )
+            }.collectLatest { wearableData ->
                 coreContainer.pushOperationDataToWearableUseCase(wearableData)
             }
         }
