@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -156,28 +157,6 @@ fun PaletteBundleCard(
                     }
                 }
 
-                selectedPalette?.toPaletteResource()?.let { palette ->
-                    TypographyDetailsCard(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(8.dp),
-                        badgeRes = palette.extrasFamily.badge,
-                        title = stringResource(palette.extrasFamily.title),
-                        surfaceContainerHigh = palette.surfaceContainerHigh,
-                        scrim = palette.scrim,
-                        onSurfaceVariant = palette.onSurfaceVariant,
-                        onSurface = palette.onSurface,
-                        primary = palette.primary,
-                        secondary = palette.secondary,
-                        tertiary = palette.tertiary,
-                        surfaceContainer = palette.surfaceContainer,
-                        primaryContainer = palette.primaryContainer,
-                        secondaryContainer = palette.secondaryContainer,
-                        tertiaryContainer = palette.tertiaryContainer,
-                    )
-                }
-
                 if(!isOwned) {
                     Row(
                         modifier = Modifier
@@ -241,6 +220,46 @@ fun PaletteBundleCard(
                     }
 
                 }
+
+                selectedPalette?.toPaletteResource()?.let { palette ->
+
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalArrangement = Arrangement.Top,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            modifier = Modifier.fillMaxWidth().padding(start=8.dp, end=8.dp, top=8.dp),
+                            text = "Preview:",
+                            color = Color.Black,
+                            style = LocalTypography.current.quaternary.bold,
+                            fontSize = 10.sp,
+                            textAlign = TextAlign.Start,
+                            maxLines = 1
+                        )
+
+                        PaletteDetailsCard(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentHeight()
+                                .padding(8.dp),
+                            badgeRes = palette.extrasFamily.badge,
+                            title = stringResource(palette.extrasFamily.title),
+                            surfaceContainerHigh = palette.surfaceContainerHigh,
+                            scrim = palette.scrim,
+                            onSurfaceVariant = palette.onSurfaceVariant,
+                            onSurface = palette.onSurface,
+                            primary = palette.primary,
+                            secondary = palette.secondary,
+                            tertiary = palette.tertiary,
+                            surfaceContainer = palette.surfaceContainer,
+                            primaryContainer = palette.primaryContainer,
+                            secondaryContainer = palette.secondaryContainer,
+                            tertiaryContainer = palette.tertiaryContainer,
+                        )
+                    }
+                }
+
             }
 
         }
@@ -375,6 +394,169 @@ private fun BundleIncludedTypographyFont(
             )
         }
     }
+}
+
+@Composable
+private fun PaletteDetailsCard(
+    modifier: Modifier = Modifier,
+    badgeRes: Int,
+    title: String,
+    surfaceContainerHigh: Color,
+    scrim: Color,
+    onSurfaceVariant: Color,
+    onSurface: Color,
+    primary: Color,
+    secondary: Color,
+    tertiary: Color,
+    surfaceContainer: Color,
+    primaryContainer: Color,
+    secondaryContainer: Color,
+    tertiaryContainer: Color
+) {
+
+    Card(
+        modifier = modifier,
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = white_M100
+        )
+    ) {
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            propagateMinConstraints = true
+        ) {
+
+            Row(
+                modifier = Modifier
+                    .matchParentSize(),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth(.75f)
+                        .aspectRatio(1f, false)
+                        .scale(3f)
+                        .graphicsLayer {
+                            translationX = size.width * .1f
+                        }
+                        .alpha(.1f),
+                    painter = painterResource(badgeRes),
+                    contentDescription = "",
+                    contentScale = ContentScale.FillBounds,
+                    alignment = Alignment.CenterEnd
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(24.dp)
+                        .background(surfaceContainerHigh)
+                        .padding(4.dp),
+                    text = title,
+                    color = onSurfaceVariant,
+                    style = LocalTypography.current.primary.bold.copy(
+                        textAlign = TextAlign.Center
+                    ),
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = 1.sp,
+                        maxFontSize = 50.sp,
+                        stepSize = 2.sp
+                    )
+                )
+
+                Row(
+                    modifier = Modifier
+                        .height(96.dp)
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .aspectRatio(1f),
+                        painter = painterResource(badgeRes),
+                        contentDescription = "Badge"
+                    )
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 8.dp),
+                        verticalArrangement = Arrangement.SpaceBetween,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+
+                        Row(
+                            modifier = Modifier
+                                .weight(1f),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            ColorSwatch(
+                                backgroundColor = onSurface
+                            )
+
+                            ColorSwatch(
+                                backgroundColor = primary
+                            )
+
+                            ColorSwatch(
+                                backgroundColor = secondary
+                            )
+
+                            ColorSwatch(
+                                backgroundColor = tertiary
+                            )
+
+                        }
+
+                        Row(
+                            modifier = Modifier
+                                .weight(1f),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+
+                            ColorSwatch(
+                                backgroundColor = surfaceContainer
+                            )
+
+                            ColorSwatch(
+                                backgroundColor = primaryContainer
+                            )
+
+                            ColorSwatch(
+                                backgroundColor = secondaryContainer
+                            )
+
+                            ColorSwatch(
+                                backgroundColor = tertiaryContainer
+                            )
+
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
 }
 
 @Composable
