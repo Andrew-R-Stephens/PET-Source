@@ -37,8 +37,8 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
+import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
@@ -136,9 +136,17 @@ private fun BundleShopContent(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    when(deviceConfiguration) {
-        else -> {
+    when (deviceConfiguration) {
+        DeviceConfiguration.MOBILE_PORTRAIT, DeviceConfiguration.TABLET_PORTRAIT -> {
             PortraitContent(
+                modifier = modifier,
+                authenticated = authenticated,
+                unlocks = unlocks,
+                onBuyBundle = onBuyBundle
+            )
+        }
+        else -> {
+            LandscapeContent(
                 modifier = modifier,
                 authenticated = authenticated,
                 unlocks = unlocks,

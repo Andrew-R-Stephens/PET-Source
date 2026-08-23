@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.store.bundles
 
+import androidx.annotation.IntegerRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -136,22 +137,21 @@ fun PaletteBundleCard(
                         marketPalette.palette?.let { paletteType ->
                             val paletteRes = paletteType.toPaletteResource()
 
-                            BundleIncludedTypographyFont(
+                            BundleIncludedPaletteImage(
                                 modifier = Modifier.width(48.dp),
                                 isSelected = selectedPalette?.asUuid() == marketPalette.uuid,
                                 title = stringResource(paletteRes.extrasFamily.title),
                                 isOwned = marketPalette.unlocked,
                                 surfaceColor = paletteRes.surface,
                                 onSurfaceColor = LocalPalette.current.onSurface,
+                                iconRes = paletteRes.extrasFamily.badge,
                                 onClick = {
                                     selectedPalette =
                                         if (selectedPalette?.asUuid() == marketPalette.uuid) {
                                             null
                                         } else paletteType
                                 }
-                            ){
-
-                            }
+                            )
                         }
                     }
                 }
@@ -247,6 +247,71 @@ fun PaletteBundleCard(
 
     }
 
+}
+
+@Composable
+private fun BundleIncludedPaletteImage(
+    modifier: Modifier = Modifier,
+    title: String,
+    isSelected: Boolean = false,
+    isOwned: Boolean = false,
+    surfaceColor: Color,
+    onSurfaceColor: Color,
+    @IntegerRes iconRes: Int,
+    onClick: () -> Unit,
+) {
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        border = BorderStroke(
+            width = 1.dp,
+            color = if (isSelected) surfaceColor else Color.Transparent
+        )
+    ) {
+        Column(
+            modifier = modifier
+                .padding(4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Box(
+                modifier = Modifier
+                    .aspectRatio(1f)
+                    /*.background(
+                        color = if (isSelected) onSurfaceColor.copy(alpha = 0.2f) else Color.Transparent,
+                        shape = RoundedCornerShape(8.dp)
+                    )*/
+                    .clickable(onClick = onClick),
+                contentAlignment = Alignment.BottomEnd
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    painter = painterResource(iconRes),
+                    contentDescription = "Icon"
+                )
+
+                if (isOwned) {
+                    MarkCheckCircleIconComposite(
+                        modifier = Modifier
+                            .fillMaxSize(.45f),
+                        filled = false,
+                        color = surfaceColor,
+                        onColor = onSurfaceColor
+                    )
+                }
+            }
+
+            Text(
+                modifier = Modifier
+                    .basicMarquee(iterations = Int.MAX_VALUE),
+                text = title,
+                color = Color.Black,
+                style = LocalTypography.current.quaternary.bold,
+                fontSize = 10.sp,
+                textAlign = TextAlign.Center,
+                maxLines = 1
+            )
+        }
+    }
 }
 
 @Composable
@@ -541,7 +606,25 @@ private fun PreviewBundleCard() {
 
 @Composable
 @Preview
-private fun BundleIncludedItemImagePreview() {
+private fun BundleIncludedPaletteImagePreview() {
+    LocalThemeProvider {
+        BundleIncludedPaletteImage(
+            modifier = Modifier
+                .size(48.dp),
+            title = "Item 1",
+            isSelected = true,
+            isOwned = false,
+            surfaceColor = LocalPalette.current.surface,
+            onSurfaceColor = LocalPalette.current.onSurface,
+            iconRes = LocalPalette.current.extrasFamily.badge,
+            onClick = {}
+        )
+    }
+}
+
+@Composable
+@Preview
+private fun BundleIncludedTypographyImagePreview() {
     LocalThemeProvider {
         BundleIncludedTypographyFont(
             modifier = Modifier
