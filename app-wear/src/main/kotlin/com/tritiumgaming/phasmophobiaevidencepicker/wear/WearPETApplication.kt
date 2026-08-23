@@ -5,6 +5,7 @@ import android.content.Context
 import com.tritiumgaming.shared.data.wearable.repository.WearableRepository
 import com.tritiumgaming.shared.data.wearable.repository.WearableRepositoryImpl
 import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
+import com.tritiumgaming.shared.data.wearable.usecase.SendWearableSanityMessageUseCase
 import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
 
 class WearPETApplication : Application(), WearContainerProvider {
@@ -30,4 +31,5 @@ class WearContainer(context: Context) {
 
     val observeWearableOperationDataUseCase = ObserveWearableOperationDataUseCase(wearableRepository)
     val sendWearableToggleMessageUseCase = SendWearableToggleMessageUseCase(wearableRepository)
+    val sendWearableSanityMessageUseCase = SendWearableSanityMessageUseCase(wearableRepository)
 }

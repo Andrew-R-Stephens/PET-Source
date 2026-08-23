@@ -26,6 +26,9 @@ module.exports = {
         "import",
     ],
     rules: {
+        "camelcase": "off",
+        "require-jsdoc": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "quotes": ["error", "double"],
         "import/no-unresolved": 0,
         "indent": ["error", 4],

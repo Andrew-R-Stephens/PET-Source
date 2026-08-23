@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.store.bundles
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -54,20 +55,19 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIconComposite
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType.*
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.CLASSIC
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.JETBRAINS_MONO
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.NEUCHA
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @Composable
-fun PaletteBundleCard(
+fun TypographyBundleCard(
     modifier: Modifier = Modifier,
     uuid: String,
     buyCredits: Long = 0L,
@@ -76,7 +76,7 @@ fun PaletteBundleCard(
     onSurfaceVariant: Color,
     onSurface: Color,
     scrim: Color,
-    items: List<MarketPalette>,
+    items: List<MarketTypography>,
     canUnlock: Boolean = false,
     isOwned: Boolean = false,
     onBuyClick: () -> Unit = {}
@@ -125,36 +125,34 @@ fun PaletteBundleCard(
 
                 var selectedPalette: PaletteType? by remember { mutableStateOf(null) }
 
-                LazyRow(
+                /*LazyRow(
                     modifier = Modifier
                         .height(96.dp)
                         .padding(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    items(items = items, key = { it.uuid }) { marketPalette ->
-                        marketPalette.palette?.let { paletteType ->
-                            val paletteRes = paletteType.toPaletteResource()
+                    items(items = items, key = { it.uuid }) { marketTypography ->
+                        marketTypography.typography?.let { type ->
+                            val paletteRes = type.toTypographyResource()
 
-                            BundleIncludedTypographyFont(
+                            BundleIncludedTypographyPreview(
                                 modifier = Modifier.width(48.dp),
-                                isSelected = selectedPalette?.asUuid() == marketPalette.uuid,
+                                isSelected = selectedPalette?.asUuid() == marketTypography.uuid,
                                 title = stringResource(paletteRes.extrasFamily.title),
-                                isOwned = marketPalette.unlocked,
+                                isOwned = marketTypography.unlocked,
                                 surfaceColor = paletteRes.surface,
                                 onSurfaceColor = LocalPalette.current.onSurface,
                                 onClick = {
                                     selectedPalette =
-                                        if (selectedPalette?.asUuid() == marketPalette.uuid) {
+                                        if (selectedPalette?.asUuid() == marketTypography.uuid) {
                                             null
-                                        } else paletteType
+                                        } else type
                                 }
-                            ){
-
-                            }
+                            )
                         }
                     }
-                }
+                }*/
 
                 selectedPalette?.toPaletteResource()?.let { palette ->
                     TypographyDetailsCard(
@@ -250,15 +248,15 @@ fun PaletteBundleCard(
 }
 
 @Composable
-private fun BundleIncludedTypographyFont(
+private fun BundleIncludedThemeImage(
     modifier: Modifier = Modifier,
     title: String,
     isSelected: Boolean = false,
     isOwned: Boolean = false,
+    @DrawableRes icon: Int,
     surfaceColor: Color,
     onSurfaceColor: Color,
-    onClick: () -> Unit,
-    preview: @Composable (Modifier) -> Unit = {},
+    onClick: () -> Unit
 ) {
     Surface(
         shape = RoundedCornerShape(8.dp),
@@ -282,9 +280,11 @@ private fun BundleIncludedTypographyFont(
                     .clickable(onClick = onClick),
                 contentAlignment = Alignment.BottomEnd
             ) {
-                preview(
-                    Modifier
-                        .fillMaxSize()
+                Image(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    painter = painterResource(icon),
+                    contentDescription = null,
                 )
 
                 if (isOwned) {
@@ -493,7 +493,7 @@ private fun RowScope.ColorSwatch(
 @Preview
 private fun PreviewBundleCard() {
     LocalThemeProvider {
-        TypographyBundleCard(
+        PaletteBundleCard(
             modifier = Modifier
                 .widthIn(400.dp)
                 .fillMaxWidth(),
@@ -501,32 +501,32 @@ private fun PreviewBundleCard() {
             title = "Test",
             buyCredits = 600,
             items = listOf(
-                MarketTypography(
+                MarketPalette(
                     uuid = "0",
                     name = "",
                     group = "",
                     buyCredits = 60,
                     priority = 0,
                     unlocked = true,
-                    typography = CLASSIC
+                    palette = ANALYST
                 ),
-                MarketTypography(
+                MarketPalette(
                     uuid = "1",
                     name = "",
                     group = "",
                     buyCredits = 60,
                     priority = 0,
                     unlocked = true,
-                    typography = JETBRAINS_MONO
+                    palette = ARTIST
                 ),
-                MarketTypography(
+                MarketPalette(
                     uuid = "2",
                     name = "",
                     group = "",
                     buyCredits = 60,
                     priority = 0,
                     unlocked = false,
-                    typography = NEUCHA
+                    palette = COMMISSIONER
                 ),
             ),
             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
@@ -543,12 +543,13 @@ private fun PreviewBundleCard() {
 @Preview
 private fun BundleIncludedItemImagePreview() {
     LocalThemeProvider {
-        BundleIncludedTypographyFont(
+        BundleIncludedThemeImage(
             modifier = Modifier
                 .size(48.dp),
             title = "Item 1",
             isSelected = true,
             isOwned = false,
+            icon = com.tritiumgaming.core.ui.R.drawable.theme_badge_artist,
             surfaceColor = LocalPalette.current.surface,
             onSurfaceColor = LocalPalette.current.onSurface,
             onClick = {}

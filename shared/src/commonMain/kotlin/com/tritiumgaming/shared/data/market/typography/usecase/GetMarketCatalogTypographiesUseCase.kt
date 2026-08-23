@@ -8,7 +8,8 @@ class GetMarketCatalogTypographiesUseCase(
 ) {
 
     suspend operator fun invoke(): List<MarketTypography> {
-        return repository.synchronizeCache().getOrDefault(emptyList())
+        return repository.synchronizeCache()
+            .getOrDefault(emptyList())
     }
 
 }

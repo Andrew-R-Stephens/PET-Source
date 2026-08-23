@@ -25,23 +25,41 @@ class WearableSyncService : WearableListenerService() {
             if (parts.size == 2) {
                 val idName = parts[0]
                 val stateName = parts[1]
-                updateEvidenceOnHost(idName, stateName)
+                updateEvidenceOnHost(EvidenceIdentifier.valueOf(idName), stateName)
+            }
+        } else if (messageEvent.path == WearablePaths.SANITY_UPDATE) {
+            val sanityString = String(messageEvent.data)
+            updateSanityOnHost(sanityString)
+        }
+    }
+
+    private fun updateSanityOnHost(sanityString: String) {
+        val app = application as PETApplication
+        val investigationUseCaseBundle = app.investigationContainer.investigationUseCaseBundle
+
+        scope.launch {
+            try {
+                val newSanityLevel = sanityString.toFloat()
+                val currentState = investigationUseCaseBundle.getOperationStateUseCase().value
+                val newSanityData = currentState.sanity.copy(sanityLevel = newSanityLevel)
+                investigationUseCaseBundle.updateOperationSanityUseCase(newSanityData)
+            } catch (e: Exception) {
+                Log.e(TAG, "Error updating sanity from Wearable", e)
             }
         }
     }
 
-    private fun updateEvidenceOnHost(idName: String, stateName: String) {
+    private fun updateEvidenceOnHost(evidenceIdentifier: EvidenceIdentifier, stateName: String) {
         val app = application as PETApplication
         val investigationUseCaseBundle = app.investigationContainer.investigationUseCaseBundle
         
         scope.launch {
             try {
-                val identifier = EvidenceIdentifier.valueOf(idName)
                 val newState = EvidenceValidationType.valueOf(stateName)
                 
                 val currentState = investigationUseCaseBundle.getOperationStateUseCase().value
                 val newEvidenceStates = currentState.evidenceStates.map { 
-                    if (it.evidence.id == identifier) it.copy(state = newState) else it
+                    if (it.evidence.id == evidenceIdentifier) it.copy(state = newState) else it
                 }
                 
                 investigationUseCaseBundle.updateOperationEvidenceUseCase(newEvidenceStates)

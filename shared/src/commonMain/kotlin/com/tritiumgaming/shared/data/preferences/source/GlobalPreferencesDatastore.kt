@@ -32,8 +32,8 @@ interface GlobalPreferencesDatastore:
         val uiDensity: DensityType = DensityType.COMFORTABLE,
         val maxHuntWarnFlashTime: Long = 300L,
         val uiDensityType: DensityType = DensityType.COMFORTABLE,
-        val typographyUuid: String = PaletteResources.PaletteType.CLASSIC.asUuid(),
-        val paletteUuid: String = TypographyResources.TypographyType.CLASSIC.asUuid()
+        val typographyUuid: String = TypographyResources.TypographyType.CLASSIC.asUuid(),
+        val paletteUuid: String = PaletteResources.PaletteType.CLASSIC.asUuid()
     )
 
 }

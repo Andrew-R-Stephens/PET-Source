@@ -39,6 +39,9 @@ import com.tritiumgaming.feature.start.app.container.StartContainer
 import com.tritiumgaming.feature.start.app.container.StartContainerProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
+import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
+import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
@@ -291,7 +294,17 @@ class PETApplication : Application(),
                     setupTimeRemaining = data.phase.maxFlashTime - data.phase.elapsedFlashTime,
                     sanityLevel = data.sanity.sanityLevel,
                     evidenceStates = data.evidenceStates.map {
-                        WearableEvidenceState(it.evidence, it.state, it.enabled)
+                        val identifier = it.evidence.id.toEquipmentIdentifier()
+                        val equipmentPermissions = data.difficulty.settings.equipmentPermission
+                        val isEvidencePermitted = data.difficulty.settings.evidenceGiven.toInt() > 0
+
+                        val revokedIdentifiers = equipmentPermissions
+                            .filter { p -> p.permission == EquipmentPermission.Permission.REVOKED && p.quantity == EquipmentPermission.ALL }
+                            .map { p -> p.identifier }
+
+                        val enabled = isEvidencePermitted && (identifier !in revokedIdentifiers)
+
+                        WearableEvidenceState(it.evidence, it.state, enabled)
                     }
                 )
 

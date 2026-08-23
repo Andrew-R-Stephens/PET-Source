@@ -5,25 +5,32 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -32,9 +39,9 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathMeasure
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,7 +51,7 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.ChipDefaults
-import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.InlineSlider
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.Vignette
@@ -54,14 +61,14 @@ import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.presentation.viewmodel.WearableViewModel
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
 import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
@@ -84,86 +91,48 @@ fun WearApp(
     WearAppContent(
         uiState = uiState,
         onToggleEvidence = { id, state ->
-            viewModel.toggleEvidence(id, state) }
+            viewModel.toggleEvidence(id, state) },
+        onUpdateSanity = { level ->
+            viewModel.updateSanity(level) }
     )
+}
+
+enum class WearScreen {
+    Main, SanitySlider
 }
 
 @Composable
 fun WearAppContent(
     uiState: WearableOperationData,
-    onToggleEvidence: (EvidenceType, EvidenceValidationType) -> Unit
+    onToggleEvidence: (EvidenceType, EvidenceValidationType) -> Unit,
+    onUpdateSanity: (Float) -> Unit
 ) {
-    val listState = rememberScalingLazyListState()
+    var currentScreen by remember { mutableStateOf(WearScreen.Main) }
 
     LocalThemeProvider(
         palette = uiState.palette,
         typography = uiState.typography
     ) {
         Scaffold(
+            modifier = Modifier.fillMaxSize()
+                .background(LocalPalette.current.surface),
             vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
-            positionIndicator = { PositionIndicator(scalingLazyListState = listState) }
         ) {
 
             Box(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             ) {
-                ScalingLazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(8.dp),
-                    state = listState,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    item {
-                        Chip(
-                            modifier = Modifier
-                                .width(IntrinsicSize.Max)
-                                .wrapContentHeight()
-                                .align(Alignment.Center),
-                            onClick = {},
-                            enabled = true,
-                            colors = ChipDefaults.chipColors(
-                                backgroundColor = LocalPalette.current.surfaceContainer,
-                            ),
-                            border = ChipDefaults.chipBorder(),
-                            contentPadding = PaddingValues(4.dp),
-                            shape = CircleShape,
-                            role = Role.Image,
-                            content = {
-                                Text(
-                                    modifier = Modifier
-                                        .wrapContentSize(),
-                                    text = uiState.investigationData.sanityLevel.toPercentageString(),
-                                    style = LocalTypography.current.tertiary.bold,
-                                    fontSize = 12.sp,
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-                        )
-                    }
-
-                    item {
-                        LazyRow(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            items(
-                                items = uiState.investigationData.evidenceStates,
-                                key = { it.type.id }
-                            ) { evidence ->
-                                EvidenceItem(
-                                    modifier = Modifier
-                                        .size(36.dp),
-                                    evidence = evidence
-                                ) {
-                                    onToggleEvidence(evidence.type, evidence.state)
-                                }
-                            }
-                        }
-                    }
-
+                when (currentScreen) {
+                    WearScreen.Main -> MainScreen(
+                        uiState = uiState,
+                        onToggleEvidence = onToggleEvidence,
+                        onLongPressSanity = { currentScreen = WearScreen.SanitySlider }
+                    )
+                    WearScreen.SanitySlider -> SanitySliderScreen(
+                        sanityLevel = uiState.investigationData.sanityLevel,
+                        onUpdateSanity = onUpdateSanity,
+                        onBack = { currentScreen = WearScreen.Main }
+                    )
                 }
 
                 SanityBorder(
@@ -177,39 +146,192 @@ fun WearAppContent(
 }
 
 @Composable
+fun MainScreen(
+    uiState: WearableOperationData,
+    onToggleEvidence: (EvidenceType, EvidenceValidationType) -> Unit,
+    onLongPressSanity: () -> Unit
+) {
+    val listState = rememberScalingLazyListState()
+
+    ScalingLazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        state = listState,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 20.dp),
+        autoCentering = null,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        item {
+            SanityBubble(
+                sanityLevel = uiState.investigationData.sanityLevel,
+                onLongPress = onLongPressSanity
+            )
+        }
+
+        item {
+            EvidenceGrid(
+                evidenceStates = uiState.investigationData.evidenceStates,
+                onToggleEvidence = onToggleEvidence
+            )
+        }
+    }
+}
+
+@Composable
+fun SanityBubble(
+    sanityLevel: Float,
+    onLongPress: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(8.dp))
+            .background(LocalPalette.current.surfaceContainer)
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onLongPress = { onLongPress() }
+                )
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = sanityLevel.toPercentageString(),
+            style = LocalTypography.current.tertiary.bold,
+            fontSize = 16.sp,
+            textAlign = TextAlign.Center,
+            color = LocalPalette.current.onSurface
+        )
+    }
+}
+
+@Composable
+fun EvidenceGrid(
+    evidenceStates: List<WearableEvidenceState>,
+    onToggleEvidence: (EvidenceType, EvidenceValidationType) -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        // Simple manual grid for better control on Wear OS
+        val row1 = evidenceStates.take(4)
+        val row2 = evidenceStates.drop(4)
+
+        EvidenceRow(row1, onToggleEvidence)
+        EvidenceRow(row2, onToggleEvidence)
+    }
+}
+
+@Composable
+fun EvidenceRow(
+    items: List<WearableEvidenceState>,
+    onToggleEvidence: (EvidenceType, EvidenceValidationType) -> Unit
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
+    ) {
+        items.forEach { evidence ->
+            EvidenceItem(
+                modifier = Modifier.size(36.dp),
+                evidence = evidence,
+                onClick = { onToggleEvidence(evidence.type, evidence.state) }
+            )
+        }
+    }
+}
+
+@Composable
+fun SanitySliderScreen(
+    sanityLevel: Float,
+    onUpdateSanity: (Float) -> Unit,
+    onBack: () -> Unit
+) {
+    var sliderValue by remember { mutableStateOf(sanityLevel) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
+    ) {
+        Text(
+            text = "Sanity: ${(sliderValue * 100).toInt()}%",
+            style = LocalTypography.current.tertiary.bold,
+            fontSize = 14.sp
+        )
+        InlineSlider(
+            value = sliderValue,
+            onValueChange = {
+                sliderValue = it
+                onUpdateSanity(it)
+            },
+            steps = 19, // 20 intervals = 19 steps between 0 and 1
+            decreaseIcon = {
+                Text(
+                    "-",
+                    style = LocalTypography.current.primary.bold,
+                    fontSize = 24.sp,
+                    color = LocalPalette.current.primary
+                ) },
+            increaseIcon = {
+                Text(
+                    "+",
+                    style = LocalTypography.current.primary.bold,
+                    fontSize = 24.sp,
+                    color = LocalPalette.current.primary
+                ) },
+            modifier = Modifier.fillMaxWidth(),
+            valueRange = 0f..1f
+        )
+        Chip(
+            onClick = onBack,
+            label = { Text("Done", style = LocalTypography.current.primary.regular) },
+            colors = ChipDefaults.secondaryChipColors(),
+            modifier = Modifier.height(32.dp)
+        )
+    }
+}
+
+@Composable
 fun EvidenceItem(
     modifier: Modifier = Modifier,
     evidence: WearableEvidenceState,
     onClick: () -> Unit = {}
 ) {
-    Chip(
-        modifier = modifier,
-        onClick = onClick,
-        enabled = evidence.enabled,
-        colors = ChipDefaults.chipColors(
-            backgroundColor = LocalPalette.current.surfaceContainer,
-        ),
-        border = ChipDefaults.chipBorder(),
-        contentPadding = PaddingValues(4.dp),
-        shape = CircleShape,
-        content = {
-            Image(
-                modifier = Modifier
-                    .size(36.dp)
-                    .padding(4.dp),
-                painter = painterResource(
-                    evidence.type.icon.toDrawableResource()),
-                colorFilter = ColorFilter.tint(
-                    when(evidence.state) {
-                        EvidenceValidationType.POSITIVE -> LocalPalette.current.tertiary
-                        EvidenceValidationType.NEUTRAL -> LocalPalette.current.onSurface
-                        EvidenceValidationType.NEGATIVE -> LocalPalette.current.primary
-                    }
-                ),
-                contentDescription = "Evidence Icon"
-            )
-        }
-    )
+    val backgroundColor = when (evidence.state) {
+        EvidenceValidationType.POSITIVE -> LocalPalette.current.tertiary
+        EvidenceValidationType.NEUTRAL -> Color.Transparent
+        EvidenceValidationType.NEGATIVE -> LocalPalette.current.primary
+    }
+
+    Box(
+        modifier = modifier
+            .clip(CircleShape)
+            .background(backgroundColor)
+            .clickable(enabled = evidence.enabled, onClick = onClick)
+            .then(
+                if (evidence.enabled)
+                    Modifier.border(
+                        2.dp,
+                        LocalPalette.current.onSurface,
+                        CircleShape
+                    )
+                else Modifier
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
+            painter = painterResource(
+                evidence.type.icon.toDrawableResource()),
+            colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+            contentDescription = "Evidence Icon"
+        )
+    }
 }
 
 @Composable
@@ -361,6 +483,7 @@ fun WearAppPreviewContent() {
     )
     WearAppContent(
         uiState = sampleData,
-        onToggleEvidence = { _, _ -> }
+        onToggleEvidence = { _, _ -> },
+        onUpdateSanity = {}
     )
 }

@@ -15,6 +15,7 @@ import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
 import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
 import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
+import com.tritiumgaming.shared.data.wearable.usecase.SendWearableSanityMessageUseCase
 import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,7 +24,8 @@ import kotlinx.coroutines.launch
 
 class WearableViewModel(
     observeWearableOperationDataUseCase: ObserveWearableOperationDataUseCase,
-    private val sendWearableToggleMessageUseCase: SendWearableToggleMessageUseCase
+    private val sendWearableToggleMessageUseCase: SendWearableToggleMessageUseCase,
+    private val sendWearableSanityMessageUseCase: SendWearableSanityMessageUseCase
 ) : ViewModel() {
 
     val uiState: StateFlow<WearableOperationData> = observeWearableOperationDataUseCase()
@@ -44,13 +46,22 @@ class WearableViewModel(
         )
 
     fun toggleEvidence(
-        evidenceId: EvidenceType,
+        evidenceType: EvidenceType,
         currentState: EvidenceValidationType
     ) {
         val ordinal = (currentState.ordinal + 1) % EvidenceValidationType.entries.size
         
         viewModelScope.launch {
-            sendWearableToggleMessageUseCase(evidenceId, EvidenceValidationType.entries[ordinal])
+            sendWearableToggleMessageUseCase(
+                evidenceType,
+                EvidenceValidationType.entries[ordinal]
+            )
+        }
+    }
+
+    fun updateSanity(level: Float) {
+        viewModelScope.launch {
+            sendWearableSanityMessageUseCase(level)
         }
     }
 
@@ -62,7 +73,8 @@ class WearableViewModel(
                 
                 WearableViewModel(
                     observeWearableOperationDataUseCase = container.observeWearableOperationDataUseCase,
-                    sendWearableToggleMessageUseCase = container.sendWearableToggleMessageUseCase
+                    sendWearableToggleMessageUseCase = container.sendWearableToggleMessageUseCase,
+                    sendWearableSanityMessageUseCase = container.sendWearableSanityMessageUseCase
                 )
             }
         }

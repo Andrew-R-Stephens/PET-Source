@@ -5,6 +5,7 @@ import com.tritiumgaming.data.marketplace.palette.dto.MarketPaletteDto
 import com.tritiumgaming.data.marketplace.palette.dto.toDomain
 import com.tritiumgaming.data.marketplace.palette.dto.toLocal
 import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
+import com.tritiumgaming.data.marketplace.typography.dto.toLocal
 import com.tritiumgaming.data.palette.source.local.PaletteLocalDataSourceImpl
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.model.PaletteQueryOptions
@@ -27,9 +28,21 @@ class MarketCatalogPaletteRepositoryImpl(
         val result = localDataSource.getPalettes()
         result.exceptionOrNull()?.let { e ->
             Log.d("Palette", "Error getting local palettes: $e") }
-        val list: List<MarketPaletteDto> = result.getOrDefault(emptyList()).toLocal()
+        val localList = result.getOrDefault(emptyList())
 
-        return Result.success(list)
+        val localMarketList = localList.map {
+            MarketPaletteDto(
+                uuid = it.uuid,
+                name = "",
+                group = "Standard",
+                buyCredits = 0L,
+                priority = it.priority,
+                unlocked = it.unlocked,
+                palette = it.palette
+            )
+        }
+
+        return Result.success(localMarketList)
     }
 
     suspend fun fetchRemote(
@@ -39,7 +52,8 @@ class MarketCatalogPaletteRepositoryImpl(
 
         val result = firestoreDataSource.fetch(
             options = queryOptions ?: PaletteQueryOptions(),
-            version = 1)
+            version = 1
+        )
 
         return result
     }
@@ -86,6 +100,9 @@ class MarketCatalogPaletteRepositoryImpl(
     override fun get(): Result<List<MarketPalette>> = Result.success(cache.toDomain())
 
     init {
+        val localResult = getLocal()
+        cache = localResult.getOrDefault(emptyList())
+
         CoroutineScope(coroutineDispatcher).launch {
             synchronizeCache()
         }

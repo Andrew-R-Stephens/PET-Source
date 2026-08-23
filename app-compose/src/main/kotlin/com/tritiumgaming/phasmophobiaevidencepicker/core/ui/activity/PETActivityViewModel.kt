@@ -13,14 +13,10 @@ import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleAdsC
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
-import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
-import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
@@ -42,9 +38,7 @@ class PETActivityViewModel(
     private val initFlowPolicyUseCase: InitFlowPolicyUseCase,
     private val applyPolicyUseCase: ApplyPolicyUseCase,
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
-    private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
-    private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     private val gatherAdsConsentUseCase: GatherAdsConsentUseCase,
     private val initializeMobileAdsUseCase: InitializeMobileAdsUseCase
 ): ViewModel() {
@@ -93,7 +87,6 @@ class PETActivityViewModel(
             Log.e("PETActivityViewModel", "getMarketCatalogPaletteByUUIDUseCase: ${e.message}. Defaulting.", e)
 
             val palette = LocalDefaultPalette
-            saveCurrentPaletteUUID(palette.asUuid())
             palette
         }
     }
@@ -106,20 +99,7 @@ class PETActivityViewModel(
             Log.e("PETActivityViewModel", "getMarketCatalogTypographyByUUIDUseCase: ${e.message}. Defaulting.", e)
 
             val typography = LocalDefaultTypography
-            saveCurrentTypographyUUID(typography.asUuid())
             typography
-        }
-    }
-
-    private fun saveCurrentPaletteUUID(uuid: String) {
-        viewModelScope.launch {
-            saveCurrentPaletteUseCase(uuid)
-        }
-    }
-
-    private fun saveCurrentTypographyUUID(uuid: String) {
-        viewModelScope.launch {
-            saveCurrentTypographyUseCase(uuid)
         }
     }
 
@@ -173,8 +153,6 @@ class PETActivityViewModel(
                 val applyPolicyUseCase: ApplyPolicyUseCase = container.applyPolicyUseCase
                 val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
-                val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
-                val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
                 val gatherAdsConsentUseCase = container.gatherAdsConsentUseCase
                 val initializeMobileAdsUseCase = container.initializeMobileAdsUseCase
 
@@ -185,9 +163,7 @@ class PETActivityViewModel(
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                     gatherAdsConsentUseCase = gatherAdsConsentUseCase,
-                    initializeMobileAdsUseCase = initializeMobileAdsUseCase,
-                    saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
-                    saveCurrentTypographyUseCase = saveCurrentTypographyUseCase
+                    initializeMobileAdsUseCase = initializeMobileAdsUseCase
                 )
             }
         }

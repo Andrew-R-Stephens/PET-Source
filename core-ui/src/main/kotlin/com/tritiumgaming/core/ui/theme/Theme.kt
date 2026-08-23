@@ -4,10 +4,14 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
@@ -29,9 +33,9 @@ fun LocalThemeProvider(
     val paletteResource = palette.toPaletteResource()
     val typographyResource = typography.toTypographyResource()
 
-    Log.d("ThemeConfigCtrl", "Palette: ${stringResource(paletteResource.extrasFamily.title)}")
-    Log.d("ThemeConfigCtrl", "Typography: ${stringResource(typographyResource.extrasFamily.title)}")
-    Log.d("ThemeConfigCtrl", "UiConfig: [" +
+    Log.d(TAG, "Palette: ${stringResource(paletteResource.extrasFamily.title)}")
+    Log.d(TAG, "Typography: ${stringResource(typographyResource.extrasFamily.title)}")
+    Log.d(TAG, "UiConfig: [" +
             "\n\tdensityType: ${uiConfiguration.densityType}" +
             "\n\tisRtl: ${uiConfiguration.isRtl}\n]")
 
@@ -46,29 +50,31 @@ fun LocalThemeProvider(
             content = content
         )
 
-    }
+        val view = LocalView.current
+        if (!view.isInEditMode) {
 
-    val view = LocalView.current
-    if (!view.isInEditMode) {
+            SideEffect {
 
-        SideEffect {
+                val context = view.context as ComponentActivity
 
-            val context = view.context as ComponentActivity
+                val surfaceColor = paletteResource.surface.toArgb()
+                val colors = if (paletteResource.extrasFamily.isLightMode) {
+                    SystemBarStyle.light(surfaceColor, surfaceColor)
+                } else { SystemBarStyle.dark(surfaceColor) }
 
-            val surfaceColor = paletteResource.surface.toArgb()
-            val colors = if (paletteResource.extrasFamily.isLightMode) {
-                SystemBarStyle.light(surfaceColor, surfaceColor)
-            } else { SystemBarStyle.dark(surfaceColor) }
+                context.enableEdgeToEdge(
+                    statusBarStyle = colors,
+                    navigationBarStyle = colors
+                )
 
-            context.enableEdgeToEdge(
-                statusBarStyle = colors,
-                navigationBarStyle = colors
-            )
+            }
 
         }
-
     }
+
 }
 
 val LocalPalette = staticCompositionLocalOf { ExtendedPalette() }
 val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }
+
+private const val TAG = "LocalThemeProvider"

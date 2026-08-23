@@ -57,10 +57,6 @@ import kotlin.collections.component2
 import kotlin.collections.emptyList
 
 class MarketplaceViewModel(
-    private val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
-    private val signInAccountUseCase: SignInAccountUseCase,
-    private val signOutAccountUseCase: SignOutAccountUseCase,
-    private val deactivateAccountUseCase: DeactivateAccountUseCase,
     private val addAccountCreditsUseCase: AddAccountCreditsUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
@@ -470,10 +466,6 @@ class MarketplaceViewModel(
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                 val container = (application as MarketplaceContainerProvider).provideMarketplaceContainer()
 
-                val getSignInCredentialsUseCase = container.getSignInCredentialsUseCase
-                val signInAccountUseCase = container.signInAccountUseCase
-                val signOutAccountUseCase = container.signOutAccountUseCase
-                val deactivateAccountUseCase = container.deactivateAccountUseCase
                 val addAccountCreditsUseCase = container.addAccountCreditsUseCase
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
@@ -486,10 +478,6 @@ class MarketplaceViewModel(
                 val saveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
 
                 MarketplaceViewModel(
-                    getSignInCredentialsUseCase = getSignInCredentialsUseCase,
-                    signInAccountUseCase = signInAccountUseCase,
-                    signOutAccountUseCase = signOutAccountUseCase,
-                    deactivateAccountUseCase = deactivateAccountUseCase,
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,

@@ -45,6 +45,7 @@ import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
+import com.tritiumgaming.feature.marketplace.ui.store.bundles.TypographyBundleCard
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
@@ -204,7 +205,7 @@ private fun PortraitContent(
     ) {
         LazyColumn(
             modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
         ) {
             items(
                 items = unlocks.items,
@@ -280,6 +281,7 @@ private fun PortraitContent(
                             }
                         )
                     }
+                    else -> {}
                 }
             }
         }
@@ -300,7 +302,7 @@ private fun LandscapeContent(
     ) {
         LazyColumn(
             modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
         ) {
             items(
                 items = unlocks.items,
@@ -376,6 +378,7 @@ private fun LandscapeContent(
                             }
                         )
                     }
+                    else -> {}
                 }
             }
         }

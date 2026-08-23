@@ -49,7 +49,7 @@ class MarketplaceHomeScreenViewModel(
         observeCreditsJob = viewModelScope.launch {
             observeAccountCreditsUseCase()
                 .onCompletion {
-                    Log.d("AccountViewModel", "observeCreditsJob completed")
+                    Log.d(TAG, "observeCreditsJob completed")
                     observeCreditsJob?.cancel() }
                 .catch { it.printStackTrace() }
                 .collect { result: Result<AccountCredits> ->
@@ -60,7 +60,7 @@ class MarketplaceHomeScreenViewModel(
                                 earnedCredits = result.getOrNull()?.earnedCredits?.toInt() ?: 0
                             )
                         }
-                        Log.d("AccountViewModel", "observeCreditsJob updating accountUiState")
+                        Log.d(TAG, "observeCreditsJob updating accountUiState")
                     }
                 }
         }
@@ -75,6 +75,8 @@ class MarketplaceHomeScreenViewModel(
     }
 
     companion object {
+
+        const val TAG = "MarketplaceHomeScreenViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

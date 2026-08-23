@@ -8,6 +8,7 @@ import com.google.android.gms.wearable.DataEvent
 import com.google.android.gms.wearable.DataMapItem
 import com.google.android.gms.wearable.PutDataMapRequest
 import com.google.android.gms.wearable.Wearable
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.wearable.WearablePaths
@@ -81,18 +82,37 @@ class WearableRepositoryImpl(private val context: Context) : WearableRepository 
     }
 
     override suspend fun sendToggleMessage(
-        evidenceId: EvidenceType,
+        evidenceType: EvidenceResources.EvidenceIdentifier,
         newState: EvidenceValidationType
     ) {
-        val message = "$evidenceId:$newState"
+        val message = "$evidenceType:$newState"
         try {
             val nodes = nodeClient.connectedNodes.await()
             nodes.forEach { node ->
-                messageClient.sendMessage(node.id, WearablePaths.EVIDENCE_TOGGLE, message.toByteArray()).await()
+                messageClient.sendMessage(
+                    node.id,
+                    WearablePaths.EVIDENCE_TOGGLE,
+                    message.toByteArray()).await()
             }
             Log.d(TAG, "Sent toggle message: $message")
         } catch (e: Exception) {
             Log.e(TAG, "Error sending toggle message", e)
+        }
+    }
+
+    override suspend fun sendSanityUpdateMessage(sanityLevel: Float) {
+        val message = sanityLevel.toString()
+        try {
+            val nodes = nodeClient.connectedNodes.await()
+            nodes.forEach { node ->
+                messageClient.sendMessage(
+                    node.id,
+                    WearablePaths.SANITY_UPDATE,
+                    message.toByteArray()).await()
+            }
+            Log.d(TAG, "Sent sanity update message: $message")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error sending sanity update message", e)
         }
     }
 }

@@ -32,4 +32,18 @@ fun TypographyResources.TypographyType.asUuid(): String =
         TypographyResources.TypographyType.JETBRAINS_MONO -> "3vAD75LdzvZN3zBjab5z19zpc"
     }
 
+fun String.asTypographyType(): TypographyResources.TypographyType? =
+    when (this) {
+        "c29cJglM92MLWN1RKRyK8qyAD" -> TypographyResources.TypographyType.CLASSIC
+        "8Jk15N2GB6PBopXvmEluU2eoS" -> TypographyResources.TypographyType.ANDROID
+        "7q1Nza1o0Nvt16YyNXNkJ590F" -> TypographyResources.TypographyType.JOURNAL
+        "3a1vXEZveFEWrf5RdVxTJI6pF" -> TypographyResources.TypographyType.BRICK
+        "93Ph8a2SLU3YEupV54TKMKJAO" -> TypographyResources.TypographyType.CLEAN
+        "8UEl0G5HXx119AXh69OeIUPCB" -> TypographyResources.TypographyType.LONG_CANG
+        "8rX9hVOyV8eIZmz3ZQaHgrnan" -> TypographyResources.TypographyType.NEW_TEGOMIN
+        "DPre8Bscm8Tf3pwyQw7HxBznt" -> TypographyResources.TypographyType.NEUCHA
+        "3vAD75LdzvZN3zBjab5z19zpc" -> TypographyResources.TypographyType.JETBRAINS_MONO
+        else -> null
+    }
+
 val LocalDefaultTypography = TypographyResources.TypographyType.CLASSIC

@@ -25,6 +25,9 @@ interface MarketplaceAgreementRequest {
     version?: number;
 }
 
+/*
+ * Set marketplace agreement state
+ */
 export const setMarketplaceAgreementState = onCall<MarketplaceAgreementRequest>(async (request) => {
     const version = request.data.version || 1;
     switch (version) {
@@ -35,6 +38,10 @@ export const setMarketplaceAgreementState = onCall<MarketplaceAgreementRequest>(
     }
 });
 
+/*
+ * Set marketplace agreement state
+ * Version 1
+ */
 async function setMarketplaceAgreementState_v1(request: CallableRequest<MarketplaceAgreementRequest>) {
     const auth = request.auth;
     if (!auth) {
@@ -68,13 +75,15 @@ async function setMarketplaceAgreementState_v1(request: CallableRequest<Marketpl
 /**
  * Interface for purchase request
  */
- */
 interface PurchaseRequest {
     itemId: string;
     itemType: "theme" | "typography" | "bundle";
     version?: number;
 }
 
+/*
+ * Purchase item with credits
+ */
 export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) => {
     const version = request.data.version || 1;
     switch (version) {
@@ -85,6 +94,10 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
     }
 });
 
+/*
+ * Purchase item with credits
+ * Version 1
+ */
 async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseRequest>) {
     const auth = request.auth;
     if (!auth) {
@@ -197,6 +210,9 @@ interface QueryRequest {
     version?: number;
 }
 
+/*
+ * Fetch typographies
+ */
 export const fetchTypographies = onCall<QueryRequest>(async (request) => {
     const version = request.data.version || 1;
     switch (version) {
@@ -207,6 +223,10 @@ export const fetchTypographies = onCall<QueryRequest>(async (request) => {
     }
 });
 
+/*
+ * Fetch typographies
+ * Version 1
+ */
 async function fetchTypographies_v1(request: CallableRequest<QueryRequest>) {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
@@ -245,6 +265,9 @@ async function fetchTypographies_v1(request: CallableRequest<QueryRequest>) {
     }
 }
 
+/*
+ * Fetch palettes
+ */
 export const fetchPalettes = onCall<QueryRequest>(async (request) => {
     const version = request.data.version || 1;
     switch (version) {
@@ -255,6 +278,10 @@ export const fetchPalettes = onCall<QueryRequest>(async (request) => {
     }
 });
 
+/*
+ * Fetch palettes
+ * Version 1
+ */
 async function fetchPalettes_v1(request: CallableRequest<QueryRequest>) {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
@@ -293,6 +320,9 @@ async function fetchPalettes_v1(request: CallableRequest<QueryRequest>) {
     }
 }
 
+/*
+ * Fetch theme bundles
+ */
 export const fetchBundles = onCall<QueryRequest>(async (request) => {
     const version = request.data.version || 1;
     switch (version) {
@@ -303,6 +333,10 @@ export const fetchBundles = onCall<QueryRequest>(async (request) => {
     }
 });
 
+/*
+ * Fetch theme bundles
+ * Version 1
+ */
 async function fetchBundles_v1(request: CallableRequest<QueryRequest>) {
     const {filterField, filterValue, orderField, orderDirection, limit} = request.data;
 
@@ -360,6 +394,9 @@ interface AddCreditsRequest {
     version?: number;
 }
 
+/*
+ * Add credits to user account
+ */
 export const addCredits = onCall<AddCreditsRequest>(async (request) => {
     const version = request.data.version || 1;
     switch (version) {
@@ -370,6 +407,10 @@ export const addCredits = onCall<AddCreditsRequest>(async (request) => {
     }
 });
 
+/*
+ * Add credits to user account
+ * Version 1
+ */
 async function addCredits_v1(request: CallableRequest<AddCreditsRequest>) {
     const auth = request.auth;
     if (!auth) {

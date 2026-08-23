@@ -55,10 +55,11 @@ fun TypographyShopScreen(
     navController: NavHostController = rememberNavController(),
     viewmodel: MarketplaceTypographiesScreenViewModel
 ) {
-    val unlocks by viewmodel.marketCatalogTypographiesUiState.collectAsStateWithLifecycle()
+    //val unlocks by viewmodel.marketCatalogTypographiesUiState.collectAsStateWithLifecycle()
 
     TypographyShopContent(
-        unlocks = unlocks
+        //unlocks = unlocks
+        unlocks = MarketCatalogTypographiesUiState()
     )
 
 }

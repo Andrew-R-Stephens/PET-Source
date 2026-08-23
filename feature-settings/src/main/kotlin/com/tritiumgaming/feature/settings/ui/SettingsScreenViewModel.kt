@@ -272,7 +272,6 @@ class SettingsScreenViewModel(
                 "GetMarketCatalogPaletteByUUIDUseCase: ${e.message}. Defaulting.", e)
 
             val palette = LocalDefaultPalette
-            saveCurrentPaletteUUID(palette.asUuid())
             palette.toPaletteResource()
         }
     }
@@ -328,7 +327,6 @@ class SettingsScreenViewModel(
                 "GetMarketCatalogTypographyByUUIDUseCase: ${e.message}. Defaulting.", e)
 
             val typography = LocalDefaultTypography
-            saveCurrentTypographyUUID(typography.asUuid())
             typography.toTypographyResource()
         }
     }

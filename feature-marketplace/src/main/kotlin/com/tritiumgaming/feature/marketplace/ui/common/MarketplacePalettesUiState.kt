@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 data class MarketCatalogScreenUiState(
     val items: List<ShopScreenUiItem> = emptyList()
@@ -30,4 +31,12 @@ sealed interface ShopScreenUiItem {
         val marketPalettes: List<MarketPalette>,
         val unlocked: Boolean
     ) : ShopScreenUiItem
+
+    data class TypographyBundle(
+        override val key: String,
+        val marketBundle: MarketBundle,
+        val marketTypographies: List<MarketTypography>,
+        val unlocked: Boolean
+    ) : ShopScreenUiItem
+
 }

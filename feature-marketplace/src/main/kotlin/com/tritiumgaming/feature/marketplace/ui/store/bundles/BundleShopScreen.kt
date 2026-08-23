@@ -72,7 +72,7 @@ fun BundleShopScreen(
     val credits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
 
     MarketplaceScreen(
-        modifier = Modifier,
+        modifier = modifier,
         navController = navController,
         credits = credits.earnedCredits,
         onEarnCredits = {
@@ -161,7 +161,7 @@ private fun PortraitContent(
     ) {
         LazyColumn(
             modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
         ) {
             items(
                 items = unlocks.items,
@@ -209,6 +209,25 @@ private fun PortraitContent(
                             }
                         )
                     }
+
+                    is ShopScreenUiItem.TypographyBundle -> {
+                        TypographyBundleCard(
+                            modifier = Modifier,
+                            uuid = item.key,
+                            buyCredits = item.marketBundle.buyCredits,
+                            title = item.marketBundle.name,
+                            surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
+                            onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
+                            onSurface = LocalPalette.current.onSurface,
+                            scrim = LocalPalette.current.scrim,
+                            items = item.marketTypographies,
+                            canUnlock = authenticated,
+                            isOwned = item.unlocked,
+                            onBuyClick = {
+                                onBuyBundle(item.marketBundle)
+                            }
+                        )
+                    }
                     else -> {}
                 }
             }
@@ -229,7 +248,7 @@ private fun LandscapeContent(
     ) {
         LazyColumn(
             modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
         ) {
             items(
                 items = unlocks.items,
@@ -270,6 +289,24 @@ private fun LandscapeContent(
                             onSurface = LocalPalette.current.onSurface,
                             scrim = LocalPalette.current.scrim,
                             items = item.marketPalettes,
+                            canUnlock = authenticated,
+                            isOwned = item.unlocked,
+                            onBuyClick = {
+                                onBuyBundle(item.marketBundle)
+                            }
+                        )
+                    }
+                    is ShopScreenUiItem.TypographyBundle -> {
+                        TypographyBundleCard(
+                            modifier = Modifier,
+                            uuid = item.key,
+                            buyCredits = item.marketBundle.buyCredits,
+                            title = item.marketBundle.name,
+                            surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
+                            onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
+                            onSurface = LocalPalette.current.onSurface,
+                            scrim = LocalPalette.current.scrim,
+                            items = item.marketTypographies,
                             canUnlock = authenticated,
                             isOwned = item.unlocked,
                             onBuyClick = {

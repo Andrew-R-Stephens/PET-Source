@@ -10,7 +10,6 @@ import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerP
 import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
 import com.tritiumgaming.feature.marketplace.ui.common.AccountUnlockedPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.AccountUnlockedTypographiesUiState
-import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogBillablesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
@@ -18,7 +17,6 @@ import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
-import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.LEGAL_TENDER
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
@@ -26,15 +24,9 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
-import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
-import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -56,9 +48,7 @@ class MarketplaceBundlesScreenViewModel(
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
     private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
-    private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
-    private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
-    private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase
+    private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase
 ): ViewModel() {
 
     private var observeCreditsJob: Job? = null
@@ -75,33 +65,18 @@ class MarketplaceBundlesScreenViewModel(
 
     private val _marketCatalogPalettes = MutableStateFlow(emptyList<MarketPalette>())
     private fun initMarketCatalogPalettes() {
-        Log.d("MarketplaceViewModel", "initMarketCatalogPalettes")
+        Log.d(TAG, "initMarketCatalogPalettes")
         viewModelScope.launch {
             getMarketCatalogPalettesUseCase()
                 .onSuccess { palettes ->
-                    Log.d("MarketplaceViewModel", "initMarketCatalogPalettes success: $palettes")
+                    Log.d(TAG, "initMarketCatalogPalettes success: $palettes")
                     _marketCatalogPalettes.update { palettes }
                 }
                 .onFailure { it.printStackTrace() }
         }
     }
 
-    private val _marketCatalogBundles = MutableStateFlow(emptyList<MarketBundle>())
-    private fun initMarketCatalogBundles() {
-        Log.d("MarketplaceViewModel", "initMarketCatalogBundles")
-        viewModelScope.launch {
-            getMarketCatalogBundlesUseCase()
-                .onSuccess { bundles ->
-                    Log.d("MarketplaceViewModel", "initMarketCatalogBundles success: $bundles")
-                    _marketCatalogBundles.update { bundles }
-                }
-                .onFailure { it.printStackTrace() }
-        }
-    }
-
     private val _marketCatalogTypographiesUiState = MutableStateFlow(MarketCatalogTypographiesUiState())
-    val marketCatalogTypographiesUiState = _marketCatalogTypographiesUiState.asStateFlow()
-
     private fun initMarketCatalogTypographies() {
         viewModelScope.launch {
             try {
@@ -118,11 +93,17 @@ class MarketplaceBundlesScreenViewModel(
         }
     }
 
-    private val _marketCatalogBillablesUiState = MutableStateFlow(MarketCatalogBillablesUiState())
-    val marketCatalogBillablesUiState = _marketCatalogBillablesUiState.asStateFlow()
-
-    fun initMarketCatalogBillables() {
-
+    private val _marketCatalogBundles = MutableStateFlow(emptyList<MarketBundle>())
+    private fun initMarketCatalogBundles() {
+        Log.d(TAG, "initMarketCatalogBundles")
+        viewModelScope.launch {
+            getMarketCatalogBundlesUseCase()
+                .onSuccess { bundles ->
+                    Log.d(TAG, "initMarketCatalogBundles success: $bundles")
+                    _marketCatalogBundles.update { bundles }
+                }
+                .onFailure { it.printStackTrace() }
+        }
     }
 
     fun addCredits(
@@ -157,10 +138,11 @@ class MarketplaceBundlesScreenViewModel(
                 )
                 if (result.isSuccess) {
                     onSuccess("Purchase successful!")
-                    Log.d("MarketplaceViewModel", "Purchase successful!")
+                    Log.d(TAG, "Purchase successful!")
                 } else {
-                    onFailure("Purchase failed: ${result.exceptionOrNull()?.message}")
-                    Log.d("MarketplaceViewModel", "Purchase failed: ${result.exceptionOrNull()?.message}")
+                    val errorMessage = result.exceptionOrNull()?.message ?: "Unknown error"
+                    onFailure("Purchase failed: $errorMessage")
+                    Log.d(TAG, "Purchase failed: $errorMessage")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -169,40 +151,15 @@ class MarketplaceBundlesScreenViewModel(
         }
     }
 
-    fun obtainItemWithLegalTender(itemId: String, itemType: String) {
-        viewModelScope.launch {
-            try {
-                val result = purchaseMarketplaceItemUseCase(
-                    LEGAL_TENDER,
-                    itemId,
-                    itemType
-                )
-                if (result.isSuccess) {
-                    Log.d("MarketplaceViewModel", "Purchase successful!")
-                } else {
-                    Log.d("MarketplaceViewModel", "Purchase failed: ${result.exceptionOrNull()?.message}")
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
     private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
     val accountCreditsUiState = _accountCreditsUiState.asStateFlow()
-    private fun setAccountUiStateDefault() = _accountCreditsUiState.update { AccountCreditsUiState() }
 
     private val _accountUnlockedPalettesUiState = MutableStateFlow(AccountUnlockedPalettesUiState())
-    val accountUnlockedPalettesUiState = _accountUnlockedPalettesUiState.asStateFlow()
-    private fun setUnlockedPalettesUiStatDefault() =
-        _accountUnlockedPalettesUiState.update { AccountUnlockedPalettesUiState() }
 
     private val _accountUnlockedTypographiesUiState = MutableStateFlow(
         AccountUnlockedTypographiesUiState()
     )
     val accountUnlockedTypographiesUiState = _accountUnlockedTypographiesUiState.asStateFlow()
-    private fun setUnlockedTypographiesUiStatDefault() =
-        _accountUnlockedTypographiesUiState.update { AccountUnlockedTypographiesUiState() }
 
     private val _marketAccountPaletteState = combine(
         _marketCatalogPalettes,
@@ -210,12 +167,12 @@ class MarketplaceBundlesScreenViewModel(
     ) { marketPalettes, unlockedPalettes ->
         val unlockedUUIDs = unlockedPalettes?.map { it.uuid } ?: emptyList()
         unlockedUUIDs.forEach {
-            Log.d("MarketplaceViewModel", "unlockedPalette: $it")
+            Log.d(TAG, "unlockedPalette: $it")
         }
 
         val updatedPalettes = marketPalettes.map {
             val found = it.uuid in unlockedUUIDs
-            Log.d("MarketplaceViewModel", "marketPalette: $it | unlocked: $found")
+            Log.d(TAG, "marketPalette: $it | unlocked: $found")
             it.copy(
                 unlocked = found
             )
@@ -234,6 +191,7 @@ class MarketplaceBundlesScreenViewModel(
         val items: List<MarketPalette>,
         val unlocked: Boolean
     )
+
     private val _marketPaletteBundlesState = combine(
         _marketCatalogBundles,
         _marketAccountPaletteState
@@ -260,18 +218,16 @@ class MarketplaceBundlesScreenViewModel(
         SharingStarted.WhileSubscribed(5000),
         emptyList()
     )
-    val marketPaletteBundlesState = _marketPaletteBundlesState
 
-    private val _marketCatalogScreenUiState = combine(
-        _marketPaletteBundlesState,
-        _marketAccountPaletteState
-    ){ paletteBundles, unlockedPalettes ->
+    private val _marketCatalogScreenUiState = _marketPaletteBundlesState.map { paletteBundles ->
 
         val items = mutableListOf<ShopScreenUiItem>()
 
-        items.add(
-            ShopScreenUiItem.Header("Bundles")
-        )
+        if(paletteBundles.isNotEmpty()) {
+            items.add(
+                ShopScreenUiItem.Header("Bundles")
+            )
+        }
         paletteBundles.forEach { bundleState ->
             items.add(
                 ShopScreenUiItem.PaletteBundle(
@@ -291,64 +247,34 @@ class MarketplaceBundlesScreenViewModel(
     )
     val marketCatalogScreenUiState = _marketCatalogScreenUiState
 
-    fun updatePalette(
-        palette: PaletteResources.PaletteType,
-        onComplete: () -> Unit = {}
-    ) {
-        val uuid = palette.asUuid()
-        Log.d("MarketplaceViewModel", "updatePalette: $uuid")
-        viewModelScope.launch {
-            saveCurrentPaletteUseCase(uuid)
-            onComplete()
-        }
-    }
-
-    fun updateTypography(
-        typography: TypographyResources.TypographyType,
-        onComplete: () -> Unit = {}
-    ) {
-        val uuid = typography.asUuid()
-        Log.d("MarketplaceViewModel", "updateTypography: $uuid")
-        viewModelScope.launch {
-            saveCurrentTypographyUseCase(uuid)
-            onComplete()
-        }
-    }
-
     private fun startObservingCredits() {
         observeCreditsJob = viewModelScope.launch {
             observeAccountCreditsUseCase()
                 .onCompletion {
-                    Log.d("AccountViewModel", "observeCreditsJob completed")
+                    Log.d(TAG, "observeCreditsJob completed")
                     observeCreditsJob?.cancel() }
                 .catch { it.printStackTrace() }
                 .collect { result: Result<AccountCredits> ->
                     if(result.isSuccess) {
-                        _accountCreditsUiState.update {
-                            accountCreditsUiState.value.copy(
-                                spentCredits = result.getOrNull()?.spentCredits?.toInt() ?: 0,
-                                earnedCredits = result.getOrNull()?.earnedCredits?.toInt() ?: 0
-                            )
+                        result.getOrNull()?.let { result ->
+                            _accountCreditsUiState.update {
+                                accountCreditsUiState.value.copy(
+                                    spentCredits = result.spentCredits.toInt(),
+                                    earnedCredits = result.earnedCredits.toInt()
+                                )
+                            }
                         }
-                        Log.d("AccountViewModel", "observeCreditsJob updating accountUiState")
+                        Log.d(TAG, "observeCreditsJob updating accountUiState")
                     }
                 }
         }
-    }
-
-    private fun stopObservingCredits() {
-        observeCreditsJob?.cancel()
-
-        setAccountUiStateDefault()
-
-        Log.d("AccountViewModel", "observeCreditsJob stopping")
     }
 
     private fun startObservingUnlockedPalettes() {
         observeUnlockedPalettesJob = viewModelScope.launch {
             observeAccountUnlockedPalettesUseCase()
                 .onCompletion {
-                    Log.d("AccountViewModel", "observeCreditsJob completed")
+                    Log.d(TAG, "observeCreditsJob completed")
                     observeUnlockedPalettesJob?.cancel() }
                 .catch { it.printStackTrace() }
                 .collect { result: Result<List<AccountPalette>> ->
@@ -358,7 +284,7 @@ class MarketplaceBundlesScreenViewModel(
                                 unlockedPalettes = result.getOrNull() ?: emptyList()
                             )
                         }
-                        Log.d("AccountViewModel", "observeUnlockedPalettesJob updating " +
+                        Log.d(TAG, "observeUnlockedPalettesJob updating " +
                                 "accountUnlockedPalettesUiState")
                     }
                 }
@@ -366,19 +292,11 @@ class MarketplaceBundlesScreenViewModel(
         observeUnlockedPalettesJob?.start()
     }
 
-    private fun stopObservingUnlockedPalettes() {
-        observeUnlockedPalettesJob?.cancel()
-
-        setUnlockedPalettesUiStatDefault()
-
-        Log.d("AccountViewModel", "observeUnlockedPalettesJob stopping")
-    }
-
     private fun startObservingUnlockedTypographies() {
         observeUnlockedTypographiesJob = viewModelScope.launch {
             observeAccountUnlockedTypographiesUseCase()
                 .onCompletion {
-                    Log.d("AccountViewModel", "observeCreditsJob completed")
+                    Log.d(TAG, "observeCreditsJob completed")
                     observeUnlockedTypographiesJob?.cancel() }
                 .catch { it.printStackTrace() }
                 .collect { result: Result<List<AccountTypography>> ->
@@ -388,19 +306,11 @@ class MarketplaceBundlesScreenViewModel(
                                 unlockedTypographies = result.getOrNull() ?: emptyList()
                             )
                         }
-                        Log.d("AccountViewModel", "observeUnlockedTypographiesJob updating " +
+                        Log.d(TAG, "observeUnlockedTypographiesJob updating " +
                                 "accountUnlockedTypographiesUiState")
                     }
                 }
         }
-    }
-
-    private fun stopObservingUnlockedTypographies() {
-        observeUnlockedTypographiesJob?.cancel()
-
-        setUnlockedTypographiesUiStatDefault()
-
-        Log.d("AccountViewModel", "observeUnlockedTypographiesJob stopping")
     }
 
     private fun startObservingAccount() {
@@ -409,22 +319,17 @@ class MarketplaceBundlesScreenViewModel(
         startObservingUnlockedTypographies()
     }
 
-    private fun stopObservingAccount() {
-        stopObservingCredits()
-        stopObservingUnlockedPalettes()
-        stopObservingUnlockedTypographies()
-    }
-
     init {
         startObservingAccount()
 
         initMarketCatalogBundles()
         initMarketCatalogPalettes()
         initMarketCatalogTypographies()
-        initMarketCatalogBillables()
     }
 
     companion object {
+
+        const val TAG = "MarketplaceBundlesScreenViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
@@ -439,8 +344,6 @@ class MarketplaceBundlesScreenViewModel(
                 val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
                 val getMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
                 val getMarketCatalogBundlesUseCase = container.getMarketCatalogBundlesUseCase
-                val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
-                val saveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
 
                 MarketplaceBundlesScreenViewModel(
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
@@ -450,9 +353,7 @@ class MarketplaceBundlesScreenViewModel(
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                     getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
                     getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase,
-                    getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase,
-                    saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
-                    saveCurrentTypographyUseCase = saveCurrentTypographyUseCase
+                    getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase
                 )
             }
         }

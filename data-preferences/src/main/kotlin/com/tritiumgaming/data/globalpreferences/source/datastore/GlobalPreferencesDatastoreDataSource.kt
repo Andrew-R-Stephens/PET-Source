@@ -133,8 +133,8 @@ class GlobalPreferencesDatastoreDataSource(
             enableRTL = preferences[KEY_ENABLE_RTL] == true,
             maxHuntWarnFlashTime = preferences[KEY_HUNT_WARN_MAX_TIMEOUT] ?: 300,
             uiDensityType = preferences[KEY_UI_DENSITY_TYPE]?.let { DensityType.entries[it] } ?: DensityType.COMFORTABLE,
-            typographyUuid = preferences[KEY_TYPOGRAPHY] ?: PaletteResources.PaletteType.CLASSIC.asUuid(),
-            paletteUuid = preferences[KEY_PALETTE] ?: TypographyResources.TypographyType.CLASSIC.asUuid()
+            typographyUuid = preferences[KEY_TYPOGRAPHY] ?: TypographyResources.TypographyType.CLASSIC.asUuid(),
+            paletteUuid = preferences[KEY_PALETTE] ?: PaletteResources.PaletteType.CLASSIC.asUuid()
         )
     }
 
