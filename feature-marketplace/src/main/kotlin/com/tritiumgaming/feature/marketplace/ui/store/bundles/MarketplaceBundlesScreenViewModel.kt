@@ -220,7 +220,6 @@ class MarketplaceBundlesScreenViewModel(
     )
 
     private val _marketCatalogScreenUiState = _marketPaletteBundlesState.map { paletteBundles ->
-
         val items = mutableListOf<ShopScreenUiItem>()
 
         if(paletteBundles.isNotEmpty()) {

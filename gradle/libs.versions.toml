@@ -62,9 +62,9 @@ wear-compose = "1.6.2"
 wear-tooling-preview = "1.0.0"
 play-services-wearable = "20.0.1"
 
-agp = "9.3.1" # Latest: 8.12.0
+agp = "9.3.2" # Latest: 8.12.0
 kotlin = "2.4.10" # Latest: 2.4.0
-ksp = "2.3.2" # Latest: 2.2.10-2.0.2 -> 2.2.21-2.0.4
+ksp = "2.3.6" # Latest: 2.2.10-2.0.2 -> 2.2.21-2.0.4
 composeMP = "1.11.1" # Latest: 1.11.0
 googleid = "1.2.0" # Latest: 1.1.1
 kotlinTest = "2.3.0" # Latest 2.2.20

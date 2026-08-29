@@ -31,10 +31,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -48,6 +51,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -59,11 +63,17 @@ import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
+import com.tritiumgaming.core.ui.theme.type.common.CustomFontFamily
 import com.tritiumgaming.core.ui.theme.white_M100
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType.*
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.CLASSIC
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.JETBRAINS_MONO
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.NEUCHA
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @Composable
@@ -248,15 +258,15 @@ fun TypographyBundleCard(
 }
 
 @Composable
-private fun BundleIncludedThemeImage(
+private fun BundleIncludedTypography(
     modifier: Modifier = Modifier,
     title: String,
     isSelected: Boolean = false,
     isOwned: Boolean = false,
-    @DrawableRes icon: Int,
     surfaceColor: Color,
     onSurfaceColor: Color,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    icon: @Composable (Modifier) -> Unit = {}
 ) {
     Surface(
         shape = RoundedCornerShape(8.dp),
@@ -280,11 +290,8 @@ private fun BundleIncludedThemeImage(
                     .clickable(onClick = onClick),
                 contentAlignment = Alignment.BottomEnd
             ) {
-                Image(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    painter = painterResource(icon),
-                    contentDescription = null,
+                icon(
+                    Modifier.fillMaxSize()
                 )
 
                 if (isOwned) {
@@ -408,6 +415,27 @@ private fun TypographyDetailsCard(
                         contentDescription = "Badge"
                     )
 
+                    val typographyType = LocalTypography.current
+
+                    var rememberFontFamily by remember { mutableIntStateOf(0) }
+                    var rememberTextStyle by remember { mutableIntStateOf(0) }
+
+                    val fontFamily: CustomFontFamily =
+                        when (rememberFontFamily) {
+                            0 -> typographyType.primary
+                            1 -> typographyType.secondary
+                            2 -> typographyType.tertiary
+                            else -> typographyType.quaternary
+                        }
+
+                    val textStyle: TextStyle =
+                        when (rememberTextStyle) {
+                            0 -> fontFamily.regular
+                            1 -> fontFamily.bold
+                            2 -> fontFamily.narrow
+                            else -> fontFamily.boldNarrow
+                        }
+
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
@@ -415,55 +443,70 @@ private fun TypographyDetailsCard(
                         verticalArrangement = Arrangement.SpaceBetween,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-
                         Row(
                             modifier = Modifier
-                                .weight(1f),
+                                .fillMaxWidth()
+                                .padding(4.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            ColorSwatch(
-                                backgroundColor = onSurface
-                            )
-
-                            ColorSwatch(
-                                backgroundColor = primary
-                            )
-
-                            ColorSwatch(
-                                backgroundColor = secondary
-                            )
-
-                            ColorSwatch(
-                                backgroundColor = tertiary
-                            )
-
+                            Button(
+                                onClick = { rememberFontFamily = (rememberFontFamily++) % 4 }
+                            ) {
+                                Text(text = "Font Family")
+                            }
+                            Button(
+                                onClick = { rememberTextStyle = (rememberTextStyle++) % 4 }
+                            ) {
+                                Text(text = "Text Style")
+                            }
                         }
 
-                        Row(
+                        Text(
                             modifier = Modifier
-                                .weight(1f),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-
-                            ColorSwatch(
-                                backgroundColor = surfaceContainer
-                            )
-
-                            ColorSwatch(
-                                backgroundColor = primaryContainer
-                            )
-
-                            ColorSwatch(
-                                backgroundColor = secondaryContainer
-                            )
-
-                            ColorSwatch(
-                                backgroundColor = tertiaryContainer
-                            )
-
-                        }
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            text = stringResource(R.string.typography_hamburgevon_latin),
+                            color = Color.Black,
+                            style = textStyle,
+                            fontSize = 10.sp
+                        )
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            text = stringResource(R.string.typography_hamburgevon_cyrillic),
+                            color = Color.Black,
+                            style = textStyle,
+                            fontSize = 10.sp
+                        )
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            text = stringResource(R.string.typography_hamburgevon_japanese),
+                            color = Color.Black,
+                            style = textStyle,
+                            fontSize = 10.sp
+                        )
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            text = stringResource(R.string.typography_hamburgevon_simplified_chinese),
+                            color = Color.Black,
+                            style = textStyle,
+                            fontSize = 10.sp
+                        )
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            text = stringResource(R.string.typography_hamburgevon_numbers_symbols),
+                            color = Color.Black,
+                            style = textStyle,
+                            fontSize = 10.sp
+                        )
                     }
                 }
 
@@ -476,24 +519,10 @@ private fun TypographyDetailsCard(
 }
 
 @Composable
-private fun RowScope.ColorSwatch(
-    backgroundColor: Color
-) {
-    Box(
-        modifier = Modifier
-            .weight(1f)
-            .fillMaxHeight()
-            .padding(4.dp)
-            .background(backgroundColor, RoundedCornerShape(8.dp))
-    )
-}
-
-
-@Composable
 @Preview
 private fun PreviewBundleCard() {
     LocalThemeProvider {
-        PaletteBundleCard(
+        TypographyBundleCard(
             modifier = Modifier
                 .widthIn(400.dp)
                 .fillMaxWidth(),
@@ -501,32 +530,32 @@ private fun PreviewBundleCard() {
             title = "Test",
             buyCredits = 600,
             items = listOf(
-                MarketPalette(
+                MarketTypography(
                     uuid = "0",
                     name = "",
                     group = "",
                     buyCredits = 60,
                     priority = 0,
                     unlocked = true,
-                    palette = ANALYST
+                    typography = NEUCHA
                 ),
-                MarketPalette(
+                MarketTypography(
                     uuid = "1",
                     name = "",
                     group = "",
                     buyCredits = 60,
                     priority = 0,
                     unlocked = true,
-                    palette = ARTIST
+                    typography = JETBRAINS_MONO
                 ),
-                MarketPalette(
+                MarketTypography(
                     uuid = "2",
                     name = "",
                     group = "",
                     buyCredits = 60,
                     priority = 0,
                     unlocked = false,
-                    palette = COMMISSIONER
+                    typography = CLASSIC
                 ),
             ),
             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
@@ -543,13 +572,12 @@ private fun PreviewBundleCard() {
 @Preview
 private fun BundleIncludedItemImagePreview() {
     LocalThemeProvider {
-        BundleIncludedThemeImage(
+        BundleIncludedTypography(
             modifier = Modifier
                 .size(48.dp),
             title = "Item 1",
             isSelected = true,
             isOwned = false,
-            icon = com.tritiumgaming.core.ui.R.drawable.theme_badge_artist,
             surfaceColor = LocalPalette.current.surface,
             onSurfaceColor = LocalPalette.current.onSurface,
             onClick = {}

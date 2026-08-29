@@ -71,7 +71,6 @@ import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 @Composable
 fun PaletteBundleCard(
     modifier: Modifier = Modifier,
-    uuid: String,
     buyCredits: Long = 0L,
     title: String,
     surfaceContainerHigh: Color,
@@ -146,13 +145,12 @@ fun PaletteBundleCard(
                                 surfaceColor = paletteRes.surface,
                                 onSurfaceColor = LocalPalette.current.onSurface,
                                 iconRes = paletteRes.extrasFamily.badge,
-                                onClick = {
-                                    selectedPalette =
-                                        if (selectedPalette?.asUuid() == marketPalette.uuid) {
-                                            null
-                                        } else paletteType
+                                onClick = { selectedPalette =
+                                    if (selectedPalette?.asUuid() == marketPalette.uuid) { null }
+                                    else paletteType
                                 }
                             )
+                            
                         }
                     }
                 }

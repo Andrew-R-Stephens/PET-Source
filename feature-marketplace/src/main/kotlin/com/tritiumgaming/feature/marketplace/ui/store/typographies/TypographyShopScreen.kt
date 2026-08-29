@@ -16,6 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
+import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
@@ -59,7 +60,28 @@ fun TypographyShopScreen(
 
     TypographyShopContent(
         //unlocks = unlocks
-        unlocks = MarketCatalogTypographiesUiState()
+        unlocks = MarketCatalogTypographiesUiState(
+            typographies = listOf(
+                MarketTypography(
+                    "0",
+                    name = "Test Typography 0",
+                    buyCredits = 100,
+                    typography = TypographyResources.TypographyType.NEUCHA
+                ),
+                MarketTypography(
+                    "1",
+                    name = "Test Typography 1",
+                    buyCredits = 100,
+                    typography = TypographyResources.TypographyType.JETBRAINS_MONO
+                ),
+                MarketTypography(
+                    "2",
+                    name = "Test Typography 2",
+                    buyCredits = 100,
+                    typography = TypographyResources.TypographyType.JOURNAL
+                ),
+            )
+        )
     )
 
 }

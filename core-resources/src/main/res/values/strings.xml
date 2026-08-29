@@ -148,7 +148,7 @@
         Codex Fragment
     -->
     <string name="codex_section_equipment">Equipment</string>
-    <string name="codex_section_achievement">Achievements</string>
+    <string name="codex_section_achievement" translatable="false">Achievements</string>
     <string name="codex_section_more">More coming soon</string>
     <string name="codex_label_gh_ost" translatable="false">
         <![CDATA[
@@ -158,4 +158,10 @@
     <string name="settings_adsconsentcontrolsettings_button">Edit</string>
 
     <string name="search_placeholder" translatable="false">Search</string>
+
+    <string name="typography_hamburgevon_latin" translatable="false">The quick brown fox jumps over the lazy dog.</string>
+    <string name="typography_hamburgevon_cyrillic" translatable="false">Съешь же ещё этих мягких французских булок, да выпей чаю.</string>
+    <string name="typography_hamburgevon_japanese" translatable="false">いろはにほへと ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす</string>
+    <string name="typography_hamburgevon_simplified_chinese" translatable="false">千山鸟飞绝，万径人踪灭。江雪：！【￥】？（）</string>
+    <string name="typography_hamburgevon_numbers_symbols" translatable="false">1234567890 &amp;!?%@#$*()_-+={}[];:’”,.</string>
 </resources>

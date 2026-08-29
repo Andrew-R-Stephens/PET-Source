@@ -266,7 +266,6 @@ private fun PortraitContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            uuid = item.key,
                             buyCredits = item.marketBundle.buyCredits,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
@@ -363,7 +362,6 @@ private fun LandscapeContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            uuid = item.key,
                             buyCredits = item.marketBundle.buyCredits,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,

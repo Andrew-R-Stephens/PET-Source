@@ -2,29 +2,27 @@ package com.tritiumgaming.feature.marketplace.ui.home
 
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -37,27 +35,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.innerShadow
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.IntrinsicMeasurable
+import androidx.compose.ui.layout.IntrinsicMeasureScope
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.Measurable
+import androidx.compose.ui.layout.MeasurePolicy
+import androidx.compose.ui.layout.MeasureResult
+import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -65,11 +62,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.isFinite
-import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -80,10 +74,8 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.image.SlantedSplitBackground
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.shared.core.navigation.NavRoute
-import kotlin.math.tan
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.BINARY)
@@ -166,10 +158,37 @@ private fun MarketplaceHomeContentPortrait(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        item(span = { GridItemSpan(2) }) { BundleCard(isLarge = true, onNavigate = onNavigate) }
-        item(span = { GridItemSpan(2) }) { PaletteCard(isLarge = true, onNavigate = onNavigate) }
+        item(span = { GridItemSpan(1) }) {
+            RewardedAdsCard(
+                isLarge = false,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) }
+        item(span = { GridItemSpan(2) }) {
+            BundleCard(
+                isLarge = true,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) }
+        item(span = { GridItemSpan(2) }) {
+            PaletteCard(
+                isLarge = true,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
         //item { TypographyCard(onNavigate = onNavigate) }
-        //item { BillingCard(onNavigate = onNavigate) }
+        item {
+            BillingCard(
+                isLarge = false,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
     }
 }
 
@@ -190,7 +209,6 @@ private fun MarketplaceHomeContentLandscape(
             BundleCard(
                 modifier = Modifier.weight(1f),
                 isLarge = true,
-                useDefaultConstraints = false,
                 onNavigate = onNavigate
             )
             /*TypographyCard(
@@ -206,7 +224,6 @@ private fun MarketplaceHomeContentLandscape(
             PaletteCard(
                 modifier = Modifier.weight(1f),
                 isLarge = true,
-                useDefaultConstraints = false,
                 onNavigate = onNavigate
             )
             /*BillingCard(
@@ -245,7 +262,6 @@ private fun MarketplaceHomeContentExpanded(
 private fun PaletteCard(
     modifier: Modifier = Modifier,
     isLarge: Boolean = false,
-    useDefaultConstraints: Boolean = true,
     onNavigate: (String) -> Unit
 ) {
     StorefrontCard(
@@ -255,8 +271,6 @@ private fun PaletteCard(
         icon = { modifier ->
             Surface(
                 modifier = modifier
-                    .fillMaxHeight(.25f)
-                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp)
                     .aspectRatio(1f),
                 color = LocalPalette.current.surfaceContainerHigh,
                 shape = RoundedCornerShape(8.dp),
@@ -280,6 +294,8 @@ private fun PaletteCard(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
+                            .scale(1.1f)
+                            .heightIn(min = 120.dp)
                             .padding(8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -297,7 +313,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.onSurface,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                             Box(
                                 modifier = Modifier
@@ -306,7 +323,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.primary,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                             Box(
                                 modifier = Modifier
@@ -315,7 +333,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.secondary,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                             Box(
                                 modifier = Modifier
@@ -324,7 +343,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.tertiary,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                         }
 
@@ -341,7 +361,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.primaryContainer,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                             Box(
                                 modifier = Modifier
@@ -350,7 +371,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.secondaryContainer,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                             Box(
                                 modifier = Modifier
@@ -359,7 +381,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.tertiaryContainer,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                             Box(
                                 modifier = Modifier
@@ -368,7 +391,8 @@ private fun PaletteCard(
                                     .padding(4.dp)
                                     .background(
                                         LocalPalette.current.surfaceContainer,
-                                        RoundedCornerShape(8.dp))
+                                        RoundedCornerShape(8.dp)
+                                    )
                             )
                         }
 
@@ -379,7 +403,6 @@ private fun PaletteCard(
         containerColor = LocalPalette.current.surfaceContainerHigh,
         contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         isLarge = isLarge,
-        useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_PALETTE.route) }
     )
 }
@@ -388,7 +411,6 @@ private fun PaletteCard(
 private fun BundleCard(
     modifier: Modifier = Modifier,
     isLarge: Boolean = false,
-    useDefaultConstraints: Boolean = true,
     onNavigate: (String) -> Unit
 ) {
     StorefrontCard(
@@ -397,9 +419,7 @@ private fun BundleCard(
         description = stringResource(R.string.marketplace_home_storefront_bundles_description),
         icon = { modifier ->
             Surface(
-                modifier = modifier
-                    .fillMaxHeight(.25f)
-                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp),
+                modifier = modifier,
                 color = LocalPalette.current.surfaceContainerHigh,
                 shape = RoundedCornerShape(8.dp),
                 shadowElevation = 4.dp,
@@ -472,7 +492,6 @@ private fun BundleCard(
         containerColor = LocalPalette.current.surfaceContainerHigh,
         contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         isLarge = isLarge,
-        useDefaultConstraints = useDefaultConstraints,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BUNDLES.route) }
     )
 }
@@ -480,7 +499,7 @@ private fun BundleCard(
 @Composable
 private fun TypographyCard(
     modifier: Modifier = Modifier,
-    useDefaultConstraints: Boolean = true,
+    isLarge: Boolean = false,
     onNavigate: (String) -> Unit
 ) {
     StorefrontCard(
@@ -490,8 +509,6 @@ private fun TypographyCard(
         icon = { modifier ->
             Surface(
                 modifier = modifier
-                    .fillMaxHeight(.25f)
-                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp)
                     .aspectRatio(1f),
                 color = LocalPalette.current.surfaceContainerHigh,
                 shape = RoundedCornerShape(8.dp),
@@ -525,7 +542,7 @@ private fun TypographyCard(
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
         contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
-        useDefaultConstraints = useDefaultConstraints,
+        isLarge = isLarge,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_TYPOGRAPHY.route) }
     )
 }
@@ -533,7 +550,7 @@ private fun TypographyCard(
 @Composable
 private fun BillingCard(
     modifier: Modifier = Modifier,
-    useDefaultConstraints: Boolean = true,
+    isLarge: Boolean = false,
     onNavigate: (String) -> Unit
 ) {
     StorefrontCard(
@@ -543,8 +560,6 @@ private fun BillingCard(
         icon = { modifier ->
             Surface(
                 modifier = modifier
-                    .fillMaxHeight(.25f)
-                    .sizeIn(minHeight = 48.dp, maxHeight = 96.dp)
                     .aspectRatio(1f),
                 color = LocalPalette.current.surfaceContainerHigh,
                 shape = RoundedCornerShape(8.dp),
@@ -552,8 +567,8 @@ private fun BillingCard(
                 tonalElevation = 8.dp
             ) {
                 Icon(
-                    modifier = Modifier.padding(4.dp),
-                    painter = painterResource(R.drawable.ic_shop_cost),
+                    modifier = Modifier,
+                    painter = painterResource(R.drawable.ic_payment),
                     tint = LocalPalette.current.onSurface,
                     contentDescription = null
                 )
@@ -577,7 +592,56 @@ private fun BillingCard(
         },
         containerColor = LocalPalette.current.surfaceContainerHigh,
         contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
-        useDefaultConstraints = useDefaultConstraints,
+        isLarge = isLarge,
+        onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) }
+    )
+}
+
+@Composable
+private fun RewardedAdsCard(
+    modifier: Modifier = Modifier,
+    isLarge: Boolean = false,
+    onNavigate: (String) -> Unit
+) {
+    StorefrontCard(
+        modifier = modifier,
+        title = stringResource(R.string.marketplace_home_storefront_rewarded_ad_title),
+        description = stringResource(R.string.marketplace_home_storefront_rewarded_ad_description),
+        background = { cardModifier ->
+            SlantedSplitBackground(
+                modifier = cardModifier,
+                {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .scale(1.5f),
+                        painter = painterResource(id = R.drawable.ic_shop_cost),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        alpha = 0.1f
+                    )
+                }
+            )
+        },
+        icon = { modifier ->
+            Surface(
+                modifier = modifier,
+                color = LocalPalette.current.surfaceContainerHigh,
+                shape = RoundedCornerShape(8.dp),
+                shadowElevation = 4.dp,
+                tonalElevation = 8.dp
+            ) {
+                Icon(
+                    modifier = Modifier,
+                    painter = painterResource(R.drawable.ic_rewarded_ads),
+                    tint = LocalPalette.current.onSurface,
+                    contentDescription = null
+                )
+            }
+        },
+        containerColor = LocalPalette.current.surfaceContainerHigh,
+        contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
+        isLarge = isLarge,
         onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) }
     )
 }
@@ -592,53 +656,59 @@ fun StorefrontCard(
     containerColor: Color,
     contentColor: Color = Color.Transparent,
     isLarge: Boolean = false,
-    useDefaultConstraints: Boolean = true,
     onClick: () -> Unit
 ) {
     Surface(
+        modifier = Modifier
+            .height(IntrinsicSize.Min)
+            .then(modifier),
         onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .then(
-                if (useDefaultConstraints) {
-                    if (isLarge) Modifier.height(160.dp) else Modifier.aspectRatio(1f)
-                } else Modifier
-            ),
         color = containerColor,
         shape = RoundedCornerShape(12.dp),
         shadowElevation = 4.dp,
         border = BorderStroke(2.dp, contentColor),
     ) {
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.Black.copy(alpha = 0.4f)
+                        )
+                    )
+                )
         ) {
             background(Modifier.alpha(1f))
 
-            Box(
+            Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                Color.Black.copy(alpha = 0.4f)
-                            )
-                        )
-                    )
-                    .padding(16.dp)
+                    .fillMaxHeight()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.Start
             ) {
                 val topWidth = remember { mutableIntStateOf(0) }
                 val bottomWidth = remember { mutableIntStateOf(0) }
 
-                icon(
-                    Modifier
-                        .align(Alignment.TopEnd)
+                Box(
+                    modifier = Modifier
                         .zIndex(1f)
-                )
+                        .fillMaxWidth(),
+                    contentAlignment = Alignment.TopEnd
+                ) {
+                    icon(
+                        Modifier
+                            .fillMaxHeight(.25f)
+                            .sizeIn(minHeight = 48.dp, maxHeight = 96.dp)
+                    )
+                }
 
                 Column(
-                    modifier = Modifier.align(Alignment.BottomStart),
-                    verticalArrangement = Arrangement.spacedBy(0.dp)
+                    modifier = Modifier,
+                    verticalArrangement = Arrangement.spacedBy(0.dp),
+                    horizontalAlignment = Alignment.Start
                 ) {
                     Surface(
                         modifier = Modifier
@@ -646,7 +716,7 @@ fun StorefrontCard(
                                 topWidth.intValue = it.size.width
                             }
                             .zIndex(1f),
-                        color = LocalPalette.current.surfaceContainerLow,
+                        color = LocalPalette.current.surfaceContainerLowest,
                         shape = RoundedCornerShape(
                             topStart = 8.dp, topEnd = 8.dp,
                             bottomEnd = if (topWidth.intValue >= bottomWidth.intValue) 8.dp else 0.dp
@@ -661,7 +731,7 @@ fun StorefrontCard(
                                 fontSize = if (isLarge) 24.sp else 16.sp,
                                 fontWeight = FontWeight.Black
                             ),
-                            color = LocalPalette.current.onSurface
+                            color = LocalPalette.current.onSurfaceVariant
                         )
                     }
 
@@ -682,8 +752,8 @@ fun StorefrontCard(
                         Text(
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                             text = description.uppercase(),
-                            style = LocalTypography.current.quaternary.regular.copy(
-                                fontSize = if (isLarge) 14.sp else 12.sp
+                            style = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = if (isLarge) 16.sp else 12.sp
                             ),
                             color = LocalPalette.current.onSurface
                         )
@@ -701,23 +771,59 @@ fun StackedIcons(
     icon: Int
 ) {
     val painter: Painter = painterResource(id = icon)
-    val density = LocalDensity.current
-
     val standardHeight = 48.dp
 
-    BoxWithConstraints(modifier = modifier) {
-        val actualHeight = if (maxHeight.isSpecified && maxHeight.isFinite) maxHeight else standardHeight
-        val scale = actualHeight / standardHeight
+    val measurePolicy = remember(painter, color) {
+        object : MeasurePolicy {
+            override fun MeasureScope.measure(
+                measurables: List<Measurable>,
+                constraints: Constraints
+            ): MeasureResult {
+                val heightPx = if (constraints.hasBoundedHeight) {
+                    constraints.maxHeight
+                } else {
+                    standardHeight.roundToPx()
+                }
 
-        val iconSizePx = with(density) { actualHeight.toPx() }
-        val stepPx = with(density) { (8.dp * scale).toPx() }
+                val scale = heightPx.toFloat() / standardHeight.toPx()
+                val widthPx = (heightPx + (8.dp.toPx() * scale) * 2).toInt()
 
-        val dpWidth = actualHeight + (8.dp * scale) * 2
+                return layout(widthPx, heightPx) {}
+            }
 
-        Canvas(
-            modifier = Modifier
-                .size(width = dpWidth, height = actualHeight)
-        ) {
+            override fun IntrinsicMeasureScope.minIntrinsicHeight(
+                measurables: List<IntrinsicMeasurable>,
+                width: Int
+            ): Int = standardHeight.roundToPx()
+
+            override fun IntrinsicMeasureScope.maxIntrinsicHeight(
+                measurables: List<IntrinsicMeasurable>,
+                width: Int
+            ): Int = standardHeight.roundToPx()
+
+            override fun IntrinsicMeasureScope.minIntrinsicWidth(
+                measurables: List<IntrinsicMeasurable>,
+                height: Int
+            ): Int {
+                val h = if (height != Constraints.Infinity && height > 0) height else standardHeight.roundToPx()
+                val scale = h.toFloat() / standardHeight.toPx()
+                return (h + (8.dp.toPx() * scale) * 2).toInt()
+            }
+
+            override fun IntrinsicMeasureScope.maxIntrinsicWidth(
+                measurables: List<IntrinsicMeasurable>,
+                height: Int
+            ): Int = minIntrinsicWidth(measurables, height)
+        }
+    }
+
+    Layout(
+        content = {},
+        modifier = modifier.drawBehind {
+            val iconSizePx = size.height
+            val scale = iconSizePx / standardHeight.toPx()
+            val stepPx = 8.dp.toPx() * scale
+
             // Step 0: Left Sliver (I0 at x=0, masked by I1 at x=stepPx)
             drawIntoCanvas { canvas ->
                 canvas.saveLayer(Rect(0f, 0f, size.width, size.height), Paint())
@@ -748,8 +854,9 @@ fun StackedIcons(
                     draw(size = Size(iconSizePx, iconSizePx), colorFilter = ColorFilter.tint(color))
                 }
             }
-        }
-    }
+        },
+        measurePolicy = measurePolicy
+    )
 }
 
 @Preview
@@ -778,5 +885,41 @@ private fun Preview() {
         MarketplaceHomeContent(
             modifier = Modifier.background(LocalPalette.current.surface)
         )
+    }
+}
+
+//@DevicePreviews
+@Preview
+@Composable
+private fun BillingCardPreview() {
+    LocalThemeProvider {
+        Box(
+            modifier = Modifier
+                .background(LocalPalette.current.surface)
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            BillingCard(
+                onNavigate = {}
+            )
+        }
+    }
+}
+
+//@DevicePreviews
+@Preview
+@Composable
+private fun RewardedAdsCardPreview() {
+    LocalThemeProvider {
+        Column(
+            modifier = Modifier
+                .background(LocalPalette.current.surface)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            RewardedAdsCard (
+                onNavigate = {}
+            )
+        }
     }
 }

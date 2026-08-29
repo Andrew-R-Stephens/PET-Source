@@ -10,7 +10,14 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.IntrinsicMeasurable
+import androidx.compose.ui.layout.IntrinsicMeasureScope
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.Measurable
+import androidx.compose.ui.layout.MeasurePolicy
+import androidx.compose.ui.layout.MeasureResult
+import androidx.compose.ui.layout.MeasureScope
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import kotlin.math.tan
@@ -37,28 +44,65 @@ fun SlantedSplitBackground(
                     content()
                 }
             }
-        }
-    ) { measurables, constraints ->
-        val count = measurables.size
-        val h = constraints.maxHeight
-        val w = constraints.maxWidth
+        },
+        measurePolicy = object : MeasurePolicy {
+            override fun MeasureScope.measure(
+                measurables: List<Measurable>,
+                constraints: Constraints
+            ): MeasureResult {
+                val count = measurables.size
+                if (count == 0) {
+                    return layout(constraints.minWidth, constraints.minHeight) {}
+                }
 
-        val angle = 45.0
-        val skew = (h * tan(Math.toRadians(angle / 2.0))).toFloat()
-        val baseWidth = w.toFloat() / count
+                val layoutHeight = if (constraints.hasBoundedHeight) constraints.maxHeight else constraints.minHeight
+                val layoutWidth = if (constraints.hasBoundedWidth) constraints.maxWidth else constraints.minWidth
 
-        val placeables = measurables.map { measurable ->
-            val itemWidth = (baseWidth + skew).toInt()
-            measurable.measure(constraints.copy(minWidth = itemWidth, maxWidth = itemWidth))
-        }
+                val angle = 45.0
+                val skew = (layoutHeight * tan(Math.toRadians(angle / 2.0))).toFloat()
+                val baseWidth = layoutWidth.toFloat() / count
 
-        layout(w, h) {
-            placeables.forEachIndexed { index, placeable ->
-                val xPosition = (index * baseWidth - skew / 2f).toInt()
-                placeable.placeRelative(xPosition, 0)
+                val placeables = measurables.map { measurable ->
+                    val itemWidth = (baseWidth + skew).toInt().coerceAtLeast(0)
+
+                    val childConstraints = Constraints(
+                        minWidth = itemWidth,
+                        maxWidth = itemWidth,
+                        minHeight = layoutHeight,
+                        maxHeight = layoutHeight
+                    )
+                    measurable.measure(childConstraints)
+                }
+
+                return layout(layoutWidth, layoutHeight) {
+                    placeables.forEachIndexed { index, placeable ->
+                        val xPosition = (index * baseWidth - skew / 2f).toInt()
+                        placeable.placeRelative(xPosition, 0)
+                    }
+                }
             }
+
+            override fun IntrinsicMeasureScope.minIntrinsicHeight(
+                measurables: List<IntrinsicMeasurable>,
+                width: Int
+            ): Int = measurables.maxOfOrNull { it.minIntrinsicHeight(width) } ?: 0
+
+            override fun IntrinsicMeasureScope.maxIntrinsicHeight(
+                measurables: List<IntrinsicMeasurable>,
+                width: Int
+            ): Int = measurables.maxOfOrNull { it.maxIntrinsicHeight(width) } ?: 0
+
+            override fun IntrinsicMeasureScope.minIntrinsicWidth(
+                measurables: List<IntrinsicMeasurable>,
+                height: Int
+            ): Int = measurables.maxOfOrNull { it.minIntrinsicWidth(height) } ?: 0
+
+            override fun IntrinsicMeasureScope.maxIntrinsicWidth(
+                measurables: List<IntrinsicMeasurable>,
+                height: Int
+            ): Int = measurables.maxOfOrNull { it.maxIntrinsicWidth(height) } ?: 0
         }
-    }
+    )
 }
 
 class SlantedLeftShape(private val angleDegrees: Float = 45f) : Shape {

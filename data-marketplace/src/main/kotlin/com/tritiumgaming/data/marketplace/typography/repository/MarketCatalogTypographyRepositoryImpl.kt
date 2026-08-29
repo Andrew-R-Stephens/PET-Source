@@ -87,6 +87,9 @@ class MarketCatalogTypographyRepositoryImpl(
     override fun get(): Result<List<MarketTypography>> = Result.success(cache.toDomain())
 
     init {
+        val localResult = getLocal()
+        cache = localResult.getOrDefault(emptyList())
+
         CoroutineScope(coroutineDispatcher).launch {
             synchronizeCache()
         }

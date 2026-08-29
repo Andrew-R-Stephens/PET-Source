@@ -20,8 +20,10 @@
     <string name="marketplace_home_storefront_bundles_description" translatable="false">Theme packs</string>
     <string name="marketplace_home_storefront_typography_title" translatable="false">Typography</string>
     <string name="marketplace_home_storefront_typography_description" translatable="false">Unique fonts</string>
-    <string name="marketplace_home_storefront_billing_title" translatable="false">Credits</string>
-    <string name="marketplace_home_storefront_billing_description" translatable="false">Top up your credits</string>
+    <string name="marketplace_home_storefront_billing_title" translatable="false">Buy Credits</string>
+    <string name="marketplace_home_storefront_billing_description" translatable="false">Get Companion Credits fast.</string>
+    <string name="marketplace_home_storefront_rewarded_ad_title" translatable="false">Earn Free Credits</string>
+    <string name="marketplace_home_storefront_rewarded_ad_description" translatable="false">Watch an Ad earn Companion Credits</string>
 
     <plurals name="marketplace_description_watch_ad">
         <item quantity="one">Companion Credit</item>
