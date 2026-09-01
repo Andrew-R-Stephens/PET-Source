@@ -23,7 +23,7 @@
     <string name="marketplace_home_storefront_billing_title" translatable="false">Buy Credits</string>
     <string name="marketplace_home_storefront_billing_description" translatable="false">Get Companion Credits fast.</string>
     <string name="marketplace_home_storefront_rewarded_ad_title" translatable="false">Earn Free Credits</string>
-    <string name="marketplace_home_storefront_rewarded_ad_description" translatable="false">Watch an Ad earn Companion Credits</string>
+    <string name="marketplace_home_storefront_rewarded_ad_description" translatable="false">Watch an Ad to earn %s %s</string>
 
     <plurals name="marketplace_description_watch_ad">
         <item quantity="one">Companion Credit</item>
@@ -47,7 +47,7 @@
     </string>
     <string name="marketplace_acknowledgement_warning_list_3">
         All content, past or present, exists solely for cosmetic purposes within \"P.E.T.\".
-        Content cannot be redeemed or transferred outside of \"P.E.T.\" and has no impact on any
+        Content cannot be redeemed or transferred outside \"P.E.T.\" and has no impact on any
         external entities such as, but not limited to, games like \"Phasmophobia\".
     </string>
     <string name="marketplace_acknowledgement_warning_list_4">

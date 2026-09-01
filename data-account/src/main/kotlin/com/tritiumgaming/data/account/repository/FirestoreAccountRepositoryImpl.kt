@@ -3,7 +3,6 @@ package com.tritiumgaming.data.account.repository
 import android.util.Log
 import com.tritiumgaming.data.account.dto.AccountCreditsDto
 import com.tritiumgaming.data.account.dto.AccountMarketAgreementDto
-import com.tritiumgaming.data.account.dto.AccountPaletteDto
 import com.tritiumgaming.data.account.dto.AccountTypographyDto
 import com.tritiumgaming.data.account.dto.toDomain
 import com.tritiumgaming.data.account.dto.toNetwork
@@ -16,34 +15,25 @@ import com.tritiumgaming.shared.data.account.model.AccountMarketAgreement
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.AccountTypography
 import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 
 class FirestoreAccountRepositoryImpl(
     private val authRemoteDataSource: FirestoreAuthRemoteDataSource,
     private val userRemoteDataSource: FirestoreUserRemoteDataSource,
-    private val accountRemoteDataSource: FirestoreAccountRemoteDataSource
+    private val accountRemoteDataSource: FirestoreAccountRemoteDataSource,
+    private val scope: CoroutineScope
 ): FirestoreAccountRepository {
 
-    val unlockedPalettes = MutableStateFlow<List<AccountPaletteDto>>(listOf())
-    val unlockedTypographies = MutableStateFlow<List<AccountTypographyDto>>(listOf())
-
-    override suspend fun addCredits(
-        creditTransaction: AccountCreditTransaction
-    ): Result<Boolean> {
-        authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
-            Exception("An authorized user is not currently logged in!"))
-
-        return accountRemoteDataSource.addCredits(creditTransaction.toNetwork())
-    }
-
     @OptIn(ExperimentalCoroutinesApi::class)
-    override fun observeCredits(): Flow<Result<AccountCredits>> {
-        return authRemoteDataSource.observeAuthState()
+    private val creditsFlow: Flow<Result<AccountCredits>> by lazy {
+        authRemoteDataSource.observeAuthState()
             .flatMapLatest { user ->
                 if (user == null) {
                     flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
@@ -54,7 +44,61 @@ class FirestoreAccountRepositoryImpl(
                         }
                 }
             }
+            .shareIn(
+                scope = scope,
+                started = SharingStarted.WhileSubscribed(5000),
+                replay = 1
+            )
     }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val unlockedPalettesFlow: Flow<Result<List<AccountPalette>>> by lazy {
+        authRemoteDataSource.observeAuthState()
+            .flatMapLatest { user ->
+                if (user == null) {
+                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+                } else {
+                    accountRemoteDataSource.observeUnlockedPaletteDocuments().map { flow ->
+                        flow.map { dto -> dto.toDomain() }
+                    }
+                }
+            }
+            .shareIn(
+                scope = scope,
+                started = SharingStarted.WhileSubscribed(5000),
+                replay = 1
+            )
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val unlockedTypographiesFlow: Flow<Result<List<AccountTypography>>> by lazy {
+        authRemoteDataSource.observeAuthState()
+            .flatMapLatest { user ->
+                if (user == null) {
+                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+                } else {
+                    accountRemoteDataSource.observeUnlockedTypographyDocuments().map { flow ->
+                        flow.map { dto -> dto.toDomain() }
+                    }
+                }
+            }
+            .shareIn(
+                scope = scope,
+                started = SharingStarted.WhileSubscribed(5000),
+                replay = 1
+            )
+    }
+
+    override suspend fun addCredits(
+        creditTransaction: AccountCreditTransaction
+    ): Result<Boolean> {
+        authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
+            Exception("An authorized user is not currently logged in!"))
+
+        return accountRemoteDataSource.addCredits(creditTransaction.toNetwork())
+    }
+
+    override fun observeCredits(): Flow<Result<AccountCredits>> = creditsFlow
 
     override suspend fun purchaseItemWithCredits(
         itemId: String,
@@ -118,31 +162,9 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    override fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>> {
-        return authRemoteDataSource.observeAuthState()
-            .flatMapLatest { user ->
-                if (user == null) {
-                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
-                } else {
-                    accountRemoteDataSource.observeUnlockedPaletteDocuments().map { flow ->
-                        flow.map { dto -> dto.toDomain() }
-                    }
-                }
-            }
-    }
+    override fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>> =
+        unlockedPalettesFlow
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    override fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>> {
-        return authRemoteDataSource.observeAuthState()
-            .flatMapLatest { user ->
-                if (user == null) {
-                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
-                } else {
-                    accountRemoteDataSource.observeUnlockedTypographyDocuments().map { flow ->
-                        flow.map { dto -> dto.toDomain() }
-                    }
-                }
-            }
-    }
+    override fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>> =
+        unlockedTypographiesFlow
 }

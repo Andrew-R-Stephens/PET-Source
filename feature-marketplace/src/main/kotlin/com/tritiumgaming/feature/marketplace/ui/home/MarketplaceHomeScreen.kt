@@ -20,10 +20,13 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -59,6 +62,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -134,10 +138,10 @@ fun MarketplaceHomeContent(
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     when (deviceConfiguration) {
-        DeviceConfiguration.MOBILE_LANDSCAPE -> {
+        DeviceConfiguration.TABLET_LANDSCAPE, DeviceConfiguration.MOBILE_LANDSCAPE -> {
             MarketplaceHomeContentLandscape(modifier, onNavigate)
         }
-        DeviceConfiguration.TABLET_LANDSCAPE, DeviceConfiguration.DESKTOP -> {
+        DeviceConfiguration.TABLET_PORTRAIT, DeviceConfiguration.DESKTOP -> {
             MarketplaceHomeContentExpanded(modifier, onNavigate)
         }
         else -> {
@@ -154,25 +158,44 @@ private fun MarketplaceHomeContentPortrait(
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
         columns = GridCells.Fixed(2),
-        /*contentPadding = PaddingValues(8.dp),*/
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
     ) {
-        item(span = { GridItemSpan(1) }) {
+        item(
+            key = 0,
+            span = { GridItemSpan(2) }
+        ) {
             RewardedAdsCard(
-                isLarge = false,
+                isLarge = true,
                 onNavigate = onNavigate,
                 modifier = Modifier
                     .fillMaxWidth()
             ) }
-        item(span = { GridItemSpan(2) }) {
+        /*item(
+            key = 1,
+            span = { GridItemSpan(1) }
+        ) {
+            BillingCard(
+                isLarge = false,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }*/
+        item(
+            key = 2,
+            span = { GridItemSpan(2) }
+        ) {
             BundleCard(
                 isLarge = true,
                 onNavigate = onNavigate,
                 modifier = Modifier
                     .fillMaxWidth()
             ) }
-        item(span = { GridItemSpan(2) }) {
+        item(
+            key = 3,
+            span = { GridItemSpan(2) }
+        ) {
             PaletteCard(
                 isLarge = true,
                 onNavigate = onNavigate,
@@ -181,14 +204,6 @@ private fun MarketplaceHomeContentPortrait(
             )
         }
         //item { TypographyCard(onNavigate = onNavigate) }
-        item {
-            BillingCard(
-                isLarge = false,
-                onNavigate = onNavigate,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-        }
     }
 }
 
@@ -200,33 +215,44 @@ private fun MarketplaceHomeContentLandscape(
     Row(
         modifier = modifier
             .fillMaxSize(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Column(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            modifier = Modifier
+                .fillMaxHeight()
+                .weight(.7f)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            BundleCard(
-                modifier = Modifier.weight(1f),
+            RewardedAdsCard(
                 isLarge = true,
                 onNavigate = onNavigate
             )
-            /*TypographyCard(
-                modifier = Modifier.weight(1f),
-                useDefaultConstraints = false,
+
+            /*BillingCard(
+                isLarge = true,
                 onNavigate = onNavigate
             )*/
         }
         Column(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            modifier = Modifier
+                .fillMaxHeight()
+                .weight(1f)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            PaletteCard(
-                modifier = Modifier.weight(1f),
+            BundleCard(
                 isLarge = true,
                 onNavigate = onNavigate
             )
-            /*BillingCard(
+
+            PaletteCard(
+                isLarge = true,
+                onNavigate = onNavigate
+            )
+            /*TypographyCard(
                 modifier = Modifier.weight(1f),
                 useDefaultConstraints = false,
                 onNavigate = onNavigate
@@ -241,21 +267,72 @@ private fun MarketplaceHomeContentExpanded(
     modifier: Modifier,
     onNavigate: (String) -> Unit = {},
 ) {
-    Column(
+    LazyVerticalGrid(
+        modifier = modifier.fillMaxSize(),
+        columns = GridCells.Fixed(2),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        item(
+            key = 0,
+            span = { GridItemSpan(2) }
+        ) {
+            RewardedAdsCard(
+                isLarge = true,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) }
+        /*item(
+            key = 1,
+            span = { GridItemSpan(1) }
+        ) {
+            BillingCard(
+                isLarge = false,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }*/
+        item(
+            key = 2,
+            span = { GridItemSpan(2) }
+        ) {
+            BundleCard(
+                isLarge = true,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) }
+        item(
+            key = 3,
+            span = { GridItemSpan(2) }
+        ) {
+            PaletteCard(
+                isLarge = true,
+                onNavigate = onNavigate,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
+        //item { TypographyCard(onNavigate = onNavigate) }
+    }
+    /*Column(
         modifier = modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
         ) {
+            RewardedAdsCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
             BundleCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
             PaletteCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 400.dp), isLarge = true, onNavigate = onNavigate)
             //TypographyCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 200.dp), onNavigate = onNavigate)
             //BillingCard(modifier = Modifier.sizeIn(maxHeight = 200.dp, maxWidth = 200.dp), onNavigate = onNavigate)
         }
-    }
+    }*/
 }
 
 @Composable
@@ -603,10 +680,19 @@ private fun RewardedAdsCard(
     isLarge: Boolean = false,
     onNavigate: (String) -> Unit
 ) {
+
+    val creditsAwarded = 10
+    val descriptionBase = stringResource(R.string.marketplace_home_storefront_rewarded_ad_description)
+    val creditsDisclosure = pluralStringResource(
+        R.plurals.marketplace_description_watch_ad,
+        creditsAwarded
+    )
+    val description = String.format(descriptionBase, creditsAwarded, creditsDisclosure)
+
     StorefrontCard(
         modifier = modifier,
         title = stringResource(R.string.marketplace_home_storefront_rewarded_ad_title),
-        description = stringResource(R.string.marketplace_home_storefront_rewarded_ad_description),
+        description = description,
         background = { cardModifier ->
             SlantedSplitBackground(
                 modifier = cardModifier,
@@ -659,9 +745,8 @@ fun StorefrontCard(
     onClick: () -> Unit
 ) {
     Surface(
-        modifier = Modifier
-            .height(IntrinsicSize.Min)
-            .then(modifier),
+        modifier = modifier
+            .height(IntrinsicSize.Min),
         onClick = onClick,
         color = containerColor,
         shape = RoundedCornerShape(12.dp),

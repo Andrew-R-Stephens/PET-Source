@@ -361,7 +361,8 @@ class CoreContainer(
         FirestoreAccountRepositoryImpl(
             authRemoteDataSource = firestoreAuthRemoteDataSource,
             userRemoteDataSource = firestoreUserRemoteDataSource,
-            accountRemoteDataSource = firestoreAccountDataSource
+            accountRemoteDataSource = firestoreAccountDataSource,
+            scope = coroutineScope
         )
     }
 
