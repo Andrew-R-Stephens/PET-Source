@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.marketplace.ui.store.palettes
 
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -45,7 +46,6 @@ import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
-import com.tritiumgaming.feature.marketplace.ui.store.bundles.TypographyBundleCard
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
@@ -69,6 +69,7 @@ fun PaletteShopScreen(
     viewmodel: MarketplacePaletteScreenViewModel
 ) {
     val context = LocalContext.current
+    val activity = LocalActivity.current
 
     val paletteUnlocks by viewmodel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
     var pendingEquipPalette by remember { mutableStateOf<PaletteType?>(null) }
@@ -76,94 +77,122 @@ fun PaletteShopScreen(
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
-    val credits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+    val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+
+    val onClickRewardedAd: () -> Unit = {
+        activity?.let {
+            viewmodel.showRewardedAd(
+                activity,
+                onSuccess = { quantity, type ->
+                    viewmodel.addCredits(
+                        credits = quantity,
+                        onSuccess = {
+                            Toast.makeText(
+                                context, "Credits Earned",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                context, "Error! $it",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                },
+                onFailure = {
+                    Toast.makeText(
+                        context, "Error! $it",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        }
+    }
 
     MarketplaceScreen(
         modifier = Modifier,
         navController = navController,
-        credits = credits.earnedCredits,
-        onEarnCredits = {
-            viewmodel.addCredits(
-                credits = 100,
-                onSuccess = {
-                    Toast.makeText(context, "Credits Earned",
-                        Toast.LENGTH_SHORT).show()
-                },
-                onFailure = {
-                    Toast.makeText(context, "Error! $it",
-                        Toast.LENGTH_SHORT).show()
-                }
-            )
-        }
+        earnedCredits = accountCredits.earnedCredits,
+        showRewardButton = user != null,
+        onClickRewardButton = onClickRewardedAd
     ) { modifier ->
-        PaletteShopContent(
-            modifier = modifier,
-            unlocks = paletteUnlocks,
-            authenticated = user != null,
-            onBuyItem = { marketPalette ->
-                isLoading = true
-                viewmodel.obtainItemWithCredits(
-                    marketPalette.uuid, "theme",
-                    onSuccess = { _ ->
-                        pendingEquipPalette = marketPalette.palette
-                    },
-                    onFailure = { message ->
-                        Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
-                    },
-                    onComplete = {
-                        isLoading = false
-                    }
-                )
-            },
-            onBuyBundle = { marketPalette ->
-                isLoading = true
-                viewmodel.obtainItemWithCredits(
-                    marketPalette.uuid, "bundle",
-                    onSuccess = { _ ->
-                        pendingEquipPalette = null
-                        Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
-                    },
-                    onFailure = { message ->
-                        Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
-                    },
-                    onComplete = {
-                        isLoading = false
-                    }
-                )
-            }
-        )
-
-        pendingEquipPalette?.let { palette ->
-            val paletteResource = palette.toPaletteResource()
-            EquipConfirmationDialog(
-                targetTitle = String.format(
-                    stringResource(R.string.marketplace_purchase_equip),
-                    stringResource(paletteResource.extrasFamily.title)
-                ),
-                onConfirm = {
-                    viewmodel.updatePalette(palette)
-                    pendingEquipPalette = null
-                    Toast.makeText(context, "Theme Equipped!", Toast.LENGTH_SHORT).show()
+        Box(
+            modifier = modifier
+        ) {
+            PaletteShopContent(
+                modifier = modifier,
+                unlocks = paletteUnlocks,
+                authenticated = user != null,
+                onBuyItem = { marketPalette ->
+                    isLoading = true
+                    viewmodel.obtainItemWithCredits(
+                        marketPalette.uuid, "theme",
+                        onSuccess = { _ ->
+                            pendingEquipPalette = marketPalette.palette
+                        },
+                        onFailure = { message ->
+                            Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                        },
+                        onComplete = {
+                            isLoading = false
+                        }
+                    )
                 },
-                onDismiss = {
-                    pendingEquipPalette = null
+                onBuyBundle = { marketPalette ->
+                    isLoading = true
+                    viewmodel.obtainItemWithCredits(
+                        marketPalette.uuid, "bundle",
+                        onSuccess = { _ ->
+                            pendingEquipPalette = null
+                            Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
+                        },
+                        onFailure = { message ->
+                            Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                        },
+                        onComplete = {
+                            isLoading = false
+                        }
+                    )
                 }
             )
-        }
 
-        if (isLoading) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clickable(enabled = false) {}
-                    .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(
-                    color = LocalPalette.current.primary
+            if (isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clickable(enabled = false) {}
+                        .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(
+                        color = LocalPalette.current.primary
+                    )
+                }
+            }
+
+
+            pendingEquipPalette?.let { palette ->
+                val paletteResource = palette.toPaletteResource()
+                EquipConfirmationDialog(
+                    targetTitle = String.format(
+                        stringResource(R.string.marketplace_purchase_equip),
+                        stringResource(paletteResource.extrasFamily.title)
+                    ),
+                    onConfirm = {
+                        viewmodel.updatePalette(palette)
+                        pendingEquipPalette = null
+                        Toast.makeText(context, "Theme Equipped!", Toast.LENGTH_SHORT).show()
+                    },
+                    onDismiss = {
+                        pendingEquipPalette = null
+                    }
                 )
             }
+
+
         }
+
     }
 }
 

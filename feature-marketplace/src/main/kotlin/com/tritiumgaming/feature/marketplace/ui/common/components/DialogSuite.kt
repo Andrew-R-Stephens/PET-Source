@@ -151,6 +151,7 @@ fun MarketplaceDialog(
 
 @Composable
 fun EquipConfirmationDialog(
+    modifier: Modifier = Modifier,
     targetTitle: String = "<theme>",
     onConfirm: () -> Unit = {},
     onDismiss: () -> Unit = {},
@@ -175,7 +176,7 @@ fun EquipConfirmationDialog(
     }
 
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
         AnimatedVisibility(

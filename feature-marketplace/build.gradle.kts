@@ -122,6 +122,7 @@ dependencies {
 
     implementation(project(":data-account"))
     implementation(project(":data-marketplace"))
+    implementation(project(":data-ads"))
 
     implementation(project(":shared"))
 

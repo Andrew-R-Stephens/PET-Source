@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.store.bundles
 
+import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,9 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.ads.model.RewardedAdState
+import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -48,8 +52,43 @@ class MarketplaceBundlesScreenViewModel(
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
     private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
-    private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase
+    private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
+    private val showRewardedAdsUseCase: ShowRewardedAdUseCase,
+    getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase
 ): ViewModel() {
+
+    val rewardedAdUiState = getRewardedAdFlowUseCase()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = RewardedAdState()
+        )
+
+    fun showRewardedAd(
+        activity: Activity,
+        onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
+        onFailure: (msg: String) -> Unit = {}
+    ) {
+        viewModelScope.launch {
+            try {
+                showRewardedAdsUseCase(
+                    activity = activity,
+                    onRewardEarned = { amount, type ->
+                        onSuccess(amount, type)
+                    },
+                    onAdClosed = {
+                        //onFailure("onAdClosed")
+                    },
+                    onAdFailedToShow = { error ->
+                        onFailure("onAdFailedToShow: $error")
+                    }
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                onFailure(e.message ?: "Unknown error")
+            }
+        }
+    }
 
     private var observeCreditsJob: Job? = null
     private var observeUnlockedPalettesJob: Job? = null
@@ -343,6 +382,9 @@ class MarketplaceBundlesScreenViewModel(
                 val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
                 val getMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
                 val getMarketCatalogBundlesUseCase = container.getMarketCatalogBundlesUseCase
+                val showRewardedAdsUseCase = container.showRewardedAdUseCase
+                val getRewardedAdFlowUseCase = container.getRewardedAdFlowUseCase
+
 
                 MarketplaceBundlesScreenViewModel(
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
@@ -352,7 +394,9 @@ class MarketplaceBundlesScreenViewModel(
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                     getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
                     getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase,
-                    getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase
+                    getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase,
+                    showRewardedAdsUseCase = showRewardedAdsUseCase,
+                    getRewardedAdFlowUseCase = getRewardedAdFlowUseCase
                 )
             }
         }

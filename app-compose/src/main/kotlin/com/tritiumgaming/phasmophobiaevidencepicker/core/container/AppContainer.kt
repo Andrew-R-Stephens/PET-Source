@@ -4,6 +4,9 @@ import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPale
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
+import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
@@ -19,5 +22,8 @@ class AppContainer(
     internal val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     internal val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
     internal val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
-    internal val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase
+    internal val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
+    internal val loadRewardedAdUseCase: LoadRewardedAdUseCase,
+    internal val showRewardedAdUseCase: ShowRewardedAdUseCase,
+    internal val getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase
 )

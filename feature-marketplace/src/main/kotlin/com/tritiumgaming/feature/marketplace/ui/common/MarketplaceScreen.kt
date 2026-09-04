@@ -41,8 +41,9 @@ private annotation class DevicePreviews
 fun MarketplaceScreen(
     modifier: Modifier,
     navController: NavHostController,
-    credits: Int = 0,
-    onEarnCredits: () -> Unit = {},
+    earnedCredits: Int = 0,
+    showRewardButton: Boolean = false,
+    onClickRewardButton: () -> Unit = {},
     content: @Composable (Modifier) -> Unit
 ) {
     val user = if(!LocalInspectionMode.current)
@@ -53,8 +54,8 @@ fun MarketplaceScreen(
             .padding(8.dp),
         authenticated = user != null,
         userName = user?.displayName ?: "",
-        credits = credits,
-        showButton = user != null,
+        rewardCredits = earnedCredits,
+        showRewardButton = showRewardButton,
         onNavigate = { route ->
             navController.navigate(route) {
                 popUpTo(navController.graph.findStartDestination().id) {
@@ -65,7 +66,7 @@ fun MarketplaceScreen(
             }
         },
         onEarnCredits = {
-            onEarnCredits()
+            onClickRewardButton()
         }
     ) { modifier ->
         content(modifier)
@@ -77,8 +78,8 @@ fun MarketplaceContent(
     modifier: Modifier,
     authenticated: Boolean = false,
     userName: String = "",
-    credits: Int = 0,
-    showButton: Boolean = false,
+    rewardCredits: Int = 0,
+    showRewardButton: Boolean = false,
     onNavigate: (String) -> Unit = {},
     onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
@@ -93,8 +94,8 @@ fun MarketplaceContent(
                 modifier = modifier,
                 authenticated = authenticated,
                 userName = userName,
-                credits = credits,
-                showButton = showButton,
+                credits = rewardCredits,
+                showButton = showRewardButton,
                 onNavigate = onNavigate,
                 onEarnCredits = onEarnCredits,
                 content = { modifier -> content(modifier) }
@@ -105,7 +106,7 @@ fun MarketplaceContent(
                 modifier = modifier,
                 authenticated = authenticated,
                 userName = userName,
-                credits = credits,
+                credits = rewardCredits,
                 onNavigate = onNavigate,
                 onEarnCredits = onEarnCredits,
                 content = { modifier -> content(modifier) }

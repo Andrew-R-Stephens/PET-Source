@@ -29,6 +29,7 @@
 
 /data-customdifficulty/build/
 /database-local/build/
+/data-ads/build/
 
 /KeyEncrypts/
 keystore.jks

@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.store.palettes
 
+import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,9 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.ads.model.RewardedAdState
+import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
@@ -61,7 +65,42 @@ class MarketplacePaletteScreenViewModel(
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
     private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
+    private val showRewardedAdsUseCase: ShowRewardedAdUseCase,
+    getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase
 ): ViewModel() {
+
+    val rewardedAdUiState = getRewardedAdFlowUseCase()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = RewardedAdState()
+        )
+
+    fun showRewardedAd(
+        activity: Activity,
+        onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
+        onFailure: (msg: String) -> Unit = {}
+    ) {
+        viewModelScope.launch {
+            try {
+                showRewardedAdsUseCase(
+                    activity = activity,
+                    onRewardEarned = { amount, type ->
+                        onSuccess(amount, type)
+                    },
+                    onAdClosed = {
+                        //onFailure("onAdClosed")
+                    },
+                    onAdFailedToShow = { error ->
+                        onFailure("onAdFailedToShow: $error")
+                    }
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                onFailure(e.message ?: "Unknown error")
+            }
+        }
+    }
 
     private var observeCreditsJob: Job? = null
     private var observeUnlockedPalettesJob: Job? = null
@@ -371,6 +410,8 @@ class MarketplacePaletteScreenViewModel(
                 val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
                 val getMarketCatalogBundlesUseCase = container.getMarketCatalogBundlesUseCase
                 val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
+                val showRewardedAdsUseCase = container.showRewardedAdUseCase
+                val getRewardedAdFlowUseCase = container.getRewardedAdFlowUseCase
 
                 MarketplacePaletteScreenViewModel(
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
@@ -380,6 +421,8 @@ class MarketplacePaletteScreenViewModel(
                     getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
                     getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase,
                     saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
+                    showRewardedAdsUseCase = showRewardedAdsUseCase,
+                    getRewardedAdFlowUseCase = getRewardedAdFlowUseCase
                 )
             }
         }

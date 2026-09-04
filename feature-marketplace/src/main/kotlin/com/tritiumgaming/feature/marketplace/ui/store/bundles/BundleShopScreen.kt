@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.marketplace.ui.store.bundles
 
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -63,64 +64,90 @@ fun BundleShopScreen(
     viewmodel: MarketplaceBundlesScreenViewModel
 ) {
     val context = LocalContext.current
+    val activity = LocalActivity.current
 
     val bundleUnlocks by viewmodel.marketCatalogScreenUiState.collectAsStateWithLifecycle()
     var isLoading by remember { mutableStateOf(false) }
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
-    val credits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+    val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+
+    val onClickRewardedAd: () -> Unit = {
+        activity?.let {
+            viewmodel.showRewardedAd(
+                activity,
+                onSuccess = { quantity, type ->
+                    viewmodel.addCredits(
+                        credits = quantity,
+                        onSuccess = {
+                            Toast.makeText(
+                                context, "Credits Earned",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                context, "Error! $it",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                },
+                onFailure = {
+                    Toast.makeText(
+                        context, "Error! $it",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        }
+    }
 
     MarketplaceScreen(
         modifier = modifier,
         navController = navController,
-        credits = credits.earnedCredits,
-        onEarnCredits = {
-            viewmodel.addCredits(
-                credits = 100,
-                onSuccess = {
-                    Toast.makeText(context, "Credits Earned",
-                        Toast.LENGTH_SHORT).show()
-                },
-                onFailure = {
-                    Toast.makeText(context, "Error! $it",
-                        Toast.LENGTH_SHORT).show()
+        earnedCredits = accountCredits.earnedCredits,
+        showRewardButton = user != null,
+        onClickRewardButton = onClickRewardedAd
+    ) { modifier ->
+        Box(
+            modifier = modifier
+        ) {
+            BundleShopContent(
+                modifier = Modifier
+                    .fillMaxSize(),
+                unlocks = bundleUnlocks,
+                authenticated = user != null,
+                onBuyBundle = { marketPalette ->
+                    isLoading = true
+                    viewmodel.obtainItemWithCredits(
+                        marketPalette.uuid, "bundle",
+                        onSuccess = { _ ->
+                            Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
+                        },
+                        onFailure = { message ->
+                            Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                        },
+                        onComplete = {
+                            isLoading = false
+                        }
+                    )
                 }
             )
-        }
-    ) { modifier ->
-        BundleShopContent(
-            modifier = modifier,
-            unlocks = bundleUnlocks,
-            authenticated = user != null,
-            onBuyBundle = { marketPalette ->
-                isLoading = true
-                viewmodel.obtainItemWithCredits(
-                    marketPalette.uuid, "bundle",
-                    onSuccess = { _ ->
-                        Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
-                    },
-                    onFailure = { message ->
-                        Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
-                    },
-                    onComplete = {
-                        isLoading = false
-                    }
-                )
-            }
-        )
 
-        if (isLoading) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clickable(enabled = false) {}
-                    .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(
-                    color = LocalPalette.current.primary
-                )
+            if (isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clickable(enabled = false) {}
+                        .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(
+                        color = LocalPalette.current.primary
+                    )
+                }
             }
         }
     }

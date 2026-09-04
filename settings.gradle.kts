@@ -42,6 +42,7 @@ include(
 
 include(
     ":data-account",
+    ":data-ads",
     ":data-challenge",
     ":data-codex",
     ":data-contributor",

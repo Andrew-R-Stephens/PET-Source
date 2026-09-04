@@ -9,6 +9,9 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
+import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
@@ -38,4 +41,7 @@ class MarketplaceContainer(
     internal val getNextUnlockedPaletteUseCase: GetNextUnlockedPaletteUseCase,
     internal val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     internal val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
+    internal val loadRewardedAdUseCase: LoadRewardedAdUseCase,
+    internal val showRewardedAdUseCase: ShowRewardedAdUseCase,
+    internal val getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase,
 )

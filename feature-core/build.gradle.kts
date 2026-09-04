@@ -66,6 +66,7 @@ dependencies {
     implementation(project(":core-common"))
 
     implementation(project(":data-account"))
+    implementation(project(":data-ads"))
     implementation(project(":data-challenge"))
     implementation(project(":data-mission"))
     implementation(project(":data-preferences"))

@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.marketplace.ui.home
 
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -18,9 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -60,7 +58,7 @@ import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -72,6 +70,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
@@ -99,28 +99,57 @@ fun MarketplaceHomeScreen(
     viewmodel: MarketplaceHomeScreenViewModel,
 ) {
     val context = LocalContext.current
-    val credits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+    val activity = LocalActivity.current
+
+    val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
+
+    val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+    val rewardedAdState by viewmodel.rewardedAdUiState.collectAsStateWithLifecycle()
+
+    val rewardCredits = rewardedAdState.reward?.amount ?: 0
+
+    val onClickRewardedAd: () -> Unit = {
+        activity?.let {
+            viewmodel.showRewardedAd(
+                activity,
+                onSuccess = { quantity, type ->
+                    viewmodel.addCredits(
+                        credits = quantity,
+                        onSuccess = {
+                            Toast.makeText(
+                                context, "Credits Earned",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                context, "Error! $it",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                },
+                onFailure = {
+                    Toast.makeText(
+                        context, "Error! $it",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        }
+    }
 
     MarketplaceScreen(
         modifier = Modifier,
         navController = navController,
-        credits = credits.earnedCredits,
-        onEarnCredits = {
-            viewmodel.addCredits(
-                credits = 100,
-                onSuccess = {
-                    Toast.makeText(context, "Credits Earned",
-                        Toast.LENGTH_SHORT).show()
-                },
-                onFailure = {
-                    Toast.makeText(context, "Error! $it",
-                        Toast.LENGTH_SHORT).show()
-                }
-            )
-        }
+        earnedCredits = accountCredits.earnedCredits,
+        showRewardButton = user != null,
+        onClickRewardButton = onClickRewardedAd
     ) { contentModifier ->
         MarketplaceHomeContent(
-            modifier = contentModifier
+            modifier = contentModifier,
+            rewardCredits = rewardCredits,
+            onClickRewardedAd = onClickRewardedAd
         ) { route ->
             navController.navigate(route) {
                 launchSingleTop = true
@@ -132,6 +161,8 @@ fun MarketplaceHomeScreen(
 @Composable
 fun MarketplaceHomeContent(
     modifier: Modifier,
+    rewardCredits: Int,
+    onClickRewardedAd: () -> Unit = {},
     onNavigate: (String) -> Unit = {},
 ) {
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -139,13 +170,13 @@ fun MarketplaceHomeContent(
 
     when (deviceConfiguration) {
         DeviceConfiguration.TABLET_LANDSCAPE, DeviceConfiguration.MOBILE_LANDSCAPE -> {
-            MarketplaceHomeContentLandscape(modifier, onNavigate)
+            MarketplaceHomeContentLandscape(modifier, rewardCredits, onNavigate, onClickRewardedAd)
         }
         DeviceConfiguration.TABLET_PORTRAIT, DeviceConfiguration.DESKTOP -> {
-            MarketplaceHomeContentExpanded(modifier, onNavigate)
+            MarketplaceHomeContentExpanded(modifier, rewardCredits, onNavigate, onClickRewardedAd)
         }
         else -> {
-            MarketplaceHomeContentPortrait(modifier, onNavigate)
+            MarketplaceHomeContentPortrait(modifier, rewardCredits, onNavigate, onClickRewardedAd)
         }
     }
 }
@@ -153,7 +184,9 @@ fun MarketplaceHomeContent(
 @Composable
 private fun MarketplaceHomeContentPortrait(
     modifier: Modifier,
+    rewardCredits: Int,
     onNavigate: (String) -> Unit = {},
+    onClickRewardedAd: () -> Unit = {},
 ) {
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
@@ -166,10 +199,12 @@ private fun MarketplaceHomeContentPortrait(
             span = { GridItemSpan(2) }
         ) {
             RewardedAdsCard(
+                rewardCredits = rewardCredits,
                 isLarge = true,
                 onNavigate = onNavigate,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                onClick = onClickRewardedAd
             ) }
         /*item(
             key = 1,
@@ -210,7 +245,9 @@ private fun MarketplaceHomeContentPortrait(
 @Composable
 private fun MarketplaceHomeContentLandscape(
     modifier: Modifier,
+    rewardCredits: Int,
     onNavigate: (String) -> Unit = {},
+    onClickRewardedAd: () -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -226,8 +263,10 @@ private fun MarketplaceHomeContentLandscape(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             RewardedAdsCard(
+                rewardCredits = rewardCredits,
                 isLarge = true,
-                onNavigate = onNavigate
+                onNavigate = onNavigate,
+                onClick = onClickRewardedAd
             )
 
             /*BillingCard(
@@ -265,7 +304,9 @@ private fun MarketplaceHomeContentLandscape(
 @Composable
 private fun MarketplaceHomeContentExpanded(
     modifier: Modifier,
+    rewardCredits: Int,
     onNavigate: (String) -> Unit = {},
+    onClickRewardedAd: () -> Unit = {},
 ) {
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
@@ -278,10 +319,12 @@ private fun MarketplaceHomeContentExpanded(
             span = { GridItemSpan(2) }
         ) {
             RewardedAdsCard(
+                rewardCredits = rewardCredits,
                 isLarge = true,
                 onNavigate = onNavigate,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                onClick = onClickRewardedAd
             ) }
         /*item(
             key = 1,
@@ -677,17 +720,18 @@ private fun BillingCard(
 @Composable
 private fun RewardedAdsCard(
     modifier: Modifier = Modifier,
+    rewardCredits: Int,
     isLarge: Boolean = false,
-    onNavigate: (String) -> Unit
+    onNavigate: (String) -> Unit,
+    onClick: () -> Unit
 ) {
 
-    val creditsAwarded = 10
     val descriptionBase = stringResource(R.string.marketplace_home_storefront_rewarded_ad_description)
     val creditsDisclosure = pluralStringResource(
         R.plurals.marketplace_description_watch_ad,
-        creditsAwarded
+        rewardCredits
     )
-    val description = String.format(descriptionBase, creditsAwarded, creditsDisclosure)
+    val description = String.format(descriptionBase, rewardCredits, creditsDisclosure)
 
     StorefrontCard(
         modifier = modifier,
@@ -728,7 +772,10 @@ private fun RewardedAdsCard(
         containerColor = LocalPalette.current.surfaceContainerHigh,
         contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         isLarge = isLarge,
-        onClick = { onNavigate(NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) }
+        onClick = {
+            onClick()
+            /*onNavigate(NavRoute.SCREEN_MARKETPLACE_BILLABLE.route)*/
+        }
     )
 }
 
@@ -968,7 +1015,8 @@ private fun StackedPaletteIconsPreview() {
 private fun Preview() {
     LocalThemeProvider {
         MarketplaceHomeContent(
-            modifier = Modifier.background(LocalPalette.current.surface)
+            modifier = Modifier.background(LocalPalette.current.surface),
+            rewardCredits = 10
         )
     }
 }
@@ -1003,7 +1051,9 @@ private fun RewardedAdsCardPreview() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             RewardedAdsCard (
-                onNavigate = {}
+                rewardCredits = 10,
+                onNavigate = {},
+                onClick = {}
             )
         }
     }

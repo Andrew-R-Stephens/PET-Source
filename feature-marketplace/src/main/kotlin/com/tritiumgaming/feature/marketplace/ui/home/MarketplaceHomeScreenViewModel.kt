@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.home
 
+import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,18 +12,58 @@ import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
 import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.shared.data.ads.model.RewardedAdState
+import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MarketplaceHomeScreenViewModel(
     private val addAccountCreditsUseCase: AddAccountCreditsUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
+    private val showRewardedAdsUseCase: ShowRewardedAdUseCase,
+    getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase
 ): ViewModel() {
+
+    val rewardedAdUiState = getRewardedAdFlowUseCase()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = RewardedAdState()
+        )
+
+    fun showRewardedAd(
+        activity: Activity,
+        onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
+        onFailure: (msg: String) -> Unit = {}
+    ) {
+        viewModelScope.launch {
+            try {
+                showRewardedAdsUseCase(
+                    activity = activity,
+                    onRewardEarned = { amount, type ->
+                        onSuccess(amount, type)
+                    },
+                    onAdClosed = {
+                        //onFailure("onAdClosed")
+                    },
+                    onAdFailedToShow = { error ->
+                        onFailure("onAdFailedToShow: $error")
+                    }
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                onFailure(e.message ?: "Unknown error")
+            }
+        }
+    }
 
     private var observeCreditsJob: Job? = null
 
@@ -85,10 +126,14 @@ class MarketplaceHomeScreenViewModel(
 
                 val addAccountCreditsUseCase = container.addAccountCreditsUseCase
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
+                val showRewardedAdsUseCase = container.showRewardedAdUseCase
+                val getRewardedAdFlowUseCase = container.getRewardedAdFlowUseCase
 
                 MarketplaceHomeScreenViewModel(
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
-                    observeAccountCreditsUseCase = observeAccountCreditsUseCase
+                    observeAccountCreditsUseCase = observeAccountCreditsUseCase,
+                    showRewardedAdsUseCase = showRewardedAdsUseCase,
+                    getRewardedAdFlowUseCase = getRewardedAdFlowUseCase
                 )
             }
         }

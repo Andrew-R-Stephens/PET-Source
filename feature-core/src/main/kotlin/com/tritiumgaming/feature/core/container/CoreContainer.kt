@@ -14,6 +14,7 @@ import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
 import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSource
+import com.tritiumgaming.data.ads.repository.RewardedAdRepositoryImpl
 import com.tritiumgaming.data.challenges.repository.ChallengeRepositoryImpl
 import com.tritiumgaming.data.challenges.source.ChallengeDataSource
 import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource
@@ -58,6 +59,12 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.ads.RewardedAdsResources
+import com.tritiumgaming.shared.data.ads.asString
+import com.tritiumgaming.shared.data.ads.repository.RewardedAdRepository
+import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
+import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository
 import com.tritiumgaming.shared.data.challenge.usecase.GetChallengesUseCase
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
@@ -229,6 +236,19 @@ class CoreContainer(
     val saveNewsletterInboxLastReadDateUseCase = SaveNewsletterInboxLastReadDateUseCase(
         repository = newsletterRepository
     )
+
+    // Rewarded Ads
+    private val rewardedAdRepository: RewardedAdRepository by lazy {
+        RewardedAdRepositoryImpl(
+            RewardedAdsResources.AdUnitID.REWARDED_AD_1.asString()
+        ).apply {
+            loadAd(applicationContext)
+        }
+    }
+
+    val loadRewardedAdUseCase = LoadRewardedAdUseCase(rewardedAdRepository)
+    val showRewardedAdUseCase = ShowRewardedAdUseCase(rewardedAdRepository)
+    val getRewardedAdFlowUseCase = GetRewardedAdFlowUseCase(rewardedAdRepository)
 
 
     val globalPreferencesRepository: GlobalPreferencesRepository by lazy {

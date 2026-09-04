@@ -140,7 +140,10 @@ class PETApplication : Application(),
             getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
             getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
-            saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase
+            saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
+            loadRewardedAdUseCase = coreContainer.loadRewardedAdUseCase,
+            showRewardedAdUseCase = coreContainer.showRewardedAdUseCase,
+            getRewardedAdFlowUseCase = coreContainer.getRewardedAdFlowUseCase
         )
 
         accountContainer = AccountContainer(
@@ -237,6 +240,9 @@ class PETApplication : Application(),
             getNextUnlockedPaletteUseCase = coreContainer.findNextAvailablePaletteUseCase,
             saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
+            loadRewardedAdUseCase = coreContainer.loadRewardedAdUseCase,
+            showRewardedAdUseCase = coreContainer.showRewardedAdUseCase,
+            getRewardedAdFlowUseCase = coreContainer.getRewardedAdFlowUseCase
         )
 
         investigationContainer = InvestigationContainer(
