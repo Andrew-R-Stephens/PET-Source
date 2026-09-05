@@ -184,15 +184,17 @@ class PETApplication : Application(),
             isPrivacyOptionsRequiredUseCase = coreContainer.isPrivacyOptionsRequiredUseCase,
             showPrivacyOptionsFormUseCase = coreContainer.showPrivacyOptionsFormUseCase,
             // Typographies
-            fetchUnlockedTypographiesUseCase = coreContainer.fetchUnlockedTypographiesUseCase,
+            observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase,
             saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
             getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
             findNextAvailableTypographyUseCase = coreContainer.getNextUnlockedTypographyUseCase,
             // Palettes
-            fetchUnlockedPalettesUseCase = coreContainer.fetchUnlockedPaletteUseCase,
+            observeAccountUnlockedPalettesUseCase = coreContainer.observeAccountUnlockedPalettesUseCase,
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
             getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
-            findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase
+            findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase,
+            // Marketplace
+            getMarketCatalogPalettesUseCase = coreContainer.getMarketCatalogPalettesUseCase
         )
 
         aboutContainer = AboutContainer()

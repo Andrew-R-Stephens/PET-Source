@@ -14,6 +14,7 @@ import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
 import com.tritiumgaming.feature.marketplace.ui.common.AccountUnlockedPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
+import com.tritiumgaming.feature.marketplace.ui.home.MarketplaceHomeScreenViewModel
 import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
@@ -34,6 +35,7 @@ import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCa
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
@@ -91,8 +93,26 @@ class MarketplacePaletteScreenViewModel(
         }
     }
 
-    private var observeCreditsJob: Job? = null
-    private var observeUnlockedPalettesJob: Job? = null
+    val accountCreditsUiState: StateFlow<AccountCreditsUiState> = observeAccountCreditsUseCase()
+        .map { result ->
+            result.fold(
+                onSuccess = { credits ->
+                    AccountCreditsUiState(
+                        credits.spentCredits.toInt(),
+                        credits.earnedCredits.toInt()
+                    )
+                },
+                onFailure = { error ->
+                    Log.e(TAG, "Error observing account credits: $error")
+                    AccountCreditsUiState(0, 0)
+                }
+            )
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = AccountCreditsUiState(0, 0)
+        )
 
     private val _accountUnlockedPalettes = observeAccountUnlockedPalettesUseCase()
         .map { it.getOrNull() }
@@ -172,14 +192,6 @@ class MarketplacePaletteScreenViewModel(
         }
     }
 
-    private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
-    val accountCreditsUiState = _accountCreditsUiState.asStateFlow()
-    private fun setAccountUiStateDefault() = _accountCreditsUiState.update { AccountCreditsUiState() }
-
-    private val _accountUnlockedPalettesUiState = MutableStateFlow(AccountUnlockedPalettesUiState())
-    private fun setUnlockedPalettesUiStatDefault() =
-        _accountUnlockedPalettesUiState.update { AccountUnlockedPalettesUiState() }
-
     private val _marketAccountPaletteState = combine(
         _marketCatalogPalettes,
         _accountUnlockedPalettes
@@ -236,13 +248,9 @@ class MarketplacePaletteScreenViewModel(
         SharingStarted.WhileSubscribed(5000),
         emptyList()
     )
-    val marketPaletteBundlesState = _marketPaletteBundlesState
 
-    private val _marketCatalogScreenUiState = MutableStateFlow(MarketCatalogScreenUiState())
-    val marketCatalogScreenUiState = combine(
-        _marketPaletteBundlesState,
-        _marketAccountPaletteState
-    ){ paletteBundles, unlockedPalettes ->
+    val marketCatalogScreenUiState =
+        _marketAccountPaletteState.map { unlockedPalettes ->
 
         val grouped = unlockedPalettes
             .filterNot { it.priority == -1L }
@@ -250,20 +258,6 @@ class MarketplacePaletteScreenViewModel(
             .groupBy { it.group ?: "" }
 
         val items = mutableListOf<ShopScreenUiItem>()
-
-        /*items.add(
-            ShopScreenUiItem.Header("Theme Bundles")
-        )
-        paletteBundles.forEach { bundleState ->
-            items.add(
-                ShopScreenUiItem.PaletteBundle(
-                    key = bundleState.uuid,
-                    marketBundle = bundleState.bundle,
-                    marketPalettes = bundleState.items,
-                    unlocked = bundleState.unlocked
-                )
-            )
-        }*/
 
         grouped.forEach { (groupName, groupPalettes) ->
             if (groupName.isNotEmpty()) {
@@ -305,80 +299,7 @@ class MarketplacePaletteScreenViewModel(
         }
     }
 
-    private fun startObservingCredits() {
-        observeCreditsJob = viewModelScope.launch {
-            observeAccountCreditsUseCase()
-                .onCompletion {
-                    Log.d(TAG, "observeCreditsJob completed")
-                    observeCreditsJob?.cancel() }
-                .catch { it.printStackTrace() }
-                .collect { result: Result<AccountCredits> ->
-                    if(result.isSuccess) {
-                        result.getOrNull()?.let { result ->
-                            _accountCreditsUiState.update {
-                                accountCreditsUiState.value.copy(
-                                    spentCredits = result.spentCredits.toInt(),
-                                    earnedCredits = result.earnedCredits.toInt()
-                                )
-                            }
-                        }
-                        Log.d(TAG, "observeCreditsJob updating accountUiState")
-                    }
-                }
-        }
-    }
-
-    private fun stopObservingCredits() {
-        observeCreditsJob?.cancel()
-
-        setAccountUiStateDefault()
-
-        Log.d(TAG, "observeCreditsJob stopping")
-    }
-
-    private fun startObservingUnlockedPalettes() {
-        observeUnlockedPalettesJob = viewModelScope.launch {
-            observeAccountUnlockedPalettesUseCase()
-                .onCompletion {
-                    Log.d(TAG, "observeCreditsJob completed")
-                    observeUnlockedPalettesJob?.cancel() }
-                .catch { it.printStackTrace() }
-                .collect { result: Result<List<AccountPalette>> ->
-                    if(result.isSuccess) {
-                        _accountUnlockedPalettesUiState.update {
-                            it.copy(
-                                unlockedPalettes = result.getOrNull() ?: emptyList()
-                            )
-                        }
-                        Log.d(TAG, "observeUnlockedPalettesJob updating " +
-                                "accountUnlockedPalettesUiState")
-                    }
-                }
-        }
-        observeUnlockedPalettesJob?.start()
-    }
-
-    private fun stopObservingUnlockedPalettes() {
-        observeUnlockedPalettesJob?.cancel()
-
-        setUnlockedPalettesUiStatDefault()
-
-        Log.d(TAG, "observeUnlockedPalettesJob stopping")
-    }
-
-    private fun startObservingAccount() {
-        startObservingCredits()
-        startObservingUnlockedPalettes()
-    }
-
-    private fun stopObservingAccount() {
-        stopObservingCredits()
-        stopObservingUnlockedPalettes()
-    }
-
     init {
-        startObservingAccount()
-
         initMarketCatalogBundles()
         initMarketCatalogPalettes()
     }

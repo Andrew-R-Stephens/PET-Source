@@ -506,10 +506,7 @@ class CoreContainer(
         marketRepository = paletteRepository,
         accountRepository = firestoreAccountRepository
     )
-    val findNextAvailablePaletteUseCase = GetNextUnlockedPaletteUseCase(
-        marketRepository = paletteRepository,
-        accountRepository = firestoreAccountRepository
-    )
+    val findNextAvailablePaletteUseCase = GetNextUnlockedPaletteUseCase()
     val getMarketCatalogPalettesUseCase = GetMarketCatalogPalettesUseCase(
         repository = paletteRepository
     )

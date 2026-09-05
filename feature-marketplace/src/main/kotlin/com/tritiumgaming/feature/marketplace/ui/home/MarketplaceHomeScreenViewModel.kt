@@ -18,8 +18,10 @@ import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -65,7 +67,26 @@ class MarketplaceHomeScreenViewModel(
         }
     }
 
-    private var observeCreditsJob: Job? = null
+    val accountCreditsUiState: StateFlow<AccountCreditsUiState> = observeAccountCreditsUseCase()
+        .map { result ->
+            result.fold(
+                onSuccess = { credits ->
+                    AccountCreditsUiState(
+                        credits.spentCredits.toInt(),
+                        credits.earnedCredits.toInt()
+                    )
+                },
+                onFailure = { error ->
+                    Log.e(TAG, "Error observing account credits: $error")
+                    AccountCreditsUiState(0, 0)
+                }
+            )
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = AccountCreditsUiState(0, 0)
+        )
 
     fun addCredits(
         credits: Int,
@@ -81,38 +102,6 @@ class MarketplaceHomeScreenViewModel(
                 onFailure(e.message ?: "Unknown error")
             }
         }
-    }
-
-    private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
-    val accountCreditsUiState = _accountCreditsUiState.asStateFlow()
-
-    private fun startObservingCredits() {
-        observeCreditsJob = viewModelScope.launch {
-            observeAccountCreditsUseCase()
-                .onCompletion {
-                    Log.d(TAG, "observeCreditsJob completed")
-                    observeCreditsJob?.cancel() }
-                .catch { it.printStackTrace() }
-                .collect { result: Result<AccountCredits> ->
-                    if(result.isSuccess) {
-                        _accountCreditsUiState.update {
-                            accountCreditsUiState.value.copy(
-                                spentCredits = result.getOrNull()?.spentCredits?.toInt() ?: 0,
-                                earnedCredits = result.getOrNull()?.earnedCredits?.toInt() ?: 0
-                            )
-                        }
-                        Log.d(TAG, "observeCreditsJob updating accountUiState")
-                    }
-                }
-        }
-    }
-
-    private fun startObservingAccount() {
-        startObservingCredits()
-    }
-
-    init {
-        startObservingAccount()
     }
 
     companion object {

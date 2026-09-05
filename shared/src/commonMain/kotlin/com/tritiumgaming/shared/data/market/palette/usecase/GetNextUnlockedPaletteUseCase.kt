@@ -7,58 +7,7 @@ import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.market.palette.model.toAccountMarketPalette
 import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
 
-class GetNextUnlockedPaletteUseCase(
-    private val marketRepository: MarketCatalogPaletteRepository,
-    private val accountRepository: FirestoreAccountRepository
-) {
-    suspend operator fun invoke(
-        currentUUID: String,
-        direction: IncrementDirection
-    ): Result<String> {
-
-        println("getNextUnlockedPaletteUseCase getting Market Palettes")
-        val marketPalettes: List<AccountMarketPalette> =
-            marketRepository.get()
-                .getOrDefault(emptyList()).toAccountMarketPalette()
-
-        println("getNextUnlockedPaletteUseCase getting Account Palettes")
-        val accountPalettes: List<AccountMarketPalette> =
-            accountRepository.fetchUnlockedPalettes()
-                .getOrDefault(emptyList()).toAccountMarketPalette()
-
-        println("getNextUnlockedPaletteUseCase merging Market Palettes")
-        val mergedMarketAccountPalettes =
-            accountPalettes.fold(marketPalettes) { marketPs, accountP ->
-                marketPs.map { marketP ->
-                    if (accountP.uuid == marketP.uuid) {
-                        marketP.copy(
-                            uuid = accountP.uuid,
-                            unlocked = accountP.unlocked,
-                            name = marketP.name,
-                            group = marketP.group,
-                            buyCredits = marketP.buyCredits,
-                            priority = marketP.priority,
-                            palette = marketP.palette
-                        )
-                    } else marketP
-                }
-            }
-
-        println("getNextUnlockedPaletteUseCase filtering for unlocked Market Palettes")
-        val filteredMergedMarketAccountPalettes =
-            mergedMarketAccountPalettes.filter { it.isUnlocked }
-
-        val uuidsFiltered = filteredMergedMarketAccountPalettes.map { it.uuid }
-        val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
-
-        var increment = currentIndex + direction.value
-        if(increment >= uuidsFiltered.size) increment = 0
-        if(increment < 0) increment = uuidsFiltered.size - 1
-
-        println("getNextUnlockedPaletteUseCase returning uuids")
-        return Result.success(uuidsFiltered[increment])
-    }
-
+class GetNextUnlockedPaletteUseCase {
     operator fun invoke(
         palettes: List<AccountMarketPalette>,
         currentUUID: String,

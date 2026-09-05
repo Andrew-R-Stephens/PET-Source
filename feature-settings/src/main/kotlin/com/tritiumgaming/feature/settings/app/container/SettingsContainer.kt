@@ -1,7 +1,10 @@
 package com.tritiumgaming.feature.settings.app.container
 
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
@@ -41,12 +44,14 @@ class SettingsContainer(
     internal val isPrivacyOptionsRequiredUseCase: IsPrivacyOptionsRequiredUseCase,
     internal val showPrivacyOptionsFormUseCase: ShowPrivacyOptionsFormUseCase,
     // Typographies
-    internal val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase,
+    internal val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
     internal val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     internal val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     internal val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase,
-    internal val fetchUnlockedPalettesUseCase: FetchUnlockedPalettesUseCase,
+    internal val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     internal val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     internal val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
     internal val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
+    // Marketplace
+    internal val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
 )
