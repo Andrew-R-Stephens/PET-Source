@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.market.typography.usecase
+package com.tritiumgaming.shared.data.preferences.usecase
 
 import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
 

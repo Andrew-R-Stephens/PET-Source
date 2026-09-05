@@ -29,9 +29,13 @@ module.exports = {
         "camelcase": "off",
         "require-jsdoc": "off",
         "@typescript-eslint/no-explicit-any": "off",
+        "object-curly-spacing": "off",
+        "comma-dangle": "off",
+        "padded-blocks": "off",
+        "spaced-comment": "off",
         "quotes": ["error", "double"],
         "import/no-unresolved": 0,
         "indent": ["error", 4],
-        "max-len": ["error", {code: 120}],
+        "max-len": ["error", {code: 120}]
     },
 };

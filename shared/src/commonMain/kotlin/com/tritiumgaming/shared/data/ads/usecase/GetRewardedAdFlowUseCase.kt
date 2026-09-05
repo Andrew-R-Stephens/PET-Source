@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 class GetRewardedAdFlowUseCase(
     private val repository: RewardedAdRepository
 ) {
-    operator fun invoke(): StateFlow<RewardedAdState> {
+    operator fun invoke(): StateFlow<Result<RewardedAdState>> {
         return repository.adState
     }
 }

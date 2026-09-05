@@ -3,11 +3,11 @@ package com.tritiumgaming.feature.settings.app.container
 import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
 import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase

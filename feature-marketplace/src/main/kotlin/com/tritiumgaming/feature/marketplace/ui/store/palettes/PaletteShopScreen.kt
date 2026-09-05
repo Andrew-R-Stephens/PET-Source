@@ -171,7 +171,6 @@ fun PaletteShopScreen(
                 }
             }
 
-
             pendingEquipPalette?.let { palette ->
                 val paletteResource = palette.toPaletteResource()
                 EquipConfirmationDialog(

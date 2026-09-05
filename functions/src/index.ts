@@ -52,16 +52,17 @@ async function setMarketplaceAgreementState_v1(request: CallableRequest<Marketpl
     const uid = auth.uid;
 
     const db = getFirestore();
-    const purchaseDocRef = db.doc(`Users/${uid}/Account/TransactionHistory/PurchaseHistory/PurchaseItem`);
+    const userRef = db.doc(`Users/${uid}`);
+    const preferencesRef = db.doc(`Users/${uid}/Account/Preferences`);
 
     try {
         await db.runTransaction(async (transaction) => {
-            const snapshot = await transaction.get(purchaseDocRef);
-            if (!snapshot.exists) {
-                transaction.set(purchaseDocRef, {
-                    marketplaceAgreementShown: isAgreementShown,
-                });
-            }
+            // Ensure parent documents exist to avoid "ghost" documents in the console
+            transaction.set(userRef, {}, {merge: true});
+
+            transaction.set(preferencesRef, {
+                marketplaceAgreementShown: isAgreementShown
+            }, {merge: true});
         });
 
         return {success: true, isAgreementShown};
@@ -108,7 +109,9 @@ async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseReque
     const uid = auth.uid;
 
     const db = getFirestore();
+    const userRef = db.doc(`Users/${uid}`);
     const userCreditsRef = db.doc(`Users/${uid}/Account/Credits`);
+    const transactionHistoryRef = db.doc(`Users/${uid}/Account/TransactionHistory`);
     const unlockHistoryRef = db.collection(`Users/${uid}/Account/TransactionHistory/UnlockHistory`);
 
     let itemRef: DocumentReference;
@@ -129,6 +132,8 @@ async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseReque
 
     try {
         const result = await db.runTransaction(async (transaction) => {
+            const now = Timestamp.now();
+
             // 1. Get Item Data
             const itemSnap = await transaction.get(itemRef);
             if (!itemSnap.exists) {
@@ -153,15 +158,16 @@ async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseReque
                 throw new HttpsError("failed-precondition", "Insufficient credits.");
             }
 
-            // 4. Update Credits
+            // 4. Update Credits & Ensure Parents Exist (Avoid ghost documents)
+            transaction.set(userRef, {}, {merge: true});
+            transaction.set(transactionHistoryRef, {}, {merge: true});
+
             transaction.set(userCreditsRef, {
                 earnedCredits: earnedCredits - price,
                 spentCredits: spentCredits + price,
             }, {merge: true});
 
             // 5. Unlock Item(s)
-            const now = Timestamp.now();
-
             switch (itemType) {
             case "theme": {
                 transaction.set(
@@ -261,6 +267,7 @@ async function fetchTypographies_v1(request: CallableRequest<QueryRequest>) {
         return typographies;
     } catch (error) {
         logger.error("Error fetching typographies:", error);
+        if (error instanceof HttpsError) throw error;
         throw new HttpsError("internal", "An error occurred while fetching typographies.");
     }
 }
@@ -316,6 +323,7 @@ async function fetchPalettes_v1(request: CallableRequest<QueryRequest>) {
         return palettes;
     } catch (error) {
         logger.error("Error fetching palettes:", error);
+        if (error instanceof HttpsError) throw error;
         throw new HttpsError("internal", "An error occurred while fetching palettes.");
     }
 }
@@ -382,6 +390,7 @@ async function fetchBundles_v1(request: CallableRequest<QueryRequest>) {
         return bundles;
     } catch (error) {
         logger.error("Error fetching bundles:", error);
+        if (error instanceof HttpsError) throw error;
         throw new HttpsError("internal", "An error occurred while fetching bundles.");
     }
 }
@@ -424,6 +433,7 @@ async function addCredits_v1(request: CallableRequest<AddCreditsRequest>) {
 
     const uid = auth.uid;
     const db = getFirestore();
+    const userRef = db.doc(`Users/${uid}`);
     const userCreditsRef = db.doc(`Users/${uid}/Account/Credits`);
 
     try {
@@ -440,9 +450,12 @@ async function addCredits_v1(request: CallableRequest<AddCreditsRequest>) {
 
             const newEarnedCredits = earnedCredits + credits;
 
+            // Ensure parent document exists to avoid "ghost" documents in the console
+            transaction.set(userRef, {}, {merge: true});
+
             transaction.set(userCreditsRef, {
                 earnedCredits: newEarnedCredits,
-                spentCredits: spentCredits,
+                spentCredits: spentCredits
             }, {merge: true});
 
             return {success: true, newBalance: newEarnedCredits};

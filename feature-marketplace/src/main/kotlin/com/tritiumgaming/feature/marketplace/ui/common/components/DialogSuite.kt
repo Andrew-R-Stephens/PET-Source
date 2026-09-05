@@ -215,10 +215,7 @@ fun EquipConfirmationDialog(
                         .height(48.dp)
                 ) {
                     Text(
-                        text = String.format(
-                            stringResource(R.string.marketplace_purchase_equip),
-                            stringResource(LocalPalette.current.extrasFamily.title)
-                        ),
+                        text = targetTitle,
                         fontSize = 18.sp,
                         color = LocalPalette.current.onSurface,
                         modifier = Modifier
