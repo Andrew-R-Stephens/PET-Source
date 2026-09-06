@@ -22,6 +22,8 @@ class AppInfoViewModel(
     val contributorsList = _contributorsList
 
     companion object {
+        const val TAG = "AppInfoViewModel"
+
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]

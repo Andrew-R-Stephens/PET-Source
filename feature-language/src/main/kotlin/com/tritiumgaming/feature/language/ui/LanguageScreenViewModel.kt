@@ -70,6 +70,8 @@ class LanguageScreenViewModel(
 
     companion object {
 
+        const val TAG = "LanguageScreenViewModel"
+
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]

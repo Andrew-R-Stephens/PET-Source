@@ -47,10 +47,10 @@ class AccountScreenViewModel(
     private val _accountCreditsUiState = observeAccountCreditsUseCase()
         .map { result ->
             if(result.isSuccess) {
-                Log.d("AccountViewModel", "Credits observation updated successfully")
+                Log.d(TAG, "Credits observation updated successfully")
             }
             result.exceptionOrNull()?.let { error ->
-                Log.e("AccountViewModel", "Error observing credits: ${error.message}")
+                Log.e(TAG, "Error observing credits: ${error.message}")
             }
 
             result.getOrNull()?.let { credits ->
@@ -143,7 +143,7 @@ class AccountScreenViewModel(
         credentialOption: CredentialOption
     ): Result<GetCredentialResponse> = withContext(Dispatchers.IO) {
 
-        Log.e("FirebaseAuth", "Attempting to obtain credentials.")
+        Log.e(TAG, "Attempting to obtain credentials.")
 
         val request = GetCredentialRequest.Builder()
             .addCredentialOption(credentialOption)
@@ -151,15 +151,15 @@ class AccountScreenViewModel(
 
         try {
 
-            Log.d("FirebaseAuth", "Attempting create credentials manager.")
+            Log.d(TAG, "Attempting create credentials manager.")
             val credentialManager = CredentialManager.create(context = context)
 
-            Log.d("FirebaseAuth", "Attempting to obtain credentials.")
+            Log.d(TAG, "Attempting to obtain credentials.")
             val credentialResponse = credentialManager.getCredential(
                 request = request,
                 context = activity
             )
-            Log.d("FirebaseAuth", "Obtaining credentials successful.")
+            Log.d(TAG, "Obtaining credentials successful.")
 
             Result.success(credentialResponse)
 
@@ -172,10 +172,12 @@ class AccountScreenViewModel(
     }
 
     init {
-        Log.d("AccountViewModel", "AccountScreenViewModel initialized")
+        Log.d(TAG, "AccountScreenViewModel initialized")
     }
 
     companion object {
+
+        const val TAG = "AccountScreenViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

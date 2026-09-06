@@ -209,6 +209,8 @@ class ObjectiveBoardViewModel(
         const val NOT_COMPLETE: Boolean = false
         const val COMPLETE: Boolean = true
 
+        const val TAG = "ObjectiveBoardViewModel"
+
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]

@@ -89,6 +89,8 @@ class CustomDifficultyViewModel(
 
     companion object {
 
+        const val TAG = "CustomDifficultyViewModel"
+
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]

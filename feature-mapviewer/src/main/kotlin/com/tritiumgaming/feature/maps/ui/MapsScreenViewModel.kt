@@ -212,7 +212,7 @@ class MapsScreenViewModel(
     }
 
     init {
-        Log.d("MapsViewModel", "initializing")
+        Log.d(TAG, "initializing")
         viewModelScope.launch {
             fetchSimpleMapsUseCase()
         }
@@ -229,6 +229,8 @@ class MapsScreenViewModel(
     }
 
     companion object {
+
+        const val TAG = "MapsScreenViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

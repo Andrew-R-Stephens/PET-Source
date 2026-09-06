@@ -84,7 +84,7 @@ class PETActivityViewModel(
             val result = getPaletteByUUIDUseCase(uuid).getOrThrow()
             result
         } catch (e: Exception) {
-            Log.e("PETActivityViewModel", "getMarketCatalogPaletteByUUIDUseCase: ${e.message}. Defaulting.", e)
+            Log.e(TAG, "getMarketCatalogPaletteByUUIDUseCase: ${e.message}. Defaulting.", e)
 
             val palette = LocalDefaultPalette
             palette
@@ -96,7 +96,7 @@ class PETActivityViewModel(
             val result = getTypographyByUUIDUseCase(uuid).getOrThrow()
             result
         } catch (e: Exception) {
-            Log.e("PETActivityViewModel", "getMarketCatalogTypographyByUUIDUseCase: ${e.message}. Defaulting.", e)
+            Log.e(TAG, "getMarketCatalogTypographyByUUIDUseCase: ${e.message}. Defaulting.", e)
 
             val typography = LocalDefaultTypography
             typography
@@ -107,7 +107,7 @@ class PETActivityViewModel(
     fun initMobileAdsConsentManager(activity: Activity) {
         gatherAdsConsentUseCase(activity) { error ->
             if (error is com.google.android.ump.FormError) {
-                Log.d("PETActivityViewModel", "${error.errorCode}: ${error.message}")
+                Log.d(TAG, "${error.errorCode}: ${error.message}")
             }
             // Update UI State with current consent info
             val consentInformation = com.google.android.ump.UserMessagingPlatform.getConsentInformation(activity)
@@ -136,12 +136,14 @@ class PETActivityViewModel(
         initFlowPolicyUseCase()
             .distinctUntilChanged()
             .onEach {
-                Log.d("PETActivityViewModel", "Consent Policy: $it")
+                Log.d(TAG, "Consent Policy: $it")
                 applyPolicyUseCase(it)
             }.launchIn(viewModelScope)
     }
 
     companion object {
+
+        const val TAG = "PETActivityViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

@@ -113,7 +113,7 @@ class CatalogPossessionScreenViewModel(
                 itemIndex = index ?: it.itemIndex
             )
         }
-        Log.d("CodexViewModel", "setScrollOffset: $offset")
+        Log.d(TAG, "setScrollOffset: $offset")
     }
 
     init {
@@ -121,6 +121,8 @@ class CatalogPossessionScreenViewModel(
     }
 
     companion object {
+
+        const val TAG = "CatalogPossessionScreenViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

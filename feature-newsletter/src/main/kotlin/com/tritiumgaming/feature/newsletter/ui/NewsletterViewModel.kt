@@ -41,10 +41,10 @@ class NewsletterViewModel(
 
     private val _inboxesUiState = getFlowNewsletterInboxesUseCase()
         .combine(getFlowNewsletterDatastoreUseCase()) { inboxes, datastore ->
-            Log.d("NewsletterViewModel",
+            Log.d(TAG,
                 "Fetched remote flow:\n ${inboxes.map { 
                     "${it.title}: ${it.channel?.messages?.map { message -> message.title }}\n"}}")
-            Log.d("NewsletterViewModel",
+            Log.d(TAG,
                 "Fetched datastore:\n ${datastore.data.entries.map { 
                     "${it.key} -> ${it.value}\n"}}")
 
@@ -138,12 +138,14 @@ class NewsletterViewModel(
     }
 
     init {
-        Log.d("NewsletterViewModel", "Initializing datastore...")
+        Log.d(TAG, "Initializing datastore...")
 
         loadInboxes()
     }
 
     companion object {
+
+        const val TAG = "NewsletterViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

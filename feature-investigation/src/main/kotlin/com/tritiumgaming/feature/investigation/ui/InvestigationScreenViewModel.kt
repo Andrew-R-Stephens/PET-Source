@@ -317,7 +317,7 @@ class InvestigationScreenViewModel private constructor(
             updateOperationMapUseCase(mapState)
 
         } catch (e: Exception) {
-            Log.e("InvestigationViewModel", "Error setting map index")
+            Log.e(TAG, "Error setting map index")
             e.printStackTrace()
         }
 
@@ -382,7 +382,7 @@ class InvestigationScreenViewModel private constructor(
                 updateOperationDifficultyUseCase(newDifficultyState)
 
             } catch (e: Exception) {
-                Log.e("InvestigationViewModel", "Update Difficulty failed", e)
+                Log.e(TAG, "Update Difficulty failed", e)
             }
         }
     }
@@ -1732,7 +1732,7 @@ class InvestigationScreenViewModel private constructor(
                 updateDifficulty(newIndex)
             }
             .onFailure {
-                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
+                Log.e(TAG, "Set Difficulty Index failed.")
             }
     }
 
@@ -1813,7 +1813,7 @@ class InvestigationScreenViewModel private constructor(
 
         val newLevel = currentLevel.coerceAtMost(target)
 
-        Log.d("InvestigationViewModel", "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
+        Log.d(TAG, "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
 
         playOperationTimer()
         skipPlayerInsanity(newLevel)
@@ -2295,6 +2295,8 @@ class InvestigationScreenViewModel private constructor(
     }
 
     companion object {
+
+        const val TAG = "InvestigationScreenViewModel"
 
         val Factory: ViewModelProvider.Factory =
             viewModelFactory {

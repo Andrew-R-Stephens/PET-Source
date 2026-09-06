@@ -118,7 +118,7 @@ class MarketplaceTypographiesScreenViewModel(
 
     companion object {
 
-        const val TAG = "MarketplaceTypographyScreenViewModel"
+        const val TAG = "MarketplaceTypographiesScreenViewModel"
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

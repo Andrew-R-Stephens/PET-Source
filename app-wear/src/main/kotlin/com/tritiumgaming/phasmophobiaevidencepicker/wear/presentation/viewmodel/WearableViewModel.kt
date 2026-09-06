@@ -66,6 +66,8 @@ class WearableViewModel(
     }
 
     companion object {
+        const val TAG = "WearableViewModel"
+
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]

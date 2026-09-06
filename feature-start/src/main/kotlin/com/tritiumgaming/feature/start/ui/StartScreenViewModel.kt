@@ -108,12 +108,12 @@ class StartScreenViewModel(
 
             try {
                 val fetchedInboxes = fetchNewsletterInboxesUseCase {
-                    Log.d("StartViewModel",
+                    Log.d(TAG,
                         "Failed to refresh inboxes because it was too soon.")
                 }.getOrThrow()
 
                 fetchedInboxes.forEach { inbox ->
-                    Log.d("StartViewModel",
+                    Log.d(TAG,
                         "Fetched inbox: ${inbox.title} " +
                                 "${inbox.channel?.messages?.map { "${ it.title }\n" }}")
                 }
@@ -158,12 +158,12 @@ class StartScreenViewModel(
     }*/
 
     init {
-        Log.d("StartViewModel", "Initializing...")
+        Log.d(TAG, "Initializing...")
 
         viewModelScope.launch {
             //initialDataStoreSetupEvent()
 
-                Log.d("StartViewModel",
+                Log.d(TAG,
                     "Incrementing times opened from: ${reviewFlow.value.timesOpened}")
 
                 incrementAppTimesOpenedUseCase(
@@ -171,7 +171,7 @@ class StartScreenViewModel(
                     incrementBy = 1
                 )
 
-                Log.d("StartViewModel", "Finish incrementing app times opened")
+                Log.d(TAG, "Finish incrementing app times opened")
 
         }
 
@@ -180,6 +180,7 @@ class StartScreenViewModel(
     }
 
     companion object {
+        const val TAG = "StartScreenViewModel"
         internal const val MAX_TIMES_OPENED_TARGET: Int = 5
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
