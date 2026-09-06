@@ -108,14 +108,12 @@ class StartScreenViewModel(
 
             try {
                 val fetchedInboxes = fetchNewsletterInboxesUseCase {
-                    Log.d(TAG,
-                        "Failed to refresh inboxes because it was too soon.")
+                    Log.e(TAG, "Failed to refresh inboxes because it was too soon.")
                 }.getOrThrow()
 
                 fetchedInboxes.forEach { inbox ->
-                    Log.d(TAG,
-                        "Fetched inbox: ${inbox.title} " +
-                                "${inbox.channel?.messages?.map { "${ it.title }\n" }}")
+                    Log.d(TAG, "Fetched inbox: ${inbox.title} " +
+                            "${inbox.channel?.messages?.map { "${ it.title }\n" }}")
                 }
 
                 onSuccess()
@@ -151,27 +149,19 @@ class StartScreenViewModel(
         }
     }
 
-    /*private fun initialDataStoreSetupEvent() {
-        setupNewsletterDatastoreUseCase()
-        setupUserPreferencesDataStoreUseCase()
-        setupReviewDataStoreUseCase()
-    }*/
-
     init {
         Log.d(TAG, "Initializing...")
 
         viewModelScope.launch {
-            //initialDataStoreSetupEvent()
 
-                Log.d(TAG,
-                    "Incrementing times opened from: ${reviewFlow.value.timesOpened}")
+            Log.d(TAG, "Incrementing times opened from: ${reviewFlow.value.timesOpened}")
 
-                incrementAppTimesOpenedUseCase(
-                    count = reviewFlow.value.timesOpened,
-                    incrementBy = 1
-                )
+            incrementAppTimesOpenedUseCase(
+                count = reviewFlow.value.timesOpened,
+                incrementBy = 1
+            )
 
-                Log.d(TAG, "Finish incrementing app times opened")
+            Log.d(TAG, "Finish incrementing app times opened")
 
         }
 

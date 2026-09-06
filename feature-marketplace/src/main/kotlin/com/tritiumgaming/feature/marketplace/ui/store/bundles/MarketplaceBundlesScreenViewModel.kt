@@ -182,7 +182,7 @@ class MarketplaceBundlesScreenViewModel(
                 } else {
                     val errorMessage = result.exceptionOrNull()?.message ?: "Unknown error"
                     onFailure("Purchase failed: $errorMessage")
-                    Log.d(TAG, "Purchase failed: $errorMessage")
+                    Log.e(TAG, "Purchase failed: $errorMessage")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

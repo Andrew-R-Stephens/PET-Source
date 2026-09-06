@@ -143,7 +143,7 @@ class AccountScreenViewModel(
         credentialOption: CredentialOption
     ): Result<GetCredentialResponse> = withContext(Dispatchers.IO) {
 
-        Log.e(TAG, "Attempting to obtain credentials.")
+        Log.d(TAG, "Attempting to obtain credentials.")
 
         val request = GetCredentialRequest.Builder()
             .addCredentialOption(credentialOption)

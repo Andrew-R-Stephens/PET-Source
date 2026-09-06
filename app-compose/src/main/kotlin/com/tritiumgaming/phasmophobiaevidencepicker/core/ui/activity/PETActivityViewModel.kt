@@ -5,10 +5,13 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.ump.ConsentInformation.PrivacyOptionsRequirementStatus
+import com.google.android.ump.FormError
+import com.google.android.ump.UserMessagingPlatform.getConsentInformation
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleAdsConsentState
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
@@ -106,11 +109,11 @@ class PETActivityViewModel(
     /** GDPR consent manager */
     fun initMobileAdsConsentManager(activity: Activity) {
         gatherAdsConsentUseCase(activity) { error ->
-            if (error is com.google.android.ump.FormError) {
-                Log.d(TAG, "${error.errorCode}: ${error.message}")
+            if (error is FormError) {
+                Log.e(TAG, "${error.errorCode}: ${error.message}")
             }
             // Update UI State with current consent info
-            val consentInformation = com.google.android.ump.UserMessagingPlatform.getConsentInformation(activity)
+            val consentInformation = getConsentInformation(activity)
             _googleAdsPermissionsUiState.update { it.copy(
                 canRequestAds = consentInformation.canRequestAds(),
                 isPrivacyOptionsRequired = consentInformation.privacyOptionsRequirementStatus == PrivacyOptionsRequirementStatus.REQUIRED
@@ -147,7 +150,7 @@ class PETActivityViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
+                val application = this[APPLICATION_KEY]
                 val container = (application as AppContainerProvider).provideAppContainer()
 
                 val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
