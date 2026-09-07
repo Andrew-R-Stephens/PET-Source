@@ -75,7 +75,6 @@ import com.tritiumgaming.core.ui.theme.purple_M150
 import com.tritiumgaming.core.ui.theme.purple_M250
 import com.tritiumgaming.core.ui.theme.purple_M450
 import com.tritiumgaming.core.ui.theme.purple_M475
-import com.tritiumgaming.core.ui.theme.purple_M525
 import com.tritiumgaming.core.ui.theme.purple_M550
 import com.tritiumgaming.core.ui.theme.purple_M75
 import com.tritiumgaming.core.ui.theme.purple_M825
@@ -85,6 +84,7 @@ import com.tritiumgaming.core.ui.theme.purple_M950
 import com.tritiumgaming.core.ui.theme.red
 import com.tritiumgaming.core.ui.theme.red_M150
 import com.tritiumgaming.core.ui.theme.red_M225
+import com.tritiumgaming.core.ui.theme.red_M25
 import com.tritiumgaming.core.ui.theme.red_M250
 import com.tritiumgaming.core.ui.theme.red_M300
 import com.tritiumgaming.core.ui.theme.red_M350
@@ -283,10 +283,10 @@ val Monochromacy = PET_Base.copy(
     secondaryContainer = Color(0xFF8F8F8F),
     onSecondaryContainer = Color(0xFF424242),
 
-    tertiary = Color(0xFF919191),
+    tertiary = Color(0xFFC7C6CA),
     onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFF1A1A1A),
-    onTertiaryContainer = Color(0xFFD1D1D1),
+    tertiaryContainer = Color(0xFF919094),
+    onTertiaryContainer = Color(0xFF1B1B1F),
 
     error = Color(0xFF505050),
     onError = Color(0xFFF5F5F5),
@@ -588,6 +588,10 @@ val Tritanomaly = PET_Base.copy(
 )
 
 val Recruit = Prestige.copy(
+    /*primary = Color(0xFFFFB77C),
+    onPrimary = Color(0xFF432B00),
+    primaryContainer = Color(0xFF624000),
+    onPrimaryContainer = Color(0xFFFFDDB1),*/
     primary = orange_M150,
     onPrimary = white,
     primaryContainer = Color(0xFFFDCA81),
@@ -688,10 +692,10 @@ val Investigator = Prestige.copy(
     secondaryContainer = Color(0xFFFCFCFC),
     onSecondaryContainer = Color(0xFF737373),
 
-    tertiary = purple_M525,
+    tertiary = blue_M75,
     onTertiary = white,
-    tertiaryContainer = Color(0xFFCC1976),
-    onTertiaryContainer = Color(0xFF3E0E21),
+    tertiaryContainer = Color(0xFF11142F),
+    onTertiaryContainer = blue_M75,
 
     error = Color(0xFFAE0A5F),
     onError = white,
@@ -732,7 +736,7 @@ val Investigator = Prestige.copy(
         c = white_M300,
         d = purple_M75,
         e = purple_M250,
-        f = purple_M525,
+        f = blue_M75,
         g = purple_M950,
         h = black,
     ),
@@ -741,7 +745,7 @@ val Investigator = Prestige.copy(
         primary = purple_M75,
         color_1 = purple_M75,
         color_2 = purple_M75,
-        color_3 = purple_M525,
+        color_3 = blue_M75,
         color_4 = purple_M950,
         color_5 = white,
         color_6 = white_M300,
@@ -779,10 +783,10 @@ val PrivateInvestigator = Prestige.copy(
     secondaryContainer = Color(0xFF422F1A),
     onSecondaryContainer = Color(0xFFC5915E),
 
-    tertiary = orange_M10,
-    onTertiary = Color(0xFF723303),
-    tertiaryContainer = Color(0xFFCE6903),
-    onTertiaryContainer = Color(0xFFFCE7D4),
+    tertiary = blue_M75,
+    onTertiary = white,
+    tertiaryContainer = Color(0xFF11142F),
+    onTertiaryContainer = blue_M75,
 
     error = orange,
     onError = Color(0xFF523000),
@@ -867,10 +871,10 @@ val Detective = Prestige.copy(
     secondaryContainer = Color(0xFF526060),
     onSecondaryContainer = Color(0xFFD6DBDB),
 
-    tertiary = Color(0xFF1A9863),
-    onTertiary = Color(0xFF042016),
-    tertiaryContainer = Color(0xFF116945),
-    onTertiaryContainer = Color(0xFF7CE9BC),
+    tertiary = blue_M90,
+    onTertiary = black,
+    tertiaryContainer = Color(0xFF002F2A),
+    onTertiaryContainer = blue_M90,
 
     error = green_M25,
     onError = green_M875,
@@ -958,10 +962,10 @@ val Technician = Prestige.copy(
     secondaryContainer = Color(0xFF424242),
     onSecondaryContainer = Color(0xFFB0B0B0),
 
-    tertiary = Color(0xFF5E0D0B),
-    onTertiary = Color(0xFFE0E0E0),
-    tertiaryContainer = Color(0xFFE6211E),
-    onTertiaryContainer = Color(0xFF090202),
+    tertiary = red_M25,
+    onTertiary = black,
+    tertiaryContainer = Color(0xFF2F0404),
+    onTertiaryContainer = red_M25,
 
     error = Color(0xFF8E3431),
     onError = Color(0xFFE9B9B9),
@@ -1238,10 +1242,10 @@ val Agent = Prestige.copy(
     secondaryContainer = Color(0xFF080808),
     onSecondaryContainer = Color(0xFF5E7E7B),
 
-    tertiary = Color(0xFFC0F2E2),
-    onTertiary = Color(0xFF167467),
-    tertiaryContainer = Color(0xFF092F2F),
-    onTertiaryContainer = Color(0xFF40D4A5),
+    tertiary = blue_M75,
+    onTertiary = white,
+    tertiaryContainer = Color(0xFF11142F),
+    onTertiaryContainer = blue_M75,
 
     error = blue_M90,
     onError = Color(0xFF007063),
@@ -1605,10 +1609,10 @@ val Halloween23 = Event.copy(
     secondaryContainer = Color(0xFF241F19),
     onSecondaryContainer = Color(0xFFBCA69A),
 
-    tertiary = Color(0xFF9F4B0D),
-    onTertiary = white,
-    tertiaryContainer = Color(0xFFF5B07F),
-    onTertiaryContainer = Color(0xFF512506),
+    tertiary = orange_M05,
+    onTertiary = black,
+    tertiaryContainer = Color(0xFF2F1A04),
+    onTertiaryContainer = orange_M05,
 
     error =  Color(0xFFEC700D),
     onError = Color(0xFF201004),
@@ -1881,10 +1885,10 @@ val Discord = Community.copy(
     secondaryContainer = Color(0xFF181B1B),
     onSecondaryContainer = Color(0xFFA6A7AB),
 
-    tertiary = Color(0xFFAAB3F3),
-    onTertiary = Color(0xFF111D79),
-    tertiaryContainer = Color(0xFF96A1F3),
-    onTertiaryContainer = Color(0xFF0A134C),
+    tertiary = Color(0xFFE3D6F7),
+    onTertiary = black,
+    tertiaryContainer = Color(0xFF231235),
+    onTertiaryContainer = Color(0xFFE3D6F7),
 
     error = Color(0xFF6C77EF),
     onError = Color(0xFF06082D),
@@ -2071,10 +2075,10 @@ val Developer = Community.copy(
     secondaryContainer = Color(0xFF2C2C25),
     onSecondaryContainer = Color(0xFFB8B8AD),
 
-    tertiary = Color(0xFFD3C667),
-    onTertiary = Color(0xFF373211),
-    tertiaryContainer = Color(0xFFE1D998),
-    onTertiaryContainer = Color(0xFF464016),
+    tertiary = orange_M150,
+    onTertiary = black,
+    tertiaryContainer = Color(0xFF331B00),
+    onTertiaryContainer = orange_M150,
 
     error = yellow_M25,
     onError = Color(0xFF463F07),
@@ -2124,7 +2128,7 @@ val Developer = Community.copy(
         primary = yellow_M25,
         color_1 = yellow_M25,
         color_2 = Color(0xFFCFCCB4),
-        color_3 = Color(0xFFD3C667),
+        color_3 = orange_M150,
         color_4 = Color(0xFF4E4507),
         color_5 = white,
         color_6 = Color(0xFFE2E2DF),
@@ -2162,10 +2166,15 @@ val Translator = Community.copy(
     secondaryContainer = Color(0xFF616161),
     onSecondaryContainer = Color(0xFFB8B8B8),
 
-    tertiary = Color(0xFFD99CA5),
+    /*tertiary = Color(0xFFD99CA5),
     onTertiary = Color(0xFF993847),
     tertiaryContainer = Color(0xFF5D222D),
-    onTertiaryContainer = Color(0xFFC45F6E),
+    onTertiaryContainer = Color(0xFFC45F6E),*/
+
+    tertiary = red_M25,
+    onTertiary = black,
+    tertiaryContainer = Color(0xFF330B0B),
+    onTertiaryContainer = red_M25,
 
     error = Color(0xFFDA7F88),
     onError = Color(0xFF8A2832),
@@ -2204,7 +2213,7 @@ val Translator = Community.copy(
         a = white,
         b = Color(0xFFFCFAFB),
         c = Color(0xFFE1C9CC),
-        d = Color(0xFFD99CA5),
+        d = red_M25,
         e = Color(0xFFDA7F88),
         f = red_M150,
         g = Color(0xFF878887),
@@ -2217,7 +2226,7 @@ val Translator = Community.copy(
         primary = red_M150,
         color_1 = Color(0xFFFCFAFB),
         color_2 = Color(0xFFE1C9CC),
-        color_3 = Color(0xFFD99CA5),
+        color_3 = red_M25,
         color_4 = red_M150,
         color_5 = white_M400,
         color_6 = white_M600,
@@ -2255,10 +2264,15 @@ val Winner = Community.copy(
     secondaryContainer = Color(0xFF919191),
     onSecondaryContainer = Color(0xFFFAFAFA),
 
-    tertiary = Color(0xFFFFBD7A),
+    /*tertiary = Color(0xFFFFBD7A),
     onTertiary = orange_M300,
     tertiaryContainer = Color(0xFFE67300),
-    onTertiaryContainer = Color(0xFFFFFDFA),
+    onTertiaryContainer = Color(0xFFFFFDFA),*/
+
+    tertiary = blue_M75,
+    onTertiary = white,
+    tertiaryContainer = Color(0xFF11142F),
+    onTertiaryContainer = blue_M75,
 
     error = Color(0xFFDABA80),
     onError = Color(0xFF826226),

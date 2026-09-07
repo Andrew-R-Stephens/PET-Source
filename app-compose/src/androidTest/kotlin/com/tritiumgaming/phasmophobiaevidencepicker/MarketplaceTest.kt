@@ -62,6 +62,9 @@ private fun Test1() {
         secondaryContainer = palette.secondaryContainer,
         tertiaryContainer = palette.tertiaryContainer,
         onBuyClick = {},
+        scrim = palette.scrim,
+        isUnlocked = false,
+        canUnlock = true,
     )
 }
 
@@ -90,5 +93,8 @@ private fun Test2() {
         secondaryContainer = palette.secondaryContainer,
         tertiaryContainer = palette.tertiaryContainer,
         onBuyClick = {},
+        scrim = palette.scrim,
+        isUnlocked = false,
+        canUnlock = true,
     )
 }

@@ -38,6 +38,7 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import org.jetbrains.annotations.TestOnly
 
 
@@ -46,12 +47,12 @@ import org.jetbrains.annotations.TestOnly
 @Composable
 fun PaletteTester() {
 
-    val palettes = PaletteResources.PaletteType.entries
+    val palettes = PaletteType.entries
 
     LazyColumn {
         items(items = palettes) {
             TestM3Palette(
-                palette = it.toPaletteResource()
+                palette = it
             )
         }
     }
@@ -110,11 +111,11 @@ private fun PaletteColor(
 @TestOnly
 @Composable
 private fun TestM3Palette(
-    palette: ExtendedPalette = ClassicPalette
+    palette: PaletteType = PaletteType.CLASSIC
 ) {
 
     LocalThemeProvider(
-        palette = PaletteResources.PaletteType.DETECTIVE
+        palette = palette
     ) {
         Column(
             Modifier
@@ -123,14 +124,14 @@ private fun TestM3Palette(
         ) {
 
             Text(
-                text = stringResource(palette.extrasFamily.title),
+                text = stringResource(LocalPalette.current.extrasFamily.title),
                 color = LocalPalette.current.onSurface,
                 style = LocalTypography.current.quaternary.bold,
                 fontSize = 24.sp,
             )
 
             Text(
-                text = stringResource(palette.extrasFamily.title),
+                text = stringResource(LocalPalette.current.extrasFamily.title),
                 color = LocalPalette.current.onSurfaceVariant,
                 style = LocalTypography.current.quaternary.bold,
                 fontSize = 12.sp,
@@ -195,6 +196,27 @@ private fun TestM3Palette(
                     )
                 }
 
+            }
+
+            Row(
+                modifier = Modifier
+                    .horizontalScroll(rememberScrollState())
+                    .wrapContentHeight()
+                    .wrapContentWidth()
+            ) {
+
+                Column {
+                    PaletteColor(
+                        name = "Primary",
+                        color = LocalPalette.current.primary,
+                        onColor = LocalPalette.current.primary
+                    )
+                    PaletteColor(
+                        name = "Tertiary",
+                        color = LocalPalette.current.tertiary,
+                        onColor = LocalPalette.current.tertiary
+                    )
+                }
             }
 
             Column(

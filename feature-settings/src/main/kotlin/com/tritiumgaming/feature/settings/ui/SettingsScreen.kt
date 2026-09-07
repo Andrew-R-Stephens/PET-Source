@@ -503,7 +503,7 @@ private fun SettingsScreenLayout(
     Column(
         modifier = Modifier
             .fillMaxHeight(),
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
     ) {
 
         navigationHeader(
@@ -518,8 +518,7 @@ private fun SettingsScreenLayout(
         when (deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 SettingsContentPortrait(
-                    modifier = Modifier
-                        .padding(8.dp),
+                    modifier = Modifier,
                     screenPreferenceComponent = screenPreferenceComponent,
                     dataUsagePreferenceComponent = dataUsagePreferenceComponent,
                     leftHandedPreferenceComponent = leftHandedPreferenceComponent,
@@ -538,8 +537,7 @@ private fun SettingsScreenLayout(
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 SettingsContentLandscape(
-                    modifier = Modifier
-                        .padding(8.dp),
+                    modifier = Modifier,
                     screenPreferenceComponent = screenPreferenceComponent,
                     dataUsagePreferenceComponent = dataUsagePreferenceComponent,
                     leftHandedPreferenceComponent = leftHandedPreferenceComponent,
@@ -672,7 +670,6 @@ private fun SettingsContentLandscape(
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(vertical = 8.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
         ) {
