@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -178,6 +179,47 @@ fun PaletteBundleCard(
                     }
                 }
 
+                selectedPalette?.toPaletteResource()?.let { palette ->
+
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalArrangement = Arrangement.Top,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 8.dp, end = 8.dp, top = 8.dp),
+                            text = "Preview:",
+                            color = Color.Black,
+                            style = LocalTypography.current.quaternary.bold,
+                            fontSize = 10.sp,
+                            textAlign = TextAlign.Start,
+                            maxLines = 1
+                        )
+
+                        PaletteDetailsCard(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentHeight()
+                                .padding(8.dp),
+                            badgeRes = palette.extrasFamily.badge,
+                            title = stringResource(palette.extrasFamily.title),
+                            surfaceContainerHigh = palette.surfaceContainerHigh,
+                            scrim = palette.scrim,
+                            onSurfaceVariant = palette.onSurfaceVariant,
+                            onSurface = palette.onSurface,
+                            primary = palette.primary,
+                            secondary = palette.secondary,
+                            tertiary = palette.tertiary,
+                            surfaceContainer = palette.surfaceContainer,
+                            primaryContainer = palette.primaryContainer,
+                            secondaryContainer = palette.secondaryContainer,
+                            tertiaryContainer = palette.tertiaryContainer,
+                        )
+                    }
+                }
+
                 if(!isOwned) {
                     val listPriceTotal = items.sumOf { it.buyCredits }
                     val calculatedBundleDiscountRatio = 1f - (buyCost / listPriceTotal.toFloat())
@@ -189,8 +231,9 @@ fun PaletteBundleCard(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
+                            .padding(vertical = 4.dp)
                             .background(scrim.copy(alpha = .3f))
-                            .padding(8.dp),
+                            .padding(4.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp, CenterVertically),
                         horizontalAlignment = CenterHorizontally
                     ) {
@@ -203,13 +246,13 @@ fun PaletteBundleCard(
                             ) {
                                 Text(
                                     text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
-                                    color = onSurface,
+                                    color = surfaceContainerHigh,
                                     style = LocalTypography.current.quaternary.bold,
                                     fontSize = 16.sp
                                 )
                                 Text(
                                     text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
-                                    color = onSurface,
+                                    color = surfaceContainerHigh,
                                     style = LocalTypography.current.quaternary.regular,
                                     fontSize = 10.sp
                                 )
@@ -378,23 +421,24 @@ fun PaletteBundleCard(
                             Surface(
                                 modifier = Modifier,
                                 shape = RoundedCornerShape(8.dp),
-                                color = LocalPalette.current.surfaceContainer.copy(alpha = .9f)
+                                color = LocalPalette.current.surfaceContainer.copy(alpha = .9f),
                             ) {
-                                var isExpanded by remember { mutableStateOf(true) }
+                                var isExpanded by remember { mutableStateOf(false) }
 
                                 Column(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(8.dp),
+                                        .padding(8.dp)
+                                        .clickable { isExpanded = !isExpanded },
                                     verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
                                     horizontalAlignment = CenterHorizontally
                                 ) {
                                     if (listPriceTotal > buyCost || hasDiscount) {
+                                        val title = if (isExpanded) "Hide Details" else "Show Details"
+
                                         Text(
-                                            text = (if (isExpanded) "Details ▲" else "Details ▼").uppercase(),
-                                            modifier = Modifier.clickable {
-                                                isExpanded = !isExpanded
-                                            },
+                                            text = (if (isExpanded) "$title ▲" else "$title ▼").uppercase(),
+                                            modifier = Modifier,
                                             color = LocalPalette.current.onSurface,
                                             style = LocalTypography.current.quaternary.bold,
                                             fontSize = 14.sp,
@@ -479,47 +523,6 @@ fun PaletteBundleCard(
                                 }
                             }
                         }
-                    }
-                }
-
-                selectedPalette?.toPaletteResource()?.let { palette ->
-
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalArrangement = Arrangement.Top,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = 8.dp, end = 8.dp, top = 8.dp),
-                            text = "Preview:",
-                            color = Color.Black,
-                            style = LocalTypography.current.quaternary.bold,
-                            fontSize = 10.sp,
-                            textAlign = TextAlign.Start,
-                            maxLines = 1
-                        )
-
-                        PaletteDetailsCard(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .wrapContentHeight()
-                                .padding(8.dp),
-                            badgeRes = palette.extrasFamily.badge,
-                            title = stringResource(palette.extrasFamily.title),
-                            surfaceContainerHigh = palette.surfaceContainerHigh,
-                            scrim = palette.scrim,
-                            onSurfaceVariant = palette.onSurfaceVariant,
-                            onSurface = palette.onSurface,
-                            primary = palette.primary,
-                            secondary = palette.secondary,
-                            tertiary = palette.tertiary,
-                            surfaceContainer = palette.surfaceContainer,
-                            primaryContainer = palette.primaryContainer,
-                            secondaryContainer = palette.secondaryContainer,
-                            tertiaryContainer = palette.tertiaryContainer,
-                        )
                     }
                 }
 
