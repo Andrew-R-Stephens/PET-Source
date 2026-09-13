@@ -63,6 +63,12 @@ import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
 
+enum class AccountBannerSize {
+    EXPANDED,
+    COMPOSITE,
+    COMPOSITE_STACKED
+}
+
 @Composable
 fun AccountBanner(
     modifier: Modifier = Modifier,
@@ -70,19 +76,44 @@ fun AccountBanner(
     name: String = "",
     credits: Int = 100,
     showButton: Boolean = false,
+    variant: AccountBannerSize = AccountBannerSize.EXPANDED,
     onEarnCredits: () -> Unit = {},
     onNavigate: (String) -> Unit = {}
 ) {
 
     if(authenticated) {
-        AccountBannerExpanded(
-            modifier = modifier,
-            name = name,
-            credits = credits,
-            onNavigate = onNavigate,
-            onEarnCredits = onEarnCredits,
-            showButton = showButton
-        )
+        when(variant) {
+            AccountBannerSize.COMPOSITE -> {
+                AccountBannerComposite(
+                    modifier = modifier,
+                    name = name,
+                    credits = credits,
+                    onNavigate = onNavigate,
+                    onEarnCredits = onEarnCredits,
+                    showButton = showButton
+                )
+            }
+            AccountBannerSize.EXPANDED -> {
+                AccountBannerExpanded(
+                    modifier = modifier,
+                    name = name,
+                    credits = credits,
+                    onNavigate = onNavigate,
+                    onEarnCredits = onEarnCredits,
+                    showButton = showButton
+                )
+            }
+            AccountBannerSize.COMPOSITE_STACKED -> {
+                AccountBannerCompositeStacked(
+                    modifier = modifier,
+                    name = name,
+                    credits = credits,
+                    onNavigate = onNavigate,
+                    onEarnCredits = onEarnCredits,
+                    showButton = showButton
+                )
+            }
+        }
     } else {
         AccountBannerLogin(
             modifier = modifier,
@@ -97,48 +128,6 @@ private fun AccountBannerComposite(
     modifier: Modifier = Modifier,
     name: String = "",
     credits: Int = 100,
-    onNavigate: (String) -> Unit = {}
-) {
-
-    Row(
-        modifier = modifier
-            .width(IntrinsicSize.Min)
-            .wrapContentHeight(),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        AccountBannerIcon(
-            modifier = Modifier,
-            name = name,
-            icon = { modifier ->
-                Image(
-                    modifier = modifier,
-                    painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
-                    contentDescription = "",
-                    contentScale = ContentScale.Inside,
-                    alpha = .75f
-                )
-            }
-        )
-
-        Box(
-            modifier = Modifier
-                .weight(1f)
-        ) {
-            AccountCredits(
-                credits = credits
-            )
-        }
-
-    }
-
-}
-
-@Composable
-fun AccountBannerExpanded(
-    modifier: Modifier = Modifier,
-    name: String = "",
-    credits: Int = 100,
     showButton: Boolean = false,
     onEarnCredits: () -> Unit = {},
     onNavigate: (String) -> Unit = {}
@@ -146,17 +135,36 @@ fun AccountBannerExpanded(
 
     Box(
         modifier = modifier
-            .fillMaxWidth()
+            .wrapContentWidth()
             .wrapContentHeight(),
         contentAlignment = Alignment.TopCenter
     ) {
         Row(
             modifier = Modifier
-                .width(IntrinsicSize.Min)
+                .wrapContentWidth()
                 .height(IntrinsicSize.Min),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
+
+            AccountBannerIcon(
+                modifier = Modifier
+                    .heightIn(max = 48.dp)
+                    .fillMaxHeight()
+                    .aspectRatio(1f)
+                    .clickable(onClick = { onNavigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }),
+                name = name,
+                icon = { modifier ->
+                    Image(
+                        modifier = modifier,
+                        painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                        contentDescription = "",
+                        contentScale = ContentScale.Inside,
+                        alpha = .75f
+                    )
+                }
+            )
+
             Column(
                 modifier = Modifier
                     .width(IntrinsicSize.Max)
@@ -170,7 +178,7 @@ fun AccountBannerExpanded(
                     modifier = Modifier
                         .fillMaxWidth()
                         .then(
-                            if(!showButton) Modifier.heightIn(min = 48.dp)
+                            if (!showButton) Modifier.heightIn(min = 48.dp)
                             else Modifier
                         ),
                     credits = credits
@@ -213,6 +221,34 @@ fun AccountBannerExpanded(
                 }
             }
 
+        }
+    }
+}
+
+@Composable
+private fun AccountBannerCompositeStacked(
+    modifier: Modifier = Modifier,
+    name: String = "",
+    credits: Int = 100,
+    showButton: Boolean = false,
+    onEarnCredits: () -> Unit = {},
+    onNavigate: (String) -> Unit = {}
+) {
+
+    Box(
+        modifier = modifier
+            .wrapContentWidth()
+            .wrapContentHeight(),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        Column(
+            modifier = Modifier
+                .wrapContentWidth()
+                .height(IntrinsicSize.Min),
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+            horizontalAlignment = Alignment.Start
+        ) {
+
             AccountBannerIcon(
                 modifier = Modifier
                     .heightIn(max = 48.dp)
@@ -230,6 +266,165 @@ fun AccountBannerExpanded(
                     )
                 }
             )
+
+            Column(
+                modifier = Modifier
+                    .width(IntrinsicSize.Max)
+                    .clickable(enabled = showButton, onClick = {
+                        onEarnCredits()
+                    }),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically)
+            ) {
+                AccountCredits(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .then(
+                            if (!showButton) Modifier.heightIn(min = 48.dp)
+                            else Modifier
+                        ),
+                    credits = credits
+                )
+
+                if(showButton) {
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = CircleShape
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentHeight()
+                                .padding(horizontal = 8.dp, vertical = 4.dp),
+                            horizontalArrangement = Arrangement.spacedBy(
+                                8.dp,
+                                Alignment.CenterHorizontally
+                            ),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                modifier = Modifier
+                                    .size(12.dp),
+                                painter = painterResource(id = android.R.drawable.ic_input_add),
+                                contentDescription = "",
+                                tint = LocalPalette.current.onSurfaceVariant
+                            )
+                            Text(
+                                text = stringResource(R.string.marketplace_button_watch_ad).uppercase(),
+                                color = LocalPalette.current.onSurface,
+                                style = LocalTypography.current.quaternary.bold,
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center,
+                                maxLines = 1
+                            )
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@Composable
+fun AccountBannerExpanded(
+    modifier: Modifier = Modifier,
+    name: String = "",
+    credits: Int = 100,
+    showButton: Boolean = false,
+    onEarnCredits: () -> Unit = {},
+    onNavigate: (String) -> Unit = {}
+) {
+
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        Row(
+            modifier = Modifier
+                .width(IntrinsicSize.Min)
+                .height(IntrinsicSize.Min),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            AccountBannerIcon(
+                modifier = Modifier
+                    .heightIn(max = 48.dp)
+                    .fillMaxHeight()
+                    .aspectRatio(1f)
+                    .clickable(onClick = { onNavigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }),
+                name = name,
+                icon = { modifier ->
+                    Image(
+                        modifier = modifier,
+                        painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                        contentDescription = "",
+                        contentScale = ContentScale.Inside,
+                        alpha = .75f
+                    )
+                }
+            )
+
+            Column(
+                modifier = Modifier
+                    .width(IntrinsicSize.Max)
+                    .clickable(enabled = showButton, onClick = {
+                        onEarnCredits()
+                    }),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically)
+            ) {
+                AccountCredits(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .then(
+                            if (!showButton) Modifier.heightIn(min = 48.dp)
+                            else Modifier
+                        ),
+                    credits = credits
+                )
+
+                if(showButton) {
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer,
+                        shape = CircleShape
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentHeight()
+                                .padding(horizontal = 8.dp, vertical = 4.dp),
+                            horizontalArrangement = Arrangement.spacedBy(
+                                8.dp,
+                                Alignment.CenterHorizontally
+                            ),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                modifier = Modifier
+                                    .size(12.dp),
+                                painter = painterResource(id = android.R.drawable.ic_input_add),
+                                contentDescription = "",
+                                tint = LocalPalette.current.onSurfaceVariant
+                            )
+                            Text(
+                                text = stringResource(R.string.marketplace_button_watch_ad).uppercase(),
+                                color = LocalPalette.current.onSurface,
+                                style = LocalTypography.current.quaternary.bold,
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center,
+                                maxLines = 1
+                            )
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
@@ -449,7 +644,15 @@ private fun AccountBannerExpandedPreview2() {
 @Preview
 private fun AccountBannerCompositePreview() {
     LocalThemeProvider {
-        AccountBannerComposite()
+        AccountBannerComposite(showButton = true)
+    }
+}
+
+@Composable
+@Preview
+private fun AccountBannerCompositeStackedPreview() {
+    LocalThemeProvider {
+        AccountBannerCompositeStacked(showButton = true)
     }
 }
 

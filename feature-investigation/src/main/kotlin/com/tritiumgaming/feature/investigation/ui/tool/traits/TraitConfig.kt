@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.intl.LocaleList
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
@@ -288,8 +289,8 @@ private fun TraitListItem(
         ),
         shape = RoundedCornerShape(8.dp),
         border = BorderStroke(
-            width = 2.dp,
-            color = if(selected) colors.selectedColor else Color.Transparent
+            width = 1.dp,
+            color = if(selected) colors.selectedOnColor else Color.Transparent
         )
     ) {
 

@@ -10,6 +10,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -42,20 +43,26 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIconComposite
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
@@ -63,12 +70,12 @@ import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.theme.badge_default
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.common.CustomFontFamily
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType.*
-import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
+import com.tritiumgaming.shared.data.market.typography.mappers.asUuid as asTypographyUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.CLASSIC
@@ -79,16 +86,15 @@ import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 @Composable
 fun TypographyBundleCard(
     modifier: Modifier = Modifier,
-    uuid: String,
-    buyCredits: Long = 0L,
     title: String,
+    items: List<MarketTypography>,
+    buyCredits: Long = 0L,
+    canUnlock: Boolean = false,
+    isOwned: Boolean = false,
     surfaceContainerHigh: Color,
     onSurfaceVariant: Color,
     onSurface: Color,
     scrim: Color,
-    items: List<MarketTypography>,
-    canUnlock: Boolean = false,
-    isOwned: Boolean = false,
     onBuyClick: () -> Unit = {}
 ) {
     Card(
@@ -133,9 +139,22 @@ fun TypographyBundleCard(
                     )
                 )
 
-                var selectedPalette: PaletteType? by remember { mutableStateOf(null) }
+                var selectedTypography: TypographyResources.TypographyType? by remember { mutableStateOf(null) }
+                var isExpanded by remember { mutableStateOf(false) }
 
-                /*LazyRow(
+                val unlockedCount = items.count { it.unlocked }
+                val totalCount = items.size
+                val lockedCount = totalCount - unlockedCount
+
+                val isQualified = lockedCount > 1
+                val hasDiscount = unlockedCount > 0
+                val showItemDiscount = !isOwned && hasDiscount && isQualified
+
+                val discountPerItem = if (unlockedCount > 0) {
+                    (unlockedCount.toFloat() / totalCount) / unlockedCount
+                } else 0f
+
+                LazyRow(
                     modifier = Modifier
                         .height(96.dp)
                         .padding(8.dp),
@@ -146,115 +165,219 @@ fun TypographyBundleCard(
                         marketTypography.typography?.let { type ->
                             val paletteRes = type.toTypographyResource()
 
-                            BundleIncludedTypographyPreview(
+                            BundleIncludedTypography(
                                 modifier = Modifier.width(48.dp),
-                                isSelected = selectedPalette?.asUuid() == marketTypography.uuid,
+                                isSelected = selectedTypography?.asTypographyUuid() == marketTypography.uuid,
                                 title = stringResource(paletteRes.extrasFamily.title),
                                 isOwned = marketTypography.unlocked,
-                                surfaceColor = paletteRes.surface,
+                                showDiscount = showItemDiscount,
+                                discountRatio = discountPerItem,
+                                primaryColor = LocalPalette.current.primary,
+                                surfaceColor = LocalPalette.current.surface,
                                 onSurfaceColor = LocalPalette.current.onSurface,
                                 onClick = {
-                                    selectedPalette =
-                                        if (selectedPalette?.asUuid() == marketTypography.uuid) {
+                                    selectedTypography =
+                                        if (selectedTypography?.asTypographyUuid() == marketTypography.uuid) {
                                             null
                                         } else type
                                 }
                             )
                         }
                     }
-                }*/
+                }
 
-                selectedPalette?.toPaletteResource()?.let { palette ->
+                selectedTypography?.toTypographyResource()?.let { typography ->
                     TypographyDetailsCard(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(8.dp),
-                        badgeRes = palette.extrasFamily.badge,
-                        title = stringResource(palette.extrasFamily.title),
-                        surfaceContainerHigh = palette.surfaceContainerHigh,
-                        scrim = palette.scrim,
-                        onSurfaceVariant = palette.onSurfaceVariant,
-                        onSurface = palette.onSurface,
-                        primary = palette.primary,
-                        secondary = palette.secondary,
-                        tertiary = palette.tertiary,
-                        surfaceContainer = palette.surfaceContainer,
-                        primaryContainer = palette.primaryContainer,
-                        secondaryContainer = palette.secondaryContainer,
-                        tertiaryContainer = palette.tertiaryContainer,
+                        badgeRes = badge_default,
+                        title = stringResource(typography.extrasFamily.title),
+                        surfaceContainerHigh = surfaceContainerHigh,
+                        scrim = scrim,
+                        onSurfaceVariant = onSurfaceVariant,
+                        onSurface = onSurface,
+                        primary = LocalPalette.current.primary,
+                        secondary = LocalPalette.current.secondary,
+                        tertiary = LocalPalette.current.tertiary,
+                        surfaceContainer = LocalPalette.current.surfaceContainer,
+                        primaryContainer = LocalPalette.current.primaryContainer,
+                        secondaryContainer = LocalPalette.current.secondaryContainer,
+                        tertiaryContainer = LocalPalette.current.tertiaryContainer,
                     )
                 }
 
                 if(!isOwned) {
-                    Row(
+                    val totalItemCost = items.sumOf { it.buyCredits }
+                    val calculatedDiscountRatio = if (totalCount > 0) unlockedCount.toFloat() / totalCount else 0f
+                    val calculatedDiscount = (buyCredits * calculatedDiscountRatio).toLong()
+                    val finalPrice = buyCredits - calculatedDiscount
+
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(vertical = 4.dp)
                             .background(scrim.copy(alpha = .3f))
                             .padding(horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.spacedBy(
-                            8.dp,
-                            Alignment.CenterHorizontally
-                        ),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
+                        horizontalAlignment = CenterHorizontally
                     ) {
-
-                        Button(
-                            modifier = Modifier
-                                .height(48.dp)
-                                .padding(8.dp)
-                                .weight(1f, false),
-                            onClick = onBuyClick,
-                            enabled = canUnlock,
-                            shape = RoundedCornerShape(2.dp),
-                            contentPadding = PaddingValues(4.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = surfaceContainerHigh
-                            ),
-                        ) {
-                            Text(
+                        if (!isQualified) {
+                            Column(
                                 modifier = Modifier
-                                    .align(Alignment.CenterVertically),
-                                text = stringResource(R.string.marketplace_button_item_get).uppercase(),
-                                style = LocalTypography.current.quaternary.bold.copy(
-                                    textAlign = TextAlign.Center
-                                ),
-                                color = onSurface,
-                                autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
-                            )
+                                    .padding(vertical = 12.dp),
+                                verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
+                                horizontalAlignment = CenterHorizontally
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
+                                    color = onSurface,
+                                    style = LocalTypography.current.quaternary.bold,
+                                    fontSize = 16.sp
+                                )
+                                Text(
+                                    text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
+                                    color = onSurface,
+                                    style = LocalTypography.current.quaternary.regular,
+                                    fontSize = 10.sp
+                                )
+                            }
+                        } else {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(16.dp, CenterHorizontally),
+                                verticalAlignment = CenterVertically
+                            ) {
+                                Column(
+                                    horizontalAlignment = CenterHorizontally,
+                                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                                ) {
+                                    Button(
+                                        modifier = Modifier.height(48.dp),
+                                        onClick = onBuyClick,
+                                        enabled = canUnlock,
+                                        shape = RoundedCornerShape(2.dp),
+                                        contentPadding = PaddingValues(horizontal = 16.dp),
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = surfaceContainerHigh
+                                        ),
+                                    ) {
+                                        Text(
+                                            text = stringResource(R.string.marketplace_button_item_get).uppercase(),
+                                            style = LocalTypography.current.quaternary.bold,
+                                            color = onSurface,
+                                            fontSize = 18.sp
+                                        )
+                                    }
+
+                                    if (totalItemCost > buyCredits || hasDiscount) {
+                                        Text(
+                                            text = if (isExpanded) "Details ▲" else "Details ▼",
+                                            modifier = Modifier.clickable { isExpanded = !isExpanded },
+                                            color = onSurface,
+                                            style = LocalTypography.current.quaternary.bold,
+                                            fontSize = 10.sp
+                                        )
+                                    }
+                                }
+
+                                Row(
+                                    verticalAlignment = CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Text(
+                                        text = "${stringResource(R.string.marketplace_label_bundle_final_price)}:",
+                                        fontSize = 16.sp,
+                                        color = surfaceContainerHigh,
+                                        style = LocalTypography.current.quaternary.bold
+                                    )
+
+                                    Image(
+                                        modifier = Modifier.size(24.dp),
+                                        painter = painterResource(R.drawable.ic_shop_cost),
+                                        contentDescription = "Cost",
+                                        colorFilter = ColorFilter.tint(surfaceContainerHigh)
+                                    )
+
+                                    val displayPrice = if (hasDiscount) "$finalPrice" else "$buyCredits"
+                                    Text(
+                                        text = displayPrice,
+                                        fontSize = 24.sp,
+                                        color = surfaceContainerHigh,
+                                        style = LocalTypography.current.quaternary.bold
+                                    )
+                                }
+                            }
+
+                            if (isExpanded && (totalItemCost > buyCredits || hasDiscount)) {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(bottom = 8.dp),
+                                    horizontalAlignment = Alignment.Start,
+                                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                                ) {
+                                    val rowStyle = LocalTypography.current.quaternary.regular.copy(
+                                        fontSize = 11.sp,
+                                        color = onSurfaceVariant
+                                    )
+                                    val labelStyle = LocalTypography.current.quaternary.bold.copy(
+                                        fontSize = 11.sp,
+                                        color = onSurfaceVariant.copy(alpha = 0.7f)
+                                    )
+
+                                    val discountPercent = "- ${calculatedDiscountRatio.toPercentageString(false)}"
+                                    val discountValue = "- $calculatedDiscount"
+
+                                    val breakdownRows = listOf(
+                                        Triple(stringResource(R.string.marketplace_label_bundle_item_total), "", "$totalItemCost"),
+                                        Triple(stringResource(R.string.marketplace_label_bundle_price), "", "$buyCredits"),
+                                        Triple("${stringResource(R.string.marketplace_label_bundle_unlocked_discount)} %", "", discountPercent),
+                                        Triple(stringResource(R.string.marketplace_label_bundle_unlocked_discount), discountPercent, discountValue),
+                                        Triple(stringResource(R.string.marketplace_label_bundle_final_price), "", "$finalPrice")
+                                    )
+
+                                    breakdownRows.forEach { (label, middle, last) ->
+                                        Row(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            verticalAlignment = Alignment.Top
+                                        ) {
+                                            Text(
+                                                text = "$label:",
+                                                modifier = Modifier.weight(0.25f),
+                                                textAlign = TextAlign.End,
+                                                color = labelStyle.color,
+                                                style = labelStyle,
+                                                softWrap = true
+                                            )
+                                            Text(
+                                                text = middle,
+                                                modifier = Modifier
+                                                    .weight(0.375f)
+                                                    .padding(horizontal = 8.dp),
+                                                textAlign = TextAlign.Start,
+                                                color = rowStyle.color,
+                                                style = rowStyle
+                                            )
+                                            Text(
+                                                text = last,
+                                                modifier = Modifier.weight(0.375f),
+                                                textAlign = TextAlign.Start,
+                                                color = rowStyle.color,
+                                                style = rowStyle
+                                            )
+                                        }
+                                    }
+                                }
+                            }
                         }
-
-                        Image(
-                            modifier = Modifier
-                                .height(48.dp)
-                                .aspectRatio(1f)
-                                .padding(8.dp),
-                            painter = painterResource(R.drawable.ic_shop_cost),
-                            contentDescription = "Cost",
-                            colorFilter = ColorFilter.tint(surfaceContainerHigh)
-                        )
-
-                        Text(
-                            modifier = Modifier
-                                .weight(1f, false),
-                            text = "$buyCredits",
-                            fontSize = 24.sp,
-                            color = surfaceContainerHigh,
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Start
-                            )
-                        )
                     }
-
                 }
             }
-
         }
-
     }
-
 }
 
 @Composable
@@ -263,6 +386,9 @@ private fun BundleIncludedTypography(
     title: String,
     isSelected: Boolean = false,
     isOwned: Boolean = false,
+    showDiscount: Boolean = false,
+    discountRatio: Float = 0f,
+    primaryColor: Color,
     surfaceColor: Color,
     onSurfaceColor: Color,
     onClick: () -> Unit,
@@ -295,6 +421,46 @@ private fun BundleIncludedTypography(
                 )
 
                 if (isOwned) {
+                    if (showDiscount) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.TopEnd
+                        ) {
+                            val text = "-${discountRatio.toPercentageString(false)}"
+                            val style = LocalTypography.current.quaternary.bold.copy(
+                                textAlign = TextAlign.Center
+                            )
+                            val fontSize = 10.sp
+
+                            Box(
+                                modifier = Modifier
+                                    .graphicsLayer(rotationZ = -15f)
+                                    .padding(4.dp)
+                            ) {
+                                Text(
+                                    text = text,
+                                    color = surfaceColor,
+                                    style = style.copy(
+                                        drawStyle = Stroke(
+                                            miter = 10f,
+                                            width = 2f,
+                                            join = StrokeJoin.Round
+                                        )
+                                    ),
+                                    fontSize = fontSize,
+                                    maxLines = 1
+                                )
+                                Text(
+                                    text = text,
+                                    color = primaryColor,
+                                    style = style,
+                                    fontSize = fontSize,
+                                    maxLines = 1
+                                )
+                            }
+                        }
+                    }
+
                     MarkCheckCircleIconComposite(
                         modifier = Modifier
                             .fillMaxSize(.45f),
@@ -526,7 +692,6 @@ private fun PreviewBundleCard() {
             modifier = Modifier
                 .widthIn(400.dp)
                 .fillMaxWidth(),
-            uuid = "4324132",
             title = "Test",
             buyCredits = 600,
             items = listOf(
@@ -577,7 +742,10 @@ private fun BundleIncludedItemImagePreview() {
                 .size(48.dp),
             title = "Item 1",
             isSelected = true,
-            isOwned = false,
+            isOwned = true,
+            showDiscount = true,
+            discountRatio = 0.2f,
+            primaryColor = LocalPalette.current.primary,
             surfaceColor = LocalPalette.current.surface,
             onSurfaceColor = LocalPalette.current.onSurface,
             onClick = {}

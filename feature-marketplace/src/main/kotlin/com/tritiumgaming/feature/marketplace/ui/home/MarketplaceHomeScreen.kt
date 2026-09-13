@@ -144,18 +144,22 @@ fun MarketplaceHomeScreen(
         navController = navController,
         earnedCredits = accountCredits.earnedCredits,
         showRewardButton = user != null,
-        onClickRewardButton = onClickRewardedAd
-    ) { contentModifier ->
-        MarketplaceHomeContent(
-            modifier = contentModifier,
-            rewardCredits = rewardCredits,
-            onClickRewardedAd = onClickRewardedAd
-        ) { route ->
-            navController.navigate(route) {
-                launchSingleTop = true
+        onClickRewardButton = onClickRewardedAd,
+        accountContent = {
+
+        },
+        storeContent = { contentModifier ->
+            MarketplaceHomeContent(
+                modifier = contentModifier,
+                rewardCredits = rewardCredits,
+                onClickRewardedAd = onClickRewardedAd
+            ) { route ->
+                navController.navigate(route) {
+                    launchSingleTop = true
+                }
             }
         }
-    }
+    )
 }
 
 @Composable
@@ -254,7 +258,7 @@ private fun MarketplaceHomeContentLandscape(
             .fillMaxSize(),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Column(
+        /*Column(
             modifier = Modifier
                 .fillMaxHeight()
                 .weight(.7f)
@@ -262,18 +266,12 @@ private fun MarketplaceHomeContentLandscape(
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            RewardedAdsCard(
-                rewardCredits = rewardCredits,
-                isLarge = true,
-                onNavigate = onNavigate,
-                onClick = onClickRewardedAd
-            )
 
-            /*BillingCard(
+            *//*BillingCard(
                 isLarge = true,
                 onNavigate = onNavigate
-            )*/
-        }
+            )*//*
+        }*/
         Column(
             modifier = Modifier
                 .fillMaxHeight()
@@ -282,6 +280,13 @@ private fun MarketplaceHomeContentLandscape(
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            RewardedAdsCard(
+                rewardCredits = rewardCredits,
+                isLarge = true,
+                onNavigate = onNavigate,
+                onClick = onClickRewardedAd
+            )
+
             BundleCard(
                 isLarge = true,
                 onNavigate = onNavigate

@@ -115,7 +115,8 @@ fun PaletteShopScreen(
         navController = navController,
         earnedCredits = accountCredits.earnedCredits,
         showRewardButton = user != null,
-        onClickRewardButton = onClickRewardedAd
+        onClickRewardButton = onClickRewardedAd,
+        accountContent = { },
     ) { modifier ->
         Box(
             modifier = modifier
@@ -294,7 +295,7 @@ private fun PortraitContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCredits = item.marketBundle.buyCredits,
+                            buyCost = item.marketBundle.buyCredits,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
@@ -390,7 +391,7 @@ private fun LandscapeContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCredits = item.marketBundle.buyCredits,
+                            buyCost = item.marketBundle.buyCredits,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
@@ -442,7 +443,8 @@ private fun PaletteShopPreview() {
                         "",
                         MarketBundle("", ""),
                         listOf(marketPalette2),
-                        false
+                        false,
+                        0L, 0L, 0f, 0L, 0L
                     ),
                     ShopScreenUiItem.Header("Specialist"),
                     ShopScreenUiItem.Palette(marketPalette1, palette1.toPaletteResource()),

@@ -109,48 +109,52 @@ fun BundleShopScreen(
         navController = navController,
         earnedCredits = accountCredits.earnedCredits,
         showRewardButton = user != null,
-        onClickRewardButton = onClickRewardedAd
-    ) { modifier ->
-        Box(
-            modifier = modifier
-        ) {
-            BundleShopContent(
-                modifier = Modifier
-                    .fillMaxSize(),
-                unlocks = bundleUnlocks,
-                authenticated = user != null,
-                onBuyBundle = { marketPalette ->
-                    isLoading = true
-                    viewmodel.obtainItemWithCredits(
-                        marketPalette.uuid, "bundle",
-                        onSuccess = { _ ->
-                            Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
-                        },
-                        onFailure = { message ->
-                            Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
-                        },
-                        onComplete = {
-                            isLoading = false
-                        }
-                    )
-                }
-            )
+        accountContent = {
 
-            if (isLoading) {
-                Box(
+        },
+        storeContent = { modifier ->
+            Box(
+                modifier = modifier
+            ) {
+                BundleShopContent(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .clickable(enabled = false) {}
-                        .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator(
-                        color = LocalPalette.current.primary
-                    )
+                        .fillMaxSize(),
+                    unlocks = bundleUnlocks,
+                    authenticated = user != null,
+                    onBuyBundle = { marketPalette ->
+                        isLoading = true
+                        viewmodel.obtainItemWithCredits(
+                            marketPalette.uuid, "bundle",
+                            onSuccess = { _ ->
+                                Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
+                            },
+                            onFailure = { message ->
+                                Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                            },
+                            onComplete = {
+                                isLoading = false
+                            }
+                        )
+                    }
+                )
+
+                if (isLoading) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clickable(enabled = false) {}
+                            .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(
+                            color = LocalPalette.current.primary
+                        )
+                    }
                 }
             }
-        }
-    }
+        },
+        onClickRewardButton = onClickRewardedAd
+    )
 }
 
 @Composable
@@ -229,15 +233,17 @@ private fun PortraitContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCredits = item.marketBundle.buyCredits,
+                            buyCost = item.buyCost,
+                            discount = item.discount,
+                            discountedCost = item.discountedCost,
                             title = item.marketBundle.name,
+                            items = item.marketPalettes,
+                            canUnlock = authenticated,
+                            isOwned = item.unlocked,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
                             onSurface = LocalPalette.current.onSurface,
                             scrim = LocalPalette.current.scrim,
-                            items = item.marketPalettes,
-                            canUnlock = authenticated,
-                            isOwned = item.unlocked,
                             onBuyClick = {
                                 onBuyBundle(item.marketBundle)
                             }
@@ -247,16 +253,15 @@ private fun PortraitContent(
                     is ShopScreenUiItem.TypographyBundle -> {
                         TypographyBundleCard(
                             modifier = Modifier,
-                            uuid = item.key,
                             buyCredits = item.marketBundle.buyCredits,
                             title = item.marketBundle.name,
+                            items = item.marketTypographies,
+                            canUnlock = authenticated,
+                            isOwned = item.unlocked,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
                             onSurface = LocalPalette.current.onSurface,
                             scrim = LocalPalette.current.scrim,
-                            items = item.marketTypographies,
-                            canUnlock = authenticated,
-                            isOwned = item.unlocked,
                             onBuyClick = {
                                 onBuyBundle(item.marketBundle)
                             }
@@ -315,7 +320,7 @@ private fun LandscapeContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCredits = item.marketBundle.buyCredits,
+                            buyCost = item.marketBundle.buyCredits,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
@@ -332,7 +337,6 @@ private fun LandscapeContent(
                     is ShopScreenUiItem.TypographyBundle -> {
                         TypographyBundleCard(
                             modifier = Modifier,
-                            uuid = item.key,
                             buyCredits = item.marketBundle.buyCredits,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
@@ -385,7 +389,12 @@ private fun BundleShopPreview() {
                         "",
                         MarketBundle("", ""),
                         listOf(marketPalette2),
-                        false
+                        false,
+                        buyCost = 0L,
+                        originalCost = 0L,
+                        discountRatio = 0f,
+                        discount = 0L,
+                        discountedCost = 0L,
                     )
                 )
             )

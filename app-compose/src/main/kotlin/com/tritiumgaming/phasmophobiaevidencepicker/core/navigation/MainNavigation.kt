@@ -6,6 +6,8 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -63,6 +65,8 @@ import com.tritiumgaming.feature.start.ui.StartScreen
 import com.tritiumgaming.feature.start.ui.StartScreenViewModel
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
+
+private const val TAG = "MainNavigation"
 
 @Composable
 fun RootNavigation(
@@ -303,9 +307,12 @@ private fun NavGraphBuilder.operationNavigation(
     ) {
 
         composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
+            val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
             OperationScreen(
                 modifier = Modifier,
                 navController = navController,
+                shouldTriggerAudio = shouldTriggerAudio,
+                onAudioTriggered = { investigationViewModel.onAudioWarningPlayed() }
             ) {
                 InvestigationSoloScreen(
                     navController = navController,
@@ -322,9 +329,12 @@ private fun NavGraphBuilder.operationNavigation(
                 factory = ObjectiveBoardViewModel.Factory
             )
 
+            val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
             OperationScreen(
                 modifier = Modifier,
                 navController = navController,
+                shouldTriggerAudio = shouldTriggerAudio,
+                onAudioTriggered = { investigationViewModel.onAudioWarningPlayed() }
             ) {
                 ObjectivesScreen(
                     objectiveBoardViewModel = objectiveBoardViewModel
@@ -333,9 +343,12 @@ private fun NavGraphBuilder.operationNavigation(
         }
 
         composable(route = NavRoute.SCREEN_CUSTOM_DIFFICULTY_EDIT.route) {
+            val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
             OperationScreen(
                 modifier = Modifier,
                 navController = navController,
+                shouldTriggerAudio = shouldTriggerAudio,
+                onAudioTriggered = { investigationViewModel.onAudioWarningPlayed() }
             ) {
                 CustomDifficultyScreen(
                     navController = navController,
@@ -358,9 +371,12 @@ private fun NavGraphBuilder.operationNavigation(
                     factory = MapsScreenViewModel.Factory
                 )
 
+                val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
                 OperationScreen(
                     modifier = Modifier,
                     navController = navController,
+                    shouldTriggerAudio = shouldTriggerAudio,
+                    onAudioTriggered = { investigationViewModel.onAudioWarningPlayed() }
                 ) {
                     MapMenuScreen(
                         navController = navController,
@@ -383,11 +399,14 @@ private fun NavGraphBuilder.operationNavigation(
 
                 val mapId = navBackStackEntry.arguments?.getString("mapId")
 
-                Log.d("MainNavigation", "mapId: $mapId")
+                Log.d(TAG, "mapId: $mapId")
 
                 if(mapId != null) {
+                    val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
                     OperationScreen(
                         navController = navController,
+                        shouldTriggerAudio = shouldTriggerAudio,
+                        onAudioTriggered = { investigationViewModel.onAudioWarningPlayed() }
                     ) {
                         MapViewerScreen(
                             navController = navController,
@@ -409,10 +428,13 @@ private fun NavGraphBuilder.operationNavigation(
 
             composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
 
+                val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
                 OperationScreen(
                     modifier = Modifier
                         .padding(horizontal = 8.dp),
                     navController = navController,
+                    shouldTriggerAudio = shouldTriggerAudio,
+                    onAudioTriggered = { investigationViewModel.onAudioWarningPlayed() }
                 ) {
                     CodexMenuScreen(
                         navController = navController
@@ -428,18 +450,21 @@ private fun NavGraphBuilder.operationNavigation(
 
                 val categoryId = navBackStackEntry.arguments?.getInt("categoryId")
 
-                Log.d("MainNavigation", "categoryId: $categoryId")
+                Log.d(TAG, "categoryId: $categoryId")
 
                 val category = CodexResources.Category.entries.firstOrNull { entry ->
                     entry.id == categoryId }
 
-                Log.d("MainNavigation", "category: ${category?.name}")
+                Log.d(TAG, "category: ${category?.name}")
 
                 category?.let { category ->
+                    val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
                     OperationScreen(
                         modifier = Modifier
                             .padding(horizontal = 8.dp),
                         navController = navController,
+                        shouldTriggerAudio = shouldTriggerAudio,
+                        onAudioTriggered = { investigationViewModel.onAudioWarningPlayed() }
                     ) {
                         CodexCatalogScreen(
                             modifier = Modifier,

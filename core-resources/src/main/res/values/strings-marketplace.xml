@@ -10,14 +10,21 @@
     <string name="marketplace_button_watch_ad">Earn Credits</string>
     <string name="marketplace_button_item_get">Get</string>
     <string name="marketplace_button_purchase_credits">Purchase Credits</string>
+    <string name="marketplace_label_bundle_unqualified" translatable="false">Unavailable</string>
+    <string name="marketplace_label_bundle_unqualified_desc" translatable="false">Majority of items are unlocked</string>
+    <string name="marketplace_label_bundle_item_total" translatable="false">Actual Value</string>
+    <string name="marketplace_label_bundle_price_discount" translatable="false">Bundle Discount</string>
+    <string name="marketplace_label_bundle_price" translatable="false">Bundle Price</string>
+    <string name="marketplace_label_bundle_unlocked_discount" translatable="false">Prorated Discount</string>
+    <string name="marketplace_label_bundle_final_price" translatable="false">Total</string>
     <string name="marketplace_label_purchased">Unlocked</string>
     <string name="marketplace_label_bundle_includes">Includes</string>
     <string name="marketplace_purchase_equip">Equip %1$s theme?</string>
 
     <string name="marketplace_home_storefront_palettes_title" translatable="false">Themes</string>
-    <string name="marketplace_home_storefront_palettes_description" translatable="false">Custom UI themes</string>
+    <string name="marketplace_home_storefront_palettes_description" translatable="false">Familiar themes to choose from!</string>
     <string name="marketplace_home_storefront_bundles_title" translatable="false">Theme Bundles</string>
-    <string name="marketplace_home_storefront_bundles_description" translatable="false">Theme packs</string>
+    <string name="marketplace_home_storefront_bundles_description" translatable="false">Themes bundles at a discount!</string>
     <string name="marketplace_home_storefront_typography_title" translatable="false">Typography</string>
     <string name="marketplace_home_storefront_typography_description" translatable="false">Unique fonts</string>
     <string name="marketplace_home_storefront_billing_title" translatable="false">Buy Credits</string>

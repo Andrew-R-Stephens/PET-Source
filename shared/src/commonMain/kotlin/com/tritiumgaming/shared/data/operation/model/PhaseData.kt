@@ -11,7 +11,7 @@ data class PhaseData(
     val maxFlashTime: Long = DURATION_30_SECONDS,
 ) {
     companion object {
-        const val DURATION_30_SECONDS = 300000L
-        const val DEFAULT = 300000L
+        const val DURATION_30_SECONDS = 30000L
+        const val DEFAULT = 0L
     }
 }

@@ -81,7 +81,6 @@ class MarketplaceBundlesScreenViewModel(
         }
     }
 
-
     val accountCreditsUiState: StateFlow<AccountCreditsUiState> = observeAccountCreditsUseCase()
         .map { result ->
             result.fold(
@@ -227,24 +226,49 @@ class MarketplaceBundlesScreenViewModel(
         val uuid: String,
         val bundle: MarketBundle,
         val items: List<MarketPalette>,
-        val unlocked: Boolean
+        val availability: Boolean,
+        val buyCost: Long = bundle.buyCredits,
+        val originalCost: Long,
+        val discountRatio: Float,
+        val discount: Long = 0L,
+        val discountedCost: Long = 0L,
     )
 
     private val _marketPaletteBundlesState = combine(
         _marketCatalogBundles,
         _marketAccountPaletteState
     ) { marketBundles, unlockedPalettes ->
-
         val bundleStates = marketBundles.map { marketBundle ->
+            val defaultCost = marketBundle.buyCredits
+
             val localPalettes = unlockedPalettes.filter { palette ->
                 palette.uuid in marketBundle.items.map { item -> item }
             }
+
+            val originalCost = localPalettes.sumOf { it.buyCredits }
+            val originalDiscountRatio = (originalCost.toFloat() / defaultCost)
+
+            val palettesLocked = localPalettes.filterNot { palette -> palette.unlocked }
+            val amountLocked = palettesLocked.size
+
+            val amountUnlocked = localPalettes.count { it.unlocked }
+            val ratioUnlocked = if(amountLocked > 1) {
+                amountUnlocked.toFloat() / marketBundle.items.size.toFloat()
+            } else 0f
+            val unlockedDiscount = (ratioUnlocked * defaultCost).toLong()
 
             BundleState(
                 uuid = marketBundle.uuid,
                 bundle = marketBundle,
                 items = localPalettes,
-                unlocked = localPalettes.all { it.unlocked }
+                availability = localPalettes.all { it.unlocked },
+                originalCost = originalCost,
+                buyCost =
+                    if(palettesLocked.size == 1) palettesLocked.firstOrNull()?.buyCredits?: 0
+                    else defaultCost,
+                discountRatio = originalDiscountRatio,
+                discount = unlockedDiscount,
+                discountedCost = defaultCost - unlockedDiscount,
             )
         }
 
@@ -271,7 +295,12 @@ class MarketplaceBundlesScreenViewModel(
                     key = bundleState.uuid,
                     marketBundle = bundleState.bundle,
                     marketPalettes = bundleState.items,
-                    unlocked = bundleState.unlocked
+                    unlocked = bundleState.availability,
+                    buyCost = bundleState.buyCost,
+                    originalCost = bundleState.originalCost,
+                    discountRatio = bundleState.discountRatio,
+                    discount = bundleState.discount,
+                    discountedCost = bundleState.discountedCost
                 )
             )
         }

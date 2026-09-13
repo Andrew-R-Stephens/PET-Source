@@ -29,7 +29,12 @@ sealed interface ShopScreenUiItem {
         override val key: String,
         val marketBundle: MarketBundle,
         val marketPalettes: List<MarketPalette>,
-        val unlocked: Boolean
+        val unlocked: Boolean,
+        val buyCost: Long,
+        val originalCost: Long,
+        val discountRatio: Float,
+        val discount: Long,
+        val discountedCost: Long
     ) : ShopScreenUiItem
 
     data class TypographyBundle(

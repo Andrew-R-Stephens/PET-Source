@@ -254,6 +254,8 @@ class InvestigationScreenViewModel private constructor(
     private var toolTimersJob: Job? = null
     private val _sanityTickerState = MutableStateFlow(SanityTickerData())
 
+    private var hasAudioWarningPlayed = false
+
     /*
      * Investigation Repository
      */
@@ -588,15 +590,26 @@ class InvestigationScreenViewModel private constructor(
     private fun updatePhase(
         type: PhaseIdentifier? = null,
         canAlertAudio: Boolean? = null,
+        canFlash: Boolean? = null,
         startFlashTime: Long? = null,
         elapsedFlashTime: Long? = null
     ) {
         val currentPhase = phaseState.value
+
+        var nextStartFlashTime = startFlashTime ?: currentPhase.startFlashTime
+        var nextElapsedFlashTime = elapsedFlashTime ?: currentPhase.elapsedFlashTime
+
+        if (canFlash == true && !currentPhase.canFlash) {
+            nextStartFlashTime = DEFAULT
+            nextElapsedFlashTime = 0L
+        }
+
         val nextPhase = currentPhase.copy(
             type = type ?: currentPhase.type,
             canAlertAudio = canAlertAudio ?: currentPhase.canAlertAudio,
-            startFlashTime = startFlashTime ?: currentPhase.startFlashTime,
-            elapsedFlashTime = elapsedFlashTime ?: currentPhase.elapsedFlashTime
+            canFlash = canFlash ?: currentPhase.canFlash,
+            startFlashTime = nextStartFlashTime,
+            elapsedFlashTime = nextElapsedFlashTime
         )
         setPhase(nextPhase)
     }
@@ -862,7 +875,8 @@ class InvestigationScreenViewModel private constructor(
         phaseState, sanityState, preferencesState
     ) { phaseState, sanityState, preferences ->
 
-        val canFlash = sanityState.sanityLevel < SAFE_MIN_BOUNDS &&
+        val canFlash = phaseState.canFlash &&
+                sanityState.sanityLevel < SAFE_MIN_BOUNDS &&
                 phaseState.elapsedFlashTime <= preferences.maxHuntWarnFlashTime
 
         PhaseUiState(
@@ -901,6 +915,23 @@ class InvestigationScreenViewModel private constructor(
         )
     )
     internal val operationToolbarUiState = _operationToolbarUiState.asStateFlow()
+
+    val shouldTriggerAudioWarning: StateFlow<Boolean> = combine(
+        sanityState,
+        _operationTimerState,
+        preferencesState
+    ) { sanity, timer, preferences ->
+        val isConditionMet = sanity.sanityLevel < 0.5f && timer.remainingTime <= 0L
+        isConditionMet && !hasAudioWarningPlayed && preferences.allowHuntWarnAudio
+    }.distinctUntilChanged().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = false
+    )
+
+    fun onAudioWarningPlayed() {
+        hasAudioWarningPlayed = true
+    }
 
     private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     internal val popupUiState = _popupUiState.asStateFlow()
@@ -1310,6 +1341,7 @@ class InvestigationScreenViewModel private constructor(
             while(!operationTimerState.value.paused) {
                 tickSanity()
                 tickTemperature()
+                tickPhase()
                 delay(1.seconds.inWholeMilliseconds.milliseconds)
             }
         }
@@ -1402,6 +1434,21 @@ class InvestigationScreenViewModel private constructor(
         return timeElapsed.toLong()
     }
 
+    private fun tickPhase() {
+        val currentPhase = phaseState.value
+        val currentTime = System.currentTimeMillis()
+
+        if (currentPhase.type == PhaseIdentifier.HUNT && currentPhase.canFlash) {
+            val startTime = if (currentPhase.startFlashTime == DEFAULT) {
+                currentTime
+            } else {
+                currentPhase.startFlashTime
+            }
+            val elapsed = currentTime - startTime
+            updatePhase(startFlashTime = startTime, elapsedFlashTime = elapsed)
+        }
+    }
+
     /** Defaults all persistent data. */
     private fun resetSanity() {
         //TODO warnTriggered = false
@@ -1449,8 +1496,9 @@ class InvestigationScreenViewModel private constructor(
         val currentPhase = phaseState.value
         setPhase(
             currentPhase.copy(
+                canFlash = true,
                 startFlashTime = DEFAULT,
-                elapsedFlashTime = System.currentTimeMillis() - currentPhase.startFlashTime
+                elapsedFlashTime = 0L
             )
         )
     }
@@ -1992,6 +2040,7 @@ class InvestigationScreenViewModel private constructor(
         resetTraitSelections()
         resetBpm()
         resetToolTimers()
+        hasAudioWarningPlayed = false
     }
 
     private fun reset(option: OperationToolbarUiState.ResetOption? = null) {
@@ -2032,6 +2081,7 @@ class InvestigationScreenViewModel private constructor(
             is InvestigationEvent.SetWeather -> setWeather(event.weather)
             is InvestigationEvent.SetWeatherOverride -> setWeatherOverride(event.weather)
             is InvestigationEvent.ToggleFuseBoxOverride -> toggleFuseBoxOverride()
+            is InvestigationEvent.SetPhaseFlash -> updatePhase(canFlash = event.allowed)
 
             // Sanity Tracking
             is InvestigationEvent.PlayerDeath -> onPlayerDeath()
@@ -2333,6 +2383,7 @@ class InvestigationScreenViewModel private constructor(
         data class SetWeather(val weather: Weather) : InvestigationEvent()
         data class SetWeatherOverride(val weather: Weather) : InvestigationEvent()
         object ToggleFuseBoxOverride : InvestigationEvent()
+        data class SetPhaseFlash(val allowed: Boolean) : InvestigationEvent()
 
         // Sanity Tracker Events
         object PlayerDeath : InvestigationEvent()
