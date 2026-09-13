@@ -322,7 +322,7 @@ fun PaletteBundleCard(
                             )
 
                             val calculatedBundleDiscountPercent = calculatedBundleDiscountRatio.toPercentageString(false)
-                            val calculatedBundleDiscount = (calculatedBundleDiscountRatio * listPriceTotal).toLong()
+                            val calculatedBundleDiscount = (listPriceTotal - buyCost).toLong()
                             val proratedDiscountPercent = calculatedProratedDiscountRatio.toPercentageString(false)
                             val proratedDiscountValue = "$calculatedProratedDiscount"
 
@@ -337,87 +337,100 @@ fun PaletteBundleCard(
                                 val last: BreakdownData
                             )
 
-                            val breakdownRows = listOf(
-                                BreakdownItem(
-                                    BreakdownData(
-                                        stringResource(R.string.marketplace_label_bundle_item_total),
-                                        color = onSurface,
-                                        style = labelStyle
-                                    ),
-                                    BreakdownData(
-                                        "$listPriceTotal",
-                                        color = onSurface,
-                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                    ),
-                                    BreakdownData(
-                                        "",
-                                        color = onSurface,
-                                    )
-                                ),
-                                BreakdownItem(
-                                    BreakdownData(
-                                        data = stringResource(R.string.marketplace_label_bundle_price_discount),
-                                        color = LocalPalette.current.onSurfaceVariant,
-                                        style = labelStyle
-                                    ),
-                                    BreakdownData(
-                                        "-$calculatedBundleDiscount",
-                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                    ),
-                                    BreakdownData(
-                                        "(-$calculatedBundleDiscountPercent)",
-                                        color = LocalPalette.current.onSurfaceVariant
-                                    )
-                                ),
-                                BreakdownItem(
-                                    BreakdownData(
-                                        data = stringResource(R.string.marketplace_label_bundle_price),
-                                        color = onSurface,
-                                        style = labelStyle
-                                    ),
-                                    BreakdownData(
-                                        "$buyCost",
-                                        color = onSurface,
-                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                    ),
-                                    BreakdownData(
-                                        "",
-                                        color = onSurface,
-                                    )
-                                ),
-                                BreakdownItem(
-                                    BreakdownData(
-                                        stringResource(R.string.marketplace_label_bundle_unlocked_discount),
-                                        color = LocalPalette.current.onSurfaceVariant,
-                                        style = labelStyle
-                                    ),
-                                    BreakdownData(
-                                        "-$proratedDiscountValue",
-                                        color = LocalPalette.current.onSurfaceVariant,
-                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                    ),
-                                    BreakdownData(
-                                        "(-$proratedDiscountPercent)",
-                                        color = LocalPalette.current.onSurfaceVariant
-                                    )
-                                ),
-                                BreakdownItem(
-                                    BreakdownData(
-                                        stringResource(R.string.marketplace_label_bundle_final_price),
-                                        color = onSurface,
-                                        style = labelStyle
-                                    ),
-                                    BreakdownData(
-                                        "$finalPrice",
-                                        color = onSurface,
-                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                    ),
-                                    BreakdownData(
-                                        "",
-                                        color = onSurface,
+                            val breakdownRows = buildList {
+                                add(
+                                    BreakdownItem(
+                                        BreakdownData(
+                                            stringResource(R.string.marketplace_label_bundle_item_total),
+                                            color = onSurface,
+                                            style = labelStyle
+                                        ),
+                                        BreakdownData(
+                                            "$listPriceTotal",
+                                            color = onSurface,
+                                            style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                        ),
+                                        BreakdownData(
+                                            "",
+                                            color = onSurface,
+                                        )
                                     )
                                 )
-                            )
+                                add(
+                                    BreakdownItem(
+                                        BreakdownData(
+                                            data = stringResource(R.string.marketplace_label_bundle_price_discount),
+                                            color = LocalPalette.current.onSurfaceVariant,
+                                            style = labelStyle
+                                        ),
+                                        BreakdownData(
+                                            "-$calculatedBundleDiscount",
+                                            color = LocalPalette.current.onSurfaceVariant,
+                                            style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                        ),
+                                        BreakdownData(
+                                            "(-$calculatedBundleDiscountPercent)",
+                                            color = LocalPalette.current.onSurfaceVariant
+                                        )
+                                    )
+                                )
+                                add(
+                                    BreakdownItem(
+                                        BreakdownData(
+                                            data = stringResource(R.string.marketplace_label_bundle_price),
+                                            color = onSurface,
+                                            style = labelStyle
+                                        ),
+                                        BreakdownData(
+                                            "$buyCost",
+                                            color = onSurface,
+                                            style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                        ),
+                                        BreakdownData(
+                                            "",
+                                            color = onSurface,
+                                        )
+                                    )
+                                )
+                                if (calculatedProratedDiscountRatio >= 1f) {
+                                    add(
+                                        BreakdownItem(
+                                            BreakdownData(
+                                                stringResource(R.string.marketplace_label_bundle_unlocked_discount),
+                                                color = LocalPalette.current.onSurfaceVariant,
+                                                style = labelStyle
+                                            ),
+                                            BreakdownData(
+                                                "-$proratedDiscountValue",
+                                                color = LocalPalette.current.onSurfaceVariant,
+                                                style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                            ),
+                                            BreakdownData(
+                                                "(-$proratedDiscountPercent)",
+                                                color = LocalPalette.current.onSurfaceVariant
+                                            )
+                                        )
+                                    )
+                                }
+                                add(
+                                    BreakdownItem(
+                                        BreakdownData(
+                                            stringResource(R.string.marketplace_label_bundle_final_price),
+                                            color = onSurface,
+                                            style = labelStyle
+                                        ),
+                                        BreakdownData(
+                                            "$finalPrice",
+                                            color = onSurface,
+                                            style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                        ),
+                                        BreakdownData(
+                                            "",
+                                            color = onSurface,
+                                        )
+                                    )
+                                )
+                            }
 
                             Surface(
                                 modifier = Modifier,

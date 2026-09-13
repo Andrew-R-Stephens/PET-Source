@@ -331,13 +331,15 @@ fun TypographyBundleCard(
                                     val discountPercent = "- ${calculatedDiscountRatio.toPercentageString(false)}"
                                     val discountValue = "- $calculatedDiscount"
 
-                                    val breakdownRows = listOf(
-                                        Triple(stringResource(R.string.marketplace_label_bundle_item_total), "", "$totalItemCost"),
-                                        Triple(stringResource(R.string.marketplace_label_bundle_price), "", "$buyCredits"),
-                                        Triple("${stringResource(R.string.marketplace_label_bundle_unlocked_discount)} %", "", discountPercent),
-                                        Triple(stringResource(R.string.marketplace_label_bundle_unlocked_discount), discountPercent, discountValue),
-                                        Triple(stringResource(R.string.marketplace_label_bundle_final_price), "", "$finalPrice")
-                                    )
+                                    val breakdownRows = buildList {
+                                        add(Triple(stringResource(R.string.marketplace_label_bundle_item_total), "", "$totalItemCost"))
+                                        add(Triple(stringResource(R.string.marketplace_label_bundle_price), "", "$buyCredits"))
+                                        if (calculatedDiscountRatio < 1f) {
+                                            add(Triple("${stringResource(R.string.marketplace_label_bundle_unlocked_discount)} %", "", discountPercent))
+                                            add(Triple(stringResource(R.string.marketplace_label_bundle_unlocked_discount), discountPercent, discountValue))
+                                        }
+                                        add(Triple(stringResource(R.string.marketplace_label_bundle_final_price), "", "$finalPrice"))
+                                    }
 
                                     breakdownRows.forEach { (label, middle, last) ->
                                         Row(
