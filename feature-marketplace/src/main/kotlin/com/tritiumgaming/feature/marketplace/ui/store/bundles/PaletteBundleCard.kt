@@ -233,14 +233,14 @@ fun PaletteBundleCard(
                             .wrapContentHeight()
                             .padding(vertical = 4.dp)
                             .background(scrim.copy(alpha = .3f))
-                            .padding(4.dp),
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp, CenterVertically),
                         horizontalAlignment = CenterHorizontally
                     ) {
                         if (!isQualified) {
                             Column(
                                 modifier = Modifier
-                                    .padding(vertical = 12.dp),
+                                    .padding(vertical = 4.dp),
                                 verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
                                 horizontalAlignment = CenterHorizontally
                             ) {
@@ -260,7 +260,8 @@ fun PaletteBundleCard(
                         } else {
                             Column(
                                 modifier = Modifier
-                                    .fillMaxWidth(),
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp),
                                 horizontalAlignment = CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
