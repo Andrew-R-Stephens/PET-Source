@@ -38,6 +38,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
@@ -233,9 +234,7 @@ private fun PortraitContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCost = item.buyCost,
-                            discount = item.discount,
-                            discountedCost = item.discountedCost,
+                            pricing = item.pricing,
                             title = item.marketBundle.name,
                             items = item.marketPalettes,
                             canUnlock = authenticated,
@@ -253,7 +252,7 @@ private fun PortraitContent(
                     is ShopScreenUiItem.TypographyBundle -> {
                         TypographyBundleCard(
                             modifier = Modifier,
-                            buyCredits = item.marketBundle.buyCredits,
+                            pricing = item.pricing,
                             title = item.marketBundle.name,
                             items = item.marketTypographies,
                             canUnlock = authenticated,
@@ -320,7 +319,7 @@ private fun LandscapeContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCost = item.marketBundle.buyCredits,
+                            pricing = item.pricing,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
@@ -337,7 +336,7 @@ private fun LandscapeContent(
                     is ShopScreenUiItem.TypographyBundle -> {
                         TypographyBundleCard(
                             modifier = Modifier,
-                            buyCredits = item.marketBundle.buyCredits,
+                            pricing = item.pricing,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
@@ -390,11 +389,7 @@ private fun BundleShopPreview() {
                         MarketBundle("", ""),
                         listOf(marketPalette2),
                         false,
-                        buyCost = 0L,
-                        originalCost = 0L,
-                        discountRatio = 0f,
-                        discount = 0L,
-                        discountedCost = 0L,
+                        pricing = BundlePricingUiState()
                     )
                 )
             )

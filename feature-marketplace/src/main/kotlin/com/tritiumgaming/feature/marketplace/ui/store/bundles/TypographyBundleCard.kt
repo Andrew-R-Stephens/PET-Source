@@ -74,6 +74,7 @@ import com.tritiumgaming.core.ui.theme.badge_default
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.common.CustomFontFamily
 import com.tritiumgaming.core.ui.theme.white_M100
+import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType.*
 import com.tritiumgaming.shared.data.market.typography.mappers.asUuid as asTypographyUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -88,7 +89,7 @@ fun TypographyBundleCard(
     modifier: Modifier = Modifier,
     title: String,
     items: List<MarketTypography>,
-    buyCredits: Long = 0L,
+    pricing: BundlePricingUiState = BundlePricingUiState(),
     canUnlock: Boolean = false,
     isOwned: Boolean = false,
     surfaceContainerHigh: Color,
@@ -142,17 +143,7 @@ fun TypographyBundleCard(
                 var selectedTypography: TypographyResources.TypographyType? by remember { mutableStateOf(null) }
                 var isExpanded by remember { mutableStateOf(false) }
 
-                val unlockedCount = items.count { it.unlocked }
-                val totalCount = items.size
-                val lockedCount = totalCount - unlockedCount
-
-                val isQualified = lockedCount > 1
-                val hasDiscount = unlockedCount > 0
-                val showItemDiscount = !isOwned && hasDiscount && isQualified
-
-                val discountPerItem = if (unlockedCount > 0) {
-                    (unlockedCount.toFloat() / totalCount) / unlockedCount
-                } else 0f
+                val showItemDiscount = !isOwned && pricing.hasDiscount && pricing.isQualified
 
                 LazyRow(
                     modifier = Modifier
@@ -171,7 +162,7 @@ fun TypographyBundleCard(
                                 title = stringResource(paletteRes.extrasFamily.title),
                                 isOwned = marketTypography.unlocked,
                                 showDiscount = showItemDiscount,
-                                discountRatio = discountPerItem,
+                                discountRatio = pricing.discountPerItem,
                                 primaryColor = LocalPalette.current.primary,
                                 surfaceColor = LocalPalette.current.surface,
                                 onSurfaceColor = LocalPalette.current.onSurface,
@@ -208,175 +199,210 @@ fun TypographyBundleCard(
                     )
                 }
 
-                if(!isOwned) {
-                    val totalItemCost = items.sumOf { it.buyCredits }
-                    val calculatedDiscountRatio = if (totalCount > 0) unlockedCount.toFloat() / totalCount else 0f
-                    val calculatedDiscount = (buyCredits * calculatedDiscountRatio).toLong()
-                    val finalPrice = buyCredits - calculatedDiscount
+                val lockedCount = items.count { !it.unlocked }
 
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(vertical = 4.dp)
-                            .background(scrim.copy(alpha = .3f))
-                            .padding(horizontal = 8.dp),
-                        verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
-                        horizontalAlignment = CenterHorizontally
-                    ) {
-                        if (!isQualified) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(vertical = 4.dp)
+                        .background(scrim.copy(alpha = .3f))
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp, CenterVertically),
+                    horizontalAlignment = CenterHorizontally
+                ) {
+                    if (isOwned || lockedCount == 0) {
+                        Box(
+                            modifier = Modifier
+                                .height(48.dp)
+                                .padding(8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .wrapContentHeight()
+                                    .padding(8.dp),
+                                text = "Acquired".uppercase(),
+                                fontSize = 18.sp,
+                                color = surfaceContainerHigh,
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    textAlign = TextAlign.Center
+                                )
+                            )
+                        }
+                    } else if (lockedCount == 1) {
+                        Column(
+                            modifier = Modifier
+                                .padding(vertical = 4.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
+                            horizontalAlignment = CenterHorizontally
+                        ) {
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
+                                color = onSurface,
+                                style = LocalTypography.current.quaternary.bold,
+                                fontSize = 16.sp
+                            )
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
+                                color = onSurface,
+                                style = LocalTypography.current.quaternary.regular,
+                                fontSize = 10.sp
+                            )
+                        }
+                    } else if (!pricing.isQualified) {
+                        Column(
+                            modifier = Modifier
+                                .padding(vertical = 12.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
+                            horizontalAlignment = CenterHorizontally
+                        ) {
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
+                                color = onSurface,
+                                style = LocalTypography.current.quaternary.bold,
+                                fontSize = 16.sp
+                            )
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
+                                color = onSurface,
+                                style = LocalTypography.current.quaternary.regular,
+                                fontSize = 10.sp
+                            )
+                        }
+                    } else {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp, CenterHorizontally),
+                            verticalAlignment = CenterVertically
+                        ) {
+                            Column(
+                                horizontalAlignment = CenterHorizontally,
+                                verticalArrangement = Arrangement.spacedBy(2.dp)
+                            ) {
+                                Button(
+                                    modifier = Modifier.height(48.dp),
+                                    onClick = onBuyClick,
+                                    enabled = canUnlock,
+                                    shape = RoundedCornerShape(2.dp),
+                                    contentPadding = PaddingValues(horizontal = 16.dp),
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = surfaceContainerHigh
+                                    ),
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.marketplace_button_item_get).uppercase(),
+                                        style = LocalTypography.current.quaternary.bold,
+                                        color = onSurface,
+                                        fontSize = 18.sp
+                                    )
+                                }
+
+                                if (pricing.bundleDiscount > 0 || pricing.hasDiscount) {
+                                    Text(
+                                        text = if (isExpanded) "Details ▲" else "Details ▼",
+                                        modifier = Modifier.clickable { isExpanded = !isExpanded },
+                                        color = onSurface,
+                                        style = LocalTypography.current.quaternary.bold,
+                                        fontSize = 10.sp
+                                    )
+                                }
+                            }
+
+                            Row(
+                                verticalAlignment = CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Text(
+                                    text = "${stringResource(R.string.marketplace_label_bundle_final_price)}:",
+                                    fontSize = 16.sp,
+                                    color = surfaceContainerHigh,
+                                    style = LocalTypography.current.quaternary.bold
+                                )
+
+                                Image(
+                                    modifier = Modifier.size(24.dp),
+                                    painter = painterResource(R.drawable.ic_shop_cost),
+                                    contentDescription = "Cost",
+                                    colorFilter = ColorFilter.tint(surfaceContainerHigh)
+                                )
+
+                                val displayPrice = if (pricing.hasDiscount) "${pricing.finalPrice}" else "${pricing.bundlePrice}"
+                                Text(
+                                    text = displayPrice,
+                                    fontSize = 24.sp,
+                                    color = surfaceContainerHigh,
+                                    style = LocalTypography.current.quaternary.bold
+                                )
+                            }
+                        }
+
+                        if (isExpanded && (pricing.bundleDiscount > 0 || pricing.hasDiscount)) {
                             Column(
                                 modifier = Modifier
-                                    .padding(vertical = 12.dp),
-                                verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
-                                horizontalAlignment = CenterHorizontally
+                                    .fillMaxWidth()
+                                    .padding(bottom = 8.dp),
+                                horizontalAlignment = Alignment.Start,
+                                verticalArrangement = Arrangement.spacedBy(2.dp)
                             ) {
-                                Text(
-                                    text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
-                                    color = onSurface,
-                                    style = LocalTypography.current.quaternary.bold,
-                                    fontSize = 16.sp
+                                val rowStyle = LocalTypography.current.quaternary.regular.copy(
+                                    fontSize = 11.sp,
+                                    color = onSurfaceVariant
                                 )
-                                Text(
-                                    text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
-                                    color = onSurface,
-                                    style = LocalTypography.current.quaternary.regular,
-                                    fontSize = 10.sp
+                                val labelStyle = LocalTypography.current.quaternary.bold.copy(
+                                    fontSize = 11.sp,
+                                    color = onSurfaceVariant.copy(alpha = 0.7f)
                                 )
-                            }
-                        } else {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(16.dp, CenterHorizontally),
-                                verticalAlignment = CenterVertically
-                            ) {
-                                Column(
-                                    horizontalAlignment = CenterHorizontally,
-                                    verticalArrangement = Arrangement.spacedBy(2.dp)
-                                ) {
-                                    Button(
-                                        modifier = Modifier.height(48.dp),
-                                        onClick = onBuyClick,
-                                        enabled = canUnlock,
-                                        shape = RoundedCornerShape(2.dp),
-                                        contentPadding = PaddingValues(horizontal = 16.dp),
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = surfaceContainerHigh
-                                        ),
+
+                                val discountPercent = "- ${pricing.proratedDiscountRatio.toPercentageString(false)}"
+                                val discountValue = "- ${pricing.proratedDiscount}"
+
+                                val breakdownRows = buildList {
+                                    add(Triple(stringResource(R.string.marketplace_label_bundle_item_total), "", "${pricing.listPriceTotal}"))
+                                    add(Triple(stringResource(R.string.marketplace_label_bundle_price), "", "${pricing.bundlePrice}"))
+                                    if (pricing.proratedDiscountRatio < 1f) {
+                                        add(Triple("${stringResource(R.string.marketplace_label_bundle_unlocked_discount)} %", "", discountPercent))
+                                        add(Triple(stringResource(R.string.marketplace_label_bundle_unlocked_discount), discountPercent, discountValue))
+                                    }
+                                    add(Triple(stringResource(R.string.marketplace_label_bundle_final_price), "", "${pricing.finalPrice}"))
+                                }
+
+                                breakdownRows.forEach { (label, middle, last) ->
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        verticalAlignment = Alignment.Top
                                     ) {
                                         Text(
-                                            text = stringResource(R.string.marketplace_button_item_get).uppercase(),
-                                            style = LocalTypography.current.quaternary.bold,
-                                            color = onSurface,
-                                            fontSize = 18.sp
+                                            text = "$label:",
+                                            modifier = Modifier.weight(0.25f),
+                                            textAlign = TextAlign.End,
+                                            color = labelStyle.color,
+                                            style = labelStyle,
+                                            softWrap = true
                                         )
-                                    }
-
-                                    if (totalItemCost > buyCredits || hasDiscount) {
                                         Text(
-                                            text = if (isExpanded) "Details ▲" else "Details ▼",
-                                            modifier = Modifier.clickable { isExpanded = !isExpanded },
-                                            color = onSurface,
-                                            style = LocalTypography.current.quaternary.bold,
-                                            fontSize = 10.sp
+                                            text = middle,
+                                            modifier = Modifier
+                                                .weight(0.375f)
+                                                .padding(horizontal = 8.dp),
+                                            textAlign = TextAlign.Start,
+                                            color = rowStyle.color,
+                                            style = rowStyle
                                         )
-                                    }
-                                }
-
-                                Row(
-                                    verticalAlignment = CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                                ) {
-                                    Text(
-                                        text = "${stringResource(R.string.marketplace_label_bundle_final_price)}:",
-                                        fontSize = 16.sp,
-                                        color = surfaceContainerHigh,
-                                        style = LocalTypography.current.quaternary.bold
-                                    )
-
-                                    Image(
-                                        modifier = Modifier.size(24.dp),
-                                        painter = painterResource(R.drawable.ic_shop_cost),
-                                        contentDescription = "Cost",
-                                        colorFilter = ColorFilter.tint(surfaceContainerHigh)
-                                    )
-
-                                    val displayPrice = if (hasDiscount) "$finalPrice" else "$buyCredits"
-                                    Text(
-                                        text = displayPrice,
-                                        fontSize = 24.sp,
-                                        color = surfaceContainerHigh,
-                                        style = LocalTypography.current.quaternary.bold
-                                    )
-                                }
-                            }
-
-                            if (isExpanded && (totalItemCost > buyCredits || hasDiscount)) {
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(bottom = 8.dp),
-                                    horizontalAlignment = Alignment.Start,
-                                    verticalArrangement = Arrangement.spacedBy(2.dp)
-                                ) {
-                                    val rowStyle = LocalTypography.current.quaternary.regular.copy(
-                                        fontSize = 11.sp,
-                                        color = onSurfaceVariant
-                                    )
-                                    val labelStyle = LocalTypography.current.quaternary.bold.copy(
-                                        fontSize = 11.sp,
-                                        color = onSurfaceVariant.copy(alpha = 0.7f)
-                                    )
-
-                                    val discountPercent = "- ${calculatedDiscountRatio.toPercentageString(false)}"
-                                    val discountValue = "- $calculatedDiscount"
-
-                                    val breakdownRows = buildList {
-                                        add(Triple(stringResource(R.string.marketplace_label_bundle_item_total), "", "$totalItemCost"))
-                                        add(Triple(stringResource(R.string.marketplace_label_bundle_price), "", "$buyCredits"))
-                                        if (calculatedDiscountRatio < 1f) {
-                                            add(Triple("${stringResource(R.string.marketplace_label_bundle_unlocked_discount)} %", "", discountPercent))
-                                            add(Triple(stringResource(R.string.marketplace_label_bundle_unlocked_discount), discountPercent, discountValue))
-                                        }
-                                        add(Triple(stringResource(R.string.marketplace_label_bundle_final_price), "", "$finalPrice"))
-                                    }
-
-                                    breakdownRows.forEach { (label, middle, last) ->
-                                        Row(
-                                            modifier = Modifier.fillMaxWidth(),
-                                            verticalAlignment = Alignment.Top
-                                        ) {
-                                            Text(
-                                                text = "$label:",
-                                                modifier = Modifier.weight(0.25f),
-                                                textAlign = TextAlign.End,
-                                                color = labelStyle.color,
-                                                style = labelStyle,
-                                                softWrap = true
-                                            )
-                                            Text(
-                                                text = middle,
-                                                modifier = Modifier
-                                                    .weight(0.375f)
-                                                    .padding(horizontal = 8.dp),
-                                                textAlign = TextAlign.Start,
-                                                color = rowStyle.color,
-                                                style = rowStyle
-                                            )
-                                            Text(
-                                                text = last,
-                                                modifier = Modifier.weight(0.375f),
-                                                textAlign = TextAlign.Start,
-                                                color = rowStyle.color,
-                                                style = rowStyle
-                                            )
-                                        }
+                                        Text(
+                                            text = last,
+                                            modifier = Modifier.weight(0.375f),
+                                            textAlign = TextAlign.Start,
+                                            color = rowStyle.color,
+                                            style = rowStyle
+                                        )
                                     }
                                 }
                             }
                         }
                     }
                 }
+
             }
         }
     }
@@ -695,7 +721,9 @@ private fun PreviewBundleCard() {
                 .widthIn(400.dp)
                 .fillMaxWidth(),
             title = "Test",
-            buyCredits = 600,
+            pricing = BundlePricingUiState(
+                bundlePrice = 600
+            ),
             items = listOf(
                 MarketTypography(
                     uuid = "0",

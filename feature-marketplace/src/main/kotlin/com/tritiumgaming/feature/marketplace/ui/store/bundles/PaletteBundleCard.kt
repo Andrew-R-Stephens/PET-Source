@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -69,6 +70,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
+import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -78,11 +80,7 @@ fun PaletteBundleCard(
     modifier: Modifier = Modifier,
     title: String,
     items: List<MarketPalette>,
-    buyCost: Long = 0L,
-    originalCost: Long = 0L,
-    discountRatio: Float = 0f,
-    discount: Long = 0L,
-    discountedCost: Long = 0L,
+    pricing: BundlePricingUiState = BundlePricingUiState(),
     canUnlock: Boolean = false,
     isOwned: Boolean = false,
     surfaceContainerHigh: Color,
@@ -135,17 +133,7 @@ fun PaletteBundleCard(
 
                 var selectedPalette: PaletteType? by remember { mutableStateOf(null) }
 
-                val unlockedCount = items.count { it.unlocked }
-                val totalCount = items.size
-                val lockedCount = totalCount - unlockedCount
-
-                val isQualified = lockedCount > 1
-                val hasDiscount = unlockedCount > 0
-                val showItemDiscount = !isOwned && hasDiscount/* && isQualified*/
-
-                val discountPerItem = if (unlockedCount > 0) {
-                    (unlockedCount.toFloat() / totalCount) / unlockedCount
-                } else 0f
+                val showItemDiscount = !isOwned && pricing.hasDiscount
 
                 LazyRow(
                     modifier = Modifier
@@ -164,7 +152,7 @@ fun PaletteBundleCard(
                                 title = stringResource(paletteRes.extrasFamily.title),
                                 isOwned = marketPalette.unlocked,
                                 showDiscount = showItemDiscount,
-                                discountRatio = discountPerItem,
+                                discountRatio = pricing.discountPerItem,
                                 primaryColor = paletteRes.primary,
                                 surfaceColor = paletteRes.surface,
                                 onSurfaceColor = LocalPalette.current.onSurface,
@@ -220,317 +208,350 @@ fun PaletteBundleCard(
                     }
                 }
 
-                if(!isOwned) {
-                    val listPriceTotal = items.sumOf { it.buyCredits }
-                    val calculatedBundleDiscountRatio = 1f - (buyCost / listPriceTotal.toFloat())
-                    val calculatedProratedDiscountRatio = if (totalCount > 0) unlockedCount.toFloat() / totalCount else 0f
-                    val calculatedProratedDiscount = (buyCost * calculatedProratedDiscountRatio).toLong()
-                    val finalPrice = buyCost - calculatedProratedDiscount
+                val lockedCount = items.count { !it.unlocked }
 
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(vertical = 4.dp)
-                            .background(scrim.copy(alpha = .3f))
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp, CenterVertically),
-                        horizontalAlignment = CenterHorizontally
-                    ) {
-                        if (!isQualified) {
-                            Column(
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(vertical = 4.dp)
+                        .background(scrim.copy(alpha = .3f))
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp, CenterVertically),
+                    horizontalAlignment = CenterHorizontally
+                ) {
+                    if (isOwned || lockedCount == 0) {
+                        Box(
+                            modifier = Modifier
+                                .heightIn(min = 48.dp)
+                                .padding(8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
                                 modifier = Modifier
-                                    .padding(vertical = 4.dp),
-                                verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
-                                horizontalAlignment = CenterHorizontally
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
-                                    color = surfaceContainerHigh,
-                                    style = LocalTypography.current.quaternary.bold,
-                                    fontSize = 16.sp
+                                    .wrapContentHeight()
+                                    .padding(8.dp),
+                                text = "Acquired".uppercase(),
+                                fontSize = 18.sp,
+                                color = surfaceContainerHigh,
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    textAlign = TextAlign.Center
                                 )
-                                Text(
-                                    text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
-                                    color = surfaceContainerHigh,
-                                    style = LocalTypography.current.quaternary.regular,
-                                    fontSize = 10.sp
-                                )
-                            }
-                        } else {
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 4.dp),
-                                horizontalAlignment = CenterHorizontally,
-                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            )
+                        }
+                    } else if (lockedCount == 1) {
+                        Column(
+                            modifier = Modifier
+                                .heightIn(min = 48.dp)
+                                .padding(vertical = 4.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
+                            horizontalAlignment = CenterHorizontally
+                        ) {
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
+                                color = surfaceContainerHigh,
+                                style = LocalTypography.current.quaternary.bold,
+                                fontSize = 16.sp
+                            )
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
+                                color = surfaceContainerHigh,
+                                style = LocalTypography.current.quaternary.regular,
+                                fontSize = 10.sp
+                            )
+                        }
+                    } else if (!pricing.isQualified) {
+                        Column(
+                            modifier = Modifier
+                                .padding(vertical = 4.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
+                            horizontalAlignment = CenterHorizontally
+                        ) {
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
+                                color = surfaceContainerHigh,
+                                style = LocalTypography.current.quaternary.bold,
+                                fontSize = 16.sp
+                            )
+                            Text(
+                                text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
+                                color = surfaceContainerHigh,
+                                style = LocalTypography.current.quaternary.regular,
+                                fontSize = 10.sp
+                            )
+                        }
+                    } else {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 4.dp),
+                            horizontalAlignment = CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(
+                                    16.dp,
+                                    CenterHorizontally
+                                ),
+                                verticalAlignment = CenterVertically
                             ) {
-                                Row(
-                                    horizontalArrangement = Arrangement.spacedBy(
-                                        16.dp,
-                                        CenterHorizontally
-                                    ),
-                                    verticalAlignment = CenterVertically
+                                Button(
+                                    modifier = Modifier.height(48.dp),
+                                    onClick = onBuyClick,
+                                    enabled = canUnlock,
+                                    shape = RoundedCornerShape(2.dp),
+                                    contentPadding = PaddingValues(horizontal = 16.dp),
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = surfaceContainerHigh
+                                    )
                                 ) {
-                                    Button(
-                                        modifier = Modifier.height(48.dp),
-                                        onClick = onBuyClick,
-                                        enabled = canUnlock,
-                                        shape = RoundedCornerShape(2.dp),
-                                        contentPadding = PaddingValues(horizontal = 16.dp),
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = surfaceContainerHigh
-                                        ),
-                                    ) {
-                                        Text(
-                                            text = stringResource(R.string.marketplace_button_item_get).uppercase(),
-                                            style = LocalTypography.current.quaternary.bold,
-                                            color = onSurface,
-                                            fontSize = 18.sp
-                                        )
-                                    }
-
-                                    Row(
-                                        verticalAlignment = CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                                    ) {
-                                        Image(
-                                            modifier = Modifier.size(24.dp),
-                                            painter = painterResource(R.drawable.ic_shop_cost),
-                                            contentDescription = "Cost",
-                                            colorFilter = ColorFilter.tint(surfaceContainerHigh)
-                                        )
-
-                                        val displayPrice = if (hasDiscount) "$finalPrice" else "$buyCost"
-                                        Text(
-                                            text = displayPrice,
-                                            fontSize = 24.sp,
-                                            color = surfaceContainerHigh,
-                                            style = LocalTypography.current.quaternary.bold
-                                        )
-                                    }
-
+                                    Text(
+                                        text = stringResource(R.string.marketplace_button_item_get).uppercase(),
+                                        style = LocalTypography.current.quaternary.bold,
+                                        color = onSurface,
+                                        fontSize = 18.sp
+                                    )
                                 }
 
+                                Row(
+                                    verticalAlignment = CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Image(
+                                        modifier = Modifier.size(24.dp),
+                                        painter = painterResource(R.drawable.ic_shop_cost),
+                                        contentDescription = "Cost",
+                                        colorFilter = ColorFilter.tint(surfaceContainerHigh)
+                                    )
+
+                                    val displayPrice =
+                                        if (pricing.hasDiscount) "${pricing.finalPrice}"
+                                        else "${pricing.bundlePrice}"
+                                    Text(
+                                        text = displayPrice,
+                                        fontSize = 24.sp,
+                                        color = surfaceContainerHigh,
+                                        style = LocalTypography.current.quaternary.bold
+                                    )
+                                }
                             }
+                        }
 
-                            val labelStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 14.sp
-                            )
-                            val rowStyle = LocalTypography.current.quaternary.regular.copy(
-                                fontSize = 14.sp
-                            )
+                        val labelStyle = LocalTypography.current.quaternary.bold.copy(
+                            fontSize = 14.sp
+                        )
+                        val rowStyle = LocalTypography.current.quaternary.regular.copy(
+                            fontSize = 14.sp
+                        )
 
-                            val calculatedBundleDiscountPercent = calculatedBundleDiscountRatio.toPercentageString(false)
-                            val calculatedBundleDiscount = listPriceTotal - buyCost
-                            val proratedDiscountPercent = calculatedProratedDiscountRatio.toPercentageString(false)
-                            val proratedDiscountValue = "$calculatedProratedDiscount"
+                        val calculatedBundleDiscountPercent = pricing.bundleDiscountRatio.toPercentageString(false)
+                        val proratedDiscountPercent = pricing.proratedDiscountRatio.toPercentageString(false)
+                        val proratedDiscountValue = "${pricing.proratedDiscount}"
 
-                            data class BreakdownData(
-                                val data: String = "",
-                                val color: Color = onSurface,
-                                val style: TextStyle = rowStyle
-                            )
-                            data class BreakdownItem(
-                                val first: BreakdownData,
-                                val middle: BreakdownData,
-                                val last: BreakdownData
-                            )
+                        data class BreakdownData(
+                            val data: String = "",
+                            val color: Color = onSurface,
+                            val style: TextStyle = rowStyle
+                        )
+                        data class BreakdownItem(
+                            val first: BreakdownData,
+                            val middle: BreakdownData,
+                            val last: BreakdownData
+                        )
 
-                            val breakdownRows = buildList {
-                                add(
-                                    BreakdownItem(
-                                        BreakdownData(
-                                            stringResource(R.string.marketplace_label_bundle_item_total),
-                                            color = onSurface,
-                                            style = labelStyle
-                                        ),
-                                        BreakdownData(
-                                            "$listPriceTotal",
-                                            color = onSurface,
-                                            style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                        ),
-                                        BreakdownData(
-                                            "",
-                                            color = onSurface,
-                                        )
+                        val breakdownRows = buildList {
+                            add(
+                                BreakdownItem(
+                                    BreakdownData(
+                                        stringResource(R.string.marketplace_label_bundle_item_total),
+                                        color = onSurface,
+                                        style = labelStyle
+                                    ),
+                                    BreakdownData(
+                                        "${pricing.listPriceTotal}",
+                                        color = onSurface,
+                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                    ),
+                                    BreakdownData(
+                                        "",
+                                        color = onSurface,
                                     )
                                 )
+                            )
+                            add(
+                                BreakdownItem(
+                                    BreakdownData(
+                                        data = stringResource(R.string.marketplace_label_bundle_price_discount),
+                                        color = LocalPalette.current.onSurfaceVariant,
+                                        style = labelStyle
+                                    ),
+                                    BreakdownData(
+                                        "-${pricing.bundleDiscount}",
+                                        color = LocalPalette.current.onSurfaceVariant,
+                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                    ),
+                                    BreakdownData(
+                                        "(-$calculatedBundleDiscountPercent)",
+                                        color = LocalPalette.current.onSurfaceVariant
+                                    )
+                                )
+                            )
+                            add(
+                                BreakdownItem(
+                                    BreakdownData(
+                                        data = stringResource(R.string.marketplace_label_bundle_price),
+                                        color = onSurface,
+                                        style = labelStyle
+                                    ),
+                                    BreakdownData(
+                                        "${pricing.bundlePrice}",
+                                        color = onSurface,
+                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                    ),
+                                    BreakdownData(
+                                        "",
+                                        color = onSurface,
+                                    )
+                                )
+                            )
+                            if (pricing.proratedDiscount > 0) {
                                 add(
                                     BreakdownItem(
                                         BreakdownData(
-                                            data = stringResource(R.string.marketplace_label_bundle_price_discount),
+                                            stringResource(R.string.marketplace_label_bundle_unlocked_discount),
                                             color = LocalPalette.current.onSurfaceVariant,
                                             style = labelStyle
                                         ),
                                         BreakdownData(
-                                            "-$calculatedBundleDiscount",
+                                            "-$proratedDiscountValue",
                                             color = LocalPalette.current.onSurfaceVariant,
                                             style = rowStyle.copy(fontWeight = FontWeight.Bold)
                                         ),
                                         BreakdownData(
-                                            "(-$calculatedBundleDiscountPercent)",
+                                            "(-$proratedDiscountPercent)",
                                             color = LocalPalette.current.onSurfaceVariant
                                         )
                                     )
                                 )
-                                add(
-                                    BreakdownItem(
-                                        BreakdownData(
-                                            data = stringResource(R.string.marketplace_label_bundle_price),
-                                            color = onSurface,
-                                            style = labelStyle
-                                        ),
-                                        BreakdownData(
-                                            "$buyCost",
-                                            color = onSurface,
-                                            style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                        ),
-                                        BreakdownData(
-                                            "",
-                                            color = onSurface,
-                                        )
+                            }
+                            add(
+                                BreakdownItem(
+                                    BreakdownData(
+                                        stringResource(R.string.marketplace_label_bundle_final_price),
+                                        color = onSurface,
+                                        style = labelStyle
+                                    ),
+                                    BreakdownData(
+                                        "${pricing.finalPrice}",
+                                        color = onSurface,
+                                        style = rowStyle.copy(fontWeight = FontWeight.Bold)
+                                    ),
+                                    BreakdownData(
+                                        "",
+                                        color = onSurface,
                                     )
                                 )
-                                if ((finalPrice - calculatedProratedDiscount) < finalPrice) {
-                                    add(
-                                        BreakdownItem(
-                                            BreakdownData(
-                                                stringResource(R.string.marketplace_label_bundle_unlocked_discount),
-                                                color = LocalPalette.current.onSurfaceVariant,
-                                                style = labelStyle
-                                            ),
-                                            BreakdownData(
-                                                "-$proratedDiscountValue",
-                                                color = LocalPalette.current.onSurfaceVariant,
-                                                style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                            ),
-                                            BreakdownData(
-                                                "(-$proratedDiscountPercent)",
-                                                color = LocalPalette.current.onSurfaceVariant
-                                            )
-                                        )
+                            )
+                        }
+
+                        Surface(
+                            modifier = Modifier,
+                            shape = RoundedCornerShape(8.dp),
+                            color = LocalPalette.current.surfaceContainer.copy(alpha = .9f),
+                        ) {
+                            var isExpanded by remember { mutableStateOf(true) }
+
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                                    .clickable { isExpanded = !isExpanded },
+                                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+                                horizontalAlignment = CenterHorizontally
+                            ) {
+                                if (pricing.bundleDiscount > 0 || pricing.hasDiscount) {
+                                    val title = if (isExpanded) "Hide Details" else "Show Details"
+
+                                    Text(
+                                        text = (if (isExpanded) "$title ▲" else "$title ▼").uppercase(),
+                                        modifier = Modifier,
+                                        color = LocalPalette.current.onSurface,
+                                        style = LocalTypography.current.quaternary.bold,
+                                        fontSize = 14.sp,
+                                        maxLines = 1
                                     )
                                 }
-                                add(
-                                    BreakdownItem(
-                                        BreakdownData(
-                                            stringResource(R.string.marketplace_label_bundle_final_price),
-                                            color = onSurface,
-                                            style = labelStyle
-                                        ),
-                                        BreakdownData(
-                                            "$finalPrice",
-                                            color = onSurface,
-                                            style = rowStyle.copy(fontWeight = FontWeight.Bold)
-                                        ),
-                                        BreakdownData(
-                                            "",
-                                            color = onSurface,
+
+                                if (isExpanded && (pricing.bundleDiscount > 0 || pricing.hasDiscount)) {
+
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.spacedBy(
+                                            4.dp,
+                                            CenterHorizontally
                                         )
-                                    )
-                                )
-                            }
-
-                            Surface(
-                                modifier = Modifier,
-                                shape = RoundedCornerShape(8.dp),
-                                color = LocalPalette.current.surfaceContainer.copy(alpha = .9f),
-                            ) {
-                                var isExpanded by remember { mutableStateOf(true) }
-
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(8.dp)
-                                        .clickable { isExpanded = !isExpanded },
-                                    verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-                                    horizontalAlignment = CenterHorizontally
-                                ) {
-                                    if (listPriceTotal > buyCost || hasDiscount) {
-                                        val title = if (isExpanded) "Hide Details" else "Show Details"
-
-                                        Text(
-                                            text = (if (isExpanded) "$title ▲" else "$title ▼").uppercase(),
-                                            modifier = Modifier,
-                                            color = LocalPalette.current.onSurface,
-                                            style = LocalTypography.current.quaternary.bold,
-                                            fontSize = 14.sp,
-                                            maxLines = 1
-                                        )
-                                    }
-
-                                    if (isExpanded && (listPriceTotal > buyCost || hasDiscount)) {
-
-                                        Row(
-                                            modifier = Modifier
-                                                .fillMaxWidth(),
-                                            horizontalArrangement = Arrangement.spacedBy(
-                                                4.dp,
-                                                CenterHorizontally
-                                            )
+                                    ) {
+                                        Column(
+                                            modifier = Modifier.width(IntrinsicSize.Max),
+                                            horizontalAlignment = Alignment.End
                                         ) {
-                                            Column(
-                                                modifier = Modifier.width(IntrinsicSize.Max),
-                                                horizontalAlignment = Alignment.End
-                                            ) {
-                                                breakdownRows.forEach { (first, _, _) ->
-                                                    Text(
-                                                        text = first.data.uppercase(),
-                                                        modifier = Modifier.fillMaxWidth(),
-                                                        textAlign = TextAlign.Start,
-                                                        color = first.color,
-                                                        style = first.style,
-                                                        softWrap = true
-                                                    )
-                                                }
+                                            breakdownRows.forEach { (first, _, _) ->
+                                                Text(
+                                                    text = first.data.uppercase(),
+                                                    modifier = Modifier.fillMaxWidth(),
+                                                    textAlign = TextAlign.Start,
+                                                    color = first.color,
+                                                    style = first.style,
+                                                    softWrap = true
+                                                )
                                             }
+                                        }
 
-                                            Column(
-                                                modifier = Modifier.width(IntrinsicSize.Max),
-                                                horizontalAlignment = Alignment.Start
-                                            ) {
-                                                breakdownRows.forEach { (_, _, last) ->
-                                                    Text(
-                                                        text = last.data.uppercase(),
-                                                        modifier = Modifier.fillMaxWidth(),
-                                                        textAlign = TextAlign.End,
-                                                        color = last.color,
-                                                        style = last.style
-                                                    )
-                                                }
+                                        Column(
+                                            modifier = Modifier.width(IntrinsicSize.Max),
+                                            horizontalAlignment = Alignment.Start
+                                        ) {
+                                            breakdownRows.forEach { (_, _, last) ->
+                                                Text(
+                                                    text = last.data.uppercase(),
+                                                    modifier = Modifier.fillMaxWidth(),
+                                                    textAlign = TextAlign.End,
+                                                    color = last.color,
+                                                    style = last.style
+                                                )
                                             }
+                                        }
 
-                                            Column(
-                                                modifier = Modifier.width(IntrinsicSize.Max),
-                                                horizontalAlignment = Alignment.End
-                                            ) {
-                                                breakdownRows.forEach { (first) ->
-                                                    Text(
-                                                        text = ":",
-                                                        modifier = Modifier.fillMaxWidth(),
-                                                        textAlign = TextAlign.End,
-                                                        color = first.color,
-                                                        style = first.style,
-                                                        softWrap = true
-                                                    )
-                                                }
+                                        Column(
+                                            modifier = Modifier.width(IntrinsicSize.Max),
+                                            horizontalAlignment = Alignment.End
+                                        ) {
+                                            breakdownRows.forEach { (first) ->
+                                                Text(
+                                                    text = ":",
+                                                    modifier = Modifier.fillMaxWidth(),
+                                                    textAlign = TextAlign.End,
+                                                    color = first.color,
+                                                    style = first.style,
+                                                    softWrap = true
+                                                )
                                             }
+                                        }
 
-                                            Column(
-                                                modifier = Modifier
-                                                    .width(IntrinsicSize.Max),
-                                                horizontalAlignment = Alignment.Start
-                                            ) {
-                                                breakdownRows.forEach { (_, middle, _) ->
-                                                    Text(
-                                                        text = middle.data.uppercase(),
-                                                        modifier = Modifier.fillMaxWidth(),
-                                                        textAlign = TextAlign.End,
-                                                        color = middle.color,
-                                                        style = middle.style
-                                                    )
-                                                }
+                                        Column(
+                                            modifier = Modifier
+                                                .width(IntrinsicSize.Max),
+                                            horizontalAlignment = Alignment.Start
+                                        ) {
+                                            breakdownRows.forEach { (_, middle, _) ->
+                                                Text(
+                                                    text = middle.data.uppercase(),
+                                                    modifier = Modifier.fillMaxWidth(),
+                                                    textAlign = TextAlign.End,
+                                                    color = middle.color,
+                                                    style = middle.style
+                                                )
                                             }
                                         }
                                     }
@@ -539,6 +560,7 @@ fun PaletteBundleCard(
                         }
                     }
                 }
+
 
             }
 
@@ -1123,9 +1145,11 @@ private fun PreviewBundleCard() {
                 .widthIn(400.dp)
                 .fillMaxWidth(),
             title = "Test",
-            buyCost = 600,
-            discount = 100L,
-            discountedCost = 500L,
+            pricing = BundlePricingUiState(
+                bundlePrice = 600,
+                bundleDiscount = 100L,
+                finalPrice = 500L
+            ),
             items = listOf(
                 MarketPalette(
                     uuid = "0",
@@ -1133,7 +1157,7 @@ private fun PreviewBundleCard() {
                     group = "",
                     buyCredits = 60,
                     priority = 0,
-                    unlocked = true,
+                    unlocked = false,
                     palette = PaletteType.AGENT
                 ),
                 MarketPalette(
@@ -1195,9 +1219,15 @@ private fun PaletteBundleCardQualifiedPreview() {
                 .widthIn(400.dp)
                 .fillMaxWidth(),
             title = "Special Bundle",
-            buyCost = 1000L,
-            discount = 250L,
-            discountedCost = 750L,
+            pricing = BundlePricingUiState(
+                bundlePrice = 1000L,
+                bundleDiscount = 250L,
+                finalPrice = 750L,
+                isQualified = true,
+                hasDiscount = true,
+                proratedDiscount = 250L,
+                proratedDiscountRatio = 0.25f
+            ),
             items = listOf(
                 MarketPalette(
                     uuid = "0", unlocked = true, buyCredits = 250, palette = PaletteType.AGENT,

@@ -11,6 +11,20 @@ data class MarketCatalogScreenUiState(
 )
 
 @Immutable
+data class BundlePricingUiState(
+    val listPriceTotal: Long = 0L,
+    val bundlePrice: Long = 0L,
+    val bundleDiscount: Long = 0L,
+    val bundleDiscountRatio: Float = 0f,
+    val proratedDiscount: Long = 0L,
+    val proratedDiscountRatio: Float = 0f,
+    val finalPrice: Long = 0L,
+    val isQualified: Boolean = false,
+    val hasDiscount: Boolean = false,
+    val discountPerItem: Float = 0f
+)
+
+@Immutable
 sealed interface ShopScreenUiItem {
     val key: String
 
@@ -30,18 +44,15 @@ sealed interface ShopScreenUiItem {
         val marketBundle: MarketBundle,
         val marketPalettes: List<MarketPalette>,
         val unlocked: Boolean,
-        val buyCost: Long,
-        val originalCost: Long,
-        val discountRatio: Float,
-        val discount: Long,
-        val discountedCost: Long
+        val pricing: BundlePricingUiState
     ) : ShopScreenUiItem
 
     data class TypographyBundle(
         override val key: String,
         val marketBundle: MarketBundle,
         val marketTypographies: List<MarketTypography>,
-        val unlocked: Boolean
+        val unlocked: Boolean,
+        val pricing: BundlePricingUiState
     ) : ShopScreenUiItem
 
 }

@@ -46,6 +46,7 @@ import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
+import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
@@ -295,7 +296,7 @@ private fun PortraitContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCost = item.marketBundle.buyCredits,
+                            pricing = item.pricing,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
@@ -391,7 +392,7 @@ private fun LandscapeContent(
                     is ShopScreenUiItem.PaletteBundle -> {
                         PaletteBundleCard(
                             modifier = Modifier,
-                            buyCost = item.marketBundle.buyCredits,
+                            pricing = item.pricing,
                             title = item.marketBundle.name,
                             surfaceContainerHigh = LocalPalette.current.surfaceContainerHigh,
                             onSurfaceVariant = LocalPalette.current.onSurfaceVariant,
@@ -444,7 +445,7 @@ private fun PaletteShopPreview() {
                         MarketBundle("", ""),
                         listOf(marketPalette2),
                         false,
-                        0L, 0L, 0f, 0L, 0L
+                        pricing = BundlePricingUiState()
                     ),
                     ShopScreenUiItem.Header("Specialist"),
                     ShopScreenUiItem.Palette(marketPalette1, palette1.toPaletteResource()),

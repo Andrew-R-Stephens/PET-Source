@@ -1,8 +1,8 @@
 package com.tritiumgaming.shared.data.account.model
 
 data class AccountTypography(
-    internal val uuid: String,
-    internal val unlocked: Boolean = true
+    val uuid: String,
+    val unlocked: Boolean = true
 )
 
 fun List<AccountTypography>.toAccountMarketTypography() = map {
