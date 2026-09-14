@@ -128,6 +128,26 @@ async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseReque
 }
 
 /**
+ * Helper to calculate bundle pricing based on unlocked items.
+ */
+function calculateBundlePricing(
+    bundleBuyCredits: number,
+    unlockedCount: number,
+    totalCount: number,
+    lockedCount: number,
+    oneLockedItemPrice: number | null
+): number {
+    const bundlePrice = (lockedCount === 1 && oneLockedItemPrice !== null) ?
+        oneLockedItemPrice : bundleBuyCredits;
+
+    const proratedDiscountRatio = totalCount > 0 ? unlockedCount / totalCount : 0;
+    const proratedDiscount = Math.floor(bundlePrice * proratedDiscountRatio);
+    const finalPrice = bundlePrice - proratedDiscount;
+
+    return finalPrice;
+}
+
+/**
  * Helper to process credit deduction and item fetching within a transaction.
  */
 async function processPurchaseTransaction(
@@ -135,17 +155,24 @@ async function processPurchaseTransaction(
     itemRef: DocumentReference,
     userCreditsRef: DocumentReference,
     userRef: DocumentReference,
-    transactionHistoryRef: DocumentReference
+    transactionHistoryRef: DocumentReference,
+    priceOverride?: number
 ) {
     const now = Timestamp.now();
 
     // 1. Get Item Data
-    const itemSnap = await transaction.get(itemRef);
-    if (!itemSnap.exists) {
-        throw new HttpsError("not-found", "Item not found.");
+    let price = 0;
+    let itemData = null;
+    if (priceOverride !== undefined) {
+        price = priceOverride;
+    } else {
+        const itemSnap = await transaction.get(itemRef);
+        if (!itemSnap.exists) {
+            throw new HttpsError("not-found", "Item not found.");
+        }
+        itemData = itemSnap.data();
+        price = itemData?.buyCredits || 0;
     }
-    const itemData = itemSnap.data();
-    const price = itemData?.buyCredits || 0;
 
     // 2. Get User Credits
     const creditsSnap = await transaction.get(userCreditsRef);
@@ -234,20 +261,67 @@ async function purchaseBundleTransaction_v1(db: Firestore, uid: string, itemId: 
     const unlockHistoryRef = db.collection(`Users/${uid}/Account/TransactionHistory/UnlockHistory`);
 
     return db.runTransaction(async (transaction) => {
-        const {newBalance, itemData, now} = await processPurchaseTransaction(
-            transaction, itemRef, userCreditsRef, userRef, transactionHistoryRef
+        // 1. Get Bundle Data
+        const bundleSnap = await transaction.get(itemRef);
+        if (!bundleSnap.exists) {
+            throw new HttpsError("not-found", "Bundle not found.");
+        }
+        const bundleData = bundleSnap.data();
+        const bundleBuyCredits = bundleData?.buyCredits || 0;
+        const itemRefs = bundleData?.items as DocumentReference[] | undefined;
+
+        if (!itemRefs || !Array.isArray(itemRefs)) {
+            throw new HttpsError("internal", "Bundle has no items.");
+        }
+
+        // 2. Fetch all item snapshots and their unlock status
+        const itemSnaps = await Promise.all(itemRefs.map((ref) => transaction.get(ref)));
+        const unlockSnaps = await Promise.all(itemRefs.map((ref) => transaction.get(unlockHistoryRef.doc(ref.id))));
+
+        let unlockedCount = 0;
+        let oneLockedItemPrice: number | null = null;
+        const totalCount = itemRefs.length;
+
+        for (let i = 0; i < totalCount; i++) {
+            if (unlockSnaps[i].exists) {
+                unlockedCount++;
+            } else {
+                oneLockedItemPrice = itemSnaps[i].data()?.buyCredits || 0;
+            }
+        }
+
+        const lockedCount = totalCount - unlockedCount;
+        if (lockedCount === 0) {
+            throw new HttpsError("failed-precondition", "Bundle already fully unlocked.");
+        }
+
+        // 3. Calculate Dynamic Price
+        const finalPrice = calculateBundlePricing(
+            bundleBuyCredits,
+            unlockedCount,
+            totalCount,
+            lockedCount,
+            lockedCount === 1 ? oneLockedItemPrice : null
         );
 
-        const themeRefs = itemData?.items as DocumentReference[] | undefined;
-        if (themeRefs && Array.isArray(themeRefs)) {
-            themeRefs.forEach((ref) => {
+        const {newBalance, now} = await processPurchaseTransaction(
+            transaction,
+            itemRef,
+            userCreditsRef,
+            userRef,
+            transactionHistoryRef,
+            finalPrice
+        );
+
+        itemRefs.forEach((ref, index) => {
+            if (!unlockSnaps[index].exists) {
                 transaction.set(unlockHistoryRef.doc(ref.id), {
                     type: "Bundle Theme",
                     dateUnlocked: now,
                     bundleRef: itemRef,
                 }, {merge: true});
-            });
-        }
+            }
+        });
 
         return {success: true, newBalance};
     });
