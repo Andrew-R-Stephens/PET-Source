@@ -10,12 +10,13 @@
     <string name="marketplace_button_watch_ad">Earn Credits</string>
     <string name="marketplace_button_item_get">Get</string>
     <string name="marketplace_button_purchase_credits">Purchase Credits</string>
+    <string name="marketplace_label_credits" translatable="false">Credits</string>
     <string name="marketplace_label_bundle_unqualified" translatable="false">Unavailable</string>
     <string name="marketplace_label_bundle_unqualified_desc" translatable="false">Majority of items are unlocked</string>
     <string name="marketplace_label_bundle_item_total" translatable="false">Actual Value</string>
-    <string name="marketplace_label_bundle_price_discount" translatable="false">Bundle Discount</string>
+    <string name="marketplace_label_bundle_price_discount" translatable="false">Discount (Bundle)</string>
     <string name="marketplace_label_bundle_price" translatable="false">Bundle Price</string>
-    <string name="marketplace_label_bundle_unlocked_discount" translatable="false">Prorated Discount</string>
+    <string name="marketplace_label_bundle_unlocked_discount" translatable="false">Discount (Prorated)</string>
     <string name="marketplace_label_bundle_final_price" translatable="false">Total</string>
     <string name="marketplace_label_purchased">Unlocked</string>
     <string name="marketplace_label_bundle_includes">Includes</string>

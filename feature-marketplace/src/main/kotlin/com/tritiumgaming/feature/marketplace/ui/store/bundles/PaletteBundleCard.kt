@@ -322,12 +322,12 @@ fun PaletteBundleCard(
                             )
 
                             val calculatedBundleDiscountPercent = calculatedBundleDiscountRatio.toPercentageString(false)
-                            val calculatedBundleDiscount = (listPriceTotal - buyCost).toLong()
+                            val calculatedBundleDiscount = listPriceTotal - buyCost
                             val proratedDiscountPercent = calculatedProratedDiscountRatio.toPercentageString(false)
                             val proratedDiscountValue = "$calculatedProratedDiscount"
 
                             data class BreakdownData(
-                                val data: String,
+                                val data: String = "",
                                 val color: Color = onSurface,
                                 val style: TextStyle = rowStyle
                             )
@@ -392,7 +392,7 @@ fun PaletteBundleCard(
                                         )
                                     )
                                 )
-                                if (calculatedProratedDiscountRatio >= 1f) {
+                                if ((finalPrice - calculatedProratedDiscount) < finalPrice) {
                                     add(
                                         BreakdownItem(
                                             BreakdownData(
@@ -437,7 +437,7 @@ fun PaletteBundleCard(
                                 shape = RoundedCornerShape(8.dp),
                                 color = LocalPalette.current.surfaceContainer.copy(alpha = .9f),
                             ) {
-                                var isExpanded by remember { mutableStateOf(false) }
+                                var isExpanded by remember { mutableStateOf(true) }
 
                                 Column(
                                     modifier = Modifier
