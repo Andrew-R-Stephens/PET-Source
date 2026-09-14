@@ -11,7 +11,7 @@ import {setGlobalOptions} from "firebase-functions";
 import {onCall, HttpsError, CallableRequest} from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
 import {initializeApp} from "firebase-admin/app";
-import {getFirestore, Timestamp, Query, DocumentReference} from "firebase-admin/firestore";
+import {getFirestore, Timestamp, Query, DocumentReference, Firestore, Transaction} from "firebase-admin/firestore";
 
 initializeApp();
 
@@ -107,102 +107,152 @@ async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseReque
 
     const {itemId, itemType} = request.data;
     const uid = auth.uid;
-
     const db = getFirestore();
-    const userRef = db.doc(`Users/${uid}`);
-    const userCreditsRef = db.doc(`Users/${uid}/Account/Credits`);
-    const transactionHistoryRef = db.doc(`Users/${uid}/Account/TransactionHistory`);
-    const unlockHistoryRef = db.collection(`Users/${uid}/Account/TransactionHistory/UnlockHistory`);
-
-    let itemRef: DocumentReference;
-
-    switch (itemType) {
-    case "theme": {
-        itemRef = db.doc(`Store/Merchandise/Themes/${itemId}`);
-        break;
-    }
-    case "bundle": {
-        itemRef = db.doc(`Store/Merchandise/Bundles/${itemId}`);
-        break;
-    }
-    default: {
-        throw new HttpsError("invalid-argument", "Invalid item type.");
-    }
-    }
 
     try {
-        const result = await db.runTransaction(async (transaction) => {
-            const now = Timestamp.now();
-
-            // 1. Get Item Data
-            const itemSnap = await transaction.get(itemRef);
-            if (!itemSnap.exists) {
-                throw new HttpsError("not-found", "Item not found.");
-            }
-            const itemData = itemSnap.data();
-            const price = itemData?.buyCredits || 0;
-
-            // 2. Get User Credits
-            const creditsSnap = await transaction.get(userCreditsRef);
-            let earnedCredits = 0;
-            let spentCredits = 0;
-
-            if (creditsSnap.exists) {
-                const creditsData = creditsSnap.data();
-                earnedCredits = creditsData?.earnedCredits || 0;
-                spentCredits = creditsData?.spentCredits || 0;
-            }
-
-            // 3. Check Balance
-            if (earnedCredits < price) {
-                throw new HttpsError("failed-precondition", "Insufficient credits.");
-            }
-
-            // 4. Update Credits & Ensure Parents Exist (Avoid ghost documents)
-            transaction.set(userRef, {}, {merge: true});
-            transaction.set(transactionHistoryRef, {}, {merge: true});
-
-            transaction.set(userCreditsRef, {
-                earnedCredits: earnedCredits - price,
-                spentCredits: spentCredits + price,
-            }, {merge: true});
-
-            // 5. Unlock Item(s)
-            switch (itemType) {
-            case "theme": {
-                transaction.set(
-                    unlockHistoryRef.doc(itemId), {
-                        type: "Single Theme",
-                        dateUnlocked: now,
-                    }, {merge: true}
-                );
-                break;
-            }
-            case "bundle": {
-                const themeRefs = itemData?.items as DocumentReference[] | undefined;
-                if (themeRefs && Array.isArray(themeRefs)) {
-                    themeRefs.forEach((ref) => {
-                        transaction.set(unlockHistoryRef.doc(ref.id), {
-                            type: "Bundle Theme",
-                            dateUnlocked: now,
-                            bundleRef: itemRef,
-                        }, {merge: true});
-                    });
-                }
-                break;
-            }
-            }
-
-            return {success: true, newBalance: earnedCredits - price};
-        });
-
-        return result;
+        switch (itemType) {
+        case "theme":
+            return await purchaseThemeTransaction_v1(db, uid, itemId);
+        case "typography":
+            return await purchaseTypographyTransaction_v1(db, uid, itemId);
+        case "bundle":
+            return await purchaseBundleTransaction_v1(db, uid, itemId);
+        default:
+            throw new HttpsError("invalid-argument", "Invalid item type.");
+        }
     } catch (error) {
         logger.error("Purchase failed:", error);
         if (error instanceof HttpsError) throw error;
         throw new HttpsError("internal", "An internal error occurred during purchase.");
     }
 }
+
+/**
+ * Helper to process credit deduction and item fetching within a transaction.
+ */
+async function processPurchaseTransaction(
+    transaction: Transaction,
+    itemRef: DocumentReference,
+    userCreditsRef: DocumentReference,
+    userRef: DocumentReference,
+    transactionHistoryRef: DocumentReference
+) {
+    const now = Timestamp.now();
+
+    // 1. Get Item Data
+    const itemSnap = await transaction.get(itemRef);
+    if (!itemSnap.exists) {
+        throw new HttpsError("not-found", "Item not found.");
+    }
+    const itemData = itemSnap.data();
+    const price = itemData?.buyCredits || 0;
+
+    // 2. Get User Credits
+    const creditsSnap = await transaction.get(userCreditsRef);
+    let earnedCredits = 0;
+    let spentCredits = 0;
+
+    if (creditsSnap.exists) {
+        const creditsData = creditsSnap.data();
+        earnedCredits = creditsData?.earnedCredits || 0;
+        spentCredits = creditsData?.spentCredits || 0;
+    }
+
+    // 3. Check Balance
+    if (earnedCredits < price) {
+        throw new HttpsError("failed-precondition", "Insufficient credits.");
+    }
+
+    // 4. Update Credits & Ensure Parents Exist (Avoid ghost documents)
+    transaction.set(userRef, {}, {merge: true});
+    transaction.set(transactionHistoryRef, {}, {merge: true});
+
+    transaction.set(userCreditsRef, {
+        earnedCredits: earnedCredits - price,
+        spentCredits: spentCredits + price,
+    }, {merge: true});
+
+    return {price, newBalance: earnedCredits - price, itemData, now};
+}
+
+/*
+ * Transaction logic for purchasing a theme
+ */
+async function purchaseThemeTransaction_v1(db: Firestore, uid: string, itemId: string) {
+    const itemRef = db.doc(`Store/Merchandise/Themes/${itemId}`);
+    const userRef = db.doc(`Users/${uid}`);
+    const userCreditsRef = db.doc(`Users/${uid}/Account/Credits`);
+    const transactionHistoryRef = db.doc(`Users/${uid}/Account/TransactionHistory`);
+    const unlockHistoryRef = db.collection(`Users/${uid}/Account/TransactionHistory/UnlockHistory`);
+
+    return db.runTransaction(async (transaction) => {
+        const {newBalance, now} = await processPurchaseTransaction(
+            transaction, itemRef, userCreditsRef, userRef, transactionHistoryRef
+        );
+
+        transaction.set(unlockHistoryRef.doc(itemId), {
+            type: "Single Theme",
+            dateUnlocked: now,
+        }, {merge: true});
+
+        return {success: true, newBalance};
+    });
+}
+
+/*
+ * Transaction logic for purchasing a typography
+ */
+async function purchaseTypographyTransaction_v1(db: Firestore, uid: string, itemId: string) {
+    const itemRef = db.doc(`Store/Merchandise/Typographies/${itemId}`);
+    const userRef = db.doc(`Users/${uid}`);
+    const userCreditsRef = db.doc(`Users/${uid}/Account/Credits`);
+    const transactionHistoryRef = db.doc(`Users/${uid}/Account/TransactionHistory`);
+    const unlockHistoryRef = db.collection(`Users/${uid}/Account/TransactionHistory/UnlockHistory`);
+
+    return db.runTransaction(async (transaction) => {
+        const {newBalance, now} = await processPurchaseTransaction(
+            transaction, itemRef, userCreditsRef, userRef, transactionHistoryRef
+        );
+
+        transaction.set(unlockHistoryRef.doc(itemId), {
+            type: "Typography",
+            dateUnlocked: now,
+        }, {merge: true});
+
+        return {success: true, newBalance};
+    });
+}
+
+/*
+ * Transaction logic for purchasing a bundle
+ */
+async function purchaseBundleTransaction_v1(db: Firestore, uid: string, itemId: string) {
+    const itemRef = db.doc(`Store/Merchandise/Bundles/${itemId}`);
+    const userRef = db.doc(`Users/${uid}`);
+    const userCreditsRef = db.doc(`Users/${uid}/Account/Credits`);
+    const transactionHistoryRef = db.doc(`Users/${uid}/Account/TransactionHistory`);
+    const unlockHistoryRef = db.collection(`Users/${uid}/Account/TransactionHistory/UnlockHistory`);
+
+    return db.runTransaction(async (transaction) => {
+        const {newBalance, itemData, now} = await processPurchaseTransaction(
+            transaction, itemRef, userCreditsRef, userRef, transactionHistoryRef
+        );
+
+        const themeRefs = itemData?.items as DocumentReference[] | undefined;
+        if (themeRefs && Array.isArray(themeRefs)) {
+            themeRefs.forEach((ref) => {
+                transaction.set(unlockHistoryRef.doc(ref.id), {
+                    type: "Bundle Theme",
+                    dateUnlocked: now,
+                    bundleRef: itemRef,
+                }, {merge: true});
+            });
+        }
+
+        return {success: true, newBalance};
+    });
+}
+
 
 /**
  * Interface for query options

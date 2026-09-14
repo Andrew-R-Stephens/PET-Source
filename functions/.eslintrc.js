@@ -33,6 +33,7 @@ module.exports = {
         "comma-dangle": "off",
         "padded-blocks": "off",
         "spaced-comment": "off",
+        "valid-jsdoc": "off",
         "quotes": ["error", "double"],
         "import/no-unresolved": 0,
         "indent": ["error", 4],
