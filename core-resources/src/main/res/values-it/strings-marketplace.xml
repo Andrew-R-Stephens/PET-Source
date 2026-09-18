@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="marketplace_title">Marketplace</string>
+    <string name="marketplace_list_bundles">Pacchetti di temi</string>
+    <string name="marketplace_list_prestige">Temi prestigio</string>
+    <string name="marketplace_list_event">Temi evento</string>
+    <string name="marketplace_list_community">Temi della community</string>
+    <string name="marketplace_connection_error">Uh oh! Si è verificato un errore durante la connessione al Marketplace.</string>
+    <string name="marketplace_error_login_required">Accedi per riscattare i contenuti del Marketplace.</string>
+    <string name="marketplace_button_watch_ad">Guadagna Credits</string>
+    <string name="marketplace_button_item_get">Ottieni</string>
+    <string name="marketplace_button_purchase_credits">Acquista Credits</string>
+    <string name="marketplace_label_purchased">Sbloccato</string>
+    <string name="marketplace_label_bundle_includes">Include</string>
+    <string name="marketplace_purchase_equip">Equipaggiare il tema %1$s?</string>
+
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">Companion Credit</item>
+        <item quantity="other">Companion Credits</item>
+    </plurals>
+    <string name="marketplace_description_watch_ad">Guarda un annuncio per guadagnare %s %s.</string>
+    <string name="marketplace_description_purchase_credits">Acquista Credits direttamente.</string>
+
+    <string name="marketplace_acknowledgement_title">Accordo del Marketplace</string>
+    <string name="marketplace_acknowledgement_warning">Utilizzando il \"Market\" di Phasmophobia Evidence Tool, accetti implicitamente quanto segue:</string>
+    <string name="marketplace_acknowledgement_warning_list_1">I termini \"contenuti\", \"articoli\" e \"sblocchi\" si riferiscono a immagini, nomi e altre risorse. Il termine \"sviluppatore\" si riferisce a Tritium Studios. Il termine \"P.E.T.\" o \"questa app\" si riferisce all\'app \"Phasmophobia Evidence Tool\".</string>
+    <string name="marketplace_acknowledgement_warning_list_2">\"P.E.T.\" non è affiliato con nessun\'altra entità che possa o meno condividere somiglianze con i contenuti forniti.</string>
+    <string name="marketplace_acknowledgement_warning_list_3">Tutti i contenuti, passati o presenti, esistono esclusivamente a scopo cosmetico all\'interno di \"P.E.T.\". I contenuti non possono essere riscattati o trasferiti al di fuori di \"P.E.T.\" e non hanno alcun impatto su entità esterne come, a titolo esemplificativo ma non esaustivo, giochi come \"Phasmophobia\".</string>
+    <string name="marketplace_acknowledgement_warning_list_4">Tutte le transazioni sono definitive. I contenuti possono essere parzialmente completi, rotti o pieni di bug. I contenuti possono essere disabilitati, rimossi o modificati in futuro dallo sviluppatore. L\'accreditamento per la perdita dell\'accesso ai contenuti da parte del tuo account o per qualsiasi modifica dei contenuti è lasciato a discrezione dello sviluppatore.</string>
+    <string name="marketplace_acknowledgement_button_confirm">Ho capito!</string>
+</resources>

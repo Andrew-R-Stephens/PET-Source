@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="marketplace_title">Магазин</string>
+    <string name="marketplace_list_bundles">Наборы тем</string>
+    <string name="marketplace_list_prestige">Престижные темы</string>
+    <string name="marketplace_list_event">Событийные темы</string>
+    <string name="marketplace_list_community">Темы сообщества</string>
+    <string name="marketplace_connection_error">Ой! Произошла ошибка при подключении к магазину.</string>
+    <string name="marketplace_error_login_required">Пожалуйста, войдите в систему, чтобы получить контент Магазина.</string>
+    <string name="marketplace_button_watch_ad">Заработать Credits</string>
+    <string name="marketplace_button_item_get">Получить</string>
+    <string name="marketplace_button_purchase_credits">Купить Credits</string>
+    <string name="marketplace_label_purchased">Разблокировано</string>
+    <string name="marketplace_label_bundle_includes">Включает</string>
+    <string name="marketplace_purchase_equip">Использовать тему %1$s?</string>
+
+    <plurals name="marketplace_description_watch_ad" tools:ignore="ImpliedQuantity">
+        <item quantity="one">Companion Credit</item>
+        <item quantity="few">Companion Credits</item>
+        <item quantity="many">Companion Credits</item>
+        <item quantity="other">Companion Credits</item>
+    </plurals>
+    <string name="marketplace_description_watch_ad">Посмотрите рекламу, чтобы заработать %s %s.</string>
+    <string name="marketplace_description_purchase_credits">Купить Credits напрямую.</string>
+
+    <string name="marketplace_acknowledgement_title">Соглашение Магазина</string>
+    <string name="marketplace_acknowledgement_warning">Используя «Market» Phasmophobia Evidence Tool, вы безоговорочно соглашаетесь со следующим:</string>
+    <string name="marketplace_acknowledgement_warning_list_1">Термины «контент», «предметы» и «разблокировки» относятся к изображениям, именам и другим ресурсам. Термин «разработчик» относится к Tritium Studios. Термин «P.E.T.» или «это приложение» относится к приложению «Phasmophobia Evidence Tool».</string>
+    <string name="marketplace_acknowledgement_warning_list_2">«P.E.T.» не связано ни с какой другой организацией, которая может иметь или не иметь сходство с предоставленным контентом.</string>
+    <string name="marketplace_acknowledgement_warning_list_3">Весь контент, прошлый или настоящий, существует исключительно в косметических целях внутри «P.E.T.». Контент не может быть выкуплен или передан за пределы «P.E.T.» и не оказывает никакого влияния на любые внешние объекты, такие как, помимо прочего, игры типа «Phasmophobia».</string>
+    <string name="marketplace_acknowledgement_warning_list_4">Все транзакции являются окончательными. Контент может быть частично завершенным, неисправным или содержать ошибки. Контент может быть отключен, удален или изменен разработчиком в будущем. Аккредитация за потерю доступа вашего аккаунта к контенту или за любое изменение контента остается на усмотрение разработчика.</string>
+    <string name="marketplace_acknowledgement_button_confirm">Понятно!</string>
+</resources>
