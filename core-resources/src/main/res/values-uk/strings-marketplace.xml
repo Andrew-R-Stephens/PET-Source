@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="marketplace_title">Ринок</string>
     <string name="marketplace_list_bundles">Тематичні пакети</string>
     <string name="marketplace_list_prestige">Престижні теми</string>
@@ -7,19 +7,20 @@
     <string name="marketplace_list_community">Теми спільноти</string>
     <string name="marketplace_connection_error">Ох, ох! Виникла помилка при підключенні до маркетплейсу.</string>
     <string name="marketplace_error_login_required">Будь ласка, увійдіть, щоб отримати доступ до контенту Маркетплейсу.</string>
-    <string name="marketplace_button_watch_ad">Заробляйте кредити</string>
+    <string name="marketplace_button_watch_ad">Заробляйте Credits</string>
     <string name="marketplace_button_item_get">Отримати</string>
-    <string name="marketplace_button_purchase_credits">Купити кредити</string>
+    <string name="marketplace_button_purchase_credits">Купити Credits</string>
     <string name="marketplace_label_purchased">Розблоковано</string>
     <string name="marketplace_label_bundle_includes">Мати в собі</string>
     <string name="marketplace_purchase_equip">Встановити тему %1$s?</string>
-    <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">%d Супутній кредит</item>
-        <item quantity="few">Супутні кредити</item>
-        <item quantity="many">Супутні кредити</item>
+    <plurals name="marketplace_description_watch_ad" tools:ignore="ImpliedQuantity">
+        <item quantity="one">Companion Credit</item>
+        <item quantity="few">Companion Credits</item>
+        <item quantity="many">Companion Credits</item>
+        <item quantity="other">Companion Credits</item>
     </plurals>
     <string name="marketplace_description_watch_ad">Подивіться рекламу і заробіть %s %s.</string>
-    <string name="marketplace_description_purchase_credits">Купуйте кредити напряму.</string>
+    <string name="marketplace_description_purchase_credits">Купуйте Credits напряму.</string>
     <!-- Acknowledgement -->
     <string name="marketplace_acknowledgement_title">Угода про ринок</string>
     <string name="marketplace_acknowledgement_warning">Використовуючи \"Ринок\" Інструменту доказів фазмофобії

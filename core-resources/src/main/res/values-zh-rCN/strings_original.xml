@@ -253,12 +253,12 @@
     <!-- Evidence Names -->
 
     <string name="evidence_type_dots">点阵投影仪</string>
-    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_emf">EMF 5级</string>
     <string name="evidence_type_ultraviolet">紫外线</string>
-    <string name="evidence_type_temperatures">冰冻温度</string>
+    <string name="evidence_type_temperatures">刺骨寒温</string>
     <string name="evidence_type_orbs">灵球</string>
     <string name="evidence_type_book">鬼魂笔迹</string>
-    <string name="evidence_type_box">灵盒</string>
+    <string name="evidence_type_box">通灵盒</string>
 
     <!-- Ghost information Popup Labels -->
 
@@ -287,8 +287,8 @@
     <string name="ghost_type_oni">赤鬼</string>
     <string name="ghost_type_onryo">怨灵</string>
     <string name="ghost_type_phantom">幻影</string>
-    <string name="ghost_type_poltergeist">骚灵</string>
-    <string name="ghost_type_raiju">雷魂</string>
+    <string name="ghost_type_poltergeist">捣蛋鬼</string>
+    <string name="ghost_type_raiju">雷兽</string>
     <string name="ghost_type_revenant">亡魂</string>
     <string name="ghost_type_shade">暗影</string>
     <string name="ghost_type_spirit">魂魄</string>
@@ -661,9 +661,9 @@
     <string name="shop_equipment_attribute_sanitydrainreduction_50" >理智消耗减少 (%)：50</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_66" >理智消耗减少 (%)：66</string>
 
-    <string name="shop_equipment_attribute_sanityrestoration_10" >理智恢复睡眠 (S): 10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20" >理智恢复睡眠 (S): 20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30" >理智恢复睡眠 (S): 30</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10" >理智恢复时长 (秒): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >理智恢复时长 (秒): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >理智恢复时长 (秒): 30</string>
 
     <string name="shop_equipment_attribute_sensorshape_line" >传感器形状：线</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone" >传感器形状：圆锥</string>

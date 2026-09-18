@@ -98,9 +98,9 @@
     <string name="shop_equipment_attribute_sanitydrainreduction_50" >Réduction de la perte de santé mentale (%): 50</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_66" >Réduction de la perte de santé mentale (%): 66</string>
 
-    <string name="shop_equipment_attribute_sanityrestoration_10" >Sommeil de restauration de la santé mentale (S): 10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20" >Sommeil de restauration de la santé mentale (S): 20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30" >Sommeil de restauration de la santé mentale (S): 30</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10" >Durée de restauration de la santé (s): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >Durée de restauration de la santé (s): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >Durée de restauration de la santé (s): 30</string>
 
     <string name="shop_equipment_attribute_sensorshape_line" >Forme du capteur: Ligne</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone" >Forme du capteur: Cône</string>

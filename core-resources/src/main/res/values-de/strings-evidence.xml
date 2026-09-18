@@ -5,8 +5,8 @@
 
     <!-- Evidence Names -->
     <string name="evidence_type_dots">D.O.T.S</string>
-    <string name="evidence_type_emf">EMF 5</string>
-    <string name="evidence_type_temperatures">Gefriertemperatur</string>
+    <string name="evidence_type_emf">EMF Level 5</string>
+    <string name="evidence_type_temperatures">Gefriertemperaturen</string>
     <string name="evidence_type_box">Geisterbox</string>
     <string name="evidence_type_book">Geisterbuch</string>
     <string name="evidence_type_orbs">Geisterorbs</string>

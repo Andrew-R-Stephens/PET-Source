@@ -5,12 +5,12 @@
 
     <!-- Evidence Names -->
     <string name="evidence_type_dots">D.O.T.S</string>
-    <string name="evidence_type_emf">EMF 5</string>
-    <string name="evidence_type_temperatures">Teploty Mrazu</string>
+    <string name="evidence_type_emf">EMF úroveň 5</string>
+    <string name="evidence_type_temperatures">Teploty pod bodem mrazu</string>
     <string name="evidence_type_box">Spirit Box</string>
-    <string name="evidence_type_book">Psaní Duchů</string>
-    <string name="evidence_type_orbs">Orby Ducha</string>
-    <string name="evidence_type_ultraviolet">Ultrafialový</string>
+    <string name="evidence_type_book">Psaní ducha</string>
+    <string name="evidence_type_orbs">Duchova koule</string>
+    <string name="evidence_type_ultraviolet">Ultrafialové</string>
 
     <!-- Evidence Description -->
     <string name="evidence_info_overview_dots">

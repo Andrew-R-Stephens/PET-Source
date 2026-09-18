@@ -16,12 +16,12 @@
     <string name="marketplace_purchase_equip">Mit %1$s Thema ausstatten?</string>
 
     <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">Begleiterguthaben</item>
-        <item quantity="other">Begleiterguthaben</item>
+        <item quantity="one">Companion Credit</item>
+        <item quantity="other">Companion Credits</item>
     </plurals>
 
     <string name="marketplace_description_watch_ad">Sehen Sie sich eine Anzeige an, um %s %s zu verdienen.</string>
-    <string name="marketplace_description_purchase_credits">Kaufen Sie Guthaben direkt.</string>
+    <string name="marketplace_description_purchase_credits">Kaufen Sie Credits direkt.</string>
 
     <!-- Acknowledgement -->
     <string name="marketplace_acknowledgement_title">Marktplatzvereinbarung</string>

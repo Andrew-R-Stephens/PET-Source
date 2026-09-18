@@ -250,10 +250,10 @@
     <!-- Evidence Names -->
 
     <string name="evidence_type_dots">D.O.T.S.</string>
-    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_emf">EMF Nível 5</string>
     <string name="evidence_type_ultraviolet">Ultravioleta</string>
-    <string name="evidence_type_temperatures">Temperaturas Baixas</string>
-    <string name="evidence_type_orbs">Orbes Fantasma</string>
+    <string name="evidence_type_temperatures">Temperaturas Geladas</string>
+    <string name="evidence_type_orbs">Orbe Fantasma</string>
     <string name="evidence_type_book">Escrita Fantasma</string>
     <string name="evidence_type_box">Spirit Box</string>
 
@@ -285,15 +285,15 @@
     <string name="ghost_type_obambo">Obambo</string>
     <string name="ghost_type_oni">Oni</string>
     <string name="ghost_type_onryo">Onryo</string>
-    <string name="ghost_type_phantom">Fantasma</string>
+    <string name="ghost_type_phantom">Phantom</string>
     <string name="ghost_type_poltergeist">Poltergeist</string>
     <string name="ghost_type_raiju">Raiju</string>
     <string name="ghost_type_revenant">Revenant</string>
     <string name="ghost_type_shade">Shade</string>
     <string name="ghost_type_spirit">Spirit</string>
     <string name="ghost_type_thaye">Thaye</string>
-    <string name="ghost_type_thetwins">The Twins</string>
-    <string name="ghost_type_themimic">Mimico</string>
+    <string name="ghost_type_thetwins">Os Gémeos</string>
+    <string name="ghost_type_themimic">O Mímico</string>
     <string name="ghost_type_wraith">Wraith</string>
     <string name="ghost_type_yokai">Youkai</string>
     <string name="ghost_type_yurei">Yurei</string>
@@ -351,7 +351,7 @@
     <string name="ghost_strengths_spirit"><![CDATA[<a>Os Spirits não têm pontos fortes específicos, pois são voltados para novos jogadores. Não se deixe enganar, no entanto. A falta de especialidade faz com que seja uma combinação equilibrada.</a>]]></string>
     <string name="ghost_strengths_thaye"><![CDATA[<a>O Thaye será mais ativo e perigoso no início de uma missão. Isso o torna extremamente ameaçador desde o início. O Thaye caçará a 75 \% at no início de uma investigação, eventualmente aumentando para um mínimo de 15 \% adepois que terminar de envelhecer. Um jovem Thaye será muito rápido a 2,7 m/s, enquanto um velho Thaye se moverá mais devagar do que um jogador a 1,0 m/s.</a>]]></string>
     <string name="ghost_strengths_thetwins"><![CDATA[<a>Qualquer um dos Gêmeos pode ficar irritado e, portanto, qualquer um dos Gêmeos pode iniciar uma Caçada. Isso significa que uma busca pode começar em dois locais diferentes.</a>]]></string>
-    <string name="ghost_strengths_themimic"><![CDATA[<a>O Mimic pode copiar rapidamente qualquer tipo de fantasma diversas vezes durante uma investigação, o que o torna extremamente perigoso e totalmente imprevisível. O comportamento que ele copia pode estar presente durante ou fora de uma caçada. O Mimic não pode trocar para copiar um fantasma diferente no meio da caça.</a>]]></string>
+    <string name="ghost_strengths_themimic"><![CDATA[<a>O Mímico pode copiar rapidamente qualquer tipo de fantasma diversas vezes durante uma investigação, o que o torna extremamente perigoso e totalmente imprevisível. O comportamento que ele copia pode estar presente durante ou fora de uma caçada. O Mímico não pode trocar para copiar um fantasma diferente no meio da caça.</a>]]></string>
     <string name="ghost_strengths_wraith"><![CDATA[<a>O Wraith possui a capacidade de piscar para localizar qualquer jogador próximo a uma pequena distância da sala escolhida. Isto pode ocorrer fora do quarto, mesmo entre andares. Esta atividade pode passar despercebida, pois pode ser silenciosa, mas irá gerar uma leitura de EMF no local de pouso. Após esta atividade, o Wraith voltará para sua sala e poderá interagir com objetos durante esse tempo. Dizem que um Wraith pode caçar logo após se teletransportar, mas isso pode ser impreciso.</a>]]></string>
     <string name="ghost_strengths_yokai"><![CDATA[<a>Falar perto de um Yokai irá irritá-lo, aumentando a probabilidade de ataque, aumentando o nível mínimo de sanidade preferencial para caçar para 80\%.</a>]]></string>
     <string name="ghost_strengths_yurei"><![CDATA[<a>Yurie vai eliminar jogadores\' sanidade, enquanto eles estão olhando para ele, muito mais rápido do que qualquer outro fantasma - mas também pode diminuir a sanidade mesmo quando um jogador é afastado. Um Yurei também pode roubar instantaneamente 15 \% sanidade de qualquer jogador próximo; e quando isso acontece, as portas da sala sempre fecham sozinhas (qualquer fantasma pode fazer isso, mas o Yurei tem uma probabilidade maior).</a>]]></string>
@@ -380,7 +380,7 @@
     <string name="ghost_weaknesses_spirit"><![CDATA[<a>Quando um Espírito é borrado, ele não caçará por 180 segundos completos. Por outro lado, qualquer outro fantasma caçará em 90 segundos (exceto o Demônio, que pode caçar em até 60 segundos).</a>]]></string>
     <string name="ghost_weaknesses_thaye"><![CDATA[<a>Quanto mais tempo o fantasma estiver na presença dos vivos, sua agressividade, velocidade e força diminuirão. Cada idade reduz a velocidade em 0,175 m/s. O Thaye também não tem aceleração de linha de visão.</a>]]></string>
     <string name="ghost_weaknesses_thetwins"><![CDATA[<a>Devido às atividades combinadas, localizar os gêmeos será muito mais fácil. Os Gêmeos têm uma velocidade de caça variada que alterna aleatoriamente entre as caçadas. Um Twin caça a 90 \% nvelocidade normal (1,5 m/s), enquanto o outro Twin caça a 110 \% nvelocidade normal (1,9 m/s).</a>]]></string>
-    <string name="ghost_weaknesses_themimic"><![CDATA[<a>Um Ghost Orb aparecerá junto com a Evidência determinística de The Mimic, o que torna The Mimic o único tipo de fantasma que (tecnicamente) tem uma quarta evidência. O Ghost Orb também se comporta de maneira diferente do normal. Ele segue The Mimic enquanto ele vagueia, então fique atento a um Ghost Orb enquanto estiver com Sanidade de equipe alta.</a>]]></string>
+    <string name="ghost_weaknesses_themimic"><![CDATA[<a>Um Ghost Orb aparecerá junto com a Evidência determinística de O Mímico, o que torna O Mímico o único tipo de fantasma que (tecnicamente) tem uma quarta evidência. O Ghost Orb também se comporta de maneira diferente do normal. Ele segue O Mímico enquanto ele vagueia, então fique atento a um Ghost Orb enquanto estiver com Sanidade de equipe alta.</a>]]></string>
     <string name="ghost_weaknesses_wraith"><![CDATA[<a><font color=#ff6161>O sal é tóxico para um Wraith</font>, portanto ele nunca passará por nenhum deles. Para confirmar um Wraith, coloque um sensor de movimento sobre as pilhas de sal. Se o sensor de movimento detectar movimento sem perturbar o Sal, o fantasma pode ser um Wraith!</a>]]></string>
     <string name="ghost_weaknesses_yokai"><![CDATA[<a>Durante a caça, um Yokai só ouvirá vozes próximas a ele. Ele só pode ouvir conversas de proximidade ou detectar equipamentos eletrônicos a até 2,5 metros de si mesmo. A possessão amaldiçoada da Caixa de Música também não faz com que o Yokai se mova até que o jogador esteja muito mais próximo do que qualquer outro fantasma exigiria.</a>]]></string>
     <string name="ghost_weaknesses_yurei"><![CDATA[<a>Yureis são vulneráveis a Smudge Sticks, e borrar o ambiente fará com que o Yurei permaneça no lugar por algum tempo.</a>]]></string>
@@ -408,7 +408,7 @@
     <string name="ghost_huntingdata_spirit"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
     <string name="ghost_huntingdata_thaye"><![CDATA[<a>Envelhece gradativamente em 10 estágios e perde 0,175 m/s de velocidade de movimento por estágio.</a><br><br><a>Caça aos 75 anos na idade mais jovem.\% S Movimento máximo: 2,7 m/s</a><br><br><a>Caça aos 15 \% Sanidade nisso\'idade mais avançada. Movimento máximo: 1,0 m/s</a>]]></string>
     <string name="ghost_huntingdata_thetwins"><![CDATA[<a>Caça com 50 \% Sidade.</a><br><br><a>50 \% cde chance de ser um dos gêmeos durante a caça</a><ul><li>Gêmeo A: 1,5 m/s mínimo</li><li>Gêmeo B: mínimo de 1,9 m/s</li></ul>]]></string>
-    <string name="ghost_huntingdata_themimic"><![CDATA[<a>As preferências de caça são baseadas no fantasma imitado. Portanto, The Mimic pode caçar em qualquer lugar entre 15 \% ae 100 \% Sidade.</a>]]></string>
+    <string name="ghost_huntingdata_themimic"><![CDATA[<a>As preferências de caça são baseadas no fantasma imitado. Portanto, O Mímico pode caçar em qualquer lugar entre 15 \% ae 100 \% Sidade.</a>]]></string>
     <string name="ghost_huntingdata_wraith"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
     <string name="ghost_huntingdata_yokai"><![CDATA[<a>Caça com 50\%\% Sidade.</a><br><br><a>Não consegue ouvir os investigadores nem detectar equipamentos eletrônicos.</a>]]></string>
     <string name="ghost_huntingdata_yurei"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
@@ -610,7 +610,7 @@
     <string name="equipment_info_name_parabolicmicrophone">Microfone Parabólico</string>
     <string name="equipment_info_name_headgear">Equipamento de Cabeça</string>
     <string name="equipment_info_name_videocamera">Câmera de Vídeo</string>
-    <string name="equipment_info_name_spiritbox">Caixa de Espírito</string>
+    <string name="equipment_info_name_spiritbox">Spirit Box</string>
     <string name="equipment_info_name_thermometer">Termômetro</string>
     <string name="equipment_info_name_salt">Sal</string>
     <string name="equipment_info_name_incense">Incenso</string>
@@ -689,9 +689,9 @@
     <string name="shop_equipment_attribute_sanitydrainreduction_50" >Redução de drenagem de sanidade (%): 50</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_66" >Redução de drenagem de sanidade (%): 66</string>
 
-    <string name="shop_equipment_attribute_sanityrestoration_10" >Sono de Restauração de Sanidade (S): 10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20" >Sono de Restauração de Sanidade (S): 20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30" >Sono de Restauração de Sanidade (S): 30</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10" >Duração da Restauração de Sanidade (s): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >Duração da Restauração de Sanidade (s): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >Duração da Restauração de Sanidade (s): 30</string>
 
     <string name="shop_equipment_attribute_sensorshape_line" >Forma do sensor: Linha</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone" >Forma do sensor: Cone</string>
@@ -951,7 +951,7 @@
     <string name="shop_cursedpossessions_voodoodoll_data_drawchance"><![CDATA[<a>10%</a>]]></string>
 
 
-    <string name="store_title_cursedpossessions"><![CDATA[Bens Amaldiçoados]]></string>
+    <string name="store_title_cursedpossessions"><![CDATA[Objetos Amaldiçoados]]></string>
 
     <string name="cursedpossessions_info_name_mirror"><![CDATA[Espelho Assombrado]]></string>
 

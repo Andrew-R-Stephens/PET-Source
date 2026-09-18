@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="marketplace_title">Marché</string>
     <string name="marketplace_connection_error">Euh oh ! Une erreur s\'est produite lors de la connexion au marché.</string>
     <string name="marketplace_error_login_required">Veuillez vous connecter pour réclamer le contenu de Marketplace.</string>
-    <string name="marketplace_button_watch_ad">Gagner des crédits</string>
-    <string name="marketplace_button_purchase_credits">Acheter des crédits</string>
+    <string name="marketplace_button_watch_ad">Gagner des Credits</string>
+    <string name="marketplace_button_purchase_credits">Acheter des Credits</string>
     <string name="marketplace_label_purchased">Débloqué</string>
     <string name="marketplace_label_bundle_includes">Comprend</string>
     <string name="marketplace_description_watch_ad">Regardez une annonce pour gagner %s %s.</string>
-    <string name="marketplace_description_purchase_credits">Achetez des crédits directement.</string>
+    <string name="marketplace_description_purchase_credits">Achetez des Credits directement.</string>
     <string name="marketplace_list_bundles">Offres groupées thématiques</string>
     <string name="marketplace_list_prestige">Thèmes Prestige</string>
     <string name="marketplace_list_event">Thèmes d\'événements</string>
@@ -17,10 +16,10 @@
     <string name="marketplace_button_item_get">Obtenir</string>
     <string name="marketplace_purchase_equip">Équiper le thème %1$s ?</string>
 
-    <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">%d Crédit de Compagnon</item>
-        <item quantity="many">Crédits pour Compagnon</item>
-        <item quantity="other">Crédits pour Compagnon</item>
+    <plurals name="marketplace_description_watch_ad" tools:ignore="ImpliedQuantity">
+        <item quantity="one">Companion Credit</item>
+        <item quantity="many">Companion Credits</item>
+        <item quantity="other">Companion Credits</item>
     </plurals>
 
     <!-- Acknowledgement -->

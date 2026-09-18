@@ -76,9 +76,9 @@
     <string name="shop_equipment_attribute_sanitydrainreduction_33">Sanity Enerji Tüketimi Azaltma (%): 33</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_50">Sanity Enerji Tüketimi Azaltma (%): 50</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_66">Akıl Sağlığı Tüketimi Azaltma (%): 66</string>
-    <string name="shop_equipment_attribute_sanityrestoration_10">Akıl Sağlığı Geri Kazanım Uykusu (S): 10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20">Akıl Sağlığı Geri Kazanım Uykusu (S): 20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30">Akıl Sağlığı Geri Kazanım Uykusu (S): 30</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10">Akıl Sağlığı Geri Kazanım Süresi (s): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20">Akıl Sağlığı Geri Kazanım Süresi (s): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30">Akıl Sağlığı Geri Kazanım Süresi (s): 30</string>
     <string name="shop_equipment_attribute_sensorshape_line">Sensör Şekli: Çizgi</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone">Sensör Şekli: Koni</string>
     <string name="shop_equipment_attribute_sensorshape_circle">Sensör Şekli: Daire</string>

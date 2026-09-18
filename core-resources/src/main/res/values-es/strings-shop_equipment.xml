@@ -98,9 +98,9 @@
     <string name="shop_equipment_attribute_sanitydrainreduction_50" >Reducción de drenaje de cordura (%): 50</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_66" >Reducción de drenaje de cordura (%): 66</string>
 
-    <string name="shop_equipment_attribute_sanityrestoration_10" >Sueño de restauración de cordura (S): 10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20" >Sueño de restauración de cordura (S): 20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30" >Sueño de restauración de cordura (S): 30</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10" >Restauración de cordura (s): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >Restauración de cordura (s): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >Restauración de cordura (s): 30</string>
 
     <string name="shop_equipment_attribute_sensorshape_line" >Forma del sensor: Línea</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone" >Forma del sensor: Cono</string>
@@ -148,9 +148,9 @@
     <string name="equipment_section_equipment">Equipo</string>
 
     <!-- Equipment Tiers -->
-    <string name="equipment_tiers_1">Nivel 2</string>
+    <string name="equipment_tiers_1">Nivel 1</string>
     <string name="equipment_tiers_2">Nivel 2</string>
-    <string name="equipment_tiers_3">Nivel 2</string>
+    <string name="equipment_tiers_3">Nivel 3</string>
 
     <!--
         Data

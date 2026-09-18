@@ -35,7 +35,7 @@
     <string name="ghost_type_spirit">Espíritu</string>
     <string name="ghost_type_thaye">Thaye</string>
     <string name="ghost_type_thetwins">Gemelos</string>
-    <string name="ghost_type_themimic">Mimico</string>
+    <string name="ghost_type_themimic">Mímico</string>
     <string name="ghost_type_wraith">Espectro</string>
     <string name="ghost_type_yokai">Yokai</string>
     <string name="ghost_type_yurei">Yurei</string>
@@ -159,7 +159,7 @@
     </string>
     <string name="ghost_info_yurei" >
         <![CDATA[
-            <a>Un Yurei es un fantasma cuya habilidad <font color=#ff6161>aumenta el drenaje pasivo de la cordura de un jugador</font> (aunque la mayoría de los fantasmas agotan tu cordura con bastante rapidez). Manchar la habitación en la que se encontró a Yurei evitará que deambule por mucho tiempo.</a>
+            <a>Un Yurei es un fantasma cuya habilidad <font color=#ff6161>aumenta el drenaje pasivo de la cordura de un jugador</font> (aunque la mayoría de los fantasmas agotan tu cordura con bastante rapidez). Purificar la habitación en la que se encontró a Yurei evitará que deambule por mucho tiempo.</a>
         ]]>
     </string>
 
@@ -429,7 +429,7 @@
     </string>
     <string name="ghost_weaknesses_yurei" >
         <![CDATA[
-            <a>Los Yureis son vulnerables a los Smudge Sticks, y manchar la habitación con éxito hará que los Yurei permanezcan en su lugar durante algún tiempo.</a>
+            <a>Los Yureis son vulnerables al Incienso, y purificar la habitación con éxito hará que los Yurei permanezcan en su lugar durante algún tiempo.</a>
         ]]>
     </string>
 

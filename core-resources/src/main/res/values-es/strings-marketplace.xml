@@ -4,17 +4,16 @@
     <string name="marketplace_title">Tienda</string>
     <string name="marketplace_connection_error">¡UH oh! Se produjo un error al conectarse al tienda.</string>
     <string name="marketplace_error_login_required">Inicie sesión para reclamar el contenido del Marketplace.</string>
-    <string name="marketplace_button_watch_ad">Ganar créditos</string>
-    <string name="marketplace_button_purchase_credits">Comprar créditos</string>
+    <string name="marketplace_button_watch_ad">Ganar Credits</string>
+    <string name="marketplace_button_purchase_credits">Comprar Credits</string>
     <string name="marketplace_label_purchased">desbloqueado</string>
     <string name="marketplace_label_bundle_includes">Incluye</string>
     <string name="marketplace_description_watch_ad">Mira un anuncio para ganar %s %s.</string>
-    <string name="marketplace_description_purchase_credits">Compra créditos directamente.</string>
+    <string name="marketplace_description_purchase_credits">Compra Credits directamente.</string>
 
     <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">Crédito de Acompañante</item>
-        <item quantity="many">Créditos para Acompañantes</item>
-        <item quantity="other">Créditos para Acompañantes</item>
+        <item quantity="one">Companion Credit</item>
+        <item quantity="other">Companion Credits</item>
     </plurals>
 
     <string name="marketplace_acknowledgement_title">Acuerdo de tienda</string>

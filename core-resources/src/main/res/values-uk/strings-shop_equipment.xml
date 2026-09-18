@@ -77,12 +77,12 @@
     <string name="shop_equipment_attribute_phototime_low">Час між фотографіями: низький</string>
     <string name="shop_equipment_attribute_phototime_med">Час між фотографіями: середній</string>
     <string name="shop_equipment_attribute_phototime_high">Час між фотографіями: високий</string>
-    <string name="shop_equipment_attribute_sanitydrainreduction_33">Зменшення відтоку здорового глузду (%): 33</string>
-    <string name="shop_equipment_attribute_sanitydrainreduction_50">Зменшення відтоку здорового глузду (%): 50</string>
-    <string name="shop_equipment_attribute_sanitydrainreduction_66">Зменшення відтоку здорового глузду (%): 66</string>
-    <string name="shop_equipment_attribute_sanityrestoration_10">Сон для відновлення здорового глузду (С): 10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20">Сон для відновлення здорового глузду (С): 20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30">Сон для відновлення здорового глузду (С): 30</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_33">Зменшення втрати розсудливості (%): 33</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_50">Зменшення втрати розсудливості (%): 50</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_66">Зменшення втрати розсудливості (%): 66</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10">Час відновлення розсудливості (сек): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20">Час відновлення розсудливості (сек): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30">Час відновлення розсудливості (сек): 30</string>
     <string name="shop_equipment_attribute_sensorshape_line">Форма сенсора: Лінія</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone">Форма сенсора: Конус</string>
     <string name="shop_equipment_attribute_sensorshape_circle">Форма сенсора: Коло</string>
@@ -225,7 +225,7 @@
     <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>На штативі є поворотні шарніри, що дозволяє взаємодіяти з ним, щоб змінити форму датчика звуку.</a><br><br>
             <a>Кожна фігура представлена напрямками, куди спрямовані мікрофони:</a><br><br>
             <a>Вперед: конус / назовні: сторони / всередину: сфера</a>]]></string>
-    <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>Випийте цю пляшку старовинної зміїної олії, щоб відновити частину свого здорового глузду. Відновлення займе кілька секунд, а відновлена сума залежатиме від рівня складності, на якому ви граєте.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>Випийте цю пляшку старовинної зміїної олії, щоб відновити частину своєї розсудливості. Відновлення займе кілька секунд, а відновлена сума залежатиме від рівня складності, на якому ви граєте.</a>]]></string>
     <string name="shop_equipment_sanitymedication_data_info_2"><![CDATA[<a>Прийом цих таблеток швидше відновить ваш розум. Ви можете взяти кілька горщиків, щоб збільшити кількість здорового розуму, відновленого протягом його тривалості.</a>]]></string>
     <string name="shop_equipment_sanitymedication_data_info_3"><![CDATA[<a>Цей Adrenaline Shot відновить ваш розум набагато швидше, ніж попередні дві версії, крім того, ви не втратите витривалість у спринті протягом усього періоду його дії.</a>]]></string>
     <string name="shop_equipment_parabolicmicrophone_data_info_1"><![CDATA[<a>Під час використання параболічного мікрофона та приєднаних навушників ви зможете почути звуки далі, ніж зазвичай, залежно від того, у який бік ви націлюєте мікрофон.</a>]]></string>

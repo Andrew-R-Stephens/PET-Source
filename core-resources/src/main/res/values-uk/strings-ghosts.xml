@@ -9,10 +9,10 @@
     <string name="ghost_type_aswang">Асванг</string>
     <string name="ghost_type_banshee">Банші</string>
     <string name="ghost_type_dayan">Даян</string>
-    <string name="ghost_type_deildegast">Deildegast</string>
+    <string name="ghost_type_deildegast">Дейльдегаст</string>
     <string name="ghost_type_demon">Демон</string>
     <string name="ghost_type_deogen">Деоген</string>
-    <string name="ghost_type_gallu">Галлу</string>
+    <string name="ghost_type_gallu">Ґаллу</string>
     <string name="ghost_type_goryo">Горьо</string>
     <string name="ghost_type_hantu">Ханту</string>
     <string name="ghost_type_jinn">Джин</string>
@@ -21,7 +21,7 @@
     <string name="ghost_type_moroi">Морой</string>
     <string name="ghost_type_myling">Мюлінг</string>
     <string name="ghost_type_obake">Обаке</string>
-    <string name="ghost_type_obambo">ОБамБо</string>
+    <string name="ghost_type_obambo">Обамбо</string>
     <string name="ghost_type_oni">Оні</string>
     <string name="ghost_type_onryo">Онріо</string>
     <string name="ghost_type_phantom">Фантом</string>
@@ -85,7 +85,7 @@
         ]]></string>
     <string name="ghost_info_yokai"><![CDATA[<a>Йркай дуже <font color=#ff6161>чутливий до голосів</font>, що робить Йокай надзвичайно небезпечним. Однак якщо говорити поблизу, це також може викликати активність, полегшуючи пошук кімнати привидів.</a>
         ]]></string>
-    <string name="ghost_info_yurei"><![CDATA[<a>Юрей \- це привид, здатність якого <font color=#ff6161>збільшує пасивне втрату здорового глузду гравця</font> (хоча більшість привидів досить швидко виснажує ваш розум). Забруднивши кімнату, в якій був знайдений Юрей, він не зможе довго блукати з локації.</a>
+    <string name="ghost_info_yurei"><![CDATA[<a>Юрей \- це привид, здатність якого <font color=#ff6161>збільшує пасивну втрату розсудливості гравця</font> (хоча більшість привидів досить швидко виснажує ваш розум). Забруднивши кімнату, в якій був знайдений Юрей, він не зможе довго блукати з локації.</a>
         ]]></string>
     <!--
         Strengths
@@ -391,7 +391,7 @@
 <a>Ослаблений:</a><br>
 <a>Полює з 40\% розсудливості. Ефективна дальність Розп\'яття збільшена на 1 метр. Швидкість руху під час полювання зменшена до 1,36 м/с. Ефекти ладану збільшено до 6 секунд.</a><br>
 <br>
-<a>Галлу переміщуватиметься вгору між Ослабленим, Нормальним та Розлюченим станами, коли його стан посилюється активацією ладану гравцем або взаємодією привида з сіллю чи розп\'яттям.</a>
+<a>Ґаллу переміщуватиметься вгору між Ослабленим, Нормальним та Розлюченим станами, коли його стан посилюється активацією ладану гравцем або взаємодією привида з сіллю чи розп\'яттям.</a>
 ]]>
 </string>
     <string name="ghost_huntingdata_obambo" >

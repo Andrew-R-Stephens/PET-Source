@@ -8,22 +8,22 @@
     <string name="marketplace_list_community">Témata komunity</string>
     <string name="marketplace_connection_error">Ach! Při připojování k tržišti došlo k chybě.</string>
     <string name="marketplace_error_login_required">Chcete-li nárokovat obsah z Marketplace, přihlaste se prosím.</string>
-    <string name="marketplace_button_watch_ad">Získejte kredity</string>
-    <string name="marketplace_button_purchase_credits">Nákup kreditů</string>
+    <string name="marketplace_button_watch_ad">Získejte Credits</string>
+    <string name="marketplace_button_purchase_credits">Nákup Credits</string>
     <string name="marketplace_button_item_get">Dostat</string>
     <string name="marketplace_label_purchased">Odemčený</string>
     <string name="marketplace_label_bundle_includes">Zahrnuje</string>
     <string name="marketplace_purchase_equip">Vybavit motiv %1$s?</string>
 
     <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">Doprovodný kredit</item>
-        <item quantity="few">Doprovodné kredity</item>
-        <item quantity="many">Doprovodné kredity</item>
-        <item quantity="other">Doprovodné kredity</item>
+        <item quantity="one">Companion Credit</item>
+        <item quantity="few">Companion Credits</item>
+        <item quantity="many">Companion Credits</item>
+        <item quantity="other">Companion Credits</item>
     </plurals>
 
     <string name="marketplace_description_watch_ad">Podívejte se na reklamu a vydělejte %s %s.</string>
-    <string name="marketplace_description_purchase_credits">Nakupujte kredity přímo.</string>
+    <string name="marketplace_description_purchase_credits">Nakupujte Credits přímo.</string>
 
     <!-- Acknowledgement -->
     <string name="marketplace_acknowledgement_title">Smlouva o tržišti</string>

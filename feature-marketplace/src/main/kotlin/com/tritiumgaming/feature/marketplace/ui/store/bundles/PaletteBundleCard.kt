@@ -239,30 +239,10 @@ fun PaletteBundleCard(
                                 )
                             )
                         }
-                    } else if (lockedCount == 1) {
+                    } else if (lockedCount == 1 || !pricing.isQualified) {
                         Column(
                             modifier = Modifier
                                 .heightIn(min = 48.dp)
-                                .padding(vertical = 4.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
-                            horizontalAlignment = CenterHorizontally
-                        ) {
-                            Text(
-                                text = stringResource(R.string.marketplace_label_bundle_unqualified).uppercase(),
-                                color = surfaceContainerHigh,
-                                style = LocalTypography.current.quaternary.bold,
-                                fontSize = 16.sp
-                            )
-                            Text(
-                                text = stringResource(R.string.marketplace_label_bundle_unqualified_desc).uppercase(),
-                                color = surfaceContainerHigh,
-                                style = LocalTypography.current.quaternary.regular,
-                                fontSize = 10.sp
-                            )
-                        }
-                    } else if (!pricing.isQualified) {
-                        Column(
-                            modifier = Modifier
                                 .padding(vertical = 4.dp),
                             verticalArrangement = Arrangement.spacedBy(4.dp, CenterVertically),
                             horizontalAlignment = CenterHorizontally

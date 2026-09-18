@@ -7,23 +7,20 @@
     <string name="marketplace_list_community">Topluluk Temaları</string>
     <string name="marketplace_connection_error">Eyvah! Pazar yerine bağlanırken bir hata oluştu.</string>
     <string name="marketplace_error_login_required">Pazar yeri içeriğini talep etmek için lütfen giriş yapın.</string>
-    <string name="marketplace_button_watch_ad">Kredi Kazan</string>
+    <string name="marketplace_button_watch_ad">Credits Kazan</string>
     <string name="marketplace_button_item_get">Al</string>
-    <string name="marketplace_button_purchase_credits">Kredi Satın Al</string>
+    <string name="marketplace_button_purchase_credits">Credits Satın Al</string>
     <string name="marketplace_label_purchased">Kilidi Açıldı</string>
     <string name="marketplace_label_bundle_includes">İçerir</string>
     <string name="marketplace_purchase_equip">%1$s temasıyla donatın?</string>
     <string name="marketplace_description_watch_ad">%s %s kazanmak için bir reklam izleyin.</string>
-    <string name="marketplace_description_purchase_credits">Kredileri doğrudan satın alın.</string>
+    <string name="marketplace_description_purchase_credits">Credits doğrudan satın alın.</string>
     <string name="marketplace_acknowledgement_title">Pazar Yeri Sözleşmesi</string>
     <string name="marketplace_acknowledgement_warning">Phasmophobia Kanıt Aracı\'nın \"Pazar\" bölümünü kullanarak, aşağıdakileri zımnen kabul etmiş olursunuz:</string>
     <string name="marketplace_acknowledgement_button_confirm">Anladım!</string>
     <plurals name="marketplace_description_watch_ad">
-
-        <item quantity="one">Yoldaş Kredisi</item>
-
-        <item quantity="other">Yoldaş Kredileri</item>
-
+        <item quantity="one">Companion Credit</item>
+        <item quantity="other">Companion Credits</item>
     </plurals>
     <string name="marketplace_acknowledgement_warning_list_1">
 

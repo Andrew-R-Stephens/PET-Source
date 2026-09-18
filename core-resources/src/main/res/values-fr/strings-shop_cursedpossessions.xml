@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="store_title_cursedpossessions">Possessions maudites</string>
+    <string name="store_title_cursedpossessions">Objets maudits</string>
     <string name="cursedpossessions_info_name_mirror">Miroir hanté</string>
     <string name="cursedpossessions_info_name_monkeypaw">Patte de singe</string>
     <string name="cursedpossessions_info_name_musicbox">Boîte à musique</string>

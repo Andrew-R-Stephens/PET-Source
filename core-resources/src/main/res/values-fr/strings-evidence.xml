@@ -5,12 +5,12 @@
 
     <!-- Evidence Names -->
     <string name="evidence_type_dots">D.O.T.S</string>
-    <string name="evidence_type_emf">EMF 5</string>
-    <string name="evidence_type_temperatures">Températures Glaciales</string>
+    <string name="evidence_type_emf">EMF niveau 5</string>
+    <string name="evidence_type_temperatures">Températures glaciales</string>
     <string name="evidence_type_box">Spirit Box</string>
-    <string name="evidence_type_book">Ecritures Fantomatiques</string>
-    <string name="evidence_type_orbs">Orbes Fantômes</string>
-    <string name="evidence_type_ultraviolet">Ultra\-violet</string>
+    <string name="evidence_type_book">Écriture fantomatique</string>
+    <string name="evidence_type_orbs">Orbe fantomatique</string>
+    <string name="evidence_type_ultraviolet">Ultraviolet</string>
 
     <!-- Evidence Description -->
     <string name="evidence_info_overview_emf">

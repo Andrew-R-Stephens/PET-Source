@@ -9,13 +9,13 @@
     <string name="challenge_do_as_i_command_description">Вам доведеться змусити цього привида дати вам докази, на щастя, ми знайшли кілька додаткових предметів, які допоможуть вам.</string>
     <string name="challenge_tortoise_and_the_hare_hare_description">Викладіться на повну, цей привид почувається особливо кволим.</string>
     <string name="challenge_tortoise_and_the_hare_tortoise_description">Після минулого тижня ви почуваєтеся трохи виснаженим, і що ще гірше, привид одужав!</string>
-    <string name="challenge_gotta_go_fast_description">Немає хованок, немає здорового глузду, беріться!</string>
-    <string name="challenge_sanity_survival_description">Здоровий глузд - це рідкісний ресурс без таблеток та світла. Будьте обережні, знаходячи цього привида з Кошмару.</string>
+    <string name="challenge_gotta_go_fast_description">Немає хованок, немає розсудливості, беріться!</string>
+    <string name="challenge_sanity_survival_description">Розсудливість - це рідкісний ресурс без таблеток та світла. Будьте обережні, знаходячи цього привида з Кошмару.</string>
     <string name="challenge_speedrun_description">Можливо, ви могли б запустити таймер, як швидко ви зможете знайти особу цього привида?</string>
-    <string name="challenge_survival_of_the_fittest_description">У вас немає ні таблеток, ні глузду, ні доказів для роботи. Це буде важко!</string>
+    <string name="challenge_survival_of_the_fittest_description">У вас немає ні таблеток, ні розсудливості, ні доказів для роботи. Це буде важко!</string>
     <string name="challenge_primitive_description">Боюся, що все електронне обладнання коротке замикання, вам доведеться обходитися без нього.</string>
     <string name="challenge_vulnerable_description">Ви підете до цієї справи без захисту, будьте обережні.</string>
-    <string name="challenge_missed_delivery_description">Ми не отримали повну поставку обладнання цього тижня, тому у вас не буде всього, що вам може знадобитися!</string>
+    <string name="challenge_missed_delivery_description">Ми не отримали повну постачання обладнання цього тижня, тому у вас не буде всього, що вам може знадобитися!</string>
     <string name="challenge_audio_only_description">Нам вдалося роздобути додаткове аудіообладнання. Вам доведеться напружити слух.</string>
     <string name="challenge_technophilia_description">Ми викинули всі ці доісторичні предмети, цей контракт повністю присвячений технологіям!</string>
     <string name="challenge_no_evidence_description">Ці привиди справді не хочуть вам допомагати, але ми впевнені, що ви впораєтеся із завданням.</string>

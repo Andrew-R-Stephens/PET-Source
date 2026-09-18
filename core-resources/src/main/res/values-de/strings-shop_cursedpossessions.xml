@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="store_title_cursedpossessions">Verfluchte Besitztümer</string>
+    <string name="store_title_cursedpossessions">Verwunschene Gegenstände</string>
     <string name="cursedpossessions_info_name_mirror">Spukspiegel</string>
     <string name="cursedpossessions_info_name_monkeypaw">Affenpfote</string>
     <string name="cursedpossessions_info_name_musicbox">Musikbox</string>

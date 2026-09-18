@@ -31,9 +31,9 @@
     <string name="difficulty_permission_permitted">Дозволено</string>
     <string name="difficulty_permission_quantity_all">Усі</string>
     <string name="difficulty_category_contract">Контракт</string>
-    <string name="difficulty_setting_title_starting_sanity">Початковий стан здорового глузду</string>
-    <string name="difficulty_setting_title_sanity_pill_restoration">Відновлення таблетки здорового глузду</string>
-    <string name="difficulty_setting_title_sanity_drain_speed">Швидкість виснаження здорового глузду</string>
+    <string name="difficulty_setting_title_starting_sanity">Початковий стан розсудливості</string>
+    <string name="difficulty_setting_title_sanity_pill_restoration">Відновлення таблетки для розсудливості</string>
+    <string name="difficulty_setting_title_sanity_drain_speed">Швидкість втрати розсудливості</string>
     <string name="difficulty_setting_title_sprinting">Спринт</string>
     <string name="difficulty_setting_title_player_speed">Швидкість гравця</string>
     <string name="difficulty_setting_title_flashlights">Ліхтарики</string>
@@ -55,7 +55,7 @@
     <string name="difficulty_setting_title_weather_temperature_range">Діапазон температур</string>
     <string name="difficulty_setting_title_doors_starting_open">Двері, що починають відкриватися</string>
     <string name="difficulty_setting_title_number_of_hiding_places">Кількість схованок</string>
-    <string name="difficulty_setting_title_sanity_monitor">Монітор здорового глузду</string>
+    <string name="difficulty_setting_title_sanity_monitor">Монітор розсудливості</string>
     <string name="difficulty_setting_title_activity_monitor">Монітор активності</string>
     <string name="difficulty_setting_title_fuse_box_at_start_of_contract">Блок запобіжників на початку контракту</string>
     <string name="difficulty_setting_title_fuse_box_visible_on_map">Блок запобіжників видно на карті</string>

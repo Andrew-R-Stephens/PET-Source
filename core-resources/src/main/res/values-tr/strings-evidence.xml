@@ -2,11 +2,11 @@
 <resources>
     <string name="evidence_section_overview">Genel Bakış</string>
     <string name="evidence_type_dots">D.O.T.S.</string>
-    <string name="evidence_type_emf">EMF 5</string>
-    <string name="evidence_type_ultraviolet">Parmak İzleri</string>
+    <string name="evidence_type_emf">EMF Seviye 5</string>
+    <string name="evidence_type_ultraviolet">Ultraviyole</string>
     <string name="evidence_type_temperatures">Dondurucu Soğukluk</string>
     <string name="evidence_type_orbs">Hayalet Küresi</string>
-    <string name="evidence_type_book">Kutsal Kitap</string>
+    <string name="evidence_type_book">Hayalet Yazısı</string>
     <string name="evidence_type_box">Ruh Telsizi</string>
     <string name="evidence_trait_description_always_finds_players_if_hunt">Av sırasında her zaman oyuncuları bulur</string>
     <string name="evidence_trait_description_audible_long_range_if_hunt">Av sırasında uzaktan duyulabilir</string>
