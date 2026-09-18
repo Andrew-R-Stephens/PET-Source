@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="store_title_achievements">実績</string>
+    <!-- Categories -->
+    <string name="achievements_category_training_wheels" translatable="false">Training Wheels</string>
+    <string name="achievements_category_completed_contracts" translatable="false">Completed Contracts</string>
+    <string name="achievements_category_objectives_board" translatable="false">Objectives Board</string>
+    <string name="achievements_category_weekly_challenge" translatable="false">Weekly Challenge</string>
+    <string name="achievements_category_spend_cash" translatable="false">Spend Cash</string>
+    <string name="achievements_category_unlocked_all_equipmenttier" translatable="false">Unlocked All Equipment Tier</string>
+    <string name="achievements_category_director" translatable="false">Director</string>
+    <string name="achievements_category_apocalypse_trophy" translatable="false">Apocalypse Trophy</string>
+    <string name="achievements_category_ghosts" translatable="false">Ghosts</string>
+    <string name="achievements_category_prestige" translatable="false">Prestige</string>
+    <string name="achievements_category_hidden_achievement" translatable="false">Hidden Achievement</string>
+    <string name="achievements_category_exclusive" translatable="false">Exclusive</string>
+
+    <!-- Names -->
+    <string name="achievements_trainingwheels_name">訓練完了</string>
+    <string name="achievements_rookie_name">ルーキー</string>
+    <string name="achievements_professional_name">プロ</string>
+    <string name="achievements_boss_name">ボス</string>
+    <string name="achievements_extramile_name">ひと手間</string>
+    <string name="achievements_dedicated_name">献身的</string>
+    <string name="achievements_devoted_name">熱心</string>
+    <string name="achievements_challenger_name">挑戦者求む</string>
+    <string name="achievements_risechallenge_name">腕試し</string>
+    <string name="achievements_takingchallenges_name">かかってこい！</string>
+    <string name="achievements_chumpchange_name">はした金</string>
+    <string name="achievements_fatstock_name">札束</string>
+    <string name="achievements_cashcow_name">金の成る木</string>
+    <string name="achievements_breakthebank_name">巨万の富</string>
+    <string name="achievements_bareessentials_name">必要最低限</string>
+    <string name="achievements_toolsofthetrade_name">商売道具</string>
+    <string name="achievements_fullyloaded_name">フル装備</string>
+    <string name="achievements_director_name">ディレクター</string>
+    <string name="achievements_bronzehunter_name">ブロンズハンター</string>
+    <string name="achievements_silverhunter_name">シルバーハンター</string>
+    <string name="achievements_goldhunter_name">ゴールドハンター</string>
+    <string name="achievements_banshee_name">「バンシー」発見</string>
+    <string name="achievements_demon_name">「デーモン」発見</string>
+    <string name="achievements_deogen_name">「デオへン」発見</string>
+    <string name="achievements_goryo_name">「御霊」発見</string>
+    <string name="achievements_hantu_name">「ハントゥ」発見</string>
+    <string name="achievements_jinn_name">「ジン」発見</string>
+    <string name="achievements_mare_name">「メアー」発見</string>
+    <string name="achievements_moroi_name">「モーロイ」発見</string>
+    <string name="achievements_myling_name">「マイリング」発見</string>
+    <string name="achievements_obake_name">「化け狐」発見</string>
+    <string name="achievements_oni_name">「鬼」発見</string>
+    <string name="achievements_onryo_name">「怨霊」発見</string>
+    <string name="achievements_phantom_name">「ファントム」発見</string>
+    <string name="achievements_poltergeist_name">「ポルターガイスト」発見</string>
+    <string name="achievements_raiju_name">「雷獣」発見</string>
+    <string name="achievements_revenant_name">「レヴナント」発見</string>
+    <string name="achievements_shade_name">「シェード」発見</string>
+    <string name="achievements_spirit_name">「スピリット」発見</string>
+    <string name="achievements_thaye_name">「セーイ」発見</string>
+    <string name="achievements_mimic_name">「ミミック」発見</string>
+    <string name="achievements_twins_name">「ツインズ」発見</string>
+    <string name="achievements_wraith_name">「レイス」発見</string>
+    <string name="achievements_yokai_name">「妖怪」発見</string>
+    <string name="achievements_yurei_name">「幽霊」発見</string>
+    <string name="achievements_prestige1_name">I</string>
+    <string name="achievements_prestige2_name">II</string>
+    <string name="achievements_prestige3_name">III</string>
+    <string name="achievements_workexperience_name">実務経験</string>
+    <string name="achievements_flawlessexecution_name">完璧な調査</string>
+    <string name="achievements_theyrehere_name">奴らが来る</string>
+    <string name="achievements_escapeartist_name">脱出の達人</string>
+    <string name="achievements_bait_name">餌食</string>
+    <string name="achievements_doomslayed_name">瞬殺</string>
+    <string name="achievements_paranormal_perfectionist_name">パラノーマル・パーフェクショニスト</string>
+
+    <!-- Information -->
+    <string name="achievements_trainingwheels_info">トレーニングを達成する。</string>
+    <string name="achievements_rookie_info">ミッションを10個達成する。</string>
+    <string name="achievements_professional_info">ミッションを50個達成する。</string>
+    <string name="achievements_boss_info">ミッションを100個達成する。</string>
+    <string name="achievements_extramile_info">50個のサブ目標を達成する。</string>
+    <string name="achievements_dedicated_info">30個のデイリータスクを完了する。</string>
+    <string name="achievements_devoted_info">10個のウィークリータスクを完了する。</string>
+    <string name="achievements_challenger_info">ウィークリーチャレンジモードを1回完了する。</string>
+    <string name="achievements_risechallenge_info">ウィークリーチャレンジモードを5回完了する。</string>
+    <string name="achievements_takingchallenges_info">ウィークリーチャレンジモードを10回完了する。</string>
+    <string name="achievements_chumpchange_info">$1使用する。</string>
+    <string name="achievements_fatstock_info">$10000使用する。</string>
+    <string name="achievements_cashcow_info">$50000使用する。</string>
+    <string name="achievements_breakthebank_info">$100000使用する。</string>
+    <string name="achievements_bareessentials_info">全てのティア1装備をアンロックする。</string>
+    <string name="achievements_toolsofthetrade_info">全てのティア2装備をアンロックする。</string>
+    <string name="achievements_fullyloaded_info">全てのティア3装備をアンロックする。</string>
+    <string name="achievements_director_info">カスタム難易度を作成する。</string>
+    <string name="achievements_bronzehunter_info">アポカリプストロフィー「ブロンズ」を獲得する。</string>
+    <string name="achievements_silverhunter_info">アポカリプストロフィー「シルバー」を獲得する。</string>
+    <string name="achievements_goldhunter_info">アポカリプストロフィー「ゴールド」を獲得する。</string>
+    <string name="achievements_banshee_info">バンシーを初めて特定し、生還する。</string>
+    <string name="achievements_demon_info">デーモンを初めて特定し、生還する。</string>
+    <string name="achievements_deogen_info">デオヘンを特定し、生還する。</string>
+    <string name="achievements_goryo_info">御霊を初めて特定し、生還する。</string>
+    <string name="achievements_hantu_info">ハントゥを初めて特定し、生還する。</string>
+    <string name="achievements_jinn_info">ジンを初めて特定し、生還する。</string>
+    <string name="achievements_mare_info">メアーを初めて特定し、生還する。</string>
+    <string name="achievements_moroi_info">モーロイを初めて特定し、生還する。</string>
+    <string name="achievements_myling_info">マイリングを初めて特定し、生還する。</string>
+    <string name="achievements_obake_info">化け狐を初めて特定し、生還する。</string>
+    <string name="achievements_oni_info">鬼を初めて特定し、生還する。</string>
+    <string name="achievements_onryo_info">怨霊を初めて特定し、生還する。</string>
+    <string name="achievements_phantom_info">ファントムを初めて特定し、生還する。</string>
+    <string name="achievements_poltergeist_info">ポルターガイストを初めて特定し、生還する。</string>
+    <string name="achievements_raiju_info">雷獣を初めて特定し、生還する。</string>
+    <string name="achievements_revenant_info">レヴナントを初めて特定し、生還する。</string>
+    <string name="achievements_shade_info">シェードを初めて特定し、生還する。</string>
+    <string name="achievements_spirit_info">スピリットを初めて特定し、生還する。</string>
+    <string name="achievements_thaye_info">セーイを初めて特定し、生還する。</string>
+    <string name="achievements_mimic_info">ミミックを初めて特定し、生還する。</string>
+    <string name="achievements_twins_info">ツインズを初めて特定し、生還する。</string>
+    <string name="achievements_wraith_info">レイスを初めて特定し、生還する。</string>
+    <string name="achievements_yokai_info">妖怪を初めて特定し、生還する。</string>
+    <string name="achievements_yurei_info">幽霊を初めて特定し、生還する。</string>
+    <string name="achievements_prestige1_info">プレステージレベルIに到達します。</string>
+    <string name="achievements_prestige2_info">プレステージレベルIIに到達します。</string>
+    <string name="achievements_prestige3_info">プレステージレベルIIIに到達します。</string>
+    <string name="achievements_workexperience_info">ミッションを初めて達成する。</string>
+    <string name="achievements_flawlessexecution_info">調査でパーフェクトを達成する。</string>
+    <string name="achievements_theyrehere_info">ポルターガイストの能力を目撃する。</string>
+    <string name="achievements_escapeartist_info">レヴナントから逃げ切る。</string>
+    <string name="achievements_bait_info">マルチプレイヤーでバンシーに殺害される。</string>
+    <string name="achievements_doomslayed_info">デーモンの能力で1分以内に殺される。</string>
+    <string name="achievements_paranormal_perfectionist_info">すべてのトロフィーを獲得した。</string>
+
+    <string name="achievements_visibility_hidden" translatable="false">Hidden Achievement</string>
+
+    <string name="platform_steam" translatable="false">Steam</string>
+    <string name="platform_xbox" translatable="false">Xbox</string>
+    <string name="platform_playstation" translatable="false">Playstation</string>
+</resources>

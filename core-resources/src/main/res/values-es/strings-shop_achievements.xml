@@ -1,4 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="store_title_achievements">Logros</string>
+    <!-- Categories -->
+    <string name="achievements_category_training_wheels" translatable="false">Training Wheels</string>
+    <string name="achievements_category_completed_contracts" translatable="false">Completed Contracts</string>
+    <string name="achievements_category_objectives_board" translatable="false">Objectives Board</string>
+    <string name="achievements_category_weekly_challenge" translatable="false">Weekly Challenge</string>
+    <string name="achievements_category_spend_cash" translatable="false">Spend Cash</string>
+    <string name="achievements_category_unlocked_all_equipmenttier" translatable="false">Unlocked All Equipment Tier</string>
+    <string name="achievements_category_director" translatable="false">Director</string>
+    <string name="achievements_category_apocalypse_trophy" translatable="false">Apocalypse Trophy</string>
+    <string name="achievements_category_ghosts" translatable="false">Ghosts</string>
+    <string name="achievements_category_prestige" translatable="false">Prestige</string>
+    <string name="achievements_category_hidden_achievement" translatable="false">Hidden Achievement</string>
+    <string name="achievements_category_exclusive" translatable="false">Exclusive</string>
+
+    <!-- Names -->
+    <string name="achievements_trainingwheels_name">Sin ruedines</string>
+    <string name="achievements_rookie_name">Novato</string>
+    <string name="achievements_professional_name">Profesional</string>
+    <string name="achievements_boss_name">Jefe</string>
+    <string name="achievements_extramile_name">Un paso por delante</string>
+    <string name="achievements_dedicated_name">Dedicado</string>
+    <string name="achievements_devoted_name">Devoto</string>
+    <string name="achievements_challenger_name">Se aproxima un rival</string>
+    <string name="achievements_risechallenge_name">Listo para el desafío</string>
+    <string name="achievements_takingchallenges_name">A por todos los desafíos</string>
+    <string name="achievements_chumpchange_name">Calderilla</string>
+    <string name="achievements_fatstock_name">Un buen fajo</string>
+    <string name="achievements_cashcow_name">Adinerado</string>
+    <string name="achievements_breakthebank_name">Rompe la economía</string>
+    <string name="achievements_bareessentials_name">Lo básico</string>
+    <string name="achievements_toolsofthetrade_name">Buen inventario</string>
+    <string name="achievements_fullyloaded_name">El mejor equipamiento</string>
+    <string name="achievements_director_name">Director</string>
+    <string name="achievements_bronzehunter_name">Buscando bronce</string>
+    <string name="achievements_silverhunter_name">Buscando plata</string>
+    <string name="achievements_goldhunter_name">Buscando oro</string>
+    <string name="achievements_banshee_name">Banshee descubierta</string>
+    <string name="achievements_demon_name">Demonio descubierto</string>
+    <string name="achievements_deogen_name">Deogen descubierto</string>
+    <string name="achievements_goryo_name">Goryo descubierto</string>
+    <string name="achievements_hantu_name">Hantu descubierto</string>
+    <string name="achievements_jinn_name">Jinn descubierto</string>
+    <string name="achievements_mare_name">Pesadilla descubierta</string>
+    <string name="achievements_moroi_name">Moroi descubierto</string>
+    <string name="achievements_myling_name">Myling descubierto</string>
+    <string name="achievements_obake_name">Obake descubierto</string>
+    <string name="achievements_oni_name">Oni descubierto</string>
+    <string name="achievements_onryo_name">Onryo descubierto</string>
+    <string name="achievements_phantom_name">Ente descubierto</string>
+    <string name="achievements_poltergeist_name">Poltergeist descubierto</string>
+    <string name="achievements_raiju_name">Raiju descubierto</string>
+    <string name="achievements_revenant_name">Revenant descubierto</string>
+    <string name="achievements_shade_name">Sombra descubierta</string>
+    <string name="achievements_spirit_name">Espíritu descubierto</string>
+    <string name="achievements_thaye_name">Thaye descubierto</string>
+    <string name="achievements_mimic_name">Mímico descubierto</string>
+    <string name="achievements_twins_name">Gemelos descubiertos</string>
+    <string name="achievements_wraith_name">Espectro descubierto</string>
+    <string name="achievements_yokai_name">Yokai descubierto</string>
+    <string name="achievements_yurei_name">Yurei descubierto</string>
+    <string name="achievements_prestige1_name">I</string>
+    <string name="achievements_prestige2_name">II</string>
+    <string name="achievements_prestige3_name">III</string>
+    <string name="achievements_workexperience_name">Experiencia laboral</string>
+    <string name="achievements_flawlessexecution_name">Ejecución perfecta</string>
+    <string name="achievements_theyrehere_name">Están aquí</string>
+    <string name="achievements_escapeartist_name">Artista del escapismo</string>
+    <string name="achievements_bait_name">El cebo</string>
+    <string name="achievements_doomslayed_name">Destruido</string>
+    <string name="achievements_paranormal_perfectionist_name">Perfeccionista paranormal</string>
+
+    <!-- Information -->
+    <string name="achievements_trainingwheels_info">Completa el Entrenamiento</string>
+    <string name="achievements_rookie_info">Completa 10 contratos</string>
+    <string name="achievements_professional_info">Completa 50 contratos</string>
+    <string name="achievements_boss_info">Completa 100 contratos</string>
+    <string name="achievements_extramile_info">Completa 50 objetivos opcionales</string>
+    <string name="achievements_dedicated_info">Completa 30 tareas diarias</string>
+    <string name="achievements_devoted_info">Completa 10 tareas semanales</string>
+    <string name="achievements_challenger_info">Completa el modo desafío semanal</string>
+    <string name="achievements_risechallenge_info">Completa el modo desafío 5 veces</string>
+    <string name="achievements_takingchallenges_info">Completa el modo desafío 10 veces</string>
+    <string name="achievements_chumpchange_info">Gasta 1$</string>
+    <string name="achievements_fatstock_info">Gasta 10 000$</string>
+    <string name="achievements_cashcow_info">Gasta 50 000$</string>
+    <string name="achievements_breakthebank_info">Gasta 100 000$</string>
+    <string name="achievements_bareessentials_info">Desbloquea todo el equipamiento de categoría 1</string>
+    <string name="achievements_toolsofthetrade_info">Desbloquea todo el equipamiento de categoría 2</string>
+    <string name="achievements_fullyloaded_info">Desbloquea todo el equipamiento de categoría 3</string>
+    <string name="achievements_director_info">Crea una dificultad personalizada</string>
+    <string name="achievements_bronzehunter_info">Obtén el trofeo de bronce en apocalipsis</string>
+    <string name="achievements_silverhunter_info">Obtén el trofeo de plata en apocalipsis</string>
+    <string name="achievements_goldhunter_info">Obtén el trofeo de oro en apocalipsis</string>
+    <string name="achievements_banshee_info">Identifica con éxito a tu primera Banshee y sobrevive</string>
+    <string name="achievements_demon_info">Identifica con éxito a tu primer Demonio y sobrevive</string>
+    <string name="achievements_deogen_info">Identifica con éxito a tu primer Deogen y sobrevive</string>
+    <string name="achievements_goryo_info">Identifica con éxito a tu primer Goryo y sobrevive</string>
+    <string name="achievements_hantu_info">Identifica con éxito a tu primer Hantu y sobrevive</string>
+    <string name="achievements_jinn_info">Identifica con éxito a tu primer Jinn y sobrevive</string>
+    <string name="achievements_mare_info">Identifica con éxito a tu primera pesadilla y sobrevive</string>
+    <string name="achievements_moroi_info">Identifica con éxito a tu primer Moroi y sobrevive</string>
+    <string name="achievements_myling_info">Identifica con éxito a tu primer Myling y sobrevive</string>
+    <string name="achievements_obake_info">Identifica con éxito a tu primer Obake y sobrevive</string>
+    <string name="achievements_oni_info">Identifica con éxito a tu primer Oni y sobrevive</string>
+    <string name="achievements_onryo_info">Identifica con éxito a tu primer Onryo y sobrevive</string>
+    <string name="achievements_phantom_info">Identifica con éxito a tu primer ente y sobrevive</string>
+    <string name="achievements_poltergeist_info">Identifica con éxito a tu primer Poltergeist y sobrevive</string>
+    <string name="achievements_raiju_info">Identifica con éxito a tu primer Raiju y sobrevive</string>
+    <string name="achievements_revenant_info">Identifica con éxito a tu primer Revenant y sobrevive</string>
+    <string name="achievements_shade_info">Identifica con éxito a tu primera sombra y sobrevive</string>
+    <string name="achievements_spirit_info">Identifica con éxito a tu primer espíritu y sobrevive</string>
+    <string name="achievements_thaye_info">Identifica con éxito a tu primer Thaye y sobrevive</string>
+    <string name="achievements_mimic_info">Identifica con éxito al mímico por primera vez</string>
+    <string name="achievements_twins_info">Identifica con éxito a los gemelos por primera vez</string>
+    <string name="achievements_wraith_info">Identifica con éxito a tu primer espectro y sobrevive</string>
+    <string name="achievements_yokai_info">Identifica con éxito a tu primer Yokai y sobrevive</string>
+    <string name="achievements_yurei_info">Identifica con éxito a tu primer Yurei y sobrevive</string>
+    <string name="achievements_prestige1_info">Alcanza el Prestigio I</string>
+    <string name="achievements_prestige2_info">Alcanza el Prestigio II</string>
+    <string name="achievements_prestige3_info">Alcanza el Prestigio III</string>
+    <string name="achievements_workexperience_info">Completa tu primer contrato</string>
+    <string name="achievements_flawlessexecution_info">Realiza una investigación perfecta</string>
+    <string name="achievements_theyrehere_info">Sé testigo de la habilidad de un poltergeist</string>
+    <string name="achievements_escapeartist_info">Escapa de un revenant</string>
+    <string name="achievements_bait_info">Haz que una banshee te mate en multijugador</string>
+    <string name="achievements_doomslayed_info">Haz que un demonio te mate con su habilidad dentro del primer minuto</string>
+    <string name="achievements_paranormal_perfectionist_info">Obtén todos los trofeos</string>
+
+    <string name="achievements_visibility_hidden" translatable="false">Hidden Achievement</string>
+
+    <string name="platform_steam" translatable="false">Steam</string>
+    <string name="platform_xbox" translatable="false">Xbox</string>
+    <string name="platform_playstation" translatable="false">Playstation</string>
 </resources>

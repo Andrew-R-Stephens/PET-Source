@@ -1,4 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="store_title_achievements">Başarılar</string>
+    <!-- Categories -->
+    <string name="achievements_category_training_wheels" translatable="false">Training Wheels</string>
+    <string name="achievements_category_completed_contracts" translatable="false">Completed Contracts</string>
+    <string name="achievements_category_objectives_board" translatable="false">Objectives Board</string>
+    <string name="achievements_category_weekly_challenge" translatable="false">Weekly Challenge</string>
+    <string name="achievements_category_spend_cash" translatable="false">Spend Cash</string>
+    <string name="achievements_category_unlocked_all_equipmenttier" translatable="false">Unlocked All Equipment Tier</string>
+    <string name="achievements_category_director" translatable="false">Director</string>
+    <string name="achievements_category_apocalypse_trophy" translatable="false">Apocalypse Trophy</string>
+    <string name="achievements_category_ghosts" translatable="false">Ghosts</string>
+    <string name="achievements_category_prestige" translatable="false">Prestige</string>
+    <string name="achievements_category_hidden_achievement" translatable="false">Hidden Achievement</string>
+    <string name="achievements_category_exclusive" translatable="false">Exclusive</string>
+
+    <!-- Names -->
+    <string name="achievements_trainingwheels_name">Artık Eğitim Tekerlekleri Yok</string>
+    <string name="achievements_rookie_name">Çaylak</string>
+    <string name="achievements_professional_name">Profesyonel</string>
+    <string name="achievements_boss_name">Usta</string>
+    <string name="achievements_extramile_name">Ekstra Kilometre</string>
+    <string name="achievements_dedicated_name">Adanmış Ruh</string>
+    <string name="achievements_devoted_name">Sadık Oyuncu</string>
+    <string name="achievements_challenger_name">Görev Avcısının Doğuşu</string>
+    <string name="achievements_risechallenge_name">Görev Peşinde</string>
+    <string name="achievements_takingchallenges_name">Durdurulamaz Görev Avcısı</string>
+    <string name="achievements_chumpchange_name">Bozuk Para</string>
+    <string name="achievements_fatstock_name">Yığınla Para</string>
+    <string name="achievements_cashcow_name">Kârlı İş</string>
+    <string name="achievements_breakthebank_name">Banka Soygunu</string>
+    <string name="achievements_bareessentials_name">Temel Ekipmanlar</string>
+    <string name="achievements_toolsofthetrade_name">Ticaret Araçları</string>
+    <string name="achievements_fullyloaded_name">Yükünü Tamamla</string>
+    <string name="achievements_director_name">Yönetmen</string>
+    <string name="achievements_bronzehunter_name">Bronz Avcı</string>
+    <string name="achievements_silverhunter_name">Gümüş Avcı</string>
+    <string name="achievements_goldhunter_name">Altın Avcı</string>
+    <string name="achievements_banshee_name">Banshee Keşfedildi</string>
+    <string name="achievements_demon_name">Demon Keşfedildi</string>
+    <string name="achievements_deogen_name">Deogen Keşfedildi</string>
+    <string name="achievements_goryo_name">Goryo Keşfedildi</string>
+    <string name="achievements_hantu_name">Hantu Keşfedildi</string>
+    <string name="achievements_jinn_name">Jinn Keşfedildi</string>
+    <string name="achievements_mare_name">Mare Keşfedildi</string>
+    <string name="achievements_moroi_name">Moroi Keşfedildi</string>
+    <string name="achievements_myling_name">Myling Keşfedildi</string>
+    <string name="achievements_obake_name">Obake Keşfedildi</string>
+    <string name="achievements_oni_name">Oni Keşfedildi</string>
+    <string name="achievements_onryo_name">Onryo Keşfedildi</string>
+    <string name="achievements_phantom_name">Phantom Keşfedildi</string>
+    <string name="achievements_poltergeist_name">Poltergeist Keşfedildi</string>
+    <string name="achievements_raiju_name">Raiju Keşfedildi</string>
+    <string name="achievements_revenant_name">Revenant Keşfedildi</string>
+    <string name="achievements_shade_name">Shade Keşfedildi</string>
+    <string name="achievements_spirit_name">Spirit Keşfedildi</string>
+    <string name="achievements_thaye_name">Thaye Keşfedildi</string>
+    <string name="achievements_mimic_name">Mimic Keşfedildi</string>
+    <string name="achievements_twins_name">Twins Keşfedildi</string>
+    <string name="achievements_wraith_name">Wraith Keşfedildi</string>
+    <string name="achievements_yokai_name">Yokai Keşfedildi</string>
+    <string name="achievements_yurei_name">Yurei Keşfedildi</string>
+    <string name="achievements_prestige1_name">I</string>
+    <string name="achievements_prestige2_name">II</string>
+    <string name="achievements_prestige3_name">III</string>
+    <string name="achievements_workexperience_name">İş Tecrübesi</string>
+    <string name="achievements_flawlessexecution_name">Kusursuz Çalışma</string>
+    <string name="achievements_theyrehere_name">İşte Buradalar</string>
+    <string name="achievements_escapeartist_name">Firar Sanatçısı</string>
+    <string name="achievements_bait_name">Yem</string>
+    <string name="achievements_doomslayed_name">Kader Kurbanı</string>
+    <string name="achievements_paranormal_perfectionist_name">Paranormal Mükemmeliyetçi</string>
+
+    <!-- Information -->
+    <string name="achievements_trainingwheels_info">Eğitimi tamamla</string>
+    <string name="achievements_rookie_info">10 kontrat tamamla</string>
+    <string name="achievements_professional_info">50 kontrat tamamla</string>
+    <string name="achievements_boss_info">100 kontrat tamamla</string>
+    <string name="achievements_extramile_info">50 isteğe bağlı hedefi tamamla</string>
+    <string name="achievements_dedicated_info">30 günlük görev tamamla</string>
+    <string name="achievements_devoted_info">10 haftalık görev tamamla</string>
+    <string name="achievements_challenger_info">Bir haftalık meydan okuma modu tamamla</string>
+    <string name="achievements_risechallenge_info">Haftalık meydan okuma modunu 5 kez tamamla</string>
+    <string name="achievements_takingchallenges_info">Haftalık meydan okuma modunu 10 kez tamamla</string>
+    <string name="achievements_chumpchange_info">1$ harca</string>
+    <string name="achievements_fatstock_info">10.000$ harca</string>
+    <string name="achievements_cashcow_info">50.000$ harca</string>
+    <string name="achievements_breakthebank_info">100.000$ harca</string>
+    <string name="achievements_bareessentials_info">Tüm birinci kademe ekipmanların kilidini aç</string>
+    <string name="achievements_toolsofthetrade_info">Tüm ikinci kademe ekipmanların kilidini aç</string>
+    <string name="achievements_fullyloaded_info">Tüm üçüncü kademe ekipmanların kilidini aç</string>
+    <string name="achievements_director_info">Özel bir zorluk oluştur</string>
+    <string name="achievements_bronzehunter_info">Bronz Kıyamet Kupası elde et</string>
+    <string name="achievements_silverhunter_info">Gümüş Kıyamet Kupası elde et</string>
+    <string name="achievements_goldhunter_info">Altın Kıyamet Kupası elde et</string>
+    <string name="achievements_banshee_info">İlk Banshee\'ni bul ve hayatta kal</string>
+    <string name="achievements_demon_info">İlk Demon\'ını bul ve hayatta kal</string>
+    <string name="achievements_deogen_info">İlk Deogen\'ını bul ve hayatta kal</string>
+    <string name="achievements_goryo_info">İlk Goryo\'nu bul ve hayatta kal</string>
+    <string name="achievements_hantu_info">İlk Hantu\'nu bul ve hayatta kal</string>
+    <string name="achievements_jinn_info">İlk Jinn\'ini bul ve hayatta kal</string>
+    <string name="achievements_mare_info">İlk Mare\'ni bul ve hayatta kal</string>
+    <string name="achievements_moroi_info">İlk Moroi\'ni bul ve hayatta kal</string>
+    <string name="achievements_myling_info">İlk Myling\'ini bul ve hayatta kal</string>
+    <string name="achievements_obake_info">İlk Obake\'ni bul ve hayatta kal</string>
+    <string name="achievements_oni_info">İlk Oni\'ni bul ve hayatta kal</string>
+    <string name="achievements_onryo_info">İlk Onryo\'nu bul ve hayatta kal</string>
+    <string name="achievements_phantom_info">İlk Phantom\'ını bul ve hayatta kal</string>
+    <string name="achievements_poltergeist_info">İlk Poltergeist\'ını bul ve hayatta kal</string>
+    <string name="achievements_raiju_info">İlk Raiju\'nu bul ve hayatta kal</string>
+    <string name="achievements_revenant_info">İlk Revenant\'ını bul ve hayatta kal</string>
+    <string name="achievements_shade_info">İlk Shade\'ini bul ve hayatta kal</string>
+    <string name="achievements_spirit_info">İlk Spirit\'ini bul ve hayatta kal</string>
+    <string name="achievements_thaye_info">İlk Thaye\'ini bul ve hayatta kal</string>
+    <string name="achievements_mimic_info">Mimic\'i ilk kez bul</string>
+    <string name="achievements_twins_info">Twins\'i ilk kez bul</string>
+    <string name="achievements_wraith_info">İlk Wraith\'ini bul ve hayatta kal</string>
+    <string name="achievements_yokai_info">İlk Yokai\'ni bul ve hayatta kal</string>
+    <string name="achievements_yurei_info">İlk Yurei\'ini bul ve hayatta kal</string>
+    <string name="achievements_prestige1_info">Prestij I\'e ulaş</string>
+    <string name="achievements_prestige2_info">Prestij II\'ye ulaş</string>
+    <string name="achievements_prestige3_info">Prestij III\'e ulaş</string>
+    <string name="achievements_workexperience_info">İlk kontratını tamamla</string>
+    <string name="achievements_flawlessexecution_info">Mükemmel bir soruşturma tamamla</string>
+    <string name="achievements_theyrehere_info">Bir Poltergeist yeteneğine şahit ol</string>
+    <string name="achievements_escapeartist_info">Bir Revenant\'tan kaç</string>
+    <string name="achievements_bait_info">Çok oyunculu modda bir Banshee tarafından öl</string>
+    <string name="achievements_doomslayed_info">Daha ilk dakikada bir Demon yeteneği tarafından öl</string>
+    <string name="achievements_paranormal_perfectionist_info">Tüm kupaları elde et</string>
+
+    <string name="achievements_visibility_hidden" translatable="false">Hidden Achievement</string>
+
+    <string name="platform_steam" translatable="false">Steam</string>
+    <string name="platform_xbox" translatable="false">Xbox</string>
+    <string name="platform_playstation" translatable="false">Playstation</string>
 </resources>

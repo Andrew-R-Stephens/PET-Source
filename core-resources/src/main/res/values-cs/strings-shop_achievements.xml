@@ -1,4 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="store_title_achievements">Úspěchy</string>
+    <!-- Categories -->
+    <string name="achievements_category_training_wheels" translatable="false">Training Wheels</string>
+    <string name="achievements_category_completed_contracts" translatable="false">Completed Contracts</string>
+    <string name="achievements_category_objectives_board" translatable="false">Objectives Board</string>
+    <string name="achievements_category_weekly_challenge" translatable="false">Weekly Challenge</string>
+    <string name="achievements_category_spend_cash" translatable="false">Spend Cash</string>
+    <string name="achievements_category_unlocked_all_equipmenttier" translatable="false">Unlocked All Equipment Tier</string>
+    <string name="achievements_category_director" translatable="false">Director</string>
+    <string name="achievements_category_apocalypse_trophy" translatable="false">Apocalypse Trophy</string>
+    <string name="achievements_category_ghosts" translatable="false">Ghosts</string>
+    <string name="achievements_category_prestige" translatable="false">Prestige</string>
+    <string name="achievements_category_hidden_achievement" translatable="false">Hidden Achievement</string>
+    <string name="achievements_category_exclusive" translatable="false">Exclusive</string>
+
+    <!-- Names -->
+    <string name="achievements_trainingwheels_name">Žádné další tréninkové kolečka</string>
+    <string name="achievements_rookie_name">Nováček</string>
+    <string name="achievements_professional_name">Profesionál</string>
+    <string name="achievements_boss_name">Šéf</string>
+    <string name="achievements_extramile_name">Další míle</string>
+    <string name="achievements_dedicated_name">Oddanost</string>
+    <string name="achievements_devoted_name">Obětavost</string>
+    <string name="achievements_challenger_name">Blíží se vyzyvatel</string>
+    <string name="achievements_risechallenge_name">Popasovat se s výzvou</string>
+    <string name="achievements_takingchallenges_name">Přijetí všech výzev</string>
+    <string name="achievements_chumpchange_name">Drobné</string>
+    <string name="achievements_fatstock_name">Velká hromada</string>
+    <string name="achievements_cashcow_name">Zlatý Důl</string>
+    <string name="achievements_breakthebank_name">Vyluxujte banku</string>
+    <string name="achievements_bareessentials_name">Základní výbavička</string>
+    <string name="achievements_toolsofthetrade_name">Pracovní vercajk</string>
+    <string name="achievements_fullyloaded_name">Kompletní výbava</string>
+    <string name="achievements_director_name">Ředitel</string>
+    <string name="achievements_bronzehunter_name">Bronzový lovec</string>
+    <string name="achievements_silverhunter_name">Stříbrný lovec</string>
+    <string name="achievements_goldhunter_name">Zlatý lovec</string>
+    <string name="achievements_banshee_name">Banshee Objeveno</string>
+    <string name="achievements_demon_name">Demon Objeveno</string>
+    <string name="achievements_deogen_name">Deogen Objeveno</string>
+    <string name="achievements_goryo_name">Goryo Objeveno</string>
+    <string name="achievements_hantu_name">Hantu Objeveno</string>
+    <string name="achievements_jinn_name">Jinn Objeveno</string>
+    <string name="achievements_mare_name">Mare Objeveno</string>
+    <string name="achievements_moroi_name">Moroi Objeveno</string>
+    <string name="achievements_myling_name">Myling Objeveno</string>
+    <string name="achievements_obake_name">Obake Objeveno</string>
+    <string name="achievements_oni_name">Oni Objeveno</string>
+    <string name="achievements_onryo_name">Onryo Objeveno</string>
+    <string name="achievements_phantom_name">Phantom Objeveno</string>
+    <string name="achievements_poltergeist_name">Poltergeist Objeveno</string>
+    <string name="achievements_raiju_name">Raiju Objeveno</string>
+    <string name="achievements_revenant_name">Revenant Objeveno</string>
+    <string name="achievements_shade_name">Shade Objeveno</string>
+    <string name="achievements_spirit_name">Spirit Objeveno</string>
+    <string name="achievements_thaye_name">Thaye Objeveno</string>
+    <string name="achievements_mimic_name">The Mimic Objeveno</string>
+    <string name="achievements_twins_name">The Twins Objeveno</string>
+    <string name="achievements_wraith_name">Wriath Objeveno</string>
+    <string name="achievements_yokai_name">Yokai Objeveno</string>
+    <string name="achievements_yurei_name">Yurei Objeveno</string>
+    <string name="achievements_prestige1_name">I</string>
+    <string name="achievements_prestige2_name">II</string>
+    <string name="achievements_prestige3_name">III</string>
+    <string name="achievements_workexperience_name">Pracovní zkušenosti</string>
+    <string name="achievements_flawlessexecution_name">Bezchybná práce</string>
+    <string name="achievements_theyrehere_name">Jsou tady</string>
+    <string name="achievements_escapeartist_name">Umělec na útěku</string>
+    <string name="achievements_bait_name">Nástraha</string>
+    <string name="achievements_doomslayed_name">Zkázonosná eliminace</string>
+    <string name="achievements_paranormal_perfectionist_name">Paranormální Perfekcionista</string>
+
+    <!-- Information -->
+    <string name="achievements_trainingwheels_info">Dokončete školení</string>
+    <string name="achievements_rookie_info">Splňte 10 smluv</string>
+    <string name="achievements_professional_info">Splňte 50 smluv</string>
+    <string name="achievements_boss_info">Splňte 100 smluv</string>
+    <string name="achievements_extramile_info">Splňte 50 volitelných úkolů</string>
+    <string name="achievements_dedicated_info">Dokončete 30 denních výzev</string>
+    <string name="achievements_devoted_info">Dokončete 10 týdenních výzev</string>
+    <string name="achievements_challenger_info">Splňte týdenní režim výzvy</string>
+    <string name="achievements_risechallenge_info">Pětkrát dokončete režim týdenní výzvy</string>
+    <string name="achievements_takingchallenges_info">Desetkrát dokončete režim týdenní výzvy</string>
+    <string name="achievements_chumpchange_info">Utraťte 1 $</string>
+    <string name="achievements_fatstock_info">Utraťte 10 000 $</string>
+    <string name="achievements_cashcow_info">Utraťte 50 000 $</string>
+    <string name="achievements_breakthebank_info">Utraťte 100 000 $</string>
+    <string name="achievements_bareessentials_info">Odemkněte veškeré vybavení první úrovně</string>
+    <string name="achievements_toolsofthetrade_info">Odemkněte veškeré vybavení druhé úrovně</string>
+    <string name="achievements_fullyloaded_info">Odemkněte veškeré vybavení třetí úrovně</string>
+    <string name="achievements_director_info">Vytvořte si vlastní obtížnost</string>
+    <string name="achievements_bronzehunter_info">Získejte bronzovou trofej Apokalypsy</string>
+    <string name="achievements_silverhunter_info">Získejte stříbrnou trofej Apokalypsy</string>
+    <string name="achievements_goldhunter_info">Získejte zlatou trofej Apokalypsy</string>
+    <string name="achievements_banshee_info">Úspěšně identifikujte svou první Banshee a přežijte.</string>
+    <string name="achievements_demon_info">Úspěšně identifikujte svou první Demon a přežijte.</string>
+    <string name="achievements_deogen_info">Úspěšně identifikujte svou první Deogen a přežijte.</string>
+    <string name="achievements_goryo_info">Úspěšně identifikujte svou první Goryo a přežijte.</string>
+    <string name="achievements_hantu_info">Úspěšně identifikujte svou první Hantu a přežijte.</string>
+    <string name="achievements_jinn_info">Úspěšně identifikujte svou první Jinn a přežijte.</string>
+    <string name="achievements_mare_info">Úspěšně identifikujte svou první Mare a přežijte.</string>
+    <string name="achievements_moroi_info">Úspěšně identifikujte svou první Moroi a přežijte.</string>
+    <string name="achievements_myling_info">Úspěšně identifikujte svou první Myling a přežijte.</string>
+    <string name="achievements_obake_info">Úspěšně identifikujte svou první Obake a přežijte.</string>
+    <string name="achievements_oni_info">Úspěšně identifikujte svou první Oni a přežijte.</string>
+    <string name="achievements_onryo_info">Úspěšně identifikujte svou první Onryo a přežijte.</string>
+    <string name="achievements_phantom_info">Úspěšně identifikujte svou первый Phantom a přežijte.</string>
+    <string name="achievements_poltergeist_info">Úspěšně identifikujte svou první Poltergeist a přežijte.</string>
+    <string name="achievements_raiju_info">Úspěšně identifikujte svou první Raiju a přežijte.</string>
+    <string name="achievements_revenant_info">Úspěšně identifikujte svou první Revenant a přežijte.</string>
+    <string name="achievements_shade_info">Úspěšně identifikujte svou první Shade a přežijte.</string>
+    <string name="achievements_spirit_info">Úspěšně identifikujte svou první Spirit a přežijte.</string>
+    <string name="achievements_thaye_info">Úspěšně identifikujte svou první Thaye a přežijte.</string>
+    <string name="achievements_mimic_info">Úspěšně identifikujte svou první Mimic a přežijte.</string>
+    <string name="achievements_twins_info">Úspěšně identifikujte svou první Twins a přežijte.</string>
+    <string name="achievements_wraith_info">Úspěšně identifikujte svou první Wraith a přežijte.</string>
+    <string name="achievements_yokai_info">Úspěšně identifikujte svou první Yokai a přežijte.</string>
+    <string name="achievements_yurei_info">Úspěšně identifikujte svou první Yurei a přežijte.</string>
+    <string name="achievements_prestige1_info">Dosáhnout Prestige I</string>
+    <string name="achievements_prestige2_info">Dosáhnout Prestige II</string>
+    <string name="achievements_prestige3_info">Dosáhnout Prestige III</string>
+    <string name="achievements_workexperience_info">Splňte svou první smlouvu</string>
+    <string name="achievements_flawlessexecution_info">Dokončete perfektní vyšetřování</string>
+    <string name="achievements_theyrehere_info">Staňte se svědky schopnosti Poltergeist</string>
+    <string name="achievements_escapeartist_info">Unikněte před Revenant</string>
+    <string name="achievements_bait_info">Nechte se zabít Banshee ve hře více hráčů</string>
+    <string name="achievements_doomslayed_info">Nechte se zabít schopností nepřítele Demon během první minuty</string>
+    <string name="achievements_paranormal_perfectionist_info">Získejte všechny trofeje</string>
+
+    <string name="achievements_visibility_hidden" translatable="false">Hidden Achievement</string>
+
+    <string name="platform_steam" translatable="false">Steam</string>
+    <string name="platform_xbox" translatable="false">Xbox</string>
+    <string name="platform_playstation" translatable="false">Playstation</string>
 </resources>

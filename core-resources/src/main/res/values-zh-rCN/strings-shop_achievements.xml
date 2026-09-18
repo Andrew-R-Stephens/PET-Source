@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="store_title_achievements">成就</string>
+    <!-- Categories -->
+    <string name="achievements_category_training_wheels" translatable="false">Training Wheels</string>
+    <string name="achievements_category_completed_contracts" translatable="false">Completed Contracts</string>
+    <string name="achievements_category_objectives_board" translatable="false">Objectives Board</string>
+    <string name="achievements_category_weekly_challenge" translatable="false">Weekly Challenge</string>
+    <string name="achievements_category_spend_cash" translatable="false">Spend Cash</string>
+    <string name="achievements_category_unlocked_all_equipmenttier" translatable="false">Unlocked All Equipment Tier</string>
+    <string name="achievements_category_director" translatable="false">Director</string>
+    <string name="achievements_category_apocalypse_trophy" translatable="false">Apocalypse Trophy</string>
+    <string name="achievements_category_ghosts" translatable="false">Ghosts</string>
+    <string name="achievements_category_prestige" translatable="false">Prestige</string>
+    <string name="achievements_category_hidden_achievement" translatable="false">Hidden Achievement</string>
+    <string name="achievements_category_exclusive" translatable="false">Exclusive</string>
+
+    <!-- Names -->
+    <string name="achievements_trainingwheels_name">自力更生</string>
+    <string name="achievements_rookie_name">初露锋芒</string>
+    <string name="achievements_professional_name">专业人士</string>
+    <string name="achievements_boss_name">老板</string>
+    <string name="achievements_extramile_name">精益求精</string>
+    <string name="achievements_dedicated_name">一丝不苟</string>
+    <string name="achievements_devoted_name">恪尽职守</string>
+    <string name="achievements_challenger_name">强敌登场</string>
+    <string name="achievements_risechallenge_name">迎接挑战</string>
+    <string name="achievements_takingchallenges_name">放马过来</string>
+    <string name="achievements_chumpchange_name">零钱</string>
+    <string name="achievements_fatstock_name">一掷万金</string>
+    <string name="achievements_cashcow_name">财源滚滚</string>
+    <string name="achievements_breakthebank_name">挥金如土</string>
+    <string name="achievements_bareessentials_name">猎鬼必备</string>
+    <string name="achievements_toolsofthetrade_name">行业标配</string>
+    <string name="achievements_fullyloaded_name">顶尖满配</string>
+    <string name="achievements_director_name">猎鬼主管</string>
+    <string name="achievements_bronzehunter_name">青铜猎鬼师</string>
+    <string name="achievements_silverhunter_name">白银猎鬼师</string>
+    <string name="achievements_goldhunter_name">黄金猎鬼师</string>
+    <string name="achievements_banshee_name">发现女妖</string>
+    <string name="achievements_demon_name">发现恶魔</string>
+    <string name="achievements_deogen_name">发现雾影</string>
+    <string name="achievements_goryo_name">发现御灵</string>
+    <string name="achievements_hantu_name">发现寒魔</string>
+    <string name="achievements_jinn_name">发现巨灵</string>
+    <string name="achievements_mare_name">发现梦魇</string>
+    <string name="achievements_moroi_name">发现魔洛伊</string>
+    <string name="achievements_myling_name">发现鬼婴</string>
+    <string name="achievements_obake_name">发现幻妖</string>
+    <string name="achievements_oni_name">发现赤鬼</string>
+    <string name="achievements_onryo_name">发现怨灵</string>
+    <string name="achievements_phantom_name">发现幻影</string>
+    <string name="achievements_poltergeist_name">发现捣蛋鬼</string>
+    <string name="achievements_raiju_name">发现雷兽</string>
+    <string name="achievements_revenant_name">发现亡魂</string>
+    <string name="achievements_shade_name">发现暗影</string>
+    <string name="achievements_spirit_name">发现魂魄</string>
+    <string name="achievements_thaye_name">发现刹耶</string>
+    <string name="achievements_mimic_name">发现拟魂</string>
+    <string name="achievements_twins_name">发现孪魂</string>
+    <string name="achievements_wraith_name">发现魅影</string>
+    <string name="achievements_yokai_name">发现妖怪</string>
+    <string name="achievements_yurei_name">发现幽灵</string>
+    <string name="achievements_prestige1_name">I</string>
+    <string name="achievements_prestige2_name">II</string>
+    <string name="achievements_prestige3_name">III</string>
+    <string name="achievements_workexperience_name">初入职场</string>
+    <string name="achievements_flawlessexecution_name">完美无瑕</string>
+    <string name="achievements_theyrehere_name">骚动灵魂</string>
+    <string name="achievements_escapeartist_name">绝处逢生</string>
+    <string name="achievements_bait_name">诱饵</string>
+    <string name="achievements_doomslayed_name">在劫难逃</string>
+    <string name="achievements_paranormal_perfectionist_name">超自然完美主义者</string>
+
+    <!-- Information -->
+    <string name="achievements_trainingwheels_info">完成训练教程</string>
+    <string name="achievements_rookie_info">完成10单合约</string>
+    <string name="achievements_professional_info">完成50单合约</string>
+    <string name="achievements_boss_info">完成100单合约</string>
+    <string name="achievements_extramile_info">完成50个额外任务</string>
+    <string name="achievements_dedicated_info">完成30件每日任务</string>
+    <string name="achievements_devoted_info">完成10件每周任务</string>
+    <string name="achievements_challenger_info">完成一次每周挑战</string>
+    <string name="achievements_risechallenge_info">完成5次每周挑战</string>
+    <string name="achievements_takingchallenges_info">完成10次每周挑战</string>
+    <string name="achievements_chumpchange_info">花费1美元</string>
+    <string name="achievements_fatstock_info">花费1万美元</string>
+    <string name="achievements_cashcow_info">花费5万美元</string>
+    <string name="achievements_breakthebank_info">花费10万美元</string>
+    <string name="achievements_bareessentials_info">解锁所有一级装备</string>
+    <string name="achievements_toolsofthetrade_info">解锁所有二级装备</string>
+    <string name="achievements_fullyloaded_info">解锁所有三级装备</string>
+    <string name="achievements_director_info">创建自定义难度</string>
+    <string name="achievements_bronzehunter_info">获得青铜天启奖杯</string>
+    <string name="achievements_silverhunter_info">获得白银天启奖杯</string>
+    <string name="achievements_goldhunter_info">获得黄金天启奖杯</string>
+    <string name="achievements_banshee_info">成功探明女妖并存活</string>
+    <string name="achievements_demon_info">成功探明恶魔并存活</string>
+    <string name="achievements_deogen_info">成功探明雾影并存活</string>
+    <string name="achievements_goryo_info">成功探明御灵并存活</string>
+    <string name="achievements_hantu_info">成功探明寒魔并存活</string>
+    <string name="achievements_jinn_info">成功探明巨灵并存活</string>
+    <string name="achievements_mare_info">成功探明梦魇并存活</string>
+    <string name="achievements_moroi_info">成功探明魔洛伊并存活</string>
+    <string name="achievements_myling_info">成功探明鬼婴并存活</string>
+    <string name="achievements_obake_info">成功探明幻妖并存活</string>
+    <string name="achievements_oni_info">成功探明赤鬼并存活</string>
+    <string name="achievements_onryo_info">成功探明怨灵并存活</string>
+    <string name="achievements_phantom_info">成功探明幻影并存活</string>
+    <string name="achievements_poltergeist_info">成功探明捣蛋鬼并存活</string>
+    <string name="achievements_raiju_info">成功探明雷兽并存活</string>
+    <string name="achievements_revenant_info">成功探明亡魂并存活</string>
+    <string name="achievements_shade_info">成功探明暗影并存活</string>
+    <string name="achievements_spirit_info">成功探明魂魄并存活</string>
+    <string name="achievements_thaye_info">成功探明刹耶并存活</string>
+    <string name="achievements_mimic_info">成功探明拟魂并存活</string>
+    <string name="achievements_twins_info">成功探明孪魂并存活</string>
+    <string name="achievements_wraith_info">成功探明魅影并存活</string>
+    <string name="achievements_yokai_info">成功探明妖怪并存活</string>
+    <string name="achievements_yurei_info">成功探明幽灵并存活</string>
+    <string name="achievements_prestige1_info">达到I级声望</string>
+    <string name="achievements_prestige2_info">达到II级声望</string>
+    <string name="achievements_prestige3_info">达到III级声望</string>
+    <string name="achievements_workexperience_info">完成第一单合约</string>
+    <string name="achievements_flawlessexecution_info">完成一次完美调查</string>
+    <string name="achievements_theyrehere_info">见证骚灵的能力</string>
+    <string name="achievements_escapeartist_info">逃脱亡魂的猎杀</string>
+    <string name="achievements_bait_info">在多人联机时被女妖杀死</string>
+    <string name="achievements_doomslayed_info">在头一分钟内被恶魔能力猎杀致死</string>
+    <string name="achievements_paranormal_perfectionist_info">获得所有奖杯</string>
+
+    <string name="achievements_visibility_hidden" translatable="false">Hidden Achievement</string>
+
+    <string name="platform_steam" translatable="false">Steam</string>
+    <string name="platform_xbox" translatable="false">Xbox</string>
+    <string name="platform_playstation" translatable="false">Playstation</string>
+</resources>

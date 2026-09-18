@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="store_title_achievements">Достижения</string>
+    <!-- Categories -->
+    <string name="achievements_category_training_wheels" translatable="false">Training Wheels</string>
+    <string name="achievements_category_completed_contracts" translatable="false">Completed Contracts</string>
+    <string name="achievements_category_objectives_board" translatable="false">Objectives Board</string>
+    <string name="achievements_category_weekly_challenge" translatable="false">Weekly Challenge</string>
+    <string name="achievements_category_spend_cash" translatable="false">Spend Cash</string>
+    <string name="achievements_category_unlocked_all_equipmenttier" translatable="false">Unlocked All Equipment Tier</string>
+    <string name="achievements_category_director" translatable="false">Director</string>
+    <string name="achievements_category_apocalypse_trophy" translatable="false">Apocalypse Trophy</string>
+    <string name="achievements_category_ghosts" translatable="false">Ghosts</string>
+    <string name="achievements_category_prestige" translatable="false">Prestige</string>
+    <string name="achievements_category_hidden_achievement" translatable="false">Hidden Achievement</string>
+    <string name="achievements_category_exclusive" translatable="false">Exclusive</string>
+
+    <!-- Names -->
+    <string name="achievements_trainingwheels_name">Без подстраховки</string>
+    <string name="achievements_rookie_name">Новичок</string>
+    <string name="achievements_professional_name">Профессионал</string>
+    <string name="achievements_boss_name">Босс</string>
+    <string name="achievements_extramile_name">Работа на совесть</string>
+    <string name="achievements_dedicated_name">Верный делу</string>
+    <string name="achievements_devoted_name">Посвящённый</string>
+    <string name="achievements_challenger_name">Вызов принят</string>
+    <string name="achievements_risechallenge_name">Превозмогая трудности</string>
+    <string name="achievements_takingchallenges_name">Все вызовы приняты</string>
+    <string name="achievements_chumpchange_name">Смешные деньги</string>
+    <string name="achievements_fatstock_name">Реальные деньги</string>
+    <string name="achievements_cashcow_name">Дойная корова</string>
+    <string name="achievements_breakthebank_name">На мели</string>
+    <string name="achievements_bareessentials_name">Сухой паёк</string>
+    <string name="achievements_toolsofthetrade_name">Орудия труда</string>
+    <string name="achievements_fullyloaded_name">Полный фарш</string>
+    <string name="achievements_director_name">Режиссёр</string>
+    <string name="achievements_bronzehunter_name">Охотник за бронзой</string>
+    <string name="achievements_silverhunter_name">Охотник за серебром</string>
+    <string name="achievements_goldhunter_name">Охотник за золотом</string>
+    <string name="achievements_banshee_name">Банши обнаружена</string>
+    <string name="achievements_demon_name">Демон обнаружен</string>
+    <string name="achievements_deogen_name">Деогена обнаружена</string>
+    <string name="achievements_goryo_name">Горё обнаружен</string>
+    <string name="achievements_hantu_name">Ханту обнаружен</string>
+    <string name="achievements_jinn_name">Джинн обнаружен</string>
+    <string name="achievements_mare_name">Мара обнаружена</string>
+    <string name="achievements_moroi_name">Морой обнаружен</string>
+    <string name="achievements_myling_name">Мюлинг обнаружен</string>
+    <string name="achievements_obake_name">Обаке обнаружен</string>
+    <string name="achievements_oni_name">Они обнаружен</string>
+    <string name="achievements_onryo_name">Онрё обнаружен</string>
+    <string name="achievements_phantom_name">Фантом обнаружен</string>
+    <string name="achievements_poltergeist_name">Полтергейст обнаружен</string>
+    <string name="achievements_raiju_name">Райдзю обнаружен</string>
+    <string name="achievements_revenant_name">Ревенант обнаружен</string>
+    <string name="achievements_shade_name">Тень обнаружена</string>
+    <string name="achievements_spirit_name">Дух обнаружен</string>
+    <string name="achievements_thaye_name">Тайэ обнаружен</string>
+    <string name="achievements_mimic_name">Мимик обнаружен</string>
+    <string name="achievements_twins_name">Близнецы обнаружены</string>
+    <string name="achievements_wraith_name">Мираж обнаружен</string>
+    <string name="achievements_yokai_name">Ёкай обнаружен</string>
+    <string name="achievements_yurei_name">Юрей обнаружен</string>
+    <string name="achievements_prestige1_name">I</string>
+    <string name="achievements_prestige2_name">II</string>
+    <string name="achievements_prestige3_name">III</string>
+    <string name="achievements_workexperience_name">Практика</string>
+    <string name="achievements_flawlessexecution_name">Безупречная работа</string>
+    <string name="achievements_theyrehere_name">Оно рядом</string>
+    <string name="achievements_escapeartist_name">Эскапист</string>
+    <string name="achievements_bait_name">Приманка</string>
+    <string name="achievements_doomslayed_name">Берсерк</string>
+    <string name="achievements_paranormal_perfectionist_name">Паранормальный перфекционист</string>
+
+    <!-- Information -->
+    <string name="achievements_trainingwheels_info">Завершите обучение</string>
+    <string name="achievements_rookie_info">Завершите 10 контрактов</string>
+    <string name="achievements_professional_info">Завершите 50 контрактов</string>
+    <string name="achievements_boss_info">Завершите 100 контрактов</string>
+    <string name="achievements_extramile_info">Выполните 50 необязательных задач</string>
+    <string name="achievements_dedicated_info">Выполните 30 ежедневных заданий</string>
+    <string name="achievements_devoted_info">Выполните 10 еженедельных заданий</string>
+    <string name="achievements_challenger_info">Завершите еженедельный режим испытаний</string>
+    <string name="achievements_risechallenge_info">Завершите еженедельный режим испытаний 5 раз</string>
+    <string name="achievements_takingchallenges_info">Завершите еженедельный режим испытаний 10 раз</string>
+    <string name="achievements_chumpchange_info">Потратьте доллар</string>
+    <string name="achievements_fatstock_info">Потратьте 10 тысяч долларов</string>
+    <string name="achievements_cashcow_info">Потратьте 50 тысяч долларов</string>
+    <string name="achievements_breakthebank_info">Потратьте 100 тысяч долларов</string>
+    <string name="achievements_bareessentials_info">Откройте всё снаряжение первого уровня</string>
+    <string name="achievements_toolsofthetrade_info">Откройте всё снаряжение второго уровня</string>
+    <string name="achievements_fullyloaded_info">Откройте всё снаряжение третьего уровня</string>
+    <string name="achievements_director_info">Создайте свою настраиваемую сложность</string>
+    <string name="achievements_bronzehunter_info">Получите бронзовый трофей апокалипсиса</string>
+    <string name="achievements_silverhunter_info">Получите серебряный трофей апокалипсиса</string>
+    <string name="achievements_goldhunter_info">Получите золотой трофей апокалипсиса</string>
+    <string name="achievements_banshee_info">Успешно распознайте Банши в первый раз и выживите</string>
+    <string name="achievements_demon_info">Успешно распознайте Демона в первый раз и выживите</string>
+    <string name="achievements_deogen_info">Успешно распознайте Банши в первый раз и выживите</string>
+    <string name="achievements_goryo_info">Успешно распознайте Горё в первый раз и выживите</string>
+    <string name="achievements_hantu_info">Успешно распознайте Ханту в первый раз и выживите</string>
+    <string name="achievements_jinn_info">Успешно распознайте Джинна в первый раз и выживите</string>
+    <string name="achievements_mare_info">Успешно распознайте Мару в первый раз и выживите</string>
+    <string name="achievements_moroi_info">Успешно распознайте Морой в первый раз и выживите</string>
+    <string name="achievements_myling_info">Успешно распознайте Мюлинга в первый раз и выживите</string>
+    <string name="achievements_obake_info">Успешно распознайте Обаке в первый раз и выживите</string>
+    <string name="achievements_oni_info">Успешно распознайте Они в первый раз и выживите</string>
+    <string name="achievements_onryo_info">Успешно распознайте Онрё в первый раз и выживите</string>
+    <string name="achievements_phantom_info">Успешно распознайте Фантома в первый раз и выживите</string>
+    <string name="achievements_poltergeist_info">Успешно распознайте Полтергейста в первый раз и выживите</string>
+    <string name="achievements_raiju_info">Успешно распознайте Райдзю в первый раз и выживите</string>
+    <string name="achievements_revenant_info">Успешно распознайте Ревенанта в первый раз и выживите</string>
+    <string name="achievements_shade_info">Успешно распознайте Тень в первый раз и выживите</string>
+    <string name="achievements_spirit_info">Успешно распознайте Духа в первый раз и выживите</string>
+    <string name="achievements_thaye_info">Успешно распознайте Тайэ в первый раз и выживите</string>
+    <string name="achievements_mimic_info">Успешно распознайте Мимика в первый раз и выживите</string>
+    <string name="achievements_twins_info">Успешно распознайте Близнецов в первый раз и выживите</string>
+    <string name="achievements_wraith_info">Успешно распознайте Мираж в первый раз и выживите</string>
+    <string name="achievements_yokai_info">Успешно распознайте Ёкай в первый раз и выживите</string>
+    <string name="achievements_yurei_info">Успешно распознайте Юрей в первый раз и выживите</string>
+    <string name="achievements_prestige1_info">Достигните уровня Престиж I</string>
+    <string name="achievements_prestige2_info">Достигните уровня Престиж II</string>
+    <string name="achievements_prestige3_info">Достигните уровня Престиж III</string>
+    <string name="achievements_workexperience_info">Завершите первый контракт</string>
+    <string name="achievements_flawlessexecution_info">Идеально завершите контракт</string>
+    <string name="achievements_theyrehere_info">Станьте свидетелем активности Полтергейста</string>
+    <string name="achievements_escapeartist_info">Сбегите от Ревенанта</string>
+    <string name="achievements_bait_info">Умрите от рук Банши в кооперативной игре</string>
+    <string name="achievements_doomslayed_info">Будьте убиты уникальной способностью Демона в первую минуту игры</string>
+    <string name="achievements_paranormal_perfectionist_info">Получите все трофеи</string>
+
+    <string name="achievements_visibility_hidden" translatable="false">Hidden Achievement</string>
+
+    <string name="platform_steam" translatable="false">Steam</string>
+    <string name="platform_xbox" translatable="false">Xbox</string>
+    <string name="platform_playstation" translatable="false">Playstation</string>
+</resources>
