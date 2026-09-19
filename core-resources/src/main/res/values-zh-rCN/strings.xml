@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_label_gender_male">男</string>
+    <string name="common_label_gender_female">女</string>
+    <string name="codex_section_achievement">成就</string>
+</resources>

@@ -741,6 +741,7 @@
     <string name="tool_timer_label_toggle_cursed">「呪われた作戦」の状態を切り替え</string>
     <string name="tool_timer_label_cursed">呪われし者</string>
     <string name="codex_section_equipment">装置</string>
+    <string name="codex_section_achievement">実績</string>
     <string name="codex_section_more">さらに近日公開予定</string>
 
     <string name="navigation_open_state">ナビゲーション ドロワーが開きました。</string>
@@ -1061,27 +1062,6 @@
     <string name="alert_marketplace_purchase_failure_skin_credits">購入に必要なクレジットが足りません!</string>
 
 
-    <!-- Acknowledgement -->
-
-    <string name="marketplace_acknowledgement_title">マーケットプレイス契約</string>
-
-    <string name="marketplace_acknowledgement_warning">Phasmophobia Evidence Tool の「マーケット」を使用すると、次の内容に暗黙的に同意したことになります。</string>
-
-    <string name="marketplace_acknowledgement_warning_list_1">「コンテンツ」、「アイテム」、「ロック解除」という用語は、画像、名前、その他の資産を指します。「開発者」という用語は Tritium Studios を指します。「P.E.T.」または「このアプリ」という用語は、「Phasmophobia Evidence Tool」というアプリを指します。</string>
-
-    <string name="marketplace_acknowledgement_warning_list_2">「P.E.T.」は、提供されるコンテンツに類似する可能性のある他の団体とは一切関係がありません。</string>
-
-    <string name="marketplace_acknowledgement_warning_list_3">過去または現在のすべてのコンテンツは、「P.E.T.」内の装飾目的のみに存在します。コンテンツは「P.E.T.」の外部で引き換えたり譲渡したりすることはできず、「Phasmophobia」などのゲームに限らず、外部のエンティティに影響を与えることはありません。</string>
-
-    <string name="marketplace_acknowledgement_warning_list_4">すべての取引は最終的なものとなります。コンテンツは部分的にしか完成していなかったり、壊れていたり、バグがあったりする可能性があります。コンテンツは開発者によって将来無効化、削除、または変更される可能性があります。アカウントがコンテンツにアクセスできなくなった場合やコンテンツに変更があった場合の認定は、開発者の指示によります。</string>
-
-    <string name="marketplace_acknowledgement_button_confirm">わかった！</string>
-    <string name="marketplace_list_bundles">テーマバンドル</string>
-    <string name="marketplace_list_prestige">プレステージテーマ</string>
-    <string name="marketplace_list_event">イベントテーマ</string>
-    <string name="marketplace_list_community">コミュニティテーマ</string>
-    <string name="marketplace_button_item_get">入手</string>
-    <string name="marketplace_purchase_equip">%1$s テーマを装備しますか?</string>
     <string name="map_setting_label_size">サイズ</string>
     <string name="map_setting_label_modifier">修飾子</string>
     <string name="map_setting_label_multiplier">乗数</string>
@@ -1348,7 +1328,6 @@
     <string name="evidence_trait_weight_likely">可能性が高い</string>
     <string name="evidence_trait_weight_unlikely">可能性が低い</string>
     <string name="map_setting_label_drainrate">消耗率</string>
-    <string name="store_title_achievements">実績</string>
     <string name="investigation_average_sanity_title">平均正気度</string>
     <string name="investigation_label_journal">ジャーナル</string>
     <string name="investigation_label_contract">契約を構成する</string>
@@ -1380,6 +1359,7 @@
     <string name="general_label_power">出力</string>
     <string name="general_label_temperature">温度</string>
     <string name="settings_enablePersonalizedAds">パーソナライズド広告を有効にする</string>
+    <string name="common_label_gender_female">女性</string>
     <string name="investigation_label_all">すべて</string>
     <string name="investigation_label_timer_run">実行タイマー</string>
     <string name="investigation_label_timer_pause">一時停止タイマー</string>
@@ -1433,4 +1413,5 @@
 ]]>
 
 </string>
+    <string name="common_label_gender_male">男性</string>
 </resources>

@@ -108,6 +108,7 @@
     <string name="tool_timer_label_toggle_cursed">Alternar estado de la operación maldita</string>
     <string name="tool_timer_label_cursed">Maldita</string>
     <string name="codex_section_equipment">Equipo</string>
+    <string name="codex_section_achievement">Logros</string>
     <string name="codex_section_more">Más muy pronto</string>
 
     <string name="navigation_open_state">Cajón de navegación abierto.</string>
@@ -192,11 +193,13 @@
     <string name="general_label_modifiers">Modificadores</string>
     <string name="general_label_power">Potencia</string>
     <string name="general_label_temperature">Temperatura</string>
+    <string name="common_label_gender_female">Mujer</string>
     <string name="investigation_label_all">Todos</string>
     <string name="investigation_label_timer_run">Temporizador de carrera</string>
     <string name="investigation_label_timer_pause">Pausar temporizador</string>
     <string name="investigation_label_timer_skip">Omitir temporizador</string>
     <string name="tool_timer_label_hunt_timer_link">El temporizador de enfriamiento de la Cacería comienza automáticamente al finalizar el temporizador de duración de la Cacería.</string>
     <string name="tool_timer_label_linked">Vinculado</string>
+    <string name="common_label_gender_male">Hombre</string>
 
 </resources>

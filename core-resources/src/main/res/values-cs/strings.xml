@@ -87,6 +87,7 @@
     <string name="tool_timer_label_toggle_cursed">Přepnout stav prokleté operace</string>
     <string name="tool_timer_label_cursed">Prokletý</string>
     <string name="codex_section_equipment">Zařízení</string>
+    <string name="codex_section_achievement">Herní úspěchy</string>
     <string name="codex_section_more">Více již brzy</string>
 
     <string name="navigation_open_state">Navigační vysouvací panel byl otevřen.</string>
@@ -146,10 +147,12 @@
     <string name="general_label_modifiers">Modifikátory</string>
     <string name="general_label_power">Výkon</string>
     <string name="general_label_temperature">Teplota</string>
+    <string name="common_label_gender_female">Žena</string>
     <string name="investigation_label_all">Vše</string>
     <string name="investigation_label_timer_run">Časovač běhu</string>
     <string name="investigation_label_timer_pause">Časovač pozastavení</string>
     <string name="investigation_label_timer_skip">Časovač přeskočení</string>
     <string name="tool_timer_label_hunt_timer_link">Časovač zchlazení lovu se spustí automaticky po skončení časovače trvání lovu.</string>
     <string name="tool_timer_label_linked">Propojeno</string>
+    <string name="common_label_gender_male">Muž</string>
 </resources>

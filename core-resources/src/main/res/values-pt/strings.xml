@@ -744,6 +744,7 @@
     <string name="tool_timer_label_toggle_cursed">Alternar Status da Operação Amaldiçoada</string>
     <string name="tool_timer_label_cursed">Amaldiçoada</string>
     <string name="codex_section_equipment">Equipamento</string>
+    <string name="codex_section_achievement">Conquistas</string>
     <string name="codex_section_more">Mais em breve</string>
     <string name="navigation_open_state">Gaveta de navegação aberta.</string>
     <string name="navigation_closed_state">Gaveta de navegação fechada.</string>
@@ -1389,6 +1390,7 @@
     <string name="general_label_power">Potência</string>
     <string name="general_label_temperature">Temperatura</string>
     <string name="settings_enablePersonalizedAds">Ativar anúncios personalizados</string>
+    <string name="common_label_gender_female">Feminino</string>
     <string name="investigation_label_all">Todos</string>
     <string name="investigation_label_timer_run">Cronômetro de Corrida</string>
     <string name="investigation_label_timer_pause">Pausar Cronômetro</string>
@@ -1429,4 +1431,5 @@
 
 ]]>
 </string>
+    <string name="common_label_gender_male">Masculino</string>
 </resources>

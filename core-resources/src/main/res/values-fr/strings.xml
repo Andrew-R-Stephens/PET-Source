@@ -70,6 +70,7 @@
     <string name="tool_timer_label_toggle_cursed">Basculer l\'état de l\'opération maudite</string>
     <string name="tool_timer_label_cursed">Maudite</string>
     <string name="codex_section_equipment">Équipement</string>
+    <string name="codex_section_achievement">Succès</string>
     <string name="codex_section_more">Plus à venir bientôt</string>
 
     <string name="navigation_open_state">Tiroir de navigation ouvert.</string>
@@ -129,11 +130,13 @@
     <string name="general_label_modifiers">Modificateurs</string>
     <string name="general_label_power">Puissance</string>
     <string name="general_label_temperature">Température</string>
+    <string name="common_label_gender_female">Femme</string>
     <string name="investigation_label_all">Tout</string>
     <string name="investigation_label_timer_run">Chronomètre de course</string>
     <string name="investigation_label_timer_pause">Chronomètre de pause</string>
     <string name="investigation_label_timer_skip">Chronomètre d\'ellipse</string>
     <string name="tool_timer_label_hunt_timer_link">Le minuteur de temps de recharge de la Chasse démarre automatiquement à la fin du minuteur de durée de la Chasse.</string>
     <string name="tool_timer_label_linked">Lié</string>
+    <string name="common_label_gender_male">Homme</string>
 
 </resources>

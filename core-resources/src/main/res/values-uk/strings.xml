@@ -42,10 +42,13 @@
     <string name="general_label_temperature">Температура</string>
     <string name="general_label_edit">Редагувати</string>
     <string name="investigation_sanity_player_death">Гравець убитий</string>
+    <string name="common_label_gender_female">Жінка</string>
     <string name="investigation_label_all">Усі</string>
     <string name="investigation_label_timer_run">Таймер запуску</string>
     <string name="investigation_label_timer_pause">Таймер паузи</string>
     <string name="investigation_label_timer_skip">Таймер пропуску</string>
     <string name="tool_timer_label_hunt_timer_link">Таймер відновлення полювання запускається автоматично, коли закінчується таймер тривалості полювання.</string>
     <string name="tool_timer_label_linked">Пов\'язано</string>
+    <string name="common_label_gender_male">Чоловік</string>
+    <string name="codex_section_achievement">Досягнення</string>
 </resources>

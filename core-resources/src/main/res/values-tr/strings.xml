@@ -116,6 +116,7 @@
     <string name="investigation_section_title_hunt_sanity">Av Akıl Sağlığı</string>
     <string name="investigation_section_title_movement_speed">Hareket Hızı</string>
     <string name="investigation_label_phase">Aşama</string>
+    <string name="common_label_gender_female">Kadın</string>
     <string name="investigation_label_all">Tümü</string>
     <string name="investigation_label_journal">Günlük</string>
     <string name="investigation_label_contract">Sözleşmeyi Yapılandır</string>
@@ -148,6 +149,8 @@
     <string name="tool_timer_label_toggle_cursed">Lanetli İşlem Durumunu Aç/Kapat</string>
     <string name="tool_timer_label_cursed">Lanetli İşlem mi?</string>
     <string name="codex_section_equipment">Ekipman</string>
+    <string name="codex_section_achievement">Başarıları</string>
     <string name="codex_section_more">Daha fazlası yakında</string>
     <string name="settings_adsconsentcontrolsettings_button">Düzenle</string>
+    <string name="common_label_gender_male">Erkek</string>
 </resources>

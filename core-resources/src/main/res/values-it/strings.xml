@@ -740,6 +740,7 @@
     <string name="tool_timer_label_toggle_cursed">Attiva/Disattiva stato operazione maledetta</string>
     <string name="tool_timer_label_cursed">Maledetta</string>
     <string name="codex_section_equipment">Attrezzatura</string>
+    <string name="codex_section_achievement">Obiettivi</string>
     <string name="codex_section_more">Maggiori informazioni tra breve</string>
 
     <string name="navigation_open_state">Cassetto di navigazione aperto.</string>
@@ -787,22 +788,6 @@
     <string name="account_logout_button_confirm">Disconnettersi</string>
 
     <string name="account_logout_button_cancel">Annulla</string>
-
-    <string name="marketplace_title">Mercato</string>
-
-    <string name="marketplace_connection_error">Uh Oh! Si è verificato un errore durante la connessione al marketplace.</string>
-
-    <string name="marketplace_error_login_required">Effettua l\'accesso per rivendicare i contenuti del Marketplace.</string>
-
-    <string name="marketplace_button_watch_ad">Guadagna crediti</string>
-
-    <string name="marketplace_button_purchase_credits">Acquistare crediti</string>
-
-    <string name="marketplace_label_purchased">Sbloccato</string>
-    <string name="marketplace_label_bundle_includes">Include</string>
-    <string name="marketplace_description_watch_ad">Guarda un annuncio per guadagnare %s %s.</string>
-
-    <string name="marketplace_description_purchase_credits">Acquista direttamente i crediti.</string>
 
 
     <string name="store_title_cursedpossessions">Oggetti maledetti</string>
@@ -1063,25 +1048,6 @@
 
     <!-- Acknowledgement -->
 
-    <string name="marketplace_acknowledgement_title">Contratto di mercato</string>
-
-    <string name="marketplace_acknowledgement_warning">Utilizzando il \"Mercato\" dello strumento Phasmophobia Evidence, accetti implicitamente quanto segue:</string>
-
-    <string name="marketplace_acknowledgement_warning_list_1">I termini \"contenuto\", \"elementi\" e \"sblocchi\" si riferiscono a immagini, nomi e altre risorse. Il termine \"sviluppatore\" si riferisce a Tritium Studios. Il termine \"P.E.T.\" o \"questa app\" si riferisce all\'app \"Phasmophobia Evidence Tool\".</string>
-
-    <string name="marketplace_acknowledgement_warning_list_2">\"P.E.T.\" non è affiliato con nessun\'altra entità che può o meno condividere in modo simile il contenuto fornito.</string>
-
-    <string name="marketplace_acknowledgement_warning_list_3">Tutti i contenuti, passati o presenti, esistono esclusivamente per scopi cosmetici all\'interno di \"P.E.T.\". I contenuti non possono essere riscattati o trasferiti al di fuori di \"P.E.T.\" e non ha alcun impatto su entità esterne come, ma non solo, giochi come \"Phasmophobia\".</string>
-
-    <string name="marketplace_acknowledgement_warning_list_4">Tutte le transazioni sono definitive. Il contenuto potrebbe essere parzialmente completo, rotto o difettoso. Il contenuto potrebbe essere disabilitato, rimosso o modificato in futuro dallo sviluppatore. L\'accreditamento per la perdita dell\'accesso ai contenuti da parte del tuo account o per qualsiasi modifica dei contenuti è lasciato alla volontà dello sviluppatore.</string>
-
-    <string name="marketplace_acknowledgement_button_confirm">Fatto!</string>
-    <string name="marketplace_list_bundles">Pacchetti tematici</string>
-    <string name="marketplace_list_prestige">Temi di prestigio</string>
-    <string name="marketplace_list_event">Temi degli eventi</string>
-    <string name="marketplace_list_community">Temi comunitari</string>
-    <string name="marketplace_button_item_get">Ottenere</string>
-    <string name="marketplace_purchase_equip">Equipaggiare il tema %1$s?</string>
     <string name="map_setting_label_size">Misurare</string>
     <string name="map_setting_label_modifier">Modificatore</string>
     <string name="map_setting_label_multiplier">Moltiplicatore</string>
@@ -1351,7 +1317,6 @@
     <string name="evidence_trait_weight_likely">Più probabile</string>
     <string name="evidence_trait_weight_unlikely">Meno probabile</string>
     <string name="map_setting_label_drainrate">Tasso di consumo</string>
-    <string name="store_title_achievements">Obiettivi</string>
     <string name="investigation_average_sanity_title">Sanità mentale media</string>
     <string name="investigation_label_journal">Diario</string>
     <string name="investigation_label_contract">Configura contratto</string>
@@ -1384,6 +1349,7 @@
     <string name="general_label_power">Potenza</string>
     <string name="general_label_temperature">Temperatura</string>
     <string name="settings_enablePersonalizedAds">Abilita annunci personalizzati</string>
+    <string name="common_label_gender_female">Femmina</string>
     <string name="investigation_label_all">Tutti</string>
     <string name="investigation_label_timer_run">Timer corsa</string>
     <string name="investigation_label_timer_pause">Timer pausa</string>
@@ -1432,5 +1398,6 @@
 <a>Il fantasma ha una velocità fissa e non dipende dalla linea di vista.</a>
 ]]>
 </string>
+    <string name="common_label_gender_male">Maschio</string>
 
 </resources>

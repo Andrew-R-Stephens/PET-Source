@@ -1716,6 +1716,7 @@
     <string name="tool_timer_label_toggle_cursed">Переключить статус проклятой операции</string>
     <string name="tool_timer_label_cursed">Проклятый</string>
     <string name="codex_section_equipment">Оборудование</string>
+    <string name="codex_section_achievement">Достижения</string>
     <string name="codex_section_more">Продолжение следует</string>
     <string name="navigation_open_state">Отдел навигации открыт.</string>
     <string name="navigation_closed_state">Ящик навигации закрыт.</string>
@@ -2752,6 +2753,7 @@
     <string name="general_label_power">Мощность</string>
     <string name="general_label_temperature">Температура</string>
     <string name="settings_enablePersonalizedAds">Включить персонализированную рекламу</string>
+    <string name="common_label_gender_female">Женский</string>
     <string name="investigation_label_all">Все</string>
     <string name="investigation_label_timer_run">Таймер забега</string>
     <string name="investigation_label_timer_pause">Пауза таймера</string>
@@ -2802,4 +2804,5 @@
 ]]>
 
 </string>
+    <string name="common_label_gender_male">Мужской</string>
 </resources>

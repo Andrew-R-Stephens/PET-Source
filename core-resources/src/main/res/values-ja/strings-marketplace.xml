@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="marketplace_title">マーケットプレイス</string>
+    <!-- Acknowledgement -->
+
     <string name="marketplace_list_bundles">テーマバンドル</string>
     <string name="marketplace_list_prestige">プレステージテーマ</string>
     <string name="marketplace_list_event">イベントテーマ</string>
     <string name="marketplace_list_community">コミュニティテーマ</string>
+    <string name="marketplace_button_item_get">入手</string>
+    <string name="marketplace_purchase_equip">%1$s テーマを装備しますか？</string>
+
+    <string name="marketplace_title">マーケットプレイス</string>
     <string name="marketplace_connection_error">おっと！マーケットプレイスへの接続中にエラーが発生しました。</string>
     <string name="marketplace_error_login_required">マーケットプレイスのコンテンツを入手するにはログインしてください。</string>
     <string name="marketplace_button_watch_ad">Credits を獲得</string>
-    <string name="marketplace_button_item_get">入手</string>
     <string name="marketplace_button_purchase_credits">Credits を購入</string>
     <string name="marketplace_label_purchased">解放済み</string>
     <string name="marketplace_label_bundle_includes">内容</string>
-    <string name="marketplace_purchase_equip">%1$s テーマを装備しますか？</string>
 
     <plurals name="marketplace_description_watch_ad">
         <item quantity="other">Companion Credits</item>
@@ -27,4 +30,5 @@
     <string name="marketplace_acknowledgement_warning_list_3">過去または現在のすべてのコンテンツは、「P.E.T.」内での装饰目的のみに存在します。コンテンツは「P.E.T.」の外部で換金または譲渡することはできず、「Phasmophobia」などのゲームを含むがこれらに限定されない外部の団体には一切影響を与えません。</string>
     <string name="marketplace_acknowledgement_warning_list_4">すべての取引は確定的なものです。コンテンツは一部が未完成であったり、壊れていたり、バグがあったりする可能性があります。コンテンツは、将来開発者によって無効化、削除、または変更される可能性があります。アカウントがコンテンツへのアクセスを失った場合や、コンテンツに変更があった場合の補償は、開発者の裁量に委ねられます。</string>
     <string name="marketplace_acknowledgement_button_confirm">了解しました！</string>
+
 </resources>

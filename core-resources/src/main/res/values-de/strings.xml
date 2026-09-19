@@ -82,6 +82,7 @@
     <string name="tool_timer_label_toggle_cursed">Status der verfluchten Operation umschalten</string>
     <string name="tool_timer_label_cursed">Verflucht</string>
     <string name="codex_section_equipment">Ausrüstung</string>
+    <string name="codex_section_achievement">Errungenschaften</string>
     <string name="codex_section_more">Mehr folgt bald</string>
 
     <string name="navigation_open_state">Navigationsschublade geöffnet.</string>
@@ -142,11 +143,13 @@
     <string name="general_label_modifiers">Modifikatoren</string>
     <string name="general_label_power">Leistung</string>
     <string name="general_label_temperature">Temperatur</string>
+    <string name="common_label_gender_female">Weiblich</string>
     <string name="investigation_label_all">Alle</string>
     <string name="investigation_label_timer_run">Laufzeit-Timer</string>
     <string name="investigation_label_timer_pause">Pause-Timer</string>
     <string name="investigation_label_timer_skip">Überspringen-Timer</string>
     <string name="tool_timer_label_hunt_timer_link">Der Abklingzeit-Timer der Jagd startet automatisch, wenn der Dauer-Timer der Jagd abläuft.</string>
     <string name="tool_timer_label_linked">Verknüpft</string>
+    <string name="common_label_gender_male">Männlich</string>
 
 </resources>
