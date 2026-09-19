@@ -793,23 +793,6 @@
     <string name="account_logout_button_cancel">Cancelar</string>
 
 
-    <string name="marketplace_title">Mercado</string>
-
-    <string name="marketplace_connection_error">Ah, ah! Ocorreu um erro ao conectar-se ao mercado.</string>
-
-    <string name="marketplace_error_login_required">Faça login para reivindicar o conteúdo do Marketplace.</string>
-
-    <string name="marketplace_button_watch_ad">Ganhe créditos</string>
-
-    <string name="marketplace_button_purchase_credits">Comprar créditos</string>
-
-    <string name="marketplace_label_purchased">Desbloqueado</string>
-    <string name="marketplace_label_bundle_includes">Inclui</string>
-    <string name="marketplace_description_watch_ad">Assista a um anúncio para ganhar %s %s.</string>
-
-    <string name="marketplace_description_purchase_credits">Compre créditos diretamente.</string>
-
-
 
     <!--
           Sanity Drain Text
@@ -1045,12 +1028,6 @@
 
     <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>Picar o boneco vodu força uma interação!</p><p>Você pode picar o boneco vodu até 10 vezes. Cada picada tem a chance de picar o coração, o que iniciará uma caçada amaldiçoada.</p><p>Reduzir sua sanidade a 0\\% by usando a boneca ativará todos os alfinetes e iniciará uma caçada amaldiçoada.</p>]]></string>
 
-    <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">%d Crédito de acompanhante</item>
-        <item quantity="many">Créditos de acompanhante</item>
-        <item quantity="other">Créditos de acompanhante</item>
-    </plurals>
-
     <string name="general_navigation_settings">Configurações</string>
     <string name="general_navigation_system">Sistema</string>
 
@@ -1071,26 +1048,6 @@
     <string name="alert_marketplace_purchase_failure_skin_credits">Créditos insuficientes para compra!</string>
 
     <!-- Acknowledgement -->
-
-    <string name="marketplace_acknowledgement_title">Acordo de Mercado</string>
-
-    <string name="marketplace_acknowledgement_warning">Ao usar o \"Mercado\" da Phasmophobia Evidence Tool, você concorda implicitamente com o seguinte:</string>
-
-    <string name="marketplace_acknowledgement_warning_list_1">Os termos “conteúdo”, “itens” e “desbloqueios” referem-se a imagens, nomes e outros ativos. O termo \"desenvolvedor\" refere-se ao Tritium Studios. O termo \"P.E.T.\" ou \"este aplicativo\" refere-se ao aplicativo \"Phasmophobia Evidence Tool\".</string>
-
-    <string name="marketplace_acknowledgement_warning_list_2">\"P.E.T.\" não é afiliado a nenhuma outra entidade que possa ou não compartilhar o conteúdo fornecido.</string>
-
-    <string name="marketplace_acknowledgement_warning_list_3">Todo o conteúdo, passado ou presente, existe apenas para fins cosméticos em \"P.E.T.\". O conteúdo não pode ser resgatado ou transferido fora do \"P.E.T.\" e não tem impacto sobre quaisquer entidades externas, como, mas não se limitando a, jogos como \"Phasmophobia\".</string>
-
-    <string name="marketplace_acknowledgement_warning_list_4">Todas as transações são finais. O conteúdo pode estar parcialmente completo, quebrado ou com erros. O conteúdo pode ser desativado, removido ou modificado no futuro pelo desenvolvedor. O credenciamento para perda de acesso ao conteúdo da sua conta ou para qualquer alteração no conteúdo fica a critério do desenvolvedor.</string>
-
-    <string name="marketplace_acknowledgement_button_confirm">Entendi!</string>
-    <string name="marketplace_list_bundles">Pacotes temáticos</string>
-    <string name="marketplace_list_prestige">Temas de prestígio</string>
-    <string name="marketplace_list_event">Temas de eventos</string>
-    <string name="marketplace_list_community">Temas da comunidade</string>
-    <string name="marketplace_button_item_get">Pegar</string>
-    <string name="marketplace_purchase_equip">Equipar o tema %1$s?</string>
     <string name="map_setting_label_size">Tamanho</string>
     <string name="map_setting_label_modifier">Modificador</string>
     <string name="map_setting_label_multiplier">Multiplicador</string>
@@ -1358,7 +1315,6 @@
     <string name="evidence_trait_weight_likely">Mais provável</string>
     <string name="evidence_trait_weight_unlikely">Menos provável</string>
     <string name="map_setting_label_drainrate">Taxa de drenagem</string>
-    <string name="store_title_achievements">Conquistas</string>
     <string name="investigation_average_sanity_title">Sanidade média</string>
     <string name="investigation_label_journal">Diário</string>
     <string name="investigation_label_contract">Configurar contrato</string>

@@ -2026,7 +2026,7 @@
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_info_tower">
      <![CDATA[
-     <a>Принудительно выполняет взаимодействие и удваивает активность призраков на 20 секунд.</a>
+     <a>Принудительно выполняет взаимодействие и удваивает активность призраков на 20секунд.</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_voodoodoll_data_info">
@@ -2042,27 +2042,27 @@
  -->
     <string name="shop_cursedpossessions_mirror_data_sanitydrain">
  <![CDATA[
- <a>7 %/с</a>
+ <a>7%/с</a>
  ]]>
  </string>
     <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">
  <![CDATA[
- <a>0–25 %</a>
+ <a>0–25%</a>
  ]]>
  </string>
     <string name="shop_cursedpossessions_musicbox_data_sanitydrain">
  <![CDATA[
- <a>2,5%/с в пределах ~2,5 м</a>
+ <a>2,5%/с в пределах ~2,5м</a>
  ]]>
  </string>
     <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">
  <![CDATA[
- <a>0–50 %</a>
+ <a>0–50%</a>
  ]]>
  </string>
     <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">
  <![CDATA[
- <a>16 % за зажженную свечу</a>
+ <a>16% за зажженную свечу</a>
  ]]>
  </string>
     <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">
@@ -2286,12 +2286,12 @@
      </string>
         <string name="shop_cursedpossessions_monkeypaw_data_drawchance">
      <![CDATA[
-     <a>11–55 %</a>
+     <a>11–55%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">
      <![CDATA[
-     <a>11–55 %</a>
+     <a>11–55%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_musicbox_data_drawchance">
@@ -2321,65 +2321,49 @@
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">
      <![CDATA[
-     <a>10 %</a>
+     <a>10%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">
      <![CDATA[
-     <a>10 %</a>
+     <a>10%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">
      <![CDATA[
-     <a>20 %</a>
+     <a>20%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">
      <![CDATA[
-     <a>10 %</a>
+     <a>10%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">
      <![CDATA[
-     <a>17 %/100 %</a>
+     <a>17%/100%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">
      <![CDATA[
-     <a>5 %</a>
+     <a>5%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">
      <![CDATA[
-     <a>5 %</a>
+     <a>5%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">
      <![CDATA[
-     <a>20 %</a>
+     <a>20%</a>
      ]]>
      </string>
         <string name="shop_cursedpossessions_voodoodoll_data_drawchance">
      <![CDATA[
-     <a>10 %</a>
+     <a>10%</a>
      ]]>
      </string>
-
-    <string name="marketplace_title">Торговая площадка</string>
-    <string name="marketplace_connection_error">Ой-ой! Произошла ошибка при подключении к торговой площадке.</string>
-    <string name="marketplace_error_login_required">Войдите в систему, чтобы заявить права на контент Marketplace.</string>
-    <string name="marketplace_button_watch_ad">Заработайте кредиты</string>
-    <string name="marketplace_button_purchase_credits">Купить кредиты</string>
-    <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">%d Компанский бонус</item>
-        <item quantity="few">Сопутствующие кредиты</item>
-        <item quantity="many">Сопутствующие кредиты</item>
-        <item quantity="other">Сопутствующие кредиты</item>
-    </plurals>
-    <string name="marketplace_label_purchased">Разблокировано</string>
-    <string name="marketplace_label_bundle_includes">Включает</string>
-    <string name="marketplace_description_watch_ad">Посмотрите рекламу и заработайте %s %s.</string>
-    <string name="marketplace_description_purchase_credits">Приобрести кредиты напрямую.</string>
 
     <string name="general_navigation_settings">Настройки</string>
     <string name="general_navigation_system">Система</string>
@@ -2424,36 +2408,6 @@
     <string name="alert_marketplace_purchase_failure_skin_credits">Недостаточно кредитов для покупки!</string>
 
     <!-- Подтверждение -->
-    <string name="marketplace_acknowledgement_title">Соглашение торговой площадки</string>
-    <string name="marketplace_acknowledgement_warning">С помощью инструмента выявления фазмофобии
-     \"Рынок\", вы безоговорочно соглашаетесь со следующим:</string>
-    <string name="marketplace_acknowledgement_warning_list_1">
-     Термины «контент», «элементы» и «разблокировка» относятся к изображениям, именам и другим ресурсам.
-     Термин «разработчик» относится к Tritium Studios. Термин «P.E.T.» или «это приложение» относится к
-     приложение «Инструмент доказательства фазмофобии».
-     </string>
-    <string name="marketplace_acknowledgement_warning_list_2">
-     «P.E.T.» не является аффилированным лицом ни с какой другой организацией, которая может иметь или не иметь сходства с
-     предоставленный контент.
-     </string>
-    <string name="marketplace_acknowledgement_warning_list_3">
-     Весь контент, прошлый или настоящий, существует исключительно в косметических целях в рамках «P.E.T.».
-     Контент не может быть использован или передан за пределы «P.E.T.» и не влияет ни на какие
-     внешние сущности, такие как, помимо прочего, такие игры, как «Фазмофобия».
-     </string>
-    <string name="marketplace_acknowledgement_warning_list_4">
-     Все транзакции являются окончательными. Содержимое может быть частично полным, неработающим или содержать ошибки.
-     Содержимое может быть отключено, удалено или изменено разработчиком в будущем.
-     Аккредитация вашей учетной записи при потере доступа к контенту или любых изменениях в контенте
-     оставлено на усмотрение разработчика.
-     </string>
-    <string name="marketplace_acknowledgement_button_confirm">Понятно!</string>
-    <string name="marketplace_list_bundles">Тематические пакеты</string>
-    <string name="marketplace_list_prestige">Престижные темы</string>
-    <string name="marketplace_list_event">Темы событий</string>
-    <string name="marketplace_list_community">Темы сообщества</string>
-    <string name="marketplace_button_item_get">Получать</string>
-    <string name="marketplace_purchase_equip">Оборудовать тему %1$s?</string>
     <string name="map_setting_label_size">Размер</string>
     <string name="map_setting_label_modifier">Модификатор</string>
     <string name="map_setting_label_multiplier">Множитель</string>
@@ -2721,7 +2675,6 @@
     <string name="evidence_trait_weight_likely">Более вероятный</string>
     <string name="evidence_trait_weight_unlikely">Менее вероятный</string>
     <string name="map_setting_label_drainrate">Скорость разрядки</string>
-    <string name="store_title_achievements">Достижения</string>
     <string name="investigation_average_sanity_title">Средний уровень рассудка</string>
     <string name="investigation_label_journal">Журнал</string>
     <string name="investigation_label_contract">Настроить контракт</string>

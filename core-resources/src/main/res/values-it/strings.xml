@@ -1021,11 +1021,6 @@
 
     <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>Pungere la bambola voodoo forza un\'interazione!</p><p>Puoi pungere la bambola voodoo fino a 10 volte. Ogni puntura ha la possibilità di pungere il cuore, dando inizio a una caccia maledetta.</p><p>Ridurre la tua sanità mentale a 0\\% by usando la bambola attiverà tutti i perni e inizierà una caccia maledetta.</p>]]></string>
 
-    <plurals name="marketplace_description_watch_ad">
-        <item quantity="one">Credito accompagnatore</item>
-        <item quantity="other">Crediti complementari</item>
-    </plurals>
-
     <string name="general_navigation_settings">Impostazioni</string>
     <string name="general_navigation_system">Sistema</string>
 
