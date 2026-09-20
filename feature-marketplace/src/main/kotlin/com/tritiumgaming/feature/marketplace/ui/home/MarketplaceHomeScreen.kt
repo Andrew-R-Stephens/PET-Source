@@ -203,24 +203,29 @@ private fun MarketplaceHomeContentPortrait(
     onNavigate: (String) -> Unit = {},
     onClickRewardedAd: () -> Unit = {},
 ) {
+    val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
+
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
     ) {
-        item(
-            key = 0,
-            span = { GridItemSpan(2) }
-        ) {
-            RewardedAdsCard(
-                rewardCredits = rewardCredits,
-                isLarge = true,
-                onNavigate = onNavigate,
-                modifier = Modifier
-                    .fillMaxWidth(),
-                onClick = onClickRewardedAd
-            ) }
+        if(user != null) {
+            item(
+                key = 0,
+                span = { GridItemSpan(2) }
+            ) {
+                RewardedAdsCard(
+                    rewardCredits = rewardCredits,
+                    isLarge = true,
+                    onNavigate = onNavigate,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    onClick = onClickRewardedAd
+                )
+            }
+        }
         /*item(
             key = 1,
             span = { GridItemSpan(1) }
@@ -291,12 +296,16 @@ private fun MarketplaceHomeContentLandscape(
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            RewardedAdsCard(
-                rewardCredits = rewardCredits,
-                isLarge = true,
-                onNavigate = onNavigate,
-                onClick = onClickRewardedAd
-            )
+            val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
+
+            if(user != null) {
+                RewardedAdsCard(
+                    rewardCredits = rewardCredits,
+                    isLarge = true,
+                    onNavigate = onNavigate,
+                    onClick = onClickRewardedAd
+                )
+            }
 
             BundleCard(
                 isLarge = true,
@@ -324,24 +333,29 @@ private fun MarketplaceHomeContentExpanded(
     onNavigate: (String) -> Unit = {},
     onClickRewardedAd: () -> Unit = {},
 ) {
+    val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
+
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        item(
-            key = 0,
-            span = { GridItemSpan(2) }
-        ) {
-            RewardedAdsCard(
-                rewardCredits = rewardCredits,
-                isLarge = true,
-                onNavigate = onNavigate,
-                modifier = Modifier
-                    .fillMaxWidth(),
-                onClick = onClickRewardedAd
-            ) }
+        if(user != null) {
+            item(
+                key = 0,
+                span = { GridItemSpan(2) }
+            ) {
+                RewardedAdsCard(
+                    rewardCredits = rewardCredits,
+                    isLarge = true,
+                    onNavigate = onNavigate,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    onClick = onClickRewardedAd
+                )
+            }
+        }
         /*item(
             key = 1,
             span = { GridItemSpan(1) }
@@ -741,6 +755,7 @@ private fun RewardedAdsCard(
     onNavigate: (String) -> Unit,
     onClick: () -> Unit
 ) {
+    val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
     val descriptionBase = stringResource(R.string.marketplace_home_storefront_rewarded_ad_description)
     val creditsDisclosure = pluralStringResource(
@@ -768,6 +783,30 @@ private fun RewardedAdsCard(
                     )
                 }
             )
+
+            if(user == null) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            LocalPalette.current.scrim.copy(
+                                alpha = .5f
+                            )
+                        )
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .sizeIn(maxHeight = 96.dp, maxWidth = 96.dp)
+                            .aspectRatio(1f)
+                            .align(Alignment.Center)
+                            .padding(8.dp),
+                        painter = painterResource(R.drawable.ic_shop_lock),
+                        contentDescription = "",
+                        tint = LocalPalette.current.primary,
+                    )
+                }
+            }
+
         },
         icon = { modifier ->
             Surface(
@@ -788,10 +827,7 @@ private fun RewardedAdsCard(
         containerColor = LocalPalette.current.surfaceContainerHigh,
         contentColor = LocalPalette.current.onSurface.copy(alpha = .2f),
         isLarge = isLarge,
-        onClick = {
-            onClick()
-            /*onNavigate(NavRoute.SCREEN_MARKETPLACE_BILLABLE.route)*/
-        }
+        onClick = onClick
     )
 }
 
@@ -873,7 +909,10 @@ fun StorefrontCard(
                         tonalElevation = 8.dp
                     ) {
                         Text(
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp),
+                            modifier = Modifier.padding(
+                                horizontal = 12.dp,
+                                vertical = 12.dp
+                            ),
                             text = title.uppercase(),
                             style = LocalTypography.current.primary.bold.copy(
                                 fontSize = if (isLarge) 24.sp else 16.sp,
@@ -898,7 +937,10 @@ fun StorefrontCard(
                         tonalElevation = 8.dp
                     ) {
                         Text(
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                            modifier = Modifier.padding(
+                                horizontal = 12.dp,
+                                vertical = 8.dp
+                            ),
                             text = description.uppercase(),
                             style = LocalTypography.current.quaternary.bold.copy(
                                 fontSize = if (isLarge) 16.sp else 12.sp
@@ -908,6 +950,7 @@ fun StorefrontCard(
                     }
                 }
             }
+
         }
     }
 }

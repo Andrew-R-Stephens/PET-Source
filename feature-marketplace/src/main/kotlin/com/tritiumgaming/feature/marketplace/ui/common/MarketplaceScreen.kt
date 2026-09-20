@@ -197,6 +197,7 @@ fun MarketplaceContent(
                 authenticated = authenticated,
                 userName = userName,
                 credits = rewardCredits,
+                showButton = showRewardButton,
                 navigationHeader = { modifier -> navigationHeader(modifier) },
                 onNavigate = onNavigateTo,
                 onEarnCredits = onEarnCredits,

@@ -9,7 +9,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
-import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
@@ -17,14 +16,11 @@ import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketpl
 import com.tritiumgaming.shared.data.ads.model.RewardedAdState
 import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
 import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -48,7 +44,7 @@ class MarketplaceHomeScreenViewModel(
                 onFailure = { null }
             )
             if (isShown == false) {
-                _showAgreementDialog.value = true
+                _showAgreementDialog.update { true }
             }
             isShown
         }
@@ -61,12 +57,12 @@ class MarketplaceHomeScreenViewModel(
     fun setMarketplaceAgreementAccepted() {
         viewModelScope.launch {
             setMarketplaceAgreementStateUseCase(true)
-            _showAgreementDialog.value = false
+            _showAgreementDialog.update { false }
         }
     }
 
     fun dismissAgreementDialog() {
-        _showAgreementDialog.value = false
+        _showAgreementDialog.update { false }
     }
 
     fun onAttemptRewardedAd(
@@ -74,11 +70,7 @@ class MarketplaceHomeScreenViewModel(
         onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
         onFailure: (msg: String) -> Unit = {}
     ) {
-        if (marketplaceAgreementUiState.value == false) {
-            _showAgreementDialog.value = true
-        } else {
-            showRewardedAd(activity, onSuccess, onFailure)
-        }
+        showRewardedAd(activity, onSuccess, onFailure)
     }
 
     fun onAttemptNavigate(
@@ -86,7 +78,7 @@ class MarketplaceHomeScreenViewModel(
         onNavigate: (String) -> Unit
     ) {
         if (marketplaceAgreementUiState.value == false) {
-            _showAgreementDialog.value = true
+            _showAgreementDialog.update { true }
         } else {
             onNavigate(route)
         }
