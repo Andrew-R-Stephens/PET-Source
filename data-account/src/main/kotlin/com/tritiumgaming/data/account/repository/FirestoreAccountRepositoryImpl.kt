@@ -52,6 +52,26 @@ class FirestoreAccountRepositoryImpl(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
+    private val marketplaceAgreementFlow: Flow<Result<AccountMarketAgreement>> by lazy {
+        authRemoteDataSource.observeAuthState()
+            .flatMapLatest { user ->
+                if (user == null) {
+                    flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+                } else {
+                    accountRemoteDataSource.observeMarketplaceAgreementDocument()
+                        .map { flow: Result<AccountMarketAgreementDto> ->
+                            flow.map { dto -> dto.toDomain() }
+                        }
+                }
+            }
+            .shareIn(
+                scope = scope,
+                started = SharingStarted.WhileSubscribed(5000),
+                replay = 1
+            )
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
     private val unlockedPalettesFlow: Flow<Result<List<AccountPalette>>> by lazy {
         authRemoteDataSource.observeAuthState()
             .flatMapLatest { user ->
@@ -99,6 +119,8 @@ class FirestoreAccountRepositoryImpl(
     }
 
     override fun observeCredits(): Flow<Result<AccountCredits>> = creditsFlow
+
+    override fun observeMarketplaceAgreementState(): Flow<Result<AccountMarketAgreement>> = marketplaceAgreementFlow
 
     override suspend fun purchaseItemWithCredits(
         itemId: String,

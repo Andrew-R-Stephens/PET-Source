@@ -8,6 +8,8 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCre
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
 import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
@@ -29,6 +31,8 @@ class MarketplaceContainer(
     internal val deactivateAccountUseCase: DeactivateAccountUseCase,
     internal val addAccountCreditsUseCase: AddAccountCreditsUseCase,
     internal val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
+    internal val observeAccountMarketplaceAgreementStateUseCase: ObserveMarketplaceAgreementStateUseCase,
+    internal val setAccountMarketplaceAgreementStateUseCase: SetMarketplaceAgreementStateUseCase,
     internal val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     internal val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
     internal val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,

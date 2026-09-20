@@ -7,13 +7,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
@@ -35,6 +38,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.dialogs.MarketplaceDialog
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
@@ -58,6 +62,8 @@ fun MarketplaceScreen(
     navController: NavHostController,
     earnedCredits: Int = 0,
     showRewardButton: Boolean = false,
+    showAgreementDialog: Boolean = false,
+    onConfirmAgreement: () -> Unit = {},
     onClickRewardButton: () -> Unit = {},
     accountContent: @Composable (Modifier) -> Unit,
     storeContent: @Composable (Modifier) -> Unit
@@ -65,34 +71,50 @@ fun MarketplaceScreen(
     val user = if(!LocalInspectionMode.current)
         Firebase.auth.currentUser else null
 
-    MarketplaceContent(
+    Box(
         modifier = modifier,
-        authenticated = user != null,
-        userName = user?.displayName ?: "",
-        rewardCredits = earnedCredits,
-        showRewardButton = showRewardButton,
-        onNavigateTo = { route ->
-            navController.navigate(route) {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
+        contentAlignment = Alignment.Center
+    ) {
+        MarketplaceContent(
+            modifier = Modifier,
+            authenticated = user != null,
+            userName = user?.displayName ?: "",
+            rewardCredits = earnedCredits,
+            showRewardButton = showRewardButton,
+            onNavigateTo = { route ->
+                navController.navigate(route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
                 }
-                launchSingleTop = true
-                restoreState = true
+            },
+            onNavigateBack = {
+                navController.popBackStack()
+            },
+            onEarnCredits = {
+                onClickRewardButton()
+            },
+            accountContent = { modifier ->
+                accountContent(modifier)
+            },
+            storeContent = { modifier ->
+                storeContent(modifier)
             }
-        },
-        onNavigateBack = {
-            navController.popBackStack()
-        },
-        onEarnCredits = {
-            onClickRewardButton()
-        },
-        accountContent = { modifier ->
-            accountContent(modifier)
-        },
-        storeContent = { modifier ->
-            storeContent(modifier)
+        )
+        if (showAgreementDialog) {
+            MarketplaceDialog(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(LocalPalette.current.scrim.copy(alpha = .7f))
+                    .zIndex(10f)
+                    .padding(24.dp),
+                onConfirm = onConfirmAgreement
+            )
         }
-    )
+
+    }
 }
 
 @Composable
@@ -108,7 +130,7 @@ fun MarketplaceContent(
     accountContent: @Composable (Modifier) -> Unit,
     storeContent: @Composable (Modifier) -> Unit,
 ) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val navigationHeader: @Composable (Modifier) -> Unit = @Composable { modifier ->
@@ -235,7 +257,7 @@ fun LandscapeContent(
     onEarnCredits: () -> Unit = {},
     content: @Composable (Modifier) -> Unit,
 ) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     Column(

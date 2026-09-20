@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
-import com.tritiumgaming.core.common.util.FontUtils
+import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -16,8 +16,8 @@ data class FlattenedNewsletterMessageDto(
 fun FlattenedNewsletterMessageDto.toExternal(): NewsletterMessage =
     NewsletterMessage(
         id = id ?: "0",
-        title = FontUtils.removeXMLImgSrcTags(title),
-        description = FontUtils.removeXMLImgSrcTags(description),
+        title = FormatterUtils.removeXMLImgSrcTags(title),
+        description = FormatterUtils.removeXMLImgSrcTags(description),
         dateFormatted = formatFromEpoch(date),
         dateEpoch = date ?: 1L
     )

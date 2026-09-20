@@ -28,11 +28,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -103,6 +106,8 @@ fun MarketplaceHomeScreen(
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
+    val showAgreementDialog by viewmodel.showAgreementDialog.collectAsStateWithLifecycle()
+
     val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
     val rewardedAdState by viewmodel.rewardedAdUiState.collectAsStateWithLifecycle()
 
@@ -110,7 +115,7 @@ fun MarketplaceHomeScreen(
 
     val onClickRewardedAd: () -> Unit = {
         activity?.let {
-            viewmodel.showRewardedAd(
+            viewmodel.onAttemptRewardedAd(
                 activity,
                 onSuccess = { quantity, type ->
                     viewmodel.addCredits(
@@ -140,10 +145,14 @@ fun MarketplaceHomeScreen(
     }
 
     MarketplaceScreen(
-        modifier = Modifier,
+        modifier = modifier,
         navController = navController,
         earnedCredits = accountCredits.earnedCredits,
         showRewardButton = user != null,
+        showAgreementDialog = showAgreementDialog,
+        onConfirmAgreement = {
+            viewmodel.setMarketplaceAgreementAccepted()
+        },
         onClickRewardButton = onClickRewardedAd,
         accountContent = {
 
@@ -154,8 +163,10 @@ fun MarketplaceHomeScreen(
                 rewardCredits = rewardCredits,
                 onClickRewardedAd = onClickRewardedAd
             ) { route ->
-                navController.navigate(route) {
-                    launchSingleTop = true
+                viewmodel.onAttemptNavigate(route) { targetRoute ->
+                    navController.navigate(targetRoute) {
+                        launchSingleTop = true
+                    }
                 }
             }
         }
@@ -169,7 +180,7 @@ fun MarketplaceHomeContent(
     onClickRewardedAd: () -> Unit = {},
     onNavigate: (String) -> Unit = {},
 ) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     when (deviceConfiguration) {

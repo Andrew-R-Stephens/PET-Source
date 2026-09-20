@@ -246,6 +246,38 @@ class FirestoreAccountRemoteDataSource(
             }
         }
 
+    fun observeMarketplaceAgreementDocument(): Flow<Result<AccountMarketAgreementDto>> =
+        callbackFlow {
+
+            val docRef = preferencesDocumentRef
+
+            if (docRef == null) {
+                trySend(Result.failure(Exception("Preferences document reference is null!")))
+                close()
+                return@callbackFlow
+            }
+
+            val listenerRegistration = docRef.addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    trySend(Result.failure(error))
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    val data = AccountMarketAgreementDto(
+                        isAgreementShown = snapshot.getBoolean(FIELD_MARKETPLACE_AGREEMENT_SHOWN) == true
+                    )
+                    trySend(Result.success(data))
+                } else {
+                    trySend(Result.success(AccountMarketAgreementDto(false)))
+                }
+            }
+
+            awaitClose {
+                listenerRegistration.remove()
+            }
+        }
+
     fun observeUnlockedPaletteDocuments(): Flow<Result<List<AccountPaletteDto>>> =
 
         callbackFlow {

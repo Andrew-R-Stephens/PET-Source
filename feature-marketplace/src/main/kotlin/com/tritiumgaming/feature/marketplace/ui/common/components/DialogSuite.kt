@@ -30,7 +30,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -55,99 +54,9 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.modifier.progressGradient
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.widgets.dialogs.MarketplaceDialog
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
-
-@Composable
-fun MarketplaceDialog(
-    modifier: Modifier = Modifier,
-    onConfirm: () -> Unit = { }
-) {
-
-    val title = stringResource(id = R.string.marketplace_acknowledgement_title)
-
-    val content: @Composable () -> Unit = {
-
-        Text(
-            text = stringResource(id = R.string.marketplace_acknowledgement_warning),
-            style = TextStyle(
-                fontSize = 14.sp,
-                color = LocalPalette.current.onSurface
-            )
-        )
-
-        Column(
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_1),
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    color = LocalPalette.current.onSurface
-                )
-            )
-
-            Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_2),
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    color = LocalPalette.current.onSurface
-                )
-            )
-
-            Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_3),
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    color = LocalPalette.current.onSurface
-                )
-            )
-
-            Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_4),
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    color = LocalPalette.current.onSurface
-                )
-            )
-        }
-    }
-
-
-    val confirmButton: @Composable () -> Unit = {
-        TextButton(
-            content = {
-                Text(
-                    text = stringResource(id = R.string.marketplace_acknowledgement_button_confirm),
-                    maxLines = 1,
-                    style = TextStyle(fontSize = 18.sp)
-                )
-            },
-            contentPadding = PaddingValues(8.dp),
-            colors = ButtonColors(
-                contentColor = LocalPalette.current.surfaceContainer,
-                containerColor = LocalPalette.current.onSurface,
-                disabledContentColor = Color.Blue,
-                disabledContainerColor = Color.Green
-            ),
-            shape = RoundedCornerShape(percent = 20),
-            onClick = { onConfirm() },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp)
-        )
-    }
-
-
-    Dialog(
-        title = title,
-        content = { content() },
-        confirmButton = { confirmButton() }
-    )
-}
 
 @Composable
 fun EquipConfirmationDialog(
@@ -254,130 +163,6 @@ fun EquipConfirmationDialog(
     }
 }
 
-@Composable
-private fun Dialog(
-    modifier: Modifier = Modifier,
-    title: String = "",
-    content: @Composable () -> Unit = { },
-    confirmButton: @Composable () -> Unit = { },
-    cancelButton: @Composable () -> Unit = { }
-) {
-    Box(
-        modifier = modifier
-    ) {
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
-                .background(LocalPalette.current.surfaceContainer)
-                .padding(16.dp)
-                .align(Alignment.Center)
-                .wrapContentWidth()
-                .wrapContentHeight()
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-
-                Box(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.icon_logo_app),
-                        contentDescription = "Phasmophobia Evidence Tool Logo",
-                        modifier = Modifier
-                            .size(64.dp)
-                            .background(LocalPalette.current.surface,
-                                CircleShape
-                            )
-                            .padding(8.dp)
-                            .align(Alignment.Center)
-                    )
-                }
-
-                Text(
-                    text = title,
-                    maxLines = 1,
-                    style = TextStyle(
-                        fontSize = 24.sp,
-                        color = LocalPalette.current.primary)
-                )
-
-                Column(
-                    modifier = Modifier.wrapContentHeight()
-                ) {
-
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(18.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1f)
-                            .verticalScroll(rememberScrollState())
-                    ) {
-                        content()
-                    }
-
-                    val configuration = LocalConfiguration.current
-                    when (configuration.orientation) {
-                        Configuration.ORIENTATION_PORTRAIT -> {
-                            Column(
-                                verticalArrangement = Arrangement.spacedBy(24.dp),
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(PaddingValues(top = 8.dp))
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(48.dp)
-                                ) {
-                                    cancelButton()
-                                }
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(48.dp)
-                                ) {
-                                    confirmButton()
-                                }
-                            }
-                        }
-                        else -> {
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(24.dp),
-                                modifier = Modifier
-                                    .padding(PaddingValues(top = 8.dp))
-                                    .fillMaxWidth()
-                                    .wrapContentHeight()
-                            ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .weight(1f)
-                                        .height(48.dp)
-                                ) {
-                                    cancelButton()
-                                }
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .weight(1f)
-                                        .height(48.dp)
-                                ) {
-                                    confirmButton()
-                                }
-
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
-
-    }
-}
-
 @Preview
 @Composable
 private fun Preview1() {
@@ -386,19 +171,6 @@ private fun Preview1() {
             targetTitle = String.format(stringResource(R.string.marketplace_purchase_equip), stringResource(LocalPalette.current.extrasFamily.title)),
             onConfirm = {},
             timeout = 5000L
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun Preview2() {
-    LocalThemeProvider {
-        MarketplaceDialog(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(LocalPalette.current.scrim.copy(alpha = .5f))
-                .padding(8.dp)
         )
     }
 }

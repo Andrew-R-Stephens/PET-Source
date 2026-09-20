@@ -16,7 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
@@ -41,11 +42,11 @@ import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
-import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
-import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
+import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
+import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
+import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
 import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
@@ -78,11 +79,14 @@ fun PaletteShopScreen(
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
+    val isAgreementShown by viewmodel.marketplaceAgreementUiState.collectAsStateWithLifecycle()
+    val showAgreementDialog by viewmodel.showAgreementDialog.collectAsStateWithLifecycle()
+
     val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
 
     val onClickRewardedAd: () -> Unit = {
         activity?.let {
-            viewmodel.showRewardedAd(
+            viewmodel.onAttemptRewardedAd(
                 activity,
                 onSuccess = { quantity, type ->
                     viewmodel.addCredits(
@@ -116,12 +120,19 @@ fun PaletteShopScreen(
         navController = navController,
         earnedCredits = accountCredits.earnedCredits,
         showRewardButton = user != null,
+        showAgreementDialog = showAgreementDialog,
+        onConfirmAgreement = {
+            viewmodel.setMarketplaceAgreementAccepted()
+        },
         onClickRewardButton = onClickRewardedAd,
         accountContent = { },
     ) { modifier ->
+
         Box(
-            modifier = modifier
+            modifier = modifier,
+            contentAlignment = Alignment.Center
         ) {
+
             PaletteShopContent(
                 modifier = modifier,
                 unlocks = paletteUnlocks,
@@ -190,8 +201,6 @@ fun PaletteShopScreen(
                     }
                 )
             }
-
-
         }
 
     }
@@ -205,7 +214,7 @@ private fun PaletteShopContent(
     onBuyItem: (marketPalette: MarketPalette) -> Unit = { },
     onBuyBundle: (marketBundle: MarketBundle) -> Unit = { }
 ) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     when(deviceConfiguration) {

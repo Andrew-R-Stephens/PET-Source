@@ -13,20 +13,55 @@ import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.LEGAL_TENDER
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MarketplaceBillingScreenViewModel(
     private val addAccountCreditsUseCase: AddAccountCreditsUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
+    private val observeMarketplaceAgreementStateUseCase: ObserveMarketplaceAgreementStateUseCase,
+    private val setMarketplaceAgreementStateUseCase: SetMarketplaceAgreementStateUseCase,
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
 ): ViewModel() {
+
+    private val _showAgreementDialog = MutableStateFlow(false)
+    val showAgreementDialog = _showAgreementDialog.asStateFlow()
+
+    val marketplaceAgreementUiState: StateFlow<Boolean?> = observeMarketplaceAgreementStateUseCase()
+        .map { result ->
+            val isShown = result.fold(
+                onSuccess = { agreement -> agreement.isAgreementShown },
+                onFailure = { null }
+            )
+            if (isShown == false) {
+                _showAgreementDialog.value = true
+            }
+            isShown
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
+
+    fun setMarketplaceAgreementAccepted() {
+        viewModelScope.launch {
+            setMarketplaceAgreementStateUseCase(true)
+            _showAgreementDialog.value = false
+        }
+    }
 
     private var observeCreditsJob: Job? = null
 
@@ -130,11 +165,15 @@ class MarketplaceBillingScreenViewModel(
 
                 val addAccountCreditsUseCase = container.addAccountCreditsUseCase
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
+                val observeMarketplaceAgreementStateUseCase = container.observeAccountMarketplaceAgreementStateUseCase
+                val setMarketplaceAgreementStateUseCase = container.setAccountMarketplaceAgreementStateUseCase
                 val purchaseMarketplaceItemUseCase = container.purchaseMarketplaceItemUseCase
 
                 MarketplaceBillingScreenViewModel(
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
+                    observeMarketplaceAgreementStateUseCase = observeMarketplaceAgreementStateUseCase,
+                    setMarketplaceAgreementStateUseCase = setMarketplaceAgreementStateUseCase,
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                 )
             }

@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.account.ui
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,8 +37,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -57,6 +59,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -76,6 +79,7 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
+import com.tritiumgaming.core.ui.widgets.dialogs.MarketplaceDialog
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.SignInOptions
@@ -131,73 +135,98 @@ fun AccountScreen(
     val accountCreditsUiState by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
     val accountPalettesUiState by viewmodel.accountUnlockedPalettesUiState.collectAsStateWithLifecycle()
 
+    val isAgreementShown by viewmodel.marketplaceAgreementUiState.collectAsStateWithLifecycle()
+    val showAgreementDialog by viewmodel.showAgreementDialog.collectAsStateWithLifecycle()
+
     var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
     var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
     var isLoading by remember { mutableStateOf(false) }
 
-    AccountContent(
-        currentUser = rememberAccount,
-        userName = Firebase.auth.currentUser?.displayName ?: "",
-        userEmail = Firebase.auth.currentUser?.email ?: "",
-        earnedCredits = accountCreditsUiState.earnedCredits,
-        unlockedPalettes = accountPalettesUiState.unlockedPalettes,
-        currentDialog = rememberDialog,
-        isLoading = isLoading,
-        onBack = { navController.popBackStack() },
-        onLogoutRequest = { rememberDialog = AccountOverviewDialog.SIGN_OUT },
-        onDeactivateRequest = { rememberDialog = AccountOverviewDialog.DEACTIVATE_ACCOUNT },
-        onDismissDialog = { rememberDialog = AccountOverviewDialog.NONE },
-        onConfirmSignOut = {
-            viewmodel.signOutAccount { success ->
-                rememberAccount = Firebase.auth.currentUser?.uid
-                rememberDialog = AccountOverviewDialog.NONE
-                if (success) {
-                    Toast.makeText(activity, activity?.getString(R.string.alert_account_logout_success), Toast.LENGTH_SHORT).show()
+    Box(modifier = Modifier.fillMaxSize()) {
+        AccountContent(
+            currentUser = rememberAccount,
+            userName = Firebase.auth.currentUser?.displayName ?: "",
+            userEmail = Firebase.auth.currentUser?.email ?: "",
+            earnedCredits = accountCreditsUiState.earnedCredits,
+            unlockedPalettes = accountPalettesUiState.unlockedPalettes,
+            currentDialog = rememberDialog,
+            isLoading = isLoading,
+            onBack = { navController.popBackStack() },
+            onLogoutRequest = { rememberDialog = AccountOverviewDialog.SIGN_OUT },
+            onDeactivateRequest = { rememberDialog = AccountOverviewDialog.DEACTIVATE_ACCOUNT },
+            onDismissDialog = { rememberDialog = AccountOverviewDialog.NONE },
+            onConfirmSignOut = {
+                viewmodel.signOutAccount { success ->
+                    rememberAccount = Firebase.auth.currentUser?.uid
+                    rememberDialog = AccountOverviewDialog.NONE
+                    if (success) {
+                        Toast.makeText(activity, activity?.getString(R.string.alert_account_logout_success), Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
-        },
-        onConfirmDeactivate = {
-            viewmodel.deactivateAccount { success ->
-                rememberAccount = Firebase.auth.currentUser?.uid
-                rememberDialog = AccountOverviewDialog.NONE
-                if (success) {
-                    Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_success), Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_failure), Toast.LENGTH_SHORT).show()
+            },
+            onConfirmDeactivate = {
+                viewmodel.deactivateAccount { success ->
+                    rememberAccount = Firebase.auth.currentUser?.uid
+                    rememberDialog = AccountOverviewDialog.NONE
+                    if (success) {
+                        Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_success), Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_failure), Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
-        },
-        onSignInRequest = {
-            isLoading = true
-            viewmodel.getSignInCredentials(SignInOptions.GOOGLE) { credentialOption ->
-                coroutineScope.launch {
-                    try {
-                        activity?.let {
-                            viewmodel.signInWithCredentials(activity, context, credentialOption) { result ->
-                                rememberAccount = Firebase.auth.currentUser?.uid
-                                isLoading = false
-                                if (result) {
-                                    Toast.makeText(activity, "${activity.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
-                                } else {
-                                    Toast.makeText(activity, activity.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
+            },
+            onSignInRequest = {
+                isLoading = true
+                viewmodel.getSignInCredentials(SignInOptions.GOOGLE) { credentialOption ->
+                    coroutineScope.launch {
+                        try {
+                            activity?.let {
+                                viewmodel.signInWithCredentials(activity, context, credentialOption) { result ->
+                                    rememberAccount = Firebase.auth.currentUser?.uid
+                                    isLoading = false
+                                    if (result) {
+                                        Toast.makeText(activity, "${activity.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(activity, activity.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                             }
+                        } catch (e: Exception) {
+                            isLoading = false
+                            Toast.makeText(activity, "Sign-in failed.", Toast.LENGTH_SHORT).show()
+                            e.printStackTrace()
                         }
-                    } catch (e: Exception) {
-                        isLoading = false
-                        Toast.makeText(activity, "Sign-in failed.", Toast.LENGTH_SHORT).show()
-                        e.printStackTrace()
+                    }
+                }
+            },
+            onNavigate = { route ->
+                viewmodel.onAttemptNavigateToMarketplace {
+                    navController.navigate(route) {
+                        launchSingleTop = true
+                        restoreState = true
                     }
                 }
             }
-        },
-        onNavigate = { route ->
-            navController.navigate(route) {
-                launchSingleTop = true
-                restoreState = true
-            }
+        )
+
+        if (showAgreementDialog) {
+            MarketplaceDialog(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(LocalPalette.current.scrim.copy(alpha = .7f))
+                    .zIndex(10f)
+                    .padding(24.dp),
+                onConfirm = {
+                    viewmodel.setMarketplaceAgreementAccepted()
+                }
+            )
         }
-    )
+
+    }
+
+    LaunchedEffect(rememberAccount, isAgreementShown) {
+        // No body needed as VM handles triggering the dialog state.
+    }
 }
 
 @Composable
@@ -219,7 +248,7 @@ fun AccountContent(
     onNavigate: (String) -> Unit = {}
 ) {
 
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     Box(

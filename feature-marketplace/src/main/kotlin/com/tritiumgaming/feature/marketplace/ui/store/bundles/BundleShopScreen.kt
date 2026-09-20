@@ -16,8 +16,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
@@ -72,11 +74,14 @@ fun BundleShopScreen(
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
+    val isAgreementShown by viewmodel.marketplaceAgreementUiState.collectAsStateWithLifecycle()
+    val showAgreementDialog by viewmodel.showAgreementDialog.collectAsStateWithLifecycle()
+
     val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
 
     val onClickRewardedAd: () -> Unit = {
         activity?.let {
-            viewmodel.showRewardedAd(
+            viewmodel.onAttemptRewardedAd(
                 activity,
                 onSuccess = { quantity, type ->
                     viewmodel.addCredits(
@@ -110,13 +115,20 @@ fun BundleShopScreen(
         navController = navController,
         earnedCredits = accountCredits.earnedCredits,
         showRewardButton = user != null,
+        showAgreementDialog = showAgreementDialog,
+        onConfirmAgreement = {
+            viewmodel.setMarketplaceAgreementAccepted()
+        },
         accountContent = {
 
         },
         storeContent = { modifier ->
+
             Box(
-                modifier = modifier
+                modifier = modifier,
+                contentAlignment = Alignment.Center
             ) {
+
                 BundleShopContent(
                     modifier = Modifier
                         .fillMaxSize(),
@@ -165,7 +177,7 @@ private fun BundleShopContent(
     unlocks: MarketCatalogScreenUiState,
     onBuyBundle: (marketBundle: MarketBundle) -> Unit = { }
 ) {
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     when (deviceConfiguration) {

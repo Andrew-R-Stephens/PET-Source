@@ -29,6 +29,8 @@ interface FirestoreAccountRepository {
 
     fun observeCredits(): Flow<Result<AccountCredits>>
 
+    fun observeMarketplaceAgreementState(): Flow<Result<AccountMarketAgreement>>
+
     suspend fun setMarketplaceAgreementState(
         marketAgreement: AccountMarketAgreement
     ): Result<AccountMarketAgreement>

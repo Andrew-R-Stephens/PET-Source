@@ -18,6 +18,8 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCre
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.ads.model.RewardedAdState
 import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
@@ -31,6 +33,7 @@ import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogT
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -40,6 +43,8 @@ import kotlinx.coroutines.launch
 class MarketplaceBundlesScreenViewModel(
     private val addAccountCreditsUseCase: AddAccountCreditsUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
+    private val observeMarketplaceAgreementStateUseCase: ObserveMarketplaceAgreementStateUseCase,
+    private val setMarketplaceAgreementStateUseCase: SetMarketplaceAgreementStateUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
@@ -50,6 +55,49 @@ class MarketplaceBundlesScreenViewModel(
     getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase
 ): ViewModel() {
 
+    private val _showAgreementDialog = MutableStateFlow(false)
+    val showAgreementDialog = _showAgreementDialog.asStateFlow()
+
+    val marketplaceAgreementUiState: StateFlow<Boolean?> = observeMarketplaceAgreementStateUseCase()
+        .map { result ->
+            val isShown = result.fold(
+                onSuccess = { agreement -> agreement.isAgreementShown },
+                onFailure = { null }
+            )
+            if (isShown == false) {
+                _showAgreementDialog.value = true
+            }
+            isShown
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
+
+    fun setMarketplaceAgreementAccepted() {
+        viewModelScope.launch {
+            setMarketplaceAgreementStateUseCase(true)
+            _showAgreementDialog.value = false
+        }
+    }
+
+    fun dismissAgreementDialog() {
+        _showAgreementDialog.value = false
+    }
+
+    fun onAttemptRewardedAd(
+        activity: Activity,
+        onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
+        onFailure: (msg: String) -> Unit = {}
+    ) {
+        if (marketplaceAgreementUiState.value == false) {
+            _showAgreementDialog.value = true
+        } else {
+            showRewardedAd(activity, onSuccess, onFailure)
+        }
+    }
+
     val rewardedAdUiState = getRewardedAdFlowUseCase()
         .stateIn(
             scope = viewModelScope,
@@ -57,7 +105,7 @@ class MarketplaceBundlesScreenViewModel(
             initialValue = RewardedAdState()
         )
 
-    fun showRewardedAd(
+    private fun showRewardedAd(
         activity: Activity,
         onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
         onFailure: (msg: String) -> Unit = {}
@@ -170,6 +218,11 @@ class MarketplaceBundlesScreenViewModel(
         onFailure: (msg: String) -> Unit = {},
         onComplete: () -> Unit = {}
     ) {
+        if (marketplaceAgreementUiState.value == false) {
+            _showAgreementDialog.value = true
+            onComplete()
+            return
+        }
         viewModelScope.launch {
             try {
                 val result = purchaseMarketplaceItemUseCase(
@@ -445,6 +498,8 @@ class MarketplaceBundlesScreenViewModel(
 
                 val addAccountCreditsUseCase = container.addAccountCreditsUseCase
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
+                val observeMarketplaceAgreementStateUseCase = container.observeAccountMarketplaceAgreementStateUseCase
+                val setMarketplaceAgreementStateUseCase = container.setAccountMarketplaceAgreementStateUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val observeAccountUnlockedTypographiesUseCase = container.observeAccountUnlockedTypographiesUseCase
                 val purchaseMarketplaceItemUseCase = container.purchaseMarketplaceItemUseCase
@@ -458,6 +513,8 @@ class MarketplaceBundlesScreenViewModel(
                 MarketplaceBundlesScreenViewModel(
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
+                    observeMarketplaceAgreementStateUseCase = observeMarketplaceAgreementStateUseCase,
+                    setMarketplaceAgreementStateUseCase = setMarketplaceAgreementStateUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,
                     observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase,
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,

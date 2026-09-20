@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.newsletter.dto.remote
 
-import com.tritiumgaming.core.common.util.FontUtils
+import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterChannelDto
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterMessageDto
@@ -58,7 +58,7 @@ fun RemoteNewsletterMessageDto.toExternal(): FlattenedNewsletterMessageDto =
         id = id,
         title = title,
         description = description,
-        date = formatToEpoch(FontUtils.removeXMLPubDateClockTime(pubDate))
+        date = formatToEpoch(FormatterUtils.removeXMLPubDateClockTime(pubDate))
     )
 
 fun RemoteNewsletterMessageDto.toExternal(fallbackId: String): NewsletterMessage =

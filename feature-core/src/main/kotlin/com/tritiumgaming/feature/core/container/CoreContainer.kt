@@ -57,6 +57,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
 import com.tritiumgaming.shared.data.ads.RewardedAdsResources
@@ -388,6 +389,8 @@ class CoreContainer(
 
 
     val setMarketplaceAgreementStateUseCase = SetMarketplaceAgreementStateUseCase(
+        repository = firestoreAccountRepository)
+    val observeMarketplaceAgreementStateUseCase = ObserveMarketplaceAgreementStateUseCase(
         repository = firestoreAccountRepository)
     val addAccountCreditsUseCase = AddAccountCreditsUseCase(
         repository = firestoreAccountRepository)

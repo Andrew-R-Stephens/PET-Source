@@ -23,11 +23,16 @@ import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -39,10 +44,53 @@ class AccountScreenViewModel(
     private val signOutAccountUseCase: SignOutAccountUseCase,
     private val deactivateAccountUseCase: DeactivateAccountUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
+    private val observeMarketplaceAgreementStateUseCase: ObserveMarketplaceAgreementStateUseCase,
+    private val setMarketplaceAgreementStateUseCase: SetMarketplaceAgreementStateUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
 ): ViewModel() {
+
+    private val _showAgreementDialog = MutableStateFlow(false)
+    val showAgreementDialog = _showAgreementDialog.asStateFlow()
+
+    val marketplaceAgreementUiState: StateFlow<Boolean?> = observeMarketplaceAgreementStateUseCase()
+        .map { result ->
+            val isShown = result.fold(
+                onSuccess = { agreement -> agreement.isAgreementShown },
+                onFailure = { null }
+            )
+            if (isShown == false) {
+                _showAgreementDialog.value = true
+            }
+            isShown
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
+
+    fun setMarketplaceAgreementAccepted() {
+        viewModelScope.launch {
+            setMarketplaceAgreementStateUseCase(true)
+            _showAgreementDialog.value = false
+        }
+    }
+
+    fun dismissAgreementDialog() {
+        _showAgreementDialog.value = false
+    }
+
+    fun onAttemptNavigateToMarketplace(
+        onSuccess: () -> Unit
+    ) {
+        if (marketplaceAgreementUiState.value == false) {
+            _showAgreementDialog.value = true
+        } else {
+            onSuccess()
+        }
+    }
 
     private val _accountCreditsUiState = observeAccountCreditsUseCase()
         .map { result ->
@@ -189,6 +237,8 @@ class AccountScreenViewModel(
                 val signOutAccountUseCase = container.signOutAccountUseCase
                 val deactivateAccountUseCase = container.deactivateAccountUseCase
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
+                val observeMarketplaceAgreementStateUseCase = container.observeMarketplaceAgreementStateUseCase
+                val setMarketplaceAgreementStateUseCase = container.setMarketplaceAgreementStateUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val observeAccountUnlockedTypographiesUseCase = container.observeAccountUnlockedTypographiesUseCase
                 val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
@@ -199,6 +249,8 @@ class AccountScreenViewModel(
                     signOutAccountUseCase = signOutAccountUseCase,
                     deactivateAccountUseCase = deactivateAccountUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
+                    observeMarketplaceAgreementStateUseCase = observeMarketplaceAgreementStateUseCase,
+                    setMarketplaceAgreementStateUseCase = setMarketplaceAgreementStateUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,
                     observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase,
                     saveCurrentPaletteUseCase = saveCurrentPaletteUseCase

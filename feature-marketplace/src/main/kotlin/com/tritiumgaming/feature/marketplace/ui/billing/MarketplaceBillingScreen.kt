@@ -25,16 +25,19 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
+import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
 
 @Composable
 @Preview
 private fun MarketplaceBillingScreenPreview() {
     MarketplaceBillingContent(
-        listOf(
+        billables = listOf(
             MarketBillable(
                 productId = "",
                 type = "Billable",
@@ -54,22 +57,43 @@ fun MarketplaceBillingScreen(
 ) {
     val billables by viewmodel.marketCatalogBillablesUiState.collectAsStateWithLifecycle()
 
-    MarketplaceBillingContent(
-        billables = billables.billables,
-        onSelectBillable = {
-            //navController.navigate()
-        }
-    )
+    val user = Firebase.auth.currentUser
+
+    val showAgreementDialog by viewmodel.showAgreementDialog.collectAsStateWithLifecycle()
+
+    val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
+
+    MarketplaceScreen(
+        modifier = Modifier,
+        navController = navController,
+        earnedCredits = accountCredits.earnedCredits,
+        showRewardButton = user != null,
+        showAgreementDialog = showAgreementDialog,
+        onConfirmAgreement = {
+            viewmodel.setMarketplaceAgreementAccepted()
+        },
+        accountContent = { },
+    ) { modifier ->
+        MarketplaceBillingContent(
+            modifier = modifier,
+            billables = billables.billables,
+            onSelectBillable = {
+                //navController.navigate()
+            }
+        )
+    }
+
 }
 
 @Composable
 private fun MarketplaceBillingContent(
+    modifier: Modifier = Modifier,
     billables: List<MarketBillable>,
     onSelectBillable: () -> Unit = {}
 ) {
 
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
