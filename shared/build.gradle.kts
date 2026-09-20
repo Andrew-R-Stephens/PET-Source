@@ -15,7 +15,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.shared"
         compileSdk = 37
-        minSdk = 23
+        minSdk = 24
 
         withHostTestBuilder {
         }

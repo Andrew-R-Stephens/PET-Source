@@ -37,7 +37,7 @@ configure<ApplicationExtension> {
 
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
-        minSdk = 23
+        minSdk = 24
         targetSdk = 37
         versionCode = 146
         versionName = "0.10.6.0-legacy"
