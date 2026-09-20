@@ -51,8 +51,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
-import com.tritiumgaming.core.ui.common.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.common.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toDrawableResource

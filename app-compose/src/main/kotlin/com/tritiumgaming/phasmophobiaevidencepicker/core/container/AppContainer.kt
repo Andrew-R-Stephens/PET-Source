@@ -1,17 +1,17 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.container
 
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
-import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
 import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
 import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitializeMobileAdsUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
 
 class AppContainer(
     internal val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,

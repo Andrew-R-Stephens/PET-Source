@@ -28,7 +28,6 @@ configure<LibraryExtension> {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-
     buildTypes {
         debug {
             initWith(getByName("debug"))
@@ -40,7 +39,6 @@ configure<LibraryExtension> {
             initWith(getByName("releaseTest"))
         }
     }
-
 
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_17

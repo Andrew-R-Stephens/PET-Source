@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.palette.source.local
 
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.source.LocalPaletteDataSource

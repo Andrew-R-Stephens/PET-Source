@@ -5,7 +5,6 @@ import com.tritiumgaming.data.marketplace.typography.dto.MarketTypographyDto
 import com.tritiumgaming.shared.data.market.common.source.MarketFirestoreDataSource
 import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
 import kotlinx.coroutines.tasks.await
-import kotlin.collections.get
 
 class MarketTypographyFirestoreDataSource(
     private val firebaseFunctions: FirebaseFunctions,

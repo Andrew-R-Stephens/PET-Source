@@ -2,21 +2,19 @@ package com.tritiumgaming.feature.settings.app.container
 
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
 import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase
 import com.tritiumgaming.shared.data.policy.usecase.SetAllowPersonalizedAdsUseCase
 import com.tritiumgaming.shared.data.policy.usecase.ShowPrivacyOptionsFormUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase

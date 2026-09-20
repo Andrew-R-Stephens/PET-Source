@@ -27,8 +27,6 @@ import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItem
-import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsLandscape
-import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsPortrait
 
 @Composable
 fun CatalogEquipmentList(

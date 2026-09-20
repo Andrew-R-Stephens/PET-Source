@@ -15,7 +15,6 @@ import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
 import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
-import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
 import com.tritiumgaming.shared.data.account.model.toAccountMarketPalette
 import com.tritiumgaming.shared.data.account.model.toAccountMarketTypography
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
@@ -25,17 +24,13 @@ import com.tritiumgaming.shared.data.market.palette.mappers.LocalDefaultPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.model.toAccountMarketPalette
-import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
 import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
-import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
 import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase
@@ -43,6 +38,8 @@ import com.tritiumgaming.shared.data.policy.usecase.SetAllowPersonalizedAdsUseCa
 import com.tritiumgaming.shared.data.policy.usecase.ShowPrivacyOptionsFormUseCase
 import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
@@ -56,12 +53,10 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.fold
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.collections.map
 
 class SettingsScreenViewModel(
     // Global Preferences

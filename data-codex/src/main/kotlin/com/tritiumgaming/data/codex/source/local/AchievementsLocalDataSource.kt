@@ -2,7 +2,6 @@ package com.tritiumgaming.data.codex.source.local
 
 import com.tritiumgaming.data.codex.dto.AchievementTypeDto
 import com.tritiumgaming.data.codex.dto.AchievementsTypeDto
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementCategory
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementContent
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity

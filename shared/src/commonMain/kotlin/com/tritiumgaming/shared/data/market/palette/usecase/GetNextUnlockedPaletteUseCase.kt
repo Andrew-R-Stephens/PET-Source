@@ -1,11 +1,7 @@
 package com.tritiumgaming.shared.data.market.palette.usecase
 
 import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
-import com.tritiumgaming.shared.data.account.model.toAccountMarketPalette
-import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import com.tritiumgaming.shared.data.market.palette.model.toAccountMarketPalette
-import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
 
 class GetNextUnlockedPaletteUseCase {
     operator fun invoke(

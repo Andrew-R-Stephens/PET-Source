@@ -72,6 +72,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
+import com.tritiumgaming.core.ui.widgets.dialogs.MarketplaceDialog
 import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
 import com.tritiumgaming.core.ui.widgets.label.LabeledValue
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
@@ -79,7 +80,6 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
-import com.tritiumgaming.core.ui.widgets.dialogs.MarketplaceDialog
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.account.model.SignInOptions

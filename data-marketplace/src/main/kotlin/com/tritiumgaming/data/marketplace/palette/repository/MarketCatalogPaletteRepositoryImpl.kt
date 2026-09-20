@@ -3,9 +3,7 @@ package com.tritiumgaming.data.marketplace.palette.repository
 import android.util.Log
 import com.tritiumgaming.data.marketplace.palette.dto.MarketPaletteDto
 import com.tritiumgaming.data.marketplace.palette.dto.toDomain
-import com.tritiumgaming.data.marketplace.palette.dto.toLocal
 import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.data.marketplace.typography.dto.toLocal
 import com.tritiumgaming.data.palette.source.local.PaletteLocalDataSourceImpl
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.model.PaletteQueryOptions

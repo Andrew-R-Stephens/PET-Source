@@ -3,7 +3,6 @@ package com.tritiumgaming.data.account.repository
 import android.util.Log
 import com.tritiumgaming.data.account.dto.AccountCreditsDto
 import com.tritiumgaming.data.account.dto.AccountMarketAgreementDto
-import com.tritiumgaming.data.account.dto.AccountTypographyDto
 import com.tritiumgaming.data.account.dto.toDomain
 import com.tritiumgaming.data.account.dto.toNetwork
 import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource

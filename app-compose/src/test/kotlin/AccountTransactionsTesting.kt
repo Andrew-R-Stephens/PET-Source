@@ -1,6 +1,5 @@
 
 import com.tritiumgaming.shared.data.account.model.AccountCreditTransaction
-import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
 import kotlinx.coroutines.test.StandardTestDispatcher

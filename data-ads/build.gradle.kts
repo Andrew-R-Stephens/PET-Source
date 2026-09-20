@@ -21,6 +21,9 @@ configure<LibraryExtension> {
         release {
             initWith(getByName("release"))
         }
+        create("releaseTest") {
+            initWith(getByName("releaseTest"))
+        }
     }
 
     compileOptions {

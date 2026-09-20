@@ -55,8 +55,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
-import com.tritiumgaming.core.ui.common.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.common.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
