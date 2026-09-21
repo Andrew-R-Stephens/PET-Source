@@ -59,6 +59,7 @@ import com.tritiumgaming.core.ui.common.FontUtils
 import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
@@ -68,17 +69,6 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
 import com.tritiumgaming.shared.data.contributor.model.Contributor
-
-@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
-@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private annotation class DevicePreviews
 
 @DevicePreviews
 @Composable

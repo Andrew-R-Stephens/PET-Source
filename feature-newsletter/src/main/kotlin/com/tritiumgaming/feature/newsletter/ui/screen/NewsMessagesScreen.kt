@@ -53,6 +53,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
@@ -192,17 +193,12 @@ private fun NewsMessagesContent(
     Column(
         modifier = Modifier
             .fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
 
         NavigationHeader(
             title = stringResource(inbox.title.toStringResource()),
             onLeftClick = onNavigateBack
-        )
-
-        Spacer(
-            modifier = Modifier
-                .height(8.dp)
         )
 
         val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
@@ -214,7 +210,7 @@ private fun NewsMessagesContent(
                 NewsMessagesContentCompactPortrait(
                     modifier = Modifier
                         .padding(8.dp)
-                        .fillMaxSize(),
+                        .weight(1f),
                     newsletterInboxesUiState = newsletterInboxesUiState,
                     refreshUiState = refreshUiState,
                     inbox = inbox,
@@ -232,7 +228,8 @@ private fun NewsMessagesContent(
                 NewsMessagesContentCompactLandscape(
                     modifier = Modifier
                         .padding(8.dp)
-                        .fillMaxSize(),
+                        .fillMaxWidth()
+                        .weight(1f),
                     newsletterInboxesUiState = newsletterInboxesUiState,
                     refreshUiState = refreshUiState,
                     inbox = inbox,

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.newsletter.ui.screen
+package com.tritiumgaming.core.ui.preview
 
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -122,4 +122,4 @@ private annotation class UkrainianPreviews
 @RussianPreviews
 @TurkishPreviews
 @UkrainianPreviews
-internal annotation class DevicePreviews
+annotation class DevicePreviews

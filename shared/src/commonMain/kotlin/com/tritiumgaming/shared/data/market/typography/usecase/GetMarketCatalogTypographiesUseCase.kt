@@ -1,6 +1,5 @@
 package com.tritiumgaming.shared.data.market.typography.usecase
 
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 

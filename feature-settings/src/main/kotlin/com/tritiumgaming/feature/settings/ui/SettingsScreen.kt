@@ -47,6 +47,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.Arrow60LeftIcon
+import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
@@ -61,56 +62,6 @@ import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSee
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
-
-@Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.BINARY)
-@Preview(name = "Small Phone", device = "id:small_phone")
-@Preview(name = "Small Phone Landscape", device = "spec:parent=small_phone,orientation=landscape")
-@Preview(name = "Medium Phone Portrait", device = "spec:width=411dp,height=891dp")
-@Preview(name = "Medium Phone Landscape", device = "spec:width=891dp,height=411dp")
-@Preview(name = "Medium Tablet Portrait", device = "spec:width=1280dp,height=800dp,dpi=240,orientation=portrait")
-@Preview(name = "Medium Tablet Landscape", device = "spec:width=1280dp,height=800dp,dpi=240")
-@Preview(name = "Foldable", device = "spec:width=673dp,height=841dp")
-private annotation class DevicePreviews
-
-@Composable
-@Preview
-private fun PrivacyOptionsButtonPreview() {
-    LocalThemeProvider {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            PrivacyOptionsButton()
-        }
-    }
-}
-
-@DevicePreviews
-@Composable
-@Preview
-private fun SettingsScreenPreview() {
-    LocalThemeProvider {
-        Surface(
-            color = LocalPalette.current.surface
-        ) {
-            val settingsScreenUiState = SettingsScreenUiState()
-            SettingsContent(
-                screensaverPreference = settingsScreenUiState.screensaverPreference,
-                networkPreference = settingsScreenUiState.networkPreference,
-                huntWarningAudioPreference = settingsScreenUiState.huntWarningAudioPreference,
-                ghostReorderPreference = settingsScreenUiState.ghostReorderPreference,
-                rTLPreference = settingsScreenUiState.rTLPreference,
-                uiDensityType = settingsScreenUiState.uiDensityType,
-                huntWarnDurationPreference = settingsScreenUiState.huntWarnDurationPreference,
-                paletteUiState = settingsScreenUiState.paletteUiState,
-                typographyUiState = settingsScreenUiState.typographyUiState,
-                analyticsPreference = settingsScreenUiState.analyticsPreference,
-                adPrivacyPreference = settingsScreenUiState.adPrivacyPreference,
-                isPrivacyOptionsRequired = settingsScreenUiState.isPrivacyOptionsRequired
-            )
-        }
-    }
-}
 
 @Composable
 fun SettingsScreen(
@@ -808,5 +759,44 @@ fun PrivacyOptionsButton(
 fun PrivacyOptionsButtonPreviewComponent() {
     LocalThemeProvider {
         PrivacyOptionsButton()
+    }
+}
+
+@Composable
+@Preview
+private fun PrivacyOptionsButtonPreview() {
+    LocalThemeProvider {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            PrivacyOptionsButton()
+        }
+    }
+}
+
+@DevicePreviews
+@Composable
+@Preview
+private fun SettingsScreenPreview() {
+    LocalThemeProvider {
+        Surface(
+            color = LocalPalette.current.surface
+        ) {
+            val settingsScreenUiState = SettingsScreenUiState()
+            SettingsContent(
+                screensaverPreference = settingsScreenUiState.screensaverPreference,
+                networkPreference = settingsScreenUiState.networkPreference,
+                huntWarningAudioPreference = settingsScreenUiState.huntWarningAudioPreference,
+                ghostReorderPreference = settingsScreenUiState.ghostReorderPreference,
+                rTLPreference = settingsScreenUiState.rTLPreference,
+                uiDensityType = settingsScreenUiState.uiDensityType,
+                huntWarnDurationPreference = settingsScreenUiState.huntWarnDurationPreference,
+                paletteUiState = settingsScreenUiState.paletteUiState,
+                typographyUiState = settingsScreenUiState.typographyUiState,
+                analyticsPreference = settingsScreenUiState.analyticsPreference,
+                adPrivacyPreference = settingsScreenUiState.adPrivacyPreference,
+                isPrivacyOptionsRequired = settingsScreenUiState.isPrivacyOptionsRequired
+            )
+        }
     }
 }
