@@ -7,9 +7,6 @@ import com.tritiumgaming.shared.data.market.palette.source.LocalPaletteDataSourc
 class PaletteLocalDataSourceImpl :
     LocalPaletteDataSource<List<PaletteLocalDataSourceImpl.LocalPalette>> {
 
-    private val localPaletteResources: List<PaletteType> = PaletteType.entries
-
-
     private val localPalettes: List<LocalPaletteDto> = listOf(
         LocalPaletteDto(
             uuid = PaletteType.CLASSIC.asUuid(),

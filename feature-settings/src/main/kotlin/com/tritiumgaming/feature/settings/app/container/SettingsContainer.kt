@@ -5,6 +5,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
@@ -52,4 +53,5 @@ class SettingsContainer(
     internal val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
     // Marketplace
     internal val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
+    internal val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
 )

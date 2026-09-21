@@ -15,6 +15,7 @@ import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
 import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
+import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
 import com.tritiumgaming.shared.data.account.model.toAccountMarketPalette
 import com.tritiumgaming.shared.data.account.model.toAccountMarketTypography
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
@@ -29,6 +30,9 @@ import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPale
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.mappers.LocalDefaultTypography
 import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
+import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
+import com.tritiumgaming.shared.data.market.typography.model.toAccountMarketTypography
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
@@ -87,6 +91,7 @@ class SettingsScreenViewModel(
     private val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
     // Marketplace
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
+    private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
 ) : ViewModel() {
 
     private val _userPreferencesState : StateFlow<UserPreferencesState> =
@@ -241,8 +246,21 @@ class SettingsScreenViewModel(
         }
     }
 
+    private val _marketCatalogTypographies = MutableStateFlow(emptyList<MarketTypography>())
+    private fun initMarketCatalogTypographies() {
+        Log.d(TAG, "initMarketCatalogTypographies")
+        viewModelScope.launch {
+            getMarketCatalogTypographiesUseCase()
+                .onSuccess { typographies ->
+                    Log.d(TAG, "initMarketCatalogTypographies success: $typographies")
+                    _marketCatalogTypographies.update { typographies }
+                }
+                .onFailure { it.printStackTrace() }
+        }
+    }
+
     /**
-     * Palettes
+     * Account
      */
 
     private val _unlockedAccountPalettesState = observeAccountUnlockedPalettesUseCase()
@@ -271,6 +289,35 @@ class SettingsScreenViewModel(
             emptyList()
         )
 
+    private val _unlockedAccountTypographiesState = observeAccountUnlockedTypographiesUseCase()
+        .map { result ->
+            result.fold(
+                onSuccess = { typographies ->
+                    Log.e(TAG, "Observed change to unlocked typographies: ${typographies.map{ it.uuid } }")
+                    typographies.map { unlocked ->
+                        unlocked.toAccountMarketTypography()
+                    }
+                },
+                onFailure = { error ->
+                    Log.e(TAG, "Error observing account unlocked typographies: $error")
+                    listOf(
+                        AccountMarketTypography(
+                            uuid = LocalDefaultTypography.asUuid(),
+                            unlocked = true
+                        )
+                    )
+                }
+            )
+        }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            emptyList()
+        )
+
+    /**
+     * Market / Account
+     */
 
     private val _marketAccountPaletteState = combine(
         _marketCatalogPalettes,
@@ -290,6 +337,30 @@ class SettingsScreenViewModel(
         }
 
         updatedPalettes.toAccountMarketPalette()
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        emptyList()
+    )
+
+    private val _marketAccountTypographyState = combine(
+        _marketCatalogTypographies,
+        _unlockedAccountTypographiesState
+    ) { marketTypographies, unlockedTypographies ->
+        val unlockedUUIDs = unlockedTypographies.map { it.uuid }
+        unlockedUUIDs.forEach {
+            Log.d(TAG, "unlockedTypography: $it")
+        }
+
+        val updatedTypographies = marketTypographies.map {
+            val found = it.uuid in unlockedUUIDs
+            Log.d(TAG, "marketTypography: $it | unlocked: $found")
+            it.copy(
+                unlocked = found
+            )
+        }
+
+        updatedTypographies.toAccountMarketTypography()
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -334,18 +405,6 @@ class SettingsScreenViewModel(
      * Typographies
      */
 
-    private val _unlockedTypographiesState = observeAccountUnlockedTypographiesUseCase()
-        .map {
-            it.getOrNull()?.map { unlocked ->
-                unlocked.toAccountMarketTypography()
-            } ?: emptyList()
-        }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.Eagerly,
-            emptyList()
-        )
-
     private fun saveCurrentTypographyUUID(uuid: String) {
         viewModelScope.launch {
             saveCurrentTypographyUseCase(uuid)
@@ -356,7 +415,7 @@ class SettingsScreenViewModel(
         viewModelScope.launch {
             try {
                 val result = findNextAvailableTypographyUseCase(
-                    typographies = _unlockedTypographiesState.value,
+                    typographies = _marketAccountTypographyState.value,
                     currentUUID = settingsScreenUiState.value.typographyUiState.uuid,
                     direction = direction
                 )
@@ -383,6 +442,7 @@ class SettingsScreenViewModel(
 
     init {
         initMarketCatalogPalettes()
+        initMarketCatalogTypographies()
     }
 
     companion object {
@@ -421,6 +481,7 @@ class SettingsScreenViewModel(
                 val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase = container.findNextAvailablePaletteUseCase
                 // Marketplace
                 val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
+                val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
 
                 SettingsScreenViewModel(
                     // Global Preferences
@@ -450,7 +511,8 @@ class SettingsScreenViewModel(
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                     findNextAvailablePaletteUseCase = findNextAvailablePaletteUseCase,
                     // Marketplace
-                    getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase
+                    getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
+                    getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase,
                 )
             }
         }

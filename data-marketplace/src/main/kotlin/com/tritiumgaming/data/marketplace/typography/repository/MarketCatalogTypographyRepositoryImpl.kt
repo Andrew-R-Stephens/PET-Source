@@ -1,6 +1,7 @@
 package com.tritiumgaming.data.marketplace.typography.repository
 
 import android.util.Log
+import com.tritiumgaming.data.marketplace.palette.dto.MarketPaletteDto
 import com.tritiumgaming.data.marketplace.typography.dto.MarketTypographyDto
 import com.tritiumgaming.data.marketplace.typography.dto.toDomain
 import com.tritiumgaming.data.marketplace.typography.dto.toLocal
@@ -24,6 +25,30 @@ class MarketCatalogTypographyRepositoryImpl(
     fun getLocal(): Result<List<MarketTypographyDto>> {
         Log.d("Typography", "Getting local typographies")
 
+        val result = localDataSource.getTypographies()
+        result.exceptionOrNull()?.let { e ->
+            Log.d("Typography", "Error getting local typographies: $e") }
+        val localList = result.getOrDefault(emptyList())
+
+        val localMarketList = localList.map {
+            MarketTypographyDto(
+                uuid = it.uuid,
+                name = "",
+                group = "Standard",
+                buyCredits = 0L,
+                priority = it.priority,
+                unlocked = it.unlocked,
+                typography = it.typography
+            )
+        }
+
+        return Result.success(localMarketList)
+    }
+/*
+
+    fun getLocal(): Result<List<MarketTypographyDto>> {
+        Log.d("Typography", "Getting local typographies")
+
         val result = localDataSource.get()
         result.exceptionOrNull()?.let { e ->
             Log.d("Typography", "Error getting local typographies: $e") }
@@ -31,6 +56,7 @@ class MarketCatalogTypographyRepositoryImpl(
 
         return Result.success(list)
     }
+*/
 
     suspend fun fetchRemote(
         queryOptions: TypographyQueryOptions = TypographyQueryOptions()

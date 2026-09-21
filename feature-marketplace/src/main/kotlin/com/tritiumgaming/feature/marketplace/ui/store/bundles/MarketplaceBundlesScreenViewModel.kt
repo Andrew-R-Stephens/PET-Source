@@ -39,6 +39,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.collections.map
 
 class MarketplaceBundlesScreenViewModel(
     private val addAccountCreditsUseCase: AddAccountCreditsUseCase,
@@ -165,20 +166,16 @@ class MarketplaceBundlesScreenViewModel(
         }
     }
 
-    private val _marketCatalogTypographiesUiState = MutableStateFlow(MarketCatalogTypographiesUiState())
+    private val _marketCatalogTypographies = MutableStateFlow(emptyList<MarketTypography>())
     private fun initMarketCatalogTypographies() {
+        Log.d(TAG, "initMarketCatalogTypographies")
         viewModelScope.launch {
-            try {
-                val result = getMarketCatalogTypographiesUseCase()
-
-                _marketCatalogTypographiesUiState.update {
-                    it.copy(
-                        typographies = result
-                    )
+            getMarketCatalogTypographiesUseCase()
+                .onSuccess { typographies ->
+                    Log.d(TAG, "initMarketCatalogPalettes success: $typographies")
+                    _marketCatalogTypographies.update { typographies }
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+                .onFailure { it.printStackTrace() }
         }
     }
 
@@ -262,13 +259,23 @@ class MarketplaceBundlesScreenViewModel(
         )
 
     private val _marketAccountTypographyState = combine(
-        _marketCatalogTypographiesUiState,
+        _marketCatalogTypographies,
         _accountUnlockedTypographies
-    ) { typographiesUiState, unlockedTypographies ->
+    ) { marketTypographies, unlockedTypographies ->
         val unlockedUUIDs = unlockedTypographies?.map { it.uuid } ?: emptyList()
-        typographiesUiState.typographies.map {
-            it.copy(unlocked = it.uuid in unlockedUUIDs)
+        unlockedUUIDs.forEach {
+            Log.d(TAG, "unlockedTypography: $it")
         }
+
+        val updatedPalettes = marketTypographies.map {
+            val found = it.uuid in unlockedUUIDs
+            Log.d(TAG, "marketTypography: $it | unlocked: $found")
+            it.copy(
+                unlocked = found
+            )
+        }
+
+        updatedPalettes
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),

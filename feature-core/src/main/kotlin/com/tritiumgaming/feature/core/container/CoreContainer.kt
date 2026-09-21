@@ -478,10 +478,7 @@ class CoreContainer(
         marketRepository = typographyRepository,
         accountRepository = firestoreAccountRepository
     )
-    val getNextUnlockedTypographyUseCase = GetNextUnlockedTypographyUseCase(
-        marketRepository = typographyRepository,
-        accountRepository = firestoreAccountRepository
-    )
+    val getNextUnlockedTypographyUseCase = GetNextUnlockedTypographyUseCase()
     val getMarketCatalogTypographiesUseCase = GetMarketCatalogTypographiesUseCase(
         repository = typographyRepository
     )

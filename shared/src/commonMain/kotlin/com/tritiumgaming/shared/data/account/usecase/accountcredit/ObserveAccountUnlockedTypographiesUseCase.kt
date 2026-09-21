@@ -9,6 +9,8 @@ class ObserveAccountUnlockedTypographiesUseCase (
     private val repository: FirestoreAccountRepository
 ) {
     operator fun invoke(): Flow<Result<List<AccountTypography>>> {
-        return repository.observeUnlockedTypographies()
+        val result = repository.observeUnlockedTypographies()
+
+        return result
     }
 }

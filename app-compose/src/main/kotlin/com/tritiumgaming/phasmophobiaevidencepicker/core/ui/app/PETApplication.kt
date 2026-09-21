@@ -196,7 +196,8 @@ class PETApplication : Application(),
             getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
             findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase,
             // Marketplace
-            getMarketCatalogPalettesUseCase = coreContainer.getMarketCatalogPalettesUseCase
+            getMarketCatalogPalettesUseCase = coreContainer.getMarketCatalogPalettesUseCase,
+            getMarketCatalogTypographiesUseCase = coreContainer.getMarketCatalogTypographiesUseCase
         )
 
         aboutContainer = AboutContainer()

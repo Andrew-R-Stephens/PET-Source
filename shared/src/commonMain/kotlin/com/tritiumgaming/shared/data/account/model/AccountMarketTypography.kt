@@ -7,7 +7,7 @@ import com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_P
 import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
 
 data class AccountMarketTypography (
-    internal val uuid: String,
+    val uuid: String,
     internal val name: String? = "",
     internal val group: String? = "",
     internal val buyCredits: Long = 0L,

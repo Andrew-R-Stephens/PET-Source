@@ -6,7 +6,6 @@ class SaveCurrentTypographyUseCase(
     private val repository: GlobalPreferencesRepository
 ) {
 
-    @Suppress("unused")
     suspend operator fun invoke(uuid: String) = repository.saveTypography(uuid)
 
 }
