@@ -12,6 +12,7 @@ import {onCall, HttpsError, CallableRequest} from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
 import {initializeApp} from "firebase-admin/app";
 import {getFirestore, Timestamp, Query, DocumentReference, Firestore, Transaction} from "firebase-admin/firestore";
+import {ErrorCodes} from "./error-codes";
 
 initializeApp();
 
@@ -34,7 +35,7 @@ export const setMarketplaceAgreementState = onCall<MarketplaceAgreementRequest>(
     case 1:
         return setMarketplaceAgreementState_v1(request);
     default:
-        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+        throw new HttpsError("invalid-argument", String(ErrorCodes.UNSUPPORTED_VERSION));
     }
 });
 
@@ -45,7 +46,7 @@ export const setMarketplaceAgreementState = onCall<MarketplaceAgreementRequest>(
 async function setMarketplaceAgreementState_v1(request: CallableRequest<MarketplaceAgreementRequest>) {
     const auth = request.auth;
     if (!auth) {
-        throw new HttpsError("unauthenticated", "User must be authenticated to update preferences.");
+        throw new HttpsError("unauthenticated", String(ErrorCodes.AUTH_REQUIRED_PREFERENCES));
     }
 
     const {isAgreementShown} = request.data;
@@ -69,7 +70,7 @@ async function setMarketplaceAgreementState_v1(request: CallableRequest<Marketpl
     } catch (error) {
         logger.error("Set marketplace agreement state failed:", error);
         if (error instanceof HttpsError) throw error;
-        throw new HttpsError("internal", "An internal error occurred while updating marketplace agreement state.");
+        throw new HttpsError("internal", String(ErrorCodes.INTERNAL_ERROR_MARKETPLACE_STATE));
     }
 }
 
@@ -91,7 +92,7 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
     case 1:
         return purchaseItemWithCredits_v1(request);
     default:
-        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+        throw new HttpsError("invalid-argument", String(ErrorCodes.UNSUPPORTED_VERSION));
     }
 });
 
@@ -102,7 +103,7 @@ export const purchaseItemWithCredits = onCall<PurchaseRequest>(async (request) =
 async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseRequest>) {
     const auth = request.auth;
     if (!auth) {
-        throw new HttpsError("unauthenticated", "User must be authenticated to purchase items.");
+        throw new HttpsError("unauthenticated", String(ErrorCodes.AUTH_REQUIRED_PURCHASE));
     }
 
     const {itemId, itemType} = request.data;
@@ -118,12 +119,12 @@ async function purchaseItemWithCredits_v1(request: CallableRequest<PurchaseReque
         case "bundle":
             return await purchaseBundleTransaction_v1(db, uid, itemId);
         default:
-            throw new HttpsError("invalid-argument", "Invalid item type.");
+            throw new HttpsError("invalid-argument", String(ErrorCodes.INVALID_ITEM_TYPE));
         }
     } catch (error) {
         logger.error("Purchase failed:", error);
         if (error instanceof HttpsError) throw error;
-        throw new HttpsError("internal", "An internal error occurred during purchase.");
+        throw new HttpsError("internal", String(ErrorCodes.INTERNAL_ERROR_PURCHASE));
     }
 }
 
@@ -168,7 +169,7 @@ async function processPurchaseTransaction(
     } else {
         const itemSnap = await transaction.get(itemRef);
         if (!itemSnap.exists) {
-            throw new HttpsError("not-found", "Item not found.");
+            throw new HttpsError("not-found", String(ErrorCodes.ITEM_NOT_FOUND));
         }
         itemData = itemSnap.data();
         price = itemData?.buyCredits || 0;
@@ -187,7 +188,7 @@ async function processPurchaseTransaction(
 
     // 3. Check Balance
     if (earnedCredits < price) {
-        throw new HttpsError("failed-precondition", "Insufficient credits.");
+        throw new HttpsError("failed-precondition", String(ErrorCodes.INSUFFICIENT_CREDITS));
     }
 
     // 4. Update Credits & Ensure Parents Exist (Avoid ghost documents)
@@ -264,14 +265,14 @@ async function purchaseBundleTransaction_v1(db: Firestore, uid: string, itemId: 
         // 1. Get Bundle Data
         const bundleSnap = await transaction.get(itemRef);
         if (!bundleSnap.exists) {
-            throw new HttpsError("not-found", "Bundle not found.");
+            throw new HttpsError("not-found", String(ErrorCodes.BUNDLE_NOT_FOUND));
         }
         const bundleData = bundleSnap.data();
         const bundleBuyCredits = bundleData?.buyCredits || 0;
         const itemRefs = bundleData?.items as DocumentReference[] | undefined;
 
         if (!itemRefs || !Array.isArray(itemRefs)) {
-            throw new HttpsError("internal", "Bundle has no items.");
+            throw new HttpsError("internal", String(ErrorCodes.BUNDLE_NO_ITEMS));
         }
 
         // 2. Fetch all item snapshots and their unlock status
@@ -292,7 +293,7 @@ async function purchaseBundleTransaction_v1(db: Firestore, uid: string, itemId: 
 
         const lockedCount = totalCount - unlockedCount;
         if (lockedCount === 0) {
-            throw new HttpsError("failed-precondition", "Bundle already fully unlocked.");
+            throw new HttpsError("failed-precondition", String(ErrorCodes.BUNDLE_ALREADY_UNLOCKED));
         }
 
         // 3. Calculate Dynamic Price
@@ -349,7 +350,7 @@ export const fetchTypographies = onCall<QueryRequest>(async (request) => {
     case 1:
         return fetchTypographies_v1(request);
     default:
-        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+        throw new HttpsError("invalid-argument", String(ErrorCodes.UNSUPPORTED_VERSION));
     }
 });
 
@@ -392,7 +393,7 @@ async function fetchTypographies_v1(request: CallableRequest<QueryRequest>) {
     } catch (error) {
         logger.error("Error fetching typographies:", error);
         if (error instanceof HttpsError) throw error;
-        throw new HttpsError("internal", "An error occurred while fetching typographies.");
+        throw new HttpsError("internal", String(ErrorCodes.INTERNAL_ERROR_FETCH_TYPOGRAPHIES));
     }
 }
 
@@ -405,7 +406,7 @@ export const fetchPalettes = onCall<QueryRequest>(async (request) => {
     case 1:
         return fetchPalettes_v1(request);
     default:
-        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+        throw new HttpsError("invalid-argument", String(ErrorCodes.UNSUPPORTED_VERSION));
     }
 });
 
@@ -448,7 +449,7 @@ async function fetchPalettes_v1(request: CallableRequest<QueryRequest>) {
     } catch (error) {
         logger.error("Error fetching palettes:", error);
         if (error instanceof HttpsError) throw error;
-        throw new HttpsError("internal", "An error occurred while fetching palettes.");
+        throw new HttpsError("internal", String(ErrorCodes.INTERNAL_ERROR_FETCH_PALETTES));
     }
 }
 
@@ -461,7 +462,7 @@ export const fetchBundles = onCall<QueryRequest>(async (request) => {
     case 1:
         return fetchBundles_v1(request);
     default:
-        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+        throw new HttpsError("invalid-argument", String(ErrorCodes.UNSUPPORTED_VERSION));
     }
 });
 
@@ -515,7 +516,7 @@ async function fetchBundles_v1(request: CallableRequest<QueryRequest>) {
     } catch (error) {
         logger.error("Error fetching bundles:", error);
         if (error instanceof HttpsError) throw error;
-        throw new HttpsError("internal", "An error occurred while fetching bundles.");
+        throw new HttpsError("internal", String(ErrorCodes.INTERNAL_ERROR_FETCH_BUNDLES));
     }
 }
 
@@ -536,7 +537,7 @@ export const addCredits = onCall<AddCreditsRequest>(async (request) => {
     case 1:
         return addCredits_v1(request);
     default:
-        throw new HttpsError("invalid-argument", `Unsupported version: ${version}`);
+        throw new HttpsError("invalid-argument", String(ErrorCodes.UNSUPPORTED_VERSION));
     }
 });
 
@@ -547,12 +548,12 @@ export const addCredits = onCall<AddCreditsRequest>(async (request) => {
 async function addCredits_v1(request: CallableRequest<AddCreditsRequest>) {
     const auth = request.auth;
     if (!auth) {
-        throw new HttpsError("unauthenticated", "User must be authenticated to add credits.");
+        throw new HttpsError("unauthenticated", String(ErrorCodes.AUTH_REQUIRED_ADD_CREDITS));
     }
 
     const {credits} = request.data;
     if (credits <= 0) {
-        throw new HttpsError("invalid-argument", "Credits must be a positive number.");
+        throw new HttpsError("invalid-argument", String(ErrorCodes.INVALID_CREDIT_AMOUNT));
     }
 
     const uid = auth.uid;
@@ -589,6 +590,6 @@ async function addCredits_v1(request: CallableRequest<AddCreditsRequest>) {
     } catch (error) {
         logger.error("Add credits failed:", error);
         if (error instanceof HttpsError) throw error;
-        throw new HttpsError("internal", "An internal error occurred while adding credits.");
+        throw new HttpsError("internal", String(ErrorCodes.INTERNAL_ERROR_ADD_CREDITS));
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">Versión no compatible.</string>
+    <string name="error_auth_required_preferences">El usuario debe estar autenticado para actualizar las preferencias.</string>
+    <string name="error_internal_marketplace_state">Ocurrió un error interno al actualizar el estado del acuerdo del mercado.</string>
+    <string name="error_auth_required_purchase">El usuario debe estar autenticado para comprar artículos.</string>
+    <string name="error_invalid_item_type">Tipo de artículo no válido.</string>
+    <string name="error_internal_purchase">Ocurrió un error interno durante la compra.</string>
+    <string name="error_item_not_found">Artículo no encontrado.</string>
+    <string name="error_insufficient_credits">Créditos insuficientes.</string>
+    <string name="error_bundle_not_found">Paquete no encontrado.</string>
+    <string name="error_bundle_no_items">El paquete no contiene artículos.</string>
+    <string name="error_bundle_already_unlocked">El paquete ya está completamente desbloqueado.</string>
+    <string name="error_internal_fetch_typographies">Ocurrió un error al obtener las tipografías.</string>
+    <string name="error_internal_fetch_palettes">Ocurrió un error al obtener las paletas.</string>
+    <string name="error_internal_fetch_bundles">Ocurrió un error al obtener los paquetes.</string>
+    <string name="error_auth_required_add_credits">El usuario debe estar autenticado para añadir créditos.</string>
+    <string name="error_invalid_credit_amount">Los créditos deben ser un número positivo.</string>
+    <string name="error_internal_add_credits">Ocurrió un error interno al añadir créditos.</string>
+    <string name="error_unknown">Ocurrió un error desconocido.</string>
+</resources>

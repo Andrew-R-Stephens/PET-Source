@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">Desteklenmeyen sürüm.</string>
+    <string name="error_auth_required_preferences">Tercihleri güncellemek için kullanıcının kimliği doğrulanmalıdır.</string>
+    <string name="error_internal_marketplace_state">Pazaryeri sözleşme durumu güncellenirken dahili bir hata oluştu.</string>
+    <string name="error_auth_required_purchase">Öğe satın almak için kullanıcının kimliği doğrulanmalıdır.</string>
+    <string name="error_invalid_item_type">Geçersiz öğe türü.</string>
+    <string name="error_internal_purchase">Satın alma sırasında dahili bir hata oluştu.</string>
+    <string name="error_item_not_found">Öğe bulunamadı.</string>
+    <string name="error_insufficient_credits">Yetersiz kredi.</string>
+    <string name="error_bundle_not_found">Paket bulunamadı.</string>
+    <string name="error_bundle_no_items">Pakette hiç öğe yok.</string>
+    <string name="error_bundle_already_unlocked">Paketin kilidi zaten tamamen açılmış.</string>
+    <string name="error_internal_fetch_typographies">Tipografiler alınırken bir hata oluştu.</string>
+    <string name="error_internal_fetch_palettes">Paletler alınırken bir hata oluştu.</string>
+    <string name="error_internal_fetch_bundles">Paketler alınırken bir hata oluştu.</string>
+    <string name="error_auth_required_add_credits">Kredi eklemek için kullanıcının kimliği doğrulanmalıdır.</string>
+    <string name="error_invalid_credit_amount">Kredi miktarı pozitif bir sayı olmalıdır.</string>
+    <string name="error_internal_add_credits">Kredi eklenirken dahili bir hata oluştu.</string>
+    <string name="error_unknown">Bilinmeyen bir hata oluştu.</string>
+</resources>

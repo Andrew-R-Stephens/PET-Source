@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">不支持的版本。</string>
+    <string name="error_auth_required_preferences">用户必须登录才能更新首选项。</string>
+    <string name="error_internal_marketplace_state">更新商城协议状态时发生内部错误。</string>
+    <string name="error_auth_required_purchase">用户必须登录才能购买商品。</string>
+    <string name="error_invalid_item_type">无效的商品类型。</string>
+    <string name="error_internal_purchase">购买过程中发生内部错误。</string>
+    <string name="error_item_not_found">未找到商品。</string>
+    <string name="error_insufficient_credits">余额不足。</string>
+    <string name="error_bundle_not_found">未找到捆绑包。</string>
+    <string name="error_bundle_no_items">捆绑包中没有商品。</string>
+    <string name="error_bundle_already_unlocked">捆绑包已完全解锁。</string>
+    <string name="error_internal_fetch_typographies">获取字体样式时发生错误。</string>
+    <string name="error_internal_fetch_palettes">获取调色板时发生错误。</string>
+    <string name="error_internal_fetch_bundles">获取捆绑包时发生错误。</string>
+    <string name="error_auth_required_add_credits">用户必须登录才能充值。</string>
+    <string name="error_invalid_credit_amount">充值金额必须为正数。</string>
+    <string name="error_internal_add_credits">充值时发生内部错误。</string>
+    <string name="error_unknown">发生未知错误。</string>
+</resources>

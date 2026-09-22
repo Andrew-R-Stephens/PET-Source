@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">Version non supportée.</string>
+    <string name="error_auth_required_preferences">L\'utilisateur doit être authentifié pour mettre à jour les préférences.</string>
+    <string name="error_internal_marketplace_state">Une erreur interne est survenue lors de la mise à jour de l\'état de l\'accord du marché.</string>
+    <string name="error_auth_required_purchase">L\'utilisateur doit être authentifié pour acheter des articles.</string>
+    <string name="error_invalid_item_type">Type d\'article invalide.</string>
+    <string name="error_internal_purchase">Une erreur interne est survenue lors de l\'achat.</string>
+    <string name="error_item_not_found">Article non trouvé.</string>
+    <string name="error_insufficient_credits">Crédits insuffisants.</string>
+    <string name="error_bundle_not_found">Pack non trouvé.</string>
+    <string name="error_bundle_no_items">Le pack ne contient aucun article.</string>
+    <string name="error_bundle_already_unlocked">Pack déjà entièrement déverrouillé.</string>
+    <string name="error_internal_fetch_typographies">Une erreur est survenue lors de la récupération des typographies.</string>
+    <string name="error_internal_fetch_palettes">Une erreur est survenue lors de la récupération des palettes.</string>
+    <string name="error_internal_fetch_bundles">Une erreur est survenue lors de la récupération des packs.</string>
+    <string name="error_auth_required_add_credits">L\'utilisateur doit être authentifié pour ajouter des crédits.</string>
+    <string name="error_invalid_credit_amount">Les crédits doivent être un nombre positif.</string>
+    <string name="error_internal_add_credits">Une erreur interne est survenue lors de l\'ajout de crédits.</string>
+    <string name="error_unknown">Une erreur inconnue est survenue.</string>
+</resources>

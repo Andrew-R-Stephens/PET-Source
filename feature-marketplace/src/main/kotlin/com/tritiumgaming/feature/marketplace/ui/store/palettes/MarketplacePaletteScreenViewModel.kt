@@ -26,6 +26,8 @@ import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
 import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
+import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
+import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources.MarketplaceCategoryTitles
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -364,7 +366,7 @@ class MarketplacePaletteScreenViewModel(
         val items = mutableListOf<ShopScreenUiItem>()
 
         if(paletteBundles.isNotEmpty()) {
-            items.add(ShopScreenUiItem.Header("Bundles"))
+            items.add(ShopScreenUiItem.Header(MarketplaceCategoryTitles.BUNDLES))
             paletteBundles.forEach { bundleState ->
                 items.add(
                     ShopScreenUiItem.PaletteBundle(
@@ -380,9 +382,11 @@ class MarketplacePaletteScreenViewModel(
 
         grouped.forEach { (groupName, groupPalettes) ->
             if (groupName.isNotEmpty()) {
-                items.add(
-                    ShopScreenUiItem.Header(groupName)
-                )
+                try {
+                    val group = MarketplaceCategoryTitles.from (groupName)
+                    group?.let {
+                        items.add(ShopScreenUiItem.Header(it)) }
+                } catch (e: Exception) { e.printStackTrace() }
             }
             groupPalettes.forEach { marketPalette ->
                 marketPalette.group?.let { group ->

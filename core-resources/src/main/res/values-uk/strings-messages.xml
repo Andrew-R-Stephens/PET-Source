@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">Непідтримувана версія.</string>
+    <string name="error_auth_required_preferences">Для оновлення налаштувань користувач повинен бути автентифікований.</string>
+    <string name="error_internal_marketplace_state">Сталася внутрішня помилка під час оновлення статусу угоди торгової площадки.</string>
+    <string name="error_auth_required_purchase">Для купівлі товарів користувач повинен бути автентифікований.</string>
+    <string name="error_invalid_item_type">Недійсний тип товару.</string>
+    <string name="error_internal_purchase">Сталася внутрішня помилка під час купівлі.</string>
+    <string name="error_item_not_found">Товар не знайдено.</string>
+    <string name="error_insufficient_credits">Недостатньо кредитів.</string>
+    <string name="error_bundle_not_found">Набір не знайдено.</string>
+    <string name="error_bundle_no_items">Набір не містить товарів.</string>
+    <string name="error_bundle_already_unlocked">Набір уже повністю разблоковано.</string>
+    <string name="error_internal_fetch_typographies">Сталася помилка під час отримання типографіки.</string>
+    <string name="error_internal_fetch_palettes">Сталася помилка під час отримання палітр.</string>
+    <string name="error_internal_fetch_bundles">Сталася помилка під час отримання наборів.</string>
+    <string name="error_auth_required_add_credits">Для додавання кредитів користувач повинен бути автентифікований.</string>
+    <string name="error_invalid_credit_amount">Кількість кредитів має бути додатним числом.</string>
+    <string name="error_internal_add_credits">Сталася внутрішня помилка під час додавання кредитів.</string>
+    <string name="error_unknown">Сталася невідома помилка.</string>
+</resources>

@@ -42,6 +42,7 @@ import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.feature.marketplace.app.mappers.toStringResource
 import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
@@ -49,6 +50,7 @@ import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
+import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -252,7 +254,7 @@ private fun PortraitContent(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(8.dp),
-                                text = item.name,
+                                text = stringResource(item.name.toStringResource()),
                                 style = LocalTypography.current.primary.bold.copy(
                                     textAlign = TextAlign.Center
                                 ),
@@ -348,7 +350,7 @@ private fun LandscapeContent(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(8.dp),
-                                text = item.name,
+                                text = stringResource(item.name.toStringResource()),
                                 style = LocalTypography.current.primary.bold.copy(
                                     textAlign = TextAlign.Center
                                 ),
@@ -437,7 +439,7 @@ private fun PaletteShopPreview() {
                 .fillMaxSize(),
             unlocks = MarketCatalogScreenUiState(
                 items = listOf(
-                    ShopScreenUiItem.Header("Bundle"),
+                    ShopScreenUiItem.Header(MarketplaceResources.MarketplaceCategoryTitles.BUNDLES),
                     ShopScreenUiItem.PaletteBundle(
                         "",
                         MarketBundle("", ""),
@@ -445,7 +447,7 @@ private fun PaletteShopPreview() {
                         false,
                         pricing = BundlePricingUiState()
                     ),
-                    ShopScreenUiItem.Header("Specialist"),
+                    ShopScreenUiItem.Header(MarketplaceResources.MarketplaceCategoryTitles.PRESTIGE),
                     ShopScreenUiItem.Palette(marketPalette1, palette1.toPaletteResource()),
                 )
             )

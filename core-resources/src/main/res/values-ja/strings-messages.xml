@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">サポートされていないバージョンです。</string>
+    <string name="error_auth_required_preferences">設定を更新するには、ユーザー認証が必要です。</string>
+    <string name="error_internal_marketplace_state">マーケットプレイスの同意状態を更新中に内部エラーが発生しました。</string>
+    <string name="error_auth_required_purchase">アイテムを購入するには、ユーザー認証が必要です。</string>
+    <string name="error_invalid_item_type">无効なアイテムタイプです。</string>
+    <string name="error_internal_purchase">購入中に内部エラーが発生しました。</string>
+    <string name="error_item_not_found">アイテムが見つかりません。</string>
+    <string name="error_insufficient_credits">クレジットが不足しています。</string>
+    <string name="error_bundle_not_found">バンドルが見つかりません。</string>
+    <string name="error_bundle_no_items">バンドルにアイテムがありません。</string>
+    <string name="error_bundle_already_unlocked">バンドルはすでに完全に解放されています。</string>
+    <string name="error_internal_fetch_typographies">タイポグラフィの取得中にエラーが発生しました。</string>
+    <string name="error_internal_fetch_palettes">パレットの取得中にエラーが発生しました。</string>
+    <string name="error_internal_fetch_bundles">バンドルの取得中にエラーが発生しました。</string>
+    <string name="error_auth_required_add_credits">クレジットを追加するには、ユーザー認証が必要です。</string>
+    <string name="error_invalid_credit_amount">クレジットは正の数である必要があります。</string>
+    <string name="error_internal_add_credits">クレジットの追加中に内部エラーが発生しました。</string>
+    <string name="error_unknown">不明なエラーが発生しました。</string>
+</resources>

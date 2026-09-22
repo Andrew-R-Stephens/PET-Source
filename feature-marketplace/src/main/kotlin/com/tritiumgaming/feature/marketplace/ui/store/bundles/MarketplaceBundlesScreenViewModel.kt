@@ -26,6 +26,8 @@ import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
 import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
+import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
+import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources.MarketplaceCategoryTitles
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
@@ -453,7 +455,7 @@ class MarketplaceBundlesScreenViewModel(
         val items = mutableListOf<ShopScreenUiItem>()
 
         if (paletteBundles.isNotEmpty() || typographyBundles.isNotEmpty()) {
-            items.add(ShopScreenUiItem.Header("Bundles"))
+            items.add(ShopScreenUiItem.Header(MarketplaceCategoryTitles.BUNDLES))
         }
 
         paletteBundles.forEach { bundleState ->

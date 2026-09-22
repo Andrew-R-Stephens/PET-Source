@@ -64,4 +64,6 @@ dependencies {
     implementation(libs.android.play.core.update)
     // For Kotlin users also add the Kotlin extensions library for Play Core:
     implementation(libs.android.play.coreKtx.update)
+
+    implementation(project(":shared"))
 }

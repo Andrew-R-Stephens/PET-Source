@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">Nicht unterstützte Version.</string>
+    <string name="error_auth_required_preferences">Der Benutzer muss authentifiziert sein, um die Einstellungen zu aktualisieren.</string>
+    <string name="error_internal_marketplace_state">Beim Aktualisieren des Status der Marktplatzvereinbarung ist ein interner Fehler aufgetreten.</string>
+    <string name="error_auth_required_purchase">Der Benutzer muss authentifiziert sein, um Artikel zu kaufen.</string>
+    <string name="error_invalid_item_type">Ungültiger Artikeltyp.</string>
+    <string name="error_internal_purchase">Beim Kauf ist ein interner Fehler aufgetreten.</string>
+    <string name="error_item_not_found">Artikel nicht gefunden.</string>
+    <string name="error_insufficient_credits">Unzureichendes Guthaben.</string>
+    <string name="error_bundle_not_found">Paket nicht gefunden.</string>
+    <string name="error_bundle_no_items">Das Paket enthält keine Artikel.</string>
+    <string name="error_bundle_already_unlocked">Paket bereits vollständig freigeschaltet.</string>
+    <string name="error_internal_fetch_typographies">Beim Abrufen der Typografien ist ein Fehler aufgetreten.</string>
+    <string name="error_internal_fetch_palettes">Beim Abrufen der Paletten ist ein Fehler aufgetreten.</string>
+    <string name="error_internal_fetch_bundles">Beim Abrufen der Pakete ist ein Fehler aufgetreten.</string>
+    <string name="error_auth_required_add_credits">Der Benutzer muss authentifiziert sein, um Guthaben hinzuzufügen.</string>
+    <string name="error_invalid_credit_amount">Das Guthaben muss eine positive Zahl sein.</string>
+    <string name="error_internal_add_credits">Beim Hinzufügen von Guthaben ist ein interner Fehler aufgetreten.</string>
+    <string name="error_unknown">Ein unbekannter Fehler ist aufgetreten.</string>
+</resources>

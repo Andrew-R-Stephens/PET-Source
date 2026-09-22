@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unsupported_version">Nepodporovaná verze.</string>
+    <string name="error_auth_required_preferences">Pro aktualizaci předvoleb musí být uživatel přihlášen.</string>
+    <string name="error_internal_marketplace_state">Při aktualizaci stavu smlouvy s obchodem došlo k interní chybě.</string>
+    <string name="error_auth_required_purchase">Pro nákup položek musí být uživatel přihlášen.</string>
+    <string name="error_invalid_item_type">Neplatný typ položky.</string>
+    <string name="error_internal_purchase">Během nákupu došlo k interní chybě.</string>
+    <string name="error_item_not_found">Položka nebyla nalezena.</string>
+    <string name="error_insufficient_credits">Nedostatek kreditů.</string>
+    <string name="error_bundle_not_found">Balíček nebyl nalezen.</string>
+    <string name="error_bundle_no_items">Balíček neobsahuje žádné položky.</string>
+    <string name="error_bundle_already_unlocked">Balíček je již plně odemčen.</string>
+    <string name="error_internal_fetch_typographies">Při načítání typografie došlo k chybě.</string>
+    <string name="error_internal_fetch_palettes">Při načítání palet došlo k chybě.</string>
+    <string name="error_internal_fetch_bundles">Při načítání balíčků došlo k chybě.</string>
+    <string name="error_auth_required_add_credits">Pro přidání kreditů musí být uživatel přihlášen.</string>
+    <string name="error_invalid_credit_amount">Kredity must být kladné číslo.</string>
+    <string name="error_internal_add_credits">Při přidávání kreditů došlo k interní chybě.</string>
+    <string name="error_unknown">Došlo k neznámé chybě.</string>
+</resources>
