@@ -18,4 +18,10 @@
     <string name="error_invalid_credit_amount">Кількість кредитів має бути додатним числом.</string>
     <string name="error_internal_add_credits">Сталася внутрішня помилка під час додавання кредитів.</string>
     <string name="error_unknown">Сталася невідома помилка.</string>
+
+    <string name="message_bundle_unlocked">Набір розблоковано</string>
+    <string name="message_theme_unlocked">Тему розблоковано</string>
+    <string name="message_typography_unlocked">Типографіку розблоковано</string>
+    <string name="message_credits_earned">Кредити додано</string>
+    <string name="message_theme_equipped">Тему встановлено</string>
 </resources>

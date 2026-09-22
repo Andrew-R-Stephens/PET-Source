@@ -18,4 +18,10 @@
     <string name="error_invalid_credit_amount">Das Guthaben muss eine positive Zahl sein.</string>
     <string name="error_internal_add_credits">Beim Hinzufügen von Guthaben ist ein interner Fehler aufgetreten.</string>
     <string name="error_unknown">Ein unbekannter Fehler ist aufgetreten.</string>
+
+    <string name="message_bundle_unlocked">Paket freigeschaltet</string>
+    <string name="message_theme_unlocked">Thema freigeschaltet</string>
+    <string name="message_typography_unlocked">Typografie freigeschaltet</string>
+    <string name="message_credits_earned">Guthaben hinzugefügt</string>
+    <string name="message_theme_equipped">Thema ausgestattet</string>
 </resources>

@@ -18,4 +18,10 @@
     <string name="error_invalid_credit_amount">Kredi miktarı pozitif bir sayı olmalıdır.</string>
     <string name="error_internal_add_credits">Kredi eklenirken dahili bir hata oluştu.</string>
     <string name="error_unknown">Bilinmeyen bir hata oluştu.</string>
+
+    <string name="message_bundle_unlocked">Paket kilidi açıldı</string>
+    <string name="message_theme_unlocked">Tema kilidi açıldı</string>
+    <string name="message_typography_unlocked">Tipografi kilidi açıldı</string>
+    <string name="message_credits_earned">Kredi eklendi</string>
+    <string name="message_theme_equipped">Tema donatıldı</string>
 </resources>

@@ -18,4 +18,10 @@
     <string name="error_invalid_credit_amount">Kredity must být kladné číslo.</string>
     <string name="error_internal_add_credits">Při přidávání kreditů došlo k interní chybě.</string>
     <string name="error_unknown">Došlo k neznámé chybě.</string>
+
+    <string name="message_bundle_unlocked">Balíček odemčen</string>
+    <string name="message_theme_unlocked">Motiv odemčen</string>
+    <string name="message_typography_unlocked">Typografie odemčena</string>
+    <string name="message_credits_earned">Kredity přidány</string>
+    <string name="message_theme_equipped">Motiv vybaven</string>
 </resources>

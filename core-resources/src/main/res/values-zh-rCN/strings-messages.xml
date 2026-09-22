@@ -18,4 +18,10 @@
     <string name="error_invalid_credit_amount">充值金额必须为正数。</string>
     <string name="error_internal_add_credits">充值时发生内部错误。</string>
     <string name="error_unknown">发生未知错误。</string>
+
+    <string name="message_bundle_unlocked">捆绑包已解锁</string>
+    <string name="message_theme_unlocked">主题已解锁</string>
+    <string name="message_typography_unlocked">字体样式已解锁</string>
+    <string name="message_credits_earned">积分已添加</string>
+    <string name="message_theme_equipped">主题已装备</string>
 </resources>

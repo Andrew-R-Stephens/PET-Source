@@ -18,4 +18,10 @@
     <string name="error_invalid_credit_amount">Количество кредитов должно быть положительным числом.</string>
     <string name="error_internal_add_credits">Произошла внутренняя ошибка при добавлении кредитов.</string>
     <string name="error_unknown">Произошла неизвестная ошибка.</string>
+
+    <string name="message_bundle_unlocked">Набор разблокирован</string>
+    <string name="message_theme_unlocked">Тема разблокирована</string>
+    <string name="message_typography_unlocked">Типографика разблокирована</string>
+    <string name="message_credits_earned">Кредиты добавлены</string>
+    <string name="message_theme_equipped">Тема применена</string>
 </resources>

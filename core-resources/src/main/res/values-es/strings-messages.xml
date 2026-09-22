@@ -18,4 +18,10 @@
     <string name="error_invalid_credit_amount">Los créditos deben ser un número positivo.</string>
     <string name="error_internal_add_credits">Ocurrió un error interno al añadir créditos.</string>
     <string name="error_unknown">Ocurrió un error desconocido.</string>
+
+    <string name="message_bundle_unlocked">Paquete desbloqueado</string>
+    <string name="message_theme_unlocked">Tema desbloqueado</string>
+    <string name="message_typography_unlocked">Tipografía desbloqueada</string>
+    <string name="message_credits_earned">Créditos añadidos</string>
+    <string name="message_theme_equipped">Tema equipado</string>
 </resources>
