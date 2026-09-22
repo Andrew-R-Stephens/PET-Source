@@ -3,6 +3,7 @@ package com.tritiumgaming.core.ui.common.network
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
+import com.tritiumgaming.shared.core.common.network.FirebaseFunctionMessages
 
 @get:StringRes
 val FirebaseFunctionError.toStringResource: Int
@@ -25,4 +26,13 @@ val FirebaseFunctionError.toStringResource: Int
         FirebaseFunctionError.INVALID_CREDIT_AMOUNT -> R.string.error_invalid_credit_amount
         FirebaseFunctionError.INTERNAL_ERROR_ADD_CREDITS -> R.string.error_internal_add_credits
         FirebaseFunctionError.UNKNOWN -> R.string.error_unknown
+    }
+
+@get:StringRes
+val FirebaseFunctionMessages.toStringResource: Int
+    get() = when(this) {
+        FirebaseFunctionMessages.BUNDLE_UNLOCKED -> R.string.message_bundle_unlocked
+        FirebaseFunctionMessages.THEME_UNLOCKED ->  R.string.message_theme_unlocked
+        FirebaseFunctionMessages.TYPOGRAPHY_UNLOCKED ->  R.string.message_typography_unlocked
+        FirebaseFunctionMessages.CREDITS_EARNED ->  R.string.message_credits_earned
     }

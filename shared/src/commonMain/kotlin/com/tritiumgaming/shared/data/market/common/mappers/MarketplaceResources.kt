@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.market.metadata.mappers
+package com.tritiumgaming.shared.data.market.common.mappers
 
 class MarketplaceResources {
 

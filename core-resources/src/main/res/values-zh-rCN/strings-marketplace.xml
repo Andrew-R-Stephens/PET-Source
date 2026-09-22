@@ -29,5 +29,6 @@
     <string name="marketplace_acknowledgement_warning_list_2">“P.E.T.”不隶属于任何其他可能与所提供内容具有或不具有相似性的实体。</string>
     <string name="marketplace_acknowledgement_warning_list_3">所有内容，无论是过去还是现在，都仅用于“P.E.T.”内的美观目的。内容无法在“P.E.T.”之外兑换或转移，并且不会对任何外部实体产生影响，例如但不限于“Phasmophobia”等游戏。</string>
     <string name="marketplace_acknowledgement_warning_list_4">所有交易均为最终交易。内容可能部分完整、损坏或有错误。开发者将来可能会禁用、删除或修改内容。您的帐号失去对内容的访问权限或任何内容更改的认证均由开发者决定。</string>
+    <string name="marketplace_acknowledgement_button_confirm">知道了！</string>
 
 </resources>

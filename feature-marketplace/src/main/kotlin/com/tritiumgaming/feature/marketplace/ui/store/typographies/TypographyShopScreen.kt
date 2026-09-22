@@ -1,16 +1,26 @@
 package com.tritiumgaming.feature.marketplace.ui.store.typographies
 
+import android.widget.Toast
+import androidx.activity.compose.LocalActivity
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -19,11 +29,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
+import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
+import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @DevicePreviews
@@ -52,6 +64,9 @@ fun TypographyShopScreen(
     navController: NavHostController = rememberNavController(),
     viewmodel: MarketplaceTypographiesScreenViewModel
 ) {
+    val context = LocalContext.current
+    val activity = LocalActivity.current
+
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
     val isAgreementShown by viewmodel.marketplaceAgreementUiState.collectAsStateWithLifecycle()
@@ -59,7 +74,43 @@ fun TypographyShopScreen(
 
     val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
 
-    //val unlocks by viewmodel.marketCatalogTypographiesUiState.collectAsStateWithLifecycle()
+    val unlocks by viewmodel.marketCatalogTypographiesUiState.collectAsStateWithLifecycle()
+    var isLoading by remember { mutableStateOf(false) }
+
+    val onClickRewardedAd: () -> Unit = {
+        activity?.let {
+            viewmodel.onAttemptRewardedAd(
+                activity,
+                onSuccess = { quantity, _ ->
+                    viewmodel.addCredits(
+                        credits = quantity,
+                        onSuccess = {
+                            Toast.makeText(
+                                context, "Credits Earned",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onFailure = { message ->
+                            val error = FirebaseFunctionError.fromString(message)
+                            Toast.makeText(
+                                context,
+                                error.toStringResource,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                },
+                onFailure = { message ->
+                    val error = FirebaseFunctionError.fromString(message)
+                    Toast.makeText(
+                        context,
+                        error.toStringResource,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        }
+    }
 
     MarketplaceScreen(
         modifier = Modifier,
@@ -70,9 +121,7 @@ fun TypographyShopScreen(
         onConfirmAgreement = {
             viewmodel.setMarketplaceAgreementAccepted()
         },
-        onClickRewardButton = {
-            // handle reward button click if needed in this screen
-        },
+        onClickRewardButton = onClickRewardedAd,
         accountContent = { },
     ) { modifier ->
 
@@ -82,42 +131,45 @@ fun TypographyShopScreen(
         ) {
 
             TypographyShopContent(
-                //unlocks = unlocks
-                unlocks = MarketCatalogTypographiesUiState(
-                    typographies = listOf(
-                        MarketTypography(
-                            "0",
-                            name = "Test Typography 0",
-                            buyCredits = 100,
-                            typography = TypographyResources.TypographyType.NEUCHA
-                        ),
-                        MarketTypography(
-                            "1",
-                            name = "Test Typography 1",
-                            buyCredits = 100,
-                            typography = TypographyResources.TypographyType.JETBRAINS_MONO
-                        ),
-                        MarketTypography(
-                            "2",
-                            name = "Test Typography 2",
-                            buyCredits = 100,
-                            typography = TypographyResources.TypographyType.JOURNAL
-                        ),
-                    )
-                ),
-                onBuyClick = {
+                unlocks = unlocks,
+                onBuyClick = { marketTypography ->
+                    isLoading = true
                     viewmodel.obtainItemWithCredits(
-                        it.uuid, "typography",
+                        marketTypography.uuid, "typography",
                         onSuccess = { _ ->
-                            // Toast
+                            Toast.makeText(context, "Typography Unlocked!", Toast.LENGTH_SHORT).show()
+                        },
+                        onFailure = { message ->
+                            val error = FirebaseFunctionError.fromString(message)
+                            Toast.makeText(
+                                context,
+                                error.toStringResource,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onComplete = {
+                            isLoading = false
                         }
                     )
                 }
             )
+
+            if (isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clickable(enabled = false) {}
+                        .background(LocalPalette.current.scrim.copy(alpha = 0.5f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(
+                        color = LocalPalette.current.primary
+                    )
+                }
+            }
         }
     }
 }
-
 
 @Composable
 private fun TypographyShopContent(
@@ -166,4 +218,3 @@ private fun CategoryList(
     }
 
 }
-

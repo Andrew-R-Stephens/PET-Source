@@ -36,6 +36,8 @@ import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
@@ -46,10 +48,11 @@ import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiStat
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 
 @Composable
 fun BundleShopScreen(
@@ -65,7 +68,6 @@ fun BundleShopScreen(
 
     val user = if(!LocalInspectionMode.current) Firebase.auth.currentUser else null
 
-    val isAgreementShown by viewmodel.marketplaceAgreementUiState.collectAsStateWithLifecycle()
     val showAgreementDialog by viewmodel.showAgreementDialog.collectAsStateWithLifecycle()
 
     val accountCredits by viewmodel.accountCreditsUiState.collectAsStateWithLifecycle()
@@ -83,17 +85,21 @@ fun BundleShopScreen(
                                 Toast.LENGTH_SHORT
                             ).show()
                         },
-                        onFailure = {
+                        onFailure = { message ->
+                            val error = FirebaseFunctionError.fromString(message)
                             Toast.makeText(
-                                context, "Error! $it",
+                                context,
+                                error.toStringResource,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     )
                 },
-                onFailure = {
+                onFailure = { message ->
+                    val error = FirebaseFunctionError.fromString(message)
                     Toast.makeText(
-                        context, "Error! $it",
+                        context,
+                        error.toStringResource,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -130,10 +136,11 @@ fun BundleShopScreen(
                         viewmodel.obtainItemWithCredits(
                             marketPalette.uuid, "bundle",
                             onSuccess = { _ ->
-                                Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, R.string.message_bundle_unlocked, Toast.LENGTH_SHORT).show()
                             },
                             onFailure = { message ->
-                                Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                                val error = FirebaseFunctionError.fromString(message)
+                                Toast.makeText(context, error.toStringResource, Toast.LENGTH_SHORT).show()
                             },
                             onComplete = {
                                 isLoading = false

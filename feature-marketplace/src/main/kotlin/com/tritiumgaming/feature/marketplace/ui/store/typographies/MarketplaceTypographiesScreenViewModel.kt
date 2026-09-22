@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.marketplace.ui.store.typographies
 
+import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -8,6 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
+import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
 import com.tritiumgaming.shared.data.account.model.AccountCredits
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
@@ -16,7 +18,11 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.shared.data.ads.model.RewardedAdState
+import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
+import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
 import kotlinx.coroutines.Job
@@ -25,6 +31,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.stateIn
@@ -40,7 +47,9 @@ class MarketplaceTypographiesScreenViewModel(
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
     private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
-    private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase
+    private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
+    private val showRewardedAdsUseCase: ShowRewardedAdUseCase? = null,
+    getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase? = null
 ): ViewModel() {
 
     private val _showAgreementDialog = MutableStateFlow(false)
@@ -74,8 +83,50 @@ class MarketplaceTypographiesScreenViewModel(
         _showAgreementDialog.value = false
     }
 
+    fun onAttemptRewardedAd(
+        activity: Activity,
+        onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
+        onFailure: (msg: String) -> Unit = {}
+    ) {
+        if (marketplaceAgreementUiState.value == false) {
+            _showAgreementDialog.value = true
+        } else {
+            showRewardedAd(activity, onSuccess, onFailure)
+        }
+    }
+
+    val rewardedAdUiState = getRewardedAdFlowUseCase?.invoke()
+        ?.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = RewardedAdState()
+        )
+
+    private fun showRewardedAd(
+        activity: Activity,
+        onSuccess: (quantity: Int, type: String) -> Unit = { _, _ -> },
+        onFailure: (msg: String) -> Unit = {}
+    ) {
+        viewModelScope.launch {
+            try {
+                showRewardedAdsUseCase?.invoke(
+                    activity = activity,
+                    onRewardEarned = { amount, type ->
+                        onSuccess(amount, type)
+                    },
+                    onAdClosed = { },
+                    onAdFailedToShow = { error ->
+                        onFailure(error.toString())
+                    }
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                onFailure(e.message ?: "")
+            }
+        }
+    }
+
     private var observeCreditsJob: Job? = null
-    private var observeUnlockedTypographiesJob: Job? = null
 
     fun addCredits(
         credits: Int,
@@ -88,7 +139,7 @@ class MarketplaceTypographiesScreenViewModel(
                 onSuccess()
             } catch (e: Exception) {
                 e.printStackTrace()
-                onFailure(e.message ?: "Unknown error")
+                onFailure(e.message ?: "")
             }
         }
     }
@@ -116,15 +167,51 @@ class MarketplaceTypographiesScreenViewModel(
                     onSuccess("Purchase successful!")
                     Log.d(TAG, "Purchase successful!")
                 } else {
-                    onFailure("Purchase failed: ${result.exceptionOrNull()?.message}")
-                    Log.e(TAG, "Purchase failed: ${result.exceptionOrNull()?.message}")
+                    val errorMessage = result.exceptionOrNull()?.message ?: ""
+                    onFailure(errorMessage)
+                    Log.e(TAG, "Purchase failed: $errorMessage")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                onFailure(e.message ?: "")
             }
             onComplete()
         }
     }
+
+    private val _accountUnlockedTypographies = observeAccountUnlockedTypographiesUseCase()
+        .map { it.getOrNull() }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000),
+            emptyList()
+        )
+
+    private val _marketCatalogTypographies = MutableStateFlow(emptyList<MarketTypography>())
+    private fun initMarketCatalogTypographies() {
+        viewModelScope.launch {
+            getMarketCatalogTypographiesUseCase()
+                .onSuccess { typographies ->
+                    _marketCatalogTypographies.update { typographies }
+                }
+                .onFailure { it.printStackTrace() }
+        }
+    }
+
+    val marketCatalogTypographiesUiState: StateFlow<MarketCatalogTypographiesUiState> = combine(
+        _marketCatalogTypographies,
+        _accountUnlockedTypographies
+    ) { catalog, unlockedList ->
+        val unlockedUUIDs = unlockedList?.map { it.uuid } ?: emptyList()
+        val updated = catalog.map { item ->
+            item.copy(unlocked = item.uuid in unlockedUUIDs)
+        }
+        MarketCatalogTypographiesUiState(typographies = updated)
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        MarketCatalogTypographiesUiState()
+    )
 
     private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
     val accountCreditsUiState = _accountCreditsUiState.asStateFlow()
@@ -138,11 +225,11 @@ class MarketplaceTypographiesScreenViewModel(
                 .catch { it.printStackTrace() }
                 .collect { result: Result<AccountCredits> ->
                     if(result.isSuccess) {
-                        result.getOrNull()?.let { result ->
+                        result.getOrNull()?.let { res ->
                             _accountCreditsUiState.update {
                                 accountCreditsUiState.value.copy(
-                                    spentCredits = result.spentCredits.toInt(),
-                                    earnedCredits = result.earnedCredits.toInt()
+                                    spentCredits = res.spentCredits.toInt(),
+                                    earnedCredits = res.earnedCredits.toInt()
                                 )
                             }
                         }
@@ -158,6 +245,7 @@ class MarketplaceTypographiesScreenViewModel(
 
     init {
         startObservingAccount()
+        initMarketCatalogTypographies()
     }
 
     companion object {
@@ -178,6 +266,8 @@ class MarketplaceTypographiesScreenViewModel(
                 val getMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
                 val getMarketCatalogBundlesUseCase = container.getMarketCatalogBundlesUseCase
                 val saveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
+                val showRewardedAdsUseCase = container.showRewardedAdUseCase
+                val getRewardedAdFlowUseCase = container.getRewardedAdFlowUseCase
 
                 MarketplaceTypographiesScreenViewModel(
                     addAccountCreditsUseCase = addAccountCreditsUseCase,
@@ -188,7 +278,9 @@ class MarketplaceTypographiesScreenViewModel(
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                     getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase,
                     getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase,
-                    saveCurrentTypographyUseCase = saveCurrentTypographyUseCase
+                    saveCurrentTypographyUseCase = saveCurrentTypographyUseCase,
+                    showRewardedAdsUseCase = showRewardedAdsUseCase,
+                    getRewardedAdFlowUseCase = getRewardedAdFlowUseCase
                 )
             }
         }

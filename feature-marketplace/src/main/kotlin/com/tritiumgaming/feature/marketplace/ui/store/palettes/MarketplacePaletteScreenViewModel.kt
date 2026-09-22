@@ -26,8 +26,7 @@ import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
 import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources.MarketplaceCategoryTitles
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -227,11 +226,13 @@ class MarketplacePaletteScreenViewModel(
                     onSuccess("Purchase successful!")
                     Log.d(TAG, "Purchase successful!")
                 } else {
-                    onFailure("Purchase failed: ${result.exceptionOrNull()?.message}")
-                    Log.e(TAG, "Purchase failed: ${result.exceptionOrNull()?.message}")
+                    val errorMessage = result.exceptionOrNull()?.message ?: ""
+                    onFailure(errorMessage)
+                    Log.e(TAG, "Purchase failed: $errorMessage")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                onFailure(e.message ?: "")
             }
             onComplete()
         }

@@ -74,12 +74,14 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.image.SlantedSplitBackground
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
+import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.shared.core.navigation.NavRoute
 
 @Composable
@@ -109,21 +111,25 @@ fun MarketplaceHomeScreen(
                         credits = quantity,
                         onSuccess = {
                             Toast.makeText(
-                                context, "Credits Earned",
+                                context, R.string.message_credits_earned,
                                 Toast.LENGTH_SHORT
                             ).show()
                         },
-                        onFailure = {
+                        onFailure = { message ->
+                            val error = FirebaseFunctionError.fromString(message)
                             Toast.makeText(
-                                context, "Error! $it",
+                                context,
+                                error.toStringResource,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     )
                 },
-                onFailure = {
+                onFailure = { message ->
+                    val error = FirebaseFunctionError.fromString(message)
                     Toast.makeText(
-                        context, "Error! $it",
+                        context,
+                        error.toStringResource,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

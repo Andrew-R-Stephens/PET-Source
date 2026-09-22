@@ -60,8 +60,8 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccount
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
-import com.tritiumgaming.shared.data.ads.RewardedAdsResources
-import com.tritiumgaming.shared.data.ads.asString
+import com.tritiumgaming.shared.data.ads.mappers.RewardedAdsResources
+import com.tritiumgaming.shared.data.ads.mappers.asString
 import com.tritiumgaming.shared.data.ads.repository.RewardedAdRepository
 import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
 import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase

@@ -1,8 +1,8 @@
 package com.tritiumgaming.feature.marketplace.app.mappers
 
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources.MarketplaceCategoryTitles.*
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles.*
 
 fun MarketplaceResources.MarketplaceCategoryTitles.toStringResource() =
     when(this) {

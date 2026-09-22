@@ -37,6 +37,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
@@ -49,8 +50,9 @@ import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
+import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
@@ -84,21 +86,25 @@ fun PaletteShopScreen(
                         credits = quantity,
                         onSuccess = {
                             Toast.makeText(
-                                context, "Credits Earned",
+                                context, R.string.message_credits_earned,
                                 Toast.LENGTH_SHORT
                             ).show()
                         },
-                        onFailure = {
+                        onFailure = { message ->
+                            val error = FirebaseFunctionError.fromString(message)
                             Toast.makeText(
-                                context, "Error! $it",
+                                context,
+                                error.toStringResource,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     )
                 },
-                onFailure = {
+                onFailure = { message ->
+                    val error = FirebaseFunctionError.fromString(message)
                     Toast.makeText(
-                        context, "Error! $it",
+                        context,
+                        error.toStringResource,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -136,7 +142,8 @@ fun PaletteShopScreen(
                             pendingEquipPalette = marketPalette.palette
                         },
                         onFailure = { message ->
-                            Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                            val error = FirebaseFunctionError.fromString(message)
+                            Toast.makeText(context, error.toStringResource, Toast.LENGTH_SHORT).show()
                         },
                         onComplete = {
                             isLoading = false
@@ -149,10 +156,11 @@ fun PaletteShopScreen(
                         marketPalette.uuid, "bundle",
                         onSuccess = { _ ->
                             pendingEquipPalette = null
-                            Toast.makeText(context, "Bundle Unlocked!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, R.string.message_bundle_unlocked, Toast.LENGTH_SHORT).show()
                         },
                         onFailure = { message ->
-                            Toast.makeText(context, "Error: $message", Toast.LENGTH_SHORT).show()
+                            val error = FirebaseFunctionError.fromString(message)
+                            Toast.makeText(context, error.toStringResource, Toast.LENGTH_SHORT).show()
                         },
                         onComplete = {
                             isLoading = false
@@ -185,7 +193,7 @@ fun PaletteShopScreen(
                     onConfirm = {
                         viewmodel.updatePalette(palette)
                         pendingEquipPalette = null
-                        Toast.makeText(context, "Theme Equipped!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.message_theme_equipped, Toast.LENGTH_SHORT).show()
                     },
                     onDismiss = {
                         pendingEquipPalette = null

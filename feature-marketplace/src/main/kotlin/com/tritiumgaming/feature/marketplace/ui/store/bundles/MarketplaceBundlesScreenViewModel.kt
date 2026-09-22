@@ -11,7 +11,6 @@ import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerP
 import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
 import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
-import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
@@ -26,8 +25,7 @@ import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
 import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources
-import com.tritiumgaming.shared.data.market.metadata.mappers.MarketplaceResources.MarketplaceCategoryTitles
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
@@ -233,12 +231,13 @@ class MarketplaceBundlesScreenViewModel(
                     onSuccess("Purchase successful!")
                     Log.d(TAG, "Purchase successful!")
                 } else {
-                    val errorMessage = result.exceptionOrNull()?.message ?: "Unknown error"
-                    onFailure("Purchase failed: $errorMessage")
+                    val errorMessage = result.exceptionOrNull()?.message ?: ""
+                    onFailure(errorMessage)
                     Log.e(TAG, "Purchase failed: $errorMessage")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                onFailure(e.message ?: "")
             }
             onComplete()
         }
