@@ -231,7 +231,7 @@ private fun Modifier.phaseBorderAnimation(
         }
 
         PhaseAnimationType.COLOR -> {
-            val color by infiniteTransition.animateColor(
+            val animatedColor by infiniteTransition.animateColor(
                 initialValue = primaryColor,
                 targetValue = LocalPalette.current.onSurface.copy(alpha = 0.5f),
                 animationSpec = infiniteRepeatable(
@@ -248,7 +248,7 @@ private fun Modifier.phaseBorderAnimation(
                 val cornerRadiusPx = 8.dp.toPx()
                 inset(sw / 2f) {
                     drawRoundRect(
-                        color = color,
+                        color = animatedColor,
                         cornerRadius = CornerRadius(cornerRadiusPx - sw / 2f),
                         style = Stroke(width = sw)
                     )
