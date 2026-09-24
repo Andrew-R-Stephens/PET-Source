@@ -50,7 +50,7 @@ class MarketplacePaletteScreenViewModel(
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     private val purchaseMarketplaceItemUseCase: PurchaseMarketplaceItemUseCase,
     private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
-    private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
+    //private val getMarketCatalogBundlesUseCase: GetMarketCatalogBundlesUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     private val showRewardedAdsUseCase: ShowRewardedAdUseCase,
     getRewardedAdFlowUseCase: GetRewardedAdFlowUseCase
@@ -174,7 +174,7 @@ class MarketplacePaletteScreenViewModel(
         }
     }
 
-    private val _marketCatalogBundles = MutableStateFlow(emptyList<MarketBundle>())
+    /*private val _marketCatalogBundles = MutableStateFlow(emptyList<MarketBundle>())
     private fun initMarketCatalogBundles() {
         Log.d(TAG, "initMarketCatalogBundles")
         viewModelScope.launch {
@@ -185,7 +185,7 @@ class MarketplacePaletteScreenViewModel(
                 }
                 .onFailure { it.printStackTrace() }
         }
-    }
+    }*/
 
     fun addCredits(
         credits: Int,
@@ -262,15 +262,15 @@ class MarketplacePaletteScreenViewModel(
         emptyList()
     )
 
-    data class BundleState(
+    /*data class BundleState(
         val uuid: String,
         val bundle: MarketBundle,
         val items: List<MarketPalette>,
         val unlocked: Boolean,
         val pricing: BundlePricingUiState
-    )
+    )*/
 
-    private fun calculateBundlePricing(
+    /*private fun calculateBundlePricing(
         bundleBuyCredits: Long,
         unlockedCount: Int,
         totalCount: Int,
@@ -310,9 +310,9 @@ class MarketplacePaletteScreenViewModel(
             hasDiscount = hasDiscount,
             discountPerItem = discountPerItem
         )
-    }
+    }*/
 
-    private val _marketPaletteBundlesState = combine(
+    /*private val _marketPaletteBundlesState = combine(
         _marketCatalogBundles,
         _marketAccountPaletteState
     ) { marketBundles, updatedPalettes ->
@@ -352,12 +352,10 @@ class MarketplacePaletteScreenViewModel(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
         emptyList()
-    )
+    )*/
 
-    val marketCatalogScreenUiState = combine(
-        _marketAccountPaletteState,
-        _marketPaletteBundlesState
-    ) { unlockedPalettes, paletteBundles ->
+    val marketCatalogScreenUiState =
+        _marketAccountPaletteState.map { unlockedPalettes ->
 
         val grouped = unlockedPalettes
             .filterNot { it.priority == -1L }
@@ -365,21 +363,6 @@ class MarketplacePaletteScreenViewModel(
             .groupBy { it.group ?: "" }
 
         val items = mutableListOf<ShopScreenUiItem>()
-
-        if(paletteBundles.isNotEmpty()) {
-            items.add(ShopScreenUiItem.Header(MarketplaceCategoryTitles.BUNDLES))
-            paletteBundles.forEach { bundleState ->
-                items.add(
-                    ShopScreenUiItem.PaletteBundle(
-                        key = bundleState.uuid,
-                        marketBundle = bundleState.bundle,
-                        marketPalettes = bundleState.items,
-                        unlocked = bundleState.unlocked,
-                        pricing = bundleState.pricing
-                    )
-                )
-            }
-        }
 
         grouped.forEach { (groupName, groupPalettes) ->
             if (groupName.isNotEmpty()) {
@@ -424,7 +407,7 @@ class MarketplacePaletteScreenViewModel(
     }
 
     init {
-        initMarketCatalogBundles()
+        //initMarketCatalogBundles()
         initMarketCatalogPalettes()
     }
 
@@ -444,7 +427,7 @@ class MarketplacePaletteScreenViewModel(
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val purchaseMarketplaceItemUseCase = container.purchaseMarketplaceItemUseCase
                 val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
-                val getMarketCatalogBundlesUseCase = container.getMarketCatalogBundlesUseCase
+                //val getMarketCatalogBundlesUseCase = container.getMarketCatalogBundlesUseCase
                 val saveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
                 val showRewardedAdsUseCase = container.showRewardedAdUseCase
                 val getRewardedAdFlowUseCase = container.getRewardedAdFlowUseCase
@@ -457,7 +440,7 @@ class MarketplacePaletteScreenViewModel(
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,
                     purchaseMarketplaceItemUseCase = purchaseMarketplaceItemUseCase,
                     getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
-                    getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase,
+                    //getMarketCatalogBundlesUseCase = getMarketCatalogBundlesUseCase,
                     saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
                     showRewardedAdsUseCase = showRewardedAdsUseCase,
                     getRewardedAdFlowUseCase = getRewardedAdFlowUseCase
