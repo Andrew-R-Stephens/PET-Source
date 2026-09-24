@@ -345,7 +345,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 eventFrequency = EventFrequency.MEDIUM,
                 gracePeriod = GracePeriod.PERIOD_3,
                 killsExtendHunts = KillsExtendHunts.OFF,
-                evidenceGiven = EvidenceGiven.COUNT_3,
+                evidenceGiven = EvidenceGiven.COUNT_0,
                 doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                 numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
                 fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
