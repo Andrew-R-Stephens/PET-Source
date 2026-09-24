@@ -47,12 +47,12 @@ import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
+import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 
 @Composable
 fun BundleShopScreen(

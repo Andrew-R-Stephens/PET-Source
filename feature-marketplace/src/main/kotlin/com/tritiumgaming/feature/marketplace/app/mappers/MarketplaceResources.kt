@@ -2,7 +2,10 @@ package com.tritiumgaming.feature.marketplace.app.mappers
 
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources
-import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles.*
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles.BUNDLES
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles.COMMUNITY
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles.EVENT
+import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles.PRESTIGE
 
 fun MarketplaceResources.MarketplaceCategoryTitles.toStringResource() =
     when(this) {
