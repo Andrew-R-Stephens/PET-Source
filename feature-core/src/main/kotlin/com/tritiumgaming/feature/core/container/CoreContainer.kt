@@ -15,9 +15,9 @@ import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSo
 import com.tritiumgaming.data.account.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSource
 import com.tritiumgaming.data.ads.repository.RewardedAdRepositoryImpl
-import com.tritiumgaming.data.challenges.repository.ChallengeRepositoryImpl
-import com.tritiumgaming.data.challenges.source.ChallengeDataSource
-import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource
+import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepositoryImpl
+import com.tritiumgaming.shared.data.challenge.source.ChallengeDataSource
+import com.tritiumgaming.shared.data.challenge.source.local.ChallengeLocalDataSource
 import com.tritiumgaming.data.customdifficulty.repository.CustomDifficultyRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
