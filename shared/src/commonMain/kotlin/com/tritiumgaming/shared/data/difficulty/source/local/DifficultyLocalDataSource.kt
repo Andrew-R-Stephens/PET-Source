@@ -1,7 +1,7 @@
-package com.tritiumgaming.data.difficulty.source.local
+package com.tritiumgaming.shared.data.difficulty.source.local
 
-import com.tritiumgaming.data.difficulty.dto.DifficultyModelDto
-import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
+import com.tritiumgaming.shared.data.difficulty.dto.DifficultyModelDto
+import com.tritiumgaming.shared.data.difficulty.source.DifficultyDataSource
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
