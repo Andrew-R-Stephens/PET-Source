@@ -1,10 +1,13 @@
 package com.tritiumgaming.feature.investigation.app.container
 
 import android.content.Context
-import com.tritiumgaming.shared.data.codex.repository.CodexRepositoryImpl
-import com.tritiumgaming.shared.data.codex.source.local.AchievementsLocalDataSource
-import com.tritiumgaming.shared.data.codex.source.local.EquipmentLocalDataSource
-import com.tritiumgaming.shared.data.codex.source.local.PossessionsLocalDataSource
+import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
+import com.tritiumgaming.data.codex.source.local.AchievementsLocalDataSource
+import com.tritiumgaming.data.codex.source.local.EquipmentLocalDataSource
+import com.tritiumgaming.data.codex.source.local.PossessionsLocalDataSource
+import com.tritiumgaming.data.difficulty.repository.DifficultyRepositoryImpl
+import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
+import com.tritiumgaming.data.difficulty.source.local.DifficultyLocalDataSource
 import com.tritiumgaming.data.evidence.repository.EvidenceRepositoryImpl
 import com.tritiumgaming.data.evidence.source.EvidenceDataSource
 import com.tritiumgaming.data.evidence.source.local.EvidenceLocalDataSource
@@ -30,9 +33,6 @@ import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepositoryImpl
-import com.tritiumgaming.shared.data.difficulty.source.DifficultyDataSource
-import com.tritiumgaming.shared.data.difficulty.source.local.DifficultyLocalDataSource
 import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyInitialSanityUseCase

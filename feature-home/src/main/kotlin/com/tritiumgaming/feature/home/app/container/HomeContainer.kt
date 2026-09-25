@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
-import com.tritiumgaming.shared.data.contributor.repository.ContributorRepositoryImpl
-import com.tritiumgaming.shared.data.contributor.source.ContributorDataSource
-import com.tritiumgaming.shared.data.contributor.source.local.ContributorLocalDataSource
+import com.tritiumgaming.data.contributor.repository.ContributorRepositoryImpl
+import com.tritiumgaming.data.contributor.source.ContributorDataSource
+import com.tritiumgaming.data.contributor.source.local.ContributorLocalDataSource
 import com.tritiumgaming.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.data.newsletter.source.datastore.NewsletterDatastoreDataSource
 import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
