@@ -12,6 +12,7 @@ import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentT
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUnlockLevel
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUpgradeCost
+import kotlin.jvm.JvmName
 
 class EquipmentLocalDataSource {
 

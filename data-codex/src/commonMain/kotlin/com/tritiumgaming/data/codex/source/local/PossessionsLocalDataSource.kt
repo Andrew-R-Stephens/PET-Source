@@ -11,6 +11,7 @@ import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.Possessi
 import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionSanityDrain
 import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionTitle
 import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionsIcon
+import kotlin.jvm.JvmName
 
 class PossessionsLocalDataSource {
 

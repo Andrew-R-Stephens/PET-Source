@@ -8,6 +8,7 @@ import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.Achieve
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementIcon
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementTitle
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
+import kotlin.jvm.JvmName
 
 class AchievementsLocalDataSource() {
 

@@ -10,6 +10,7 @@ import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceI
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle
+import kotlin.jvm.JvmName
 
 class EvidenceLocalDataSource: EvidenceDataSource {
 
