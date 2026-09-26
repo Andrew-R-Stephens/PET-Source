@@ -52,8 +52,7 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
-            implementation(project(":core-resources"))
+            //implementation(project(":shared"))
         }
 
         commonTest.dependencies {

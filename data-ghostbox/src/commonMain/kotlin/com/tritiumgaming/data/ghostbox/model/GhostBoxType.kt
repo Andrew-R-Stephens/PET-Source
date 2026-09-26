@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.ghostbox.model
+package com.tritiumgaming.data.ghostbox.model
 
 enum class GhostBoxType(val title: String) {
     GENERAL("General"),

@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.ghostbox.mapper
+package com.tritiumgaming.data.ghostbox.mapper
 
 class GhostBoxResources {
 
