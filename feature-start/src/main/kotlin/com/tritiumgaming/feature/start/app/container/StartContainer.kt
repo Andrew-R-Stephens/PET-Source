@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.start.app.container
 
-import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.data.challenges.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase

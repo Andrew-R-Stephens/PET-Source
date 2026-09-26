@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.investigation.app.mappers.challenge
 
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources
 
 fun ChallengeResources.ChallengeTitle.toStringResource() =
     when(this) {

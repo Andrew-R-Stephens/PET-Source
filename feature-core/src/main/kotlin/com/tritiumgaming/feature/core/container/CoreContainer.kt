@@ -66,9 +66,9 @@ import com.tritiumgaming.shared.data.ads.repository.RewardedAdRepository
 import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
 import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
 import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
-import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository
-import com.tritiumgaming.shared.data.challenge.usecase.GetChallengesUseCase
-import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.data.challenges.repository.ChallengeRepository
+import com.tritiumgaming.data.challenges.usecase.GetChallengesUseCase
+import com.tritiumgaming.data.challenges.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficultyRepository
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
 import com.tritiumgaming.shared.data.customdifficulty.usecase.UpdateCustomDifficultyUseCase

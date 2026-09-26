@@ -37,8 +37,8 @@ import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationSanityUiState
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
-import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources
+import com.tritiumgaming.data.challenges.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase

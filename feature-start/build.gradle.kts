@@ -108,6 +108,7 @@ dependencies {
     implementation(project(":core-ui"))
 
     implementation(project(":data-newsletter"))
+    implementation(project(":data-challenge"))
 
     implementation(project(":shared"))
 

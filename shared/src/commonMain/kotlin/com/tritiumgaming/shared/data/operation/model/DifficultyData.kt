@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.operation.model
 
-import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType

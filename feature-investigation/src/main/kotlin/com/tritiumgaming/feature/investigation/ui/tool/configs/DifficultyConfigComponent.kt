@@ -15,7 +15,7 @@ import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
-import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 

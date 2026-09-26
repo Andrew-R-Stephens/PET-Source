@@ -1,3 +1,107 @@
+plugins {
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+}
+
+kotlin {
+    // Android Target Configuration (AGP KMP DSL)
+    android {
+        namespace = "com.tritiumgaming.data.account"
+        compileSdk = 37
+        minSdk = 24
+
+        withHostTestBuilder {
+        }
+
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
+            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
+    // iOS Targets
+    val xcfName = "DataAccount"
+
+    iosArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
+
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
+
+    // Source Sets
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(libs.jetbrains.kotlin.stdlib)
+                implementation(libs.jetbrains.kotlinx.coroutines)
+                implementation(libs.jetbrains.kotlinx.serialization.json)
+
+                // Keep while transitioning away from monolithic shared module
+                implementation(project(":shared"))
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+
+        androidMain {
+            dependencies {
+                // Android Core & UI
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.appcompat.core)
+                implementation(libs.android.material)
+
+                // Google Firebase Platform (Android-only until Firebase KMP is added)
+                implementation(project.dependencies.platform(libs.firebase.bom))
+                implementation(libs.firebase.auth)
+                implementation(libs.firebase.firestore)
+                implementation(libs.firebase.functions)
+
+                // Google Credential Manager
+                implementation(libs.android.playServices.auth)
+                implementation(libs.androidx.credentials.core)
+                implementation(libs.androidx.credentials.playServicesAuth)
+                implementation(libs.googleid)
+
+                // Shared project dependencies
+                implementation(project(":core-resources"))
+            }
+        }
+
+        getByName("androidDeviceTest") {
+            dependencies {
+                implementation(libs.androidx.runner)
+                implementation(libs.androidx.core)
+                implementation(libs.androidx.testExt.junit)
+                implementation(libs.androidx.espresso.core)
+            }
+        }
+
+        iosMain {
+            dependencies {
+                // Add iOS-specific dependencies here when needed
+            }
+        }
+    }
+}
+
+
+/*
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
@@ -67,4 +171,4 @@ dependencies {
 
     implementation(project(":shared"))
     implementation(project(":core-resources"))
-}
+}*/

@@ -21,7 +21,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.DifficultyModifierDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.MapModifierDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.PhaseModifierDetails
-import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle

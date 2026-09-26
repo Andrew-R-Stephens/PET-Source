@@ -26,7 +26,7 @@ import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
 import com.tritiumgaming.data.trait.repository.GhostTraitRepositoryImpl
 import com.tritiumgaming.data.trait.source.local.GhostTraitLocalDataSource
-import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.data.challenges.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
