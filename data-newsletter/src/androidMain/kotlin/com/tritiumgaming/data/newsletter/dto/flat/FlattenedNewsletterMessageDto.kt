@@ -18,7 +18,9 @@ fun FlattenedNewsletterMessageDto.toExternal(): NewsletterMessage =
         id = id ?: "0",
         title = FormatterUtils.removeXMLImgSrcTags(title),
         description = FormatterUtils.removeXMLImgSrcTags(description),
-        dateFormatted = formatFromEpoch(date),
+        dateFormatted = formatFromEpoch(
+            date
+        ),
         dateEpoch = date ?: 1L
     )
 
@@ -30,7 +32,9 @@ fun List<FlattenedNewsletterMessageDto>.toExternal(): List<NewsletterMessage> =
             id = dto.id ?: "$index",
             title = dto.title,
             description = dto.description,
-            dateFormatted = formatFromEpoch(dto.date),
+            dateFormatted = formatFromEpoch(
+                dto.date
+            ),
             dateEpoch = dto.date ?: 1L
         )
 
