@@ -3,7 +3,7 @@ package com.tritiumgaming.data.marketplace.billable.mapper
 import com.tritiumgaming.data.marketplace.billable.dto.MarketBillableDto
 import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
 
-fun MarketBillableDto.toDomain(): MarketBillable =
+fun com.tritiumgaming.data.marketplace.billable.dto.MarketBillableDto.toDomain(): MarketBillable =
     MarketBillable(
         productId = productId,
         type = type,
@@ -13,5 +13,5 @@ fun MarketBillableDto.toDomain(): MarketBillable =
         activeStatus = activeStatus,
     )
 
-fun List<MarketBillableDto>.toDomain(): List<MarketBillable> =
+fun List<com.tritiumgaming.data.marketplace.billable.dto.MarketBillableDto>.toDomain(): List<MarketBillable> =
     map( MarketBillableDto::toDomain )
