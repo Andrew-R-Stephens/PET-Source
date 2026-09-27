@@ -84,6 +84,8 @@ dependencies {
 
     implementation(libs.androidx.ui.graphics)
 
+    implementation(project(":data-language"))
+
     implementation(project(":shared"))
 
     implementation(project(":core-common"))

@@ -1,6 +1,6 @@
-package com.tritiumgaming.shared.data.language.usecase
+package com.tritiumgaming.data.language.usecase
 
-import com.tritiumgaming.shared.data.language.repository.LanguageRepository
+import com.tritiumgaming.data.language.repository.LanguageRepository
 
 class InitFlowLanguageUseCase(
     private val repository: LanguageRepository

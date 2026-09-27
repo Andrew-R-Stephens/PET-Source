@@ -48,9 +48,9 @@ import com.tritiumgaming.core.ui.widgets.label.DynamicContentRow
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
-import com.tritiumgaming.shared.data.language.mappers.LanguageResources.LocalizedTitle
-import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTitle
-import com.tritiumgaming.shared.data.language.model.LanguageEntity
+import com.tritiumgaming.data.language.mappers.LanguageResources.LocalizedTitle
+import com.tritiumgaming.data.language.mappers.LanguageResources.NativeTitle
+import com.tritiumgaming.data.language.model.LanguageEntity
 
 @DevicePreviews
 @Composable

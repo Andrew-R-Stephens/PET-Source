@@ -11,6 +11,11 @@ import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.data.contributor.repository.ContributorRepositoryImpl
 import com.tritiumgaming.data.contributor.source.ContributorDataSource
 import com.tritiumgaming.data.contributor.source.local.ContributorLocalDataSource
+import com.tritiumgaming.data.language.usecase.GetAvailableLanguagesUseCase
+import com.tritiumgaming.data.language.usecase.GetDefaultLanguageUseCase
+import com.tritiumgaming.data.language.usecase.InitFlowLanguageUseCase
+import com.tritiumgaming.data.language.usecase.SaveCurrentLanguageUseCase
+import com.tritiumgaming.data.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.data.newsletter.source.datastore.NewsletterDatastoreDataSource
 import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
@@ -23,11 +28,6 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.contributor.repository.ContributorRepository
 import com.tritiumgaming.shared.data.contributor.usecase.ContributorsUseCase
-import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
-import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase

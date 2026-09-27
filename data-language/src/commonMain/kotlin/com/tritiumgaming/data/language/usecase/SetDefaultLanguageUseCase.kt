@@ -1,7 +1,7 @@
-package com.tritiumgaming.shared.data.language.usecase
+package com.tritiumgaming.data.language.usecase
 
-import com.tritiumgaming.shared.data.language.model.LanguageEntity
-import com.tritiumgaming.shared.data.language.repository.LanguageRepository
+import com.tritiumgaming.data.language.model.LanguageEntity
+import com.tritiumgaming.data.language.repository.LanguageRepository
 
 class SetDefaultLanguageUseCase(
     val repository: LanguageRepository

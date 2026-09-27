@@ -1,8 +1,8 @@
-package com.tritiumgaming.shared.data.language.repository
+package com.tritiumgaming.data.language.repository
 
-import com.tritiumgaming.shared.data.datastore.DatastoreRepository
-import com.tritiumgaming.shared.data.language.model.LanguageEntity
-import com.tritiumgaming.shared.data.language.source.LanguageDatastore.LanguagePreferences
+import com.tritiumgaming.core.common.datastore.DatastoreRepository
+import com.tritiumgaming.data.language.model.LanguageEntity
+import com.tritiumgaming.data.language.source.LanguageDatastore.LanguagePreferences
 
 interface LanguageRepository: DatastoreRepository<LanguagePreferences> {
 

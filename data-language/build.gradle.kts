@@ -50,12 +50,9 @@ kotlin {
         commonMain.dependencies {
             // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
-
-            // Internal Module Dependencies
-            implementation(project(":shared"))
-
-            // Jetpack DataStore (Multiplatform support available in androidx.datastore)
             implementation(libs.androidx.datastore.preferences)
+
+            implementation(project(":core-common"))
         }
 
         commonTest.dependencies {

@@ -1,10 +1,9 @@
 package com.tritiumgaming.data.language.repository
 
 import com.tritiumgaming.data.language.dto.toDomain
+import com.tritiumgaming.data.language.model.LanguageEntity
+import com.tritiumgaming.data.language.source.LanguageDatastore
 import com.tritiumgaming.data.language.source.local.LanguageDataSource
-import com.tritiumgaming.shared.data.language.model.LanguageEntity
-import com.tritiumgaming.shared.data.language.repository.LanguageRepository
-import com.tritiumgaming.shared.data.language.source.LanguageDatastore
 
 class LanguageRepositoryImpl(
     private val localDataSource: LanguageDataSource,

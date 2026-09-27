@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.language.mappers
+package com.tritiumgaming.data.language.mappers
 
 class LanguageResources {
 

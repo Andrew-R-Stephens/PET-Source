@@ -318,8 +318,10 @@ dependencies {
     implementation(project(":core-ui"))
 
     implementation(project(":database-local"))
+
     implementation(project(":data-challenge"))
     implementation(project(":data-customdifficulty"))
+    implementation(project(":data-language"))
 
     implementation(project(":feature-core"))
 

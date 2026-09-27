@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.language.dto
 
-import com.tritiumgaming.shared.data.language.mappers.LanguageResources.LocalizedTitle
-import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTitle
-import com.tritiumgaming.shared.data.language.model.LanguageEntity
+import com.tritiumgaming.data.language.mappers.LanguageResources.LocalizedTitle
+import com.tritiumgaming.data.language.mappers.LanguageResources.NativeTitle
+import com.tritiumgaming.data.language.model.LanguageEntity
 
 data class LanguageDto(
     val localizedName: LocalizedTitle,

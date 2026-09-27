@@ -101,10 +101,12 @@ dependencies {
 
     implementation(libs.androidx.ui.graphics)
 
+    api(project(":data-language"))
+
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":shared"))
+    //implementation(project(":shared"))
 
 }

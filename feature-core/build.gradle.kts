@@ -64,13 +64,14 @@ dependencies {
     implementation(project(":shared"))
 
     implementation(project(":core-common"))
+    implementation(project(":core-ui"))
 
     implementation(project(":data-account"))
     implementation(project(":data-ads"))
     implementation(project(":data-challenge"))
     implementation(project(":data-mission"))
     implementation(project(":data-preferences"))
-    implementation(project(":data-language"))
+    api(project(":data-language"))
     implementation(project(":data-marketplace"))
     implementation(project(":data-newsletter"))
     implementation(project(":data-typography"))
