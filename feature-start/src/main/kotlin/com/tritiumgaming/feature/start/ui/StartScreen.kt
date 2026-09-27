@@ -58,6 +58,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.ButtonScratchedIcon
 import com.tritiumgaming.core.ui.icon.impl.base.CalendarIcon
@@ -83,7 +84,6 @@ import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.widgets.menus.SecondarySelector
-import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
 

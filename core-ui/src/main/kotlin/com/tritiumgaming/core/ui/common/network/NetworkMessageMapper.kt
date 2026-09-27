@@ -1,9 +1,9 @@
 package com.tritiumgaming.core.ui.common.network
 
 import androidx.annotation.StringRes
+import com.tritiumgaming.core.common.network.FirebaseFunctionError
+import com.tritiumgaming.core.common.network.FirebaseFunctionMessages
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
-import com.tritiumgaming.shared.core.common.network.FirebaseFunctionMessages
 
 @get:StringRes
 val FirebaseFunctionError.toStringResource: Int

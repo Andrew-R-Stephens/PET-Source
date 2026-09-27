@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
+import com.tritiumgaming.core.domain.market.user.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignInAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.data.contributor.repository.ContributorRepositoryImpl
 import com.tritiumgaming.data.contributor.source.ContributorDataSource
 import com.tritiumgaming.data.contributor.source.local.ContributorLocalDataSource
@@ -14,10 +18,6 @@ import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceI
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
-import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase

@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.challenges.usecase
 
+import com.tritiumgaming.core.common.date.calcCycleIndex
 import com.tritiumgaming.data.challenges.model.ChallengeModel
-import com.tritiumgaming.shared.core.common.date.calcCycleIndex
 
 actual class GetCurrentChallengeUseCase actual constructor(
     private val useCase: GetChallengesUseCase

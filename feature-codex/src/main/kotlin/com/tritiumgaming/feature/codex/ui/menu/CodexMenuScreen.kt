@@ -56,7 +56,7 @@ import com.tritiumgaming.core.ui.widgets.image.SlantedSplitBackground
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
-import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable

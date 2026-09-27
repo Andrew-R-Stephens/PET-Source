@@ -66,6 +66,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.credentials.SignInOptions
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
@@ -81,9 +82,8 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
-import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.account.model.AccountPalette
-import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import kotlinx.coroutines.launch
 

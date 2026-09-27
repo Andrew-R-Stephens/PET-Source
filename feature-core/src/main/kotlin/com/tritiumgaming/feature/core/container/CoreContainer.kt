@@ -8,6 +8,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
+import com.tritiumgaming.core.domain.market.user.repository.CredentialsRepository
+import com.tritiumgaming.core.domain.market.user.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignInAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.data.account.repository.CredentialsRepositoryImpl
 import com.tritiumgaming.data.account.repository.FirestoreAccountRepositoryImpl
 import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
@@ -46,11 +51,6 @@ import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.data.typography.source.local.TypographyLocalDataSourceImpl
 import com.tritiumgaming.database.LocalDatabase
-import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
-import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase

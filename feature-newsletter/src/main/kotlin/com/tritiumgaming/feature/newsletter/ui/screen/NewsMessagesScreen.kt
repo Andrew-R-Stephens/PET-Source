@@ -63,7 +63,7 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.newsletter.app.mappers.toStringResource
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
-import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterChannel

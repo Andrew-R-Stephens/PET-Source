@@ -1,11 +1,10 @@
 package com.tritiumgaming.data.account.repository
 
-import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
-import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.GetCustomCredentialOption
-import com.tritiumgaming.shared.data.account.model.SignInOptions
-
+import com.tritiumgaming.core.common.credentials.SignInOptions
+import com.tritiumgaming.core.domain.market.user.repository.CredentialsRepository
+import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
 
 class CredentialsRepositoryImpl(
     private val credentialsDataSource: CredentialsDataSourceImpl

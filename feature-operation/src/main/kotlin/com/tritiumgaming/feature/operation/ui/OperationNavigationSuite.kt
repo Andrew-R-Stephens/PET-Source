@@ -42,7 +42,7 @@ import com.tritiumgaming.core.ui.screens.AppScreen
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.vector.getHamburgerMenuVector
-import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.core.navigation.NavRoute
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

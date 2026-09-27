@@ -63,7 +63,7 @@ import com.tritiumgaming.feature.settings.ui.SettingsScreen
 import com.tritiumgaming.feature.settings.ui.SettingsScreenViewModel
 import com.tritiumgaming.feature.start.ui.StartScreen
 import com.tritiumgaming.feature.start.ui.StartScreenViewModel
-import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 private const val TAG = "MainNavigation"

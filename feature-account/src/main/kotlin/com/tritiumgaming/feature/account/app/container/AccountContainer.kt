@@ -1,9 +1,9 @@
 package com.tritiumgaming.feature.account.app.container
 
-import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignInAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase

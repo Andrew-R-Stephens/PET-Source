@@ -29,13 +29,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
-import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @DevicePreviews

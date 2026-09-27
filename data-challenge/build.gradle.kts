@@ -51,6 +51,9 @@ kotlin {
 
                 // Keep while transitioning away from monolithic shared module
                 implementation(project(":shared"))
+
+                // Project Dependencies
+                implementation(project(":core-common"))
             }
         }
 

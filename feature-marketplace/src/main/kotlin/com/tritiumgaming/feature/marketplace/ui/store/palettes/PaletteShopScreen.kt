@@ -36,6 +36,7 @@ import androidx.navigation.NavHostController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
@@ -50,7 +51,6 @@ import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
-import com.tritiumgaming.shared.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType

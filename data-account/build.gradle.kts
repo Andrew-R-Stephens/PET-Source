@@ -47,6 +47,7 @@ kotlin {
                 implementation(libs.jetbrains.kotlin.stdlib)
                 implementation(libs.jetbrains.kotlinx.coroutines)
                 implementation(libs.jetbrains.kotlinx.serialization.json)
+                implementation(project(":core-common"))
 
                 // Keep while transitioning away from monolithic shared module
                 implementation(project(":shared"))

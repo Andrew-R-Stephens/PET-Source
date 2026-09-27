@@ -1,3 +1,109 @@
+plugins {
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.jetbrains.compose.multiplatform)
+    alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+}
+
+kotlin {
+
+    // Target declarations
+    android {
+        namespace = "com.tritiumgaming.core.common"
+        compileSdk = 37
+        minSdk = 24
+
+        withHostTestBuilder {
+        }
+
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
+            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
+    // iOS Targets
+    val xcfName = "coreCommonKit"
+
+    iosArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
+
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
+
+    // Source set declarations
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(libs.jetbrains.kotlin.stdlib)
+                implementation(libs.jetbrains.kotlinx.coroutines)
+                implementation(libs.jetbrains.kotlinx.serialization.json)
+
+                // Shared KMP Module
+                implementation(project(":shared"))
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+
+        androidMain {
+            dependencies {
+                // Android UI & Core
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.appcompat.core)
+                implementation(libs.android.material)
+                implementation(libs.androidx.navigation3.runtime)
+                implementation(libs.androidx.compose.material3.adaptive)
+
+                // Google Ads & Play Services
+                implementation(libs.android.playServices.ads)
+                implementation(libs.android.ump.core)
+
+                // In-App Updates
+                implementation(libs.android.play.core.update)
+                implementation(libs.android.play.coreKtx.update)
+
+                // Firebase
+                implementation(project.dependencies.platform(libs.firebase.bom))
+                implementation(libs.firebase.analytics)
+
+                // Credentials
+                implementation(libs.androidx.credentials.core)
+            }
+        }
+
+        getByName("androidDeviceTest") {
+            dependencies {
+                implementation(libs.androidx.testExt.junit)
+                implementation(libs.androidx.espresso.core)
+            }
+        }
+
+        iosMain {
+            dependencies {
+                // iOS-specific dependencies go here
+            }
+        }
+    }
+}
+
+/*
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
@@ -59,11 +165,13 @@ dependencies {
     implementation(libs.firebase.analytics)
 
     // IN-APP UPDATES
-    /* This dependency is downloaded from the Google’s Maven repository.
-     * So, make sure you also include that repository in your project's build.gradle file.*/
+    */
+/* This dependency is downloaded from the Google’s Maven repository.
+     * So, make sure you also include that repository in your project's build.gradle file.*//*
+
     implementation(libs.android.play.core.update)
     // For Kotlin users also add the Kotlin extensions library for Play Core:
     implementation(libs.android.play.coreKtx.update)
 
     implementation(project(":shared"))
-}
+}*/

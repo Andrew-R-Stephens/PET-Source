@@ -14,12 +14,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.core.common.credentials.SignInOptions
+import com.tritiumgaming.core.domain.market.user.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignInAccountUseCase
+import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
-import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
-import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUseCase
-import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase

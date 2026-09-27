@@ -14,9 +14,9 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.domain.market.user.source.CredentialsDataSource
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.core.domain.market.user.source.CredentialsDataSource
-import com.tritiumgaming.shared.data.account.model.SignInOptions
+import com.tritiumgaming.core.common.credentials.SignInOptions
 import kotlinx.coroutines.tasks.await
 
 class CredentialsDataSourceImpl(

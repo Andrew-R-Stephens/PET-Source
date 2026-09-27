@@ -38,7 +38,7 @@ import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
-import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap

@@ -137,7 +137,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources.ChallengeTitle
 import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
