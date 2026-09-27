@@ -39,12 +39,12 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.account.AccountBanner
+import com.tritiumgaming.core.ui.widgets.account.AccountBannerSize
 import com.tritiumgaming.core.ui.widgets.dialogs.MarketplaceDialog
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
-import com.tritiumgaming.feature.marketplace.ui.common.components.AccountBanner
-import com.tritiumgaming.feature.marketplace.ui.common.components.AccountBannerSize
 
 @Composable
 fun MarketplaceScreen(

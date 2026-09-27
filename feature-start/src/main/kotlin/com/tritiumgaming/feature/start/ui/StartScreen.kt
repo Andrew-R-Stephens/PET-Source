@@ -80,6 +80,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.account.AccountBannerIcon
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
@@ -610,7 +611,27 @@ private fun HeaderNavBar(
     }
 
     val accountIcon: @Composable () -> Unit = {
-        AccountIcon(
+        val username = currentUser?.displayName ?: ""
+        AccountBannerIcon(
+            modifier = Modifier
+                .heightIn(max = 48.dp)
+                .padding(4.dp)
+                .fillMaxHeight()
+                .aspectRatio(1f),
+                //.clickable(onClick = { onNavigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }),
+            name = username,
+            icon = { modifier ->
+                Image(
+                    modifier = modifier,
+                    painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                    contentDescription = "",
+                    contentScale = ContentScale.Inside,
+                    alpha = .75f
+                )
+            }
+        )
+
+        /*AccountIcon(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(4.dp),
@@ -654,7 +675,7 @@ private fun HeaderNavBar(
                     }
                 }
             }
-        )
+        )*/
     }
 
     val personIcon: @Composable () -> Unit = { PersonIcon(
@@ -767,6 +788,7 @@ private fun HeaderNavBar(
         primaryContent = {
             if (!LocalInspectionMode.current) {
                 accountIcon()
+
             }
         },
         dropdownContent = @Composable {

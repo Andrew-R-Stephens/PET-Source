@@ -52,6 +52,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -64,9 +65,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.credentials.SignInOptions
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
@@ -74,15 +77,14 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
+import com.tritiumgaming.core.ui.widgets.account.AccountBannerExpanded
 import com.tritiumgaming.core.ui.widgets.dialogs.MarketplaceDialog
 import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
 import com.tritiumgaming.core.ui.widgets.label.LabeledValue
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
-import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
-import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.account.model.AccountPalette
 import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import kotlinx.coroutines.launch
@@ -94,9 +96,7 @@ private fun AccountPreview() {
     LocalThemeProvider {
         Surface(color = LocalPalette.current.surface) {
             AccountContent(
-                currentUser = "uid123",
-                userName = "John Doe",
-                userEmail = "john.doe@example.com",
+                user = null,
                 earnedCredits = 250,
                 unlockedPalettes = emptyList(),
                 currentDialog = AccountOverviewDialog.NONE,
@@ -128,15 +128,19 @@ fun AccountScreen(
     val isAgreementShown by viewmodel.marketplaceAgreementUiState.collectAsStateWithLifecycle()
     val showAgreementDialog by viewmodel.showAgreementDialog.collectAsStateWithLifecycle()
 
-    var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
     var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
     var isLoading by remember { mutableStateOf(false) }
 
+    val user = if(!LocalInspectionMode.current)
+        Firebase.auth.currentUser else null
+    val userName = user?.displayName ?: ""
+    val userEmail = user?.email ?: ""
+
     Box(modifier = Modifier.fillMaxSize()) {
         AccountContent(
-            currentUser = rememberAccount,
-            userName = Firebase.auth.currentUser?.displayName ?: "",
-            userEmail = Firebase.auth.currentUser?.email ?: "",
+            user = user,
+            userName = userName,
+            userEmail = userEmail,
             earnedCredits = accountCreditsUiState.earnedCredits,
             unlockedPalettes = accountPalettesUiState.unlockedPalettes,
             currentDialog = rememberDialog,
@@ -147,7 +151,6 @@ fun AccountScreen(
             onDismissDialog = { rememberDialog = AccountOverviewDialog.NONE },
             onConfirmSignOut = {
                 viewmodel.signOutAccount { success ->
-                    rememberAccount = Firebase.auth.currentUser?.uid
                     rememberDialog = AccountOverviewDialog.NONE
                     if (success) {
                         Toast.makeText(activity, activity?.getString(R.string.alert_account_logout_success), Toast.LENGTH_SHORT).show()
@@ -156,7 +159,6 @@ fun AccountScreen(
             },
             onConfirmDeactivate = {
                 viewmodel.deactivateAccount { success ->
-                    rememberAccount = Firebase.auth.currentUser?.uid
                     rememberDialog = AccountOverviewDialog.NONE
                     if (success) {
                         Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_success), Toast.LENGTH_SHORT).show()
@@ -172,7 +174,6 @@ fun AccountScreen(
                         try {
                             activity?.let {
                                 viewmodel.signInWithCredentials(activity, context, credentialOption) { result ->
-                                    rememberAccount = Firebase.auth.currentUser?.uid
                                     isLoading = false
                                     if (result) {
                                         Toast.makeText(activity, "${activity.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}", Toast.LENGTH_SHORT).show()
@@ -214,16 +215,13 @@ fun AccountScreen(
 
     }
 
-    LaunchedEffect(rememberAccount, isAgreementShown) {
-        // No body needed as VM handles triggering the dialog state.
-    }
 }
 
 @Composable
 fun AccountContent(
-    currentUser: String?,
-    userName: String,
-    userEmail: String,
+    user: FirebaseUser? = null,
+    userName: String = "",
+    userEmail: String = "",
     earnedCredits: Int,
     unlockedPalettes: List<AccountPalette>,
     currentDialog: AccountOverviewDialog,
@@ -263,7 +261,7 @@ fun AccountContent(
                 verticalArrangement = Arrangement.Top
             ) {
 
-                if (currentUser == null) {
+                if (user == null) {
                     SignInComponent(
                         onSignInRequest = onSignInRequest
                     )
@@ -530,7 +528,10 @@ private fun AccountDetailsPortraitComponent(
     ) {
 
         AccountBannerExpanded(
-            credits = earnedCredits
+            modifier = Modifier
+                .fillMaxWidth(),
+            credits = earnedCredits,
+            name = userName
         )
 
         Surface(

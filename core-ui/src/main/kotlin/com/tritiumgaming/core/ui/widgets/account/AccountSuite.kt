@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.marketplace.ui.common.components
+package com.tritiumgaming.core.ui.widgets.account
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -565,7 +565,7 @@ fun AccountCredits(
 }
 
 @Composable
-private fun AccountBannerIcon(
+fun AccountBannerIcon(
     modifier: Modifier = Modifier,
     name: String? = null,
     icon: @Composable (Modifier) -> Unit = {}

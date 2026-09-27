@@ -147,9 +147,7 @@ fun MarketplaceHomeScreen(
             viewmodel.setMarketplaceAgreementAccepted()
         },
         onClickRewardButton = onClickRewardedAd,
-        accountContent = {
-
-        },
+        accountContent = { },
         storeContent = { contentModifier ->
             MarketplaceHomeContent(
                 modifier = contentModifier,
