@@ -2,8 +2,7 @@ package com.tritiumgaming.data.contributor.repository
 
 import com.tritiumgaming.data.contributor.dto.toDomain
 import com.tritiumgaming.data.contributor.source.ContributorDataSource
-import com.tritiumgaming.shared.data.contributor.model.Contributor
-import com.tritiumgaming.shared.data.contributor.repository.ContributorRepository
+import com.tritiumgaming.data.contributor.model.Contributor
 
 class ContributorRepositoryImpl(
     val localSource: ContributorDataSource

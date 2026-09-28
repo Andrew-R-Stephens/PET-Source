@@ -1,7 +1,7 @@
-package com.tritiumgaming.shared.data.contributor.usecase
+package com.tritiumgaming.data.contributor.usecase
 
-import com.tritiumgaming.shared.data.contributor.model.Contributor
-import com.tritiumgaming.shared.data.contributor.repository.ContributorRepository
+import com.tritiumgaming.data.contributor.model.Contributor
+import com.tritiumgaming.data.contributor.repository.ContributorRepository
 
 class ContributorsUseCase(
     private val appInfoRepository: ContributorRepository

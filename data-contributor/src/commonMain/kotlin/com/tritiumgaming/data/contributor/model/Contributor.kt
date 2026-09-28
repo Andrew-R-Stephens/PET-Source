@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.contributor.model
+package com.tritiumgaming.data.contributor.model
 
 data class Contributor(
     val username: String = ""

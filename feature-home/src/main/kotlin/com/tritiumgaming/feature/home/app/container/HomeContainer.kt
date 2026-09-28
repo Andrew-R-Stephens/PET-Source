@@ -26,8 +26,8 @@ import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.contributor.repository.ContributorRepository
-import com.tritiumgaming.shared.data.contributor.usecase.ContributorsUseCase
+import com.tritiumgaming.data.contributor.repository.ContributorRepository
+import com.tritiumgaming.data.contributor.usecase.ContributorsUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase

@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
-import com.tritiumgaming.shared.data.contributor.model.Contributor
-import com.tritiumgaming.shared.data.contributor.usecase.ContributorsUseCase
+import com.tritiumgaming.data.contributor.model.Contributor
+import com.tritiumgaming.data.contributor.usecase.ContributorsUseCase
 
 /**
  * TitleScreenViewModel class
