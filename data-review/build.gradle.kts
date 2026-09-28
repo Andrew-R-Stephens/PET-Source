@@ -52,7 +52,8 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
+            //implementation(project(":shared"))
+            implementation(project(":core-common"))
 
             // Jetpack DataStore
             implementation(libs.androidx.datastore.preferences)

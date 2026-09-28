@@ -109,6 +109,7 @@ dependencies {
 
     implementation(project(":data-newsletter"))
     implementation(project(":data-challenge"))
+    implementation(project(":data-review"))
 
     implementation(project(":shared"))
 

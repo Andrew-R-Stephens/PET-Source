@@ -1,9 +1,8 @@
 package com.tritiumgaming.data.review.repository
 
-import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
-import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository.Companion.INITIALIZED
-import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository.Companion.NOT_INITIALIZED
-import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
+import com.tritiumgaming.data.review.repository.ReviewTrackerRepository.Companion.INITIALIZED
+import com.tritiumgaming.data.review.repository.ReviewTrackerRepository.Companion.NOT_INITIALIZED
+import com.tritiumgaming.data.review.source.ReviewTrackerDatastore
 
 class ReviewTrackerRepositoryImpl(
     private val dataStoreSource: ReviewTrackerDatastore,

@@ -1,6 +1,6 @@
-package com.tritiumgaming.shared.data.review.usecase.timealive
+package com.tritiumgaming.data.review.usecase.timealive
 
-import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+import com.tritiumgaming.data.review.repository.ReviewTrackerRepository
 
 class SetAppTimeAliveUseCase(
     private val repository: ReviewTrackerRepository

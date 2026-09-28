@@ -322,6 +322,7 @@ dependencies {
     implementation(project(":data-challenge"))
     implementation(project(":data-customdifficulty"))
     implementation(project(":data-language"))
+    implementation(project(":data-review"))
 
     implementation(project(":feature-core"))
 

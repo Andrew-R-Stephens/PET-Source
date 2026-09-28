@@ -6,11 +6,11 @@ import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatasto
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
-import com.tritiumgaming.shared.data.review.usecase.setup.InitFlowReviewTrackerUseCase
-import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatusUseCase
-import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
-import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
-import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
+import com.tritiumgaming.data.review.usecase.setup.InitFlowReviewTrackerUseCase
+import com.tritiumgaming.data.review.usecase.status.SetReviewRequestStatusUseCase
+import com.tritiumgaming.data.review.usecase.timealive.SetAppTimeAliveUseCase
+import com.tritiumgaming.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
+import com.tritiumgaming.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
 
 class StartContainer(
     //val setupNewsletterUseCase: SetupNewsletterUseCase,

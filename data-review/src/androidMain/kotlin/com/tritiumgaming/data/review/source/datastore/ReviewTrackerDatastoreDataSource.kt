@@ -11,7 +11,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
+import com.tritiumgaming.data.review.source.ReviewTrackerDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
