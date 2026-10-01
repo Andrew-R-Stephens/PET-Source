@@ -1,18 +1,27 @@
 package com.tritiumgaming.feature.missions.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.data.mission.mappers.MissionResources.MissionContent
 import com.tritiumgaming.data.mission.model.Mission
@@ -150,32 +159,48 @@ private fun ObjectivesScreenContent(
     val windowSizeClass = currentWindowAdaptiveInfoV2().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    when (deviceConfiguration) {
-        DeviceConfiguration.MOBILE_PORTRAIT -> {
-            ObjectivesContentPortrait(
-                modifier = Modifier
-                    .wrapContentHeight()
-                    .padding(8.dp),
-                objectiveBoardContentUiState = objectiveBoardContentUiState,
-                ghostNameUiActions = ghostNameUiActions,
-                ghostResponseUiActions = ghostResponseUiActions,
-                missionWrapperActions = missionWrapperActions,
-            )
+    Column(
+        modifier = Modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
+    ) {
+        when (deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                ObjectivesContentPortrait(
+                    modifier = Modifier
+                        .weight(1f)
+                        .wrapContentHeight()
+                        .padding(8.dp),
+                    objectiveBoardContentUiState = objectiveBoardContentUiState,
+                    ghostNameUiActions = ghostNameUiActions,
+                    ghostResponseUiActions = ghostResponseUiActions,
+                    missionWrapperActions = missionWrapperActions,
+                )
+            }
+
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                ObjectivesContentLandscape(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxSize()
+                        .padding(8.dp),
+                    objectiveBoardContentUiState = objectiveBoardContentUiState,
+                    ghostNameUiActions = ghostNameUiActions,
+                    ghostResponseUiActions = ghostResponseUiActions,
+                    missionWrapperActions = missionWrapperActions,
+                )
+            }
         }
 
-        DeviceConfiguration.MOBILE_LANDSCAPE,
-        DeviceConfiguration.TABLET_PORTRAIT,
-        DeviceConfiguration.TABLET_LANDSCAPE,
-        DeviceConfiguration.DESKTOP -> {
-            ObjectivesContentLandscape(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                objectiveBoardContentUiState = objectiveBoardContentUiState,
-                ghostNameUiActions = ghostNameUiActions,
-                ghostResponseUiActions = ghostResponseUiActions,
-                missionWrapperActions = missionWrapperActions,
-            )
-        }
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Transparent),
+            adId = stringResource(R.string.ad_banner_1)
+        )
+
     }
 }

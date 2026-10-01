@@ -3,7 +3,9 @@ package com.tritiumgaming.feature.maps.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +25,7 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,10 +36,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.navigation.NavRoute
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.data.map.simple.model.SimpleWorldMap
@@ -50,7 +55,9 @@ private fun MapMenuScreenPreview() {
         Surface(
             color = LocalPalette.current.surface
         ) {
+
             MapMenuContent(
+                modifier = Modifier,
                 mapMenuUiState = MapMenuUiState(
                     maps = listOf(
                         SimpleWorldMap(
@@ -139,12 +146,16 @@ fun MapMenuScreen(
             navController.navigate(
                 route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}") }
 
-    MapMenuContent(mapMenuUiState, onSelect)
-
+    MapMenuContent(
+        modifier = Modifier,
+        mapMenuUiState = mapMenuUiState,
+        onSelect = onSelect
+    )
 }
 
 @Composable
 private fun MapMenuContent(
+    modifier: Modifier = Modifier,
     mapMenuUiState: MapMenuUiState,
     onSelect: (SimpleWorldMap) -> Unit
 ) {
@@ -154,7 +165,7 @@ private fun MapMenuContent(
     when (deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             MapMenuContentPortrait(
-                modifier = Modifier,
+                modifier = modifier,
                 mapMenuUiState = mapMenuUiState,
                 rows = 2,
                 onSelect = { map -> onSelect(map) }
@@ -163,7 +174,7 @@ private fun MapMenuContent(
 
         DeviceConfiguration.MOBILE_LANDSCAPE -> {
             MapMenuContentLandscape(
-                modifier = Modifier,
+                modifier = modifier,
                 mapMenuUiState = mapMenuUiState,
                 columns = 2,
                 onSelect = { map -> onSelect(map) }
@@ -172,7 +183,7 @@ private fun MapMenuContent(
 
         DeviceConfiguration.TABLET_PORTRAIT -> {
             MapMenuContentPortrait(
-                modifier = Modifier,
+                modifier = modifier,
                 mapMenuUiState = mapMenuUiState,
                 rows = 4,
                 onSelect = { map -> onSelect(map) }
@@ -181,7 +192,7 @@ private fun MapMenuContent(
 
         DeviceConfiguration.TABLET_LANDSCAPE -> {
             MapMenuContentLandscape(
-                modifier = Modifier,
+                modifier = modifier,
                 mapMenuUiState = mapMenuUiState,
                 columns = 3,
                 onSelect = { map -> onSelect(map) }
@@ -190,7 +201,7 @@ private fun MapMenuContent(
 
         DeviceConfiguration.DESKTOP -> {
             MapMenuContentLandscape(
-                modifier = Modifier,
+                modifier = modifier,
                 mapMenuUiState = mapMenuUiState,
                 columns = 4,
                 onSelect = { map -> onSelect(map) }
@@ -208,16 +219,32 @@ private fun MapMenuContentPortrait(
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
-    LazyVerticalGrid(
+    Column(
         modifier = modifier,
-        state = rememberLazyGridState,
-        columns = GridCells.Fixed(rows)
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
     ) {
-        mapCardGrids(
-            modifier = Modifier.fillMaxWidth(),
-            mapMenuUiState = mapMenuUiState,
-            onClick = { map -> onSelect(map) }
+        LazyVerticalGrid(
+            modifier = Modifier
+                .fillMaxWidth()
+                /*.weight(1f)*/,
+            state = rememberLazyGridState,
+            columns = GridCells.Fixed(rows)
+        ) {
+            mapCardGrids(
+                modifier = Modifier.fillMaxWidth(),
+                mapMenuUiState = mapMenuUiState,
+                onClick = { map -> onSelect(map) }
+            )
+        }
+
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Transparent),
+            adId = stringResource(R.string.ad_banner_1)
         )
+
     }
 
 }
@@ -231,16 +258,33 @@ private fun MapMenuContentLandscape(
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
-    LazyHorizontalGrid(
+    Column(
         modifier = modifier,
-        state = rememberLazyGridState,
-        rows = GridCells.Fixed(count = columns)
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
     ) {
-        mapCardGrids(
-            modifier = Modifier,
-            mapMenuUiState = mapMenuUiState,
-            onClick = { map -> onSelect(map) }
+        LazyHorizontalGrid(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            state = rememberLazyGridState,
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            rows = GridCells.Fixed(count = columns)
+        ) {
+            mapCardGrids(
+                modifier = Modifier,
+                mapMenuUiState = mapMenuUiState,
+                onClick = { map -> onSelect(map) }
+            )
+        }
+
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Transparent),
+            adId = stringResource(R.string.ad_banner_1)
         )
+
     }
 
 }

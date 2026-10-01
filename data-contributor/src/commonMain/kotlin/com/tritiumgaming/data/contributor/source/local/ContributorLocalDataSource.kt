@@ -8,6 +8,9 @@ class ContributorLocalDataSource(): ContributorDataSource {
     private val contributorDto
         get() = listOf(
             ContributorResourceDto(
+                username = "Aria"
+            ),
+            ContributorResourceDto(
                 username = "Bravo-1"
             ),
             ContributorResourceDto(
@@ -21,7 +24,7 @@ class ContributorLocalDataSource(): ContributorDataSource {
             ),
             ContributorResourceDto(
                 username = "HAINER"
-            )
+            ),
         )
 
 

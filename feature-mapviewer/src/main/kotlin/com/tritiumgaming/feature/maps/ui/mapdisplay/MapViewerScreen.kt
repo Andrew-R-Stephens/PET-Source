@@ -87,6 +87,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentAlignmentPercentage
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentRow
 import com.tritiumgaming.data.map.complex.model.ComplexWorldMapFloor
@@ -148,6 +149,8 @@ fun MapViewerScreen(
     val mapDisplayUiState by mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
 
     MapViewerContent(
+        modifier = Modifier
+            .fillMaxSize(),
         mapDisplayUiState = mapDisplayUiState,
         onIncrementFloor = onIncrementFloor,
         onDecrementFloor = onDecrementFloor,
@@ -157,14 +160,19 @@ fun MapViewerScreen(
         onGetRoomById = mapsScreenViewModel::getRoomById,
         onGetFloorImage = mapsScreenViewModel::getFloorImage,
         onNavigateBack = {
-            try { navController.popBackStack() }
-            catch (e: Exception) { e.printStackTrace() }
+            try {
+                navController.popBackStack()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         },
     )
+
 }
 
 @Composable
 private fun MapViewerContent(
+    modifier: Modifier = Modifier,
     mapDisplayUiState: InteractiveMapUiState,
     onIncrementFloor: () -> Unit,
     onDecrementFloor: () -> Unit,
@@ -189,58 +197,70 @@ private fun MapViewerContent(
         mutableIntStateOf(0)
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
+    Column(
+        modifier = modifier
     ) {
-        BackgroundGrid(
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-        )
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
+            BackgroundGrid(
+                modifier = Modifier
+                    .fillMaxSize()
+            )
 
-        MapCanvas(
-            mapDisplayUiState = mapDisplayUiState,
-            mapTransformationManager = mapTransformationManager,
-            displayWidth = displayWidth,
-            displayHeight = displayHeight,
-            onSetDisplaySize = { width, height ->
-                displayWidth = width
-                displayHeight = height
-            },
-            onSetSelectedRoomAtPoint = onSetSelectedRoomAtPoint,
-            onGetFloorByIndex = onGetFloorByIndex,
-            onGetRoomById = onGetRoomById,
-            onGetFloorImage = onGetFloorImage,
-        )
+            MapCanvas(
+                mapDisplayUiState = mapDisplayUiState,
+                mapTransformationManager = mapTransformationManager,
+                displayWidth = displayWidth,
+                displayHeight = displayHeight,
+                onSetDisplaySize = { width, height ->
+                    displayWidth = width
+                    displayHeight = height
+                },
+                onSetSelectedRoomAtPoint = onSetSelectedRoomAtPoint,
+                onGetFloorByIndex = onGetFloorByIndex,
+                onGetRoomById = onGetRoomById,
+                onGetFloorImage = onGetFloorImage,
+            )
 
-        when(deviceConfiguration) {
-            DeviceConfiguration.MOBILE_PORTRAIT -> {
-                UiControllerPortrait(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    onNavigateBack = onNavigateBack,
-                    mapDisplayUiState = mapDisplayUiState,
-                    onIncrementFloor = onIncrementFloor,
-                    onDecrementFloor = onDecrementFloor,
-                    onSetRoom = onSetRoom
-                )
-            }
-            DeviceConfiguration.MOBILE_LANDSCAPE,
-            DeviceConfiguration.TABLET_PORTRAIT,
-            DeviceConfiguration.TABLET_LANDSCAPE,
-            DeviceConfiguration.DESKTOP -> {
-                UiControllerLandscape(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    onNavigateBack = onNavigateBack,
-                    mapDisplayUiState = mapDisplayUiState,
-                    onIncrementFloor = onIncrementFloor,
-                    onDecrementFloor = onDecrementFloor,
-                    onSetRoom = onSetRoom
-                )
+            when(deviceConfiguration) {
+                DeviceConfiguration.MOBILE_PORTRAIT -> {
+                    UiControllerPortrait(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
+                        onNavigateBack = onNavigateBack,
+                        mapDisplayUiState = mapDisplayUiState,
+                        onIncrementFloor = onIncrementFloor,
+                        onDecrementFloor = onDecrementFloor,
+                        onSetRoom = onSetRoom
+                    )
+                }
+                DeviceConfiguration.MOBILE_LANDSCAPE,
+                DeviceConfiguration.TABLET_PORTRAIT,
+                DeviceConfiguration.TABLET_LANDSCAPE,
+                DeviceConfiguration.DESKTOP -> {
+                    UiControllerLandscape(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        onNavigateBack = onNavigateBack,
+                        mapDisplayUiState = mapDisplayUiState,
+                        onIncrementFloor = onIncrementFloor,
+                        onDecrementFloor = onDecrementFloor,
+                        onSetRoom = onSetRoom
+                    )
+                }
             }
         }
+
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Transparent),
+            adId = stringResource(R.string.ad_banner_1)
+        )
 
     }
 
