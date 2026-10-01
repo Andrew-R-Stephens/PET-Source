@@ -12,10 +12,10 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
-import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
+import com.tritiumgaming.data.map.mappers.toStringResource
+import com.tritiumgaming.data.map.modifier.mappers.toFloat
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
-import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
 
 @Composable
 internal fun MapModifierDetails(

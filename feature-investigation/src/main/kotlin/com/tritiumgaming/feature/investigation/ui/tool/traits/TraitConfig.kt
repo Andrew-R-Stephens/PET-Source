@@ -49,17 +49,15 @@ import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.widgets.dropdownlist.DropdownList
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toGhostTitle
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState.CONFIRM
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState.REJECT
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.DEFINITIVE
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.PROBABLE
-import com.tritiumgaming.shared.data.operation.model.CategoryOption
-import com.tritiumgaming.shared.data.operation.model.TraitValidationType
-import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
+import com.tritiumgaming.data.mappers.toGhostTitle
+import com.tritiumgaming.data.mappers.toStringResource
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitState
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitWeight
+import com.tritiumgaming.data.trait.mappers.toStringResource
+import com.tritiumstudios.data.operation.model.CategoryOption
+import com.tritiumstudios.data.operation.model.TraitValidationType
+import com.tritiumstudios.data.operation.model.ValidatedGhostTrait
 
 @Composable
 internal fun TraitConfig(
@@ -337,16 +335,16 @@ private fun TraitListItem(
                     "${stringResource(R.string.evidence_trait_category_unique)} " } else ""
 
                 val dataText = when(item.ghostTrait.weight) {
-                     DEFINITIVE -> {
+                     TraitWeight.DEFINITIVE -> {
                         when(item.ghostTrait.state) {
-                            CONFIRM -> stringResource(R.string.evidence_trait_state_confirm)
-                            REJECT -> stringResource(R.string.evidence_trait_state_reject)
+                            TraitState.CONFIRM -> stringResource(R.string.evidence_trait_state_confirm)
+                            TraitState.REJECT -> stringResource(R.string.evidence_trait_state_reject)
                         }
                     }
-                    PROBABLE -> {
+                    TraitWeight.PROBABLE -> {
                         when (item.ghostTrait.state) {
-                            CONFIRM -> stringResource(R.string.evidence_trait_weight_likely)
-                            REJECT -> stringResource(R.string.evidence_trait_weight_unlikely)
+                            TraitState.CONFIRM -> stringResource(R.string.evidence_trait_weight_likely)
+                            TraitState.REJECT -> stringResource(R.string.evidence_trait_weight_unlikely)
                         }
                     }
                 }

@@ -29,16 +29,16 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.LocalUiConfiguration
+import com.tritiumgaming.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostIdentifier
+import com.tritiumgaming.data.ghost.model.Ghost
+import com.tritiumgaming.data.journal.model.EvidenceState
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.PrimaryEvidenceList
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostList
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.operation.model.EvidenceState
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.operation.model.GhostState
+import com.tritiumstudios.data.operation.model.GhostState
 
 
 @Composable
@@ -47,7 +47,7 @@ internal fun JournalComponent(
     evidenceStateList: List<EvidenceState>,
     ghostOrder: List<GhostState>,
     ghostEvidenceState: List<EvidenceState>,
-    onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit,
+    onGhostNameClick: (GhostIdentifier) -> Unit,
     onChangeEvidenceRuling: (evidence: EvidenceType, evidenceValidationType: EvidenceValidationType) -> Unit,
     onEvidenceClick: (evidence: EvidenceType) -> Unit,
     onToggleNegateGhost: (Ghost) -> Unit,
@@ -101,7 +101,7 @@ private fun GhostListColumn(
     modifier: Modifier = Modifier,
     ghostOrder: List<GhostState>,
     ghostEvidenceState: List<EvidenceState>,
-    onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit,
+    onGhostNameClick: (GhostIdentifier) -> Unit,
     onToggleNegateGhost: (Ghost) -> Unit,
     onRequestToolTip: () -> Unit,
 ) {

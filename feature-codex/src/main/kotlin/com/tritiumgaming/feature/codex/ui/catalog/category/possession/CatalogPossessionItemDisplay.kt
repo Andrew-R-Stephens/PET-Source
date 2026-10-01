@@ -30,8 +30,8 @@ import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
-import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
+import com.tritiumgaming.data.codex.mappers.toDrawableResource
+import com.tritiumgaming.data.codex.mappers.toStringResource
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup

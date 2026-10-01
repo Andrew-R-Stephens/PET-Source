@@ -3,7 +3,7 @@ package com.tritiumgaming.data.customdifficulty.source.local
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.CursedPossession
 
 actual class DifficultyTypeConverters actual constructor() {
     private val gson = Gson()

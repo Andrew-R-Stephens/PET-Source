@@ -66,13 +66,13 @@ import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.badge_default
 import com.tritiumgaming.core.ui.theme.type.common.CustomFontFamily
 import com.tritiumgaming.core.ui.theme.white_M100
+import com.tritiumgaming.data.marketplace.typography.model.MarketTypography
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType.CLASSIC
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType.JETBRAINS_MONO
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType.NEUCHA
+import com.tritiumgaming.data.typography.mappers.asUuid
 import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.CLASSIC
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.JETBRAINS_MONO
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType.NEUCHA
-import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
-import com.tritiumgaming.shared.data.market.typography.mappers.asUuid as asTypographyUuid
 
 @Composable
 fun TypographyBundleCard(
@@ -130,7 +130,7 @@ fun TypographyBundleCard(
                     )
                 )
 
-                var selectedTypography: TypographyResources.TypographyType? by remember { mutableStateOf(null) }
+                var selectedTypography: TypographyType? by remember { mutableStateOf(null) }
                 var isExpanded by remember { mutableStateOf(false) }
 
                 val showItemDiscount = !isOwned && pricing.hasDiscount && pricing.isQualified
@@ -148,7 +148,7 @@ fun TypographyBundleCard(
 
                             BundleIncludedTypography(
                                 modifier = Modifier.width(48.dp),
-                                isSelected = selectedTypography?.asTypographyUuid() == marketTypography.uuid,
+                                isSelected = selectedTypography?.asUuid() == marketTypography.uuid,
                                 title = stringResource(paletteRes.extrasFamily.title),
                                 isOwned = marketTypography.unlocked,
                                 showDiscount = showItemDiscount,
@@ -158,7 +158,7 @@ fun TypographyBundleCard(
                                 onSurfaceColor = LocalPalette.current.onSurface,
                                 onClick = {
                                     selectedTypography =
-                                        if (selectedTypography?.asTypographyUuid() == marketTypography.uuid) {
+                                        if (selectedTypography?.asUuid() == marketTypography.uuid) {
                                             null
                                         } else type
                                 }

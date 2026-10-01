@@ -1,9 +1,9 @@
 package com.tritiumgaming.feature.about.app.container
 
+import com.tritiumgaming.data.contributor.repository.ContributorRepository
 import com.tritiumgaming.data.contributor.repository.ContributorRepositoryImpl
 import com.tritiumgaming.data.contributor.source.ContributorDataSource
 import com.tritiumgaming.data.contributor.source.local.ContributorLocalDataSource
-import com.tritiumgaming.data.contributor.repository.ContributorRepository
 import com.tritiumgaming.data.contributor.usecase.ContributorsUseCase
 
 class AboutContainer {

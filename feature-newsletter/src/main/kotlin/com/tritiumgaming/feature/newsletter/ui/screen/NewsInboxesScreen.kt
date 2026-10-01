@@ -46,9 +46,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
@@ -58,14 +60,12 @@ import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
+import com.tritiumgaming.data.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.data.newsletter.mapper.NewsletterResources.NewsletterTitle
+import com.tritiumgaming.data.newsletter.mappers.toStringResource
+import com.tritiumgaming.data.newsletter.model.NewsletterInbox
 import com.tritiumgaming.feature.newsletter.app.mappers.toIconResource
-import com.tritiumgaming.feature.newsletter.app.mappers.toStringResource
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
-import com.tritiumgaming.core.navigation.NavRoute
-import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
-import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
-import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 
 @DevicePreviews
 @Composable
@@ -399,7 +399,7 @@ private fun InboxCard(
                     iconContent(modifier)
                 },
                 badgeComponent = @Composable { modifier ->
-                    IconResource.NOTIFY.ToComposable(
+                    IconResources.IconResource.NOTIFY.ToComposable(
                         modifier = modifier,
                         colors = IconVectorColors(
                             fillColor = LocalPalette.current.surfaceContainer,

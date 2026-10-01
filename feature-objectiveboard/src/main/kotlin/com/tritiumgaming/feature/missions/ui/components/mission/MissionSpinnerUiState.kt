@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.missions.ui.components.mission
 
-import com.tritiumgaming.shared.data.mission.model.Mission
+import com.tritiumgaming.data.mission.model.Mission
 
 data class MissionSpinnerUiState(
     val selectedMissions: List<MissionUiState> = emptyList(),

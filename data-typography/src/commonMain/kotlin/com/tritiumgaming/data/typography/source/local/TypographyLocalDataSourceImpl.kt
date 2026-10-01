@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.typography.source.local
 
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
-import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
-import com.tritiumgaming.shared.data.market.typography.source.LocalTypographyDataSource
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType
+import com.tritiumgaming.data.typography.mappers.asUuid
+import com.tritiumgaming.data.typography.source.LocalTypographyDataSource
 
 class TypographyLocalDataSourceImpl:
     LocalTypographyDataSource<List<TypographyLocalDataSourceImpl.LocalTypography>> {

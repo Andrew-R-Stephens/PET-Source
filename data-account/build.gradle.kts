@@ -50,7 +50,8 @@ kotlin {
                 implementation(project(":core-common"))
 
                 // Keep while transitioning away from monolithic shared module
-                implementation(project(":shared"))
+                api(project(":data-typography"))
+                api(project(":data-palette"))
             }
         }
 
@@ -80,7 +81,7 @@ kotlin {
                 implementation(libs.googleid)
 
                 // Shared project dependencies
-                implementation(project(":core-resources"))
+                api(project(":core-resources"))
             }
         }
 
@@ -170,6 +171,6 @@ dependencies {
     implementation(libs.googleid)
     // ----------------------------------
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-resources"))
 }*/

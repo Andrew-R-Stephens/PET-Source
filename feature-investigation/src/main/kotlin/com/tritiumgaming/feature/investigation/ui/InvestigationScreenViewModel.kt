@@ -14,6 +14,44 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUi
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.core.ui.widgets.text.UiText
+import com.tritiumgaming.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.data.codex.usecase.FetchEquipmentTypesUseCase
+import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
+import com.tritiumgaming.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.data.difficulty.usecase.FetchDifficultiesUseCase
+import com.tritiumgaming.data.difficulty.usecase.SetDifficultyIndexUseCase
+import com.tritiumgaming.data.evidence.mapper.toEquipmentIdentifier
+import com.tritiumgaming.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.ghost.mapper.GhostResources
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostIdentifier
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.data.ghost.mapper.toGender
+import com.tritiumgaming.data.ghost.mapper.toHasLosMultiplierBoolean
+import com.tritiumgaming.data.ghost.mapper.toMaximumAsInt
+import com.tritiumgaming.data.ghost.mapper.toMinimumAsInt
+import com.tritiumgaming.data.ghost.model.Ghost
+import com.tritiumgaming.data.ghostname.model.GhostName.Gender
+import com.tritiumgaming.data.journal.model.EvidenceState
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
+import com.tritiumgaming.data.journal.usecase.FetchEvidenceTypesUseCase
+import com.tritiumgaming.data.journal.usecase.FetchGhostEvidencesUseCase
+import com.tritiumgaming.data.journal.usecase.GetEvidenceUseCase
+import com.tritiumgaming.data.journal.usecase.GetGhostUseCase
+import com.tritiumgaming.data.map.modifier.mappers.toFloat
+import com.tritiumgaming.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
+import com.tritiumgaming.data.map.modifier.usecase.GetSimpleMapModifierUseCase
+import com.tritiumgaming.data.map.simple.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapNameUseCase
+import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.data.mappers.toStringResource
+import com.tritiumgaming.data.mission.usecase.FetchAllMissionsUseCase
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources
+import com.tritiumgaming.data.trait.mappers.toStringResource
+import com.tritiumgaming.data.trait.model.GhostTrait
+import com.tritiumgaming.data.trait.usecase.GetAllGhostTraitsUseCase
+import com.tritiumgaming.data.trait.usecase.GetGhostTraitDescriptionUseCase
 import com.tritiumgaming.feature.investigation.app.container.ChallengesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.CodexUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.DifficultyUseCaseBundle
@@ -21,8 +59,6 @@ import com.tritiumgaming.feature.investigation.app.container.InvestigationContai
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
@@ -37,98 +73,66 @@ import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.tool.sanity.OperationSanityUiState
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources
-import com.tritiumgaming.data.challenges.usecase.GetCurrentChallengeUseCase
-import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
-import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
-import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
-import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
-import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
-import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
-import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
-import com.tritiumgaming.shared.data.ghost.mapper.toGender
-import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
-import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
-import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
-import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.ghostname.model.GhostName.Gender
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
-import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
-import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
-import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitDescriptionUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
-import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
-import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
-import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
-import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
-import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
-import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
-import com.tritiumgaming.shared.data.operation.model.CategoryOption
-import com.tritiumgaming.shared.data.operation.model.DifficultyData
-import com.tritiumgaming.shared.data.operation.model.EvidenceState
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.operation.model.GhostDetails
-import com.tritiumgaming.shared.data.operation.model.GhostState
-import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterOptions
-import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
-import com.tritiumgaming.shared.data.operation.model.MapData
-import com.tritiumgaming.shared.data.operation.model.MissionData
-import com.tritiumgaming.shared.data.operation.model.MissionState
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
-import com.tritiumgaming.shared.data.operation.model.OperationUserPreferences
-import com.tritiumgaming.shared.data.operation.model.PhaseData
-import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
-import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
-import com.tritiumgaming.shared.data.operation.model.SanityData
-import com.tritiumgaming.shared.data.operation.model.SanityTimerData
-import com.tritiumgaming.shared.data.operation.model.SanityTimerData.Companion.TIME_MIN
-import com.tritiumgaming.shared.data.operation.model.StateOption
-import com.tritiumgaming.shared.data.operation.model.TagOption
-import com.tritiumgaming.shared.data.operation.model.TemperatureData
-import com.tritiumgaming.shared.data.operation.model.ToolTimerData
-import com.tritiumgaming.shared.data.operation.model.ToolTimerType
-import com.tritiumgaming.shared.data.operation.model.TraitFilter
-import com.tritiumgaming.shared.data.operation.model.TraitValidationType
-import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
-import com.tritiumgaming.shared.data.operation.model.WeightOption
-import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationEvidenceUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationTemperatureUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationWeatherUseCase
-import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
-import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
-import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
-import com.tritiumgaming.shared.data.sanity.model.SanityLevel
-import com.tritiumgaming.shared.data.sanity.model.SanityLevel.SAFE_MIN_BOUNDS
-import com.tritiumgaming.shared.data.sanity.model.SanityLevel.SANITY_LOSS_ON_PLAYER_DEATH
-import com.tritiumgaming.shared.data.weather.model.Temperature
-import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_COOLING_RATE
-import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_HEATING_RATE
+import com.tritiumstudios.data.difficultysetting.dto.EquipmentPermission
+import com.tritiumstudios.data.difficultysetting.dto.EquipmentPermission.Permission
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.FuseBoxAtStartOfContract
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
+import com.tritiumstudios.data.difficultysetting.mappers.toFloat
+import com.tritiumstudios.data.difficultysetting.mappers.toInt
+import com.tritiumstudios.data.difficultysetting.mappers.toLong
+import com.tritiumstudios.data.difficultysetting.mappers.toTemperatureRange
+import com.tritiumstudios.data.operation.model.CategoryOption
+import com.tritiumstudios.data.operation.model.DifficultyData
+import com.tritiumstudios.data.operation.model.GhostDetails
+import com.tritiumstudios.data.operation.model.GhostState
+import com.tritiumstudios.data.operation.model.GhostTraitFilterOptions
+import com.tritiumstudios.data.operation.model.GhostTraitFilterUiOptions
+import com.tritiumstudios.data.operation.model.MapData
+import com.tritiumstudios.data.operation.model.MissionData
+import com.tritiumstudios.data.operation.model.MissionState
+import com.tritiumstudios.data.operation.model.OperationOverrideData
+import com.tritiumstudios.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import com.tritiumstudios.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_BROKEN
+import com.tritiumstudios.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_DISABLED
+import com.tritiumstudios.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED
+import com.tritiumstudios.data.operation.model.OperationUserPreferences
+import com.tritiumstudios.data.operation.model.PhaseData
+import com.tritiumstudios.data.operation.model.PhaseData.Companion.DEFAULT
+import com.tritiumstudios.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
+import com.tritiumstudios.data.operation.model.SanityData
+import com.tritiumstudios.data.operation.model.SanityTimerData
+import com.tritiumstudios.data.operation.model.SanityTimerData.Companion.TIME_MIN
+import com.tritiumstudios.data.operation.model.StateOption
+import com.tritiumstudios.data.operation.model.TagOption
+import com.tritiumstudios.data.operation.model.TemperatureData
+import com.tritiumstudios.data.operation.model.ToolTimerData
+import com.tritiumstudios.data.operation.model.ToolTimerType
+import com.tritiumstudios.data.operation.model.TraitFilter
+import com.tritiumstudios.data.operation.model.TraitValidationType
+import com.tritiumstudios.data.operation.model.ValidatedGhostTrait
+import com.tritiumstudios.data.operation.model.WeightOption
+import com.tritiumstudios.data.operation.model.popup.EvidencePopupRecord
+import com.tritiumstudios.data.operation.model.popup.GhostPopupRecord
+import com.tritiumstudios.data.operation.usecase.GetOperationStateUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationDifficultyUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationEvidenceUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationGhostDetailsUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationHuntWarningUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationMapUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationMissionDataUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationOverridesUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationPhaseUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationSanityUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationTemperatureUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationWeatherUseCase
+import com.tritiumstudios.data.operation.usecase.bundle.InvestigationUseCaseBundle
+import com.tritiumstudios.data.phase.mappers.PhaseResources.PhaseIdentifier
+import com.tritiumstudios.data.sanity.model.SanityLevel
+import com.tritiumstudios.data.sanity.model.SanityLevel.SAFE_MIN_BOUNDS
+import com.tritiumstudios.data.sanity.model.SanityLevel.SANITY_LOSS_ON_PLAYER_DEATH
+import com.tritiumstudios.data.weather.model.Temperature
+import com.tritiumstudios.data.weather.model.Temperature.TEMPERATURE_COOLING_RATE
+import com.tritiumstudios.data.weather.model.Temperature.TEMPERATURE_HEATING_RATE
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -702,7 +706,7 @@ class InvestigationScreenViewModel private constructor(
 
     /* Ghost Rejections */
     private val _explicitGhostRejects =
-        MutableStateFlow<Set<GhostResources.GhostIdentifier>>(emptySet())
+        MutableStateFlow<Set<GhostIdentifier>>(emptySet())
     private fun resetExplicitGhostRejects() {
         _explicitGhostRejects.update { emptySet() }
     }
@@ -720,7 +724,7 @@ class InvestigationScreenViewModel private constructor(
         val evidenceStates = args[0] as List<EvidenceState>
         val difficultyState = args[1] as DifficultyData
         val bpmToolUiState = args[2] as BpmToolUiState
-        val explicitRejections = args[3] as Set<GhostResources.GhostIdentifier>
+        val explicitRejections = args[3] as Set<GhostIdentifier>
         val selectedTraits = args[4] as List<ValidatedGhostTrait>
         val overridesState = args[5] as OperationOverrideData
         val selectedGender = args[6] as Gender
@@ -955,7 +959,7 @@ class InvestigationScreenViewModel private constructor(
             if (maxBase == -1f) maxBase = minBase
 
             if (speedEnum == GhostResources.GhostSpeed.JINN &&
-                fuseBoxFlag == FuseBoxFlag.FUSEBOX_DISABLED
+                fuseBoxFlag == FUSEBOX_DISABLED
             ) {
                 maxBase = minBase
             }
@@ -1056,11 +1060,14 @@ class InvestigationScreenViewModel private constructor(
     ) { filter, options ->
         GhostTraitFilterUiOptions(
             category = options.categories.map {
-                CategoryOption(it, filter.category == it) },
+                CategoryOption(it, filter.category == it)
+            },
             weight = options.weights.map {
-                WeightOption(it, filter.weight == it) },
+                WeightOption(it, filter.weight == it)
+            },
             state = options.states.map {
-                StateOption(it, filter.state == it) },
+                StateOption(it, filter.state == it)
+            },
             tags = options.tags.let { it.ifEmpty { filter.tags } }
                 .map { TagOption(it) },
             uniqueOnly = filter.uniqueOnly,
@@ -1745,9 +1752,9 @@ class InvestigationScreenViewModel private constructor(
             operationOverridesState.value.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                        FuseBoxAtStartOfContract.OFF -> FuseBoxFlag.FUSEBOX_DISABLED
-                        FuseBoxAtStartOfContract.ON -> FuseBoxFlag.FUSEBOX_ENABLED
-                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
+                        FuseBoxAtStartOfContract.OFF -> FUSEBOX_DISABLED
+                        FuseBoxAtStartOfContract.ON -> FUSEBOX_ENABLED
+                        FuseBoxAtStartOfContract.BROKEN -> FUSEBOX_BROKEN
                     }
             )
         )
@@ -1758,11 +1765,11 @@ class InvestigationScreenViewModel private constructor(
             currentOverrides.copy(
                 fuseBox =
                     when(difficultyState.value.settings.fuseBoxAtStartOfContract) {
-                        FuseBoxAtStartOfContract.BROKEN -> FuseBoxFlag.FUSEBOX_BROKEN
+                        FuseBoxAtStartOfContract.BROKEN -> FUSEBOX_BROKEN
                         else -> {
                             when(currentOverrides.fuseBox) {
-                                FuseBoxFlag.FUSEBOX_ENABLED -> FuseBoxFlag.FUSEBOX_DISABLED
-                                else -> FuseBoxFlag.FUSEBOX_ENABLED
+                                FUSEBOX_ENABLED -> FUSEBOX_DISABLED
+                                else -> FUSEBOX_ENABLED
                             }
                         }
                     }
@@ -1957,7 +1964,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun setPopup(
-        ghostIdentifier: GhostResources.GhostIdentifier
+        ghostIdentifier: GhostIdentifier
     ) {
         try {
             val ghost = getGhostUseCase(ghostIdentifier).getOrThrow()
@@ -2302,8 +2309,8 @@ class InvestigationScreenViewModel private constructor(
                 updatePhase(canAlertAudio = false)
 
                 val fuseState = if (difficulty.settings.fuseBoxAtStartOfContract ==
-                    FuseBoxAtStartOfContract.ON) FuseBoxFlag.FUSEBOX_ENABLED
-                else FuseBoxFlag.FUSEBOX_DISABLED
+                    FuseBoxAtStartOfContract.ON) FUSEBOX_ENABLED
+                else FUSEBOX_DISABLED
 
                 setFuseBoxOverride(fuseState)
                 resetJournal()
@@ -2417,7 +2424,7 @@ class InvestigationScreenViewModel private constructor(
         object ToggleToolbar : InvestigationEvent()
         data class SetToolbarCategory(val category: OperationToolbarUiState.Category, val allowCollapse: Boolean = true) : InvestigationEvent()
         data class ShowEvidencePopup(val type: EvidenceType) : InvestigationEvent()
-        data class ShowGhostPopup(val id: GhostResources.GhostIdentifier) : InvestigationEvent()
+        data class ShowGhostPopup(val id: GhostIdentifier) : InvestigationEvent()
         object ClearPopup : InvestigationEvent()
 
         // System Events

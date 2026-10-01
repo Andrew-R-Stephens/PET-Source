@@ -1,25 +1,25 @@
 package com.tritiumgaming.feature.maps.app.container
 
 import android.content.Context
+import com.tritiumgaming.data.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.data.map.complex.repository.ComplexMapRepositoryImpl
 import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.data.map.complex.source.local.ComplexMapLocalDataSource
 import com.tritiumgaming.data.map.complex.source.service.ComplexMapLocalService
+import com.tritiumgaming.data.map.complex.usecase.FetchComplexMapsUseCase
+import com.tritiumgaming.data.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
-import com.tritiumgaming.shared.data.map.complex.repository.ComplexMapRepository
-import com.tritiumgaming.shared.data.map.complex.usecase.FetchComplexMapsUseCase
-import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.FetchMapThumbnailsUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapIdUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
+import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
+import com.tritiumgaming.data.map.simple.usecase.FetchMapThumbnailsUseCase
+import com.tritiumgaming.data.map.simple.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapIdUseCase
+import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapNameUseCase
+import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
 
 class MapViewerContainer(
     applicationContext: Context

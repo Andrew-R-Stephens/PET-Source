@@ -34,7 +34,6 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
-import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
@@ -49,16 +48,16 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUi
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
-import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources
+import com.tritiumstudios.data.difficultysetting.mappers.toDrawable
+import com.tritiumstudios.data.difficultysetting.mappers.toFloat
+import com.tritiumstudios.data.difficultysetting.mappers.toStringResource
+import com.tritiumstudios.data.operation.model.OperationOverrideData
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -69,10 +68,10 @@ internal fun BpmTool(
     measurementType: VisualizerMeasurementType,
     applyMeasurement: Boolean,
     ghostSpeedModifier: Float = 1f,
-    fuseBoxFlag: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED,
+    fuseBoxFlag: OperationOverrideData.Companion.FuseBoxFlag = OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     domainMillis: Long = 10.seconds.inWholeMilliseconds,
     domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds,
-    weather: Weather = Weather.RANDOM,
+    weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
     range: Int = 300,
     domainOptions: List<Long> = emptyList(),
     sampleIntervalOptions: List<Long> = emptyList(),
@@ -155,7 +154,7 @@ internal fun BpmTool(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
 
-        if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED || weather == Weather.BLOOD_MOON ||
+        if (fuseBoxFlag == OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED || weather == DifficultySettingResources.Weather.BLOOD_MOON ||
             ghostSpeedModifier != DifficultySettingResources.GhostSpeed.SPEED_100.toFloat()) {
             Row(
                 modifier = Modifier
@@ -215,7 +214,7 @@ internal fun BpmTool(
                             }
                         }
 
-                        if (weather == Weather.BLOOD_MOON) {
+                        if (weather == DifficultySettingResources.Weather.BLOOD_MOON) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -235,7 +234,7 @@ internal fun BpmTool(
                             }
                         }
 
-                        if (fuseBoxFlag == FuseBoxFlag.FUSEBOX_ENABLED) {
+                        if (fuseBoxFlag == OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED) {
 
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
@@ -745,11 +744,11 @@ internal data class BpmToolUiState(
     val realtimeState: RealtimeUiState<BpmPoint> = RealtimeUiState(),
     val measurementType: VisualizerMeasurementType = VisualizerMeasurementType.INSTANT,
     val ghostSpeedModifier: Float = 1f,
-    val fuseBoxFlag: FuseBoxFlag = FuseBoxFlag.FUSEBOX_ENABLED,
+    val fuseBoxFlag: OperationOverrideData.Companion.FuseBoxFlag = OperationOverrideData.Companion.FuseBoxFlag.FUSEBOX_ENABLED,
     val domainMillis: Long = 10.seconds.inWholeMilliseconds,
     val domainSampleIntervalMillis: Long = 3.seconds.inWholeMilliseconds,
     val applyMeasurement: Boolean = false,
-    val weather: Weather = Weather.RANDOM,
+    val weather: DifficultySettingResources.Weather = DifficultySettingResources.Weather.RANDOM,
     val range: Int = 300,
     val domainOptions: List<Long> = emptyList(),
     val sampleIntervalOptions: List<Long> = emptyList()

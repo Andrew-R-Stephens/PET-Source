@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.customdifficulty.source.local
 
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.CursedPossession
 
 expect class DifficultyTypeConverters() {
     fun fromCursedPossessionList(value: List<CursedPossession>?): String?

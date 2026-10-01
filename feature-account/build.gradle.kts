@@ -106,7 +106,7 @@ dependencies {
     implementation(project(":core-ui"))
 
     implementation(project(":data-account"))
-
-    implementation(project(":shared"))
-
+    implementation(project(":data-palette"))
+    implementation(project(":data-preferences"))
+    implementation(project(":data-typography"))
 }

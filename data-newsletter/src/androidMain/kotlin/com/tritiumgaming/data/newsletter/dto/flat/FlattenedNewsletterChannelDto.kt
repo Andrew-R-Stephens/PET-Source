@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
-import com.tritiumgaming.data.newsletter.dto.flat.toExternal
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterChannel
+import com.tritiumgaming.data.newsletter.model.NewsletterChannel
+
 
 data class FlattenedNewsletterChannelDto(
     val language: String,

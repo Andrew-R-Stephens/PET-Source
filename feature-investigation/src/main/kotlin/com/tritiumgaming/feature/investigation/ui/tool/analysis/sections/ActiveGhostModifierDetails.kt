@@ -19,20 +19,19 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBar
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.core.ui.widgets.text.UiText
-import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.data.ghost.mapper.toHasLosMultiplierBoolean
+import com.tritiumgaming.data.ghost.mapper.toMaximumAsInt
+import com.tritiumgaming.data.ghost.mapper.toMinimumAsInt
+import com.tritiumgaming.data.ghost.mapper.toSanityBounds
+import com.tritiumgaming.data.mappers.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
-import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
-import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
-import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
-import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
-import com.tritiumgaming.shared.data.ghost.mapper.toSanityBounds
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources
+import com.tritiumstudios.data.difficultysetting.mappers.toFloat
+import com.tritiumstudios.data.difficultysetting.model.DifficultySettingsModel
+import com.tritiumstudios.data.operation.model.OperationOverrideData
 import kotlin.math.max
 
 @Composable
@@ -206,10 +205,10 @@ internal fun ActiveGhostModifierDetails(
                         if (maxBase == -1f) maxBase = minBase
 
                         val difficultyMultiplier = difficultySettings?.ghostSpeed?.toFloat() ?: 1f
-                        val weather = if (difficultySettings?.weather == Weather.RANDOM)
-                            overrides?.weather ?: Weather.RANDOM else difficultySettings?.weather
-                            ?: Weather.RANDOM
-                        val weatherMultiplier = if (weather == Weather.BLOOD_MOON) 1.15f else 1f
+                        val weather = if (difficultySettings?.weather == DifficultySettingResources.Weather.RANDOM)
+                            overrides?.weather ?: DifficultySettingResources.Weather.RANDOM else difficultySettings?.weather
+                            ?: DifficultySettingResources.Weather.RANDOM
+                        val weatherMultiplier = if (weather == DifficultySettingResources.Weather.BLOOD_MOON) 1.15f else 1f
                         val fuseBoxMultiplier = 1f // Placeholder
 
                         val minSpeed = minBase * difficultyMultiplier * weatherMultiplier * fuseBoxMultiplier

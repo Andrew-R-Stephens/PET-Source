@@ -4,12 +4,12 @@ import com.tritiumgaming.core.domain.market.user.usecase.DeactivateAccountUseCas
 import com.tritiumgaming.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.usecase.SaveCurrentPaletteUseCase
 
 class AccountContainer(
     internal val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,

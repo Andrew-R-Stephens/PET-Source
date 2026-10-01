@@ -105,6 +105,11 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":shared"))
+    implementation(project(":data-account"))
+    implementation(project(":data-marketplace"))
+    implementation(project(":data-palette"))
+    implementation(project(":data-policy"))
+    implementation(project(":data-preferences"))
+    implementation(project(":data-typography"))
 
 }

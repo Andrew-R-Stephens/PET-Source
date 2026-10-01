@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.marketplace.typography.dto
 
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
-import com.tritiumgaming.shared.data.market.typography.mappers.asUuid
-import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
+import com.tritiumgaming.data.marketplace.typography.model.MarketTypography
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType
+import com.tritiumgaming.data.typography.mappers.asUuid
 
 data class MarketTypographyDto(
     internal val uuid: String,

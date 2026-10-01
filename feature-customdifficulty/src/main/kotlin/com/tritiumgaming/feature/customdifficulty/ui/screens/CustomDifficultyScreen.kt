@@ -69,7 +69,6 @@ import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.common.util.ValidationUtils
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.MarkCheckIcon
-import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
@@ -80,15 +79,44 @@ import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
+import com.tritiumgaming.data.customdifficulty.CustomDifficultyResources
+import com.tritiumgaming.data.customdifficulty.mappers.toStringResource
+import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyUiState
 import com.tritiumgaming.feature.customdifficulty.ui.CustomDifficultyViewModel
-import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
-import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
-import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.ActivityLevel
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.ActivityMonitor
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.ChangingFavoriteRoom
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.CursedPossessionsQuantity
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.DoorsStartingOpen
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.EventFrequency
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.EvidenceGiven
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.FingerprintChance
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.FingerprintDuration
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Flashlights
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.FriendlyGhost
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.FuseBoxAtStartOfContract
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.FuseBoxVisibleOnMap
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.GhostSpeed
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.GracePeriod
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.HuntDuration
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.KillsExtendHunts
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.LoseItemsAndConsumables
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.NumberOfHidingPlaces
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.PlayerSpeed
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.RoamingFrequency
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.SanityDrainSpeed
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.SanityMonitor
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.SanityPillRestoration
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.SetupTime
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Sprinting
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.StartingSanity
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
+import com.tritiumstudios.data.difficultysetting.mappers.toFloat
+import com.tritiumstudios.data.difficultysetting.mappers.toInt
+import com.tritiumstudios.data.difficultysetting.mappers.toLong
+import com.tritiumstudios.data.difficultysetting.mappers.toStringResource
+import com.tritiumstudios.data.difficultysetting.model.DifficultySettingsModel
 
 @DevicePreviews
 @Composable
@@ -583,59 +611,59 @@ private fun SettingsEditor(
             SettingCategory(title = stringResource(R.string.difficulty_category_player)) {
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_starting_sanity,
-                    options = DifficultySettingResources.StartingSanity.entries.map { it.toFloat().toPercentageString(false) },
+                    options = StartingSanity.entries.map { it.toFloat().toPercentageString(false) },
                     selectedOption = difficulty.settings.startingSanity.toFloat().toPercentageString(false),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(startingSanity = DifficultySettingResources.StartingSanity.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(startingSanity = StartingSanity.entries[index])) }
                     }
                 )
 
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_sanity_pill_restoration,
-                    options = DifficultySettingResources.SanityPillRestoration.entries.map { it.toFloat().toPercentageString(false) },
+                    options = SanityPillRestoration.entries.map { it.toFloat().toPercentageString(false) },
                     selectedOption = difficulty.settings.sanityPillRestoration.toFloat().toPercentageString(false),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(sanityPillRestoration = DifficultySettingResources.SanityPillRestoration.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(sanityPillRestoration = SanityPillRestoration.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_sanity_drain_speed,
-                    options = DifficultySettingResources.SanityDrainSpeed.entries.map { it.toFloat().toPercentageString(false) },
+                    options = SanityDrainSpeed.entries.map { it.toFloat().toPercentageString(false) },
                     selectedOption = difficulty.settings.sanityDrainSpeed.toFloat().toPercentageString(false),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(sanityDrainSpeed = DifficultySettingResources.SanityDrainSpeed.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(sanityDrainSpeed = SanityDrainSpeed.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_sprinting,
-                    options = DifficultySettingResources.Sprinting.entries.map { stringResource(it.toStringResource()) },
+                    options = Sprinting.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.sprinting.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(sprinting = DifficultySettingResources.Sprinting.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(sprinting = Sprinting.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_player_speed,
-                    options = DifficultySettingResources.PlayerSpeed.entries.map { it.toFloat().toPercentageString(false) },
+                    options = PlayerSpeed.entries.map { it.toFloat().toPercentageString(false) },
                     selectedOption = difficulty.settings.playerSpeed.toFloat().toPercentageString(false),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(playerSpeed = DifficultySettingResources.PlayerSpeed.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(playerSpeed = PlayerSpeed.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_flashlights,
-                    options = DifficultySettingResources.Flashlights.entries.map { stringResource(it.toStringResource()) },
+                    options = Flashlights.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.flashlights.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(flashlights = DifficultySettingResources.Flashlights.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(flashlights = Flashlights.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_lose_items_and_consumables,
-                    options = DifficultySettingResources.LoseItemsAndConsumables.entries.map { stringResource(it.toStringResource()) },
+                    options = LoseItemsAndConsumables.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.loseItemsAndConsumables.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(loseItemsAndConsumables = DifficultySettingResources.LoseItemsAndConsumables.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(loseItemsAndConsumables = LoseItemsAndConsumables.entries[index])) }
                     }
                 )
             }
@@ -645,97 +673,97 @@ private fun SettingsEditor(
             SettingCategory(title = stringResource(R.string.difficulty_category_ghost)) {
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_ghost_speed,
-                    options = DifficultySettingResources.GhostSpeed.entries.map { it.toFloat().toPercentageString(false) },
+                    options = GhostSpeed.entries.map { it.toFloat().toPercentageString(false) },
                     selectedOption = difficulty.settings.ghostSpeed.toFloat().toPercentageString(false),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(ghostSpeed = DifficultySettingResources.GhostSpeed.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(ghostSpeed = GhostSpeed.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_roaming_frequency,
-                    options = DifficultySettingResources.RoamingFrequency.entries.map { stringResource(it.toStringResource()) },
+                    options = RoamingFrequency.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.roamingFrequency.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(roamingFrequency = DifficultySettingResources.RoamingFrequency.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(roamingFrequency = RoamingFrequency.entries[index])) }
                     }
                 )
 
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_changing_favourite_room,
-                    options = DifficultySettingResources.ChangingFavoriteRoom.entries.map { stringResource(it.toStringResource()) },
+                    options = ChangingFavoriteRoom.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.changingFavouriteRoom.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(changingFavouriteRoom = DifficultySettingResources.ChangingFavoriteRoom.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(changingFavouriteRoom = ChangingFavoriteRoom.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_activity_level,
-                    options = DifficultySettingResources.ActivityLevel.entries.map { stringResource(it.toStringResource()) },
+                    options = ActivityLevel.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.activityLevel.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(activityLevel = DifficultySettingResources.ActivityLevel.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(activityLevel = ActivityLevel.entries[index])) }
                     }
                 )
 
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_event_frequency,
-                    options = DifficultySettingResources.EventFrequency.entries.map { stringResource(it.toStringResource()) },
+                    options = EventFrequency.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.eventFrequency.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(eventFrequency = DifficultySettingResources.EventFrequency.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(eventFrequency = EventFrequency.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_friendly_ghost,
-                    options = DifficultySettingResources.FriendlyGhost.entries.map { stringResource(it.toStringResource()) },
+                    options = FriendlyGhost.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.friendlyGhost.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(friendlyGhost = DifficultySettingResources.FriendlyGhost.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(friendlyGhost = FriendlyGhost.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_grace_period,
-                    options = DifficultySettingResources.GracePeriod.entries.map { "${(it.toLong() / 1000f).toLong()}s" },
+                    options = GracePeriod.entries.map { "${(it.toLong() / 1000f).toLong()}s" },
                     selectedOption = "${(difficulty.settings.gracePeriod.toLong() / 1000f).toLong()}s",
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(gracePeriod = DifficultySettingResources.GracePeriod.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(gracePeriod = GracePeriod.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_hunt_duration,
-                    options = DifficultySettingResources.HuntDuration.entries.map { stringResource(it.toStringResource()) },
+                    options = HuntDuration.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.huntDuration.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(huntDuration = DifficultySettingResources.HuntDuration.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(huntDuration = HuntDuration.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_kills_extend_hunts,
-                    options = DifficultySettingResources.KillsExtendHunts.entries.map { stringResource(it.toStringResource()) },
+                    options = KillsExtendHunts.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.killsExtendHunts.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(killsExtendHunts = DifficultySettingResources.KillsExtendHunts.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(killsExtendHunts = KillsExtendHunts.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_evidence_given,
-                    options = DifficultySettingResources.EvidenceGiven.entries.map { it.toInt().toString() },
+                    options = EvidenceGiven.entries.map { it.toInt().toString() },
                     selectedOption = difficulty.settings.evidenceGiven.toInt().toString(),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(evidenceGiven = DifficultySettingResources.EvidenceGiven.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(evidenceGiven = EvidenceGiven.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_fingerprint_chance,
-                    options = DifficultySettingResources.FingerprintChance.entries.map { it.toFloat().toPercentageString(false) },
+                    options = FingerprintChance.entries.map { it.toFloat().toPercentageString(false) },
                     selectedOption = difficulty.settings.fingerprintChance.toFloat().toPercentageString(false),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(fingerprintChance = DifficultySettingResources.FingerprintChance.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(fingerprintChance = FingerprintChance.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_fingerprint_duration,
-                    options = DifficultySettingResources.FingerprintDuration.entries.map {
+                    options = FingerprintDuration.entries.map {
                         val duration = it.toLong()
                         if (duration == -1L) stringResource(R.string.difficulty_setting_state_infinite)
                         else "${(duration / 1000f).toLong()}s"
@@ -745,7 +773,7 @@ private fun SettingsEditor(
                         else "${(it / 1000f).toLong()}s"
                     },
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(fingerprintDuration = DifficultySettingResources.FingerprintDuration.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(fingerprintDuration = FingerprintDuration.entries[index])) }
                     }
                 )
             }
@@ -755,76 +783,76 @@ private fun SettingsEditor(
             SettingCategory(title = stringResource(R.string.difficulty_category_contract)) {
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_setup_time,
-                    options = DifficultySettingResources.SetupTime.entries.map { "${(it.toLong() / 1000f).toLong()}s" },
+                    options = SetupTime.entries.map { "${(it.toLong() / 1000f).toLong()}s" },
                     selectedOption = "${(difficulty.settings.setupTime.toLong() / 1000f).toLong()}s",
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(setupTime = DifficultySettingResources.SetupTime.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(setupTime = SetupTime.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_weather,
-                    options = DifficultySettingResources.Weather.entries.map { stringResource(it.toStringResource()) },
+                    options = Weather.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.weather.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(weather = DifficultySettingResources.Weather.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(weather = Weather.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_doors_starting_open,
-                    options = DifficultySettingResources.DoorsStartingOpen.entries.map { stringResource(it.toStringResource()) },
+                    options = DoorsStartingOpen.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.doorsStartingOpen.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(doorsStartingOpen = DifficultySettingResources.DoorsStartingOpen.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(doorsStartingOpen = DoorsStartingOpen.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_number_of_hiding_places,
-                    options = DifficultySettingResources.NumberOfHidingPlaces.entries.map { stringResource(it.toStringResource()) },
+                    options = NumberOfHidingPlaces.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.numberOfHidingPlaces.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(numberOfHidingPlaces = DifficultySettingResources.NumberOfHidingPlaces.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(numberOfHidingPlaces = NumberOfHidingPlaces.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_sanity_monitor,
-                    options = DifficultySettingResources.SanityMonitor.entries.map { stringResource(it.toStringResource()) },
+                    options = SanityMonitor.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.sanityMonitor.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(sanityMonitor = DifficultySettingResources.SanityMonitor.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(sanityMonitor = SanityMonitor.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_activity_monitor,
-                    options = DifficultySettingResources.ActivityMonitor.entries.map { stringResource(it.toStringResource()) },
+                    options = ActivityMonitor.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.activityMonitor.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(activityMonitor = DifficultySettingResources.ActivityMonitor.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(activityMonitor = ActivityMonitor.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_fuse_box_at_start_of_contract,
-                    options = DifficultySettingResources.FuseBoxAtStartOfContract.entries.map { stringResource(it.toStringResource()) },
+                    options = FuseBoxAtStartOfContract.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.fuseBoxAtStartOfContract.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(fuseBoxAtStartOfContract = DifficultySettingResources.FuseBoxAtStartOfContract.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_fuse_box_visible_on_map,
-                    options = DifficultySettingResources.FuseBoxVisibleOnMap.entries.map { stringResource(it.toStringResource()) },
+                    options = FuseBoxVisibleOnMap.entries.map { stringResource(it.toStringResource()) },
                     selectedOption = stringResource(difficulty.settings.fuseBoxVisibleOnMap.toStringResource()),
                     onSelect = { index ->
-                        onUpdate { it.copy(settings = it.settings.copy(fuseBoxVisibleOnMap = DifficultySettingResources.FuseBoxVisibleOnMap.entries[index])) }
+                        onUpdate { it.copy(settings = it.settings.copy(fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.entries[index])) }
                     }
                 )
                 SettingDropdown(
                     label = R.string.difficulty_setting_title_cursed_possessions_quantity,
-                    options = DifficultySettingResources.CursedPossessionsQuantity.entries.map { it.toInt().toString() },
+                    options = CursedPossessionsQuantity.entries.map { it.toInt().toString() },
                     selectedOption = difficulty.settings.cursedPossessionsQuantity.toInt().toString(),
                     onSelect = { index ->
                         onUpdate { it.copy(
                             settings = it.settings.copy(
-                                cursedPossessionsQuantity = DifficultySettingResources.CursedPossessionsQuantity.entries[index])) }
+                                cursedPossessionsQuantity = CursedPossessionsQuantity.entries[index])) }
                     }
                 )
             }

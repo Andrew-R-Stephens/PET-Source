@@ -52,10 +52,6 @@ kotlin {
             // Kotlin Standard Library & Serialization
             implementation(libs.jetbrains.kotlin.stdlib)
 
-            // Internal Module Dependencies
-            implementation(project(":shared"))
-            implementation(project(":core-common"))
-
             // Jetpack DataStore
             implementation(libs.androidx.datastore.preferences)
 
@@ -69,6 +65,9 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.xml)
             implementation(libs.ktor.serialization.kotlinx.cbor)
             implementation(libs.ktor.serialization.kotlinx.protobuf)
+
+            api(project(":core-common"))
+
         }
 
         commonTest.dependencies {
@@ -76,6 +75,42 @@ kotlin {
         }
 
         androidMain.dependencies {
+            // Add Android-specific dependencies here. Note that this source set depends on
+            // commonMain by default and will correctly pull the Android artifacts of any KMP
+            // dependencies declared in commonMain.
+
+            // Compose UI
+            implementation(libs.androidx.compose.ui.core)
+            implementation(libs.androidx.compose.ui.toolingPreview)
+
+            /*Optional - Included automatically by material, only add when you need
+            the icons but not the material library (e.g. when using Material3 or a
+            custom design system based on Foundation)*/
+            implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
+            implementation(libs.androidx.compose.runtime.rxJava2) // Optional - Integration with RxJava
+
+            implementation(libs.androidx.activityCompose)
+            implementation(libs.androidx.lifecycle.runtime.ktx)
+            implementation(libs.androidx.lifecycle.viewmodelCompose)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.navigation.compose)
+
+            // WEARABLE
+            implementation(libs.android.playServices.wearable)
+            implementation(libs.jetbrains.kotlinx.coroutines.play.services)
+
+            // GOOGLE FIREBASE FIRESTORE
+            implementation(project.dependencies.platform(libs.firebase.bom))
+            // GOOGLE FIREBASE AUTH
+            implementation(libs.firebase.auth)
+            // GOOGLE FIREBASE FIRESTORE
+            implementation(libs.firebase.firestore)
+            // Declare the dependencies for the Crashlytics and Analytics libraries
+            // When using the BoM, you don't specify versions in Firebase library dependencies
+            // GOOGLE FIREBASE ANALYTICS
+            implementation(libs.firebase.crashlytics.core)
+            implementation(libs.firebase.analytics)
+            implementation(libs.firebase.perfCore)
             // Android Core & UI Libraries
             implementation(libs.androidx.core.ktx)
             implementation(libs.androidx.appcompat.core)
@@ -175,7 +210,7 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.protobuf)
     implementation(libs.ktor.client.logging)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
 }*/

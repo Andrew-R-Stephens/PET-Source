@@ -107,6 +107,6 @@ dependencies {
 
     implementation(project(":data-newsletter"))
 
-    implementation(project(":shared"))
+    
 
 }

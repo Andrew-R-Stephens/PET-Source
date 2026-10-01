@@ -3,8 +3,8 @@ package com.tritiumgaming.data.mission.source.local
 import android.content.Context
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.data.mission.dto.MissionDto
+import com.tritiumgaming.data.mission.mappers.MissionResources.MissionContent
 import com.tritiumgaming.data.mission.source.MissionDataSource
-import com.tritiumgaming.shared.data.mission.mappers.MissionResources.MissionContent
 
 class MissionLocalDataSource(
     private val applicationContext: Context

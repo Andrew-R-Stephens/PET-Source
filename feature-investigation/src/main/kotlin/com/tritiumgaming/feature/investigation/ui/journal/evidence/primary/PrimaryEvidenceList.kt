@@ -8,13 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
+import com.tritiumgaming.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.journal.model.EvidenceState
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
+import com.tritiumgaming.data.mappers.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItem
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItemUiAction
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item.EvidenceListItemUiState
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.operation.model.EvidenceState
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
 
 
 @Composable

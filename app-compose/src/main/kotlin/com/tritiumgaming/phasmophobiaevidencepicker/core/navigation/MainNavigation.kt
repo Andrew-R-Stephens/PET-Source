@@ -20,6 +20,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.tritiumgaming.core.navigation.NavRoute
+import com.tritiumgaming.data.codex.mappers.CodexResources
 import com.tritiumgaming.feature.about.ui.AppInfoViewModel
 import com.tritiumgaming.feature.about.ui.InfoScreen
 import com.tritiumgaming.feature.account.ui.AccountScreen
@@ -63,8 +65,6 @@ import com.tritiumgaming.feature.settings.ui.SettingsScreen
 import com.tritiumgaming.feature.settings.ui.SettingsScreenViewModel
 import com.tritiumgaming.feature.start.ui.StartScreen
 import com.tritiumgaming.feature.start.ui.StartScreenViewModel
-import com.tritiumgaming.core.navigation.NavRoute
-import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 private const val TAG = "MainNavigation"
 

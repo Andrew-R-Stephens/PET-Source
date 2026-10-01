@@ -3,7 +3,7 @@ package com.tritiumgaming.feature.maps.app.mappers.map
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources.Poi
+import com.tritiumgaming.data.map.poi.mappers.MapPoiResources.Poi
 
 @StringRes
 fun Poi.toStringResource(): Int {

@@ -1,0 +1,25 @@
+package com.tritiumgaming.data.marketplace.palette.usecase
+
+import com.tritiumgaming.data.marketplace.palette.repository.MarketCatalogPaletteRepository
+import com.tritiumgaming.data.palette.mappers.PaletteResources
+
+class GetMarketCatalogPaletteByUUIDUseCase(
+    private val repository: MarketCatalogPaletteRepository
+) {
+
+    operator fun invoke(
+        uuid: String
+    ): Result<PaletteResources.PaletteType> {
+        val result = repository.get().getOrThrow()
+
+        val cachedPalette = result.firstOrNull { it.uuid == uuid } ?:
+            return Result.failure(Exception("Palette with uuid $uuid not found"))
+
+        cachedPalette.palette ?:
+            return Result.failure(Exception("Market Palette with uuid $uuid does not exist"))
+
+        return Result.success(cachedPalette.palette)
+    }
+
+
+}

@@ -14,29 +14,71 @@ import com.tritiumgaming.core.domain.market.user.usecase.GetSignInCredentialsUse
 import com.tritiumgaming.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.data.account.repository.CredentialsRepositoryImpl
+import com.tritiumgaming.data.account.repository.FirestoreAccountRepository
 import com.tritiumgaming.data.account.repository.FirestoreAccountRepositoryImpl
 import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
 import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSource
+import com.tritiumgaming.data.account.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.data.ads.mappers.RewardedAdsResources
+import com.tritiumgaming.data.ads.mappers.asString
+import com.tritiumgaming.data.ads.repository.RewardedAdRepository
 import com.tritiumgaming.data.ads.repository.RewardedAdRepositoryImpl
-import com.tritiumgaming.data.challenges.repository.ChallengeRepositoryImpl
-import com.tritiumgaming.data.challenges.source.ChallengeDataSource
-import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource
+import com.tritiumgaming.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.data.ads.usecase.LoadRewardedAdUseCase
+import com.tritiumgaming.data.ads.usecase.ShowRewardedAdUseCase
+import com.tritiumgaming.data.challenge.repository.ChallengeRepository
+import com.tritiumgaming.data.challenge.repository.ChallengeRepositoryImpl
+import com.tritiumgaming.data.challenge.source.ChallengeDataSource
+import com.tritiumgaming.data.challenge.source.local.ChallengeLocalDataSource
+import com.tritiumgaming.data.challenge.usecase.GetChallengesUseCase
+import com.tritiumgaming.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.data.customdifficulty.repository.CustomDifficultyRepository
 import com.tritiumgaming.data.customdifficulty.repository.CustomDifficultyRepositoryImpl
+import com.tritiumgaming.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
+import com.tritiumgaming.data.customdifficulty.usecase.UpdateCustomDifficultyUseCase
 import com.tritiumgaming.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
+import com.tritiumgaming.data.language.repository.LanguageRepository
 import com.tritiumgaming.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
+import com.tritiumgaming.data.language.usecase.GetAvailableLanguagesUseCase
+import com.tritiumgaming.data.language.usecase.GetDefaultLanguageUseCase
+import com.tritiumgaming.data.language.usecase.InitFlowLanguageUseCase
+import com.tritiumgaming.data.language.usecase.SaveCurrentLanguageUseCase
+import com.tritiumgaming.data.language.usecase.SetDefaultLanguageUseCase
+import com.tritiumgaming.data.marketplace.bundle.repository.MarketCatalogBundleRepository
 import com.tritiumgaming.data.marketplace.bundle.repository.MarketCatalogBundleRepositoryImpl
 import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
+import com.tritiumgaming.data.marketplace.bundle.usecase.GetMarketCatalogBundlesUseCase
+import com.tritiumgaming.data.marketplace.palette.repository.MarketCatalogPaletteRepository
 import com.tritiumgaming.data.marketplace.palette.repository.MarketCatalogPaletteRepositoryImpl
 import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
+import com.tritiumgaming.data.marketplace.palette.usecase.FetchUnlockedPalettesUseCase
+import com.tritiumgaming.data.marketplace.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.data.marketplace.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.data.marketplace.palette.usecase.GetNextUnlockedPaletteUseCase
+import com.tritiumgaming.data.marketplace.typography.repository.MarketCatalogTypographyRepository
 import com.tritiumgaming.data.marketplace.typography.repository.MarketCatalogTypographyRepositoryImpl
 import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.data.marketplace.typography.usecase.FetchUnlockedTypographiesUseCase
+import com.tritiumgaming.data.marketplace.typography.usecase.GetMarketCatalogTypographiesUseCase
+import com.tritiumgaming.data.marketplace.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
+import com.tritiumgaming.data.marketplace.typography.usecase.GetNextUnlockedTypographyUseCase
+import com.tritiumgaming.data.mission.repository.MissionRepository
 import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
 import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
+import com.tritiumgaming.data.mission.usecase.FetchAllMissionsUseCase
+import com.tritiumgaming.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.data.newsletter.source.datastore.NewsletterDatastoreDataSource
 import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
@@ -44,110 +86,68 @@ import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceI
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
+import com.tritiumgaming.data.newsletter.usecase.FetchNewsletterInboxesUseCase
+import com.tritiumgaming.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
+import com.tritiumgaming.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
+import com.tritiumgaming.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.data.palette.source.local.PaletteLocalDataSourceImpl
-import com.tritiumgaming.data.policy.repository.PolicyRepositoryImpl
-import com.tritiumgaming.data.policy.source.datastore.PolicyDatastoreDataSource
-import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
-import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource
-import com.tritiumgaming.data.typography.source.local.TypographyLocalDataSourceImpl
-import com.tritiumgaming.database.LocalDatabase
-import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
-import com.tritiumgaming.shared.data.ads.mappers.RewardedAdsResources
-import com.tritiumgaming.shared.data.ads.mappers.asString
-import com.tritiumgaming.shared.data.ads.repository.RewardedAdRepository
-import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
-import com.tritiumgaming.shared.data.ads.usecase.LoadRewardedAdUseCase
-import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
-import com.tritiumgaming.data.challenges.repository.ChallengeRepository
-import com.tritiumgaming.data.challenges.usecase.GetChallengesUseCase
-import com.tritiumgaming.data.challenges.usecase.GetCurrentChallengeUseCase
-import com.tritiumgaming.data.language.repository.LanguageRepository
-import com.tritiumgaming.data.language.usecase.GetAvailableLanguagesUseCase
-import com.tritiumgaming.data.language.usecase.GetDefaultLanguageUseCase
-import com.tritiumgaming.data.language.usecase.InitFlowLanguageUseCase
-import com.tritiumgaming.data.language.usecase.SaveCurrentLanguageUseCase
-import com.tritiumgaming.data.language.usecase.SetDefaultLanguageUseCase
+import com.tritiumgaming.data.repository.GlobalPreferencesRepository
 import com.tritiumgaming.data.review.repository.ReviewTrackerRepository
+import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.data.review.source.ReviewTrackerDatastore
+import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.data.review.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.data.review.usecase.status.SetReviewRequestStatusUseCase
 import com.tritiumgaming.data.review.usecase.timealive.SetAppTimeAliveUseCase
 import com.tritiumgaming.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
 import com.tritiumgaming.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
-import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficultyRepository
-import com.tritiumgaming.shared.data.customdifficulty.usecase.GetCustomDifficultiesUseCase
-import com.tritiumgaming.shared.data.customdifficulty.usecase.UpdateCustomDifficultyUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.market.bundle.repository.MarketCatalogBundleRepository
-import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
-import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
-import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
-import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
-import com.tritiumgaming.shared.data.mission.repository.MissionRepository
-import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
-import com.tritiumgaming.shared.data.mission.usecase.MissionsUseCaseBundle
-import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
-import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
-import com.tritiumgaming.shared.data.operation.OperationRepository
-import com.tritiumgaming.shared.data.operation.repository.impl.OperationRepositoryImpl
-import com.tritiumgaming.shared.data.operation.usecase.GetOperationStateUseCase
-import com.tritiumgaming.shared.data.operation.usecase.ResetOperationUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationDifficultyUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationEvidenceUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationGhostDetailsUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationHuntWarningUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMapUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationMissionDataUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationOverridesUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationPhaseUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationSanityUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationTemperatureUseCase
-import com.tritiumgaming.shared.data.operation.usecase.UpdateOperationWeatherUseCase
-import com.tritiumgaming.shared.data.policy.repository.PolicyRepository
-import com.tritiumgaming.shared.data.policy.usecase.ApplyPolicyUseCase
-import com.tritiumgaming.shared.data.policy.usecase.GatherAdsConsentUseCase
-import com.tritiumgaming.shared.data.policy.usecase.InitFlowPolicyUseCase
-import com.tritiumgaming.shared.data.policy.usecase.InitializeMobileAdsUseCase
-import com.tritiumgaming.shared.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
-import com.tritiumgaming.shared.data.policy.usecase.SetAllowAnalyticsUseCase
-import com.tritiumgaming.shared.data.policy.usecase.SetAllowPersonalizedAdsUseCase
-import com.tritiumgaming.shared.data.policy.usecase.ShowPrivacyOptionsFormUseCase
-import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentTypographyUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetUiDensityTypeUseCase
-import com.tritiumgaming.shared.data.wearable.repository.WearableRepository
-import com.tritiumgaming.shared.data.wearable.repository.WearableRepositoryImpl
-import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
-import com.tritiumgaming.shared.data.wearable.usecase.PushOperationDataToWearableUseCase
-import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
+import com.tritiumgaming.data.typography.source.local.TypographyLocalDataSourceImpl
+import com.tritiumgaming.data.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.data.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.data.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.data.usecase.SetAllowCellularDataUseCase
+import com.tritiumgaming.data.usecase.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.data.usecase.SetAllowIntroductionUseCase
+import com.tritiumgaming.data.usecase.SetDisableScreenSaverUseCase
+import com.tritiumgaming.data.usecase.SetEnableGhostReorderUseCase
+import com.tritiumgaming.data.usecase.SetEnableRTLUseCase
+import com.tritiumgaming.data.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.data.usecase.SetUiDensityTypeUseCase
+import com.tritiumgaming.database.LocalDatabase
+import com.tritiumstudios.data.operation.OperationRepository
+import com.tritiumstudios.data.operation.repository.impl.OperationRepositoryImpl
+import com.tritiumstudios.data.operation.usecase.GetOperationStateUseCase
+import com.tritiumstudios.data.operation.usecase.ResetOperationUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationDifficultyUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationEvidenceUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationGhostDetailsUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationHuntWarningUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationMapUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationMissionDataUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationOverridesUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationPhaseUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationSanityUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationTemperatureUseCase
+import com.tritiumstudios.data.operation.usecase.UpdateOperationWeatherUseCase
+import com.tritiumstudios.data.operation.usecase.bundle.InvestigationUseCaseBundle
+import com.tritiumstudios.data.operation.usecase.bundle.MissionsUseCaseBundle
+import com.tritiumstudios.data.policy.repository.PolicyRepository
+import com.tritiumstudios.data.policy.repository.PolicyRepositoryImpl
+import com.tritiumstudios.data.policy.source.datastore.PolicyDatastoreDataSource
+import com.tritiumstudios.data.policy.usecase.ApplyPolicyUseCase
+import com.tritiumstudios.data.policy.usecase.GatherAdsConsentUseCase
+import com.tritiumstudios.data.policy.usecase.InitFlowPolicyUseCase
+import com.tritiumstudios.data.policy.usecase.InitializeMobileAdsUseCase
+import com.tritiumstudios.data.policy.usecase.IsPrivacyOptionsRequiredUseCase
+import com.tritiumstudios.data.policy.usecase.SetAllowAnalyticsUseCase
+import com.tritiumstudios.data.policy.usecase.SetAllowPersonalizedAdsUseCase
+import com.tritiumstudios.data.policy.usecase.ShowPrivacyOptionsFormUseCase
+import com.tritiumstudios.data.wearable.repository.WearableRepository
+import com.tritiumstudios.data.wearable.repository.WearableRepositoryImpl
+import com.tritiumstudios.data.wearable.usecase.ObserveWearableOperationDataUseCase
+import com.tritiumstudios.data.wearable.usecase.PushOperationDataToWearableUseCase
+import com.tritiumstudios.data.wearable.usecase.SendWearableToggleMessageUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -389,19 +389,25 @@ class CoreContainer(
 
 
     val setMarketplaceAgreementStateUseCase = SetMarketplaceAgreementStateUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     val observeMarketplaceAgreementStateUseCase = ObserveMarketplaceAgreementStateUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     val addAccountCreditsUseCase = AddAccountCreditsUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     val removeAccountCreditsUseCase = RemoveAccountCreditsUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     val observeAccountCreditsUseCase = ObserveAccountCreditsUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     val observeAccountUnlockedPalettesUseCase = ObserveAccountUnlockedPalettesUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     val observeAccountUnlockedTypographiesUseCase = ObserveAccountUnlockedTypographiesUseCase(
-            repository = firestoreAccountRepository
+        repository = firestoreAccountRepository
     )
     val purchaseMarketplaceItemUseCase = PurchaseMarketplaceItemUseCase(
         repository = firestoreAccountRepository

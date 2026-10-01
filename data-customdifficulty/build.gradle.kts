@@ -51,9 +51,18 @@ kotlin {
         commonMain.dependencies {
             // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
+            implementation(libs.jetbrains.kotlinx.coroutines)
+            implementation(libs.jetbrains.kotlinx.serialization.json)
+            // Compose
+            implementation(libs.jetbrains.compose.runtime)
+            implementation(libs.jetbrains.compose.foundation)
+            implementation(libs.jetbrains.compose.material3)
+            implementation(libs.jetbrains.compose.ui)
+            implementation(libs.jetbrains.compose.ui.toolingPreview)
+            implementation(libs.jetbrains.compose.components)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
+            api(project(":data-difficultysetting"))
         }
 
         commonTest.dependencies {
@@ -68,6 +77,8 @@ kotlin {
             // Room Database (Android Native)
             implementation(libs.androidx.room.runtime)
             implementation(libs.androidx.room.ktx)
+
+            api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
@@ -128,7 +139,7 @@ configure<LibraryExtension> {
 }
 
 dependencies {
-    implementation(project(":shared"))
+    
 
     implementation(libs.androidx.core.ktx)
 

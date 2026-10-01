@@ -53,7 +53,6 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
             implementation(project(":core-common"))
 
             // Jetpack DataStore
@@ -171,7 +170,7 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perfCore)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
 }*/

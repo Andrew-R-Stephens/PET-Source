@@ -1,9 +1,9 @@
 package com.tritiumgaming.data.map.modifiers.source.local
 
+import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 import com.tritiumgaming.data.map.modifiers.dto.WorldMapModifierDto
 import com.tritiumgaming.data.map.modifiers.source.MapModifiersDataSource
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 
 class MapModifiersLocalDataSource: MapModifiersDataSource {
 

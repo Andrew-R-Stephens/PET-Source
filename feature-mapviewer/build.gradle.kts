@@ -98,6 +98,6 @@ dependencies {
 
     implementation(project(":data-map"))
 
-    implementation(project(":shared"))
+    
 
 }

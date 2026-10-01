@@ -31,11 +31,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
-import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
-import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DEFAULT
-import com.tritiumgaming.shared.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
-import com.tritiumgaming.shared.data.phase.mappers.PhaseResources.PhaseIdentifier
+import com.tritiumstudios.data.operation.model.PhaseData.Companion.DEFAULT
+import com.tritiumstudios.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
+import com.tritiumstudios.data.phase.mappers.PhaseResources
+import com.tritiumstudios.data.phase.mappers.toPhaseTitle
+import com.tritiumstudios.data.phase.mappers.toStringResource
 
 
 @Composable
@@ -43,7 +43,7 @@ internal fun PhaseComponent(
     modifier: Modifier = Modifier,
     state: PhaseUiState
 ) {
-    val isAlert = state.type == PhaseIdentifier.HUNT
+    val isAlert = state.type == PhaseResources.PhaseIdentifier.HUNT
     val canAnimate = state.canFlash
 
     Surface(
@@ -82,7 +82,7 @@ internal fun PhaseComponent(
 }
 
 internal data class PhaseUiState(
-    internal val type: PhaseIdentifier = PhaseIdentifier.SETUP,
+    internal val type: PhaseResources.PhaseIdentifier = PhaseResources.PhaseIdentifier.SETUP,
     internal val animationType: PhaseAnimationType = PhaseAnimationType.PULSE_INWARD,
     internal val canAlertAudio: Boolean = false,
     internal val canFlash: Boolean = true,

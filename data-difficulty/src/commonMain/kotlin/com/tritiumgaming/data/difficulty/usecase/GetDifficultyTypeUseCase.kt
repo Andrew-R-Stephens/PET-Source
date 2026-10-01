@@ -1,0 +1,27 @@
+package com.tritiumgaming.data.difficulty.usecase
+
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.data.difficulty.repository.DifficultyRepository
+
+class GetDifficultyTypeUseCase(
+    private val difficultyRepository: DifficultyRepository
+) {
+    operator fun invoke(index: Int): Result<DifficultyType> {
+        val result = difficultyRepository.getDifficulties()
+
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get difficulty type"))
+        }
+
+        try {
+            val type = result.getOrNull()?.let {
+                it[index].type
+            } ?: return Result.failure(Exception("Could not get difficulty type"))
+
+            return Result.success(type)
+        } catch (e: Exception) {
+            return Result.failure(Exception("Could not acquire difficulty type", e))
+        }
+    }
+
+}

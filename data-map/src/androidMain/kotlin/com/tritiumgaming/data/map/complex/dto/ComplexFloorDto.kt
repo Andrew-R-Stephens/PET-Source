@@ -3,15 +3,15 @@ package com.tritiumgaming.data.map.complex.dto
 import android.graphics.PointF
 import android.util.Log
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto
-import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloor
+import com.tritiumgaming.data.map.complex.model.ComplexWorldMapFloor
 
 data class ComplexFloorDto(
     internal val floorId: Int,
     internal val floorName: String?,
     internal val floorImage: String?,
-    internal val floorLayer: ComplexFloorLayerTypeDto,
-    internal val floorRooms: List<ComplexRoomDto>,
-    internal val floorPOIs: List<ComplexPoiDto>
+    internal val floorLayer: com.tritiumgaming.data.map.complex.dto.ComplexFloorLayerTypeDto,
+    internal val floorRooms: List<com.tritiumgaming.data.map.complex.dto.ComplexRoomDto>,
+    internal val floorPOIs: List<com.tritiumgaming.data.map.complex.dto.ComplexPoiDto>
 ) {
 
     constructor(floor: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto) : this(

@@ -39,7 +39,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -84,9 +83,9 @@ import com.tritiumgaming.core.ui.widgets.label.LabeledValue
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
+import com.tritiumgaming.data.account.model.AccountPalette
+import com.tritiumgaming.data.palette.mappers.PaletteResources
 import com.tritiumgaming.feature.account.ui.component.Dialog
-import com.tritiumgaming.shared.data.account.model.AccountPalette
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
 import kotlinx.coroutines.launch
 
 @DevicePreviews

@@ -44,8 +44,8 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
+import com.tritiumgaming.data.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 internal data class EvidenceListItemUiState(

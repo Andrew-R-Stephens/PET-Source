@@ -62,19 +62,22 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.feature.investigation.app.mappers.codex.toDrawableResource
-import com.tritiumgaming.feature.investigation.app.mappers.codex.toIntegerResource
-import com.tritiumgaming.feature.investigation.app.mappers.codex.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
-import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentIcon
+import com.tritiumgaming.data.codex.mappers.toDrawableResource
+import com.tritiumgaming.data.codex.mappers.toIntegerResource
+import com.tritiumgaming.data.codex.mappers.toStringResource
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.data.mappers.toDrawableResource
+import com.tritiumgaming.data.mappers.toStringResource
+import com.tritiumgaming.data.palette.mappers.PaletteResources
 import com.tritiumgaming.feature.investigation.ui.popups.common.AnimatedGif
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
 import com.tritiumgaming.feature.investigation.ui.popups.common.PopupDataRow
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
-import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
+import com.tritiumstudios.data.operation.model.popup.EvidencePopupRecord
 
 @Composable
 fun EvidencePopup(
@@ -796,17 +799,17 @@ fun EvidenceTypePortraitPreview() {
     LazyColumn {
         items(items = palettes) { paletteItem ->
 
-            val image = EvidenceResources.EvidenceIcon.DOTS.toDrawableResource()
+            val image = EvidenceIcon.DOTS.toDrawableResource()
             val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
-                stringResource(EvidenceResources.EvidenceTitle.DOTS.toStringResource())
+                stringResource(EvidenceTitle.DOTS.toStringResource())
             )
             val evidenceDescription = AnnotatedString.fromHtml(
-                stringResource(EvidenceResources.EvidenceDescription.DOTS.toStringResource())
+                stringResource(EvidenceDescription.DOTS.toStringResource())
             )
-            val equipmentTypeImage = EquipmentResources.EquipmentIcon.DOTS.toDrawableResource()
+            val equipmentTypeImage = EquipmentIcon.DOTS.toDrawableResource()
 
             val buyCost =
-                integerResource(EquipmentResources.EquipmentBuyCost.DOTS.toIntegerResource())
+                integerResource(EquipmentBuyCost.DOTS.toIntegerResource())
 
             val primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit) =
                 @Composable { modifier ->

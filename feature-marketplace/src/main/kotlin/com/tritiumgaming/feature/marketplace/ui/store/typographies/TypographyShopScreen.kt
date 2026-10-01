@@ -34,9 +34,9 @@ import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.data.marketplace.typography.model.MarketTypography
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogTypographiesUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
-import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 
 @DevicePreviews
 @Composable

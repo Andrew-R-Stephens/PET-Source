@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.account.dto
 
-import com.tritiumgaming.shared.data.account.model.AccountTypography
+import com.tritiumgaming.data.account.model.AccountTypography
 
 
 data class AccountTypographyDto(

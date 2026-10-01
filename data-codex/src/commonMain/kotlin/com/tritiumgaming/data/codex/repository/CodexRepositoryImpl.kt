@@ -1,13 +1,12 @@
 package com.tritiumgaming.data.codex.repository
 
 import com.tritiumgaming.data.codex.dto.toDomain
+import com.tritiumgaming.data.codex.model.achievements.AchievementsType
+import com.tritiumgaming.data.codex.model.equipment.EquipmentType
+import com.tritiumgaming.data.codex.model.possessions.PossessionsType
 import com.tritiumgaming.data.codex.source.local.AchievementsLocalDataSource
 import com.tritiumgaming.data.codex.source.local.EquipmentLocalDataSource
 import com.tritiumgaming.data.codex.source.local.PossessionsLocalDataSource
-import com.tritiumgaming.shared.data.codex.model.achievements.AchievementsType
-import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType
-import com.tritiumgaming.shared.data.codex.model.possessions.PossessionsType
-import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 
 class CodexRepositoryImpl(
     private val achievementsLocalDataSource: AchievementsLocalDataSource,

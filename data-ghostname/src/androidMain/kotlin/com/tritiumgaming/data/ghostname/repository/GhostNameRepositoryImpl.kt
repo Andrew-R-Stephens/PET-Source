@@ -1,9 +1,8 @@
 package com.tritiumgaming.data.ghostname.repository
 
 import com.tritiumgaming.data.ghostname.dto.toDomain
+import com.tritiumgaming.data.ghostname.model.GhostName
 import com.tritiumgaming.data.ghostname.source.GhostNameDataSource
-import com.tritiumgaming.shared.data.ghostname.model.GhostName
-import com.tritiumgaming.shared.data.ghostname.repository.GhostNameRepository
 
 class GhostNameRepositoryImpl(
     private val localSource: GhostNameDataSource

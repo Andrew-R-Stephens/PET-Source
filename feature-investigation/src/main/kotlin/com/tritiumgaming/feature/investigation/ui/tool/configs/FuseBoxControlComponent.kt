@@ -20,31 +20,31 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import com.tritiumstudios.data.operation.model.OperationOverrideData.Companion
 
 @Composable
 internal fun FuseBoxButton(
     modifier: Modifier,
-    flag: FuseBoxFlag,
+    flag: Companion.FuseBoxFlag,
     onTogglePower: () -> Unit
 ) {
     data class FuseButtonTheme(
         val icon: Int, val foreground: Color)
 
     val theme = when (flag) {
-        FuseBoxFlag.FUSEBOX_ENABLED -> {
+        Companion.FuseBoxFlag.FUSEBOX_ENABLED -> {
             FuseButtonTheme(
                 R.drawable.ic_power_on,
                 LocalPalette.current.primary
             )
         }
-        FuseBoxFlag.FUSEBOX_DISABLED -> {
+        Companion.FuseBoxFlag.FUSEBOX_DISABLED -> {
             FuseButtonTheme(
                 R.drawable.ic_power_off,
                 LocalPalette.current.onSurface
             )
         }
-        FuseBoxFlag.FUSEBOX_BROKEN -> {
+        Companion.FuseBoxFlag.FUSEBOX_BROKEN -> {
             FuseButtonTheme(
                 R.drawable.ic_power_broken,
                 LocalPalette.current.onSurface.copy(
@@ -58,16 +58,16 @@ internal fun FuseBoxButton(
     CommonTooltip(
         modifier = Modifier,
         tooltipText = stringResource(R.string.general_label_power),
-        onClick = { if (flag != FuseBoxFlag.FUSEBOX_BROKEN) onTogglePower() }
+        onClick = { if (flag != Companion.FuseBoxFlag.FUSEBOX_BROKEN) onTogglePower() }
     ) {
         Surface(
             modifier = modifier,
-            enabled = flag != FuseBoxFlag.FUSEBOX_BROKEN,
+            enabled = flag != Companion.FuseBoxFlag.FUSEBOX_BROKEN,
             onClick = onTogglePower,
             shape = RoundedCornerShape(8.dp),
             color = LocalPalette.current.surfaceContainer,
             border =
-                if (flag == FuseBoxFlag.FUSEBOX_ENABLED) {
+                if (flag == Companion.FuseBoxFlag.FUSEBOX_ENABLED) {
                     BorderStroke(Dp.Hairline, theme.foreground)
                 } else null,
             contentColor = theme.foreground
@@ -91,7 +91,7 @@ internal fun FuseBoxButton(
 }
 
 internal data class FuseBoxUiState(
-    val flag: FuseBoxFlag,
+    val flag: Companion.FuseBoxFlag,
 )
 
 internal data class FuseBoxUiActions(

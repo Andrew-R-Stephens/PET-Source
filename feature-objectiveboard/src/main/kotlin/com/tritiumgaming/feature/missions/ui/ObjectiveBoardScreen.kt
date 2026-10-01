@@ -13,6 +13,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.mission.mappers.MissionResources.MissionContent
+import com.tritiumgaming.data.mission.model.Mission
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUiState
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
@@ -22,9 +25,6 @@ import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUi
 import com.tritiumgaming.feature.missions.ui.screens.ObjectiveBoardContentUiState
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentLandscape
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentPortrait
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.shared.data.mission.mappers.MissionResources
-import com.tritiumgaming.shared.data.mission.model.Mission
 
 @DevicePreviews
 @Composable
@@ -40,21 +40,21 @@ private fun ObjectivesScreenPreview() {
                         selectedMissions = listOf(
                             MissionUiState(
                                 Mission(
-                                    MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                    MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
                                     "4"
                                 ),
                                 false
                             ),
                             MissionUiState(
                                 Mission(
-                                    MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                    MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
                                     "5"
                                 ),
                                 false
                             ),
                             MissionUiState(
                                 Mission(
-                                    MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                    MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
                                     "6"
                                 ),
                                 false
@@ -62,19 +62,19 @@ private fun ObjectivesScreenPreview() {
                         ),
                         availableMissions = listOf(
                             Mission(
-                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
                                 "0"
                             ),
                             Mission(
-                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
                                 "1"
                             ),
                             Mission(
-                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
                                 "2"
                             ),
                             Mission(
-                                MissionResources.MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
+                                MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE,
                                 "3"
                             )
                         )

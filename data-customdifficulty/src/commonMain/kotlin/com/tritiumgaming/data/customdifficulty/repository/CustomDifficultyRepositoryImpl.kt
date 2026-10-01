@@ -2,10 +2,9 @@ package com.tritiumgaming.data.customdifficulty.repository
 
 import com.tritiumgaming.data.customdifficulty.mapper.toDomain
 import com.tritiumgaming.data.customdifficulty.mapper.toEntity
+import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.data.customdifficulty.source.local.CustomDifficultyDao
 import com.tritiumgaming.data.customdifficulty.source.local.CustomDifficultyEntity
-import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
-import com.tritiumgaming.shared.data.customdifficulty.repository.CustomDifficultyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

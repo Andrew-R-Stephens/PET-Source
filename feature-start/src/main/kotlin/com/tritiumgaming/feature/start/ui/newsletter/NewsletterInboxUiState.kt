@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.start.ui.newsletter
 
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
+import com.tritiumgaming.data.newsletter.model.NewsletterInbox
 
 data class NewsletterInboxUiState (
     val inbox: NewsletterInbox,

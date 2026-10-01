@@ -11,9 +11,9 @@ import androidx.compose.ui.res.stringResource
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 @Composable
 internal fun MapConfigControl(
@@ -57,7 +57,7 @@ internal fun MapConfigControl(
 }
 
 internal data class MapConfigUiState(
-    internal val name: SimpleMapResources.MapTitle = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
+    internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
     internal val enabled: Boolean = true,
-    internal val allMaps: List<SimpleMapResources.MapTitle> = emptyList()
+    internal val allMaps: List<MapTitle> = emptyList()
 )

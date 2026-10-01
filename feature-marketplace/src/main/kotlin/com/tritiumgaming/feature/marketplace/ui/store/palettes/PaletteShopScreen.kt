@@ -44,18 +44,18 @@ import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.marketplace.app.mappers.toStringResource
+import com.tritiumgaming.data.marketplace.bundle.model.MarketBundle
+import com.tritiumgaming.data.marketplace.common.mappers.MarketplaceResources
+import com.tritiumgaming.data.marketplace.mappers.toStringResource
+import com.tritiumgaming.data.marketplace.palette.model.MarketPalette
+import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.data.palette.mappers.asUuid
 import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
 import com.tritiumgaming.feature.marketplace.ui.common.components.EquipConfirmationDialog
 import com.tritiumgaming.feature.marketplace.ui.store.bundles.PaletteBundleCard
-import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
-import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 
 @Composable
 fun PaletteShopScreen(

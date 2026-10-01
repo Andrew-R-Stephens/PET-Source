@@ -98,6 +98,6 @@ dependencies {
 
     implementation(project(":data-ghostbox"))
 
-    implementation(project(":shared"))
+    
 
 }

@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.missions.ui.components.response
 
-import com.tritiumgaming.shared.data.operation.model.Response
+import com.tritiumgaming.feature.missions.ui.Response
 
 data class GhostResponseUiActions(
     val onSelectResponse: (response: Response) -> Unit

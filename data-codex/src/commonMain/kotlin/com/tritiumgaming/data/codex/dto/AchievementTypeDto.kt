@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.codex.dto
 
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementCategory
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementIcon
-import com.tritiumgaming.shared.data.codex.model.achievements.AchievementsType
+import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementCategory
+import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementIcon
+import com.tritiumgaming.data.codex.model.achievements.AchievementsType
 
 data class AchievementTypeDto(
     val name: AchievementCategory,

@@ -84,11 +84,11 @@ dependencies {
 
     implementation(libs.androidx.ui.graphics)
 
-    implementation(project(":data-language"))
-
-    implementation(project(":shared"))
-
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
 
+    implementation(project(":data-language"))
+    implementation(project(":data-typography"))
+    implementation(project(":data-palette"))
+    implementation(project(":data-preferences"))
 }

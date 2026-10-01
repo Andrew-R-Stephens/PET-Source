@@ -2,10 +2,9 @@ package com.tritiumgaming.data.evidence.repository
 
 import com.tritiumgaming.data.evidence.dto.toDomain
 import com.tritiumgaming.data.evidence.dto.toEvidenceType
+import com.tritiumgaming.data.evidence.model.Evidence
+import com.tritiumgaming.data.evidence.model.EvidenceType
 import com.tritiumgaming.data.evidence.source.EvidenceDataSource
-import com.tritiumgaming.shared.data.evidence.model.Evidence
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.repository.EvidenceRepository
 
 class EvidenceRepositoryImpl(
     val evidenceLocalDataSource: EvidenceDataSource

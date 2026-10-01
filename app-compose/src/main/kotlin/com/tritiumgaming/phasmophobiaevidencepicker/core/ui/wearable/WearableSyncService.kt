@@ -3,10 +3,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.ui.wearable
 import android.util.Log
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.ui.app.PETApplication
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.wearable.WearablePaths
+import com.tritiumstudios.data.wearable.WearablePaths
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -25,7 +25,7 @@ class WearableSyncService : WearableListenerService() {
             if (parts.size == 2) {
                 val idName = parts[0]
                 val stateName = parts[1]
-                updateEvidenceOnHost(EvidenceIdentifier.valueOf(idName), stateName)
+                updateEvidenceOnHost(EvidenceResources.EvidenceIdentifier.valueOf(idName), stateName)
             }
         } else if (messageEvent.path == WearablePaths.SANITY_UPDATE) {
             val sanityString = String(messageEvent.data)
@@ -49,7 +49,7 @@ class WearableSyncService : WearableListenerService() {
         }
     }
 
-    private fun updateEvidenceOnHost(evidenceIdentifier: EvidenceIdentifier, stateName: String) {
+    private fun updateEvidenceOnHost(evidenceIdentifier: EvidenceResources.EvidenceIdentifier, stateName: String) {
         val app = application as PETApplication
         val investigationUseCaseBundle = app.investigationContainer.investigationUseCaseBundle
         

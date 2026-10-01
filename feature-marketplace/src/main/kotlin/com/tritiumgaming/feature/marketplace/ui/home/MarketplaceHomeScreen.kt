@@ -74,6 +74,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.network.FirebaseFunctionError
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.network.toStringResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
@@ -82,7 +83,6 @@ import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.image.SlantedSplitBackground
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
-import com.tritiumgaming.core.navigation.NavRoute
 
 @Composable
 fun MarketplaceHomeScreen(

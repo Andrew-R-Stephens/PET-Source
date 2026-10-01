@@ -52,7 +52,7 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            //implementation(project(":shared"))
+            //
         }
 
         commonTest.dependencies {
@@ -128,5 +128,5 @@ dependencies {
     androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":shared"))
+    
 }*/

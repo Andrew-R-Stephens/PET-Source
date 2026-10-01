@@ -17,7 +17,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureSt
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources
 
 internal data class ToolSheetStateBundle(
     val smudgeHuntPreventionBundle: NotchedProgressBarBundle,
