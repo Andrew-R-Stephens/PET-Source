@@ -41,6 +41,7 @@ plugins {
     alias(libs.plugins.gms.services) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.firebase.perf) apply false
+    alias(libs.plugins.android.lint) apply false
 }
 
 

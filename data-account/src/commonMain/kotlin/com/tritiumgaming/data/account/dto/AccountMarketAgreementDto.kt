@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.account.dto
 
-import com.tritiumgaming.shared.data.account.model.AccountMarketAgreement
+import com.tritiumgaming.data.account.model.AccountMarketAgreement
 
 data class AccountMarketAgreementDto(
     val isAgreementShown: Boolean = false

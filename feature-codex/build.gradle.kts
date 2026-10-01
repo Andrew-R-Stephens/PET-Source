@@ -98,6 +98,6 @@ dependencies {
 
     implementation(project(":data-codex"))
 
-    implementation(project(":shared"))
+    
 
 }

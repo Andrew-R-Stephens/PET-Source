@@ -62,6 +62,7 @@ include(
     ":data-review",
     ":data-trait",
     ":data-typography",
+    ":data-journal",
     ":database-local",
 )
 
@@ -90,3 +91,13 @@ include(
     ":feature-mapviewer",
     ":feature-ghostbox",
 )
+include(":data-journal")
+include(":data-operation")
+include(":data-wearable")
+include(":data-equipment")
+include(":data-difficultysetting")
+include(":data-policy")
+include(":data-temperature")
+include(":data-sanity")
+include(":data-phase")
+include(":data-investigation")

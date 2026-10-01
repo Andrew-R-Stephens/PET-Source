@@ -105,6 +105,6 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":shared"))
+    
 
 }

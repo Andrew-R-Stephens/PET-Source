@@ -1,12 +1,12 @@
 package com.tritiumgaming.data.codex.dto
 
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentAttribute
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierFlavorText
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierImage
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierInformation
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUnlockLevel
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUpgradeCost
-import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentTypeTier
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentAttribute
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentTierFlavorText
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentTierImage
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentTierInformation
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentUnlockLevel
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentUpgradeCost
+import com.tritiumgaming.data.codex.model.equipment.EquipmentTypeTier
 
 data class EquipmentTypeTierDto(
     val image: EquipmentTierImage,

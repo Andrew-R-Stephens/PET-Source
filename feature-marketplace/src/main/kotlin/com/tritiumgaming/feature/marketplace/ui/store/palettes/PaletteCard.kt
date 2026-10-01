@@ -42,8 +42,8 @@ import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.data.marketplace.palette.model.MarketPalette
+import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
 
 @Composable
 fun PaletteCard(
@@ -317,7 +317,7 @@ private fun Test1() {
     val marketPalette = MarketPalette(
         uuid = "4324132",
         name = "Test",
-        palette = PaletteResources.PaletteType.CONTENT_CREATOR,
+        palette = PaletteType.CONTENT_CREATOR,
         buyCredits = 69
     )
     val palette = marketPalette.palette?.toPaletteResource() ?: ClassicPalette
@@ -354,7 +354,7 @@ private fun Test2() {
     val marketPalette = MarketPalette(
         uuid = "4324132",
         name = "Test",
-        palette = PaletteResources.PaletteType.COMMISSIONER,
+        palette = PaletteType.COMMISSIONER,
         buyCredits = 69
     )
     val palette = marketPalette.palette?.toPaletteResource() ?: ClassicPalette
@@ -389,7 +389,7 @@ private fun Test3() {
     val marketPalette1 = MarketPalette(
         uuid = "4324132",
         name = "Test",
-        palette = PaletteResources.PaletteType.WHITEBOARD,
+        palette = PaletteType.WHITEBOARD,
         buyCredits = 69
     )
     val palette1 = marketPalette1.palette?.toPaletteResource() ?: ClassicPalette
@@ -397,7 +397,7 @@ private fun Test3() {
     val marketPalette2 = MarketPalette(
         uuid = "4324132",
         name = "Test",
-        palette = PaletteResources.PaletteType.COMMISSIONER,
+        palette = PaletteType.COMMISSIONER,
         buyCredits = 69,
         unlocked = false
     )

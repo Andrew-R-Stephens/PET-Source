@@ -9,10 +9,9 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.tritiumgaming.shared.data.ads.model.RewardedAdReward
-import com.tritiumgaming.shared.data.ads.model.RewardedAdState
-import com.tritiumgaming.shared.data.ads.model.RewardedAdStatus
-import com.tritiumgaming.shared.data.ads.repository.RewardedAdRepository
+import com.tritiumgaming.data.ads.model.RewardedAdReward
+import com.tritiumgaming.data.ads.model.RewardedAdState
+import com.tritiumgaming.data.ads.model.RewardedAdStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

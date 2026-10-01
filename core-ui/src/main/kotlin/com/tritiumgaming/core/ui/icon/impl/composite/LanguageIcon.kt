@@ -11,10 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import org.jetbrains.annotations.TestOnly
 
 @Composable

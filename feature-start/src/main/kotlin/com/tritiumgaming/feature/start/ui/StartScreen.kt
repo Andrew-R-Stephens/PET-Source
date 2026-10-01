@@ -40,7 +40,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -69,12 +68,11 @@ import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.base.PersonIcon
 import com.tritiumgaming.core.ui.icon.impl.base.ReviewIcon
 import com.tritiumgaming.core.ui.icon.impl.base.StoreIcon
-import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
-import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.LanguageIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
@@ -85,7 +83,6 @@ import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.widgets.menus.SecondarySelector
-import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
 
 @DevicePreviews
@@ -341,7 +338,6 @@ private fun LogoSection(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top)
     ) {
-
         IconResource.ICON_LOGO_APP.ToComposable(
             modifier = Modifier
                 .widthIn(max = 256.dp)

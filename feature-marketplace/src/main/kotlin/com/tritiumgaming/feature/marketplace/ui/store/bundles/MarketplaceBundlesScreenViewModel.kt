@@ -7,29 +7,29 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.data.account.model.MarketplaceExchangeMedium
+import com.tritiumgaming.data.account.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.data.ads.model.RewardedAdState
+import com.tritiumgaming.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.data.ads.usecase.ShowRewardedAdUseCase
+import com.tritiumgaming.data.marketplace.bundle.model.MarketBundle
+import com.tritiumgaming.data.marketplace.bundle.usecase.GetMarketCatalogBundlesUseCase
+import com.tritiumgaming.data.marketplace.common.mappers.MarketplaceResources
+import com.tritiumgaming.data.marketplace.palette.model.MarketPalette
+import com.tritiumgaming.data.marketplace.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.data.marketplace.typography.model.MarketTypography
+import com.tritiumgaming.data.marketplace.typography.usecase.GetMarketCatalogTypographiesUseCase
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
 import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
-import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
-import com.tritiumgaming.shared.data.ads.model.RewardedAdState
-import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
-import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
-import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
-import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
-import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
-import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -222,7 +222,7 @@ class MarketplaceBundlesScreenViewModel(
         viewModelScope.launch {
             try {
                 val result = purchaseMarketplaceItemUseCase(
-                    CREDITS,
+                    MarketplaceExchangeMedium.CREDITS,
                     itemId,
                     itemType
                 )
@@ -453,7 +453,7 @@ class MarketplaceBundlesScreenViewModel(
         val items = mutableListOf<ShopScreenUiItem>()
 
         if (paletteBundles.isNotEmpty() || typographyBundles.isNotEmpty()) {
-            items.add(ShopScreenUiItem.Header(MarketplaceCategoryTitles.BUNDLES))
+            items.add(ShopScreenUiItem.Header(MarketplaceResources.MarketplaceCategoryTitles.BUNDLES))
         }
 
         paletteBundles.forEach { bundleState ->

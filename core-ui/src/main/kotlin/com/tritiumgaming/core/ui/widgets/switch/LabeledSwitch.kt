@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.data.palette.mappers.PaletteResources
 
 
 @Composable

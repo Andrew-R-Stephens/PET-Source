@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.popups
 
-import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
-import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
+import com.tritiumstudios.data.operation.model.popup.EvidencePopupRecord
+import com.tritiumstudios.data.operation.model.popup.GhostPopupRecord
 
 data class JournalPopupUiState (
     val isShown: Boolean = false,

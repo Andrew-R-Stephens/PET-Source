@@ -1,14 +1,14 @@
 package com.tritiumgaming.data.evidence.dto
 
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceAnimation
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceDescription
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle
-import com.tritiumgaming.shared.data.evidence.model.Evidence
-import com.tritiumgaming.shared.data.evidence.model.EvidenceTier
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.data.evidence.model.Evidence
+import com.tritiumgaming.data.evidence.model.EvidenceTier
+import com.tritiumgaming.data.evidence.model.EvidenceType
 import kotlin.jvm.JvmName
 
 data class EvidenceDto(

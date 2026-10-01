@@ -42,8 +42,8 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.missions.app.mappers.mission.toStringResource
-import com.tritiumgaming.shared.data.mission.model.Mission
+import com.tritiumgaming.data.mission.mappers.toStringResource
+import com.tritiumgaming.data.mission.model.Mission
 
 @Composable
 fun MissionsContent(

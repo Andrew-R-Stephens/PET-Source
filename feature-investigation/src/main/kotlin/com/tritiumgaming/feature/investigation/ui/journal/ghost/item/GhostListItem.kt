@@ -51,21 +51,18 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.journal.model.GhostEvidence
-import com.tritiumgaming.shared.data.operation.model.EvidenceState
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType.NEGATIVE
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType.NEUTRAL
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType.POSITIVE
-import com.tritiumgaming.shared.data.operation.model.GhostState
-import com.tritiumgaming.shared.data.operation.model.GhostState.Companion.NORMAL_AFFIRM_MINIMUM_REACHED
-import com.tritiumgaming.shared.data.operation.model.GhostState.Companion.ZERO_EVIDENCE
-
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.ghost.mapper.GhostResources
+import com.tritiumgaming.data.ghost.model.Ghost
+import com.tritiumgaming.data.journal.model.EvidenceState
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
+import com.tritiumgaming.data.journal.model.GhostEvidence
+import com.tritiumgaming.data.mappers.toDrawableResource
+import com.tritiumgaming.data.mappers.toStringResource
+import com.tritiumstudios.data.operation.model.GhostState
+import com.tritiumstudios.data.operation.model.GhostState.Companion.NORMAL_AFFIRM_MINIMUM_REACHED
+import com.tritiumstudios.data.operation.model.GhostState.Companion.ZERO_EVIDENCE
 
 @Composable
 internal fun LazyItemScope.GhostListItem(
@@ -490,8 +487,8 @@ private fun RowScope.EvidenceIcon(
             contentDescription = "Evidence Icon",
             colorFilter = ColorFilter.tint(
                 when (evidenceRuling) {
-                    NEGATIVE -> LocalPalette.current.primary
-                    POSITIVE -> LocalPalette.current.tertiary
+                    EvidenceValidationType.NEGATIVE -> LocalPalette.current.primary
+                    EvidenceValidationType.POSITIVE -> LocalPalette.current.tertiary
                     else -> LocalPalette.current.secondary
                 }
             )
@@ -501,7 +498,7 @@ private fun RowScope.EvidenceIcon(
 
         if(isStrict) {
             when (evidenceRuling) {
-                NEUTRAL -> {
+                EvidenceValidationType.NEUTRAL -> {
                     if(strictlyNegative) {
                         MarkPriorityCircleIcon(
                             modifier = Modifier
@@ -522,7 +519,7 @@ private fun RowScope.EvidenceIcon(
                         )
                     }
                 }
-                NEGATIVE -> {
+                EvidenceValidationType.NEGATIVE -> {
                     MarkXCircleIconComposite(
                         modifier = Modifier
                             .fillMaxSize(.5f)
@@ -604,9 +601,9 @@ private fun EvidenceIconRowPreview() {
     )
 
     val evidenceStates = listOf(
-        EvidenceState(evidence = emf5, state = POSITIVE),
-        EvidenceState(evidence = spiritBox, state = NEUTRAL),
-        EvidenceState(evidence = writing, state = NEGATIVE)
+        EvidenceState(evidence = emf5, state = EvidenceValidationType.POSITIVE),
+        EvidenceState(evidence = spiritBox, state = EvidenceValidationType.NEUTRAL),
+        EvidenceState(evidence = writing, state = EvidenceValidationType.NEGATIVE)
     )
 
     LocalThemeProvider {

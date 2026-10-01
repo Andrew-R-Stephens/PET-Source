@@ -1,1096 +1,1094 @@
 package com.tritiumgaming.data.ghostname.source.local
 
-import android.content.Context
 import com.tritiumgaming.data.ghostname.dto.GhostNameDto
+import com.tritiumgaming.data.ghostname.mappers.GhostNameResources.Name
+import com.tritiumgaming.data.ghostname.model.GhostName.Gender
+import com.tritiumgaming.data.ghostname.model.GhostName.NamePriority
 import com.tritiumgaming.data.ghostname.source.GhostNameDataSource
-import com.tritiumgaming.shared.data.ghostname.mappers.GhostNameResources
-import com.tritiumgaming.shared.data.ghostname.model.GhostName
 
-class GhostNameLocalDataSource(
-    private val applicationContext: Context
-): GhostNameDataSource {
+class GhostNameLocalDataSource: GhostNameDataSource {
 
     val nameResources
         get() = listOf(
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ALEX,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.ALEX,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.AMIT,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.AMIT,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ANDREW,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.ANDREW,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ANTHONY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.ANTHONY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BENJAMIN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.BENJAMIN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BILLY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.BILLY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BRADLEY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.BRADLEY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BRENDEN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.BRENDEN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BRIAN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.BRIAN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CARLOS,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.CARLOS,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CHARLES,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.CHARLES,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CHRISTOPHER,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.CHRISTOPHER,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.COREY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.COREY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DANIEL,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.DANIEL,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DAVE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.DAVE,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DAVID,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.DAVID,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DONALD,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.DONALD,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.EDWARD,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.EDWARD,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ERIC,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.ERIC,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GARY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.GARY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GEORGE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.GEORGE,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GRANT,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.GRANT,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GREGORY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.GREGORY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HAROLD,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.HAROLD,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HUGO,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.HUGO,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JACK,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JACK,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JAMES,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JAMES,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JAN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JAN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JASON,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JASON,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JAY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JAY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JERRY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JERRY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JOHN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JOHN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JOSEPH,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JOSEPH,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JUSTIN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.JUSTIN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KEITH,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.KEITH,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KENNETH,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.KENNETH,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KENNY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.KENNY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KEVIN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.KEVIN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KYLE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.KYLE,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LARRY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.LARRY,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LESLIE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.LESLIE,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LUKE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.LUKE,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARK,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.MARK,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MICHAEL,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.MICHAEL,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.PAUL,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.PAUL,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.PETER,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.PETER,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.RAYMOND,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.RAYMOND,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.RICHARD,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.RICHARD,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROBERT,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.ROBERT,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROBIN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.ROBIN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.RONALD,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.RONALD,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.RUSSELL,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.RUSSELL,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.STEVEN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.STEVEN,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.THOMAS,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.THOMAS,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.TED,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.TED,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.TIM,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.TIM,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WALTER,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.WALTER,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WILLIAM,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
+                name = Name.WILLIAM,
+                priority = NamePriority.FIRST,
+                gender = Gender.MALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ANN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.ANN,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.APRIL,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.APRIL,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BARBARA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.BARBARA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BECKY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.BECKY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BETTY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.BETTY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BORRIS,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.BORRIS,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CARLA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.CARLA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CAROL,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.CAROL,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CATHERINE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.CATHERINE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CATIANA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.CATIANA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CORA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.CORA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DONNA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.DONNA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DORIS,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.DORIS,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DOROTHY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.DOROTHY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.EDIE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.EDIE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ELIZABETH,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.ELIZABETH,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ELLA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.ELLA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ELLEN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.ELLEN,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.EMILY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.EMILY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.EMMA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.EMMA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.EVA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.EVA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GEORGIA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.GEORGIA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GLORIA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.GLORIA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HEATHER,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.HEATHER,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HELEN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.HELEN,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HOLLY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.HOLLY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JANE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JANE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JAZZ,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JAZZ,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JENNIFER,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JENNIFER,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JENNISE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JENNISE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JESSICA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JESSICA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JO,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JO,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JOSEFINE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JOSEFINE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JUDY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JUDY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JULIE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.JULIE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KAREN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.KAREN,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KATE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.KATE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KELLY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.KELLY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KIM,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.KIM,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LESLIE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.LESLIE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LINDA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.LINDA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LISA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.LISA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LIVY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.LIVY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LORI,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.LORI,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LUCY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.LUCY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARCIA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.MARCIA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARGARET,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.MARGARET,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARIA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.MARIA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARIE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.MARIE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.MARY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MEGAN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.MEGAN,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MICHELLE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.MICHELLE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.NANCY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.NANCY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.NELLIE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.NELLIE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.PATRICIA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.PATRICIA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROBIN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.ROBIN,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROSE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.ROSE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.RUTH,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.RUTH,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SANDRA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.SANDRA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SARAH,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.SARAH,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SHANNON,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.SHANNON,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SHARNE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.SHARNE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SHELLY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.SHELLY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SOPHIE,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.SOPHIE,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.STACEY,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.STACEY,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SUSAN,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.SUSAN,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.TRICIA,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.FEMALE
+                name = Name.TRICIA,
+                priority = NamePriority.FIRST,
+                gender = Gender.FEMALE
             ),
             GhostNameResourceDto(
-                    name = GhostNameResources.Name.ALEXANDER,
-            priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                    name = Name.ALEXANDER,
+            priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ANDERSON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.ANDERSON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BAILEY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BAILEY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BAKER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BAKER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BARBER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BARBER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BARTON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BARTON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BELLFIELD,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BELLFIELD,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BIRCH,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BIRCH,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BISHOP,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BISHOP,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BOWEN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BOWEN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BROCK,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BROCK,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BROOKS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BROOKS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BROWN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BROWN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.BUCKLEY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.BUCKLEY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CAREY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.CAREY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CARTER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.CARTER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CLARK,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.CLARK,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CLARKE,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.CLARKE,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CORDERO,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.CORDERO,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.CORRIGAN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.CORRIGAN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DAVIS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.DAVIS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DEXTER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.DEXTER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DIXON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.DIXON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DOE,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.DOE,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DOUGLAS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.DOUGLAS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.DYER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.DYER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ELLIOTT,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.ELLIOTT,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.EMMETT,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.EMMETT,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.EVERLY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.EVERLY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GACY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.GACY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GARCIA,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.GARCIA,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.GAYTON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.GAYTON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HALSTEAD,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.HALSTEAD,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HANS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.HANS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HARRIS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.HARRIS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HILL,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.HILL,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HOLLAND,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.HOLLAND,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HOLMES,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.HOLMES,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.HUNTLEY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.HUNTLEY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JACKSON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.JACKSON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JOHNSON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.JOHNSON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.JONES,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.JONES,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KEMPER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.KEMPER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KNIGHT,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.KNIGHT,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KRAFT,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.KRAFT,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.KRAY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.KRAY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LANCASTER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.LANCASTER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LAVENDER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.LAVENDER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LEE,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.LEE,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.LEWIS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.LEWIS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MANSON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MANSON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARSH,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MARSH,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARTIN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MARTIN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MARTINEZ,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MARTINEZ,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MAUDSLEY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MAUDSLEY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MILLER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MILLER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MILLS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MILLS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MOORE,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MOORE,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.MYERS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.MYERS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.NILSEN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.NILSEN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.NORRIS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.NORRIS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.PETTIT,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.PETTIT,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.PHILLIPS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.PHILLIPS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.RAMIREZ,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.RAMIREZ,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.RHOADES,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.RHOADES,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROBERTS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.ROBERTS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROBINSON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.ROBINSON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROOK,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.ROOK,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.ROSWELL,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.ROSWELL,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SCHELIN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.SCHELIN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SHAWCROSS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.SHAWCROSS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SHERMAN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.SHERMAN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SHIPMAN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.SHIPMAN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SKINNER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.SKINNER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SMITH,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.SMITH,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.STEVENS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.STEVENS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.STRAFFEN,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.STRAFFEN,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.SWEENEY,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.SWEENEY,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.TAYLOR,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.TAYLOR,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.THOMAS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.THOMAS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.THOMPSON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.THOMPSON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.TODD,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.TODD,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WALKER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WALKER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WATTS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WATTS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WEST,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WEST,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WHITE,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WHITE,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WILLIAMS,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WILLIAMS,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WILSON,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WILSON,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WINTER,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WINTER,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.WRIGHT,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.WRIGHT,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
             GhostNameResourceDto(
-                name = GhostNameResources.Name.YOUNG,
-                priority = GhostName.NamePriority.SURNAME,
-                gender = GhostName.Gender.UNSPECIFIED
+                name = Name.YOUNG,
+                priority = NamePriority.SURNAME,
+                gender = Gender.UNSPECIFIED
             ),
         )
 
@@ -1107,7 +1105,7 @@ fun GhostNameResourceDto.toGhostNameDto() = GhostNameDto(
 )
 
 data class GhostNameResourceDto(
-    val name: GhostNameResources.Name,
-    val priority: GhostName.NamePriority,
-    val gender: GhostName.Gender
+    val name: Name,
+    val priority: NamePriority,
+    val gender: Gender
 )

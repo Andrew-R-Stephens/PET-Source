@@ -55,11 +55,11 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toDrawableResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.data.ghost.mapper.toLong
+import com.tritiumgaming.data.mappers.toDrawableResource
+import com.tritiumgaming.data.mappers.toStringResource
 import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
-import com.tritiumgaming.shared.data.ghost.mapper.toLong
-import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
+import com.tritiumstudios.data.operation.model.popup.GhostPopupRecord
 
 
 @Composable

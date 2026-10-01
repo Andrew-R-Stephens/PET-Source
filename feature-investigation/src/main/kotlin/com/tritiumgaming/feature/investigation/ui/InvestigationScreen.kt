@@ -45,8 +45,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
@@ -61,10 +61,36 @@ import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughPage
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.rememberWalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
-import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
+import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeTitle
+import com.tritiumgaming.data.challenge.mappers.toStringResource
+import com.tritiumgaming.data.customdifficulty.CustomDifficultyResources.Title
+import com.tritiumgaming.data.customdifficulty.mappers.toStringResource
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.ghost.mapper.GhostResources
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostIcon
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostIdentifier
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.data.ghost.mapper.GhostResources.HuntCooldown
+import com.tritiumgaming.data.ghost.mapper.GhostResources.HuntSanityBounds
+import com.tritiumgaming.data.ghost.model.Ghost
+import com.tritiumgaming.data.ghostname.model.GhostName
+import com.tritiumgaming.data.journal.model.EvidenceState
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
+import com.tritiumgaming.data.journal.model.GhostEvidence
+import com.tritiumgaming.data.map.mappers.toStringResource
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitleLength
+import com.tritiumgaming.data.mappers.toStringResource
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.CustomDifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ClearPopup
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.OnSearchTextChanged
@@ -137,31 +163,17 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.core.navigation.NavRoute
-import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources.ChallengeTitle
-import com.tritiumgaming.shared.data.customdifficulty.CustomDifficultyResources
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.ghostname.model.GhostName
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
-import com.tritiumgaming.shared.data.journal.model.GhostEvidence
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.shared.data.operation.model.CategoryOption
-import com.tritiumgaming.shared.data.operation.model.EvidenceState
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.operation.model.GhostState
-import com.tritiumgaming.shared.data.operation.model.GhostTraitFilterUiOptions
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData
-import com.tritiumgaming.shared.data.operation.model.ToolTimerType
-import com.tritiumgaming.shared.data.operation.model.TraitFilter
-import com.tritiumgaming.shared.data.operation.model.TraitScore
-import com.tritiumgaming.shared.data.operation.model.ValidatedGhostTrait
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
+import com.tritiumstudios.data.difficultysetting.mappers.toDrawable
+import com.tritiumstudios.data.difficultysetting.mappers.toStringResource
+import com.tritiumstudios.data.operation.model.CategoryOption
+import com.tritiumstudios.data.operation.model.GhostState
+import com.tritiumstudios.data.operation.model.GhostTraitFilterUiOptions
+import com.tritiumstudios.data.operation.model.OperationOverrideData
+import com.tritiumstudios.data.operation.model.ToolTimerType
+import com.tritiumstudios.data.operation.model.TraitFilter
+import com.tritiumstudios.data.operation.model.TraitScore
+import com.tritiumstudios.data.operation.model.ValidatedGhostTrait
 
 private class ToolbarCategoryProvider : PreviewParameterProvider<OperationToolbarUiState.Category> {
     override val values = sequenceOf(
@@ -195,62 +207,62 @@ private fun InvestigationScreenPreview(
                     weather = WeatherUiState(
                         weather = Weather.HEAVY_RAIN
                     ),
-                    ghostsSorted = GhostResources.GhostIdentifier.entries.take(10)
+                    ghostsSorted = GhostIdentifier.entries.take(10)
                         .map { identifier ->
                             GhostState(
                                 ghostEvidence = GhostEvidence(
                                     ghost = Ghost(
                                         id = identifier,
-                                        name = GhostResources.GhostTitle.valueOf(identifier.name),
-                                        icon = GhostResources.GhostIcon.valueOf(identifier.name),
-                                        info = GhostResources.GhostDescription.valueOf(identifier.name),
-                                        strengthData = GhostResources.GhostStrength.valueOf(
+                                        name = GhostTitle.valueOf(identifier.name),
+                                        icon = GhostIcon.valueOf(identifier.name),
+                                        info = GhostDescription.valueOf(identifier.name),
+                                        strengthData = GhostStrength.valueOf(
                                             identifier.name
                                         ),
-                                        weaknessData = GhostResources.GhostWeakness.valueOf(
+                                        weaknessData = GhostWeakness.valueOf(
                                             identifier.name
                                         ),
-                                        huntData = GhostResources.GhostHuntInfo.valueOf(identifier.name),
+                                        huntData = GhostHuntInfo.valueOf(identifier.name),
                                         normalEvidence = listOf(
-                                            EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
-                                            EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
-                                            EvidenceResources.EvidenceIdentifier.DOTS,
+                                            EvidenceIdentifier.GHOST_WRITING,
+                                            EvidenceIdentifier.FREEZING_TEMPERATURE,
+                                            EvidenceIdentifier.DOTS,
                                         ),
                                         strictEvidence = listOf(
-                                            EvidenceResources.EvidenceIdentifier.EMF_5
+                                            EvidenceIdentifier.EMF_5
                                         ),
                                         speed = GhostResources.GhostSpeed.valueOf(identifier.name),
-                                        huntSanityBounds = GhostResources.HuntSanityBounds.valueOf(
+                                        huntSanityBounds = HuntSanityBounds.valueOf(
                                             identifier.name
                                         ),
-                                        huntCooldown = GhostResources.HuntCooldown.valueOf(
+                                        huntCooldown = HuntCooldown.valueOf(
                                             identifier.name
                                         )
                                     ),
                                     normalEvidenceList = listOf(
                                         EvidenceType(
-                                            id = EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
-                                            name = EvidenceResources.EvidenceTitle.GHOST_WRITING,
-                                            icon = EvidenceResources.EvidenceIcon.GHOST_WRITING
+                                            id = EvidenceIdentifier.GHOST_WRITING,
+                                            name = EvidenceTitle.GHOST_WRITING,
+                                            icon = EvidenceIcon.GHOST_WRITING
 
                                         ),
                                         EvidenceType(
-                                            id = EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
-                                            name = EvidenceResources.EvidenceTitle.FREEZING_TEMPERATURE,
-                                            icon = EvidenceResources.EvidenceIcon.FREEZING_TEMPERATURE
+                                            id = EvidenceIdentifier.FREEZING_TEMPERATURE,
+                                            name = EvidenceTitle.FREEZING_TEMPERATURE,
+                                            icon = EvidenceIcon.FREEZING_TEMPERATURE
 
                                         ),
                                         EvidenceType(
-                                            id = EvidenceResources.EvidenceIdentifier.DOTS,
-                                            name = EvidenceResources.EvidenceTitle.DOTS,
-                                            icon = EvidenceResources.EvidenceIcon.DOTS
+                                            id = EvidenceIdentifier.DOTS,
+                                            name = EvidenceTitle.DOTS,
+                                            icon = EvidenceIcon.DOTS
                                         ),
                                     ),
                                     strictEvidenceList = listOf(
                                         EvidenceType(
-                                            id = EvidenceResources.EvidenceIdentifier.DOTS,
-                                            name = EvidenceResources.EvidenceTitle.DOTS,
-                                            icon = EvidenceResources.EvidenceIcon.DOTS
+                                            id = EvidenceIdentifier.DOTS,
+                                            name = EvidenceTitle.DOTS,
+                                            icon = EvidenceIcon.DOTS
 
                                         ),
                                     ),
@@ -265,23 +277,23 @@ private fun InvestigationScreenPreview(
                     evidenceList = listOf(
                         EvidenceState(
                             evidence = EvidenceType(
-                                id = EvidenceResources.EvidenceIdentifier.GHOST_WRITING,
-                                name = EvidenceResources.EvidenceTitle.GHOST_WRITING,
-                                icon = EvidenceResources.EvidenceIcon.GHOST_WRITING
+                                id = EvidenceIdentifier.GHOST_WRITING,
+                                name = EvidenceTitle.GHOST_WRITING,
+                                icon = EvidenceIcon.GHOST_WRITING
                             )
                         ),
                         EvidenceState(
                             evidence = EvidenceType(
-                                id = EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE,
-                                name = EvidenceResources.EvidenceTitle.FREEZING_TEMPERATURE,
-                                icon = EvidenceResources.EvidenceIcon.FREEZING_TEMPERATURE
+                                id = EvidenceIdentifier.FREEZING_TEMPERATURE,
+                                name = EvidenceTitle.FREEZING_TEMPERATURE,
+                                icon = EvidenceIcon.FREEZING_TEMPERATURE
                             )
                         ),
                         EvidenceState(
                             evidence = EvidenceType(
-                                id = EvidenceResources.EvidenceIdentifier.DOTS,
-                                name = EvidenceResources.EvidenceTitle.DOTS,
-                                icon = EvidenceResources.EvidenceIcon.DOTS
+                                id = EvidenceIdentifier.DOTS,
+                                name = EvidenceTitle.DOTS,
+                                icon = EvidenceIcon.DOTS
                             )
                         ),
 
@@ -390,7 +402,8 @@ fun InvestigationSoloScreen(
     )
 
     val uiActions = InvestigationUiActions(
-        onWeatherDropdownSelect = { investigationViewModel.onEvent(SetWeather(Weather.entries[it])) },
+        onWeatherDropdownSelect = { investigationViewModel.onEvent(SetWeather(
+            Weather.entries[it])) },
         onMapDropdownSelect = { investigationViewModel.onEvent(SetMap(it)) },
         onDifficultyDropdownSelect = { investigationViewModel.onEvent(SetDifficulty(it)) },
         onCustomDifficultyDropdownSelect = { investigationViewModel.onEvent(SetCustomDifficulty(it)) },
@@ -772,9 +785,9 @@ private fun InvestigationContent(
 
     val mapName = mapConfigUiState.name
     val isMapEnabled = mapConfigUiState.enabled
-    val mapLabel = mapName.toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED)
+    val mapLabel = mapName.toStringResource(MapTitleLength.ABBREVIATED)
     val mapDropdownOptions = mapConfigUiState.allMaps.map {
-        it.toStringResource(SimpleMapResources.MapTitleLength.FULL)
+        it.toStringResource(MapTitleLength.FULL)
     }
 
     val difficultyName = difficultyUiState.name
@@ -788,11 +801,11 @@ private fun InvestigationContent(
 
     val customDifficultyLabel = customDifficultyConfigUiState.selectedDifficulty?.let {
         it.name ?:
-        "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
+        "${stringResource(Title.CUSTOM.toStringResource())} ${it.id}"
     } ?: ""
     val customDifficultyDropdownOptions = customDifficultyConfigUiState.difficulties.map {
         it.name ?:
-        "${stringResource(CustomDifficultyResources.Title.CUSTOM.toStringResource())} ${it.id}"
+        "${stringResource(Title.CUSTOM.toStringResource())} ${it.id}"
     }
 
     val sanityLevel = sanityUiState.sanityLevel
@@ -2508,7 +2521,7 @@ internal data class InvestigationUiActions(
     val onToggleCollapseToolbar: () -> Unit = {},
     val onChangeToolbarCategory: (OperationToolbarUiState.Category, Boolean) -> Unit = { _, _ -> },
     val onReset: (OperationToolbarUiState.ResetOption?) -> Unit = {},
-    val onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit = {},
+    val onGhostNameClick: (GhostIdentifier) -> Unit = {},
     val onToggleNegateGhost: (Ghost) -> Unit = {},
     val onChangeEvidenceRuling: (EvidenceType, EvidenceValidationType) -> Unit = { _, _ -> },
     val onEvidenceClick: (EvidenceType) -> Unit = {},

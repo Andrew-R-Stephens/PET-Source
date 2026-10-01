@@ -1,11 +1,11 @@
 package com.tritiumgaming.feature.codex.ui.catalog.category
 
-import com.tritiumgaming.shared.data.codex.model.achievements.AchievementsType
-import com.tritiumgaming.shared.data.codex.model.achievements.CodexAchievementsGroupItem
-import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType
-import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentTypeTier
-import com.tritiumgaming.shared.data.codex.model.possessions.CodexPossessionsGroupItem
-import com.tritiumgaming.shared.data.codex.model.possessions.PossessionsType
+import com.tritiumgaming.data.codex.model.achievements.AchievementsType
+import com.tritiumgaming.data.codex.model.achievements.CodexAchievementsGroupItem
+import com.tritiumgaming.data.codex.model.equipment.EquipmentType
+import com.tritiumgaming.data.codex.model.equipment.EquipmentTypeTier
+import com.tritiumgaming.data.codex.model.possessions.CodexPossessionsGroupItem
+import com.tritiumgaming.data.codex.model.possessions.PossessionsType
 
 sealed interface CatalogListUiActions {
     data class Equipment(

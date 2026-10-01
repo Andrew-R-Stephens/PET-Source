@@ -106,7 +106,7 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":shared"))
     implementation(project(":data-customdifficulty"))
+    implementation(project(":data-difficultysetting"))
 
 }

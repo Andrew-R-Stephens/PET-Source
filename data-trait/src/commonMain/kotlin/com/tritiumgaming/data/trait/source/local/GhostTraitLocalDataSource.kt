@@ -1,14 +1,14 @@
 package com.tritiumgaming.data.trait.source.local
 
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.data.trait.dto.GhostTraitDto
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitDescription
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitIdentifier
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitState
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitTag
+import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitWeight
 import com.tritiumgaming.data.trait.source.GhostTraitDataSource
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitDescription
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitIdentifier
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitTag
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight
 
 class GhostTraitLocalDataSource: GhostTraitDataSource {
 

@@ -52,7 +52,8 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
+            
+            api(project(":data-ghost"))
         }
 
         commonTest.dependencies {
@@ -130,6 +131,6 @@ dependencies {
     androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-resources"))
 }*/

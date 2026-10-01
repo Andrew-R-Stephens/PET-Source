@@ -3,13 +3,13 @@ package com.tritiumgaming.data.evidence.source.local
 
 import com.tritiumgaming.data.evidence.dto.EvidenceDto
 import com.tritiumgaming.data.evidence.dto.EvidenceTierDto
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTitle
 import com.tritiumgaming.data.evidence.source.EvidenceDataSource
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceAnimation
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceDescription
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle
 import kotlin.jvm.JvmName
 
 class EvidenceLocalDataSource: EvidenceDataSource {

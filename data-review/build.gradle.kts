@@ -52,8 +52,8 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            //implementation(project(":shared"))
-            implementation(project(":core-common"))
+            //
+            api(project(":core-common"))
 
             // Jetpack DataStore
             implementation(libs.androidx.datastore.preferences)
@@ -69,7 +69,7 @@ kotlin {
             implementation(libs.androidx.appcompat.core)
             implementation(libs.android.material)
 
-            implementation(project(":core-resources"))
+            api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
@@ -137,6 +137,6 @@ dependencies {
     // DataStore
     implementation(libs.androidx.datastore.preferences)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-resources"))
 }*/

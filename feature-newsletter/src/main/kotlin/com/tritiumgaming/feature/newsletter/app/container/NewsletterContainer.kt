@@ -1,10 +1,10 @@
 package com.tritiumgaming.feature.newsletter.app.container
 
-import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.data.newsletter.usecase.FetchNewsletterInboxesUseCase
+import com.tritiumgaming.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
+import com.tritiumgaming.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.data.newsletter.usecase.GetNewsletterLastFetchDateFlowUseCase
+import com.tritiumgaming.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 
 class NewsletterContainer(
     //val setupNewsletterUseCase: SetupNewsletterUseCase,

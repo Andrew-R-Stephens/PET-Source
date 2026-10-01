@@ -21,8 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
-import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
-import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
+import com.tritiumgaming.data.codex.mappers.toDrawableResource
+import com.tritiumgaming.data.codex.mappers.toStringResource
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroup

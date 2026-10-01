@@ -3,9 +3,8 @@ package com.tritiumgaming.data.map.complex.repository
 import android.util.Log
 import com.tritiumgaming.data.map.complex.dto.toDomain
 import com.tritiumgaming.data.map.complex.mappers.toMapList
+import com.tritiumgaming.data.map.complex.model.ComplexWorldMaps
 import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
-import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMaps
-import com.tritiumgaming.shared.data.map.complex.repository.ComplexMapRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

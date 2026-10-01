@@ -1,15 +1,16 @@
 package com.tritiumgaming.data.codex.dto
 
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementContent
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementTitle
-import com.tritiumgaming.shared.data.codex.model.achievements.CodexAchievementsGroupItem
+import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementContent
+import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementIcon
+import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementTitle
+import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementVisibility
+import com.tritiumgaming.data.codex.model.achievements.CodexAchievementsGroupItem
 
 data class AchievementsTypeDto(
     val title: AchievementTitle,
     val infoText: AchievementContent,
-    val icon: AchievementsResources.AchievementIcon,
-    val visibility: AchievementsResources.AchievementVisibility,
+    val icon: AchievementIcon,
+    val visibility: AchievementVisibility,
     val exclusivity: Int,
 )
 

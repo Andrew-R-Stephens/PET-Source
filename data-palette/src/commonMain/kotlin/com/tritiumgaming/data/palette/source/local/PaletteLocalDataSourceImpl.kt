@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.palette.source.local
 
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
-import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
-import com.tritiumgaming.shared.data.market.palette.source.LocalPaletteDataSource
+import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.data.palette.mappers.asUuid
+import com.tritiumgaming.data.palette.source.LocalPaletteDataSource
 
 class PaletteLocalDataSourceImpl :
     LocalPaletteDataSource<List<PaletteLocalDataSourceImpl.LocalPalette>> {

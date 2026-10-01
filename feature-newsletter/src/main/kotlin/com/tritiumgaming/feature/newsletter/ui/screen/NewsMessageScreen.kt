@@ -39,10 +39,10 @@ import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
+import com.tritiumgaming.data.newsletter.model.NewsletterChannel
+import com.tritiumgaming.data.newsletter.model.NewsletterInbox
+import com.tritiumgaming.data.newsletter.model.NewsletterMessage
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterChannel
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
 
 @DevicePreviews
 @Composable

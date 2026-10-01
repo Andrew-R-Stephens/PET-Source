@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.marketplace.billable.mapper
 
 import com.tritiumgaming.data.marketplace.billable.dto.MarketBillableDto
-import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
+import com.tritiumgaming.data.marketplace.billable.model.MarketBillable
 
 fun com.tritiumgaming.data.marketplace.billable.dto.MarketBillableDto.toDomain(): MarketBillable =
     MarketBillable(

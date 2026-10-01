@@ -118,10 +118,13 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
+    implementation(project(":data-ads"))
     implementation(project(":data-account"))
     implementation(project(":data-marketplace"))
-    implementation(project(":data-ads"))
+    implementation(project(":data-palette"))
+    implementation(project(":data-preferences"))
+    implementation(project(":data-typography"))
 
-    implementation(project(":shared"))
+    
 
 }

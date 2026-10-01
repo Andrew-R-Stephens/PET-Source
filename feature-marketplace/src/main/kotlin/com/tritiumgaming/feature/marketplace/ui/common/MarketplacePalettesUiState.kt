@@ -2,10 +2,10 @@ package com.tritiumgaming.feature.marketplace.ui.common
 
 import androidx.compose.runtime.Immutable
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
+import com.tritiumgaming.data.marketplace.bundle.model.MarketBundle
+import com.tritiumgaming.data.marketplace.common.mappers.MarketplaceResources
+import com.tritiumgaming.data.marketplace.palette.model.MarketPalette
+import com.tritiumgaming.data.marketplace.typography.model.MarketTypography
 
 data class MarketCatalogScreenUiState(
     val items: List<ShopScreenUiItem> = emptyList()
@@ -30,7 +30,7 @@ sealed interface ShopScreenUiItem {
     val key: String
 
     data class Header(
-        val name: MarketplaceCategoryTitles
+        val name: MarketplaceResources.MarketplaceCategoryTitles
     ) : ShopScreenUiItem {
         override val key: String = "header_${name.value}"
     }

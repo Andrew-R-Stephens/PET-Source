@@ -35,9 +35,9 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.feature.missions.app.mappers.ghostname.toStringResource
+import com.tritiumgaming.data.ghostname.mappers.toStringResource
+import com.tritiumgaming.data.ghostname.model.GhostName
 import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
-import com.tritiumgaming.shared.data.ghostname.model.GhostName
 
 @Composable
 fun GhostNameContent(

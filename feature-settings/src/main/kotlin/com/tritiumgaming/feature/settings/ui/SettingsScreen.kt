@@ -56,12 +56,12 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
+import com.tritiumgaming.data.marketplace.model.IncrementDirection
+import com.tritiumgaming.data.model.properties.DensityType
 import com.tritiumgaming.feature.settings.ui.components.CarouselComposable
 import com.tritiumgaming.feature.settings.ui.components.CarouselUiActions
 import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSeekbar
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
-import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import com.tritiumgaming.shared.data.preferences.model.properties.DensityType
 
 @Composable
 fun SettingsScreen(

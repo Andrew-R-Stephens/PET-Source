@@ -30,8 +30,8 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
+import com.tritiumgaming.data.marketplace.billable.model.MarketBillable
 import com.tritiumgaming.feature.marketplace.ui.common.MarketplaceScreen
-import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
 
 @Composable
 @Preview

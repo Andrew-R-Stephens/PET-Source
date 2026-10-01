@@ -34,23 +34,22 @@ import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
-import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
-import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
-import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.weather.toDrawable
+import com.tritiumgaming.data.ghostname.model.GhostName
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.ghostname.model.GhostName
-import com.tritiumgaming.shared.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
-import com.tritiumgaming.shared.data.phase.mappers.PhaseResources
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources
+import com.tritiumstudios.data.difficultysetting.mappers.toDrawable
+import com.tritiumstudios.data.difficultysetting.mappers.toStringResource
+import com.tritiumstudios.data.operation.model.OperationOverrideData.Companion.FuseBoxFlag
+import com.tritiumstudios.data.phase.mappers.PhaseResources
+import com.tritiumstudios.data.phase.mappers.toPhaseTitle
+import com.tritiumstudios.data.phase.mappers.toStringResource
 
 @Composable
 internal fun OperationStatusBar(
@@ -58,7 +57,7 @@ internal fun OperationStatusBar(
     sanityLevel: Float,
     remainingTime: String,
     phaseType: PhaseResources.PhaseIdentifier,
-    weatherType: Weather,
+    weatherType: DifficultySettingResources.Weather,
     temperature: String,
     fuseBoxFlag: FuseBoxFlag,
     gender: GhostName.Gender,
@@ -87,7 +86,7 @@ internal fun OperationStatusBar(
             fuseBoxFlag = fuseBoxFlag
         )
 
-        if(weatherType != Weather.RANDOM) {
+        if(weatherType != DifficultySettingResources.Weather.RANDOM) {
             WeatherStatusComponent(
                 weatherType = weatherType,
                 temperature = temperature
@@ -285,7 +284,7 @@ private fun PhaseStatusComponent(
 
 @Composable
 private fun WeatherStatusComponent(
-    weatherType: Weather,
+    weatherType: DifficultySettingResources.Weather,
     temperature: String
 ) {
     val density = LocalDensity.current

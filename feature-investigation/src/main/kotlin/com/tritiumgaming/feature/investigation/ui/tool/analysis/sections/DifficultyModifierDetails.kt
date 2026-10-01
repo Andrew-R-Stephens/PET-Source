@@ -10,26 +10,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
-import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.codex.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
+import com.tritiumgaming.data.challenge.mappers.toStringResource
+import com.tritiumgaming.data.codex.mappers.toEquipmentTitle
+import com.tritiumgaming.data.codex.mappers.toStringResource
+import com.tritiumgaming.data.mappers.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextDataRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
-import com.tritiumgaming.shared.data.codex.mappers.toEquipmentTitle
-import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toTemperatureRange
-import com.tritiumgaming.shared.data.weather.model.celsius
-import com.tritiumgaming.shared.data.weather.model.fahrenheit
+import com.tritiumstudios.data.difficultysetting.dto.EquipmentPermission
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources
+import com.tritiumstudios.data.difficultysetting.mappers.toFloat
+import com.tritiumstudios.data.difficultysetting.mappers.toInt
+import com.tritiumstudios.data.difficultysetting.mappers.toLong
+import com.tritiumstudios.data.difficultysetting.mappers.toStringResource
+import com.tritiumstudios.data.difficultysetting.mappers.toTemperatureRange
+import com.tritiumstudios.data.weather.model.celsius
+import com.tritiumstudios.data.weather.model.fahrenheit
 
 @Composable
 internal fun DifficultyModifierDetails(
@@ -208,20 +207,20 @@ internal fun DifficultyModifierDetails(
 
             val difficultyWeather = difficultyState.settings.weather
             val overrideWeather = weatherDetails.weather
-            val weatherActual = if (overrideWeather != Weather.RANDOM) overrideWeather
+            val weatherActual = if (overrideWeather != DifficultySettingResources.Weather.RANDOM) overrideWeather
             else difficultyWeather
 
             val weatherActualText = stringResource(difficultyWeather.toStringResource())
             TextDataRow(
                 title = "${stringResource(DifficultySettingResources.DifficultySetting.WEATHER.toStringResource())}:",
                 data = "$weatherActualText${
-                    if (difficultyWeather == Weather.RANDOM && overrideWeather != Weather.RANDOM)
+                    if (difficultyWeather == DifficultySettingResources.Weather.RANDOM && overrideWeather != DifficultySettingResources.Weather.RANDOM)
                         " [${stringResource(overrideWeather.toStringResource())}]"
                     else ""
                 }"
             )
 
-            if (weatherActual != Weather.RANDOM) {
+            if (weatherActual != DifficultySettingResources.Weather.RANDOM) {
                 val range = weatherActual.toTemperatureRange()
                 val celsius = range.celsius()
                 val fahrenheit = range.fahrenheit()

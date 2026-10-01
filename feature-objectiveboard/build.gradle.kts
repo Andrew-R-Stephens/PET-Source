@@ -99,7 +99,6 @@ dependencies {
     implementation(project(":data-ghostname"))
     implementation(project(":data-mission"))
     implementation(project(":data-difficulty"))
-
-    implementation(project(":shared"))
+    implementation(project(":data-operation"))
 
 }

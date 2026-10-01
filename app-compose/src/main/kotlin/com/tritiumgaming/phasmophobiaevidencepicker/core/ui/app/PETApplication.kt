@@ -11,6 +11,9 @@ import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.functions.functions
+import com.tritiumgaming.data.evidence.mapper.toEquipmentIdentifier
+import com.tritiumgaming.data.palette.mappers.PaletteResources
+import com.tritiumgaming.data.typography.mappers.TypographyResources
 import com.tritiumgaming.database.LocalDatabase
 import com.tritiumgaming.feature.about.app.container.AboutContainer
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
@@ -39,14 +42,11 @@ import com.tritiumgaming.feature.start.app.container.StartContainer
 import com.tritiumgaming.feature.start.app.container.StartContainerProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
-import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
-import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
-import com.tritiumgaming.shared.data.evidence.mapper.toEquipmentIdentifier
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
-import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
-import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
-import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
+import com.tritiumstudios.data.difficultysetting.dto.EquipmentPermission
+import com.tritiumstudios.data.difficultysetting.mappers.toInt
+import com.tritiumstudios.data.wearable.model.WearableEvidenceState
+import com.tritiumstudios.data.wearable.model.WearableInvestigationData
+import com.tritiumstudios.data.wearable.model.WearableOperationData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -289,16 +289,16 @@ class PETApplication : Application(),
             ) { data, preferences ->
                 val palette = try {
                     coreContainer.getMarketCatalogPaletteByUUIDUseCase(preferences.paletteUuid).getOrNull()
-                        ?: PaletteType.CLASSIC
+                        ?: PaletteResources.PaletteType.CLASSIC
                 } catch (e: Exception) {
-                    PaletteType.CLASSIC
+                    PaletteResources.PaletteType.CLASSIC
                 }
 
                 val typography = try {
                     coreContainer.getMarketCatalogTypographyByUUIDUseCase(preferences.typographyUuid).getOrNull()
-                        ?: TypographyType.CLASSIC
+                        ?: TypographyResources.TypographyType.CLASSIC
                 } catch (e: Exception) {
-                    TypographyType.CLASSIC
+                    TypographyResources.TypographyType.CLASSIC
                 }
 
                 val investigationData = WearableInvestigationData(

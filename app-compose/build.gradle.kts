@@ -311,8 +311,6 @@ dependencies {
     /*
      * Include Shared Module for KMP
      */
-    implementation(project(":shared"))
-
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))

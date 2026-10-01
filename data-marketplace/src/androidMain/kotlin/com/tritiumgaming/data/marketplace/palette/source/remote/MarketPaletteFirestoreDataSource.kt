@@ -2,7 +2,7 @@ package com.tritiumgaming.data.marketplace.palette.source.remote
 
 import com.google.firebase.functions.FirebaseFunctions
 import com.tritiumgaming.data.marketplace.palette.dto.MarketPaletteDto
-import com.tritiumgaming.shared.data.market.palette.model.PaletteQueryOptions
+import com.tritiumgaming.data.marketplace.palette.model.PaletteQueryOptions
 import kotlinx.coroutines.tasks.await
 
 class MarketPaletteFirestoreDataSource(

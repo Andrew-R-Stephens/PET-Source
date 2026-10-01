@@ -226,3 +226,4 @@ firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "
 firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebase-perf-plugin" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }

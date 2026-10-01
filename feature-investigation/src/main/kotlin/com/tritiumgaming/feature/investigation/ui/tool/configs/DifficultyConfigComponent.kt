@@ -13,12 +13,11 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
+import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeTitle
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
-import com.tritiumgaming.shared.data.challenges.mapper.ChallengeResources
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
-
 
 @Composable
 internal fun DifficultyConfigControl(
@@ -81,6 +80,6 @@ internal fun DifficultyChallengeLabel(
 internal data class DifficultyConfigUiState(
     internal val type: DifficultyType = DifficultyType.AMATEUR,
     internal val name: DifficultyTitle = DifficultyTitle.AMATEUR,
-    internal val challengeTitle: ChallengeResources.ChallengeTitle? = null,
+    internal val challengeTitle: ChallengeTitle? = null,
     val allDifficulties: List<DifficultyTitle> = emptyList()
 )

@@ -14,7 +14,7 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
 
 @Composable
 internal fun WeatherConfigComponent(

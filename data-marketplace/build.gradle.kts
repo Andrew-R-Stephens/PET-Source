@@ -49,17 +49,13 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
+            implementation(libs.androidx.datastore.preferences)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
             implementation(project(":core-common"))
-            implementation(project(":data-palette"))
-            implementation(project(":data-typography"))
+            implementation(project(":data-account"))
 
-            // Jetpack DataStore (Multiplatform support in androidx.datastore)
-            implementation(libs.androidx.datastore.preferences)
         }
 
         commonTest.dependencies {
@@ -84,7 +80,7 @@ kotlin {
             implementation(libs.firebase.analytics)
             implementation(libs.firebase.perfCore)
 
-            implementation(project(":core-resources"))
+            api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
@@ -173,7 +169,7 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perfCore)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
 

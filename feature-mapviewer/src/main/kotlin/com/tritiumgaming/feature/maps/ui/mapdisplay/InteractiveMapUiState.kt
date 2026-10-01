@@ -1,13 +1,14 @@
 package com.tritiumgaming.feature.maps.ui.mapdisplay
 
-import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.complex.model.ComplexWorldRoom
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 data class InteractiveMapUiState(
     val mapId: String = "",
-    val mapName: SimpleMapResources.MapTitle = SimpleMapResources.MapTitle.SUNNY_MEADOWS,
+    val mapName: MapTitle = MapTitle.SUNNY_MEADOWS,
     val floorIndex: Int = 0,
-    val floorTitle: SimpleMapResources.MapFloorTitle = SimpleMapResources.MapFloorTitle.FIRST_FLOOR,
+    val floorTitle: MapFloorTitle = MapFloorTitle.FIRST_FLOOR,
     val floorCount: Int = 0,
     val roomId: Int = 0,
     val roomName: String = "",

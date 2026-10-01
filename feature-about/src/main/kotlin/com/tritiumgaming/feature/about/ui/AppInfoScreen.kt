@@ -59,6 +59,7 @@ import com.tritiumgaming.core.ui.common.FontUtils
 import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
@@ -67,7 +68,6 @@ import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
-import com.tritiumgaming.shared.core.ui.mappers.IconResources
 import com.tritiumgaming.data.contributor.model.Contributor
 
 @DevicePreviews

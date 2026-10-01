@@ -1,9 +1,9 @@
 package com.tritiumgaming.data.marketplace.typography.source.remote
 
 import com.google.firebase.functions.FirebaseFunctions
+import com.tritiumgaming.data.marketplace.common.source.MarketFirestoreDataSource
 import com.tritiumgaming.data.marketplace.typography.dto.MarketTypographyDto
-import com.tritiumgaming.shared.data.market.common.source.MarketFirestoreDataSource
-import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
+import com.tritiumgaming.data.marketplace.typography.model.TypographyQueryOptions
 import kotlinx.coroutines.tasks.await
 
 class MarketTypographyFirestoreDataSource(

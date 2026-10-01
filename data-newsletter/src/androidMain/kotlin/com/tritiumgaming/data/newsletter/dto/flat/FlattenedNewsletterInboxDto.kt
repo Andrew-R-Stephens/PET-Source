@@ -1,22 +1,23 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
-import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
+import com.tritiumgaming.data.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.data.newsletter.mapper.NewsletterResources.NewsletterTitle
+import com.tritiumgaming.data.newsletter.model.NewsletterInbox
 
 data class FlattenedNewsletterInboxDto(
     val id: String? = null,
-    val title: NewsletterResources.NewsletterTitle? = null,
+    val title: NewsletterTitle? = null,
     val url: String? = null,
-    val icon: NewsletterResources.NewsletterIcon? = null,
+    val icon: NewsletterIcon? = null,
     var channel: FlattenedNewsletterChannelDto? = null
 )
 
 fun FlattenedNewsletterInboxDto.toExternal(): NewsletterInbox =
     NewsletterInbox(
         id = id,
-        title = title ?: NewsletterResources.NewsletterTitle.GENERAL_NEWS,
+        title = title ?: NewsletterTitle.GENERAL_NEWS,
         url = url,
-        icon = icon ?: NewsletterResources.NewsletterIcon.GENERAL_NEWS
+        icon = icon ?: NewsletterIcon.GENERAL_NEWS
     )
 
 fun List<FlattenedNewsletterInboxDto>.toExternal(): List<NewsletterInbox> =
@@ -26,9 +27,9 @@ fun List<FlattenedNewsletterInboxDto>.toExternal(): List<NewsletterInbox> =
 
         NewsletterInbox(
             id = dto.id,
-            title = dto.title ?: NewsletterResources.NewsletterTitle.GENERAL_NEWS,
+            title = dto.title ?: NewsletterTitle.GENERAL_NEWS,
             url = dto.url,
-            icon = dto.icon ?: NewsletterResources.NewsletterIcon.GENERAL_NEWS,
+            icon = dto.icon ?: NewsletterIcon.GENERAL_NEWS,
             channel = channel
         )
     }

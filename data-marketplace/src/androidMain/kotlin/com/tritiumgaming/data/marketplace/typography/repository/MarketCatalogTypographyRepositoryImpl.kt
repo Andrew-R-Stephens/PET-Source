@@ -3,11 +3,10 @@ package com.tritiumgaming.data.marketplace.typography.repository
 import android.util.Log
 import com.tritiumgaming.data.marketplace.typography.dto.MarketTypographyDto
 import com.tritiumgaming.data.marketplace.typography.dto.toDomain
+import com.tritiumgaming.data.marketplace.typography.model.MarketTypography
+import com.tritiumgaming.data.marketplace.typography.model.TypographyQueryOptions
 import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.data.typography.source.local.TypographyLocalDataSourceImpl
-import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
-import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
-import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

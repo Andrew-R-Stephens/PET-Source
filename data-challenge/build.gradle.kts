@@ -7,7 +7,7 @@ plugins {
 kotlin {
     // Android Target Configuration (AGP KMP DSL)
     android {
-        namespace = "com.tritiumgaming.data.difficulty"
+        namespace = "com.tritiumgaming.data.challenge"
         compileSdk = 37
         minSdk = 24
 
@@ -50,10 +50,13 @@ kotlin {
 
 
                 // Keep while transitioning away from monolithic shared module
-                implementation(project(":shared"))
+                api(project(":data-difficultysetting"))
+                api(project(":data-difficulty"))
+                api(project(":data-map"))
+                api(project(":data-equipment"))
 
                 // Project Dependencies
-                implementation(project(":core-common"))
+                api(project(":core-common"))
             }
         }
 

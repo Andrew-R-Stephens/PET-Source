@@ -107,10 +107,10 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":data-newsletter"))
     implementation(project(":data-challenge"))
+    implementation(project(":data-newsletter"))
+    implementation(project(":data-palette"))
+    implementation(project(":data-preferences"))
     implementation(project(":data-review"))
-
-    implementation(project(":shared"))
 
 }

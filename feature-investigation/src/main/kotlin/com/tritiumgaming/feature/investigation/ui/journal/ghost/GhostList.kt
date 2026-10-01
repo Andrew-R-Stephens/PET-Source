@@ -15,12 +15,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
+import com.tritiumgaming.data.ghost.mapper.GhostResources.GhostIdentifier
+import com.tritiumgaming.data.ghost.model.Ghost
+import com.tritiumgaming.data.journal.model.EvidenceState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListItem
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.operation.model.EvidenceState
-import com.tritiumgaming.shared.data.operation.model.GhostState
+import com.tritiumstudios.data.operation.model.GhostState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -29,7 +29,7 @@ internal fun GhostList(
     modifier: Modifier = Modifier,
     ghostOrder: List<GhostState>,
     ghostEvidenceState: List<EvidenceState>,
-    onGhostNameClick: (GhostResources.GhostIdentifier) -> Unit,
+    onGhostNameClick: (GhostIdentifier) -> Unit,
     onToggleNegateGhost: (Ghost) -> Unit,
     onRequestToolTip: () -> Unit
 ) {
@@ -78,7 +78,7 @@ internal fun GhostList(
 }
 
 internal data class GhostListUiActions(
-    val onNameClick: (GhostResources.GhostIdentifier) -> Unit = {}
+    val onNameClick: (GhostIdentifier) -> Unit = {}
 )
 
 internal data class GhostListUiState(

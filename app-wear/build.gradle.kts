@@ -66,7 +66,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))

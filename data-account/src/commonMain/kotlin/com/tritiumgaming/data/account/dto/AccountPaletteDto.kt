@@ -1,6 +1,7 @@
 package com.tritiumgaming.data.account.dto
 
-import com.tritiumgaming.shared.data.account.model.AccountPalette
+import com.tritiumgaming.data.account.model.AccountPalette
+
 
 data class AccountPaletteDto(
     internal val uuid: String,

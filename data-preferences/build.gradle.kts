@@ -50,13 +50,13 @@ kotlin {
         commonMain.dependencies {
             // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
+            implementation(libs.jetbrains.compose.ui)
+            implementation(libs.androidx.datastore.preferences)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
-            implementation(project(":core-common"))
-
-            // Jetpack DataStore
-            implementation(libs.androidx.datastore.preferences)
+            api(project(":core-common"))
+            api(project(":data-typography"))
+            api(project(":data-palette"))
         }
 
         commonTest.dependencies {
@@ -161,7 +161,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
 }*/

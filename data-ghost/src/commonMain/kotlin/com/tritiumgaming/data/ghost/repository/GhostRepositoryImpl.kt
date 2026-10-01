@@ -2,10 +2,9 @@ package com.tritiumgaming.data.ghost.repository
 
 import com.tritiumgaming.data.ghost.dto.toDomain
 import com.tritiumgaming.data.ghost.dto.toGhostType
+import com.tritiumgaming.data.ghost.model.Ghost
+import com.tritiumgaming.data.ghost.model.GhostType
 import com.tritiumgaming.data.ghost.source.GhostDataSource
-import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.ghost.model.GhostType
-import com.tritiumgaming.shared.data.ghost.repository.GhostRepository
 
 class GhostRepositoryImpl(
     val ghostLocalDataSource: GhostDataSource

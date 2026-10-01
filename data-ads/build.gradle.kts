@@ -49,7 +49,7 @@ kotlin {
                 implementation(libs.jetbrains.kotlinx.serialization.json)
 
                 // Keep while transitioning away from monolithic shared module
-                implementation(project(":shared"))
+                
             }
         }
 
@@ -69,7 +69,7 @@ kotlin {
                 implementation(libs.android.playServices.ads)
 
                 // Project Dependencies
-                implementation(project(":core-resources"))
+                api(project(":core-resources"))
             }
         }
 
@@ -128,7 +128,7 @@ configure<LibraryExtension> {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.android.playServices.ads)
-    implementation(project(":shared"))
+    
 }
 
 */

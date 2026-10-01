@@ -28,7 +28,7 @@ import com.tritiumgaming.core.ui.theme.palette.Translator
 import com.tritiumgaming.core.ui.theme.palette.Tritanomaly
 import com.tritiumgaming.core.ui.theme.palette.Whiteboard
 import com.tritiumgaming.core.ui.theme.palette.Winner
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
 
 fun PaletteType.toPaletteResource(): ExtendedPalette =
     when (this) {

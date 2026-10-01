@@ -51,6 +51,6 @@ dependencies {
     androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":shared"))
+    
     implementation(project(":data-customdifficulty"))
 }

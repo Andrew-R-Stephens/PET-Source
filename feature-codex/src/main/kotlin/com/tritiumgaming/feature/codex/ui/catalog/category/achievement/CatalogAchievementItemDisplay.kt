@@ -29,13 +29,13 @@ package com.tritiumgaming.feature.codex.ui.catalog.category.achievement
    import com.tritiumgaming.core.resources.R
    import com.tritiumgaming.core.ui.theme.LocalPalette
    import com.tritiumgaming.core.ui.theme.LocalTypography
-   import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
-   import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
+   import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementExclusivity
+   import com.tritiumgaming.data.codex.mappers.AchievementsResources.AchievementVisibility
+   import com.tritiumgaming.data.codex.mappers.toDrawableResource
+   import com.tritiumgaming.data.codex.mappers.toStringResource
    import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiActions
    import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
    import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
-   import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
-   import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
 
 @Composable
 fun CatalogAchievementItemDisplay(

@@ -52,7 +52,7 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
+            //
         }
 
         commonTest.dependencies {
@@ -65,7 +65,7 @@ kotlin {
             implementation(libs.androidx.appcompat.core)
             implementation(libs.android.material)
 
-            implementation(project(":core-resources"))
+            api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
@@ -128,6 +128,6 @@ dependencies {
     androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-resources"))
 }*/

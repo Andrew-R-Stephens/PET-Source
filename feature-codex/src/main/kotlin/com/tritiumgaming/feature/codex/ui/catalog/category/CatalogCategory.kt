@@ -1,20 +1,21 @@
 package com.tritiumgaming.feature.codex.ui.catalog.category
 
 import androidx.annotation.IntegerRes
-import com.tritiumgaming.shared.data.codex.mappers.CodexResources.Category
-import com.tritiumgaming.shared.data.codex.mappers.CodexResources.Category.ACHIEVEMENTS
-import com.tritiumgaming.shared.data.codex.mappers.CodexResources.Category.EQUIPMENT
-import com.tritiumgaming.shared.data.codex.mappers.CodexResources.Category.POSSESSIONS
-import com.tritiumgaming.shared.data.codex.model.achievements.AchievementsType
-import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType
-import com.tritiumgaming.shared.data.codex.model.possessions.PossessionsType
+import com.tritiumgaming.data.codex.mappers.CodexResources.Category
+import com.tritiumgaming.data.codex.mappers.CodexResources.Category.ACHIEVEMENTS
+import com.tritiumgaming.data.codex.mappers.CodexResources.Category.EQUIPMENT
+import com.tritiumgaming.data.codex.mappers.CodexResources.Category.NONE
+import com.tritiumgaming.data.codex.mappers.CodexResources.Category.POSSESSIONS
+import com.tritiumgaming.data.codex.model.achievements.AchievementsType
+import com.tritiumgaming.data.codex.model.equipment.EquipmentType
+import com.tritiumgaming.data.codex.model.possessions.PossessionsType
 
 abstract class CatalogCategory(
     val category: Category,
     @field:IntegerRes open val icons: List<Int>
 ) {
     class None: CatalogCategory(
-        category = Category.NONE,
+        category = NONE,
         icons = emptyList()
     )
 

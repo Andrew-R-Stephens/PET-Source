@@ -89,15 +89,17 @@ import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentAlignmentPercentage
 import com.tritiumgaming.core.ui.widgets.label.DynamicContentRow
+import com.tritiumgaming.data.map.complex.model.ComplexWorldMapFloor
+import com.tritiumgaming.data.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.data.map.complex.model.ComplexWorldRoom
+import com.tritiumgaming.data.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.model.InteractiveViewController
-import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloor
-import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint
-import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
-import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 @DevicePreviews
 @Composable
@@ -109,9 +111,9 @@ private fun MapViewerPreview() {
             MapViewerContent(
                 mapDisplayUiState = InteractiveMapUiState(
                     mapId = "tanglewood",
-                    mapName = SimpleMapResources.MapTitle.TANGLEWOOD,
+                    mapName = MapTitle.TANGLEWOOD,
                     floorIndex = 0,
-                    floorTitle = SimpleMapResources.MapFloorTitle.FIRST_FLOOR,
+                    floorTitle = MapFloorTitle.FIRST_FLOOR,
                     floorCount = 2,
                     roomId = 0,
                     roomName = "Living Room",
@@ -123,7 +125,7 @@ private fun MapViewerPreview() {
                 onSetSelectedRoomAtPoint = { _, _, _, _, _ -> },
                 onGetFloorByIndex = { _ -> null },
                 onGetRoomById = { _ -> null },
-                onGetFloorImage = { SimpleMapResources.MapFloorImage.TANGLEWOOD_FIRST_FLOOR },
+                onGetFloorImage = { MapFloorImage.TANGLEWOOD_FIRST_FLOOR },
                 onNavigateBack = {}
             )
         }
@@ -171,7 +173,7 @@ private fun MapViewerContent(
                                translateX: Float, translateY: Float) -> Unit,
     onGetFloorByIndex: (Int) -> ComplexWorldMapFloor?,
     onGetRoomById: (Int) -> ComplexWorldRoom?,
-    onGetFloorImage: () -> SimpleMapResources.MapFloorImage?,
+    onGetFloorImage: () -> MapFloorImage?,
     onNavigateBack: () -> Unit
 ) {
 
@@ -255,7 +257,7 @@ private fun MapCanvas(
         translateX: Float, translateY: Float) -> Unit,
     onGetFloorByIndex: (Int) -> ComplexWorldMapFloor?,
     onGetRoomById: (Int) -> ComplexWorldRoom?,
-    onGetFloorImage: () -> SimpleMapResources.MapFloorImage?
+    onGetFloorImage: () -> MapFloorImage?
 ) {
     val context = LocalContext.current
     val resources = LocalResources.current
@@ -273,7 +275,7 @@ private fun MapCanvas(
     val selectedFloor = onGetFloorByIndex(mapDisplayUiState.floorIndex)
     val selectedRoom = onGetRoomById(mapDisplayUiState.roomId)
 
-    val floorImageRef: SimpleMapResources.MapFloorImage = onGetFloorImage() ?: return
+    val floorImageRef: MapFloorImage = onGetFloorImage() ?: return
 
     @DrawableRes val floorImageRes: Int = floorImageRef.toDrawableResource()
     val floorImage: ImageBitmap = remember(floorImageRes) {

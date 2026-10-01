@@ -1,13 +1,14 @@
 package com.tritiumgaming.data.newsletter.dto.local
 
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
-import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources
+import com.tritiumgaming.data.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.data.newsletter.mapper.NewsletterResources.NewsletterTitle
 
 data class LocalNewsletterInboxDto(
     val id: String,
-    val title: NewsletterResources.NewsletterTitle,
+    val title: NewsletterTitle,
     val url: String,
-    val icon: NewsletterResources.NewsletterIcon,
+    val icon: NewsletterIcon,
 )
 
 fun LocalNewsletterInboxDto.toExternal(): FlattenedNewsletterInboxDto =

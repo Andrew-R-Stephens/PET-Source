@@ -29,10 +29,10 @@ import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.COOLING
 import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState.TemporalGradientDirection.HEATING
-import com.tritiumgaming.shared.data.weather.model.Temperature
-import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_FREEZING_BREATH
-import com.tritiumgaming.shared.data.weather.model.Temperature.TEMPERATURE_FREEZING_POINT
-import com.tritiumgaming.shared.data.weather.model.TemperatureRange
+import com.tritiumstudios.data.weather.model.Temperature
+import com.tritiumstudios.data.weather.model.Temperature.TEMPERATURE_FREEZING_BREATH
+import com.tritiumstudios.data.weather.model.Temperature.TEMPERATURE_FREEZING_POINT
+import com.tritiumstudios.data.weather.model.TemperatureRange
 
 
 @Composable

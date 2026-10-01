@@ -1,20 +1,20 @@
 package com.tritiumgaming.feature.missions.app.container
 
 import android.content.Context
+import com.tritiumgaming.data.ghostname.repository.GhostNameRepository
 import com.tritiumgaming.data.ghostname.repository.GhostNameRepositoryImpl
 import com.tritiumgaming.data.ghostname.source.GhostNameDataSource
 import com.tritiumgaming.data.ghostname.source.local.GhostNameLocalDataSource
+import com.tritiumgaming.data.ghostname.usecase.FetchAllFemaleNamesUseCase
+import com.tritiumgaming.data.ghostname.usecase.FetchAllFirstNamesUseCase
+import com.tritiumgaming.data.ghostname.usecase.FetchAllMaleNamesUseCase
+import com.tritiumgaming.data.ghostname.usecase.FetchAllSurnamesUseCase
+import com.tritiumgaming.data.mission.repository.MissionRepository
 import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
 import com.tritiumgaming.data.mission.source.MissionDataSource
 import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
-import com.tritiumgaming.shared.data.ghostname.repository.GhostNameRepository
-import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCase
-import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
-import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllMaleNamesUseCase
-import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllSurnamesUseCase
-import com.tritiumgaming.shared.data.mission.repository.MissionRepository
-import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
-import com.tritiumgaming.shared.data.mission.usecase.MissionsUseCaseBundle
+import com.tritiumgaming.data.mission.usecase.FetchAllMissionsUseCase
+import com.tritiumstudios.data.operation.usecase.bundle.MissionsUseCaseBundle
 
 class ObjectiveBoardContainer(
     applicationContext: Context,
@@ -35,9 +35,7 @@ class ObjectiveBoardContainer(
 
     // Ghost Name
     internal val ghostNameRepository: GhostNameRepository by lazy {
-        val ghostNameLocalDataSource: GhostNameDataSource = GhostNameLocalDataSource(
-            applicationContext = applicationContext
-        )
+        val ghostNameLocalDataSource: GhostNameDataSource = GhostNameLocalDataSource()
         GhostNameRepositoryImpl(
             localSource = ghostNameLocalDataSource
         )

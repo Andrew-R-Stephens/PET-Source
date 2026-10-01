@@ -107,6 +107,6 @@ dependencies {
 
     implementation(project(":data-contributor"))
 
-    implementation(project(":shared"))
+    
 
 }

@@ -39,7 +39,6 @@ import com.tritiumgaming.core.ui.icon.impl.composite.FingerprintDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
-import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
@@ -47,11 +46,12 @@ import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
-import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.data.map.mappers.toStringResource
+import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.mappers.toStringResource
+import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources
+import com.tritiumstudios.data.difficultysetting.mappers.toStringResource
 
 @Composable
 fun TimerTools(
@@ -95,8 +95,8 @@ fun TimerTools(
     onToggleCursed: () -> Unit = {},
     // Modifiers
     isCursedInvestigation: Boolean = false,
-    difficultyTitle: DifficultyResources.DifficultyTitle = DifficultyResources.DifficultyTitle.AMATEUR,
-    mapSize: MapModifierResources.MapSize = MapModifierResources.MapSize.SMALL,
+    difficultyTitle: DifficultyTitle = DifficultyTitle.AMATEUR,
+    mapSize: MapSize = MapSize.SMALL,
     huntDuration: DifficultySettingResources.HuntDuration = DifficultySettingResources.HuntDuration.MEDIUM,
     fingerprintDuration: DifficultySettingResources.FingerprintDuration = DifficultySettingResources.FingerprintDuration.DURATION_120,
     // Colors
@@ -333,8 +333,8 @@ private fun HuntTimersComponent(
     onHuntDurationToggle: () -> Unit,
     huntDurationNotches: List<ProgressBarNotch>,
     notchedProgressBarUiColors: NotchedProgressBarUiColors,
-    difficultyTitle: DifficultyResources.DifficultyTitle,
-    mapSize: MapModifierResources.MapSize,
+    difficultyTitle: DifficultyTitle,
+    mapSize: MapSize,
     huntDuration: DifficultySettingResources.HuntDuration,
     isCursedInvestigation: Boolean,
     huntCooldownTitle: String,

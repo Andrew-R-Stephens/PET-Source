@@ -16,8 +16,8 @@ import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
+import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType
 
 @Composable
 fun LocalThemeProvider(

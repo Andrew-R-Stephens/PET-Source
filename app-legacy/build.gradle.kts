@@ -246,7 +246,7 @@ dependencies {
 
     implementation(libs.androidx.ui.graphics)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 }

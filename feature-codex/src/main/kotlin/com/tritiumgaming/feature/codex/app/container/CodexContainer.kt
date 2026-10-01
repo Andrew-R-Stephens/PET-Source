@@ -1,13 +1,13 @@
 package com.tritiumgaming.feature.codex.app.container
 
+import com.tritiumgaming.data.codex.repository.CodexRepository
 import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
 import com.tritiumgaming.data.codex.source.local.AchievementsLocalDataSource
 import com.tritiumgaming.data.codex.source.local.EquipmentLocalDataSource
 import com.tritiumgaming.data.codex.source.local.PossessionsLocalDataSource
-import com.tritiumgaming.shared.data.codex.repository.CodexRepository
-import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
-import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
-import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
+import com.tritiumgaming.data.codex.usecase.FetchAchievementTypesUseCase
+import com.tritiumgaming.data.codex.usecase.FetchEquipmentTypesUseCase
+import com.tritiumgaming.data.codex.usecase.FetchPossessionTypesUseCase
 
 class CodexContainer() {
     // Codex

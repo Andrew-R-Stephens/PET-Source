@@ -100,14 +100,8 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":data-challenge"))
-    implementation(project(":data-codex"))
-    implementation(project(":data-difficulty"))
-    implementation(project(":data-evidence"))
-    implementation(project(":data-ghost"))
-    implementation(project(":data-map"))
-    implementation(project(":data-trait"))
-
-    implementation(project(":shared"))
+    implementation(project(":data-investigation"))
+    implementation(project(":data-operation"))
+    implementation(project(":data-difficultysetting"))
 
 }

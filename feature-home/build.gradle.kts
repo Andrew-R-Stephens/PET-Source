@@ -105,11 +105,13 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":data-language"))
     implementation(project(":data-account"))
-    implementation(project(":data-newsletter"))
     implementation(project(":data-contributor"))
+    implementation(project(":data-language"))
+    implementation(project(":data-marketplace"))
+    implementation(project(":data-newsletter"))
+    implementation(project(":data-preferences"))
 
-    implementation(project(":shared"))
+    
 
 }

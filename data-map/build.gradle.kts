@@ -54,7 +54,7 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            implementation(project(":shared"))
+            api(project(":data-phase"))
         }
 
         commonTest.dependencies {
@@ -70,7 +70,7 @@ kotlin {
             // Google Utilities
             implementation(libs.google.gson)
 
-            implementation(project(":core-resources"))
+            api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
@@ -142,6 +142,6 @@ dependencies {
     //GOOGLE GSON
     implementation(libs.google.gson)
 
-    implementation(project(":shared"))
+    
     implementation(project(":core-resources"))
 }*/

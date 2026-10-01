@@ -9,29 +9,26 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.data.account.model.MarketplaceExchangeMedium
+import com.tritiumgaming.data.account.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
+import com.tritiumgaming.data.ads.model.RewardedAdState
+import com.tritiumgaming.data.ads.usecase.GetRewardedAdFlowUseCase
+import com.tritiumgaming.data.ads.usecase.ShowRewardedAdUseCase
+import com.tritiumgaming.data.marketplace.common.mappers.MarketplaceResources.MarketplaceCategoryTitles
+import com.tritiumgaming.data.marketplace.palette.model.MarketPalette
+import com.tritiumgaming.data.marketplace.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.data.palette.mappers.PaletteResources
+import com.tritiumgaming.data.palette.mappers.asUuid
+import com.tritiumgaming.data.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.common.AccountCreditsUiState
-import com.tritiumgaming.feature.marketplace.ui.common.BundlePricingUiState
 import com.tritiumgaming.feature.marketplace.ui.common.MarketCatalogScreenUiState
 import com.tritiumgaming.feature.marketplace.ui.common.ShopScreenUiItem
-import com.tritiumgaming.shared.data.account.model.MarketplaceExchangeMedium.CREDITS
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.ObserveMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.account.usecase.accounttransaction.PurchaseMarketplaceItemUseCase
-import com.tritiumgaming.shared.data.ads.model.RewardedAdState
-import com.tritiumgaming.shared.data.ads.usecase.GetRewardedAdFlowUseCase
-import com.tritiumgaming.shared.data.ads.usecase.ShowRewardedAdUseCase
-import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.data.market.bundle.usecase.GetMarketCatalogBundlesUseCase
-import com.tritiumgaming.shared.data.market.common.mappers.MarketplaceResources.MarketplaceCategoryTitles
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
-import com.tritiumgaming.shared.data.market.palette.mappers.asUuid
-import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SaveCurrentPaletteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -218,7 +215,7 @@ class MarketplacePaletteScreenViewModel(
         viewModelScope.launch {
             try {
                 val result = purchaseMarketplaceItemUseCase(
-                    CREDITS,
+                    MarketplaceExchangeMedium.CREDITS,
                     itemId,
                     itemType
                 )
@@ -261,98 +258,6 @@ class MarketplacePaletteScreenViewModel(
         SharingStarted.WhileSubscribed(5000),
         emptyList()
     )
-
-    /*data class BundleState(
-        val uuid: String,
-        val bundle: MarketBundle,
-        val items: List<MarketPalette>,
-        val unlocked: Boolean,
-        val pricing: BundlePricingUiState
-    )*/
-
-    /*private fun calculateBundlePricing(
-        bundleBuyCredits: Long,
-        unlockedCount: Int,
-        totalCount: Int,
-        listPriceTotal: Long,
-        lockedCount: Int,
-        oneLockedItemPrice: Long?
-    ): BundlePricingUiState {
-        val isQualified = lockedCount > 1
-        val hasDiscount = unlockedCount > 0
-
-        val bundlePrice = if (lockedCount == 1) {
-            oneLockedItemPrice ?: bundleBuyCredits
-        } else {
-            bundleBuyCredits
-        }
-
-        val bundleDiscount = listPriceTotal - bundlePrice
-        val bundleDiscountRatio = if (listPriceTotal > 0) 1f - (bundlePrice / listPriceTotal.toFloat()) else 0f
-
-        val proratedDiscountRatio = if (totalCount > 0) unlockedCount.toFloat() / totalCount else 0f
-        val proratedDiscount = (bundlePrice * proratedDiscountRatio).toLong()
-        val finalPrice = bundlePrice - proratedDiscount
-
-        val discountPerItem = if (unlockedCount > 0) {
-            (unlockedCount.toFloat() / totalCount) / unlockedCount
-        } else 0f
-
-        return BundlePricingUiState(
-            listPriceTotal = listPriceTotal,
-            bundlePrice = bundlePrice,
-            bundleDiscount = bundleDiscount,
-            bundleDiscountRatio = bundleDiscountRatio,
-            proratedDiscount = proratedDiscount,
-            proratedDiscountRatio = proratedDiscountRatio,
-            finalPrice = finalPrice,
-            isQualified = isQualified,
-            hasDiscount = hasDiscount,
-            discountPerItem = discountPerItem
-        )
-    }*/
-
-    /*private val _marketPaletteBundlesState = combine(
-        _marketCatalogBundles,
-        _marketAccountPaletteState
-    ) { marketBundles, updatedPalettes ->
-
-        val bundleStates = marketBundles.mapNotNull { marketBundle ->
-            val localPalettes = updatedPalettes.filter { palette ->
-                palette.uuid in marketBundle.items
-            }
-            if (localPalettes.isEmpty()) return@mapNotNull null
-
-            val defaultCost = marketBundle.buyCredits
-            val totalCount = localPalettes.size
-            val unlockedCount = localPalettes.count { it.unlocked }
-            val lockedCount = totalCount - unlockedCount
-            val listPriceTotal = localPalettes.sumOf { it.buyCredits }
-            val oneLockedItemPrice = localPalettes.find { !it.unlocked }?.buyCredits
-
-            val pricing = calculateBundlePricing(
-                bundleBuyCredits = defaultCost,
-                unlockedCount = unlockedCount,
-                totalCount = totalCount,
-                listPriceTotal = listPriceTotal,
-                lockedCount = lockedCount,
-                oneLockedItemPrice = oneLockedItemPrice
-            )
-
-            BundleState(
-                uuid = marketBundle.uuid,
-                bundle = marketBundle,
-                items = localPalettes,
-                unlocked = localPalettes.all { it.unlocked },
-                pricing = pricing
-            )
-        }
-        bundleStates
-    }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5000),
-        emptyList()
-    )*/
 
     val marketCatalogScreenUiState =
         _marketAccountPaletteState.map { unlockedPalettes ->

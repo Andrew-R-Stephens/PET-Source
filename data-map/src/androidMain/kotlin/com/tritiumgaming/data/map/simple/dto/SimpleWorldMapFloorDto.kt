@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.map.simple.dto
 
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorImage
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
-import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMapFloor
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.model.SimpleWorldMapFloor
 
 data class SimpleWorldMapFloorDto(
     val layerName: MapFloorTitle,

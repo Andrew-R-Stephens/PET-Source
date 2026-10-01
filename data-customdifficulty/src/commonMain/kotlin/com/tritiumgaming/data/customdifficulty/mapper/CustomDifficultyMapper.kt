@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.customdifficulty.mapper
 
+import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.data.customdifficulty.source.local.CustomDifficultyEntity
-import com.tritiumgaming.shared.data.customdifficulty.model.CustomDifficultyModel
-import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
+import com.tritiumstudios.data.difficultysetting.model.DifficultySettingsModel
 
 fun CustomDifficultyEntity.toDomain() = CustomDifficultyModel(
     id = id,

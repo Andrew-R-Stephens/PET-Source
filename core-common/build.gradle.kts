@@ -50,9 +50,6 @@ kotlin {
                 implementation(libs.jetbrains.kotlin.stdlib)
                 implementation(libs.jetbrains.kotlinx.coroutines)
                 implementation(libs.jetbrains.kotlinx.serialization.json)
-
-                // Shared KMP Module
-                implementation(project(":shared"))
             }
         }
 
@@ -173,5 +170,5 @@ dependencies {
     // For Kotlin users also add the Kotlin extensions library for Play Core:
     implementation(libs.android.play.coreKtx.update)
 
-    implementation(project(":shared"))
+    
 }*/
