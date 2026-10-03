@@ -86,31 +86,6 @@ configure<ApplicationExtension> {
 
 }
 
-project(":feature-start").afterEvaluate {
-    extensions.configure<LibraryExtension> {
-        defaultConfig {
-            buildConfigField("boolean", "USE_NEWSLETTER", "true")
-            buildConfigField("boolean", "USE_FIRESTORE", "true")
-            buildConfigField("boolean", "USE_ACCOUNT", "true")
-            buildConfigField("boolean", "USE_MARKETPLACE", "true")
-        }
-        buildTypes {
-            getByName("debug") {
-                buildConfigField("boolean", "USE_FIRESTORE", "false")
-                buildConfigField("boolean", "USE_NEWSLETTER", "false")
-                buildConfigField("boolean", "USE_ACCOUNT", "false")
-                buildConfigField("boolean", "USE_MARKETPLACE", "false")
-            }
-            getByName("releaseTest") {
-                buildConfigField("boolean", "USE_NEWSLETTER", "false")
-                buildConfigField("boolean", "USE_FIRESTORE", "false")
-                buildConfigField("boolean", "USE_ACCOUNT", "false")
-                buildConfigField("boolean", "USE_MARKETPLACE", "false")
-            }
-        }
-    }
-}
-
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
     stabilityConfigurationFiles.addAll(

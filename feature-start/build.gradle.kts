@@ -1,120 +1,121 @@
-import com.android.build.api.dsl.LibraryExtension
-
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.jetbrains.compose.multiplatform)
     alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.gms.services)
-
-    // alias(libs.plugins.jetbrains.kotlin.android)
 }
 
-configure<LibraryExtension> {
-    namespace = "com.tritiumgaming.feature.start"
-    compileSdk = 37
-
-    buildFeatures {
-        buildConfig = true
-        compose = true
-    }
-
-    defaultConfig {
+kotlin {
+    android {
+        namespace = "com.tritiumgaming.feature.start"
+        compileSdk = 37
         minSdk = 24
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        withHostTestBuilder {
+        }
 
-    }
-
-    buildTypes {
-        create("releaseTest") {
-            initWith(getByName("releaseTest"))
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
+            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
     }
 
-    compileOptions {
-        targetCompatibility = JavaVersion.VERSION_17
-        sourceCompatibility = JavaVersion.VERSION_17
+    val xcfName = "FeatureStart"
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = xcfName
+            isStatic = true
+        }
     }
-    buildToolsVersion = "36.1.0"
 
-}
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
 
-dependencies {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.jetbrains.kotlin.stdlib)
+            implementation(libs.jetbrains.kotlinx.coroutines)
+            implementation(libs.jetbrains.kotlinx.serialization.json)
 
-    implementation(libs.androidx.navigation.compose)
+            // Compose Runtime
+            implementation(libs.jetbrains.compose.runtime)
+            implementation(libs.jetbrains.compose.foundation)
+            implementation(libs.jetbrains.compose.material3)
+            implementation(libs.jetbrains.compose.ui)
+            implementation(libs.jetbrains.compose.ui.toolingPreview)
+            implementation(libs.jetbrains.compose.components)
 
-    // Import the Compose BOM
-    implementation(platform(libs.androidx.compose.bom))
+            api(project(":core-common"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+            implementation(project(":data-challenge"))
+            implementation(project(":data-newsletter"))
+            implementation(project(":data-palette"))
+            implementation(project(":data-preferences"))
+            implementation(project(":data-review"))
+        }
 
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
 
-    // GOOGLE FIREBASE
-    // Import the BoM for the Firebase platform
-    implementation(platform(libs.firebase.bom))
-    // GOOGLE FIREBASE AUTH
-    implementation(libs.firebase.auth)
-    // GOOGLE FIREBASE FIRESTORE
-    implementation(libs.firebase.firestore)
-    // Declare the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    // GOOGLE FIREBASE ANALYTICS
-    implementation(libs.firebase.crashlytics.core)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.perfCore)
+        androidMain.dependencies {
+            implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.appcompat.core)
+            implementation(libs.android.material)
+            implementation(libs.androidx.navigation.compose)
 
-    // GOOGLE ADS
-    implementation(libs.android.playServices.ads)
-    implementation(libs.android.ump.core)
+            implementation(libs.androidx.compose.foundation)
+            implementation(libs.androidx.compose.material3)
+            implementation(libs.androidx.compose.material3.adaptive)
+            implementation(libs.androidx.compose.ui.core)
+            implementation(libs.androidx.compose.ui.toolingPreview)
 
-    // PLAY REVIEW
-    implementation(libs.android.play.core.review)
-    implementation(libs.android.play.coreKtx.review)
+            implementation(libs.androidx.activityCompose)
+            implementation(libs.androidx.lifecycle.runtime.ktx)
+            implementation(libs.androidx.lifecycle.viewmodelCompose)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.ui.graphics)
 
-    /*
-        ---- START----
-        ANDROID COMPOSE
-    */
+            // DataStore
+            implementation(libs.androidx.datastore.preferences)
 
-    // Testing --
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.testJunit4)
-    debugImplementation(libs.androidx.compose.ui.testManifest)
-    // ---
+            // Firebase
+            implementation(project.dependencies.platform(libs.firebase.bom))
+            implementation(libs.firebase.auth)
+            implementation(libs.firebase.firestore)
+            implementation(libs.firebase.crashlytics.core)
+            implementation(libs.firebase.analytics)
+            implementation(libs.firebase.perfCore)
 
-    implementation(libs.androidx.compose.foundation)
-    /* Material Design 3 */
-    implementation(libs.androidx.compose.material3)
-    // Optional - Add window size utils
-    implementation(libs.androidx.compose.material3.adaptive)
+            // Google Ads & Review
+            implementation(libs.android.playServices.ads)
+            implementation(libs.android.ump.core)
+            implementation(libs.android.play.core.review)
+            implementation(libs.android.play.coreKtx.review)
 
-    // Compose UI
-    implementation(libs.androidx.compose.ui.core)
-    implementation(libs.androidx.compose.ui.toolingPreview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
+            // Core Resources & UI
+            implementation(project(":core-resources"))
+            implementation(project(":core-ui"))
+        }
 
-    implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodelCompose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
+        getByName("androidDeviceTest") {
+            dependencies {
+                implementation(libs.androidx.runner)
+                implementation(libs.androidx.core)
+                implementation(libs.androidx.testExt.junit)
+                implementation(libs.androidx.espresso.core)
+            }
+        }
 
-    implementation(libs.androidx.ui.graphics)
-
-    implementation(project(":core-common"))
-    implementation(project(":core-resources"))
-    implementation(project(":core-ui"))
-
-    implementation(project(":data-challenge"))
-    implementation(project(":data-newsletter"))
-    implementation(project(":data-palette"))
-    implementation(project(":data-preferences"))
-    implementation(project(":data-review"))
-
+        iosMain.dependencies {
+            // iOS specific dependencies if needed
+        }
+    }
 }

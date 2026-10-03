@@ -13,14 +13,11 @@ import com.tritiumgaming.data.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.data.usecase.SetAllowIntroductionUseCase
 
 class StartContainer(
-    //val setupNewsletterUseCase: SetupNewsletterUseCase,
     internal val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
     internal val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
     internal val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
-    //val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
     internal val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     internal val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
-    //val initReviewTrackerDataStoreUseCase: SetupReviewTrackerUseCase,
     internal val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
     internal val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
     internal val setAppTimeAliveUseCase: SetAppTimeAliveUseCase,

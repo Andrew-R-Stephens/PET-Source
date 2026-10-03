@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -43,28 +42,6 @@ import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.data.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
-
-/*@Preview
-@Composable
-@TestOnly
-private fun ReviewPopupComposablePreview() {
-
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-
-        items(count = LocalTypographiesList.size) { index ->
-
-            SelectiveTheme(
-                palette = ClassicPalette,
-                typography = LocalTypographiesList[index].second
-            ) {
-                ReviewPopupComposable()
-            }
-        }
-
-    }
-}*/
 
 @Preview
 @Composable

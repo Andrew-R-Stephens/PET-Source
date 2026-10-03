@@ -50,6 +50,7 @@ kotlin {
                 implementation(libs.jetbrains.kotlin.stdlib)
                 implementation(libs.jetbrains.kotlinx.coroutines)
                 implementation(libs.jetbrains.kotlinx.serialization.json)
+                implementation(libs.jetbrains.compose.runtime)
             }
         }
 
