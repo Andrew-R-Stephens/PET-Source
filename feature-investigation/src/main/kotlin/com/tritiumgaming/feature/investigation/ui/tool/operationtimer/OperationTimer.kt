@@ -186,16 +186,17 @@ internal fun OperationTimerRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ){
-            TimerToggleButton(
+            CommonTooltip(
                 modifier = Modifier
                     .size(48.dp),
-                paused = paused,
-                onToggle = onToggle,
-                primaryContent = { modifier ->
-                    CommonTooltip(
-                        modifier = Modifier,
-                        tooltipText = stringResource(R.string.investigation_label_timer_run)
-                    ) {
+                tooltipText = stringResource(R.string.investigation_label_timer_run)
+            ) {
+                TimerToggleButton(
+                    modifier = Modifier
+                        .size(48.dp),
+                    paused = paused,
+                    onToggle = onToggle,
+                    primaryContent = { modifier ->
                         Icon(
                             modifier = modifier
                                 .padding(4.dp),
@@ -203,14 +204,8 @@ internal fun OperationTimerRow(
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
-                    }
-                },
-                alternateContent = { modifier ->
-
-                    CommonTooltip(
-                        modifier = Modifier,
-                        tooltipText = stringResource(R.string.investigation_label_timer_pause)
-                    ) {
+                    },
+                    alternateContent = { modifier ->
                         Icon(
                             modifier = modifier
                                 .padding(4.dp),
@@ -219,8 +214,8 @@ internal fun OperationTimerRow(
                             tint = LocalPalette.current.onSurface
                         )
                     }
-                }
-            )
+                )
+            }
 
             CommonTooltip(
                 modifier = Modifier,

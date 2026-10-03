@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -89,12 +90,16 @@ private fun OptionButtonPreview() {
 }
 
 @Composable
-fun ReviewPopupComposable() {
+fun ReviewPopupComposable(
+    modifier: Modifier = Modifier,
+    onAccept: () -> Unit = {},
+    onDecline: () -> Unit = {}
+) {
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth(1f)
-            .wrapContentHeight(),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(IntrinsicSize.Min),
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         colors = CardDefaults.cardColors(
             containerColor = LocalPalette.current.surfaceContainer
@@ -164,7 +169,7 @@ fun ReviewPopupComposable() {
                         .weight(1f),
                     text = R.string.review_accept
                 ) {
-
+                    onAccept()
                 }
                 OptionButton(
                     modifier = Modifier
@@ -174,7 +179,7 @@ fun ReviewPopupComposable() {
                         .weight(1f),
                     text = R.string.review_decline
                 ) {
-
+                    onDecline()
                 }
 
             }

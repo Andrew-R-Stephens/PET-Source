@@ -74,6 +74,10 @@ dependencies {
     implementation(libs.android.playServices.ads)
     implementation(libs.android.ump.core)
 
+    // PLAY REVIEW
+    implementation(libs.android.play.core.review)
+    implementation(libs.android.play.coreKtx.review)
+
     /*
         ---- START----
         ANDROID COMPOSE
