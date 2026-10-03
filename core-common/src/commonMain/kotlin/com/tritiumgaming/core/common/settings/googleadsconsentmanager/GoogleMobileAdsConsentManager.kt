@@ -1,0 +1,3 @@
+package com.tritiumgaming.core.common.settings.googleadsconsentmanager
+
+expect class GoogleMobileAdsConsentManager

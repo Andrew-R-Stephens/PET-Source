@@ -38,5 +38,4 @@ enum class NavRoute(val route: String) {
     SCREEN_CODEX_MENU(route = "CodexMenuScreen"),
     SCREEN_CODEX_ITEM_SCREEN(route = "CodexItemstoreScreen"),
 
-
 }

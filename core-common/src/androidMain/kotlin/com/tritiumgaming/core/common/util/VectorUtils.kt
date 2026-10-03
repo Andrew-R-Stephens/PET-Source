@@ -7,7 +7,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
 
 @Deprecated("Unused")
-object VectorUtils {
+actual object VectorUtils {
 
     fun toBitmap(context: Context, @DrawableRes drawableId: Int) : Bitmap? {
         return AppCompatResources.getDrawable(context, drawableId)?.toBitmap()

@@ -23,7 +23,7 @@ import kotlin.math.max
  *
  * @author TritiumGamingStudios
  */
-class BitmapUtils {
+actual class BitmapUtils {
 
     data class FilteredImage(val drawableRes: Int, val filter: PorterDuff.Mode?)
 

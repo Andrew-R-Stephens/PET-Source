@@ -11,7 +11,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToLong
 
-object FormatterUtils {
+actual object FormatterUtils {
 
     private const val SECOND_IN_MILLIS = 1000L
 

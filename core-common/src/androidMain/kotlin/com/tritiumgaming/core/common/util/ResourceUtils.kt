@@ -4,7 +4,7 @@ import android.content.res.Resources
 import android.content.res.TypedArray
 import androidx.annotation.StringRes
 
-object ResourceUtils {
+actual object ResourceUtils {
     fun intArrayFromTypedArray(
         resources: Resources,
         typedArray: TypedArray,

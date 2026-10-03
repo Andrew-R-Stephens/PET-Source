@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  * IAB Certified consent management platform) as one solution to capture
  * consent for users in GDPR impacted countries.
  */
-class GoogleMobileAdsConsentManager(
+actual class GoogleMobileAdsConsentManager(
     context: Context
 ) {
 

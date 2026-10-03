@@ -13,33 +13,6 @@ import androidx.navigation3.runtime.rememberDecoratedNavEntries
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 
 /**
- * Create a navigation state that persists config changes and process death.
- */
-/*@Composable
-fun rememberNavigationState(
-    startRoute: NavKey,
-    topLevelRoutes: Set<NavKey>
-): NavigationState {
-
-    val topLevelRoute = rememberSerializable(
-        startRoute, topLevelRoutes,
-        serializer = MutableStateSerializer(NavKeySerializer())
-    ) {
-        mutableStateOf(startRoute)
-    }
-
-    val backStacks = topLevelRoutes.associateWith { key -> rememberNavBackStack(key) }
-
-    return remember(startRoute, topLevelRoutes) {
-        NavigationState(
-            startRoute = startRoute,
-            topLevelRoute = topLevelRoute,
-            backStacks = backStacks
-        )
-    }
-}*/
-
-/**
  * State holder for navigation state.
  *
  * @param startRoute - the start route. The user will exit the app through this route.

@@ -7,9 +7,8 @@ import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.core.graphics.ColorUtils
 
-object ColorUtils {
+actual object ColorUtils {
 
-    @JvmStatic
     fun getRGB(color: Int): IntArray {
         val a = Color.alpha(color)
         val r = Color.red(color)
@@ -18,7 +17,6 @@ object ColorUtils {
         return intArrayOf(a, r, g, b)
     }
 
-    @JvmStatic
     fun setColor(color: Int, alpha: Int, red: Int, green: Int, blue: Int): Int {
         var a = alpha
         var r = red
@@ -47,7 +45,6 @@ object ColorUtils {
         return ColorUtils.blendARGB(endColor, startColor, ratio)
     }
 
-    @JvmStatic
     fun intToHex(color: Int): String {
         return if (color.toString().length < 6) {
             "#FFFFFF"
@@ -58,7 +55,6 @@ object ColorUtils {
         A, R, G, B
     }
 
-    @JvmStatic
     fun getColorFromAttribute(context: Context, attribute: Int) : Int {
         val typedValue = TypedValue()
         context.theme.resolveAttribute(attribute, typedValue, true)

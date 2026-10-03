@@ -7,7 +7,7 @@ import java.text.Normalizer
  *
  * A utility class for validating data.
  */
-object ValidationUtils {
+actual object ValidationUtils {
 
     /**
      * Validates a string created by a user, with support for non-US keyboards and complex scripts.

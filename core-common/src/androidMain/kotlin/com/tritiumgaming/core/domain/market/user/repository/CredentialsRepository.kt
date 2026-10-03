@@ -1,8 +1,8 @@
 package com.tritiumgaming.core.domain.market.user.repository
 
 import androidx.credentials.GetCredentialResponse
-import androidx.credentials.GetCustomCredentialOption
 import com.tritiumgaming.core.common.credentials.SignInOptions
+import androidx.credentials.GetCustomCredentialOption
 
 interface CredentialsRepository {
 

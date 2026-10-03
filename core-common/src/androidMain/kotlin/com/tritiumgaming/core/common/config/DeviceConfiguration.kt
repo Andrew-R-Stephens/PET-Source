@@ -6,7 +6,7 @@ import androidx.window.core.layout.WindowSizeClass.Companion.HEIGHT_DP_MEDIUM_LO
 import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_EXPANDED_LOWER_BOUND
 import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_MEDIUM_LOWER_BOUND
 
-enum class DeviceConfiguration {
+actual enum class DeviceConfiguration {
 
     MOBILE_PORTRAIT,
     MOBILE_LANDSCAPE,

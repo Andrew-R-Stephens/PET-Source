@@ -51,6 +51,7 @@ kotlin {
                 implementation(libs.jetbrains.kotlinx.coroutines)
                 implementation(libs.jetbrains.kotlinx.serialization.json)
                 implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.androidx.navigation3.runtime)
             }
         }
 

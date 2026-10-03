@@ -11,7 +11,7 @@ import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
 import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
 
-interface AppUpdateManagerService {
+actual interface AppUpdateManagerService {
 
     var appUpdateManager: AppUpdateManager?
     var updateType: Int
