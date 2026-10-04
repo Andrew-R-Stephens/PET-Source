@@ -1,3 +1,120 @@
+plugins {
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.jetbrains.compose.multiplatform)
+    alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.gms.services)
+}
+
+kotlin {
+
+    // Target declarations
+    android {
+        namespace = "com.tritiumgaming.core.ui"
+        compileSdk = 37
+        minSdk = 24
+
+        withHostTestBuilder {
+        }
+
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
+            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
+    // iOS Targets
+    val xcfName = "coreUiKit"
+
+    iosArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
+
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
+
+    // Source set declarations
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(libs.jetbrains.kotlin.stdlib)
+                implementation(libs.jetbrains.kotlinx.coroutines)
+
+                // Compose Multiplatform
+                implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.jetbrains.compose.foundation)
+                implementation(libs.jetbrains.compose.material3)
+                implementation(libs.jetbrains.compose.ui)
+                implementation(libs.jetbrains.compose.components)
+
+                // Internal Module Dependencies
+                api(project(":core-common"))
+                implementation(project(":data-language"))
+                implementation(project(":data-typography"))
+                implementation(project(":data-palette"))
+                implementation(project(":data-preferences"))
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+
+        androidMain {
+            dependencies {
+                // Android Core & UI Libraries
+                implementation(libs.androidx.core.ktx)
+                implementation(libs.androidx.appcompat.core)
+                implementation(libs.android.material)
+
+                // Google Ads
+                implementation(libs.android.playServices.ads)
+
+                // Compose UI Android specific & Lifecycle
+                implementation(libs.androidx.compose.foundation)
+                implementation(libs.androidx.compose.material3)
+                implementation(libs.androidx.compose.ui.core)
+                implementation(libs.androidx.compose.ui.toolingPreview)
+
+                implementation(libs.androidx.activityCompose)
+                implementation(libs.androidx.lifecycle.runtime.ktx)
+                implementation(libs.androidx.lifecycle.viewmodelCompose)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+
+                implementation(libs.androidx.ui.graphics)
+
+                implementation(project(":core-resources"))
+            }
+        }
+
+        getByName("androidDeviceTest") {
+            dependencies {
+                /*implementation(libs.androidx.testExt.junit)
+                implementation(libs.androidx.espresso.core)*/
+            }
+        }
+
+        iosMain {
+            dependencies {
+                // Add iOS-specific dependencies here
+            }
+        }
+    }
+}
+
+/*
 import com.android.build.api.dsl.LibraryExtension
 
 plugins {
@@ -56,20 +173,12 @@ dependencies {
     // GOOGLE ADS
     implementation(libs.android.playServices.ads)
 
-    /*
-        ---- START----
-        ANDROID COMPOSE
-    */
-
     // Testing --
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.testJunit4)
     debugImplementation(libs.androidx.compose.ui.testManifest)
-    // ---
 
     implementation(libs.androidx.compose.foundation)
-    //implementation(libs.androidx.compose.icons.core)
-    /* Material Design 3 */
     implementation(libs.androidx.compose.material3)
 
     // Compose UI
@@ -92,3 +201,4 @@ dependencies {
     implementation(project(":data-palette"))
     implementation(project(":data-preferences"))
 }
+*/

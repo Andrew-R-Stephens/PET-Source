@@ -1,6 +1,6 @@
 package com.tritiumgaming.core.ui.theme
 
-import com.tritiumgaming.core.ui.R
+import com.tritiumgaming.core.resources.R
 
 val badge_default = R.drawable.icon_logo_app
 val badge_1_recruit = R.drawable.theme_badge_1_recruit

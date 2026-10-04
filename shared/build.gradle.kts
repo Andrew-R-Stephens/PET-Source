@@ -61,7 +61,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.jetbrains.kotlin.stdlib)
+                /*implementation(libs.jetbrains.kotlin.stdlib)
                 implementation(libs.jetbrains.kotlinx.coroutines)
                 implementation(libs.jetbrains.kotlinx.serialization.json)
                 // Compose
@@ -70,13 +70,13 @@ kotlin {
                 implementation(libs.jetbrains.compose.material3)
                 implementation(libs.jetbrains.compose.ui)
                 implementation(libs.jetbrains.compose.ui.toolingPreview)
-                implementation(libs.jetbrains.compose.components)
+                implementation(libs.jetbrains.compose.components)*/
             }
         }
 
         commonTest {
             dependencies {
-                implementation(libs.kotlin.test)
+                //implementation(libs.kotlin.test)
             }
         }
 
@@ -87,55 +87,82 @@ kotlin {
                 // dependencies declared in commonMain.
 
                 // Compose UI
-                implementation(libs.androidx.compose.ui.core)
-                implementation(libs.androidx.compose.ui.toolingPreview)
+                /*implementation(libs.androidx.compose.ui.core)
+                implementation(libs.androidx.compose.ui.toolingPreview)*/
 
                 /*Optional - Included automatically by material, only add when you need
                 the icons but not the material library (e.g. when using Material3 or a
                 custom design system based on Foundation)*/
-                implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
+                /*implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
                 implementation(libs.androidx.compose.runtime.rxJava2) // Optional - Integration with RxJava
 
                 implementation(libs.androidx.activityCompose)
                 implementation(libs.androidx.lifecycle.runtime.ktx)
                 implementation(libs.androidx.lifecycle.viewmodelCompose)
                 implementation(libs.androidx.lifecycle.runtime.compose)
-                implementation(libs.androidx.navigation.compose)
+                implementation(libs.androidx.navigation.compose)*/
 
                 // WEARABLE
-                implementation(libs.android.playServices.wearable)
-                implementation(libs.jetbrains.kotlinx.coroutines.play.services)
+                /*implementation(libs.android.playServices.wearable)
+                implementation(libs.jetbrains.kotlinx.coroutines.play.services)*/
 
                 // GOOGLE FIREBASE FIRESTORE
-                implementation(project.dependencies.platform(libs.firebase.bom))
+                /*implementation(project.dependencies.platform(libs.firebase.bom))*/
                 // GOOGLE FIREBASE AUTH
-                implementation(libs.firebase.auth)
+                /*implementation(libs.firebase.auth)*/
                 // GOOGLE FIREBASE FIRESTORE
-                implementation(libs.firebase.firestore)
+                /*implementation(libs.firebase.firestore)*/
                 // Declare the dependencies for the Crashlytics and Analytics libraries
                 // When using the BoM, you don't specify versions in Firebase library dependencies
                 // GOOGLE FIREBASE ANALYTICS
-                implementation(libs.firebase.crashlytics.core)
+                /*implementation(libs.firebase.crashlytics.core)
                 implementation(libs.firebase.analytics)
-                implementation(libs.firebase.perfCore)
+                implementation(libs.firebase.perfCore)*/
             }
         }
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.runner)
+                /*implementation(libs.androidx.runner)
                 implementation(libs.androidx.core)
-                implementation(libs.androidx.testExt.junit)
+                implementation(libs.androidx.testExt.junit)*/
             }
         }
 
         iosMain {
             dependencies {
-                // Add iOS-specific dependencies here. This a source set created by Kotlin Gradle
-                // Plugin (KGP) that each specific iOS target (e.g., iosX64) depends on as
-                // part of KMP’s default source set hierarchy. Note that this source set depends
-                // on common by default and will correctly pull the iOS artifacts of any
-                // KMP dependencies declared in commonMain.
+                api(project(":core-common"))
+                api(project(":core-ui"))
+                api(project(":data-account"))
+                api(project(":data-ads"))
+                api(project(":data-challenge"))
+                api(project(":data-codex"))
+                api(project(":data-contributor"))
+                api(project(":data-customdifficulty"))
+                api(project(":data-difficulty"))
+                api(project(":data-difficultysetting"))
+                api(project(":data-equipment"))
+                api(project(":data-evidence"))
+                api(project(":data-ghost"))
+                api(project(":data-ghostbox"))
+                api(project(":data-ghostname"))
+                api(project(":data-investigation"))
+                api(project(":data-journal"))
+                api(project(":data-language"))
+                api(project(":data-map"))
+                api(project(":data-marketplace"))
+                api(project(":data-mission"))
+                api(project(":data-newsletter"))
+                api(project(":data-operation"))
+                api(project(":data-palette"))
+                api(project(":data-phase"))
+                api(project(":data-policy"))
+                api(project(":data-preferences"))
+                api(project(":data-review"))
+                api(project(":data-sanity"))
+                api(project(":data-temperature"))
+                api(project(":data-trait"))
+                api(project(":data-typography"))
             }
         }
 

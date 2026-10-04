@@ -2,6 +2,7 @@
 <resources>
 
     <attr name="buttonColor" format="reference|color" />
+    <attr name="backgroundColor" format="reference|color" />
     <attr name="light_active" format="reference|color" />
     <attr name="backgroundColorOnBackground" format="reference|color" />
     <attr name="colorActionPrimary" format="reference|color" />

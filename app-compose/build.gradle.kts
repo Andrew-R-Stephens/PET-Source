@@ -72,6 +72,9 @@ configure<ApplicationExtension> {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
         }
         create("releaseTest") {
             initWith(getByName("release"))
