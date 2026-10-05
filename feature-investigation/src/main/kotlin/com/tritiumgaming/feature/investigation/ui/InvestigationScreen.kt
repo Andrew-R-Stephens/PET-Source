@@ -35,7 +35,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -123,47 +122,48 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ToggleUniqueTraitFilter
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.TriggerToolTimer
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiColors
-import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.journal.JournalComponent
-import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
-import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
-import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
-import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
-import com.tritiumgaming.feature.investigation.ui.sheet.ToolsBottomSheetComponent
-import com.tritiumgaming.feature.investigation.ui.sheet.ToolsSideSheetComponent
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
-import com.tritiumgaming.feature.investigation.ui.tool.configs.CustomDifficultyConfigControl
-import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyChallengeLabel
-import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigControl
-import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
-import com.tritiumgaming.feature.investigation.ui.tool.configs.FuseBoxButton
-import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigControl
-import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
-import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherConfigComponent
-import com.tritiumgaming.feature.investigation.ui.tool.configs.WeatherUiState
-import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
-import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
-import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
-import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerColumn
-import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerRow
-import com.tritiumgaming.feature.investigation.ui.tool.operationtimer.OperationTimerUiState
-import com.tritiumgaming.feature.investigation.ui.tool.phase.PhaseUiState
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.PlayerDeathButton
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMedicationButton
-import com.tritiumgaming.feature.investigation.ui.tool.sanity.SanityMeterComponent
-import com.tritiumgaming.feature.investigation.ui.tool.statusbar.OperationStatusBar
-import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureComponent
-import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureStateBundle
-import com.tritiumgaming.feature.investigation.ui.tool.temperature.TemperatureUiState
-import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
-import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
-import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
-import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
-import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
-import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.components.common.operationconfig.OperationConfigUiColors
+import com.tritiumgaming.feature.investigation.ui.components.common.sanitymeter.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.configuration.CompactLandscapeContent
+import com.tritiumgaming.feature.investigation.ui.configuration.CompactPortraitContent
+import com.tritiumgaming.feature.investigation.ui.configuration.ExpandedLandscapeContent
+import com.tritiumgaming.feature.investigation.ui.components.journal.JournalComponent
+import com.tritiumgaming.feature.investigation.ui.components.popups.JournalPopupUiState
+import com.tritiumgaming.feature.investigation.ui.components.popups.common.InvestigationPopup
+import com.tritiumgaming.feature.investigation.ui.components.popups.evidence.EvidencePopup
+import com.tritiumgaming.feature.investigation.ui.components.popups.ghost.GhostPopup
+import com.tritiumgaming.feature.investigation.ui.components.sheet.ToolsBottomSheetComponent
+import com.tritiumgaming.feature.investigation.ui.components.sheet.ToolsSideSheetComponent
+import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.OperationDetails
+import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.CustomDifficultyConfigControl
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.DifficultyChallengeLabel
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.DifficultyConfigControl
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.DifficultyConfigUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.FuseBoxButton
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.MapConfigControl
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.MapConfigUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.WeatherConfigComponent
+import com.tritiumgaming.feature.investigation.ui.components.tool.configs.WeatherUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.footstep.BpmTool
+import com.tritiumgaming.feature.investigation.ui.components.tool.footstep.BpmToolUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.components.tool.operationtimer.OperationTimerColumn
+import com.tritiumgaming.feature.investigation.ui.components.tool.operationtimer.OperationTimerRow
+import com.tritiumgaming.feature.investigation.ui.components.tool.operationtimer.OperationTimerUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.sanity.PlayerDeathButton
+import com.tritiumgaming.feature.investigation.ui.components.tool.sanity.SanityMedicationButton
+import com.tritiumgaming.feature.investigation.ui.components.tool.sanity.SanityMeterComponent
+import com.tritiumgaming.feature.investigation.ui.components.tool.statusbar.OperationStatusBar
+import com.tritiumgaming.feature.investigation.ui.components.tool.temperature.TemperatureComponent
+import com.tritiumgaming.feature.investigation.ui.components.tool.temperature.TemperatureStateBundle
+import com.tritiumgaming.feature.investigation.ui.components.tool.temperature.TemperatureUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.timers.TimerTools
+import com.tritiumgaming.feature.investigation.ui.components.tool.traits.TraitConfig
+import com.tritiumgaming.feature.investigation.ui.components.tool.traits.TraitListItemUiColors
+import com.tritiumgaming.feature.investigation.ui.components.toolbar.ToolbarUiActions
+import com.tritiumgaming.feature.investigation.ui.components.toolbar.operation.OperationToolbarUiState
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
 import com.tritiumstudios.data.difficultysetting.mappers.toDrawable
 import com.tritiumstudios.data.difficultysetting.mappers.toStringResource
@@ -1346,275 +1346,6 @@ private fun InvestigationContent(
         }
     }
 
-}
-
-@Composable
-private fun CompactPortraitContent(
-    modifier: Modifier = Modifier,
-    walkthroughState: WalkthroughState,
-    toolbarState: OperationToolbarUiState,
-    toolbarActions: ToolbarUiActions,
-    statusBarComponent: @Composable (Modifier) -> Unit = {},
-    bottomSheetComponent: @Composable (Modifier) -> Unit,
-    journalComponent: @Composable (Modifier) -> Unit
-) {
-
-    val toolbarComponent: @Composable (Modifier) -> Unit = { modifier ->
-        OperationToolbar(
-            modifier = modifier
-                .walkthroughTarget(walkthroughState, "toolbar")
-                .heightIn(min = 48.dp),
-            category = toolbarState.category,
-            onChangeToolbarCategory = { category, allowCollapse ->
-                toolbarActions.onChangeToolbarCategory(category, allowCollapse)
-            },
-            onReset = toolbarActions.onReset,
-            onStartTutorial = toolbarActions.onStartTutorial,
-            containerColor = LocalPalette.current.surfaceContainerHigh
-        )
-    }
-
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        journalComponent(
-            Modifier
-                .weight(1f, false)
-                .padding(horizontal = 8.dp)
-        )
-
-        statusBarComponent(
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-        )
-
-        HorizontalToolbar(
-            modifier = Modifier
-                .padding(8.dp)
-                .walkthroughTarget(walkthroughState, "toolbar"),
-            selectBarComponent = { modifier ->
-                toolbarComponent(modifier) },
-            content = { modifier ->
-                bottomSheetComponent(
-                    modifier
-                        .fillMaxWidth()
-                        .animateContentSize()
-                        .then(
-                            if (!toolbarState.isCollapsed)
-                                Modifier
-                                    .alpha(1f)
-                                    .wrapContentHeight()
-                            else
-                                Modifier
-                                    .height(0.dp)
-                                    .alpha(0f)
-                        )
-                )
-            }
-        )
-    }
-}
-
-@Composable
-private fun CompactLandscapeContent(
-    modifier: Modifier = Modifier,
-    walkthroughState: WalkthroughState,
-    operationToolbarUiState: OperationToolbarUiState,
-    toolbarUiActions: ToolbarUiActions,
-    statusBarComponent: @Composable (Modifier) -> Unit = {},
-    journalComponent: @Composable (Modifier) -> Unit,
-    sideSheetComponent: @Composable (Modifier) -> Unit
-) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
-            OperationToolRail(
-                modifier = modifier
-                    .walkthroughTarget(walkthroughState, "toolbar")
-                    .widthIn(min = 48.dp),
-                category = operationToolbarUiState.category,
-                onChangeToolbarCategory = { category, allowCollapse ->
-                    toolbarUiActions.onChangeToolbarCategory(category, allowCollapse)
-                },
-                onReset = toolbarUiActions.onReset,
-                onStartTutorial = toolbarUiActions.onStartTutorial,
-                containerColor = LocalPalette.current.surfaceContainerHigh
-            )
-        }
-
-        VerticalToolbar(
-            modifier = Modifier
-                .walkthroughTarget(walkthroughState, "toolbar"),
-            selectRailComponent = { modifier ->
-                toolbarContent(modifier) },
-            content = { modifier ->
-                sideSheetComponent(
-                    modifier
-                        .fillMaxHeight()
-                        .animateContentSize()
-                        .then(
-                            if (!operationToolbarUiState.isCollapsed)
-                                Modifier
-                                    .fillMaxWidth(.35f)
-                                    .widthIn(max = 400.dp)
-                                    .alpha(1f)
-                            else
-                                Modifier
-                                    .width(0.dp)
-                                    .alpha(0f)
-                        )
-                )
-            }
-        )
-
-        Column(
-            modifier = Modifier
-                .weight(1f, false),
-            verticalArrangement = Arrangement.Top
-        ) {
-
-            statusBarComponent(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
-            )
-
-            journalComponent(
-                Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-            )
-        }
-
-    }
-}
-
-@Composable
-private fun ExpandedLandscapeContent(
-    modifier: Modifier = Modifier,
-    walkthroughState: WalkthroughState,
-    operationToolbarUiState: OperationToolbarUiState,
-    toolbarUiActions: ToolbarUiActions,
-    statusBarComponent: @Composable (Modifier) -> Unit = {},
-    journalComponent: @Composable (Modifier) -> Unit,
-    sideSheetComponent: @Composable (Modifier) -> Unit
-) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
-            OperationToolRail(
-                modifier = modifier
-                    .walkthroughTarget(walkthroughState, "toolbar")
-                    .widthIn(min = 48.dp),
-                category = operationToolbarUiState.category,
-                onChangeToolbarCategory = { category, allowCollapse ->
-                    toolbarUiActions.onChangeToolbarCategory(category, allowCollapse)
-                },
-                onReset = toolbarUiActions.onReset,
-                onStartTutorial = toolbarUiActions.onStartTutorial,
-                containerColor = LocalPalette.current.surfaceContainerHigh
-            )
-        }
-
-        VerticalToolbar(
-            modifier = Modifier,
-            selectRailComponent = { modifier ->
-                toolbarContent(modifier) },
-            content = { modifier ->
-                sideSheetComponent(
-                    modifier
-                        .fillMaxWidth(.35f)
-                        .widthIn(max = 400.dp)
-                )
-            }
-        )
-
-        Column(
-            modifier = Modifier
-                .weight(1f),
-            verticalArrangement = Arrangement.Top
-        ) {
-
-            statusBarComponent(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
-            )
-
-            journalComponent(
-                Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-            )
-        }
-
-    }
-}
-
-@Composable
-private fun HorizontalToolbar(
-    modifier: Modifier = Modifier,
-    selectBarComponent: @Composable (Modifier) -> Unit = {},
-    content: @Composable (Modifier) -> Unit = {}
-) {
-    Surface(
-        modifier = Modifier,
-        color = LocalPalette.current.surfaceContainerLow,
-        shape = RoundedCornerShape(
-            topStart = 16.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 0.dp)
-    ) {
-        Column(
-            modifier = modifier,
-            verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            selectBarComponent(
-                Modifier
-                    .heightIn(min = 48.dp)
-            )
-
-            content(Modifier)
-        }
-    }
-}
-
-@Composable
-private fun VerticalToolbar(
-    modifier: Modifier = Modifier,
-    selectRailComponent: @Composable (Modifier) -> Unit = {},
-    content: @Composable (Modifier) -> Unit = {}
-) {
-    Surface(
-        modifier = modifier,
-        color = LocalPalette.current.surfaceContainerLow,
-        shape = RoundedCornerShape(
-            topStart = 0.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 16.dp
-        )
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            content(
-                Modifier
-            )
-
-            selectRailComponent(
-                Modifier
-                    .widthIn(min = 48.dp)
-            )
-        }
-    }
 }
 
 @Composable

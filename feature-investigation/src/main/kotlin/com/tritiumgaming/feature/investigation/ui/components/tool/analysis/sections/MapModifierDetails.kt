@@ -1,0 +1,62 @@
+package com.tritiumgaming.feature.investigation.ui.components.tool.analysis.sections
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLocale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.theme.LocalPalette
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
+import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
+import com.tritiumgaming.data.map.mappers.toStringResource
+import com.tritiumgaming.data.map.modifier.mappers.toFloat
+import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.TextDataRow
+
+@Composable
+internal fun MapModifierDetails(
+    modifier: Modifier = Modifier,
+    state: OperationDetailsUiState.MapDetails
+) {
+    ExpandableColumn(
+        modifier = Modifier.fillMaxWidth(),
+        containerColor = LocalPalette.current.surfaceContainer,
+        expanded = false,
+        defaultContent = { modifier, expanded ->
+            ExpandableRow(
+                modifier = modifier,
+                isExpanded = expanded
+            ) { rowModifier ->
+                TextDataRow(
+                    modifier = rowModifier,
+                    title = "${stringResource(R.string.investigation_timer_maplabel)}:",
+                    data = stringResource(state.name.toStringResource())
+                )
+            }
+        }
+    ) {
+        Column(
+            modifier = Modifier,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            TextDataRow(
+                title = "${stringResource(R.string.map_setting_label_size)}:",
+                data = stringResource(state.size.toStringResource())
+            )
+            TextDataRow(
+                title = "${stringResource(R.string.investigation_phase_label_setup)} " +
+                        "${stringResource(R.string.map_setting_label_drainrate)}:",
+                data = "${String.format(LocalLocale.current.platformLocale, "%.2f", state.modifiers.setup.toFloat())}%/s"
+            )
+            TextDataRow(
+                title = "${stringResource(R.string.investigation_phase_label_action)} " +
+                        "${stringResource(R.string.map_setting_label_drainrate)}:",
+                data = "${String.format(LocalLocale.current.platformLocale, "%.2f", state.modifiers.action.toFloat())}%/s"
+            )
+        }
+    }
+}
