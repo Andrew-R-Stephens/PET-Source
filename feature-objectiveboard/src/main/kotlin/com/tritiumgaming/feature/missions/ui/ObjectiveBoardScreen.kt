@@ -22,7 +22,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.mission.mappers.MissionResources.MissionContent
 import com.tritiumgaming.data.mission.model.Mission
 import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUiState
@@ -44,7 +44,7 @@ private fun ObjectivesScreenPreview() {
         ) {
             ObjectivesScreenContent(
                 objectiveBoardContentUiState = ObjectiveBoardContentUiState(
-                    ghostResponseUiState = DifficultyResponseType.KNOWN,
+                    ghostResponseUiState = GhostResponsePresentation.KNOWN,
                     missionSpinnerUiState = MissionSpinnerUiState(
                         selectedMissions = listOf(
                             MissionUiState(

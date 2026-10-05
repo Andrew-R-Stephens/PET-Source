@@ -1,12 +1,12 @@
 package com.tritiumgaming.data.difficulty.usecase
 
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.repository.DifficultyRepository
 
 class GetDifficultyResponseTypeUseCase(
     private val difficultyRepository: DifficultyRepository
 ) {
-    operator fun invoke(index: Int): Result<DifficultyResponseType> {
+    operator fun invoke(index: Int): Result<GhostResponsePresentation> {
         val result = difficultyRepository.getDifficulties()
 
         result.exceptionOrNull()?.printStackTrace()

@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.missions.ui.components.response
 
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 
 data class GhostResponseUiState(
-    internal val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN
+    internal val responseType: GhostResponsePresentation = GhostResponsePresentation.KNOWN
 )

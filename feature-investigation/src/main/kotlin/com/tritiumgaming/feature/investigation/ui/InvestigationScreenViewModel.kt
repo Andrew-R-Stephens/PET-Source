@@ -343,7 +343,7 @@ class InvestigationScreenViewModel private constructor(
 
     private fun updateDifficulty(
         difficultyIndex: Int = 0,
-        customIndex: Int? = null
+        customDifficultyIndex: Int? = null
     ) {
         viewModelScope.launch {
             try {
@@ -366,9 +366,10 @@ class InvestigationScreenViewModel private constructor(
                     }
                     DifficultyType.CUSTOM -> {
                         val customDifficulties = getCustomDifficultiesUseCase().first().getOrDefault(emptyList())
-                        val custom = customIndex?.let { customDifficulties.getOrNull(it) }
+                        val customDifficulty = customDifficultyIndex
+                            ?.let { customDifficulties.getOrNull(it) }
                             ?: customDifficulties.firstOrNull()
-                        custom?.let {
+                        customDifficulty?.let {
                             settings = it.settings
                         }
                     }
@@ -382,7 +383,7 @@ class InvestigationScreenViewModel private constructor(
                     responseType = baseDifficulty.responseType,
                     challengeTitle = challengeTitle,
                     settings = settings,
-                    customIndex = customIndex
+                    customDifficultyIndex = customDifficultyIndex
                 )
 
                 updateOperationDifficultyUseCase(newDifficultyState)
@@ -834,7 +835,7 @@ class InvestigationScreenViewModel private constructor(
         difficultyState,
         _customDifficulties
     ) { difficulty, customDifficulties ->
-        val customDifficultyIndex = difficulty.customIndex ?: 0
+        val customDifficultyIndex = difficulty.customDifficultyIndex ?: 0
 
         CustomDifficultyConfigUiState(
             selectedDifficulty = customDifficulties.getOrNull(customDifficultyIndex),
@@ -1794,7 +1795,7 @@ class InvestigationScreenViewModel private constructor(
     private fun setCustomDifficultyIndex(newIndex: Int) {
         updateDifficulty(
             difficultyIndex = difficultyState.value.index,
-            customIndex = newIndex
+            customDifficultyIndex = newIndex
         )
     }
 
@@ -2283,7 +2284,7 @@ class InvestigationScreenViewModel private constructor(
             .onEach { customDifficulties ->
                 val currentDifficulty = difficultyState.value
                 if (currentDifficulty.type == DifficultyType.CUSTOM) {
-                    val custom = currentDifficulty.customIndex?.let {
+                    val custom = currentDifficulty.customDifficultyIndex?.let {
                         customDifficulties.getOrNull(it) } ?: customDifficulties.firstOrNull()
                     custom?.let {
                         if (currentDifficulty.settings != it.settings) {

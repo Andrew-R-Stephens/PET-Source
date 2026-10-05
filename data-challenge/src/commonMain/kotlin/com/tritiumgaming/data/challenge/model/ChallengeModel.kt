@@ -8,7 +8,7 @@ import com.tritiumstudios.data.difficultysetting.model.DifficultySettingsModel
 data class ChallengeModel(
     val challengeTitle: ChallengeResources.ChallengeTitle,
     val description: ChallengeResources.ChallengeDescription,
-    val responseType: DifficultyResources.DifficultyResponseType,
+    val responseType: DifficultyResources.GhostResponsePresentation,
     val map: MapTitle,
     val settingsModel: DifficultySettingsModel,
 )

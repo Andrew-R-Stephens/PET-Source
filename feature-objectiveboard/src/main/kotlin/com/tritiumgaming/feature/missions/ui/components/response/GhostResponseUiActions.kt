@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.missions.ui.components.response
 
-import com.tritiumgaming.feature.missions.ui.Response
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponseType
 
 data class GhostResponseUiActions(
-    val onSelectResponse: (response: Response) -> Unit
+    val onSelectResponse: (response: GhostResponseType) -> Unit
 )

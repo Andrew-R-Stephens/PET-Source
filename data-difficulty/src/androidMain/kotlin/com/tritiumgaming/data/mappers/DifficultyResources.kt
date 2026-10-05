@@ -2,7 +2,7 @@ package com.tritiumgaming.data.mappers
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 
 @StringRes fun DifficultyTitle.toStringResource(): Int =
@@ -19,8 +19,8 @@ import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTi
         DifficultyTitle.APOCALYPSE_3 -> R.string.difficulty_title_apocalypse_3
     }
 
-@StringRes fun DifficultyResponseType.toStringResource(): Int =
+@StringRes fun GhostResponsePresentation.toStringResource(): Int =
     when (this) {
-        DifficultyResponseType.KNOWN -> R.string.difficulty_setting_response_known
-        DifficultyResponseType.UNKNOWN -> R.string.difficulty_setting_response_unknown
+        GhostResponsePresentation.KNOWN -> R.string.difficulty_setting_response_known
+        GhostResponsePresentation.UNKNOWN -> R.string.difficulty_setting_response_unknown
     }

@@ -2,7 +2,7 @@ package com.tritiumgaming.feature.investigation.ui.components.tool.analysis
 
 import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeTitle
 import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
@@ -32,7 +32,7 @@ internal data class OperationDetailsUiState(
     internal data class DifficultyDetails(
         internal val type: DifficultyType = DifficultyType.AMATEUR,
         internal val difficultyTitle: DifficultyTitle = DifficultyTitle.AMATEUR,
-        internal val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN,
+        internal val responseType: GhostResponsePresentation = GhostResponsePresentation.KNOWN,
         internal val challengeTitle: ChallengeTitle? = null,
         internal val customTitle: CustomDifficultyModel? = null,
         internal val settings: DifficultySettingsModel = DifficultySettingsModel()

@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.difficulty.dto
 
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.data.difficulty.model.DifficultyModel
@@ -10,7 +10,7 @@ import com.tritiumstudios.data.difficultysetting.dto.toDomain
 data class DifficultyModelDto(
     val type: DifficultyType,
     val difficultyTitle: DifficultyTitle,
-    val responseType: DifficultyResponseType,
+    val responseType: GhostResponsePresentation,
     val settingsModelDto: DifficultySettingsModelDto
 )
 

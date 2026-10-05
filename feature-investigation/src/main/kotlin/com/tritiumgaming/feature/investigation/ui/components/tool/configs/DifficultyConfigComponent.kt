@@ -76,10 +76,3 @@ internal fun DifficultyChallengeLabel(
         fontSize = 14.sp
     )
 }
-
-internal data class DifficultyConfigUiState(
-    internal val type: DifficultyType = DifficultyType.AMATEUR,
-    internal val name: DifficultyTitle = DifficultyTitle.AMATEUR,
-    internal val challengeTitle: ChallengeTitle? = null,
-    val allDifficulties: List<DifficultyTitle> = emptyList()
-)

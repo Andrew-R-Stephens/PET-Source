@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.difficulty.source.local
 
 import com.tritiumgaming.data.difficulty.dto.DifficultyModelDto
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
@@ -42,7 +42,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.AMATEUR,
             difficultyTitle = DifficultyTitle.AMATEUR,
-            responseType = DifficultyResponseType.KNOWN,
+            responseType = GhostResponsePresentation.KNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_40,
@@ -77,7 +77,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.INTERMEDIATE,
             difficultyTitle = DifficultyTitle.INTERMEDIATE,
-            responseType = DifficultyResponseType.KNOWN,
+            responseType = GhostResponsePresentation.KNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_35,
@@ -112,7 +112,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.PROFESSIONAL,
             difficultyTitle = DifficultyTitle.PROFESSIONAL,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_30,
@@ -147,7 +147,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.NIGHTMARE,
             difficultyTitle = DifficultyTitle.NIGHTMARE,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_25,
@@ -182,7 +182,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.INSANITY,
             difficultyTitle = DifficultyTitle.INSANITY,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_75,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_20,
@@ -217,7 +217,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.APOCALYPSE_1,
             difficultyTitle = DifficultyTitle.APOCALYPSE_1,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_75,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_20,
@@ -252,7 +252,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.APOCALYPSE_2,
             difficultyTitle = DifficultyTitle.APOCALYPSE_2,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_50,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_5,
@@ -287,7 +287,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.APOCALYPSE_3,
             difficultyTitle = DifficultyTitle.APOCALYPSE_3,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_0,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_0,
@@ -322,13 +322,13 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         DifficultyResourceDto(
             type = DifficultyType.CHALLENGE,
             difficultyTitle = DifficultyTitle.CHALLENGE,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto()
         ),
         DifficultyResourceDto(
             type = DifficultyType.CUSTOM,
             difficultyTitle = DifficultyTitle.CUSTOM,
-            responseType = DifficultyResponseType.UNKNOWN,
+            responseType = GhostResponsePresentation.UNKNOWN,
             settingsModelDto = DifficultySettingsResourceModelDto()
         ),
     )
@@ -348,7 +348,7 @@ class DifficultyLocalDataSource: DifficultyDataSource {
     private data class DifficultyResourceDto(
         val type: DifficultyType,
         val difficultyTitle: DifficultyTitle,
-        val responseType: DifficultyResponseType,
+        val responseType: GhostResponsePresentation,
         val settingsModelDto: DifficultySettingsResourceModelDto
     ) {
         fun DifficultySettingsResourceModelDto.toDifficultySettingsModelDto() =

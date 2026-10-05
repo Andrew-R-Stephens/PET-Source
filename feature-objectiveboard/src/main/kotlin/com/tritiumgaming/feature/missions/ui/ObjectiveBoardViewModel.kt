@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.*
 import com.tritiumgaming.data.ghostname.model.GhostName
 import com.tritiumgaming.data.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.data.ghostname.usecase.FetchAllSurnamesUseCase
@@ -145,7 +146,7 @@ class ObjectiveBoardViewModel(
         difficultyState
     ) { ghostDetails, difficultyState ->
         val ghostResponse = if(difficultyState.responseType ==
-            DifficultyResources.DifficultyResponseType.UNKNOWN) { UNKNOWN }
+            GhostResponsePresentation.UNKNOWN) { GhostResponseType.UNKNOWN }
             else { ghostDetails.responseState }
 
         GhostDetailsUiState(
@@ -171,7 +172,7 @@ class ObjectiveBoardViewModel(
         )
     }
 
-    fun setGhostResponse(response: Response) {
+    fun setGhostResponse(response: GhostResponseType) {
         updateOperationGhostDetailsUseCase(
             ghostDetailsState.value.copy(responseState = response)
         )
@@ -200,10 +201,6 @@ class ObjectiveBoardViewModel(
     }
 
     companion object {
-
-        const val UNKNOWN: Int = 0
-        const val ALONE: Int = 1
-        const val GROUP: Int = 2
 
         const val NOT_COMPLETE: Boolean = false
         const val COMPLETE: Boolean = true

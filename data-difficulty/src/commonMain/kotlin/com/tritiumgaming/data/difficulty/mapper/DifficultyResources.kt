@@ -28,9 +28,15 @@ class DifficultyResources {
         APOCALYPSE_3,
     }
 
-    enum class DifficultyResponseType {
+    enum class GhostResponsePresentation {
         KNOWN,
         UNKNOWN
+    }
+
+    enum class GhostResponseType {
+        UNKNOWN,
+        ALONE,
+        GROUP
     }
 
 }

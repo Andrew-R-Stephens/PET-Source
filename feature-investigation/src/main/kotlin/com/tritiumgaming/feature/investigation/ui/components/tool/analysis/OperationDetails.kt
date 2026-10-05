@@ -18,24 +18,9 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.LocalPalette
-import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeTitle
-import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.sections.DifficultyModifierDetails
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.sections.MapModifierDetails
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.sections.PhaseModifierDetails
-import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
-import com.tritiumstudios.data.difficultysetting.model.DifficultySettingsModel
-import com.tritiumstudios.data.operation.model.GhostState
-import com.tritiumstudios.data.operation.model.OperationOverrideData
-import com.tritiumstudios.data.operation.model.PhaseData.Companion.DEFAULT
-import com.tritiumstudios.data.operation.model.PhaseData.Companion.DURATION_30_SECONDS
-import com.tritiumstudios.data.phase.mappers.PhaseResources.PhaseIdentifier
 
 @Composable
 internal fun OperationDetails(

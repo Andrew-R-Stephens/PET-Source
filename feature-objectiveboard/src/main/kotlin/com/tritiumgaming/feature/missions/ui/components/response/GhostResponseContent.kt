@@ -27,19 +27,18 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponseType
 import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
-import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel.Companion.ALONE
-import com.tritiumgaming.feature.missions.ui.ObjectiveBoardViewModel.Companion.GROUP
 
 @Composable
 fun GhostResponseContent(
     modifier: Modifier = Modifier,
-    ghostResponseUiState: DifficultyResponseType,
+    ghostResponseUiState: GhostResponsePresentation,
     ghostDetailsUiState: GhostDetailsUiState,
     ghostResponseUiActions: GhostResponseUiActions,
 ) {
-    val isResponseKnown = ghostResponseUiState == DifficultyResponseType.KNOWN
+    val isResponseKnown = ghostResponseUiState == GhostResponsePresentation.KNOWN
 
     Column(
         modifier = modifier,
@@ -78,10 +77,10 @@ fun GhostResponseContent(
                         .weight(1f, false),
                     title = R.string.objectives_title_response_alone,
                     icon = R.drawable.ic_response_alone,
-                    state = ghostDetailsUiState.responseState == ALONE,
+                    state = ghostDetailsUiState.responseState == GhostResponseType.ALONE,
                     enabled = isResponseKnown
                 ) {
-                    ghostResponseUiActions.onSelectResponse(ALONE)
+                    ghostResponseUiActions.onSelectResponse(GhostResponseType.ALONE)
                 }
 
                 ResponseItem(
@@ -89,10 +88,10 @@ fun GhostResponseContent(
                         .weight(1f, false),
                     title = R.string.objectives_title_response_everyone,
                     icon = R.drawable.ic_response_group,
-                    state = ghostDetailsUiState.responseState == GROUP,
+                    state = ghostDetailsUiState.responseState == GhostResponseType.GROUP,
                     enabled = isResponseKnown
                 ) {
-                    ghostResponseUiActions.onSelectResponse(GROUP)
+                    ghostResponseUiActions.onSelectResponse(GhostResponseType.GROUP)
                 }
 
             }
