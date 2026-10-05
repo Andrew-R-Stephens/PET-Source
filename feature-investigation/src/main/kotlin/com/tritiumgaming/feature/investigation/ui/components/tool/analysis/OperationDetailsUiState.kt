@@ -2,9 +2,9 @@ package com.tritiumgaming.feature.investigation.ui.components.tool.analysis
 
 import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeTitle
 import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle

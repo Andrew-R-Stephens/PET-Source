@@ -7,23 +7,23 @@ import androidx.compose.runtime.staticCompositionLocalOf
 
 @Composable
 fun LocalPrivacyProvider(
-    adConsent: AdConsent,
+    consentState: ConsentState,
     content: @Composable () -> Unit = {}
 ) {
-    val rememberAdConsent = remember(adConsent) {
-        adConsent
+    val rememberConsent = remember(consentState) {
+        consentState
     }
 
     CompositionLocalProvider(
-        LocalAdConsent provides rememberAdConsent
+        LocalAdConsent provides rememberConsent
     ) {
         content()
     }
 }
 
-val LocalAdConsent = staticCompositionLocalOf { AdConsent() }
+val LocalAdConsent = staticCompositionLocalOf { ConsentState() }
 
-data class AdConsent(
+data class ConsentState(
     val allowPersonalizedAds: Boolean = true,
     val allowAnalytics: Boolean = true
 )

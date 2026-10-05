@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.*
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponseType
 import com.tritiumgaming.data.ghostname.model.GhostName
 import com.tritiumgaming.data.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.data.ghostname.usecase.FetchAllSurnamesUseCase

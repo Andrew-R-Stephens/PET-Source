@@ -124,9 +124,6 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.I
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.UseSanityMedication
 import com.tritiumgaming.feature.investigation.ui.components.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.components.common.sanitymeter.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.configuration.CompactLandscapeContent
-import com.tritiumgaming.feature.investigation.ui.configuration.CompactPortraitContent
-import com.tritiumgaming.feature.investigation.ui.configuration.ExpandedLandscapeContent
 import com.tritiumgaming.feature.investigation.ui.components.journal.JournalComponent
 import com.tritiumgaming.feature.investigation.ui.components.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.components.popups.common.InvestigationPopup
@@ -164,6 +161,9 @@ import com.tritiumgaming.feature.investigation.ui.components.tool.traits.TraitCo
 import com.tritiumgaming.feature.investigation.ui.components.tool.traits.TraitListItemUiColors
 import com.tritiumgaming.feature.investigation.ui.components.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.components.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.configuration.CompactLandscapeContent
+import com.tritiumgaming.feature.investigation.ui.configuration.CompactPortraitContent
+import com.tritiumgaming.feature.investigation.ui.configuration.ExpandedLandscapeContent
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
 import com.tritiumstudios.data.difficultysetting.mappers.toDrawable
 import com.tritiumstudios.data.difficultysetting.mappers.toStringResource

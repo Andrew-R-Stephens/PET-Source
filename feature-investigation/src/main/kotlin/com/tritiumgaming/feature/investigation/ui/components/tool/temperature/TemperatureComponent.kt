@@ -27,7 +27,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
-import com.tritiumgaming.feature.investigation.ui.components.tool.temperature.TemperatureUiState.*
+import com.tritiumgaming.feature.investigation.ui.components.tool.temperature.TemperatureUiState.TemporalGradientDirection
 import com.tritiumstudios.data.weather.model.Temperature
 import com.tritiumstudios.data.weather.model.Temperature.TEMPERATURE_FREEZING_BREATH
 import com.tritiumstudios.data.weather.model.Temperature.TEMPERATURE_FREEZING_POINT

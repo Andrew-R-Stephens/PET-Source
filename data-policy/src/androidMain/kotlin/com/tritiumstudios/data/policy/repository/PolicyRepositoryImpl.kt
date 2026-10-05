@@ -11,7 +11,9 @@ import com.google.firebase.analytics.setConsent
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
 import com.tritiumstudios.data.policy.source.PolicyDatastore
 import com.tritiumstudios.data.policy.source.PolicyDatastore.Policy
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class PolicyRepositoryImpl(
     private val dataStoreSource: PolicyDatastore,
@@ -59,7 +61,7 @@ class PolicyRepositoryImpl(
             )
 
             // Initialize the Google Mobile Ads SDK on a background thread.
-            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+            withContext(Dispatchers.IO) {
                 MobileAds.initialize(context) {
                     onFinished()
                 }
@@ -74,6 +76,7 @@ class PolicyRepositoryImpl(
         } else {
             FirebaseAnalytics.ConsentStatus.DENIED
         }
+
         val adsStatus = if (policy.allowPersonalizedAds) {
             FirebaseAnalytics.ConsentStatus.GRANTED
         } else {

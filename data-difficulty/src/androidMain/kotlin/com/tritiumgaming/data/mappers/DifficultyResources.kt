@@ -2,8 +2,8 @@ package com.tritiumgaming.data.mappers
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 
 @StringRes fun DifficultyTitle.toStringResource(): Int =
     when (this) {

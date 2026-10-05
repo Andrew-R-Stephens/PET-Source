@@ -1,9 +1,9 @@
 package com.tritiumgaming.data.difficulty.source.local
 
 import com.tritiumgaming.data.difficulty.dto.DifficultyModelDto
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
 import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
 import com.tritiumstudios.data.difficultysetting.dto.DifficultySettingsModelDto
 import com.tritiumstudios.data.difficultysetting.dto.DifficultySettingsResourceModelDto

@@ -45,8 +45,6 @@ class PolicyDatastoreDataSource(
                 is Boolean -> value
                 is String -> {
                     if (value == "eu_consent_policy") {
-                        // For Datastore initialization, we treat "policy" as false (denied)
-                        // to ensure a privacy-first default that the user can then toggle.
                         false
                     } else {
                         value.toBoolean()

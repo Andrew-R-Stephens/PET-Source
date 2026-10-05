@@ -12,7 +12,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.ump.ConsentInformation.PrivacyOptionsRequirementStatus
 import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform.getConsentInformation
-import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleAdsConsentState
+import com.tritiumgaming.core.common.settings.googleadsconsentmanager.PrivacyConsentState
 import com.tritiumgaming.data.marketplace.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.data.marketplace.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.data.palette.mappers.LocalDefaultPalette
@@ -47,7 +47,7 @@ class PETActivityViewModel(
 ): ViewModel() {
 
     /** UIState for the ViewModel. */
-    private val _googleAdsPermissionsUiState = MutableStateFlow(GoogleAdsConsentState())
+    private val _googleAdsPermissionsUiState = MutableStateFlow(PrivacyConsentState())
 
     private val _petActivityUiState : StateFlow<PETActivityUiState> =
         combine(
@@ -114,10 +114,13 @@ class PETActivityViewModel(
             }
             // Update UI State with current consent info
             val consentInformation = getConsentInformation(activity)
-            _googleAdsPermissionsUiState.update { it.copy(
-                canRequestAds = consentInformation.canRequestAds(),
-                isPrivacyOptionsRequired = consentInformation.privacyOptionsRequirementStatus == PrivacyOptionsRequirementStatus.REQUIRED
-            ) }
+            _googleAdsPermissionsUiState.update {
+                it.copy(
+                    canRequestAds = consentInformation.canRequestAds(),
+                    isPrivacyOptionsRequired = consentInformation.privacyOptionsRequirementStatus ==
+                            PrivacyOptionsRequirementStatus.REQUIRED
+                )
+            }
 
             // Initialize SDK if consent was gathered (or already existed)
             viewModelScope.launch {

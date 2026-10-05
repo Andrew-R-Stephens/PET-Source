@@ -13,9 +13,6 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
-import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeTitle
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.feature.investigation.ui.components.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.components.common.operationconfig.dropdown.OperationConfigDropdown
 

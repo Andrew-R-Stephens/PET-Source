@@ -15,6 +15,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -27,7 +31,7 @@ import com.tritiumgaming.core.common.settings.updatemanager.AppUpdateManagerServ
 import com.tritiumgaming.core.ui.theme.ExtendedUiConfiguration
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
-import com.tritiumgaming.core.ui.widgets.admob.provider.AdConsent
+import com.tritiumgaming.core.ui.widgets.admob.provider.ConsentState
 import com.tritiumgaming.core.ui.widgets.admob.provider.LocalPrivacyProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.navigation.RootNavigation
 
@@ -98,9 +102,9 @@ class PETActivity : AppCompatActivity(),
                 )
             ) {
                 LocalPrivacyProvider(
-                    adConsent = AdConsent(
+                    consentState = ConsentState(
                         allowPersonalizedAds = allowPersonalizedAds,
-                        allowAnalytics = allowAnalytics
+                        allowAnalytics = allowAnalytics ?: false
                     )
                 ) {
                     Box(
@@ -111,10 +115,35 @@ class PETActivity : AppCompatActivity(),
                     ) {
                         RootNavigation()
                     }
+
                 }
             }
         }
 
+    }
+
+    @Composable
+    fun AnalyticsConsentDialog(
+        onAccept: () -> Unit,
+        onDecline: () -> Unit
+    ) {
+        AlertDialog(
+            onDismissRequest = { /* Prevent dismiss without choice if required */ },
+            title = { Text("Help us improve") },
+            text = {
+                Text("We collect anonymous usage data to make the app better. Do you allow us to use analytics?")
+            },
+            confirmButton = {
+                TextButton(onClick = onAccept) {
+                    Text("Accept")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = onDecline) {
+                    Text("Decline")
+                }
+            }
+        )
     }
 
     override fun onRequestPermissionsResult(

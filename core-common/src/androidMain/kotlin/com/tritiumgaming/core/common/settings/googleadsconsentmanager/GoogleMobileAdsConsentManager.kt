@@ -111,7 +111,7 @@ actual class GoogleMobileAdsConsentManager(
 
 }
 
-data class GoogleAdsConsentState(
+data class PrivacyConsentState(
     /** Represents current initialization states for the Google Mobile Ads SDK. */
     val isMobileAdsInitialized: Boolean = false,
     /** Indicates whether the app has completed the steps for gathering updated user consent. */
