@@ -29,6 +29,7 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -456,6 +457,9 @@ fun InvestigationSoloScreen(
         onClearPopup = { investigationViewModel.onEvent(ClearPopup) }
     )
 
+    val currentOnChangeToolbarCategory by rememberUpdatedState(uiActions.onChangeToolbarCategory)
+    val currentToolbarCategory by rememberUpdatedState(toolbarUiState.category)
+
     val walkthroughState = rememberWalkthroughState(
         onTargetRequired = { targetId ->
             if (targetId == "config_medication" || targetId == "config_death") {
@@ -473,209 +477,12 @@ fun InvestigationSoloScreen(
             }
 
             targetCategory?.let { category ->
-                if (toolbarUiState.category != category) {
-                    uiActions.onChangeToolbarCategory(category, false)
+                if (currentToolbarCategory != category) {
+                    currentOnChangeToolbarCategory(category, false)
                 }
             }
         },
-        steps = listOf(
-            WalkthroughChapter(
-                id = "screen_overview",
-                pages = listOf(
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_investigation_1,
-                        targetIds = listOf("journal", "status_bar", "toolbar")
-                    )
-                ),
-                titleRes = R.string.walkthrough_title_investigation,
-                isMajor = true
-            ),
-            WalkthroughChapter(
-                id = "journal",
-                pages = listOf(
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_journal_1,
-                        targetIds = listOf("journal")
-                    ),
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_journal_2,
-                        targetIds = listOf("journal")
-                    )
-                ),
-                titleRes = R.string.walkthrough_title_journal
-            ),
-            WalkthroughChapter(
-                id = "toolbar",
-                pages = listOf(
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_toolbar_1,
-                        targetIds = listOf("toolbar")
-                    )
-                ),
-                titleRes = R.string.walkthrough_title_toolbar
-            ),
-            WalkthroughChapter(
-                id = "configs",
-                pages = listOf(
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_configs_1,
-                        targetIds = listOf("configs")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_difficulty,
-                        descriptionRes = R.string.walkthrough_desc_configs_difficulty,
-                        targetIds = listOf("config_difficulty")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_map,
-                        descriptionRes = R.string.walkthrough_desc_configs_map,
-                        targetIds = listOf("config_map")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_weather,
-                        descriptionRes = R.string.walkthrough_desc_configs_weather,
-                        targetIds = listOf("config_weather")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_temperature,
-                        descriptionRes = R.string.walkthrough_desc_configs_temperature,
-                        targetIds = listOf("config_temperature")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_timer,
-                        descriptionRes = R.string.walkthrough_desc_configs_timer,
-                        targetIds = listOf("config_timer")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_power,
-                        descriptionRes = R.string.walkthrough_desc_configs_power,
-                        targetIds = listOf("config_power")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_sanity,
-                        descriptionRes = R.string.walkthrough_desc_sanity_1,
-                        targetIds = listOf("sanity")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_death,
-                        descriptionRes = R.string.walkthrough_desc_configs_death,
-                        targetIds = listOf("config_death")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_medication,
-                        descriptionRes = R.string.walkthrough_desc_configs_medication,
-                        targetIds = listOf("config_medication")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_configs_status,
-                        descriptionRes = R.string.walkthrough_desc_status_1,
-                        targetIds = listOf("status_bar")
-                    )
-                ),
-                titleRes = R.string.investigation_label_contract
-            ),
-            WalkthroughChapter(
-                id = "traits",
-                pages = listOf(
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_traits_1,
-                        targetIds = listOf("traits")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_traits_unique,
-                        descriptionRes = R.string.walkthrough_desc_traits_unique,
-                        targetIds = listOf("traits_unique")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_traits_filter,
-                        descriptionRes = R.string.walkthrough_desc_traits_filter,
-                        targetIds = listOf("traits_filter")
-                    )
-                ),
-                titleRes = R.string.walkthrough_title_traits
-            ),
-            WalkthroughChapter(
-                id = "analyzer",
-                pages = listOf(
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_analyzer_1,
-                        targetIds = listOf("analyzer")
-                    )
-                ),
-                titleRes = R.string.walkthrough_title_analyzer
-            ),
-            WalkthroughChapter(
-                id = "timers",
-                pages = listOf(
-                    WalkthroughPage(
-                        descriptionRes = R.string.walkthrough_desc_timers_1,
-                        targetIds = listOf("timers")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_timers_hunt_duration,
-                        descriptionRes = R.string.walkthrough_desc_timers_hunt_duration,
-                        targetIds = listOf("timer_hunt_duration", "timer_cursed")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_timers_hunt_cooldown,
-                        descriptionRes = R.string.walkthrough_desc_timers_hunt_cooldown,
-                        targetIds = listOf("timer_hunt_cooldown")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_timers_link,
-                        descriptionRes = R.string.walkthrough_desc_timers_link,
-                        targetIds = listOf("timer_hunt_duration", "timer_hunt_cooldown", "timer_link")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_timers_smudge,
-                        descriptionRes = R.string.walkthrough_desc_timers_smudge,
-                        targetIds = listOf("timer_smudge")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_timers_fingerprint,
-                        descriptionRes = R.string.walkthrough_desc_timers_fingerprint,
-                        targetIds = listOf("timer_fingerprint")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_timers_cursed,
-                        descriptionRes = R.string.walkthrough_desc_timers_cursed,
-                        targetIds = listOf("timer_cursed")
-                    ),
-                ),
-                titleRes = R.string.walkthrough_title_timers
-            ),
-            WalkthroughChapter(
-                id = "footstep",
-                pages = listOf(
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_title_footstep,
-                        descriptionRes = R.string.walkthrough_desc_footstep_1,
-                        targetIds = listOf("footstep")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_footstep_modifiers,
-                        descriptionRes = R.string.walkthrough_desc_footstep_modifiers,
-                        targetIds = listOf("footstep_modifiers")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_footstep_apply,
-                        descriptionRes = R.string.walkthrough_desc_footstep_apply,
-                        targetIds = listOf("footstep_apply", "footstep_apply_bpm")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_footstep_visualizer,
-                        descriptionRes = R.string.walkthrough_desc_footstep_visualizer,
-                        targetIds = listOf("footstep_visualizer")
-                    ),
-                    WalkthroughPage(
-                        subtitleRes = R.string.walkthrough_subtitle_footstep_configure,
-                        descriptionRes = R.string.walkthrough_desc_footstep_configure,
-                        targetIds = listOf("footstep_viewport", "footstep_sample")
-                    )
-                ),
-                titleRes = R.string.walkthrough_title_footstep
-            )
-        )
+        steps = InvestigationWalkthroughSteps
     )
 
     InvestigationContent(
@@ -2528,3 +2335,203 @@ internal data class InvestigationUiActions(
     val onClearPopup: () -> Unit = {},
     val onStartTutorial: () -> Unit = {}
 )
+
+private val InvestigationWalkthroughSteps = listOf(
+    WalkthroughChapter(
+        id = "screen_overview",
+        pages = listOf(
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_investigation_1,
+                targetIds = listOf("journal", "status_bar", "toolbar")
+            )
+        ),
+        titleRes = R.string.walkthrough_title_investigation,
+        isMajor = true
+    ),
+    WalkthroughChapter(
+        id = "journal",
+        pages = listOf(
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_journal_1,
+                targetIds = listOf("journal")
+            ),
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_journal_2,
+                targetIds = listOf("journal")
+            )
+        ),
+        titleRes = R.string.walkthrough_title_journal
+    ),
+    WalkthroughChapter(
+        id = "toolbar",
+        pages = listOf(
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_toolbar_1,
+                targetIds = listOf("toolbar")
+            )
+        ),
+        titleRes = R.string.walkthrough_title_toolbar
+    ),
+    WalkthroughChapter(
+        id = "configs",
+        pages = listOf(
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_configs_1,
+                targetIds = listOf("configs")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_difficulty,
+                descriptionRes = R.string.walkthrough_desc_configs_difficulty,
+                targetIds = listOf("config_difficulty")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_map,
+                descriptionRes = R.string.walkthrough_desc_configs_map,
+                targetIds = listOf("config_map")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_weather,
+                descriptionRes = R.string.walkthrough_desc_configs_weather,
+                targetIds = listOf("config_weather")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_temperature,
+                descriptionRes = R.string.walkthrough_desc_configs_temperature,
+                targetIds = listOf("config_temperature")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_timer,
+                descriptionRes = R.string.walkthrough_desc_configs_timer,
+                targetIds = listOf("config_timer")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_power,
+                descriptionRes = R.string.walkthrough_desc_configs_power,
+                targetIds = listOf("config_power")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_sanity,
+                descriptionRes = R.string.walkthrough_desc_sanity_1,
+                targetIds = listOf("sanity")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_death,
+                descriptionRes = R.string.walkthrough_desc_configs_death,
+                targetIds = listOf("config_death")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_medication,
+                descriptionRes = R.string.walkthrough_desc_configs_medication,
+                targetIds = listOf("config_medication")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_configs_status,
+                descriptionRes = R.string.walkthrough_desc_status_1,
+                targetIds = listOf("status_bar")
+            )
+        ),
+        titleRes = R.string.investigation_label_contract
+    ),
+    WalkthroughChapter(
+        id = "traits",
+        pages = listOf(
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_traits_1,
+                targetIds = listOf("traits")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_traits_unique,
+                descriptionRes = R.string.walkthrough_desc_traits_unique,
+                targetIds = listOf("traits_unique")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_traits_filter,
+                descriptionRes = R.string.walkthrough_desc_traits_filter,
+                targetIds = listOf("traits_filter")
+            )
+        ),
+        titleRes = R.string.walkthrough_title_traits
+    ),
+    WalkthroughChapter(
+        id = "analyzer",
+        pages = listOf(
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_analyzer_1,
+                targetIds = listOf("analyzer")
+            )
+        ),
+        titleRes = R.string.walkthrough_title_analyzer
+    ),
+    WalkthroughChapter(
+        id = "timers",
+        pages = listOf(
+            WalkthroughPage(
+                descriptionRes = R.string.walkthrough_desc_timers_1,
+                targetIds = listOf("timers")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_timers_hunt_duration,
+                descriptionRes = R.string.walkthrough_desc_timers_hunt_duration,
+                targetIds = listOf("timer_hunt_duration", "timer_cursed")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_timers_hunt_cooldown,
+                descriptionRes = R.string.walkthrough_desc_timers_hunt_cooldown,
+                targetIds = listOf("timer_hunt_cooldown")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_timers_link,
+                descriptionRes = R.string.walkthrough_desc_timers_link,
+                targetIds = listOf("timer_hunt_duration", "timer_hunt_cooldown", "timer_link")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_timers_smudge,
+                descriptionRes = R.string.walkthrough_desc_timers_smudge,
+                targetIds = listOf("timer_smudge")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_timers_fingerprint,
+                descriptionRes = R.string.walkthrough_desc_timers_fingerprint,
+                targetIds = listOf("timer_fingerprint")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_timers_cursed,
+                descriptionRes = R.string.walkthrough_desc_timers_cursed,
+                targetIds = listOf("timer_cursed")
+            ),
+        ),
+        titleRes = R.string.walkthrough_title_timers
+    ),
+    WalkthroughChapter(
+        id = "footstep",
+        pages = listOf(
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_title_footstep,
+                descriptionRes = R.string.walkthrough_desc_footstep_1,
+                targetIds = listOf("footstep")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_footstep_modifiers,
+                descriptionRes = R.string.walkthrough_desc_footstep_modifiers,
+                targetIds = listOf("footstep_modifiers")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_footstep_apply,
+                descriptionRes = R.string.walkthrough_desc_footstep_apply,
+                targetIds = listOf("footstep_apply", "footstep_apply_bpm")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_footstep_visualizer,
+                descriptionRes = R.string.walkthrough_desc_footstep_visualizer,
+                targetIds = listOf("footstep_visualizer")
+            ),
+            WalkthroughPage(
+                subtitleRes = R.string.walkthrough_subtitle_footstep_configure,
+                descriptionRes = R.string.walkthrough_desc_footstep_configure,
+                targetIds = listOf("footstep_viewport", "footstep_sample")
+            )
+        ),
+        titleRes = R.string.walkthrough_title_footstep
+    )
+)
+
