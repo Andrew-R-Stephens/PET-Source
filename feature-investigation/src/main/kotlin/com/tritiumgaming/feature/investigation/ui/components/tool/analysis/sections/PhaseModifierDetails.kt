@@ -17,9 +17,11 @@ internal fun PhaseModifierDetails(
     state: OperationDetailsUiState.PhaseDetails
 ) {
     CategoryColumn(
+        modifier = modifier,
         containerColor = LocalPalette.current.surfaceContainer
     ) {
         TextDataRow(
+            modifier = Modifier,
             title = "${stringResource(R.string.investigation_label_phase)}:",
             data = stringResource(state.type.toPhaseTitle().toStringResource())
         )

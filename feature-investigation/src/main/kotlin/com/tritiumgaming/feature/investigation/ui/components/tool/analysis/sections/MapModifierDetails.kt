@@ -23,7 +23,7 @@ internal fun MapModifierDetails(
     state: OperationDetailsUiState.MapDetails
 ) {
     ExpandableColumn(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         containerColor = LocalPalette.current.surfaceContainer,
         expanded = false,
         defaultContent = { modifier, expanded ->

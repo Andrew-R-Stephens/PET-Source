@@ -36,6 +36,7 @@ import kotlin.math.max
 
 @Composable
 internal fun ActiveGhostModifierDetails(
+    modifier: Modifier = Modifier,
     state: OperationDetailsUiState.GhostDetails,
     difficultySettings: DifficultySettingsModel? = null,
     overrides: OperationOverrideData? = null
@@ -43,11 +44,12 @@ internal fun ActiveGhostModifierDetails(
     val rememberGhostDetails = state.activeGhosts
 
     ExpandableColumn(
+        modifier = modifier,
         expanded = false,
         containerColor = LocalPalette.current.surfaceContainer,
-        defaultContent = { modifier, expanded ->
+        defaultContent = { expandedModifier, expanded ->
             ExpandableRow(
-                modifier = modifier,
+                modifier = expandedModifier,
                 isExpanded = expanded
             ) { rowModifier ->
                 TextDataRow(
@@ -71,9 +73,9 @@ internal fun ActiveGhostModifierDetails(
                 ExpandableColumn(
                     expanded = false,
                     containerColor = LocalPalette.current.surfaceContainerHigh,
-                    defaultContent = { modifier, expanded ->
+                    defaultContent = { expandedModifier, expanded ->
                         ExpandableRow(
-                            modifier = modifier,
+                            modifier = expandedModifier,
                             isExpanded = expanded
                         ) { rowModifier ->
                             TextCategoryTitle(
