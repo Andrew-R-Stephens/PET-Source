@@ -107,7 +107,7 @@ class MarketplaceHomeScreenViewModel(
                         //onFailure("onAdClosed")
                     },
                     onAdFailedToShow = { error ->
-                        onFailure("onAdFailedToShow: $error")
+                        onFailure("Ad failed to show: $error")
                     }
                 )
             } catch (e: Exception) {

@@ -117,21 +117,45 @@ fun MarketplaceHomeScreen(
                         },
                         onFailure = { message ->
                             val error = FirebaseFunctionError.fromString(message)
-                            Toast.makeText(
-                                context,
-                                error.toStringResource,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            when {
+                                (error == FirebaseFunctionError.UNKNOWN) -> {
+                                    Toast.makeText(
+                                        context,
+                                        "${context.getString(error.toStringResource)}: $message",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                                else -> {
+                                    Toast.makeText(
+                                        context,
+                                        error.toStringResource,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                }
+                            }
                         }
                     )
                 },
                 onFailure = { message ->
                     val error = FirebaseFunctionError.fromString(message)
-                    Toast.makeText(
-                        context,
-                        error.toStringResource,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    when {
+                        (error == FirebaseFunctionError.UNKNOWN) -> {
+                            Toast.makeText(
+                                context,
+                                "${context.getString(error.toStringResource)}: $message",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        else -> {
+                            Toast.makeText(
+                                context,
+                                error.toStringResource,
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        }
+                    }
                 }
             )
         }
