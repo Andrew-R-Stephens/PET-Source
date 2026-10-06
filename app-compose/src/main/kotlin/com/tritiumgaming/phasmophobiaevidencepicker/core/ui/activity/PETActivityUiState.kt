@@ -11,6 +11,7 @@ internal data class PETActivityUiState(
     val allowCellularData: Boolean = true,
     val allowAnalytics: Boolean = true,
     val allowPersonalizedAds: Boolean = true,
+    val hasExplicitAnalyticsConsent: Boolean = false,
     val paletteUiState: PaletteUiState = PaletteUiState(),
     val typographyUiState: TypographyUiState = TypographyUiState(),
     val uiConfiguration: UiConfigurationState = UiConfigurationState()

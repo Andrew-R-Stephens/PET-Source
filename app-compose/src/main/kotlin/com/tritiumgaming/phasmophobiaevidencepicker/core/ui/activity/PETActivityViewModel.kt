@@ -25,6 +25,7 @@ import com.tritiumstudios.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumstudios.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumstudios.data.policy.usecase.InitFlowPolicyUseCase
 import com.tritiumstudios.data.policy.usecase.InitializeMobileAdsUseCase
+import com.tritiumstudios.data.policy.usecase.SetAllowAnalyticsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -40,6 +41,7 @@ class PETActivityViewModel(
     private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val initFlowPolicyUseCase: InitFlowPolicyUseCase,
     private val applyPolicyUseCase: ApplyPolicyUseCase,
+    private val setAllowAnalyticsUseCase: SetAllowAnalyticsUseCase,
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
     private val gatherAdsConsentUseCase: GatherAdsConsentUseCase,
@@ -63,6 +65,7 @@ class PETActivityViewModel(
                     allowCellularData = preferences.allowCellularData,
                     allowAnalytics = policy.allowAnalytics,
                     allowPersonalizedAds = policy.allowPersonalizedAds,
+                    hasExplicitAnalyticsConsent = policy.hasExplicitAnalyticsConsent,
                     paletteUiState = PaletteUiState(
                         palette = getPaletteByUUID(preferences.paletteUuid)
                     ),
@@ -138,6 +141,12 @@ class PETActivityViewModel(
         }
     }
 
+    fun setAllowAnalytics(allow: Boolean) {
+        viewModelScope.launch {
+            setAllowAnalyticsUseCase(allow)
+        }
+    }
+
     init {
         initFlowPolicyUseCase()
             .distinctUntilChanged()
@@ -159,6 +168,7 @@ class PETActivityViewModel(
                 val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
                 val initFlowPolicyUseCase: InitFlowPolicyUseCase = container.initFlowPolicyUseCase
                 val applyPolicyUseCase: ApplyPolicyUseCase = container.applyPolicyUseCase
+                val setAllowAnalyticsUseCase = container.setAllowAnalyticsUseCase
                 val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
                 val gatherAdsConsentUseCase = container.gatherAdsConsentUseCase
@@ -168,6 +178,7 @@ class PETActivityViewModel(
                     initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                     initFlowPolicyUseCase = initFlowPolicyUseCase,
                     applyPolicyUseCase = applyPolicyUseCase,
+                    setAllowAnalyticsUseCase = setAllowAnalyticsUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                     gatherAdsConsentUseCase = gatherAdsConsentUseCase,

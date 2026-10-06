@@ -11,8 +11,10 @@ import com.google.firebase.analytics.setConsent
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
 import com.tritiumstudios.data.policy.source.PolicyDatastore
 import com.tritiumstudios.data.policy.source.PolicyDatastore.Policy
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PolicyRepositoryImpl(
@@ -46,6 +48,14 @@ class PolicyRepositoryImpl(
     override fun gatherAdsConsent(activity: Any, onFinished: (error: Any?) -> Unit) {
         if (activity is Activity) {
             googleMobileAdsConsentManager.gatherConsent(activity) { error ->
+                if (googleMobileAdsConsentManager.isPrivacyOptionsRequired == false) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val policy = dataStoreSource.fetchDatastoreInitialPreferences()
+                        if (!policy.hasExplicitAnalyticsConsent) {
+                            dataStoreSource.setAllowAnalytics(true)
+                        }
+                    }
+                }
                 onFinished(error)
             }
         }

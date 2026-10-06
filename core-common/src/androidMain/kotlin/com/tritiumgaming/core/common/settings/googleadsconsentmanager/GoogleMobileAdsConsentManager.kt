@@ -50,7 +50,7 @@ actual class GoogleMobileAdsConsentManager(
             .apply {
                 //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
                 //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_REGULATED_US_STATE)
-                //setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
+                setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
                 TEST_DEVICE_HASHED_IDS.forEach { addTestDeviceHashedId(it) }
             }.build()
 

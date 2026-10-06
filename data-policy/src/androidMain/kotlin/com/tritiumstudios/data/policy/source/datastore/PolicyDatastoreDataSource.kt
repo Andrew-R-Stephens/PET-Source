@@ -95,7 +95,8 @@ class PolicyDatastoreDataSource(
         return Policy(
             allowAnalytics = preferences[KEY_ALLOW_ANALYTICS] ?: defaultAllowAnalytics,
             allowPersonalizedAds = preferences[KEY_ALLOW_PERSONALIZED_ADS]
-                ?: defaultAllowPersonalizedAds
+                ?: defaultAllowPersonalizedAds,
+            hasExplicitAnalyticsConsent = preferences.contains(KEY_ALLOW_ANALYTICS)
         )
     }
 

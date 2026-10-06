@@ -11,7 +11,8 @@ interface PolicyDatastore: DatastoreDataSource<Policy> {
 
     data class Policy(
         val allowAnalytics: Boolean = false,
-        val allowPersonalizedAds: Boolean = false
+        val allowPersonalizedAds: Boolean = false,
+        val hasExplicitAnalyticsConsent: Boolean = false
     )
 
 }

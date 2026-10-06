@@ -12,11 +12,13 @@ import com.tritiumstudios.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumstudios.data.policy.usecase.GatherAdsConsentUseCase
 import com.tritiumstudios.data.policy.usecase.InitFlowPolicyUseCase
 import com.tritiumstudios.data.policy.usecase.InitializeMobileAdsUseCase
+import com.tritiumstudios.data.policy.usecase.SetAllowAnalyticsUseCase
 
 class AppContainer(
     internal val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     internal val initFlowPolicyUseCase: InitFlowPolicyUseCase,
     internal val applyPolicyUseCase: ApplyPolicyUseCase,
+    internal val setAllowAnalyticsUseCase: SetAllowAnalyticsUseCase,
     internal val gatherAdsConsentUseCase: GatherAdsConsentUseCase,
     internal val initializeMobileAdsUseCase: InitializeMobileAdsUseCase,
     internal val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
