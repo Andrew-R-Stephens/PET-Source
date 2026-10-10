@@ -1,11 +1,11 @@
 package com.tritiumgaming.data.journal.model
 
-import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.Stable
+//import androidx.compose.runtime.Immutable
+//import androidx.compose.runtime.Stable
 import com.tritiumgaming.data.evidence.model.EvidenceType
 
-@Stable
-@Immutable
+//@Stable
+//@Immutable
 data class EvidenceState(
     val evidence: EvidenceType,
     val state: EvidenceValidationType = EvidenceValidationType.NEUTRAL,
