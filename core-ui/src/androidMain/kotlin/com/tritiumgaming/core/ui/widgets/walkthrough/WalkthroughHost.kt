@@ -52,6 +52,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 @Composable
@@ -323,8 +325,15 @@ private fun WalkthroughOverlay(
             }
 
             // Clamp to screen
-            x = x.coerceIn(padding.toFloat(), screenWidthPx - placeable.width - padding)
-            y = y.coerceIn(padding.toFloat(), screenHeightPx - placeable.height - padding)
+            val xTarget = screenWidthPx - placeable.width - padding
+            val yTarget = screenHeightPx - placeable.height - padding
+            val minX = min(padding.toFloat(), xTarget)
+            val maxX = max(padding.toFloat(), xTarget)
+            val minY = min(padding.toFloat(), yTarget)
+            val maxY = max(padding.toFloat(), yTarget)
+            
+            x = x.coerceIn(minX, maxX)
+            y = y.coerceIn(minY, maxY)
 
             layout(constraints.maxWidth, constraints.maxHeight) {
                 placeable.placeRelative(x.roundToInt(), y.roundToInt())

@@ -41,15 +41,47 @@ kotlin {
     // https://developer.android.com/kotlin/multiplatform/migrate
     val xcfName = "sharedKit"
 
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
+    val iosTargets = listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    )
 
-    iosSimulatorArm64 {
-        binaries.framework {
+    iosTargets.forEach { iosTarget ->
+        iosTarget.binaries.framework {
             baseName = xcfName
+
+            export(project(":core-common"))
+            export(project(":core-ui"))
+            export(project(":data-account"))
+            export(project(":data-ads"))
+            export(project(":data-challenge"))
+            export(project(":data-codex"))
+            export(project(":data-contributor"))
+            export(project(":data-customdifficulty"))
+            export(project(":data-difficulty"))
+            export(project(":data-difficultysetting"))
+            export(project(":data-equipment"))
+            export(project(":data-evidence"))
+            export(project(":data-ghost"))
+            export(project(":data-ghostbox"))
+            export(project(":data-ghostname"))
+            export(project(":data-investigation"))
+            export(project(":data-journal"))
+            export(project(":data-language"))
+            export(project(":data-map"))
+            export(project(":data-marketplace"))
+            export(project(":data-mission"))
+            export(project(":data-newsletter"))
+            export(project(":data-operation"))
+            export(project(":data-palette"))
+            export(project(":data-phase"))
+            export(project(":data-policy"))
+            export(project(":data-preferences"))
+            export(project(":data-review"))
+            export(project(":data-sanity"))
+            export(project(":data-temperature"))
+            export(project(":data-trait"))
+            export(project(":data-typography"))
         }
     }
 

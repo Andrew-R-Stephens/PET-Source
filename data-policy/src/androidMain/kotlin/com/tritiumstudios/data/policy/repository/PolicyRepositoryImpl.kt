@@ -110,6 +110,10 @@ class PolicyRepositoryImpl(
             Firebase.analytics.setAnalyticsCollectionEnabled(policy.allowAnalytics)
             Log.d("PrivacyControl", "Policy applied: Analytics=$analyticsStatus, Ads=$adsStatus")
 
+            if (policy.allowAnalytics) {
+                Firebase.analytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null)
+            }
+
             // Programmatic verification: retrieve app instance ID.
             // If consent is denied, this returns null (even if collection is enabled).
             Firebase.analytics.appInstanceId.addOnCompleteListener { task ->

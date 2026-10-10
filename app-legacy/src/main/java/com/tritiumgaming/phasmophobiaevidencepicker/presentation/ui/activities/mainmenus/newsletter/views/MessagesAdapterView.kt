@@ -10,11 +10,11 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessageModel
-import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 
 class MessagesAdapterView(
     private val currentInbox: NewsletterInboxModel,
@@ -60,7 +60,7 @@ class MessagesAdapterView(
                 NotificationIndicator(
                     isActive = true,
                     badgeComponent = @Composable { modifier ->
-                        IconResource.NOTIFY.ToComposable(
+                        IconResources.IconResource.NOTIFY.ToComposable(
                             modifier = modifier,
                             colors = colors
                         )

@@ -274,12 +274,9 @@ class SettingsScreenViewModel(
                 },
                 onFailure = { error ->
                     Log.e(TAG, "Error observing account unlocked palettes: $error")
-                    listOf(
-                        AccountMarketPalette(
-                            uuid = LocalDefaultPalette.asUuid(),
-                            unlocked = true
-                        )
-                    )
+                    _marketCatalogPalettes.value.filter { it.unlocked }.map { palette ->
+                        palette.toAccountMarketPalette()
+                    }
                 }
             )
         }
@@ -328,11 +325,11 @@ class SettingsScreenViewModel(
             Log.d(TAG, "unlockedPalette: $it")
         }
 
-        val updatedPalettes = marketPalettes.map {
-            val found = it.uuid in unlockedUUIDs
-            Log.d(TAG, "marketPalette: $it | unlocked: $found")
-            it.copy(
-                unlocked = found
+        val updatedPalettes = marketPalettes.map { marketPalette ->
+            val found = marketPalette.uuid in unlockedUUIDs
+            Log.d(TAG, "marketPalette: $marketPalette | unlocked: $found = ${found || marketPalette.unlocked}")
+            marketPalette.copy(
+                unlocked = found || marketPalette.unlocked
             )
         }
 
@@ -354,9 +351,9 @@ class SettingsScreenViewModel(
 
         val updatedTypographies = marketTypographies.map {
             val found = it.uuid in unlockedUUIDs
-            Log.d(TAG, "marketTypography: $it | unlocked: $found")
+            Log.d(TAG, "marketTypography: $it | unlocked: $found = ${found || it.unlocked}")
             it.copy(
-                unlocked = found
+                unlocked = found || it.unlocked
             )
         }
 

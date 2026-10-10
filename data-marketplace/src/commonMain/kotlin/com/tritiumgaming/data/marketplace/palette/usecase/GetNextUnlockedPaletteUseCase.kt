@@ -10,7 +10,7 @@ class GetNextUnlockedPaletteUseCase {
         direction: IncrementDirection
     ): Result<String> {
 
-        val uuidsFiltered = palettes.map { it.uuid }
+        val uuidsFiltered = palettes.filter { it.unlocked }.map { it.uuid }
         val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
 
         var increment = currentIndex + direction.value

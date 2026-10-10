@@ -76,7 +76,7 @@ class MarketCatalogPaletteRepositoryImpl(
                         name = remoteEntity.name,
                         group = remoteEntity.group,
                         buyCredits = remoteEntity.buyCredits,
-                        unlocked = remoteEntity.unlocked,
+                        unlocked = localEntity.unlocked,
                         priority = remoteEntity.priority,
                         palette = localEntity.palette
                     )
