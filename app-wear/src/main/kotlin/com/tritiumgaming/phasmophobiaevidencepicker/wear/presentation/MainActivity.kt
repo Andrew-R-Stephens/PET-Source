@@ -60,18 +60,23 @@ import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.*
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.*
+import com.tritiumgaming.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.*
+import com.tritiumgaming.data.palette.mappers.PaletteResources
+import com.tritiumgaming.data.palette.mappers.PaletteResources.*
+import com.tritiumgaming.data.typography.mappers.TypographyResources
+import com.tritiumgaming.data.typography.mappers.TypographyResources.*
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.presentation.viewmodel.WearableViewModel
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.wearable.model.WearableEvidenceState
-import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
-import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
+import com.tritiumstudios.data.wearable.model.WearableEvidenceState
+import com.tritiumstudios.data.wearable.model.WearableInvestigationData
+import com.tritiumstudios.data.wearable.model.WearableOperationData
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -446,32 +451,32 @@ fun WearAppPreviewRect() {
 fun WearAppPreviewContent() {
     val sampleData = WearableOperationData(
         investigationData = WearableInvestigationData(
-            mapName = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
-            difficultyName = DifficultyResources.DifficultyType.AMATEUR,
+            mapName = MapTitle.BLEASDALE_FARMHOUSE,
+            difficultyName = DifficultyType.AMATEUR,
             setupTimeRemaining = 0L,
             sanityLevel = 0.75f,
             evidenceStates = listOf(
                 WearableEvidenceState(
                     EvidenceType(
-                        EvidenceResources.EvidenceIdentifier.EMF_5,
-                        EvidenceResources.EvidenceTitle.EMF_5,
-                        EvidenceResources.EvidenceIcon.EMF_5
+                        EvidenceIdentifier.EMF_5,
+                        EvidenceTitle.EMF_5,
+                        EvidenceIcon.EMF_5
                     ),
                     EvidenceValidationType.NEGATIVE, true
                 ),
                 WearableEvidenceState(
                     EvidenceType(
-                        EvidenceResources.EvidenceIdentifier.GHOST_ORBS,
-                        EvidenceResources.EvidenceTitle.GHOST_ORBS,
-                        EvidenceResources.EvidenceIcon.GHOST_ORBS
+                        EvidenceIdentifier.GHOST_ORBS,
+                        EvidenceTitle.GHOST_ORBS,
+                        EvidenceIcon.GHOST_ORBS
                     ),
                     EvidenceValidationType.NEUTRAL, true
                 ),
                 WearableEvidenceState(
                     EvidenceType(
-                        EvidenceResources.EvidenceIdentifier.DOTS,
-                        EvidenceResources.EvidenceTitle.DOTS,
-                        EvidenceResources.EvidenceIcon.DOTS
+                        EvidenceIdentifier.DOTS,
+                        EvidenceTitle.DOTS,
+                        EvidenceIcon.DOTS
                     ),
                     EvidenceValidationType.POSITIVE, true
                 )

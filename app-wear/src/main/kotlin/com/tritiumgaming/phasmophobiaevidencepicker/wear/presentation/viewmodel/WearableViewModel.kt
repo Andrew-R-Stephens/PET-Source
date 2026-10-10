@@ -5,18 +5,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.data.evidence.model.EvidenceType
+import com.tritiumgaming.data.journal.model.EvidenceValidationType
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.WearContainerProvider
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
-import com.tritiumgaming.shared.data.market.typography.mappers.TypographyResources.TypographyType
-import com.tritiumgaming.shared.data.operation.model.EvidenceValidationType
-import com.tritiumgaming.shared.data.wearable.model.WearableInvestigationData
-import com.tritiumgaming.shared.data.wearable.model.WearableOperationData
-import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
-import com.tritiumgaming.shared.data.wearable.usecase.SendWearableSanityMessageUseCase
-import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
+import com.tritiumstudios.data.wearable.model.WearableInvestigationData
+import com.tritiumstudios.data.wearable.model.WearableOperationData
+import com.tritiumstudios.data.wearable.usecase.ObserveWearableOperationDataUseCase
+import com.tritiumstudios.data.wearable.usecase.SendWearableSanityMessageUseCase
+import com.tritiumstudios.data.wearable.usecase.SendWearableToggleMessageUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -34,8 +34,8 @@ class WearableViewModel(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = WearableOperationData(
                 investigationData = WearableInvestigationData(
-                    mapName = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
-                    difficultyName = DifficultyResources.DifficultyType.AMATEUR,
+                    mapName = MapTitle.BLEASDALE_FARMHOUSE,
+                    difficultyName = DifficultyType.AMATEUR,
                     setupTimeRemaining = 0L,
                     sanityLevel = 1f,
                     evidenceStates = emptyList()

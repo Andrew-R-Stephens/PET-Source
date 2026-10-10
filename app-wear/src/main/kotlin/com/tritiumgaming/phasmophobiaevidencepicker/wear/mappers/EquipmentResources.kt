@@ -4,16 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.BuyCost
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentAttribute
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentBuyCost
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIcon
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierFlavorText
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierImage
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierInformation
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUnlockLevel
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUpgradeCost
+import com.tritiumgaming.data.codex.mappers.EquipmentResources
+import com.tritiumgaming.data.codex.mappers.EquipmentResources.*
 
 @StringRes fun EquipmentTitle.toStringResource(): Int =
     when (this) {

@@ -2,11 +2,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.wear
 
 import android.app.Application
 import android.content.Context
-import com.tritiumgaming.shared.data.wearable.repository.WearableRepository
-import com.tritiumgaming.shared.data.wearable.repository.WearableRepositoryImpl
-import com.tritiumgaming.shared.data.wearable.usecase.ObserveWearableOperationDataUseCase
-import com.tritiumgaming.shared.data.wearable.usecase.SendWearableSanityMessageUseCase
-import com.tritiumgaming.shared.data.wearable.usecase.SendWearableToggleMessageUseCase
+import com.tritiumstudios.data.wearable.repository.WearableRepository
+import com.tritiumstudios.data.wearable.repository.WearableRepositoryImpl
+import com.tritiumstudios.data.wearable.usecase.ObserveWearableOperationDataUseCase
+import com.tritiumstudios.data.wearable.usecase.SendWearableSanityMessageUseCase
+import com.tritiumstudios.data.wearable.usecase.SendWearableToggleMessageUseCase
 
 class WearPETApplication : Application(), WearContainerProvider {
 
@@ -29,7 +29,8 @@ class WearContainer(context: Context) {
         WearableRepositoryImpl(context)
     }
 
-    val observeWearableOperationDataUseCase = ObserveWearableOperationDataUseCase(wearableRepository)
+    val observeWearableOperationDataUseCase =
+        ObserveWearableOperationDataUseCase(wearableRepository)
     val sendWearableToggleMessageUseCase = SendWearableToggleMessageUseCase(wearableRepository)
     val sendWearableSanityMessageUseCase = SendWearableSanityMessageUseCase(wearableRepository)
 }

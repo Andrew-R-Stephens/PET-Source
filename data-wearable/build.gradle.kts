@@ -66,11 +66,11 @@ kotlin {
                 implementation(libs.jetbrains.compose.ui.toolingPreview)
                 implementation(libs.jetbrains.compose.components)
 
-                implementation(project(":data-map"))
-                implementation(project(":data-difficulty"))
-                implementation(project(":data-journal"))
-                implementation(project(":data-palette"))
-                implementation(project(":data-typography"))
+                api(project(":data-map"))
+                api(project(":data-difficulty"))
+                api(project(":data-journal"))
+                api(project(":data-palette"))
+                api(project(":data-typography"))
             }
         }
 
