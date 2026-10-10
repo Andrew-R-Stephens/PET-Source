@@ -21,6 +21,7 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser
@@ -29,7 +30,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getDrawableFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getTextStyleFromAttribute
-import com.tritiumgaming.shared.core.ui.mappers.IconResources
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) :

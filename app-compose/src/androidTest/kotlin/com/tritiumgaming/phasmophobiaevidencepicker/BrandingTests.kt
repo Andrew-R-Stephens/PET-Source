@@ -28,11 +28,11 @@ import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
-import com.tritiumgaming.shared.core.ui.mappers.IconResources
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources
+import com.tritiumgaming.data.palette.mappers.PaletteResources
 import org.jetbrains.annotations.TestOnly
 
 @Composable

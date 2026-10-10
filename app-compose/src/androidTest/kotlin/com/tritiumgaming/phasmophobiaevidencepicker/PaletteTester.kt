@@ -34,7 +34,8 @@ import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
-import com.tritiumgaming.shared.data.market.palette.mappers.PaletteResources.PaletteType
+import com.tritiumgaming.data.palette.mappers.PaletteResources
+import com.tritiumgaming.data.palette.mappers.PaletteResources.*
 import org.jetbrains.annotations.TestOnly
 
 

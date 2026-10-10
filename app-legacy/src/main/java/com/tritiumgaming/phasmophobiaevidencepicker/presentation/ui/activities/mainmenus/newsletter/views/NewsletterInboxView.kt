@@ -15,11 +15,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
-import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 
 class NewsletterInboxView : ConstraintLayout {
 
@@ -80,7 +80,7 @@ class NewsletterInboxView : ConstraintLayout {
                     )
                 },
                 badgeComponent = @Composable { modifier ->
-                    IconResource.NOTIFY.ToComposable(
+                    IconResources.IconResource.NOTIFY.ToComposable(
                         modifier = modifier,
                         colors = IconVectorColors(
                             fillColor = Color(getColorFromAttribute(
