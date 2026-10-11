@@ -42,6 +42,7 @@ plugins {
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.firebase.perf) apply false
     alias(libs.plugins.android.lint) apply false
-}
 
+    id("com.autonomousapps.dependency-analysis") version "3.19.2" apply false
+}
 

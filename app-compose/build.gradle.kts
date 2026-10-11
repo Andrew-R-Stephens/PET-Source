@@ -11,6 +11,8 @@ plugins {
     alias(libs.plugins.firebase.perf)
 
     alias(libs.plugins.devtools.ksp)
+
+    id("com.autonomousapps.dependency-analysis")
 }
 
 configure<ApplicationExtension> {
@@ -42,7 +44,7 @@ configure<ApplicationExtension> {
         minSdk = 24
         targetSdk = 37
         versionCode = 205
-        versionName = "1.0.2"
+        versionName = "1.0.3"
 
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -61,6 +63,21 @@ configure<ApplicationExtension> {
         buildConfigField("boolean", "USE_ACCOUNT", "true")
         buildConfigField("boolean", "USE_MARKETPLACE", "true")
     }
+
+    /*flavorDimensions += "minSdk"
+
+    productFlavors {
+        create("legacy") {
+            dimension = "minSdk"
+            minSdk = 23
+            versionCode = 206
+        }
+        create("standard") {
+            dimension = "minSdk"
+            minSdk = 24
+            versionCode = 207
+        }
+    }*/
 
     buildTypes {
         debug {
@@ -103,32 +120,32 @@ dependencies {
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
 
-    implementation(libs.androidx.core.ktx)
+    //implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.appcompat.core)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragmentKtx)
-    implementation(libs.androidx.navigation.uiKtx)
-    implementation(libs.androidx.cardview.core)
-    implementation(libs.androidx.legacy.supportV4)
+    //implementation(libs.androidx.constraintlayout)
+    //implementation(libs.androidx.navigation.fragmentKtx)
+    //implementation(libs.androidx.navigation.uiKtx)
+    //implementation(libs.androidx.cardview.core)
+    //implementation(libs.androidx.legacy.supportV4)
     implementation(libs.android.material)
 
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.jetbrains.kotlinx.coroutines.test)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    //androidTestImplementation(libs.androidx.testExt.junit)
+    //androidTestImplementation(libs.androidx.espresso.core)
     testImplementation(libs.mockito.kotlin)
 
     // --- Google Credential Manager ----
     //noinspection LoginCredentials
     implementation(libs.android.playServices.auth)
     //noinspection LoginCredentials
-    implementation(libs.androidx.credentials.core)
+    //implementation(libs.androidx.credentials.core)
     //noinspection LoginCredentials
     implementation(libs.androidx.credentials.playServicesAuth)
     //noinspection LoginCredentials
-    implementation(libs.googleid)
+    //implementation(libs.googleid)
     // ----------------------------------
 
     // GOOGLE FIREBASE
@@ -151,16 +168,17 @@ dependencies {
     implementation(libs.android.billing.core)
 
     // GOOGLE ADS
-    implementation(libs.android.playServices.ads)
+    //"standardImplementation"(libs.android.playServices.ads)
+    //"legacyImplementation"(libs.android.playServices.ads.legacy)
     implementation(libs.android.ump.core)
 
     //GOOGLE GSON
-    implementation(libs.google.gson)
+    //implementation(libs.google.gson)
 
     // IN-APP REVIEWS
     /* This dependency is downloaded from the Google’s Maven repository.
      * So, make sure you also include that repository in your project's build.gradle file.*/
-    implementation(libs.android.play.core.review)
+    //implementation(libs.android.play.core.review)
     // For Kotlin users also add the Kotlin extensions library for Play Core:
     implementation(libs.android.play.coreKtx.review)
 
@@ -169,12 +187,12 @@ dependencies {
      * So, make sure you also include that repository in your project's build.gradle file.*/
     implementation(libs.android.play.core.update)
     // For Kotlin users also add the Kotlin extensions library for Play Core:
-    implementation(libs.android.play.coreKtx.update)
+    //implementation(libs.android.play.coreKtx.update)
 
     // FRAGMENTS
     // Java language implementation
     // implementation libs.androidx.fragment
-    implementation(libs.androidx.fragmentKtx)
+    //implementation(libs.androidx.fragmentKtx)
 
     // For use with animated gifs
     implementation(libs.droidsonroids.gifDrawable)
@@ -183,14 +201,14 @@ dependencies {
         ---- START----
         ANDROIDX LEANBACK
     */
-    implementation(libs.androidx.leanback.core)
+    //implementation(libs.androidx.leanback.core)
     // leanback-preference is an add-on that provides a settings UI for TV apps.
-    implementation(libs.androidx.leanback.preference)
+    //implementation(libs.androidx.leanback.preference)
     // leanback-paging is an add-on that simplifies adding paging support to a RecyclerView Adapter.
-    implementation(libs.androidx.leanback.paging)
+    //implementation(libs.androidx.leanback.paging)
     // leanback-tab is an add-on that provides customized TabLayout to be used as the top navigation bar.
-    implementation(libs.androidx.leanback.tab)
-    implementation(libs.androidx.concurrent.futures.ktx)
+    //implementation(libs.androidx.leanback.tab)
+    //implementation(libs.androidx.concurrent.futures.ktx)
 
     /*
         ---- START----
@@ -209,7 +227,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     // Optional - Add window size utils
     //implementation(libs.androidx.compose.material3.windowSizeClass)
-    implementation(libs.androidx.compose.material3.adaptive)
+    //implementation(libs.androidx.compose.material3.adaptive)
 
     // Compose UI
     implementation(libs.androidx.compose.ui.core)
@@ -219,27 +237,27 @@ dependencies {
     /*Optional - Included automatically by material, only add when you need
     the icons but not the material library (e.g. when using Material3 or a
     custom design system based on Foundation)*/
-    implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
-    implementation(libs.androidx.compose.runtime.rxJava2) // Optional - Integration with RxJava
+    //implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
+    //implementation(libs.androidx.compose.runtime.rxJava2) // Optional - Integration with RxJava
 
     implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    //implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodelCompose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.navigation3.ui)
-    implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+    //implementation(libs.androidx.navigation3.runtime)
+    //implementation(libs.androidx.lifecycle.viewmodel.navigation3)
 
     // Coil
-    implementation(libs.coilKt.compose)
+    //implementation(libs.coilKt.compose)
     implementation(libs.coilKt.network)
     implementation(libs.coilKt.gif)
 
     implementation(libs.androidx.ui.graphics)
     implementation(libs.android.playServices.wearable)
-    implementation(libs.jetbrains.kotlinx.serialization.json)
+    //implementation(libs.jetbrains.kotlinx.serialization.json)
     implementation(libs.jetbrains.kotlinx.coroutines.play.services)
 
     /*
@@ -252,25 +270,20 @@ dependencies {
     /*
      * Ktor
      */
-    implementation(libs.ktor.client.core)
+    //implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
-    implementation(libs.ktor.client.content.negotiation)
+    //implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.ktor.serialization.kotlinx.xml)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.client.core)
+    //implementation(libs.ktor.serialization.kotlinx.xml)
     implementation(libs.ktor.client.cio)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.ktor.serialization.kotlinx.xml)
-    implementation(libs.ktor.serialization.kotlinx.cbor)
-    implementation(libs.ktor.serialization.kotlinx.protobuf)
-    implementation(libs.ktor.client.logging)
+    //implementation(libs.ktor.serialization.kotlinx.cbor)
+    //implementation(libs.ktor.serialization.kotlinx.protobuf)
+    //implementation(libs.ktor.client.logging)
 
     /*
      * Realms DB
      */
-    implementation(libs.realm.kotlin.library.base)
+    //implementation(libs.realm.kotlin.library.base)
     implementation(libs.realm.kotlin.library.sync)
 
     /*
@@ -279,11 +292,11 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     annotationProcessor(libs.androidx.room.ktx)
-    implementation(libs.androidx.room.rxjava2)
-    implementation(libs.androidx.room.rxjava3)
-    implementation(libs.androidx.room.guava)
-    testImplementation(libs.androidx.room.testing)
-    implementation(libs.androidx.room.paging)
+    //implementation(libs.androidx.room.rxjava2)
+    //implementation(libs.androidx.room.rxjava3)
+    //implementation(libs.androidx.room.guava)
+    //testImplementation(libs.androidx.room.testing)
+    //implementation(libs.androidx.room.paging)
 
     /*
      * Include Shared Module for KMP
@@ -315,4 +328,5 @@ dependencies {
     implementation(project(":feature-mapviewer"))
     implementation(project(":feature-objectiveboard"))
     implementation(project(":feature-operation"))
+
 }
