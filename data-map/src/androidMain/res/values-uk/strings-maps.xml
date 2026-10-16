@@ -21,7 +21,7 @@
     <string name="map_floor_name_tenth">Десятий поверх</string>
     <string name="map_floor_name_attic">Мансарда</string>
     <string name="map_floor_name_basement">Підвал</string>
-    <!-- Map Interaction Help -->
+
     <string name="map_info_help_title">Інтерактивна довідка по карті</string>
     <string name="map_info_help_pan">Панорамуйте карту одним пальцем.</string>
     <string name="map_info_help_zoom">Збільшуйте та зменшуйте масштаб карти, зводячи або розводячи два пальці.</string>
@@ -29,7 +29,11 @@
     <string name="map_info_help_rooms">Виберіть Кімнату в спадному меню Кімнати, щоб показати розташування та межі цієї Кімнати.</string>
     <string name="map_info_help_floors">Переходьте між поверхами, щоб переглядати та взаємодіяти з ним.</string>
     <string name="map_info_help_pois">Розташування блоків із запобіжниками та проклятих предметів позначено відповідними значками.</string>
+
     <string name="map_setting_label_size">Розмір</string>
+    <string name="map_setting_state_small">Маленький</string>
+    <string name="map_setting_state_medium">Середній</string>
+    <string name="map_setting_state_large">Великий</string>
     <string name="map_setting_label_modifier">Модифікатор</string>
     <string name="map_setting_state_setup">Налаштування</string>
     <string name="map_setting_state_action">Дія</string>

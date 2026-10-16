@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.map.mappers
 
 import androidx.annotation.StringRes
-import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.data.map.R
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 

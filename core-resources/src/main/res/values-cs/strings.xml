@@ -115,8 +115,6 @@
 
     <!-- Poděkování -->
 
-    <string name="map_setting_state_small">Malý</string>
-    <string name="map_setting_state_medium">Střední</string>
     <string name="alert_gui_palette_error">Paleta není nastavena!</string>
     <string name="alert_gui_typography_error">Typografie není nastavena!</string>
     <string name="investigation_average_sanity_title">Průměrná příčetnost</string>

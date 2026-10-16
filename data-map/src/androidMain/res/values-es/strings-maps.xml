@@ -37,5 +37,9 @@
     <string name="map_setting_state_action">Acción</string>
     <string name="map_setting_label_drainrate">Tasa de drenaje</string>
     <string name="map_setting_label_multiplier">Multiplicador</string>
+    <string name="map_setting_state_small">Pequeño</string>
+    <string name="map_setting_state_medium">Medio</string>
+    <string name="map_setting_state_large">Grande</string>
+
 
 </resources>

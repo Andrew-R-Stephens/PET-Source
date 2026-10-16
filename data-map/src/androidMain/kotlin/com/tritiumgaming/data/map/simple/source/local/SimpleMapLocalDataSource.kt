@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.map.simple.source.local
 
 import android.content.Context
-import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.data.map.R
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapDto
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapFloorDto

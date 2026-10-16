@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Page Details -->
+    <string name="mapview_instruction_zoom">Масштабирование: сведите два пальца</string>
+    <string name="mapview_instruction_pan">Панорамирование: перетащите один палец</string>
+    <!-- Building Floor Names -->
+    <string name="map_floor_name_ground">цокольный этаж</string>
+    <string name="map_floor_name_first">Первый этаж</string>
+    <string name="map_floor_name_second">Второй этаж</string>
+    <string name="map_floor_name_third">Третий этаж</string>
+    <string name="map_floor_name_fourth">Четвертый этаж</string>
+    <string name="map_floor_name_fifth">Пятый этаж</string>
+    <string name="map_floor_name_sixth">Шестой этаж</string>
+    <string name="map_floor_name_seventh">Седьмой этаж</string>
+    <string name="map_floor_name_eighth">Восьмой этаж</string>
+    <string name="map_floor_name_ninth">Девятый этаж</string>
+    <string name="map_floor_name_tenth">Десятый этаж</string>
+    <string name="map_floor_name_attic">Чердак</string>
+    <string name="map_floor_name_basement">Подвал</string>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="map_setting_label_size">Размер</string>
+    <string name="map_setting_label_modifier">Модификатор</string>
+    <string name="map_setting_label_multiplier">Множитель</string>
+    <string name="map_setting_state_small">Маленький</string>
+    <string name="map_setting_state_medium">Середина</string>
+    <string name="map_setting_state_large">Большой</string>
+    <string name="map_setting_state_setup">Настройка</string>
+    <string name="map_setting_state_action">Действие</string>
+    <string name="map_setting_label_drainrate">Скорость разрядки</string>
+    <string name="map_info_help_title">Интерактивная помощь по карте</string>
+    <string name="map_info_help_pan">Перемещайте карту одним пальцем.</string>
+    <string name="map_info_help_zoom">Увеличивайте и уменьшайте масштаб карты, сжимая или раздвигая два пальца.</string>
+    <string name="map_info_help_click">Коснитесь одним пальцем любой карты, чтобы получить название и границу любой комнаты.</string>
+    <string name="map_info_help_rooms">Выберите комнату в раскрывающемся меню «Комнаты», чтобы отобразить местоположение и границы этой комнаты.</string>
+    <string name="map_info_help_floors">Перемещайтесь между этажами, чтобы просматривать их и взаимодействовать с ними.</string>
+    <string name="map_info_help_pois">Положения блоков предохранителей и проклятых предметов обозначены соответствующими значками.</string>
+
+</resources>

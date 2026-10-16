@@ -24,7 +24,6 @@
         ]]>
     </string>
 
-    <string name="map_setting_state_large">Groß</string>
     <string name="general_label_codex">Kodex</string>
     <string name="general_navigation_customdifficultyeditor">Schwierigkeits-Editor</string>
     <string name="general_label_reset">Zurücksetzen</string>
@@ -111,8 +110,6 @@
 
     <!-- Acknowledgement -->
 
-    <string name="map_setting_state_small">Klein</string>
-    <string name="map_setting_state_medium">Medium</string>
     <string name="alert_gui_palette_error">Palette nicht festgelegt!</string>
     <string name="alert_gui_typography_error">Typografie nicht festgelegt!</string>
     <string name="investigation_average_sanity_title">Durchschnittliche geistige Gesundheit</string>

@@ -111,36 +111,6 @@
     <string name="investigation_section_title_ghosts">Fantasmas</string>
     <string name="investigation_section_title_evidence">Evidência</string>
 
-    <!-- Page Details -->
-
-    <string name="mapview_instruction_zoom">Zoom: aperte dois dedos</string>
-    <string name="mapview_instruction_pan">Pan: arraste um dedo</string>
-
-    <!-- Building Floor Names -->
-
-    <string name="map_floor_name_ground">o Rés-do-chão</string>
-    <string name="map_floor_name_first">Primeiro andar</string>
-    <string name="map_floor_name_second">Segundo andar</string>
-    <string name="map_floor_name_third">Terceiro andar</string>
-    <string name="map_floor_name_fifth">Quinto andar</string>
-    <string name="map_floor_name_sixth">Sexto andar</string>
-    <string name="map_floor_name_seventh">Sétimo andar</string>
-    <string name="map_floor_name_eighth">Oito andares</string>
-    <string name="map_floor_name_ninth">Nono andar</string>
-    <string name="map_floor_name_tenth">Décimo andar</string>
-    <string name="map_floor_name_attic">Sótão</string>
-    <string name="map_floor_name_basement">Porão</string>
-
-    <!-- Page Details -->
-
-    <string name="map_info_help_title">Ajuda do mapa interativo</string>
-    <string name="map_info_help_pan">Desloque um mapa com um dedo.</string>
-    <string name="map_info_help_zoom">Aumente e diminua o zoom de um mapa apertando ou afastando dois dedos.</string>
-    <string name="map_info_help_click">Toque com um dedo em qualquer mapa para obter o nome e o limite de qualquer sala.</string>
-    <string name="map_info_help_rooms">Selecione uma sala no menu suspenso Salas para mostrar a localização e os limites dessa sala.</string>
-    <string name="map_info_help_floors">Itere entre andares para visualizar e interagir com ele.</string>
-    <string name="map_info_help_pois">As posições das caixas de fusíveis e dos itens amaldiçoados são indicadas por ícones relevantes.</string>
-    <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionais</string>
     <string name="objectives_title_objective_board">Resumo da investigação</string>
     <string name="objectives_title_ghost_details">Detalhes do Fantasma</string>
@@ -438,7 +408,6 @@
     <string name="codex_section_more">Mais em breve</string>
     <string name="navigation_open_state">Gaveta de navegação aberta.</string>
     <string name="navigation_closed_state">Gaveta de navegação fechada.</string>
-    <string name="map_floor_name_fourth">Quarto Andar</string>
 
 
     <string name="account_title">Minha conta</string>
@@ -502,11 +471,6 @@
     <string name="alert_marketplace_purchase_failure_skin_credits">Créditos insuficientes para compra!</string>
 
     <!-- Acknowledgement -->
-    <string name="map_setting_label_size">Tamanho</string>
-    <string name="map_setting_label_modifier">Modificador</string>
-    <string name="map_setting_label_multiplier">Multiplicador</string>
-    <string name="map_setting_state_small">Pequeno</string>
-    <string name="map_setting_state_medium">Médio</string>
     <string name="language_name_localized_ja">Japonês</string>
     <string name="language_name_localized_pt">Português</string>
     <string name="language_name_localized_de">Alemão</string>
@@ -696,8 +660,6 @@
     <string name="difficulty_category_player">Jogador</string>
     <string name="difficulty_setting_title_name">Nome</string>
     <string name="difficulty_category_ghost">Fantasma</string>
-    <string name="map_setting_state_setup">Configuração</string>
-    <string name="map_setting_state_action">Ação</string>
     <string name="objectives_title_response_type">Tipo de Resposta</string>
     <string name="evidence_trait_description_always_finds_players_if_hunt">Sempre encontra jogadores durante a Caçada</string>
     <string name="evidence_trait_description_audible_long_range_if_hunt">Audível de longe durante as Caçadas</string>
@@ -768,7 +730,6 @@
     <string name="evidence_trait_weight_definitive">Definitivo</string>
     <string name="evidence_trait_weight_likely">Mais provável</string>
     <string name="evidence_trait_weight_unlikely">Menos provável</string>
-    <string name="map_setting_label_drainrate">Taxa de drenagem</string>
     <string name="investigation_average_sanity_title">Sanidade média</string>
     <string name="investigation_label_journal">Diário</string>
     <string name="investigation_label_contract">Configurar contrato</string>

@@ -8,7 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.resources.R as Res
+import com.tritiumgaming.data.map.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
@@ -33,7 +34,7 @@ internal fun MapModifierDetails(
             ) { rowModifier ->
                 TextDataRow(
                     modifier = rowModifier,
-                    title = "${stringResource(R.string.investigation_timer_maplabel)}:",
+                    title = "${stringResource(Res.string.investigation_timer_maplabel)}:",
                     data = stringResource(state.name.toStringResource())
                 )
             }
@@ -48,12 +49,12 @@ internal fun MapModifierDetails(
                 data = stringResource(state.size.toStringResource())
             )
             TextDataRow(
-                title = "${stringResource(R.string.investigation_phase_label_setup)} " +
+                title = "${stringResource(Res.string.investigation_phase_label_setup)} " +
                         "${stringResource(R.string.map_setting_label_drainrate)}:",
                 data = "${String.format(LocalLocale.current.platformLocale, "%.2f", state.modifiers.setup.toFloat())}%/s"
             )
             TextDataRow(
-                title = "${stringResource(R.string.investigation_phase_label_action)} " +
+                title = "${stringResource(Res.string.investigation_phase_label_action)} " +
                         "${stringResource(R.string.map_setting_label_drainrate)}:",
                 data = "${String.format(LocalLocale.current.platformLocale, "%.2f", state.modifiers.action.toFloat())}%/s"
             )

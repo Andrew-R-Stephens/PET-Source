@@ -24,6 +24,9 @@
     <string name="map_floor_name_basement">Sous-sol</string>
 
     <!-- Map Interaction Help -->
+    <string name="map_setting_state_small">Petit</string>
+    <string name="map_setting_state_medium">Moyen</string>
+    <string name="map_setting_state_large">Grand</string>
     <string name="map_info_help_title">Aide sur la carte interactive</string>
     <string name="map_info_help_pan">Déplacez une carte avec un seul doigt.</string>
     <string name="map_info_help_zoom">Effectuez un zoom avant et arrière sur une carte en pinçant ou en écartant deux doigts.</string>

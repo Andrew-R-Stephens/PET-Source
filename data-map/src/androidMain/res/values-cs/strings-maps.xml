@@ -37,5 +37,8 @@
     <string name="map_setting_state_action">Akce</string>
     <string name="map_setting_label_drainrate">Rychlost vysávání</string>
     <string name="map_setting_label_multiplier">Násobitel</string>
+    <string name="map_setting_state_small">Malý</string>
+    <string name="map_setting_state_medium">Střední</string>
+    <string name="map_setting_state_large">Velký</string>
 
 </resources>

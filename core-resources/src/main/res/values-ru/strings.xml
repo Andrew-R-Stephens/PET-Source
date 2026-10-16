@@ -702,38 +702,6 @@
     <string name="evidence_type_book">Записи в блокноте</string>
     <string name="evidence_type_box">Радиоприёмник</string>
 
-    <!--
-        MAPS PAGE
-    -->
-    <!-- Page Details -->
-    <string name="mapview_instruction_zoom">Масштабирование: сведите два пальца</string>
-    <string name="mapview_instruction_pan">Панорамирование: перетащите один палец</string>
-    <!-- Building Floor Names -->
-    <string name="map_floor_name_ground">цокольный этаж</string>
-    <string name="map_floor_name_first">Первый этаж</string>
-    <string name="map_floor_name_second">Второй этаж</string>
-    <string name="map_floor_name_third">Третий этаж</string>
-    <string name="map_floor_name_fifth">Пятый этаж</string>
-    <string name="map_floor_name_sixth">Шестой этаж</string>
-    <string name="map_floor_name_seventh">Седьмой этаж</string>
-    <string name="map_floor_name_eighth">Восьмой этаж</string>
-    <string name="map_floor_name_ninth">Девятый этаж</string>
-    <string name="map_floor_name_tenth">Десятый этаж</string>
-    <string name="map_floor_name_attic">Чердак</string>
-    <string name="map_floor_name_basement">Подвал</string>
-
-    <!--
-        OBJECTIVES PAGE
-    -->
-    <!-- Page Details -->
-    <string name="map_info_help_title">Интерактивная помощь по карте</string>
-    <string name="map_info_help_pan">Перемещайте карту одним пальцем.</string>
-    <string name="map_info_help_zoom">Увеличивайте и уменьшайте масштаб карты, сжимая или раздвигая два пальца.</string>
-    <string name="map_info_help_click">Коснитесь одним пальцем любой карты, чтобы получить название и границу любой комнаты.</string>
-    <string name="map_info_help_rooms">Выберите комнату в раскрывающемся меню «Комнаты», чтобы отобразить местоположение и границы этой комнаты.</string>
-    <string name="map_info_help_floors">Перемещайтесь между этажами, чтобы просматривать их и взаимодействовать с ними.</string>
-    <string name="map_info_help_pois">Положения блоков предохранителей и проклятых предметов обозначены соответствующими значками.</string>
-    <string name="map_setting_state_large">Большой</string>
     <string name="objectives_title_optional_objectives">Дополнительные цели</string>
     <string name="objectives_title_objective_board">Отчет о расследовании</string>
     <string name="objectives_title_ghost_details">Детали призрака</string>
@@ -900,7 +868,6 @@
     <string name="codex_section_more">Продолжение следует</string>
     <string name="navigation_open_state">Отдел навигации открыт.</string>
     <string name="navigation_closed_state">Ящик навигации закрыт.</string>
-    <string name="map_floor_name_fourth">Четвертый этаж</string>
 
     <string name="general_navigation_settings">Настройки</string>
     <string name="general_navigation_system">Система</string>
@@ -945,11 +912,6 @@
     <string name="alert_marketplace_purchase_failure_skin_credits">Недостаточно кредитов для покупки!</string>
 
     <!-- Подтверждение -->
-    <string name="map_setting_label_size">Размер</string>
-    <string name="map_setting_label_modifier">Модификатор</string>
-    <string name="map_setting_label_multiplier">Множитель</string>
-    <string name="map_setting_state_small">Маленький</string>
-    <string name="map_setting_state_medium">Середина</string>
     <string name="language_name_localized_it">Ital\'yanskiy yazyk</string>
     <string name="language_name_localized_de">Немецкий язык</string>
     <string name="language_name_localized_en">английский язык</string>
@@ -1139,8 +1101,6 @@
     <string name="difficulty_category_player">Игрок</string>
     <string name="difficulty_setting_title_name">Название</string>
     <string name="difficulty_category_ghost">Призрак</string>
-    <string name="map_setting_state_setup">Настройка</string>
-    <string name="map_setting_state_action">Действие</string>
     <string name="objectives_title_response_type">Тип ответа</string>
     <string name="evidence_trait_description_always_finds_players_if_hunt">Всегда находит игроков во время охоты</string>
     <string name="evidence_trait_description_audible_long_range_if_hunt">Слышен издалека во время охоты</string>
@@ -1211,7 +1171,6 @@
     <string name="evidence_trait_weight_definitive">Определенный</string>
     <string name="evidence_trait_weight_likely">Более вероятный</string>
     <string name="evidence_trait_weight_unlikely">Менее вероятный</string>
-    <string name="map_setting_label_drainrate">Скорость разрядки</string>
     <string name="investigation_average_sanity_title">Средний уровень рассудка</string>
     <string name="investigation_label_journal">Журнал</string>
     <string name="investigation_label_contract">Настроить контракт</string>

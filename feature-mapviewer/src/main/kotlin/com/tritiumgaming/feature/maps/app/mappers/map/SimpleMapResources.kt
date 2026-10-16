@@ -2,7 +2,7 @@ package com.tritiumgaming.feature.maps.app.mappers.map
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.data.map.R
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail

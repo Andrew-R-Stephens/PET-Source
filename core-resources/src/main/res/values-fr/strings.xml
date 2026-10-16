@@ -26,7 +26,6 @@
     </string>
 
 
-    <string name="map_setting_state_large">Grand</string>
     <string name="general_label_codex">Manuscrit</string>
     <string name="general_navigation_customdifficultyeditor">Éditeur de difficulté</string>
     <string name="general_label_reset">Réinitialiser</string>
@@ -98,8 +97,6 @@
 
     <!-- Acknowledgement -->
 
-    <string name="map_setting_state_small">Petit</string>
-    <string name="map_setting_state_medium">Moyen</string>
     <string name="alert_gui_palette_error">Palette non définie !</string>
     <string name="alert_gui_typography_error">Typographie non définie !</string>
     <string name="investigation_average_sanity_title">Santé mentale moyenne</string>

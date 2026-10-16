@@ -4,7 +4,6 @@
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
-    <string name="map_setting_state_large">Великий</string>
     <string name="objectives_title_optional_objectives">Додаткові цілі</string>
     <string name="objectives_title_objective_board">Звіт про розслідування</string>
     <string name="objectives_title_ghost_details">Деталі про привидів</string>

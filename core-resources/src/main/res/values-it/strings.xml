@@ -113,34 +113,6 @@
 
     <!-- Page Details -->
 
-    <string name="mapview_instruction_zoom">Zoom: pizzica due dita</string>
-    <string name="mapview_instruction_pan">Panoramica: trascina un dito</string>
-
-    <!-- Building Floor Names -->
-
-    <string name="map_floor_name_ground">Primo Piano</string>
-    <string name="map_floor_name_first">Primo Piano</string>
-    <string name="map_floor_name_second">Secondo Piano</string>
-    <string name="map_floor_name_third">Terzo Piano</string>
-    <string name="map_floor_name_fifth">Quinto Piano</string>
-    <string name="map_floor_name_sixth">Sesto Piano</string>
-    <string name="map_floor_name_seventh">Settimo Piano</string>
-    <string name="map_floor_name_eighth">Ottavo Piano</string>
-    <string name="map_floor_name_ninth">Nono Piano</string>
-    <string name="map_floor_name_tenth">Decimo Piano</string>
-    <string name="map_floor_name_attic">Attico</string>
-    <string name="map_floor_name_basement">Seminterrato</string>
-
-    <!-- Page Details -->
-
-    <string name="map_info_help_title">Aiuto per la mappa interattiva</string>
-    <string name="map_info_help_pan">Panoramica di una mappa con un dito.</string>
-    <string name="map_info_help_zoom">Ingrandisci e rimpicciolisci una mappa pizzicando o allargando due dita.</string>
-    <string name="map_info_help_click">Tocca con un dito su qualsiasi mappa per ottenere il nome e il confine di qualsiasi stanza.</string>
-    <string name="map_info_help_rooms">Seleziona una stanza nel menu a discesa Stanze per mostrare la posizione e i confini di quella stanza.</string>
-    <string name="map_info_help_floors">Scorri tra i piani per visualizzarli e interagire con essi.</string>
-    <string name="map_info_help_pois">Le posizioni delle scatole dei fusibili e degli oggetti maledetti sono indicate dalle relative icone.</string>
-    <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Obiettivi facoltativi</string>
     <string name="objectives_title_objective_board">Rapporto investigativo</string>
     <string name="objectives_title_ghost_details">Dettagli del fantasma</string>
@@ -436,7 +408,6 @@
 
     <string name="navigation_open_state">Cassetto di navigazione aperto.</string>
     <string name="navigation_closed_state">Cassetto di navigazione chiuso.</string>
-    <string name="map_floor_name_fourth">Quarto Piano</string>
 
 
     <string name="account_title">Il mio conto</string>
@@ -502,11 +473,6 @@
 
     <!-- Acknowledgement -->
 
-    <string name="map_setting_label_size">Misurare</string>
-    <string name="map_setting_label_modifier">Modificatore</string>
-    <string name="map_setting_label_multiplier">Moltiplicatore</string>
-    <string name="map_setting_state_small">Piccolo</string>
-    <string name="map_setting_state_medium">Medio</string>
     <string name="language_name_localized_zh_Hans">Cinese (Semplificato)</string>
     <string name="language_name_localized_cs">Ceco</string>
     <string name="language_name_localized_de">Tedesco</string>
@@ -698,8 +664,6 @@
     <string name="difficulty_category_player">Giocatore</string>
     <string name="difficulty_setting_title_name">Nome</string>
     <string name="difficulty_category_ghost">Fantasma</string>
-    <string name="map_setting_state_setup">Impostazione</string>
-    <string name="map_setting_state_action">Azione</string>
     <string name="objectives_title_response_type">Tipo di Risposta</string>
     <string name="evidence_trait_description_always_finds_players_if_hunt">Trova sempre i giocatori durante la caccia</string>
     <string name="evidence_trait_description_audible_long_range_if_hunt">Udibile da lontano durante le cacce</string>
@@ -770,7 +734,6 @@
     <string name="evidence_trait_weight_definitive">Definitivo</string>
     <string name="evidence_trait_weight_likely">Più probabile</string>
     <string name="evidence_trait_weight_unlikely">Meno probabile</string>
-    <string name="map_setting_label_drainrate">Tasso di consumo</string>
     <string name="investigation_average_sanity_title">Sanità mentale media</string>
     <string name="investigation_label_journal">Diario</string>
     <string name="investigation_label_contract">Configura contratto</string>

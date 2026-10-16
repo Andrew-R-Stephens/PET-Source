@@ -41,10 +41,6 @@
     -->
 
 
-    <string name="map_setting_state_small">Pequeño</string>
-    <string name="map_setting_state_medium">Medio</string>
-    <string name="map_setting_state_large">Grande</string>
-
 
     <string name="general_label_codex">Códice</string>
     <string name="general_navigation_customdifficultyeditor">Editor de dificultad</string>

@@ -111,37 +111,6 @@
     <string name="investigation_section_title_ghosts">幽霊</string>
     <string name="investigation_section_title_evidence">証拠</string>
 
-    <!-- Page Details -->
-
-    <string name="mapview_instruction_zoom">ズーム: 2 本の指でピンチします。</string>
-    <string name="mapview_instruction_pan">パン: 1 本の指をドラッグします。</string>
-
-
-    <!-- Building Floor Names -->
-
-    <string name="map_floor_name_ground">一階</string>
-    <string name="map_floor_name_first">一階</string>
-    <string name="map_floor_name_second">二階</string>
-    <string name="map_floor_name_third">三階</string>
-    <string name="map_floor_name_fifth">五階</string>
-    <string name="map_floor_name_sixth">6階</string>
-    <string name="map_floor_name_seventh">7階</string>
-    <string name="map_floor_name_eighth">8階</string>
-    <string name="map_floor_name_ninth">9階</string>
-    <string name="map_floor_name_tenth">10階</string>
-    <string name="map_floor_name_attic">屋根裏</string>
-    <string name="map_floor_name_basement">地下</string>
-
-    <!-- Page Details -->
-
-    <string name="map_info_help_title">インタラクティブな地図ヘルプ</string>
-    <string name="map_info_help_pan">1 本の指で地図を移動します。</string>
-    <string name="map_info_help_zoom">2 本の指をつまんだり広げたりして、マップを拡大または縮小します。</string>
-    <string name="map_info_help_click">マップ上で 1 本の指でタップして、部屋の名前と境界を取得します。</string>
-    <string name="map_info_help_rooms">[部屋] ドロップダウン メニューで部屋を選択すると、その部屋の位置と境界が表示されます。</string>
-    <string name="map_info_help_floors">フロア間を反復して表示し、操作します。</string>
-    <string name="map_info_help_pois">ヒューズボックスと呪いのアイテムの位置は、関連するアイコンで示されます。</string>
-    <string name="map_setting_state_large">大きい</string>
     <string name="objectives_title_optional_objectives">オプションの目標</string>
     <string name="objectives_title_objective_board">捜査報告書</string>
     <string name="objectives_title_ghost_details">ゴーストの詳細</string>
@@ -436,7 +405,6 @@
 
     <string name="navigation_open_state">ナビゲーション ドロワーが開きました。</string>
     <string name="navigation_closed_state">ナビゲーション ドロワーが閉じられました。</string>
-    <string name="map_floor_name_fourth">四階</string>
 
 
     <string name="account_title">私のアカウント</string>
@@ -500,11 +468,6 @@
     <string name="alert_marketplace_purchase_failure_skin_credits">購入に必要なクレジットが足りません!</string>
 
 
-    <string name="map_setting_label_size">サイズ</string>
-    <string name="map_setting_label_modifier">修飾子</string>
-    <string name="map_setting_label_multiplier">乗数</string>
-    <string name="map_setting_state_small">小さい</string>
-    <string name="map_setting_state_medium">中くらい</string>
     <string name="difficulty_setting_response_unknown">未知</string>
     <string name="difficulty_setting_state_on">オン</string>
     <string name="difficulty_setting_state_none">なし</string>
@@ -682,8 +645,6 @@
     <string name="difficulty_category_player">プレイヤー</string>
     <string name="difficulty_setting_title_name">名前</string>
     <string name="difficulty_category_ghost">ゴースト</string>
-    <string name="map_setting_state_setup">設定</string>
-    <string name="map_setting_state_action">アクション</string>
     <string name="objectives_title_response_type">応答タイプ</string>
     <string name="evidence_trait_description_always_finds_players_if_hunt">狩り中は必ずプレイヤーを見つける</string>
     <string name="evidence_trait_description_audible_long_range_if_hunt">狩り中は遠くから聞こえる</string>
@@ -754,7 +715,6 @@
     <string name="evidence_trait_weight_definitive">確定</string>
     <string name="evidence_trait_weight_likely">可能性が高い</string>
     <string name="evidence_trait_weight_unlikely">可能性が低い</string>
-    <string name="map_setting_label_drainrate">消耗率</string>
     <string name="investigation_average_sanity_title">平均正気度</string>
     <string name="investigation_label_journal">ジャーナル</string>
     <string name="investigation_label_contract">契約を構成する</string>

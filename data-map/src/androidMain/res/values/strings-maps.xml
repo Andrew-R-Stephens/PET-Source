@@ -4,10 +4,6 @@
     <!--
         MAPS PAGE
     -->
-    <!-- Page Details -->
-    <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
-    <string name="mapview_instruction_pan">Pan: Drag one finger</string>
-
     <!-- Map IDs -->
     <string name="map_id_meadows" translatable="false">97e22fae6369b3111e3083b2cc801e07</string>
     <string name="map_id_meadows_r" translatable="false">4c3e06090bce302a24a46aefe884bcb0</string>
@@ -57,6 +53,10 @@
     <string name="map_name_short_willow" translatable="false">Willow</string>
     <string name="map_name_short_ridgeview" translatable="false">Ridgeview</string>
     <string name="map_name_short_prison" translatable="false">Prison</string>
+
+    <!-- Page Details -->
+    <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
+    <string name="mapview_instruction_pan">Pan: Drag one finger</string>
 
     <!-- Building Floor Names -->
     <string name="map_floor_name_ground">Ground Floor</string>
