@@ -112,117 +112,98 @@ composeCompiler {
 
 dependencies {
 
+    ksp(libs.androidx.room.compiler)
+
+    implementation("androidx.compose.ui:ui-text:1.12.1")
+    implementation("androidx.compose.ui:ui-unit:1.12.1")
+    implementation("androidx.datastore:datastore:1.2.1")
+    implementation("androidx.lifecycle:lifecycle-common:2.11.0")
+    implementation("androidx.navigation:navigation-common:2.10.2")
+    implementation("androidx.navigation:navigation-runtime:2.10.2")
+
     // PRIMARY
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
 
-    implementation(libs.androidx.work.runtime)
-    implementation(libs.androidx.appcompat.core)
-
-    // Testing
-    testImplementation(libs.junit)
-    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
-    testImplementation(libs.mockito.kotlin)
-
-    // --- Google Credential Manager ----
-    //noinspection LoginCredentials
-    implementation(libs.android.playServices.auth)
-    //noinspection LoginCredentials
-    implementation(libs.androidx.credentials.playServicesAuth)
-    // ----------------------------------
-
     // GOOGLE FIREBASE
-    // Import the BoM for the Firebase platform
     implementation(platform(libs.firebase.bom))
-    // GOOGLE FIREBASE AUTH
     implementation(libs.firebase.auth)
-    // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
-    // GOOGLE FIREBASE FUNCTIONS
     implementation(libs.firebase.functions)
-    // Declare the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    // GOOGLE FIREBASE ANALYTICS
     implementation(libs.firebase.crashlytics.core)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perfCore)
 
-    // GOOGLE BILLING API
-    implementation(libs.android.billing.core)
-
-    // GOOGLE ADS
+    // noinspection LoginCredentials
+    implementation(libs.android.playServices.auth)
+    runtimeOnly(libs.android.billing.core)
     implementation(libs.android.ump.core)
-
-    // IN-APP UPDATES
     implementation(libs.android.play.core.update)
-    // For use with animated gifs
-    implementation(libs.droidsonroids.gifDrawable)
+    implementation(libs.android.playServices.wearable)
 
-
-    /*
-        ---- START----
-        ANDROID COMPOSE
-    */
     implementation(platform(libs.androidx.compose.bom))
-
-    // Testing --
-    androidTestImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.test.runner)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    debugImplementation(libs.androidx.compose.ui.testManifest)
-    // ---
-
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.datastore.core)
+    implementation(libs.androidx.datastore.preferences.core)
+    runtimeOnly(libs.androidx.work.runtime)
+    implementation(libs.androidx.appcompat.core)
     implementation(libs.androidx.compose.foundation)
-    /* Material Design 3 */
     implementation(libs.androidx.compose.material3)
-    // Compose UI
     implementation(libs.androidx.compose.ui.core)
     implementation(libs.androidx.compose.ui.toolingPreview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.lifecycle.viewmodelCompose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
-
-    // Coil
-    implementation(libs.coilKt.network)
-    implementation(libs.coilKt.gif)
-
     implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.android.playServices.wearable)
-    implementation(libs.jetbrains.kotlinx.coroutines.play.services)
-
-    /*
-        ----- END OF COMPOSE -----
-    */
-
-    // DataStore
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.room.runtime)
+    // noinspection LoginCredentials
+    runtimeOnly(libs.androidx.credentials.playServicesAuth)
 
-    /*
-     * Ktor
-     */
+
+    implementation(libs.coilKt.network)
+    runtimeOnly(libs.coilKt.gif)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.cio)
-
-    /*
-     * Realms DB
-     */
+    runtimeOnly(libs.droidsonroids.gifDrawable)
     implementation(libs.realm.kotlin.library.sync)
 
-    /*
-     * Room DB
-     */
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
+
     annotationProcessor(libs.androidx.room.ktx)
 
-    /*
-     * Include Shared Module for KMP
-     */
+
+    /* TESTING */
+
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.testExt.junit)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+
+    androidTestRuntimeOnly(libs.androidx.test.runner)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
+
+    debugRuntimeOnly(libs.androidx.compose.ui.testManifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+
+
+    androidTestImplementation(libs.jetbrains.kotlinx.coroutines.play.services)
+    androidTestImplementation("androidx.test:monitor:1.8.0")
+    androidTestImplementation("org.jetbrains:annotations:23.0.0")
+
+    androidTestRuntimeOnly(libs.androidx.test.core)
+
+    testImplementation("org.jetbrains:annotations:23.0.0")
+    testImplementation("org.mockito:mockito-core:5.23.0")
+
+    /* LOCAL DEPENDENCIES */
+
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
@@ -233,9 +214,24 @@ dependencies {
     implementation(project(":data-customdifficulty"))
     implementation(project(":data-language"))
     implementation(project(":data-review"))
+    implementation(project(":data-account"))
+    implementation(project(":data-ads"))
+    implementation(project(":data-codex"))
+    implementation(project(":data-difficulty"))
+    implementation(project(":data-difficultysetting"))
+    implementation(project(":data-evidence"))
+    implementation(project(":data-journal"))
+    implementation(project(":data-map"))
+    implementation(project(":data-marketplace"))
+    implementation(project(":data-newsletter"))
+    implementation(project(":data-operation"))
+    implementation(project(":data-palette"))
+    implementation(project(":data-policy"))
+    implementation(project(":data-preferences"))
+    implementation(project(":data-typography"))
+    implementation(project(":data-wearable"))
 
     implementation(project(":feature-core"))
-
     implementation(project(":feature-start"))
     implementation(project(":feature-account"))
     implementation(project(":feature-settings"))

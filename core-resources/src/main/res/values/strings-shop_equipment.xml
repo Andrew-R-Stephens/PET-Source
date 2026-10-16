@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="shop_equipment_attribute_opinion_positive" translatable="false">+</string>
+    <string name="shop_equipment_attribute_opinion_negative" translatable="false">-</string>
+
     <!-- Equipment Names -->
     <string name="equipment_info_name_dots">D.O.T.S. Projector</string>
     <string name="equipment_info_name_emf">EMF Reader</string>
@@ -23,9 +26,6 @@
     <string name="equipment_info_name_ghostwritingbook">Ghost Writing Book</string>
     <string name="equipment_info_name_parabolicmicrophone">Parabolic Microphone</string>
     <string name="equipment_info_name_headgear">Head Gear</string>
-
-    <string name="shop_equipment_attribute_opinion_positive" translatable="false">+</string>
-    <string name="shop_equipment_attribute_opinion_negative" translatable="false">-</string>
 
     <!--
         Attribute Titles
