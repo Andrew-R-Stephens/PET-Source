@@ -11,7 +11,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.ghost"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -61,16 +61,13 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
-
-            api(project(":core-resources"))
+            implementation(libs.androidx.annotation)
         }
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }
@@ -95,7 +92,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

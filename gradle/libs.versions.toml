@@ -13,7 +13,7 @@ androidx-compose-bom = "2026.09.00" # Latest 2026.06.01
 androidx-compose-material3 = "1.4.0" # Latest: 1.4.0-rc01
 androidx-compose-material3-adaptive = "1.3.0" # Latest: 1.2.0
 androidx-compose-material3-window-size = "1.4.0-alpha16" # Latest: 1.4.0-alpha15
-androidx-core-ktx = "1.19.1" # Latest 1.19.0
+androidx-core = "1.19.1" # Latest 1.19.0
 androidx-concurrent-futures = "1.3.0"
 androidx-credentials-play-services-auth = "1.6.0" # Latest 1.5.0
 androidx-datastore = "1.2.1" # Latest 1.2.0
@@ -26,13 +26,14 @@ androidx-lifecycle = "2.11.0" # Latest: 2.10.0
 androidx-navigation-fragment-ktx = "2.10.2" # Latest: 2.10.2
 androidx-navigation-fragment-ktx-legacy = "2.10.0-alpha01" # Latest: 2.10.2 Dropped to 1.10.0-alpha01 for older devices
 androidx-room = "2.8.5" # Latest: 2.8.4
+androidxComposeAnimation-animation = "1.12.1"
 appcompat = "1.8.0" # Latest 1.7.1
 cardview = "1.0.0"
 coil3 = "3.6.3" # Latest: 3.5.0
 constraintlayout = "2.2.2" # Latest 2.2.1
 kotlin-coroutines = "1.11.0" # Latest: 1.10.2
 kotlinx-coroutines-test = "1.11.0" # 1.10.2
-kotlinx-serialization-json = "1.11.0" # 1.8.0
+kotlinx-serialization = "1.11.0" # 1.8.0
 kotlinx-coroutines-play-services = "1.11.0"
 androidx-compose-foundation = "1.12.1" # Latest 1.11.4
 androidx-compose-foundation-layout = "1.12.1" # 1.11.4
@@ -76,12 +77,23 @@ ksp = "2.3.6" # Latest: 2.2.10-2.0.2 -> 2.2.21-2.0.4
 composeMP = "1.12.1" # Latest: 1.12.0
 googleid = "1.2.1" # Latest: 1.2.0
 kotlinTest = "2.3.0" # Latest 2.2.20
-runner = "1.7.0" # 1.6.2
-core = "1.7.0"
+androidx-test-runner = "1.7.0" # 1.6.2
+androidx-test-core = "1.7.0"
 
 [libraries]
+
+androidx-activity = { group = "androidx.activity", name = "activity", version = "1.13.0" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version = "1.11.0" }
+androidx-appcompat-resources = { group = "androidx.appcompat", name = "appcompat-resources", version = "1.8.0" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "androidxComposeAnimation-animation" }
+androidx-compose-animation-core = { group = "androidx.compose.animation", name = "animation-core", version.ref = "androidxComposeAnimation-animation" }
+androidx-compose-runtime-saveable = { group = "androidx.compose.runtime", name = "runtime-saveable", version = "1.12.1" }
+androidx-compose-runtime-annotation = { group = "androidx.compose.runtime", name = "runtime-annotation", version = "1.12.1" }
+androidx-window-core = { group = "androidx.window", name = "window-core", version = "1.5.1" }
+jetbrains-kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 # Project Core - Root
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
+androidx-core = { group = "androidx.core", name = "core", version.ref = "androidx-core" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
 # Project Core - Compose
 jetbrains-compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "jetpack-compose" }
 jetbrains-compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "jetpack-compose" }
@@ -93,7 +105,7 @@ jetbrains-compose-ui-toolingPreview = { group = "org.jetbrains.compose.ui", name
 jetbrains-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin-stdlib" }
 jetbrains-kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 jetbrains-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
-jetbrains-kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+jetbrains-kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 jetbrains-kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "kotlinx-coroutines-play-services" }
 # Billing
 android-billing-core = { group = "com.android.billingclient", name = "billing", version.ref = "android-billing" }
@@ -104,9 +116,9 @@ android-play-core-update = { group = "com.google.android.play", name = "app-upda
 android-play-coreKtx-update = { group = "com.google.android.play", name = "app-update-ktx", version.ref = "android-play-core-update" }
 # Play Ads / Auth
 android-playServices-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "android-play-services-ads" }
-android-playServices-ads-legacy = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "android-play-services-ads-legacy" }
+#android-playServices-ads-legacy = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "android-play-services-ads-legacy" }
 android-playServices-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "android-play-services-auth" }
-android-playServices-auth-legacy = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "android-play-services-auth-legacy" }
+#android-playServices-auth-legacy = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "android-play-services-auth-legacy" }
 # AndroidX: Compose
 androidx-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
 androidx-compose-bom = { group="androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom"}
@@ -120,6 +132,7 @@ androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adap
 androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-runtime-rxJava2 = { group = "androidx.compose.runtime", name = "runtime-rxjava2" }
 androidx-compose-ui-core = { group = "androidx.compose.ui", name = "ui", version.ref = "androidx-composeUi" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-ui-testJunit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-composeUi" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-composeUi" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidx-composeUi" }
@@ -129,7 +142,9 @@ androidx-concurrent-futures-ktx = { group = "androidx.concurrent", name = "concu
 androidx-credentials-core = { group = "androidx.credentials", name = "credentials", version.ref = "androidx-credentials-play-services-auth" }
 androidx-credentials-playServicesAuth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "androidx-credentials-play-services-auth" }
 # AndroidX: Datastore
+androidx-datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "androidx-datastore"}
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-datastore"}
+androidx-datastore-preferences-core = { group = "androidx.datastore", name = "datastore-preferences-core", version.ref = "androidx-datastore"}
 # AndroidX: Leanback
 androidx-leanback-core = { group = "androidx.leanback", name = "leanback", version.ref = "androidx-leanback-core" }
 androidx-leanback-paging = { group = "androidx.leanback", name = "leanback-paging", version.ref = "androidx-leanback-paging" }
@@ -143,19 +158,19 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-lifecycle-viewmodelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 # AndroidX: Navigation
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation-fragment-ktx" }
-androidx-navigation-compose-legacy = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation-fragment-ktx-legacy" }
+#androidx-navigation-compose-legacy = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation-fragment-ktx-legacy" }
 androidx-navigation-fragmentKtx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx-navigation-fragment-ktx" }
-androidx-navigation-fragmentKtx-legacy = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx-navigation-fragment-ktx-legacy" }
+#androidx-navigation-fragmentKtx-legacy = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx-navigation-fragment-ktx-legacy" }
 androidx-navigation-uiKtx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx-navigation-fragment-ktx" }
-androidx-navigation-uiKtx-legacy = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx-navigation-fragment-ktx-legacy" }
+#androidx-navigation-uiKtx-legacy = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx-navigation-fragment-ktx-legacy" }
 
 # Navigation 3
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
-androidx-navigation3-runtime-legacy = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core-legacy" }
+#androidx-navigation3-runtime-legacy = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core-legacy" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
-androidx-navigation3-ui-legacy = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core-legacy" }
+#androidx-navigation3-ui-legacy = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core-legacy" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
-androidx-lifecycle-viewmodel-navigation3-legacy = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3-legacy" }
+#androidx-lifecycle-viewmodel-navigation3-legacy = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3-legacy" }
 
 # AndroidX: Room
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
@@ -168,7 +183,7 @@ androidx-room-testing = { group = "androidx.room", name = "room-testing", versio
 androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
 # Firebase: BOM
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
-firebase-bom-legacy = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom-legacy" }
+#firebase-bom-legacy = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom-legacy" }
 firebase-analytics = { group = "com.google.firebase", name="firebase-analytics" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
@@ -201,14 +216,14 @@ androidx-fragmentKtx = { group = "androidx.fragment", name = "fragment-ktx", ver
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 androidx-testExt-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
 androidx-work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "work-runtime" }
-androidx-work-runtime-legacy = { group = "androidx.work", name = "work-runtime", version.ref = "work-runtime-legacy" }
+#androidx-work-runtime-legacy = { group = "androidx.work", name = "work-runtime", version.ref = "work-runtime-legacy" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
 # Project Extras
 android-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 # android-support-multidex = { group = "com.android.support", name = "multidex", version.ref = "multidex" }
 android-ump-core = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "user-messaging-platform" }
-android-ump-core-legacy = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "user-messaging-platform-legacy" }
+#android-ump-core-legacy = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "user-messaging-platform-legacy" }
 androidx-appcompat-core = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 coilKt-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil3" }
 coilKt-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil3" }
@@ -216,11 +231,10 @@ coilKt-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version.ref = "coi
 droidsonroids-gifDrawable = { group = "pl.droidsonroids.gif", name = "android-gif-drawable", version.ref = "android-gif-drawable" }
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 google-gms-services = { group = "com.google.gms", name = "google-services", version.ref = "google-services" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlinTest" }
-androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
-androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidx-test-runner" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
 
 # Wear OS
 androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wear-compose" }

@@ -13,7 +13,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.map"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -62,19 +62,17 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
+            implementation(libs.androidx.annotation)
+            implementation(libs.jetbrains.kotlinx.coroutines)
 
-            // Google Utilities
             implementation(libs.google.gson)
 
-            api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }
@@ -103,7 +101,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

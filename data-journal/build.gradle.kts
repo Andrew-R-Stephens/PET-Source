@@ -11,7 +11,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.journal"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -50,20 +50,10 @@ kotlin {
         commonMain.dependencies {
             // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
-            implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.serialization.json)
-            // Compose
-            implementation(libs.jetbrains.compose.runtime)
-            implementation(libs.jetbrains.compose.foundation)
-            implementation(libs.jetbrains.compose.material3)
-            implementation(libs.jetbrains.compose.ui)
-            implementation(libs.jetbrains.compose.ui.toolingPreview)
-            implementation(libs.jetbrains.compose.components)
 
             // Internal Module Dependencies
             api(project(":data-ghost"))
             api(project(":data-evidence"))
-            api(project(":data-trait"))
         }
 
         commonTest.dependencies {
@@ -71,20 +61,15 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
-            // Compose UI
-            implementation(libs.androidx.compose.ui.core)
-            implementation(libs.androidx.compose.ui.toolingPreview)
+            implementation(libs.androidx.compose.runtime.annotation)
+            api(libs.jetbrains.kotlinx.serialization.core)
 
-
-            implementation(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }

@@ -13,7 +13,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -43,75 +43,47 @@ configure<LibraryExtension> {
 
 dependencies {
 
-    implementation(libs.androidx.navigation.compose)
-
-    // Import the Compose BOM
-    implementation(platform(libs.androidx.compose.bom))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
+    api(libs.androidx.compose.runtime)
+    api(libs.androidx.compose.ui.core)
+    api(libs.androidx.datastore.core)
+    api(libs.androidx.datastore.preferences.core)
 
     // GOOGLE FIREBASE
-    // Import the BoM for the Firebase platform
     implementation(platform(libs.firebase.bom))
-    // GOOGLE FIREBASE AUTH
     implementation(libs.firebase.auth)
-    // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
-    // Declare the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    // GOOGLE FIREBASE ANALYTICS
     implementation(libs.firebase.crashlytics.core)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perfCore)
 
-    /*
-        ---- START----
-        ANDROID COMPOSE
-    */
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.foundation.layout)
 
-    // Testing --
+    implementation(libs.jetbrains.kotlinx.coroutines)
+
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.testExt.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.testJunit4)
-    debugImplementation(libs.androidx.compose.ui.testManifest)
-    // ---
 
-    implementation(libs.androidx.compose.foundation)
-    /* Material Design 3 */
-    implementation(libs.androidx.compose.material3)
-    // Optional - Add window size utils
-    implementation(libs.androidx.compose.material3.adaptive)
+    androidTestRuntimeOnly(libs.androidx.test.runner)
+    androidTestRuntimeOnly(libs.jetbrains.kotlinx.coroutines.test)
 
-    // Compose UI
-    implementation(libs.androidx.compose.ui.core)
-    implementation(libs.androidx.compose.ui.toolingPreview)
+    testImplementation(libs.junit)
+
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodelCompose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
+    debugRuntimeOnly(libs.androidx.compose.ui.testManifest)
 
-    implementation(libs.androidx.ui.graphics)
-
-    implementation(project(":core-common"))
-    implementation(project(":core-resources"))
+    api(project(":core-common"))
     implementation(project(":core-ui"))
+    //implementation(project(":core-resources"))
 
-    implementation(project(":data-account"))
+    api(project(":data-account"))
+    api(project(":data-language"))
+    api(project(":data-marketplace"))
+    api(project(":data-preferences"))
     implementation(project(":data-contributor"))
-    implementation(project(":data-language"))
-    implementation(project(":data-marketplace"))
     implementation(project(":data-newsletter"))
-    implementation(project(":data-preferences"))
-
-    
-
 }

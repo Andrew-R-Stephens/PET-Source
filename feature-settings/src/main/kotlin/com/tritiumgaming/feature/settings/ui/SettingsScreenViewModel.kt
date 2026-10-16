@@ -14,7 +14,6 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.data.marketplace.account.model.AccountMarketPalette
 import com.tritiumgaming.data.marketplace.account.model.AccountMarketTypography
 import com.tritiumgaming.data.marketplace.account.model.toAccountMarketPalette
 import com.tritiumgaming.data.marketplace.account.model.toAccountMarketTypography

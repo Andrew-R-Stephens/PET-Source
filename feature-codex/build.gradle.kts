@@ -13,7 +13,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -42,61 +42,54 @@ configure<LibraryExtension> {
 }
 
 dependencies {
+    api(libs.androidx.appcompat.core)
+    api(libs.androidx.compose.foundation)
+    api(libs.androidx.compose.ui.core)
+    api(libs.androidx.compose.foundation.layout)
+    api(libs.androidx.compose.runtime)
+    api(libs.jetbrains.kotlinx.coroutines)
 
+
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.animation.core)
+    implementation(libs.androidx.window.core)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.adaptive)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.toolingPreview)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
 
-    // Import the Compose BOM
-    implementation(platform(libs.androidx.compose.bom))
+    // Coil
+    implementation(libs.coilKt.network)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
-
-    /*
-        ---- START----
-        ANDROID COMPOSE
-    */
+    runtimeOnly(libs.coilKt.gif)
 
     // Testing --
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.testJunit4)
-    debugImplementation(libs.androidx.compose.ui.testManifest)
-    // ---
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.testExt.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.androidx.compose.foundation)
-    /* Material Design 3 */
-    implementation(libs.androidx.compose.material3)
-    // Optional - Add window size utils
-    implementation(libs.androidx.compose.material3.adaptive)
+    androidTestRuntimeOnly(libs.androidx.test.runner)
+    androidTestRuntimeOnly(libs.jetbrains.kotlinx.coroutines.test)
 
-    // Compose UI
-    implementation(libs.androidx.compose.ui.core)
-    implementation(libs.androidx.compose.ui.toolingPreview)
+    debugRuntimeOnly(libs.androidx.compose.ui.testManifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodelCompose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
+    testImplementation(libs.junit)
 
-    implementation(libs.androidx.ui.graphics)
-
-    // Coil
-    implementation(libs.coilKt.compose)
-    implementation(libs.coilKt.network)
-    implementation(libs.coilKt.gif)
-
+    implementation(project(":data-palette"))
+    implementation(project(":data-typography"))
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
-    implementation(project(":data-codex"))
+    api(project(":data-codex"))
 
     
 

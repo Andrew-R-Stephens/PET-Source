@@ -13,7 +13,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -85,7 +85,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodelCompose)
     implementation(libs.androidx.lifecycle.runtime.compose)
 
-    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.compose.ui.graphics)
 
     // Coil
     implementation(libs.coilKt.compose)

@@ -164,4 +164,8 @@
     <string name="typography_hamburgevon_japanese" translatable="false">いろはにほへと ちりぬるをわかよたれそ つねならむうゐのおくやま けふこえてあさきゆめみし ゑひもせす</string>
     <string name="typography_hamburgevon_simplified_chinese" translatable="false">千山鸟飞绝，万径人踪灭。江雪：！【￥】？（）</string>
     <string name="typography_hamburgevon_numbers_symbols" translatable="false">1234567890 &amp;!?%@#$*()_-+={}[];:’”,.</string>
+
+    <!-- CREDENTIALS -->
+    <string name="default_web_client_id" translatable="false">83595434940-jack6s8tii5u6rltqb69uahare5gf3ut.apps.googleusercontent.com</string>
+    <string name="web_client_id" translatable="false">856655760718-3cdovai12i4l8pv9g09pch05eva35e10.apps.googleusercontent.com</string>
 </resources>

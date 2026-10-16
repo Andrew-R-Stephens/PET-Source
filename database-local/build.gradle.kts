@@ -11,7 +11,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -39,18 +39,20 @@ configure<LibraryExtension> {
 
 dependencies {
 
+    api(libs.jetbrains.kotlinx.coroutines)
     api(libs.androidx.room.runtime)
-    api(libs.androidx.room.ktx)
+
     ksp(libs.androidx.room.compiler)
+
     implementation(libs.google.gson)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
+    androidTestRuntimeOnly(libs.androidx.test.core)
+    androidTestRuntimeOnly(libs.androidx.test.runner)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    
-    implementation(project(":data-customdifficulty"))
+    implementation(project(":data-difficultysetting"))
+    api(project(":data-customdifficulty"))
 }

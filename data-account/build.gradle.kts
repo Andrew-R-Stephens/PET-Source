@@ -9,7 +9,11 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.account"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
+
+        androidResources {
+            enable = true
+        }
 
         withHostTestBuilder {
         }
@@ -44,14 +48,11 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.jetbrains.kotlin.stdlib)
-                implementation(libs.jetbrains.kotlinx.coroutines)
-                implementation(libs.jetbrains.kotlinx.serialization.json)
-                implementation(project(":core-common"))
+                api(libs.jetbrains.kotlinx.coroutines)
 
-                // Keep while transitioning away from monolithic shared module
-                api(project(":data-typography"))
-                api(project(":data-palette"))
+                implementation(libs.jetbrains.kotlin.stdlib)
+
+                api(project(":core-common"))
             }
         }
 
@@ -63,10 +64,10 @@ kotlin {
 
         androidMain {
             dependencies {
-                // Android Core & UI
-                implementation(libs.androidx.core.ktx)
-                implementation(libs.androidx.appcompat.core)
-                implementation(libs.android.material)
+                api(libs.androidx.credentials.core)
+
+                implementation(libs.androidx.annotation)
+                implementation(libs.jetbrains.kotlinx.coroutines.play.services)
 
                 // Google Firebase Platform (Android-only until Firebase KMP is added)
                 implementation(project.dependencies.platform(libs.firebase.bom))
@@ -76,19 +77,14 @@ kotlin {
 
                 // Google Credential Manager
                 implementation(libs.android.playServices.auth)
-                implementation(libs.androidx.credentials.core)
-                implementation(libs.androidx.credentials.playServicesAuth)
                 implementation(libs.googleid)
-
-                // Shared project dependencies
-                api(project(":core-resources"))
             }
         }
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }
@@ -116,7 +112,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

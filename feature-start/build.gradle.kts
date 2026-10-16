@@ -11,7 +11,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.feature.start"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }
@@ -40,25 +40,18 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.jetbrains.kotlin.stdlib)
-            implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.serialization.json)
+            api(libs.jetbrains.kotlinx.coroutines)
 
-            // Compose Runtime
-            implementation(libs.jetbrains.compose.runtime)
-            implementation(libs.jetbrains.compose.foundation)
-            implementation(libs.jetbrains.compose.material3)
-            implementation(libs.jetbrains.compose.ui)
-            implementation(libs.jetbrains.compose.ui.toolingPreview)
+            implementation(libs.jetbrains.kotlin.stdlib)
             implementation(libs.jetbrains.compose.components)
 
             api(project(":core-common"))
 
-            implementation(project(":data-challenge"))
-            implementation(project(":data-newsletter"))
+            api(project(":data-challenge"))
+            api(project(":data-newsletter"))
+            api(project(":data-preferences"))
+            api(project(":data-review"))
             implementation(project(":data-palette"))
-            implementation(project(":data-preferences"))
-            implementation(project(":data-review"))
         }
 
         commonTest.dependencies {
@@ -66,25 +59,22 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
-            implementation(libs.androidx.navigation.compose)
+            api(libs.androidx.compose.foundation.layout)
+            api(libs.androidx.compose.runtime)
+            api(libs.androidx.appcompat.core)
+            api(libs.androidx.compose.foundation)
+            api(libs.androidx.compose.ui.core)
 
-            implementation(libs.androidx.compose.foundation)
+            implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.annotation)
+            implementation(libs.androidx.window.core)
+            implementation(libs.androidx.navigation.compose)
             implementation(libs.androidx.compose.material3)
             implementation(libs.androidx.compose.material3.adaptive)
-            implementation(libs.androidx.compose.ui.core)
             implementation(libs.androidx.compose.ui.toolingPreview)
 
-            implementation(libs.androidx.activityCompose)
-            implementation(libs.androidx.lifecycle.runtime.ktx)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(libs.androidx.ui.graphics)
-
-            // DataStore
-            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.androidx.compose.ui.graphics)
 
             // Firebase
             implementation(project.dependencies.platform(libs.firebase.bom))
@@ -96,21 +86,20 @@ kotlin {
 
             // Google Ads & Review
             implementation(libs.android.playServices.ads)
-            implementation(libs.android.ump.core)
             implementation(libs.android.play.core.review)
-            implementation(libs.android.play.coreKtx.review)
 
             // Core Resources & UI
-            implementation(project(":core-resources"))
+            //implementation(project(":core-resources"))
             implementation(project(":core-ui"))
+            implementation(project(":data-typography"))
         }
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
+                runtimeOnly(libs.androidx.test.runner)
+                runtimeOnly(libs.androidx.core)
             }
         }
 

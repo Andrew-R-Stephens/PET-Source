@@ -22,7 +22,7 @@ configure<LibraryExtension> {
 
     defaultConfig {
 
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -56,73 +56,55 @@ configure<LibraryExtension> {
 
 dependencies {
 
-    implementation(libs.androidx.navigation.compose)
-
-    // Import the Compose BOM
-    implementation(platform(libs.androidx.compose.bom))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
+    api(libs.androidx.compose.foundation.layout)
+    api(libs.androidx.compose.runtime)
+    api(libs.jetbrains.kotlinx.coroutines)
+    api(libs.androidx.compose.ui.core)
+    api(libs.androidx.appcompat.core)
 
     // GOOGLE FIREBASE
-    // Import the BoM for the Firebase platform
     implementation(platform(libs.firebase.bom))
-    // GOOGLE FIREBASE AUTH
     implementation(libs.firebase.auth)
-    // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
-    // Declare the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    // GOOGLE FIREBASE ANALYTICS
     implementation(libs.firebase.crashlytics.core)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perfCore)
 
-    /*
-        ---- START----
-        ANDROID COMPOSE
-    */
-
-    // Testing --
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.testJunit4)
-    debugImplementation(libs.androidx.compose.ui.testManifest)
-    // ---
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.animation.core)
+    implementation(libs.androidx.compose.runtime.annotation)
     implementation(libs.androidx.compose.foundation)
-    /* Material Design 3 */
     implementation(libs.androidx.compose.material3)
-    // Optional - Add window size utils
     implementation(libs.androidx.compose.material3.adaptive)
-
-    // Compose UI
-    implementation(libs.androidx.compose.ui.core)
     implementation(libs.androidx.compose.ui.toolingPreview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
+    implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodelCompose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.window.core)
+    implementation(libs.androidx.navigation.compose)
 
-    implementation(libs.androidx.ui.graphics)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.testExt.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.compose.ui.testJunit4)
+    androidTestRuntimeOnly(libs.androidx.test.core)
+    androidTestRuntimeOnly(libs.androidx.test.runner)
+    androidTestRuntimeOnly(libs.jetbrains.kotlinx.coroutines.test)
+    debugImplementation(libs.androidx.compose.ui.testManifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    testImplementation(libs.junit)
 
-    implementation(project(":core-common"))
+    api(project(":core-common"))
+    api(project(":core-ui"))
     implementation(project(":core-resources"))
-    implementation(project(":core-ui"))
 
-    implementation(project(":data-ads"))
-    implementation(project(":data-account"))
-    implementation(project(":data-marketplace"))
-    implementation(project(":data-palette"))
-    implementation(project(":data-preferences"))
+    api(project(":data-ads"))
+    api(project(":data-account"))
+    api(project(":data-marketplace"))
+    api(project(":data-palette"))
+    api(project(":data-preferences"))
     implementation(project(":data-typography"))
 
     

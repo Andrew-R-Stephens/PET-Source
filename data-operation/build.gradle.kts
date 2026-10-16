@@ -11,7 +11,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.operation"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -50,15 +50,7 @@ kotlin {
         commonMain.dependencies {
             // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
-            implementation(libs.jetbrains.kotlinx.coroutines)
-            implementation(libs.jetbrains.kotlinx.serialization.json)
-            // Compose
-            implementation(libs.jetbrains.compose.runtime)
-            implementation(libs.jetbrains.compose.foundation)
-            implementation(libs.jetbrains.compose.material3)
-            implementation(libs.jetbrains.compose.ui)
-            implementation(libs.jetbrains.compose.ui.toolingPreview)
-            implementation(libs.jetbrains.compose.components)
+            api(libs.jetbrains.kotlinx.coroutines)
 
             // Internal Module Dependencies
             api(project(":data-challenge"))
@@ -67,8 +59,16 @@ kotlin {
             api(project(":data-ghost"))
             api(project(":data-journal"))
             api(project(":data-mission"))
-            api(project(":data-sanity"))
             api(project(":data-trait"))
+            api(project(":data-codex"))
+            api(project(":data-difficulty"))
+            api(project(":data-difficultysetting"))
+            api(project(":data-ghostname"))
+            api(project(":data-map"))
+            api(project(":data-phase"))
+            api(project(":data-sanity"))
+            api(project(":data-temperature"))
+
         }
 
         commonTest.dependencies {
@@ -76,19 +76,13 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
-            // Compose UI
-            implementation(libs.androidx.compose.ui.core)
-            implementation(libs.androidx.compose.ui.toolingPreview)
-
-            api(project(":core-resources"))
+            implementation(libs.androidx.compose.runtime.annotation)
         }
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }

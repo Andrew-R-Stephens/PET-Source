@@ -51,8 +51,7 @@ import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.LanguageIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
-import com.tritiumgaming.core.ui.mappers.IconResources
-import com.tritiumgaming.core.ui.mappers.IconResources.*
+import com.tritiumgaming.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors

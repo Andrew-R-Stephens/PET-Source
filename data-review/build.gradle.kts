@@ -11,7 +11,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.review"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -48,15 +48,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
 
-            // Internal Module Dependencies
-            //
             api(project(":core-common"))
-
-            // Jetpack DataStore
-            implementation(libs.androidx.datastore.preferences)
         }
 
         commonTest.dependencies {
@@ -64,16 +58,17 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
+            api(libs.androidx.datastore.core)
+            api(libs.androidx.datastore.preferences.core)
+            api(libs.jetbrains.kotlinx.coroutines)
 
             api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }
@@ -98,7 +93,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

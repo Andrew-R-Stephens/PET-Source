@@ -12,7 +12,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.palette"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -53,10 +53,7 @@ kotlin {
             implementation(libs.jetbrains.kotlin.stdlib)
 
             // Internal Module Dependencies
-            implementation(project(":core-common"))
-
-            // Jetpack DataStore
-            implementation(libs.androidx.datastore.preferences)
+            api(project(":core-common"))
         }
 
         commonTest.dependencies {
@@ -64,14 +61,6 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
-
-            // Android Billing API
-            implementation(libs.android.billing.core)
-
             // Android Firebase Native Dependencies (using BoM)
             implementation(project.dependencies.platform(libs.firebase.bom))
             implementation(libs.firebase.auth)
@@ -80,12 +69,12 @@ kotlin {
             implementation(libs.firebase.crashlytics.core)
             implementation(libs.firebase.analytics)
             implementation(libs.firebase.perfCore)
-
-            implementation(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }
@@ -96,81 +85,3 @@ kotlin {
         }
     }
 }
-
-/*
-import com.android.build.api.dsl.LibraryExtension
-
-plugins {
-    alias(libs.plugins.android.library)
-    // alias(libs.plugins.jetbrains.kotlin.android)
-
-    alias(libs.plugins.gms.services)
-}
-
-configure<LibraryExtension> {
-    namespace = "com.tritiumgaming.data.palette"
-    compileSdk = 37
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-
-    buildTypes {
-        debug {
-            initWith(getByName("debug"))
-        }
-        release {
-            initWith(getByName("release"))
-        }
-        create("releaseTest") {
-            initWith(getByName("releaseTest"))
-        }
-    }
-
-
-    compileOptions {
-        targetCompatibility = JavaVersion.VERSION_17
-        sourceCompatibility = JavaVersion.VERSION_17
-    }
-    buildToolsVersion = "36.1.0"
-}
-
-dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
-
-    // GOOGLE BILLING API
-    implementation(libs.android.billing.core)
-
-    // GOOGLE FIREBASE
-    // Import the BoM for the Firebase platform
-    implementation(platform(libs.firebase.bom))
-    // GOOGLE FIREBASE AUTH
-    implementation(libs.firebase.auth)
-    // GOOGLE FIREBASE FIRESTORE
-    implementation(libs.firebase.firestore)
-    // GOOGLE FIREBASE FUNCTIONS
-    implementation(libs.firebase.functions)
-    // Declare the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    // GOOGLE FIREBASE ANALYTICS
-    implementation(libs.firebase.crashlytics.core)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.perfCore)
-
-    
-    implementation(project(":core-common"))
-    implementation(project(":core-resources"))
-}*/

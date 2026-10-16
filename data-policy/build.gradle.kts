@@ -14,7 +14,7 @@ kotlin {
         compileSdk {
             version = release(37)
         }
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }
@@ -56,10 +56,8 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlin.stdlib)
-                implementation(libs.androidx.datastore.preferences)
+                //implementation(libs.androidx.datastore.preferences)
 
-                // Add KMP dependencies here
-                api(project(":data-preferences"))
                 api(project(":core-common"))
             }
         }
@@ -72,6 +70,10 @@ kotlin {
 
         androidMain {
             dependencies {
+                api(libs.androidx.datastore.core)
+                api(libs.androidx.datastore.preferences.core)
+                api(libs.jetbrains.kotlinx.coroutines)
+
                 // GOOGLE FIREBASE FIRESTORE
                 implementation(project.dependencies.platform(libs.firebase.bom))
                 // GOOGLE FIREBASE AUTH
@@ -94,8 +96,8 @@ kotlin {
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.core)
-                implementation(libs.androidx.runner)
+                runtimeOnly(libs.androidx.core)
+                runtimeOnly(libs.androidx.test.runner)
                 implementation(libs.androidx.testExt.junit)
             }
         }

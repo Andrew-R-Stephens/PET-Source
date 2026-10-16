@@ -9,7 +9,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.ads"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }
@@ -45,11 +45,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlin.stdlib)
-                implementation(libs.jetbrains.kotlinx.coroutines)
-                implementation(libs.jetbrains.kotlinx.serialization.json)
-
-                // Keep while transitioning away from monolithic shared module
-                
+                api(libs.jetbrains.kotlinx.coroutines)
             }
         }
 
@@ -61,22 +57,14 @@ kotlin {
 
         androidMain {
             dependencies {
-                implementation(libs.androidx.core.ktx)
-                implementation(libs.androidx.appcompat.core)
-                implementation(libs.android.material)
-
                 // Pulled from non KMP
                 implementation(libs.android.playServices.ads)
-
-                // Project Dependencies
-                api(project(":core-resources"))
             }
         }
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
+                runtimeOnly(libs.androidx.test.runner)
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }
@@ -102,7 +90,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }

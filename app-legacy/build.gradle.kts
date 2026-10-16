@@ -37,7 +37,7 @@ configure<ApplicationExtension> {
 
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
-        minSdk = 24
+        minSdk = 23
         targetSdk = 37
         versionCode = 146
         versionName = "0.10.6.0-legacy"
@@ -244,7 +244,7 @@ dependencies {
 
     /* New */
 
-    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.compose.ui.graphics)
 
     
     implementation(project(":core-resources"))

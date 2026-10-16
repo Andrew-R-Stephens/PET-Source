@@ -11,7 +11,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.codex"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -48,10 +48,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
-
-            // Internal Module Dependencies
         }
 
         commonTest.dependencies {
@@ -59,17 +56,15 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
+            implementation(libs.androidx.annotation)
 
-            // Internal Module Dependencies
             api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }

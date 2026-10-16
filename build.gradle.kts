@@ -43,6 +43,20 @@ plugins {
     alias(libs.plugins.firebase.perf) apply false
     alias(libs.plugins.android.lint) apply false
 
-    id("com.autonomousapps.dependency-analysis") version "3.19.2" apply false
+    id("com.autonomousapps.dependency-analysis") version "3.19.2"
+}
+
+subprojects {
+    apply(plugin = "com.autonomousapps.dependency-analysis")
+
+    tasks.matching { it.name == "copyAndroidDeviceTestComposeResourcesToAndroidAssets" }.configureEach {
+        val outputDir = layout.buildDirectory.dir("intermediates/compose_resources/$name")
+        try {
+            val prop = this::class.java.getMethod("getOutputDirectory").invoke(this) as? org.gradle.api.file.DirectoryProperty
+            if (prop != null && !prop.isPresent) {
+                prop.set(outputDir)
+            }
+        } catch (_: Exception) {}
+    }
 }
 

@@ -14,7 +14,7 @@ kotlin {
         compileSdk {
             version = release(37)
         }
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }
@@ -56,7 +56,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlin.stdlib)
-                // Add KMP dependencies here
             }
         }
 
@@ -68,30 +67,14 @@ kotlin {
 
         androidMain {
             dependencies {
-                // Compose UI
-                implementation(libs.androidx.compose.ui.core)
-                implementation(libs.androidx.compose.ui.toolingPreview)
-
-                /*Optional - Included automatically by material, only add when you need
-                the icons but not the material library (e.g. when using Material3 or a
-                custom design system based on Foundation)*/
-                implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
-                implementation(libs.androidx.compose.runtime.rxJava2) // Optional - Integration with RxJava
-
-                implementation(libs.androidx.activityCompose)
-                implementation(libs.androidx.lifecycle.runtime.ktx)
-                implementation(libs.androidx.lifecycle.viewmodelCompose)
-                implementation(libs.androidx.lifecycle.runtime.compose)
-                implementation(libs.androidx.navigation.compose)
-
+                implementation(libs.androidx.annotation)
                 api(project(":core-resources"))
             }
         }
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.core)
-                implementation(libs.androidx.runner)
+                runtimeOnly(libs.androidx.test.runner)
                 implementation(libs.androidx.testExt.junit)
             }
         }

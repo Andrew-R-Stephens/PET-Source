@@ -9,7 +9,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.challenge"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }
@@ -45,15 +45,13 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlin.stdlib)
-                implementation(libs.jetbrains.kotlinx.coroutines)
-                implementation(libs.jetbrains.kotlinx.serialization.json)
 
 
                 // Keep while transitioning away from monolithic shared module
                 api(project(":data-difficultysetting"))
                 api(project(":data-difficulty"))
                 api(project(":data-map"))
-                api(project(":data-equipment"))
+                //api(project(":data-equipment"))
 
                 // Project Dependencies
                 api(project(":core-common"))
@@ -68,20 +66,14 @@ kotlin {
 
         androidMain {
             dependencies {
-                implementation(libs.androidx.core.ktx)
-                implementation(libs.androidx.appcompat.core)
-                implementation(libs.android.material)
-                // Project Dependencies
-                implementation(project(":core-resources"))
-                // To be migrated to commonMain
                 implementation(project(":data-codex"))
             }
         }
 
         getByName("androidDeviceTest") {
             dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }

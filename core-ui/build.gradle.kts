@@ -12,7 +12,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.core.ui"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }
@@ -47,22 +47,18 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.jetbrains.kotlin.stdlib)
-                implementation(libs.jetbrains.kotlinx.coroutines)
+                api(libs.jetbrains.kotlinx.coroutines)
 
-                // Compose Multiplatform
-                implementation(libs.jetbrains.compose.runtime)
-                implementation(libs.jetbrains.compose.foundation)
-                implementation(libs.jetbrains.compose.material3)
-                implementation(libs.jetbrains.compose.ui)
+                implementation(libs.jetbrains.kotlin.stdlib)
                 implementation(libs.jetbrains.compose.components)
 
                 // Internal Module Dependencies
                 api(project(":core-common"))
-                implementation(project(":data-language"))
-                implementation(project(":data-typography"))
-                implementation(project(":data-palette"))
-                implementation(project(":data-preferences"))
+                api(project(":data-language"))
+                api(project(":data-palette"))
+                api(project(":data-preferences"))
+                api(project(":data-typography"))
+
             }
         }
 
@@ -74,28 +70,28 @@ kotlin {
 
         androidMain {
             dependencies {
-                // Android Core & UI Libraries
+                api(libs.androidx.compose.foundation)
+                api(libs.androidx.compose.foundation.layout)
+                api(libs.androidx.compose.material3)
+                api(libs.androidx.compose.runtime)
+                api(libs.androidx.compose.ui.core)
+                api(libs.androidx.compose.ui.graphics)
+
+                implementation(libs.androidx.activity)
+                implementation(libs.androidx.annotation)
+                implementation(libs.androidx.compose.animation.core)
+                implementation(libs.androidx.compose.animation)
                 implementation(libs.androidx.core.ktx)
-                implementation(libs.androidx.appcompat.core)
-                implementation(libs.android.material)
+                implementation(libs.androidx.compose.runtime.annotation)
+                implementation(libs.androidx.core)
 
-                // Google Ads
-                implementation(libs.android.playServices.ads)
 
-                // Compose UI Android specific & Lifecycle
-                implementation(libs.androidx.compose.foundation)
-                implementation(libs.androidx.compose.material3)
-                implementation(libs.androidx.compose.ui.core)
+
                 implementation(libs.androidx.compose.ui.toolingPreview)
-
-                implementation(libs.androidx.activityCompose)
-                implementation(libs.androidx.lifecycle.runtime.ktx)
-                implementation(libs.androidx.lifecycle.viewmodelCompose)
                 implementation(libs.androidx.lifecycle.runtime.compose)
 
-                implementation(libs.androidx.ui.graphics)
+                implementation(libs.android.playServices.ads)
 
-                implementation(project(":core-resources"))
             }
         }
 
@@ -113,92 +109,3 @@ kotlin {
         }
     }
 }
-
-/*
-import com.android.build.api.dsl.LibraryExtension
-
-plugins {
-    alias(libs.plugins.gms.services)
-
-    // alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.compose.compiler)
-    alias(libs.plugins.android.library)
-}
-
-configure<LibraryExtension> {
-    namespace = "com.tritiumgaming.core.ui"
-    compileSdk = 37
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        debug {
-            initWith(getByName("debug"))
-        }
-        release {
-            initWith(getByName("release"))
-        }
-        create("releaseTest") {
-            initWith(getByName("releaseTest"))
-        }
-    }
-
-    compileOptions {
-        targetCompatibility = JavaVersion.VERSION_17
-        sourceCompatibility = JavaVersion.VERSION_17
-    }
-    buildToolsVersion = "36.1.0"
-
-    //buildToolsVersion = "36.0.0"
-
-}
-
-dependencies {
-
-    // Import the Compose BOM
-    implementation(platform(libs.androidx.compose.bom))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat.core)
-    implementation(libs.android.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    // GOOGLE ADS
-    implementation(libs.android.playServices.ads)
-
-    // Testing --
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.testJunit4)
-    debugImplementation(libs.androidx.compose.ui.testManifest)
-
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.material3)
-
-    // Compose UI
-    implementation(libs.androidx.compose.ui.core)
-    implementation(libs.androidx.compose.ui.toolingPreview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
-    implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodelCompose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
-
-    implementation(libs.androidx.ui.graphics)
-
-    implementation(project(":core-common"))
-    implementation(project(":core-resources"))
-
-    implementation(project(":data-language"))
-    implementation(project(":data-typography"))
-    implementation(project(":data-palette"))
-    implementation(project(":data-preferences"))
-}
-*/

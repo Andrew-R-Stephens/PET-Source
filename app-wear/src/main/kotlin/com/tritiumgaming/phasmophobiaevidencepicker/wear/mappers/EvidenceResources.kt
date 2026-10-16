@@ -3,7 +3,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.wear.mappers
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.data.evidence.mapper.EvidenceResources.*
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.data.evidence.mapper.EvidenceResources.EvidenceTitle
 
 @StringRes fun EvidenceIdentifier.toStringResource(): Int =
     when (this) {

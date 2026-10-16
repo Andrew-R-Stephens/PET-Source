@@ -14,7 +14,7 @@ kotlin {
         compileSdk {
             version = release(37)
         }
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }
@@ -107,7 +107,7 @@ kotlin {
         getByName("androidDeviceTest") {
             dependencies {
                 implementation(libs.androidx.core)
-                implementation(libs.androidx.runner)
+                implementation(libs.androidx.test.runner)
                 implementation(libs.androidx.testExt.junit)
             }
         }

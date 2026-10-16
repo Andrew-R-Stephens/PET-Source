@@ -12,7 +12,7 @@ kotlin {
     android {
         namespace = "com.tritiumgaming.data.marketplace"
         compileSdk = 37
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder { }
 
@@ -50,12 +50,13 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.jetbrains.kotlin.stdlib)
-            implementation(libs.androidx.datastore.preferences)
+            //implementation(libs.androidx.datastore.preferences)
 
             // Internal Module Dependencies
-            implementation(project(":core-common"))
-            implementation(project(":data-account"))
-
+            //implementation(project(":core-common"))
+            api(project(":data-account"))
+            api(project(":data-palette"))
+            api(project(":data-typography"))
         }
 
         commonTest.dependencies {
@@ -63,13 +64,11 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Android Core & UI Libraries
-            implementation(libs.androidx.core.ktx)
-            implementation(libs.androidx.appcompat.core)
-            implementation(libs.android.material)
-
             // Android Billing API
-            implementation(libs.android.billing.core)
+            api(libs.android.billing.core)
+            api(libs.jetbrains.kotlinx.coroutines)
+
+            implementation(libs.jetbrains.kotlinx.coroutines.play.services)
 
             // Android Firebase Native Dependencies (using BoM)
             implementation(project.dependencies.platform(libs.firebase.bom))
@@ -85,6 +84,8 @@ kotlin {
 
         getByName("androidDeviceTest") {
             dependencies {
+                runtimeOnly(libs.androidx.test.runner)
+
                 implementation(libs.androidx.testExt.junit)
                 implementation(libs.androidx.espresso.core)
             }
@@ -111,7 +112,7 @@ configure<LibraryExtension> {
     compileSdk = 37
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
