@@ -9,7 +9,7 @@ import com.tritiumgaming.data.map.complex.source.service.ComplexMapLocalService
 import com.tritiumgaming.data.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
-import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
+import com.tritiumgaming.data.map.simple.source.local.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
 import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapIndexUseCase

@@ -3,12 +3,11 @@ package com.tritiumgaming.data.map.simple.model
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 class SimpleWorldMap(
-    val mapId: MapId,
+    val mapId: String,
     val mapName: MapTitle,
     val mapSize: MapSize,
     val thumbnailImage: MapThumbnail,
@@ -16,19 +15,19 @@ class SimpleWorldMap(
     val defaultFloor: Int
 ) {
 
-    val allFloorLayers: ArrayList<ArrayList<Int>> = ArrayList()
+    //val allFloorLayers: ArrayList<ArrayList<Int>> = ArrayList()
 
     val floorCount: Int
         get() = mapFloors.size
 
-    fun getFloorName(floorIndex: Int): MapFloorTitle {
+    /*fun getFloorName(floorIndex: Int): MapFloorTitle {
         return mapFloors[floorIndex].layerName
-    }
+    }*/
 
     fun getFloorImage(floorIndex: Int): MapFloorImage =
         mapFloors[floorIndex].image
 
-    fun addFloorLayer(floorIndex: Int, layer: Int) {
+    /*fun addFloorLayer(floorIndex: Int, layer: Int) {
         if (allFloorLayers.isEmpty() || floorIndex >= allFloorLayers.size) {
             val temp = ArrayList<Int>()
             temp.add(layer)
@@ -36,7 +35,7 @@ class SimpleWorldMap(
         } else {
             allFloorLayers[floorIndex].add(layer)
         }
-    }
+    }*/
 
     override fun toString(): String {
         return "SimpleWorldMap(mapId='$mapId', mapName=$mapName, mapSize=$mapSize, " +

@@ -122,7 +122,7 @@ class MapsScreenViewModel(
         _interactiveMapUiState.update {
 
             val simpleMap = simpleMaps.first{ map -> map.mapId == id }
-            val complexMapId = id.toStringResource()
+            val complexMapId = id
             val complexMapFloors = complexMaps?.getMapById(id)?.mapFloors[simpleMap.defaultFloor]
 
             it.copy(

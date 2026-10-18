@@ -1,4 +1,4 @@
-package com.tritiumgaming.data.map.simple.source
+package com.tritiumgaming.data.map.simple.source.local
 
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapDto
 

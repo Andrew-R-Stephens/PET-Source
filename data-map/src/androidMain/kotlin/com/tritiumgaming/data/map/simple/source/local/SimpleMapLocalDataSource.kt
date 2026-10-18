@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.map.simple.source.local
 
-import android.content.Context
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapDto
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapFloorDto
@@ -9,10 +8,10 @@ import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitl
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 
-
-class SimpleMapLocalDataSource: SimpleMapDataSource {
+class SimpleMapLocalDataSource(
+    private val mapIdentifiers: MapIdentifiers
+): SimpleMapDataSource {
 
     private val mapsResourceDto: List<MapResourceDto>
         get() = listOf(
@@ -320,21 +319,23 @@ class SimpleMapLocalDataSource: SimpleMapDataSource {
         return Result.success(simpleMaps)
     }
 
-    private fun MapResourceDto.toWorldMapDto() = SimpleWorldMapDto(
-        mapId = mapId,
-        mapName = mapName,
-        thumbnailImage = thumbnailImage,
-        mapSize = mapSize,
-        mapFloors = mapFloors.toWorldMapFloorDto(),
-        defaultFloor = defaultFloor
-    )
+    private fun MapResourceDto.toWorldMapDto(identifiers: MapIdentifiers): SimpleWorldMapDto {
+        return SimpleWorldMapDto(
+            mapId = identifiers.toValue(mapId),
+            mapName = mapName,
+            thumbnailImage = thumbnailImage,
+            mapSize = mapSize,
+            mapFloors = mapFloors.toWorldMapFloorDto(),
+            defaultFloor = defaultFloor
+        )
+    }
 
     private fun MapFloorResourceDto.toWorldMapFloorDto() = SimpleWorldMapFloorDto(
         layerName = layerName,
         image = image
     )
 
-    private fun List<MapResourceDto>.toWorldMapDto() = map { it.toWorldMapDto() }
+    private fun List<MapResourceDto>.toWorldMapDto() = map { it.toWorldMapDto(mapIdentifiers) }
 
     private fun List<MapFloorResourceDto>.toWorldMapFloorDto() = map { it.toWorldMapFloorDto() }
 
@@ -351,5 +352,11 @@ class SimpleMapLocalDataSource: SimpleMapDataSource {
         val layerName: MapFloorTitle,
         val image: MapFloorImage
     )
+
+    data class MapIdentifiers(
+        private val pairs: Map<MapId, String>
+    ) {
+        fun toValue(mapId: MapId) = pairs[mapId] ?: ""
+    }
 
 }

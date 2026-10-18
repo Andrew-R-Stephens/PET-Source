@@ -12,18 +12,18 @@ data class ComplexWorldMapFloor(
     val floorRoomNames: List<String>
         get() = floorRooms.map { it.name }
 
-    val lastRoom: ComplexWorldRoom?
+    /*val lastRoom: ComplexWorldRoom?
         get() {
             if (floorRooms.isEmpty()) { return null }
             return floorRooms[floorRooms.size - 1]
-        }
+        }*/
 
     val rooms: List<ComplexWorldRoom>
         get() = floorRooms
 
-    fun getRoomById(id: Int): ComplexWorldRoom? = floorRooms.find { room -> room.id == id }
+    //fun getRoomById(id: Int): ComplexWorldRoom? = floorRooms.find { room -> room.id == id }
 
-    fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
+    //fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
 
     fun getPois(): List<ComplexWorldPoi> = floorPOIs
 

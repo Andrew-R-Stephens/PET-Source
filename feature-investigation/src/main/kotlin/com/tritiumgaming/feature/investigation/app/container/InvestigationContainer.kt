@@ -56,9 +56,10 @@ import com.tritiumgaming.data.map.modifier.usecase.GetSimpleMapSetupModifierUseC
 import com.tritiumgaming.data.map.modifiers.repository.MapModifiersRepositoryImpl
 import com.tritiumgaming.data.map.modifiers.source.MapModifiersDataSource
 import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSource
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.*
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
-import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
+import com.tritiumgaming.data.map.simple.source.local.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
 import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
@@ -79,6 +80,7 @@ import com.tritiumgaming.data.trait.usecase.GetGhostTraitsByGhostUseCase
 import com.tritiumgaming.data.trait.usecase.GetGhostTraitsByTagUseCase
 import com.tritiumgaming.data.trait.usecase.GetUniqueGhostTraitsUseCase
 import com.tritiumgaming.data.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.feature.investigation.R
 import com.tritiumstudios.data.operation.usecase.bundle.InvestigationUseCaseBundle
 
 class InvestigationContainer(
@@ -242,7 +244,29 @@ class InvestigationContainer(
     }
     // Simple Map
     private val simpleMapRepository: SimpleMapRepository by lazy {
-        val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource()
+        fun getString(id: Int): String = applicationContext.getString(id)
+        val mapIdentifiers = SimpleMapLocalDataSource.MapIdentifiers(
+            pairs = mapOf(
+                MapId.SUNNY_MEADOWS to getString(R.string.map_id_meadows),
+                MapId.SUNNY_MEADOWS_RESTRICTED to getString(R.string.map_id_meadows_r),
+                MapId.POINT_HOPE to getString(R.string.map_id_pointhope),
+                MapId.CAMP_MAPLE to getString(R.string.map_id_campmaple),
+                MapId.CAMP_WOODWIND to getString(R.string.map_id_campwoodwind),
+                MapId.DINER to getString(R.string.map_id_diner),
+                MapId.BLEASDALE_FARMHOUSE to getString(R.string.map_id_bleasdale),
+                MapId.GRAFTON_FARMHOUSE to getString(R.string.map_id_grafton),
+                MapId.BROWNSTONE_HIGHSCHOOL to getString(R.string.map_id_brownstone),
+                MapId.EDGEFIELD to getString(R.string.map_id_edgefield),
+                MapId.TANGLEWOOD to getString(R.string.map_id_tanglewood),
+                MapId.WILLOW to getString(R.string.map_id_willow),
+                MapId.RIDGEVIEW to getString(R.string.map_id_ridgeview),
+                MapId.PRISON to getString(R.string.map_id_prison)
+            )
+        )
+
+        val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
+            mapIdentifiers = mapIdentifiers
+        )
         SimpleMapRepositoryImpl(
             localSource = simpleMapLocalDataSource
         )

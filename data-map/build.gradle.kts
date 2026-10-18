@@ -52,6 +52,7 @@ kotlin {
         commonMain.dependencies {
             // Kotlin Standard Library
             implementation(libs.jetbrains.kotlin.stdlib)
+            implementation(libs.jetbrains.kotlinx.coroutines)
 
             // Internal Module Dependencies
             api(project(":data-phase"))
@@ -63,7 +64,6 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.androidx.annotation)
-            implementation(libs.jetbrains.kotlinx.coroutines)
 
             implementation(libs.google.gson)
 
