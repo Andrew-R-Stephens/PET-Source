@@ -1,26 +1,24 @@
 package com.tritiumgaming.data.map.simple.source.local
 
 import android.content.Context
-import com.tritiumgaming.data.map.R
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapDto
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapFloorDto
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 
 
-class SimpleMapLocalDataSource(
-    private val applicationContext: Context
-): SimpleMapDataSource {
+class SimpleMapLocalDataSource: SimpleMapDataSource {
 
     private val mapsResourceDto: List<MapResourceDto>
         get() = listOf(
             // Sunny Meadows
             MapResourceDto(
-                mapId = R.string.map_id_meadows,
+                mapId = MapId.SUNNY_MEADOWS,
                 mapName = MapTitle.SUNNY_MEADOWS,
                 thumbnailImage = MapThumbnail.SUNNY_MEADOWS,
                 mapSize = MapSize.LARGE,
@@ -38,7 +36,7 @@ class SimpleMapLocalDataSource(
             ),
             // Sunny Meadows Restricted
             MapResourceDto(
-                mapId = R.string.map_id_meadows_r,
+                mapId = MapId.SUNNY_MEADOWS_RESTRICTED,
                 mapName = MapTitle.SUNNY_MEADOWS_RESTRICTED,
                 thumbnailImage = MapThumbnail.SUNNY_MEADOWS_RESTRICTED,
                 mapSize = MapSize.LARGE,
@@ -56,7 +54,7 @@ class SimpleMapLocalDataSource(
             ),
             // Point Hope
             MapResourceDto(
-                mapId = R.string.map_id_pointhope,
+                mapId = MapId.POINT_HOPE,
                 mapName = MapTitle.POINT_HOPE,
                 thumbnailImage = MapThumbnail.POINT_HOPE,
                 mapSize = MapSize.MEDIUM,
@@ -106,7 +104,7 @@ class SimpleMapLocalDataSource(
             ),
             // Camp Woodwind
             MapResourceDto(
-                mapId = R.string.map_id_campwoodwind,
+                mapId = MapId.CAMP_WOODWIND,
                 mapName = MapTitle.CAMP_WOODWIND,
                 thumbnailImage = MapThumbnail.CAMP_WOODWIND,
                 mapSize = MapSize.SMALL,
@@ -120,7 +118,7 @@ class SimpleMapLocalDataSource(
             ),
             // Camp Woodwind
             MapResourceDto(
-                mapId = R.string.map_id_diner,
+                mapId = MapId.DINER,
                 mapName = MapTitle.DINER,
                 thumbnailImage = MapThumbnail.DINER,
                 mapSize = MapSize.SMALL,
@@ -134,7 +132,7 @@ class SimpleMapLocalDataSource(
             ),
             // Camp Maple
             MapResourceDto(
-                mapId = R.string.map_id_campmaple,
+                mapId = MapId.CAMP_MAPLE,
                 mapName = MapTitle.CAMP_MAPLE,
                 thumbnailImage = MapThumbnail.CAMP_MAPLE,
                 mapSize = MapSize.MEDIUM,
@@ -156,7 +154,7 @@ class SimpleMapLocalDataSource(
             ),
             // Bleasdale Farmhouse
             MapResourceDto(
-                mapId = R.string.map_id_bleasdale,
+                mapId = MapId.BLEASDALE_FARMHOUSE,
                 mapName = MapTitle.BLEASDALE_FARMHOUSE,
                 thumbnailImage = MapThumbnail.BLEASDALE_FARMHOUSE,
                 mapSize = MapSize.SMALL,
@@ -178,7 +176,7 @@ class SimpleMapLocalDataSource(
             ),
             // Grafton Farmhouse
             MapResourceDto(
-                mapId = R.string.map_id_grafton,
+                mapId = MapId.GRAFTON_FARMHOUSE,
                 mapName = MapTitle.GRAFTON_FARMHOUSE,
                 thumbnailImage = MapThumbnail.GRAFTON_FARMHOUSE,
                 mapSize = MapSize.SMALL,
@@ -200,7 +198,7 @@ class SimpleMapLocalDataSource(
             ),
             // Brownstone Highschool
             MapResourceDto(
-                mapId = R.string.map_id_brownstone,
+                mapId = MapId.BROWNSTONE_HIGHSCHOOL,
                 mapName = MapTitle.BROWNSTONE_HIGHSCHOOL,
                 thumbnailImage = MapThumbnail.BROWNSTONE_HIGHSCHOOL,
                 mapSize = MapSize.LARGE,
@@ -218,7 +216,7 @@ class SimpleMapLocalDataSource(
             ),
             // Edgefield
             MapResourceDto(
-                mapId = R.string.map_id_edgefield,
+                mapId = MapId.EDGEFIELD,
                 mapName = MapTitle.EDGEFIELD,
                 thumbnailImage = MapThumbnail.EDGEFIELD,
                 mapSize = MapSize.SMALL,
@@ -240,7 +238,7 @@ class SimpleMapLocalDataSource(
             ),
             // Tanglewood
             MapResourceDto(
-                mapId = R.string.map_id_tanglewood,
+                mapId = MapId.TANGLEWOOD,
                 mapName = MapTitle.TANGLEWOOD,
                 thumbnailImage = MapThumbnail.TANGLEWOOD,
                 mapSize = MapSize.SMALL,
@@ -258,7 +256,7 @@ class SimpleMapLocalDataSource(
             ),
             // Willow
             MapResourceDto(
-                mapId = R.string.map_id_willow,
+                mapId = MapId.WILLOW,
                 mapName = MapTitle.WILLOW,
                 thumbnailImage = MapThumbnail.WILLOW,
                 mapSize = MapSize.SMALL,
@@ -276,7 +274,7 @@ class SimpleMapLocalDataSource(
             ),
             // Ridgeview
             MapResourceDto(
-                mapId = R.string.map_id_ridgeview,
+                mapId = MapId.RIDGEVIEW,
                 mapName = MapTitle.RIDGEVIEW,
                 thumbnailImage = MapThumbnail.RIDGEVIEW,
                 mapSize = MapSize.SMALL,
@@ -298,7 +296,7 @@ class SimpleMapLocalDataSource(
             ),
             //Prison
             MapResourceDto(
-                mapId = R.string.map_id_prison,
+                mapId = MapId.PRISON,
                 mapName = MapTitle.PRISON,
                 thumbnailImage = MapThumbnail.PRISON,
                 mapSize = MapSize.MEDIUM,
@@ -323,7 +321,7 @@ class SimpleMapLocalDataSource(
     }
 
     private fun MapResourceDto.toWorldMapDto() = SimpleWorldMapDto(
-        mapId = applicationContext.getString(mapId),
+        mapId = mapId,
         mapName = mapName,
         thumbnailImage = thumbnailImage,
         mapSize = mapSize,
@@ -341,7 +339,7 @@ class SimpleMapLocalDataSource(
     private fun List<MapFloorResourceDto>.toWorldMapFloorDto() = map { it.toWorldMapFloorDto() }
 
     private data class MapResourceDto(
-        val mapId: Int,
+        val mapId: MapId,
         val mapName: MapTitle,
         val mapSize: MapSize,
         val thumbnailImage: MapThumbnail,

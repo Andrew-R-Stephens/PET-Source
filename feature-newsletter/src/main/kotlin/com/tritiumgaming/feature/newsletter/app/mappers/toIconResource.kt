@@ -2,7 +2,7 @@ package com.tritiumgaming.feature.newsletter.app.mappers
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mapper.common.ToComposable
 import com.tritiumgaming.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.data.newsletter.mapper.NewsletterResources.NewsletterIcon
 

@@ -242,9 +242,7 @@ class InvestigationContainer(
     }
     // Simple Map
     private val simpleMapRepository: SimpleMapRepository by lazy {
-        val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
-            applicationContext = applicationContext
-        )
+        val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource()
         SimpleMapRepositoryImpl(
             localSource = simpleMapLocalDataSource
         )

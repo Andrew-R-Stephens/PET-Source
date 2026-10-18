@@ -90,7 +90,7 @@ kotlin {
                 implementation(libs.android.playServices.ads)
                 implementation(libs.android.ump.core)
 
-                implementation(project(":core-resources"))
+                //implementation(project(":core-resources"))
             }
         }
 

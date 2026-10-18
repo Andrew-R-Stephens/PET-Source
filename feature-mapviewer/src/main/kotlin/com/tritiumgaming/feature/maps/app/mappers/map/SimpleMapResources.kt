@@ -2,17 +2,36 @@ package com.tritiumgaming.feature.maps.app.mappers.map
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.data.map.R
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitleLength
+import com.tritiumgaming.feature.maps.R
 
 @StringRes fun MapTitle.toStringResource(length: MapTitleLength = MapTitleLength.FULL): Int =
     when (length) {
         MapTitleLength.FULL -> this.toFullNameStringResource()
         MapTitleLength.ABBREVIATED -> this.toAbbreviatedNameStringResource()
+    }
+
+@StringRes private fun MapId.toStringResource(): Int = 
+    when (this) {
+        MapId.SUNNY_MEADOWS -> R.string.map_id_meadows
+        MapId.SUNNY_MEADOWS_RESTRICTED -> R.string.map_id_meadows_r
+        MapId.POINT_HOPE -> R.string.map_id_pointhope
+        MapId.CAMP_WOODWIND -> R.string.map_id_campwoodwind
+        MapId.CAMP_MAPLE -> R.string.map_id_campmaple
+        MapId.BLEASDALE_FARMHOUSE -> R.string.map_id_bleasdale
+        MapId.GRAFTON_FARMHOUSE -> R.string.map_id_grafton
+        MapId.BROWNSTONE_HIGHSCHOOL -> R.string.map_id_brownstone
+        MapId.TANGLEWOOD -> R.string.map_id_tanglewood
+        MapId.EDGEFIELD -> R.string.map_id_edgefield
+        MapId.WILLOW -> R.string.map_id_willow
+        MapId.RIDGEVIEW -> R.string.map_id_ridgeview
+        MapId.PRISON -> R.string.map_id_prison
+        MapId.DINER -> R.string.map_id_diner
     }
 
 @StringRes private fun MapTitle.toFullNameStringResource(): Int {

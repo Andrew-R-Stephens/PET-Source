@@ -1,4 +1,4 @@
-package com.tritiumgaming.core.ui.mapper
+package com.tritiumgaming.core.ui.mapper.language
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R

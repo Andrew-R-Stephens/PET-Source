@@ -15,4 +15,9 @@ interface PolicyDatastore: DatastoreDataSource<Policy> {
         val hasExplicitAnalyticsConsent: Boolean = false
     )
 
+    data class Keys(
+        val allowAnalytics: String,
+        val allowPersonalizedAds: String
+    )
+
 }

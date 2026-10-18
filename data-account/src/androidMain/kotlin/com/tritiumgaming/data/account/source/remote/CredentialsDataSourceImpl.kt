@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.account.source.remote
 
-import android.content.Context
 import android.util.Log
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialResponse
@@ -16,15 +15,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.credentials.SignInOptions
 import com.tritiumgaming.core.domain.market.user.source.CredentialsDataSource
-import com.tritiumgaming.data.account.common.CredentialsResources.CredentialKey
-import com.tritiumgaming.data.account.common.asIdentifier
 import kotlinx.coroutines.tasks.await
 
 class CredentialsDataSourceImpl(
-    context: Context
+    private val webClientId: String
 ): CredentialsDataSource {
-
-    val webClientId = context.getString(CredentialKey.WEB_CLIENT_ID.asIdentifier(context))
 
     override fun getSignInCredentials(
         option: SignInOptions

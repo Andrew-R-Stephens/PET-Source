@@ -19,7 +19,6 @@ configure<LibraryExtension> {
         consumerProguardFiles("consumer-rules.pro")
     }
 
-
     buildTypes {
         debug {
             initWith(getByName("debug"))

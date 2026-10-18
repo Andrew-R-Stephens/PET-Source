@@ -61,10 +61,8 @@ kotlin {
 
         androidMain {
             dependencies {
-                /* APIS */
 
                 api(libs.jetbrains.kotlinx.serialization.core)
-                // In-App Updates
                 api(libs.android.play.core.update)
                 api(libs.android.ump.core)
                 api(libs.androidx.window.core)

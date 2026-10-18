@@ -1,4 +1,4 @@
-package com.tritiumgaming.core.ui.mapper
+package com.tritiumgaming.core.ui.mapper.typography
 
 import com.tritiumgaming.core.ui.theme.type.AndroidTypography
 import com.tritiumgaming.core.ui.theme.type.BrickTypography

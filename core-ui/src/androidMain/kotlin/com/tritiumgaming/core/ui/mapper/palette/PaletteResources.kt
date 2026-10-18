@@ -1,4 +1,4 @@
-package com.tritiumgaming.core.ui.mapper
+package com.tritiumgaming.core.ui.mapper.palette
 
 import com.tritiumgaming.core.ui.theme.palette.Agent
 import com.tritiumgaming.core.ui.theme.palette.Analyst

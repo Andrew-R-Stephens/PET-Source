@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.icon.impl.base.LogoPatreonIcon
 import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
-import com.tritiumgaming.core.ui.mapper.ToComposable
-import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.mapper.common.ToComposable
+import com.tritiumgaming.core.ui.mapper.palette.toPaletteResource
 import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider

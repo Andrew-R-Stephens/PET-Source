@@ -8,8 +8,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.common.util.TimeUtils
-import com.tritiumgaming.core.ui.mapper.toPaletteResource
-import com.tritiumgaming.core.ui.mapper.toTypographyResource
+import com.tritiumgaming.core.ui.mapper.palette.toPaletteResource
+import com.tritiumgaming.core.ui.mapper.typography.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase

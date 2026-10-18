@@ -37,12 +37,8 @@ configure<LibraryExtension> {
 
 dependencies {
 
-    //implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat.core)
     implementation(libs.android.material)
-    //testImplementation(libs.junit)
-    //androidTestImplementation(libs.androidx.testExt.junit)
-    //androidTestImplementation(libs.androidx.espresso.core)
 
     androidTestRuntimeOnly(libs.androidx.test.core)
     androidTestRuntimeOnly(libs.androidx.test.runner)

@@ -31,7 +31,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.network.FirebaseFunctionError
 import com.tritiumgaming.core.ui.common.network.toStringResource
-import com.tritiumgaming.core.ui.mapper.toTypographyResource
+import com.tritiumgaming.core.ui.mapper.typography.toTypographyResource
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.data.marketplace.typography.model.MarketTypography

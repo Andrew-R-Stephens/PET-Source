@@ -8,15 +8,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.resources.R as Res
-import com.tritiumgaming.data.map.R
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
+import com.tritiumgaming.data.map.R
 import com.tritiumgaming.data.map.mappers.toStringResource
 import com.tritiumgaming.data.map.modifier.mappers.toFloat
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.TextDataRow
+import com.tritiumgaming.core.resources.R as Res
 
 @Composable
 internal fun MapModifierDetails(

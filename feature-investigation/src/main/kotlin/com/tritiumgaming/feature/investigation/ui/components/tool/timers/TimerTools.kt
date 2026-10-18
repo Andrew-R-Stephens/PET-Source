@@ -47,7 +47,6 @@ import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
 import com.tritiumgaming.core.ui.widgets.walkthrough.WalkthroughState
 import com.tritiumgaming.core.ui.widgets.walkthrough.walkthroughTarget
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.data.map.mappers.toStringResource
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.mappers.toStringResource
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources

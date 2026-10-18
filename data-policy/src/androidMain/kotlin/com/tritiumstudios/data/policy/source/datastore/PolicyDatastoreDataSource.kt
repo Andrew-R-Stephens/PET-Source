@@ -1,7 +1,6 @@
 package com.tritiumstudios.data.policy.source.datastore
 
-import android.content.Context
-import android.content.pm.PackageManager
+import android.content.pm.ApplicationInfo
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
@@ -9,7 +8,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import com.tritiumgaming.core.resources.R
 import com.tritiumstudios.data.policy.source.PolicyDatastore
 import com.tritiumstudios.data.policy.source.PolicyDatastore.Policy
 import kotlinx.coroutines.flow.Flow
@@ -18,8 +16,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class PolicyDatastoreDataSource(
-    private val context: Context,
-    private val dataStore: DataStore<Preferences>
+    private val applicationInfo: ApplicationInfo,
+    private val dataStore: DataStore<Preferences>,
+    datastoreKeys: PolicyDatastore.Keys
 ): PolicyDatastore {
 
     private val defaultAllowAnalytics: Boolean by lazy {
@@ -36,11 +35,7 @@ class PolicyDatastoreDataSource(
 
     private fun getMetadataBoolean(key: String, defaultValue: Boolean): Boolean {
         return try {
-            val appInfo = context.packageManager.getApplicationInfo(
-                context.packageName,
-                PackageManager.GET_META_DATA
-            )
-            val bundle = appInfo.metaData ?: return defaultValue
+            val bundle = applicationInfo.metaData ?: return defaultValue
             when (val value = bundle.get(key)) {
                 is Boolean -> value
                 is String -> {
@@ -70,8 +65,8 @@ class PolicyDatastoreDataSource(
     init {
         Log.d("Policy Repository", "Initializing")
 
-        KEY_ALLOW_ANALYTICS = booleanPreferencesKey(context.resources.getString(R.string.preference_allowAnalytics))
-        KEY_ALLOW_PERSONALIZED_ADS = booleanPreferencesKey(context.resources.getString(R.string.preference_allowPersonalizedAds))
+        KEY_ALLOW_ANALYTICS = booleanPreferencesKey(datastoreKeys.allowAnalytics)
+        KEY_ALLOW_PERSONALIZED_ADS = booleanPreferencesKey(datastoreKeys.allowPersonalizedAds)
     }
 
     override suspend fun setAllowAnalytics(allow: Boolean) {

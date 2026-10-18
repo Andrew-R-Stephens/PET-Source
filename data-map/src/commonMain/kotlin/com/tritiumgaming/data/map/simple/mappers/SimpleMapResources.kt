@@ -2,6 +2,23 @@ package com.tritiumgaming.data.map.simple.mappers
 
 class SimpleMapResources {
 
+    enum class MapId {
+        SUNNY_MEADOWS,
+        SUNNY_MEADOWS_RESTRICTED,
+        POINT_HOPE,
+        DINER,
+        CAMP_WOODWIND,
+        CAMP_MAPLE,
+        BLEASDALE_FARMHOUSE,
+        GRAFTON_FARMHOUSE,
+        BROWNSTONE_HIGHSCHOOL,
+        EDGEFIELD,
+        TANGLEWOOD,
+        WILLOW,
+        RIDGEVIEW,
+        PRISON
+    }
+
     enum class MapTitle {
         SUNNY_MEADOWS,
         SUNNY_MEADOWS_RESTRICTED,

@@ -3,11 +3,12 @@ package com.tritiumgaming.data.map.simple.model
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 class SimpleWorldMap(
-    val mapId: String,
+    val mapId: MapId,
     val mapName: MapTitle,
     val mapSize: MapSize,
     val thumbnailImage: MapThumbnail,

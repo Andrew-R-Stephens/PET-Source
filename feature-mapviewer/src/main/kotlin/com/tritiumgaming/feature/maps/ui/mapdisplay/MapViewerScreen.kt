@@ -96,6 +96,7 @@ import com.tritiumgaming.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.data.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
@@ -111,7 +112,7 @@ private fun MapViewerPreview() {
         ) {
             MapViewerContent(
                 mapDisplayUiState = InteractiveMapUiState(
-                    mapId = "tanglewood",
+                    mapId = MapId.TANGLEWOOD,
                     mapName = MapTitle.TANGLEWOOD,
                     floorIndex = 0,
                     floorTitle = MapFloorTitle.FIRST_FLOOR,

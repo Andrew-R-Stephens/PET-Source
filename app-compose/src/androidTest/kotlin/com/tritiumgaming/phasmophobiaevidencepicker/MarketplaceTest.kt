@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.mapper.palette.toPaletteResource
 import com.tritiumgaming.data.palette.mappers.PaletteResources
 import com.tritiumgaming.feature.marketplace.ui.store.palettes.PaletteCard
 

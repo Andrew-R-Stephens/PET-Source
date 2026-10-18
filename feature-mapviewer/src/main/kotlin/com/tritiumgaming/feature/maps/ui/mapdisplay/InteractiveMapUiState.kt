@@ -2,10 +2,11 @@ package com.tritiumgaming.feature.maps.ui.mapdisplay
 
 import com.tritiumgaming.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 data class InteractiveMapUiState(
-    val mapId: String = "",
+    val mapId: MapId = MapId.SUNNY_MEADOWS,
     val mapName: MapTitle = MapTitle.SUNNY_MEADOWS,
     val floorIndex: Int = 0,
     val floorTitle: MapFloorTitle = MapFloorTitle.FIRST_FLOOR,

@@ -1,4 +1,4 @@
-package com.tritiumgaming.core.ui.mapper
+package com.tritiumgaming.core.ui.mapper.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

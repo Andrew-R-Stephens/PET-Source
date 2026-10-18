@@ -14,6 +14,7 @@ import com.tritiumgaming.data.map.complex.model.ComplexWorldMaps
 import com.tritiumgaming.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.data.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.model.SimpleWorldMap
 import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.data.map.simple.usecase.FetchSimpleMapsUseCase
@@ -117,10 +118,11 @@ class MapsScreenViewModel(
 
     }
 
-    fun setCurrentMap(id: String) {
+    fun setCurrentMap(id: MapId) {
         _interactiveMapUiState.update {
 
             val simpleMap = simpleMaps.first{ map -> map.mapId == id }
+            val complexMapId = id.toStringResource()
             val complexMapFloors = complexMaps?.getMapById(id)?.mapFloors[simpleMap.defaultFloor]
 
             it.copy(

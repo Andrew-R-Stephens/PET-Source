@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.settings.ui.components
 
-import com.tritiumgaming.core.ui.mapper.toTypographyResource
+import com.tritiumgaming.core.ui.mapper.typography.toTypographyResource
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.data.typography.mappers.LocalDefaultTypography
 import com.tritiumgaming.data.typography.mappers.asUuid

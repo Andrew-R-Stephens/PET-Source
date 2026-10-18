@@ -39,7 +39,7 @@ import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.ButtonScratchedIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.LanguageIcon
-import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mapper.common.ToComposable
 import com.tritiumgaming.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalTypography

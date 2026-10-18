@@ -2,12 +2,14 @@ package com.tritiumgaming.data.map.simple.dto
 
 import android.util.Log
 import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.data.map.simple.model.SimpleWorldMap
 
 data class SimpleWorldMapDto(
-    val mapId: String,
+    val mapId: MapId,
     val mapName: MapTitle,
     val mapSize: MapSize,
     val thumbnailImage: MapThumbnail,

@@ -59,7 +59,7 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.FormatterUtils.toPercentageString
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIconComposite
-import com.tritiumgaming.core.ui.mapper.toTypographyResource
+import com.tritiumgaming.core.ui.mapper.typography.toTypographyResource
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.theme.LocalThemeProvider
 import com.tritiumgaming.core.ui.theme.LocalTypography

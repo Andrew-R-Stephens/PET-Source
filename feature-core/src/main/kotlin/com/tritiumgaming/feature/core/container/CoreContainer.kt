@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.core.container
 
 import android.content.Context
+import android.content.pm.PackageManager
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.google.firebase.auth.FirebaseAuth
@@ -13,6 +14,7 @@ import com.tritiumgaming.core.domain.market.user.usecase.DeactivateAccountUseCas
 import com.tritiumgaming.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.core.domain.market.user.usecase.SignOutAccountUseCase
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.data.account.repository.CredentialsRepositoryImpl
 import com.tritiumgaming.data.account.repository.FirestoreAccountRepository
 import com.tritiumgaming.data.account.repository.FirestoreAccountRepositoryImpl
@@ -134,6 +136,7 @@ import com.tritiumstudios.data.operation.usecase.bundle.InvestigationUseCaseBund
 import com.tritiumstudios.data.operation.usecase.bundle.MissionsUseCaseBundle
 import com.tritiumstudios.data.policy.repository.PolicyRepository
 import com.tritiumstudios.data.policy.repository.PolicyRepositoryImpl
+import com.tritiumstudios.data.policy.source.PolicyDatastore
 import com.tritiumstudios.data.policy.source.datastore.PolicyDatastoreDataSource
 import com.tritiumstudios.data.policy.usecase.ApplyPolicyUseCase
 import com.tritiumstudios.data.policy.usecase.GatherAdsConsentUseCase
@@ -301,9 +304,20 @@ class CoreContainer(
      * Policy
      */
     val policyRepository: PolicyRepository by lazy {
+        val applicationInfo = applicationContext.packageManager.getApplicationInfo(
+            applicationContext.packageName,
+            PackageManager.GET_META_DATA
+        )
+
         val policyDataSource = PolicyDatastoreDataSource(
-            context = applicationContext,
-            dataStore = dataStore
+            applicationInfo = applicationInfo,
+            dataStore = dataStore,
+            datastoreKeys = PolicyDatastore.Keys(
+                allowAnalytics = applicationContext.resources.getString(
+                    R.string.preference_allowAnalytics),
+                allowPersonalizedAds = applicationContext.resources.getString(
+                    R.string.preference_allowPersonalizedAds),
+            )
         )
 
         PolicyRepositoryImpl(
@@ -341,8 +355,11 @@ class CoreContainer(
      * Credentials Service
      */
     internal val credentialsRepository: CredentialsRepository by lazy {
+
+        val webClientId = applicationContext.getString(R.string.web_client_id)
+
         val credentialsDataSource = CredentialsDataSourceImpl(
-            context = applicationContext
+            webClientId = webClientId
         )
 
         CredentialsRepositoryImpl(

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-        PERSISTENT PREFERENCE DATA KEYS
-    -->
     <!-- Ad Units -->
     <string name="ad_banner_1" translatable="false">ca-app-pub-1890816745443024/7620657926</string>
     <string name="ad_rewarded_1" translatable="false">ca-app-pub-1890816745443024/3221666922</string>
-    <!-- Page Details -->
+
+    <!-- PERSISTENT PREFERENCE DATA KEYS -->
     <string name="preferences_onboardingFile_name" translatable="false">Onboarding_Preferences</string>
     <string name="preferences_globalFile_name" translatable="false">Global_Preferences</string>
     <string name="preferences_newsletterFile_name" translatable="false">Newsletter_Preferences</string>
@@ -23,13 +21,10 @@
     <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarnFlashTimeMax</string>
     <string name="preference_enableReorderGhostViews" translatable="false">canReorderGhostViews</string>
     <string name="preference_uiDensity" translatable="false">uiDensity</string>
-    <!--<string name="preference_colorSpace" translatable="false">colorSpace</string>
-    <string name="preference_fontType" translatable="false">fontType</string>-->
     <string name="preference_savedPalette" translatable="false">savedTheme</string>
     <string name="preference_savedTypography" translatable="false">savedFont</string>
     <string name="preference_allowAnalytics" translatable="false">allowAnalytics</string>
     <string name="preference_allowPersonalizedAds" translatable="false">allowPersonalizedAds</string>
-    <!-- Review Tracking -->
     <string name="tutorialTracking_canShowIntroduction" translatable="false">canShowIntroduction</string>
     <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>
     <string name="reviewtracking_appTimeAlive" translatable="false">appTimeAlive</string>

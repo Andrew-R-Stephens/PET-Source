@@ -86,7 +86,6 @@ import com.tritiumgaming.data.ghostname.model.GhostName
 import com.tritiumgaming.data.journal.model.EvidenceState
 import com.tritiumgaming.data.journal.model.EvidenceValidationType
 import com.tritiumgaming.data.journal.model.GhostEvidence
-import com.tritiumgaming.data.map.mappers.toStringResource
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitleLength
 import com.tritiumgaming.data.mappers.toStringResource

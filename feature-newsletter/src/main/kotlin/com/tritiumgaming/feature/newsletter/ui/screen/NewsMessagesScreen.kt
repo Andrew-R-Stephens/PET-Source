@@ -52,7 +52,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.navigation.NavRoute
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
-import com.tritiumgaming.core.ui.mapper.ToComposable
+import com.tritiumgaming.core.ui.mapper.common.ToComposable
 import com.tritiumgaming.core.ui.mappers.IconResources
 import com.tritiumgaming.core.ui.preview.DevicePreviews
 import com.tritiumgaming.core.ui.theme.LocalPalette
