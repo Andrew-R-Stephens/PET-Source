@@ -41,9 +41,10 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.InvestigationSoloScreen
 import com.tritiumgaming.feature.language.ui.LanguageScreen
 import com.tritiumgaming.feature.language.ui.LanguageScreenViewModel
-import com.tritiumgaming.feature.maps.ui.MapMenuScreen
-import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
-import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
+import com.tritiumgaming.feature.maps.ui.screens.mapmenu.MapMenuScreen
+import com.tritiumgaming.feature.maps.ui.screens.mapmenu.MapMenuScreenViewModel
+import com.tritiumgaming.feature.maps.ui.screens.mapdisplay.MapViewerScreen
+import com.tritiumgaming.feature.maps.ui.screens.mapdisplay.MapViewerScreenViewModel
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreenViewModel
 import com.tritiumgaming.feature.marketplace.ui.home.MarketplaceHomeScreen
@@ -366,11 +367,11 @@ private fun NavGraphBuilder.operationNavigation(
 
             composable(route = NavRoute.SCREEN_MAPS_MENU.route) { navBackStackEntry ->
 
-                val mapsScreenViewModel: MapsScreenViewModel = viewModel(
+                val mapMenuScreenViewModel: MapMenuScreenViewModel = viewModel(
                     viewModelStoreOwner = remember(navBackStackEntry) {
                         navController.getBackStackEntry(NavRoute.NAVIGATION_INVESTIGATION.route)
                     },
-                    factory = MapsScreenViewModel.Factory
+                    factory = MapMenuScreenViewModel.Factory
                 )
 
                 val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
@@ -382,7 +383,7 @@ private fun NavGraphBuilder.operationNavigation(
                 ) {
                     MapMenuScreen(
                         navController = navController,
-                        mapsScreenViewModel = mapsScreenViewModel
+                        mapMenuScreenViewModel = mapMenuScreenViewModel
                     )
                 }
             }
@@ -392,16 +393,16 @@ private fun NavGraphBuilder.operationNavigation(
                     navArgument("mapId") { type = NavType.StringType }
                 )) { navBackStackEntry ->
 
-                val mapsScreenViewModel: MapsScreenViewModel = viewModel(
+                val mapViewerScreenViewModel: MapViewerScreenViewModel = viewModel(
                     viewModelStoreOwner = remember(navBackStackEntry) {
                         navController.getBackStackEntry(NavRoute.NAVIGATION_MAPS.route)
                     },
-                    factory = MapsScreenViewModel.Factory
+                    factory = MapViewerScreenViewModel.Factory
                 )
 
                 val mapId = navBackStackEntry.arguments?.getString("mapId")
-
                 Log.d(TAG, "mapId: $mapId")
+                mapId?.let { mapViewerScreenViewModel.setCurrentMap(it) } ?: navController.popBackStack()
 
                 if(mapId != null) {
                     val shouldTriggerAudio by investigationViewModel.shouldTriggerAudioWarning.collectAsState()
@@ -412,8 +413,7 @@ private fun NavGraphBuilder.operationNavigation(
                     ) {
                         MapViewerScreen(
                             navController = navController,
-                            mapsScreenViewModel = mapsScreenViewModel,
-                            mapId = mapId
+                            mapsScreenViewModel = mapViewerScreenViewModel
                         )
                     }
                 } else {

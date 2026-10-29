@@ -86,10 +86,17 @@ import com.tritiumgaming.data.ghostname.model.GhostName
 import com.tritiumgaming.data.journal.model.EvidenceState
 import com.tritiumgaming.data.journal.model.EvidenceValidationType
 import com.tritiumgaming.data.journal.model.GhostEvidence
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitleLength
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.*
+import com.tritiumgaming.data.map.model.complex.ComplexWorldMap
+import com.tritiumgaming.data.map.model.complex.ComplexWorldMapDimensions
+import com.tritiumgaming.data.map.model.simple.SimpleWorldMap
+import com.tritiumgaming.data.map.model.simple.SimpleWorldMapFloor
+import com.tritiumgaming.data.map.model.worldmap.WorldMap
 import com.tritiumgaming.data.mappers.toStringResource
 import com.tritiumgaming.data.trait.mapper.GhostTraitResources.TraitCategory
+import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.CustomDifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.ClearPopup
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel.InvestigationEvent.OnSearchTextChanged
@@ -316,10 +323,30 @@ private fun InvestigationScreenPreview(
                     ),
                     toolbar = OperationToolbarUiState(category = category),
                     mapConfig = MapConfigUiState(
-                        allMaps = listOf(
-                            MapTitle.BLEASDALE_FARMHOUSE,
-                            MapTitle.CAMP_WOODWIND
-                        )
+                        map = WorldMap(
+                            id = stringResource(MapTitle.BLEASDALE_FARMHOUSE.toStringResource()),
+                            simpleMap = SimpleWorldMap(
+                                mapId = stringResource(MapId.BLEASDALE_FARMHOUSE.toStringResource()),
+                                mapName = MapTitle.BLEASDALE_FARMHOUSE,
+                                mapSize = MapSize.SMALL,
+                                thumbnailImage = MapThumbnail.BLEASDALE_FARMHOUSE,
+                                mapFloors = listOf(
+                                    SimpleWorldMapFloor(
+                                        MapFloorTitle.FIRST_FLOOR,
+                                        MapFloorImage.BLEASDALE_FARMHOUSE_FIRST_FLOOR
+                                    )
+                                ),
+                                defaultFloor = 0
+                            ),
+                            complexMap = ComplexWorldMap(
+                                "",
+                                "",
+                                "",
+                                ComplexWorldMapDimensions(0, 0),
+                                emptyList()
+                            )
+                        ),
+                        allMaps = emptyList()
                     ),
                     difficultyConfig = DifficultyConfigUiState(
                         type = DifficultyType.CHALLENGE,
@@ -589,12 +616,11 @@ private fun InvestigationContent(
         else it.toStringResource()
     }
 
-    val mapName = mapConfigUiState.name
+    val map = mapConfigUiState.map
+    val mapId = map.simpleMap.mapName
     val isMapEnabled = mapConfigUiState.enabled
-    val mapLabel = mapName.toStringResource(MapTitleLength.ABBREVIATED)
-    val mapDropdownOptions = mapConfigUiState.allMaps.map {
-        it.toStringResource(MapTitleLength.FULL)
-    }
+    val mapLabel = mapId.toStringResource(MapTitleLength.ABBREVIATED)
+    val mapDropdownOptions = mapConfigUiState.allMaps
 
     val difficultyName = difficultyUiState.name
     val isDifficultyEnabled = true
@@ -2004,7 +2030,7 @@ internal data class InvestigationUiState(
     val toolbar: OperationToolbarUiState = OperationToolbarUiState(),
     val operationTimer: OperationTimerUiState = OperationTimerUiState(),
     val phase: PhaseUiState = PhaseUiState(),
-    val mapConfig: MapConfigUiState = MapConfigUiState(),
+    val mapConfig: MapConfigUiState,
     val operationDetails: OperationDetailsUiState = OperationDetailsUiState(),
     val difficultyConfig: DifficultyConfigUiState = DifficultyConfigUiState(),
     val customDifficultyConfig: CustomDifficultyConfigUiState = CustomDifficultyConfigUiState(),
@@ -2030,7 +2056,7 @@ internal data class InvestigationUiState(
 
 internal data class InvestigationUiActions(
     val onWeatherDropdownSelect: (Int) -> Unit = {},
-    val onMapDropdownSelect: (Int) -> Unit = {},
+    val onMapDropdownSelect: (String) -> Unit = {},
     val onDifficultyDropdownSelect: (Int) -> Unit = {},
     val onCustomDifficultyDropdownSelect: (Int) -> Unit = {},
     val onNavigateToEditCustomDifficulty: () -> Unit = {},

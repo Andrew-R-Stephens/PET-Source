@@ -2,12 +2,12 @@ package com.tritiumgaming.feature.maps.app.mappers.map
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitleLength
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapFloorImage
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapId
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapThumbnail
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapTitleLength
 import com.tritiumgaming.feature.maps.R
 
 @StringRes fun MapTitle.toStringResource(length: MapTitleLength = MapTitleLength.FULL): Int =
@@ -16,59 +16,77 @@ import com.tritiumgaming.feature.maps.R
         MapTitleLength.ABBREVIATED -> this.toAbbreviatedNameStringResource()
     }
 
-@StringRes private fun MapId.toStringResource(): Int = 
+@StringRes private fun MapId.toStringResource(): Int =
     when (this) {
-        MapId.SUNNY_MEADOWS -> R.string.map_id_meadows
-        MapId.SUNNY_MEADOWS_RESTRICTED -> R.string.map_id_meadows_r
-        MapId.POINT_HOPE -> R.string.map_id_pointhope
-        MapId.CAMP_WOODWIND -> R.string.map_id_campwoodwind
-        MapId.CAMP_MAPLE -> R.string.map_id_campmaple
-        MapId.BLEASDALE_FARMHOUSE -> R.string.map_id_bleasdale
-        MapId.GRAFTON_FARMHOUSE -> R.string.map_id_grafton
-        MapId.BROWNSTONE_HIGHSCHOOL -> R.string.map_id_brownstone
-        MapId.TANGLEWOOD -> R.string.map_id_tanglewood
-        MapId.EDGEFIELD -> R.string.map_id_edgefield
-        MapId.WILLOW -> R.string.map_id_willow
-        MapId.RIDGEVIEW -> R.string.map_id_ridgeview
-        MapId.PRISON -> R.string.map_id_prison
-        MapId.DINER -> R.string.map_id_diner
+        MapId.SUNNY_MEADOWS -> com.tritiumgaming.core.resources.R.string.map_id_meadows
+        MapId.SUNNY_MEADOWS_RESTRICTED -> com.tritiumgaming.core.resources.R.string.map_id_meadows_r
+        MapId.POINT_HOPE -> com.tritiumgaming.core.resources.R.string.map_id_pointhope
+        MapId.CAMP_WOODWIND -> com.tritiumgaming.core.resources.R.string.map_id_campwoodwind
+        MapId.CAMP_MAPLE -> com.tritiumgaming.core.resources.R.string.map_id_campmaple
+        MapId.BLEASDALE_FARMHOUSE -> com.tritiumgaming.core.resources.R.string.map_id_bleasdale
+        MapId.GRAFTON_FARMHOUSE -> com.tritiumgaming.core.resources.R.string.map_id_grafton
+        MapId.BROWNSTONE_HIGHSCHOOL -> com.tritiumgaming.core.resources.R.string.map_id_brownstone
+        MapId.TANGLEWOOD -> com.tritiumgaming.core.resources.R.string.map_id_tanglewood
+        MapId.EDGEFIELD -> com.tritiumgaming.core.resources.R.string.map_id_edgefield
+        MapId.WILLOW -> com.tritiumgaming.core.resources.R.string.map_id_willow
+        MapId.RIDGEVIEW -> com.tritiumgaming.core.resources.R.string.map_id_ridgeview
+        MapId.PRISON -> com.tritiumgaming.core.resources.R.string.map_id_prison
+        MapId.DINER -> com.tritiumgaming.core.resources.R.string.map_id_diner
     }
 
 @StringRes private fun MapTitle.toFullNameStringResource(): Int {
     return when (this) {
-        MapTitle.SUNNY_MEADOWS -> R.string.map_name_full_meadows
-        MapTitle.SUNNY_MEADOWS_RESTRICTED -> R.string.map_name_full_meadows_r
-        MapTitle.POINT_HOPE -> R.string.map_name_full_pointhope
-        MapTitle.CAMP_WOODWIND -> R.string.map_name_full_campwoodwind
-        MapTitle.CAMP_MAPLE -> R.string.map_name_full_campmaple
-        MapTitle.BLEASDALE_FARMHOUSE -> R.string.map_name_full_bleasdale
-        MapTitle.GRAFTON_FARMHOUSE -> R.string.map_name_full_grafton
-        MapTitle.BROWNSTONE_HIGHSCHOOL -> R.string.map_name_full_brownstone
-        MapTitle.TANGLEWOOD -> R.string.map_name_full_tanglewood
-        MapTitle.EDGEFIELD -> R.string.map_name_full_edgefield
-        MapTitle.WILLOW -> R.string.map_name_full_willow
-        MapTitle.RIDGEVIEW -> R.string.map_name_full_ridgeview
-        MapTitle.PRISON -> R.string.map_name_full_prison
-        MapTitle.DINER -> R.string.map_name_full_diner
+        MapTitle.SUNNY_MEADOWS -> com.tritiumgaming.core.resources.R.string.map_name_full_meadows
+        MapTitle.SUNNY_MEADOWS_RESTRICTED -> com.tritiumgaming.core.resources.R.string.map_name_full_meadows_r
+        MapTitle.POINT_HOPE -> com.tritiumgaming.core.resources.R.string.map_name_full_pointhope
+        MapTitle.CAMP_WOODWIND -> com.tritiumgaming.core.resources.R.string.map_name_full_campwoodwind
+        MapTitle.CAMP_MAPLE -> com.tritiumgaming.core.resources.R.string.map_name_full_campmaple
+        MapTitle.BLEASDALE_FARMHOUSE -> com.tritiumgaming.core.resources.R.string.map_name_full_bleasdale
+        MapTitle.GRAFTON_FARMHOUSE -> com.tritiumgaming.core.resources.R.string.map_name_full_grafton
+        MapTitle.BROWNSTONE_HIGHSCHOOL -> com.tritiumgaming.core.resources.R.string.map_name_full_brownstone
+        MapTitle.TANGLEWOOD -> com.tritiumgaming.core.resources.R.string.map_name_full_tanglewood
+        MapTitle.EDGEFIELD -> com.tritiumgaming.core.resources.R.string.map_name_full_edgefield
+        MapTitle.WILLOW -> com.tritiumgaming.core.resources.R.string.map_name_full_willow
+        MapTitle.RIDGEVIEW -> com.tritiumgaming.core.resources.R.string.map_name_full_ridgeview
+        MapTitle.PRISON -> com.tritiumgaming.core.resources.R.string.map_name_full_prison
+        MapTitle.DINER -> com.tritiumgaming.core.resources.R.string.map_name_full_diner
     }
 }
 
 @StringRes private fun MapTitle.toAbbreviatedNameStringResource(): Int {
     return when (this) {
-        MapTitle.SUNNY_MEADOWS -> R.string.map_name_short_meadows
-        MapTitle.SUNNY_MEADOWS_RESTRICTED -> R.string.map_name_short_meadows_r
-        MapTitle.POINT_HOPE -> R.string.map_name_short_pointhope
-        MapTitle.CAMP_WOODWIND -> R.string.map_name_short_campwoodwind
-        MapTitle.CAMP_MAPLE -> R.string.map_name_short_campmaple
-        MapTitle.BLEASDALE_FARMHOUSE -> R.string.map_name_short_bleasdale
-        MapTitle.GRAFTON_FARMHOUSE -> R.string.map_name_short_grafton
-        MapTitle.BROWNSTONE_HIGHSCHOOL -> R.string.map_name_short_brownstone
-        MapTitle.TANGLEWOOD -> R.string.map_name_short_tanglewood
-        MapTitle.EDGEFIELD -> R.string.map_name_short_edgefield
-        MapTitle.WILLOW -> R.string.map_name_short_willow
-        MapTitle.RIDGEVIEW -> R.string.map_name_short_ridgeview
-        MapTitle.PRISON -> R.string.map_name_short_prison
-        MapTitle.DINER -> R.string.map_name_short_diner
+        MapTitle.SUNNY_MEADOWS -> com.tritiumgaming.core.resources.R.string.map_name_short_meadows
+        MapTitle.SUNNY_MEADOWS_RESTRICTED -> com.tritiumgaming.core.resources.R.string.map_name_short_meadows_r
+        MapTitle.POINT_HOPE -> com.tritiumgaming.core.resources.R.string.map_name_short_pointhope
+        MapTitle.CAMP_WOODWIND -> com.tritiumgaming.core.resources.R.string.map_name_short_campwoodwind
+        MapTitle.CAMP_MAPLE -> com.tritiumgaming.core.resources.R.string.map_name_short_campmaple
+        MapTitle.BLEASDALE_FARMHOUSE -> com.tritiumgaming.core.resources.R.string.map_name_short_bleasdale
+        MapTitle.GRAFTON_FARMHOUSE -> com.tritiumgaming.core.resources.R.string.map_name_short_grafton
+        MapTitle.BROWNSTONE_HIGHSCHOOL -> com.tritiumgaming.core.resources.R.string.map_name_short_brownstone
+        MapTitle.TANGLEWOOD -> com.tritiumgaming.core.resources.R.string.map_name_short_tanglewood
+        MapTitle.EDGEFIELD -> com.tritiumgaming.core.resources.R.string.map_name_short_edgefield
+        MapTitle.WILLOW -> com.tritiumgaming.core.resources.R.string.map_name_short_willow
+        MapTitle.RIDGEVIEW -> com.tritiumgaming.core.resources.R.string.map_name_short_ridgeview
+        MapTitle.PRISON -> com.tritiumgaming.core.resources.R.string.map_name_short_prison
+        MapTitle.DINER -> com.tritiumgaming.core.resources.R.string.map_name_short_diner
+    }
+}
+
+@StringRes fun MapFloorTitle.toStringResource(): Int {
+    return when (this) {
+        MapFloorTitle.BASEMENT -> com.tritiumgaming.core.resources.R.string.map_floor_name_basement
+        MapFloorTitle.GROUND_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_ground
+        MapFloorTitle.FIRST_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_first
+        MapFloorTitle.SECOND_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_second
+        MapFloorTitle.THIRD_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_third
+        MapFloorTitle.FOURTH_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_fourth
+        MapFloorTitle.FIFTH_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_fifth
+        MapFloorTitle.SIXTH_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_sixth
+        MapFloorTitle.SEVENTH_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_seventh
+        MapFloorTitle.EIGHTH_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_eighth
+        MapFloorTitle.NINTH_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_ninth
+        MapFloorTitle.TENTH_FLOOR -> com.tritiumgaming.core.resources.R.string.map_floor_name_tenth
+        MapFloorTitle.ATTIC -> com.tritiumgaming.core.resources.R.string.map_floor_name_attic
     }
 }
 
@@ -88,24 +106,6 @@ import com.tritiumgaming.feature.maps.R
         MapThumbnail.RIDGEVIEW -> R.drawable.thumbnail_ridgeview
         MapThumbnail.PRISON -> R.drawable.thumbnail_prison
         MapThumbnail.DINER -> R.drawable.thumbnail_diner
-    }
-}
-
-@StringRes fun MapFloorTitle.toStringResource(): Int {
-    return when (this) {
-        MapFloorTitle.BASEMENT -> R.string.map_floor_name_basement
-        MapFloorTitle.GROUND_FLOOR -> R.string.map_floor_name_ground
-        MapFloorTitle.FIRST_FLOOR -> R.string.map_floor_name_first
-        MapFloorTitle.SECOND_FLOOR -> R.string.map_floor_name_second
-        MapFloorTitle.THIRD_FLOOR -> R.string.map_floor_name_third
-        MapFloorTitle.FOURTH_FLOOR -> R.string.map_floor_name_fourth
-        MapFloorTitle.FIFTH_FLOOR -> R.string.map_floor_name_fifth
-        MapFloorTitle.SIXTH_FLOOR -> R.string.map_floor_name_sixth
-        MapFloorTitle.SEVENTH_FLOOR -> R.string.map_floor_name_seventh
-        MapFloorTitle.EIGHTH_FLOOR -> R.string.map_floor_name_eighth
-        MapFloorTitle.NINTH_FLOOR -> R.string.map_floor_name_ninth
-        MapFloorTitle.TENTH_FLOOR -> R.string.map_floor_name_tenth
-        MapFloorTitle.ATTIC -> R.string.map_floor_name_attic
     }
 }
 

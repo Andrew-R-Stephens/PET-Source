@@ -5,7 +5,7 @@ import com.tritiumgaming.data.challenge.model.ChallengeModel
 import com.tritiumgaming.data.challenge.source.ChallengeDataSource
 
 class ChallengeRepositoryImpl(
-    val localSource: ChallengeDataSource
+    val localSource: ChallengeDataSource,
 ): ChallengeRepository {
 
     var challenges: List<ChallengeModel> = emptyList()

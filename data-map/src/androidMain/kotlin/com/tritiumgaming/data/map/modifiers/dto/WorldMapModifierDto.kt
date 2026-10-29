@@ -1,12 +1,13 @@
 package com.tritiumgaming.data.map.modifiers.dto
 
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources
-import com.tritiumgaming.data.map.modifier.model.WorldMapModifier
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSizePhaseModifier
+import com.tritiumgaming.data.map.model.modifier.WorldMapModifier
 
 data class WorldMapModifierDto(
-    val name: MapModifierResources.MapSize,
-    val setupModifier: MapModifierResources.MapSizePhaseModifier,
-    val actionModifier: MapModifierResources.MapSizePhaseModifier
+    val name: MapSize,
+    val setupModifier: MapSizePhaseModifier,
+    val actionModifier: MapSizePhaseModifier
 )
 
 fun List<WorldMapModifierDto>.toDomain() = map { it.toDomain() }

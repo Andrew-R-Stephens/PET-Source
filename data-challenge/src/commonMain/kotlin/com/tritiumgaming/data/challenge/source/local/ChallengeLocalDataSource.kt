@@ -51,7 +51,7 @@ import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentIdentifi
 import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentIdentifier.TRIPOD
 import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentIdentifier.UV_LIGHT
 import com.tritiumgaming.data.codex.mappers.EquipmentResources.EquipmentIdentifier.VIDEO_CAMERA
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapId
 import com.tritiumstudios.data.difficultysetting.dto.DifficultySettingsModelDto
 import com.tritiumstudios.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumstudios.data.difficultysetting.dto.EquipmentPermission.Companion.ALL
@@ -92,12 +92,14 @@ import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResour
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.StartingSanity
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
 
-class ChallengeLocalDataSource: ChallengeDataSource {
+class ChallengeLocalDataSource(
+    private val mapIdentifiers: MapIdentifiers
+): ChallengeDataSource {
 
     private val challengeResourceDto = listOf(
         ChallengeResourceDto(
             name = ChallengeTitle.LIGHTS_OUT,
-            map = MapTitle.TANGLEWOOD,
+            map = MapId.TANGLEWOOD,
             description = LIGHTS_OUT,
             settingsModelDto = DifficultySettingsModelDto(
                 flashlights = Flashlights.OFF,
@@ -119,7 +121,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.SPEED_DEMONS,
-            map = MapTitle.CAMP_MAPLE,
+            map = MapId.CAMP_MAPLE,
             description = SPEED_DEMONS,
             settingsModelDto = DifficultySettingsModelDto(
                 playerSpeed = PlayerSpeed.SPEED_150,
@@ -140,7 +142,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.DETECTIVES_ONLY,
-            map = MapTitle.EDGEFIELD,
+            map = MapId.EDGEFIELD,
             description = DETECTIVES_ONLY,
             settingsModelDto = DifficultySettingsModelDto(
                 roamingFrequency = RoamingFrequency.MEDIUM,
@@ -154,7 +156,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.HIDE_AND_SEEK_SEEKER,
-            map = MapTitle.BROWNSTONE_HIGHSCHOOL,
+            map = MapId.BROWNSTONE_HIGHSCHOOL,
             description = HIDE_AND_SEEK_SEEKER,
             settingsModelDto = DifficultySettingsModelDto(
                 sanityPillRestoration = SanityPillRestoration.RESTORE_35,
@@ -174,7 +176,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.HIDE_AND_SEEK_HIDE,
-            map = MapTitle.POINT_HOPE,
+            map = MapId.POINT_HOPE,
             description = HIDE_AND_SEEK_HIDE,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_0,
@@ -198,7 +200,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.FROSTBITTEN,
-            map = MapTitle.CAMP_WOODWIND,
+            map = MapId.CAMP_WOODWIND,
             description = FROSTBITTEN,
             settingsModelDto = DifficultySettingsModelDto(
                 sanityPillRestoration = SanityPillRestoration.RESTORE_100,
@@ -219,7 +221,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.DO_AS_I_COMMAND,
-            map = MapTitle.SUNNY_MEADOWS,
+            map = MapId.SUNNY_MEADOWS,
             description = DO_AS_I_COMMAND,
             settingsModelDto = DifficultySettingsModelDto(
                 sanityPillRestoration = SanityPillRestoration.RESTORE_50,
@@ -242,7 +244,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.TORTOISE_AND_THE_HARE_HARE,
-            map = MapTitle.BLEASDALE_FARMHOUSE,
+            map = MapId.BLEASDALE_FARMHOUSE,
             description = TORTOISE_AND_THE_HARE_HARE,
             settingsModelDto = DifficultySettingsModelDto(
                 playerSpeed = PlayerSpeed.SPEED_125,
@@ -252,7 +254,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.TORTOISE_AND_THE_HARE_TORTOISE,
-            map = MapTitle.GRAFTON_FARMHOUSE,
+            map = MapId.GRAFTON_FARMHOUSE,
             description = TORTOISE_AND_THE_HARE_TORTOISE,
             settingsModelDto = DifficultySettingsModelDto(
                 playerSpeed = PlayerSpeed.SPEED_75,
@@ -269,7 +271,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.GOTTA_GO_FAST,
-            map = MapTitle.PRISON,
+            map = MapId.PRISON,
             description = GOTTA_GO_FAST,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_0,
@@ -289,7 +291,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.SANITY_SURVIVAL,
-            map = MapTitle.RIDGEVIEW,
+            map = MapId.RIDGEVIEW,
             description = SANITY_SURVIVAL,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_75,
@@ -310,7 +312,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.SPEEDRUN,
-            map = MapTitle.TANGLEWOOD,
+            map = MapId.TANGLEWOOD,
             description = SPEEDRUN,
             settingsModelDto = DifficultySettingsModelDto(
                 playerSpeed = PlayerSpeed.SPEED_100,
@@ -335,7 +337,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.SURVIVAL_OF_THE_FITTEST,
-            map = MapTitle.EDGEFIELD,
+            map = MapId.EDGEFIELD,
             description = SURVIVAL_OF_THE_FITTEST,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_100,
@@ -365,7 +367,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.PRIMITIVE,
-            map = MapTitle.RIDGEVIEW,
+            map = MapId.RIDGEVIEW,
             description = PRIMITIVE,
             settingsModelDto = DifficultySettingsModelDto(
                 sanityPillRestoration = SanityPillRestoration.RESTORE_40,
@@ -401,7 +403,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.VULNERABLE,
-            map = MapTitle.WILLOW,
+            map = MapId.WILLOW,
             description = VULNERABLE,
             settingsModelDto = DifficultySettingsModelDto(
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
@@ -419,7 +421,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.MISSED_DELIVERY,
-            map = MapTitle.BROWNSTONE_HIGHSCHOOL,
+            map = MapId.BROWNSTONE_HIGHSCHOOL,
             description = MISSED_DELIVERY,
             settingsModelDto = DifficultySettingsModelDto(
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
@@ -450,7 +452,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.AUDIO_ONLY,
-            map = MapTitle.BLEASDALE_FARMHOUSE,
+            map = MapId.BLEASDALE_FARMHOUSE,
             description = AUDIO_ONLY,
             settingsModelDto = DifficultySettingsModelDto(
                 sanityPillRestoration = SanityPillRestoration.RESTORE_30,
@@ -469,7 +471,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.TECHNOPHILIA,
-            map = MapTitle.BLEASDALE_FARMHOUSE,
+            map = MapId.BLEASDALE_FARMHOUSE,
             description = TECHNOPHILIA,
             settingsModelDto = DifficultySettingsModelDto(
                 doorsStartingOpen = DoorsStartingOpen.MEDIUM,
@@ -487,7 +489,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.NO_EVIDENCE,
-            map = MapTitle.GRAFTON_FARMHOUSE,
+            map = MapId.GRAFTON_FARMHOUSE,
             description = NO_EVIDENCE,
             settingsModelDto = DifficultySettingsModelDto(
                 sanityPillRestoration = SanityPillRestoration.RESTORE_25,
@@ -505,7 +507,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.THE_APOCALYPSE_DRAWS_NEAR,
-            map = MapTitle.SUNNY_MEADOWS_RESTRICTED,
+            map = MapId.SUNNY_MEADOWS_RESTRICTED,
             description = THE_APOCALYPSE_DRAWS_NEAR,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_100,
@@ -528,7 +530,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.SLOW_AND_STEADY,
-            map = MapTitle.CAMP_WOODWIND,
+            map = MapId.CAMP_WOODWIND,
             description = SLOW_AND_STEADY,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_0,
@@ -543,7 +545,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.PARANORMAL_PAPARAZZI,
-            map = MapTitle.POINT_HOPE,
+            map = MapId.POINT_HOPE,
             description = PARANORMAL_PAPARAZZI,
             settingsModelDto = DifficultySettingsModelDto(
                 sanityPillRestoration = SanityPillRestoration.RESTORE_35,
@@ -570,7 +572,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.HIDE_AND_SEEK_EXTREME,
-            map = MapTitle.CAMP_WOODWIND,
+            map = MapId.CAMP_WOODWIND,
             description = HIDE_AND_SEEK_EXTREME,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_0,
@@ -600,7 +602,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.GLOW_IN_THE_DARK,
-            map = MapTitle.EDGEFIELD,
+            map = MapId.EDGEFIELD,
             description = GLOW_IN_THE_DARK,
             settingsModelDto = DifficultySettingsModelDto(
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
@@ -617,7 +619,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.DEJA_VU,
-            map = MapTitle.TANGLEWOOD,
+            map = MapId.TANGLEWOOD,
             description = DEJA_VU,
             settingsModelDto = DifficultySettingsModelDto(
                 sprinting = Sprinting.OFF,
@@ -635,7 +637,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         ),
         ChallengeResourceDto(
             name = ChallengeTitle.TAG_YOURE_IT,
-            map = MapTitle.BROWNSTONE_HIGHSCHOOL,
+            map = MapId.BROWNSTONE_HIGHSCHOOL,
             description = TAG_YOURE_IT,
             settingsModelDto = DifficultySettingsModelDto(
                 startingSanity = StartingSanity.SANITY_0,
@@ -651,14 +653,21 @@ class ChallengeLocalDataSource: ChallengeDataSource {
     override fun fetchChallenges(): Result<List<ChallengeModelDto>> =
         Result.success(challengeResourceDto.toChallengeModelDto())
 
-    private fun List<ChallengeResourceDto>.toChallengeModelDto() = map{ it.toChallengeModelDto() }
+    private fun List<ChallengeResourceDto>.toChallengeModelDto() =
+        map{ it.toChallengeModelDto(mapIdentifiers) }
 
-    private fun ChallengeResourceDto.toChallengeModelDto() = ChallengeModelDto(
+    private fun ChallengeResourceDto.toChallengeModelDto(identifiers: MapIdentifiers) = ChallengeModelDto(
         challengeTitle = name,
         description = description,
         responseType = responseType,
-        map = map,
+        mapId = identifiers.toValue(map),
         settingsModelDto = settingsModelDto
     )
+
+    data class MapIdentifiers(
+        private val pairs: Map<MapId, String>
+    ) {
+        fun toValue(mapId: MapId) = pairs[mapId] ?: ""
+    }
 
 }

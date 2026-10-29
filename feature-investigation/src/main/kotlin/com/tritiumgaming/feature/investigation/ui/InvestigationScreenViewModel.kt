@@ -39,12 +39,14 @@ import com.tritiumgaming.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.data.journal.usecase.GetEvidenceUseCase
 import com.tritiumgaming.data.journal.usecase.GetGhostUseCase
-import com.tritiumgaming.data.map.modifier.mappers.toFloat
-import com.tritiumgaming.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
-import com.tritiumgaming.data.map.modifier.usecase.GetSimpleMapModifierUseCase
-import com.tritiumgaming.data.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapNameUseCase
-import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.data.map.mappers.MapModifierResources.*
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.*
+import com.tritiumgaming.data.map.mappers.toFloat
+import com.tritiumgaming.data.map.model.worldmap.WorldMap
+import com.tritiumgaming.data.map.model.worldmap.WorldMaps
+import com.tritiumgaming.data.map.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.data.map.usecase.GetMapModifierUseCase
+import com.tritiumgaming.data.map.usecase.GetMapsFlowUseCase
 import com.tritiumgaming.data.mappers.toStringResource
 import com.tritiumgaming.data.mission.usecase.FetchAllMissionsUseCase
 import com.tritiumgaming.data.trait.mapper.GhostTraitResources
@@ -58,7 +60,7 @@ import com.tritiumgaming.feature.investigation.app.container.DifficultyUseCaseBu
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
-import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
+import com.tritiumgaming.feature.investigation.app.container.MapUseCaseBundle
 import com.tritiumgaming.feature.investigation.ui.components.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.components.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.OperationDetailsUiState
@@ -159,7 +161,7 @@ import kotlin.time.Duration.Companion.seconds
 class InvestigationScreenViewModel private constructor(
     journalUseCaseBundle: JournalUseCaseBundle,
     difficultyUseCaseBundle: DifficultyUseCaseBundle,
-    simpleMapUseCaseBundle: SimpleMapUseCaseBundle,
+    mapUseCaseBundle: MapUseCaseBundle,
     codexUseCaseBundle: CodexUseCaseBundle,
     investigationUseCaseBundle: InvestigationUseCaseBundle,
     challengesUseCaseBundle: ChallengesUseCaseBundle,
@@ -174,11 +176,9 @@ class InvestigationScreenViewModel private constructor(
     private val getGhostTraitDescriptionUseCase: GetGhostTraitDescriptionUseCase = journalUseCaseBundle.getGhostTraitDescriptionUseCase
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase
     private val setDifficultyIndexUseCase: SetDifficultyIndexUseCase = difficultyUseCaseBundle.setDifficultyIndexUseCase
-    private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase = simpleMapUseCaseBundle.fetchSimpleMapsUseCase
-    private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase = simpleMapUseCaseBundle.getSimpleMapNameUseCase
-    private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase = simpleMapUseCaseBundle.getSimpleMapSizeUseCase
-    private val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase = simpleMapUseCaseBundle.getSimpleMapModifierUseCase
-    private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase = simpleMapUseCaseBundle.fetchSimpleMapModifiersUseCase
+    private val getMapsFlowUseCase: GetMapsFlowUseCase = mapUseCaseBundle.getMapsFlowUseCase
+    private val getMapModifierUseCase: GetMapModifierUseCase = mapUseCaseBundle.getMapModifierUseCase
+    private val fetchMapModifiersUseCase: FetchMapModifiersUseCase = mapUseCaseBundle.fetchMapModifiersUseCase
     private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase
     private val getOperationStateUseCase: GetOperationStateUseCase = investigationUseCaseBundle.getOperationStateUseCase
     private val updateOperationMapUseCase: UpdateOperationMapUseCase = investigationUseCaseBundle.updateOperationMapUseCase
@@ -223,13 +223,12 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    private val maps = fetchSimpleMapsUseCase().let {
-        it.exceptionOrNull()?.printStackTrace()
-        try { it.getOrThrow() }
-        catch (_: Exception) {
-            emptyList()
-        }
-    }
+    private val maps = getMapsFlowUseCase()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = WorldMaps()
+        )
 
     private val difficulties = fetchDifficultiesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
@@ -305,15 +304,19 @@ class InvestigationScreenViewModel private constructor(
         )
 
     private fun updateMap(
-        index: Int = 0
+        id: String
     ) {
         try {
-            val name = getSimpleMapNameUseCase(index).getOrThrow()
-            val size = getSimpleMapSizeUseCase(index).getOrThrow()
-            val modifier = fetchSimpleMapModifiersUseCase(size).getOrThrow()
+            val map = maps.value.worldMaps[id] ?: return
+
+            val simpleMap = map.simpleMap
+
+            val name = simpleMap.mapName
+            val size = simpleMap.mapSize
+            val modifier = fetchMapModifiersUseCase(size).getOrThrow()
 
             val mapState = MapData(
-                index = index,
+                mapId = id,
                 name = name,
                 size = size,
                 setupModifier = modifier.setupModifier,
@@ -359,9 +362,7 @@ class InvestigationScreenViewModel private constructor(
                             settings = challenge.settingsModel
 
                             // Sync map if required by challenge
-                            maps.indexOfFirst { it.mapName == challenge.map }.let { mapIndex ->
-                                if (mapIndex != -1) setMapIndex(mapIndex)
-                            }
+                            setMapId(challenge.mapId)
                         }
                     }
                     DifficultyType.CUSTOM -> {
@@ -788,15 +789,16 @@ class InvestigationScreenViewModel private constructor(
 
     private val _mapConfigUiState: StateFlow<MapConfigUiState> =
         combine(
+            maps,
             mapState,
             difficultyState
-        ) { mapState, difficultyState ->
-            val name = maps[mapState.index].mapName
+        ) { maps, mapState, difficultyState ->
+            val map = maps.getMap(mapState.mapId)
 
             MapConfigUiState(
-                name = name,
+                map = map ?: WorldMap(),
                 enabled = difficultyState.type != DifficultyType.CHALLENGE,
-                allMaps = maps.map { map -> map.mapName }
+                allMaps = maps.worldMaps.values.toList()
             )
         }
         .distinctUntilChanged()
@@ -804,7 +806,9 @@ class InvestigationScreenViewModel private constructor(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = MapConfigUiState(
-                allMaps = maps.map { it.mapName }
+                map = WorldMap(),
+                enabled = false,
+                allMaps = maps.value.worldMaps.values.toList()
             )
         )
     internal val mapConfigUiState = _mapConfigUiState
@@ -1007,7 +1011,7 @@ class InvestigationScreenViewModel private constructor(
         phaseState
     ) { mapState, difficultyState, phaseState ->
         val mapModifier = try {
-            getSimpleMapModifierUseCase(
+            getMapModifierUseCase(
                 mapState.size.ordinal,
                 phaseState.type
             ).getOrThrow().toFloat()
@@ -1230,7 +1234,7 @@ class InvestigationScreenViewModel private constructor(
                     weather = difficultyOverrideState.weather,
                 ),
                 mapDetails = OperationDetailsUiState.MapDetails(
-                    name = mapState.name,
+                    id = mapState.mapId,
                     size = mapState.size,
                     modifiers = OperationDetailsUiState.MapDetails.MapModifiers(
                         action = mapState.actionModifier,
@@ -1778,8 +1782,8 @@ class InvestigationScreenViewModel private constructor(
         )
     }
 
-    private fun setMapIndex(index: Int) {
-        updateMap(index)
+    private fun setMapId(id: String) {
+        updateMap(id)
     }
 
     private fun setDifficultyIndex(newIndex: Int) {
@@ -2083,7 +2087,7 @@ class InvestigationScreenViewModel private constructor(
     fun onEvent(event: InvestigationEvent) {
         when (event) {
             // Configuration
-            is InvestigationEvent.SetMap -> setMapIndex(event.index)
+            is InvestigationEvent.SetMap -> setMapId(event.id)
             is InvestigationEvent.SetDifficulty -> setDifficultyIndex(event.index)
             is InvestigationEvent.SetCustomDifficulty -> setCustomDifficultyIndex(event.index)
             is InvestigationEvent.SetWeather -> setWeather(event.weather)
@@ -2336,7 +2340,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     init {
-        updateMap()
+        updateMap("")
         updateDifficulty()
         reset()
 
@@ -2364,7 +2368,7 @@ class InvestigationScreenViewModel private constructor(
 
                     val journalUseCaseBundle = container.journalUseCaseBundle
                     val difficultyUseCaseBundle = container.difficultyUseCaseBundle
-                    val simpleMapUseCaseBundle = container.simpleMapUseCaseBundle
+                    val simpleMapUseCaseBundle = container.mapUseCaseBundle
                     val codexUseCaseBundle = container.codexUseCaseBundle
                     val investigationUseCaseBundle = container.investigationUseCaseBundle
                     val preferencesUseCaseBundle = container.preferencesUseCaseBundle
@@ -2373,7 +2377,7 @@ class InvestigationScreenViewModel private constructor(
                     InvestigationScreenViewModel(
                         journalUseCaseBundle = journalUseCaseBundle,
                         difficultyUseCaseBundle = difficultyUseCaseBundle,
-                        simpleMapUseCaseBundle = simpleMapUseCaseBundle,
+                        mapUseCaseBundle = simpleMapUseCaseBundle,
                         codexUseCaseBundle = codexUseCaseBundle,
                         investigationUseCaseBundle = investigationUseCaseBundle,
                         preferencesUseCaseBundle = preferencesUseCaseBundle,
@@ -2385,7 +2389,7 @@ class InvestigationScreenViewModel private constructor(
 
     sealed class InvestigationEvent {
         // Configuration Events
-        data class SetMap(val index: Int) : InvestigationEvent()
+        data class SetMap(val id: String) : InvestigationEvent()
         data class SetDifficulty(val index: Int) : InvestigationEvent()
         data class SetCustomDifficulty(val index: Int) : InvestigationEvent()
         data class SetWeather(val weather: Weather) : InvestigationEvent()

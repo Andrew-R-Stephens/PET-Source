@@ -19,7 +19,7 @@ class ComplexMapLocalService: ComplexMapService {
         //Creating a JSONObject object
         val gson = GsonBuilder().create()
 
-        inputStream ?: throw Exception("InputStream is null")
+        inputStream
 
         val fileReader = gson.newJsonReader(BufferedReader(InputStreamReader(inputStream)))
         val type = object : TypeToken<WorldMapsSerializerDto?>() {}.type

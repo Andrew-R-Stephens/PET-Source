@@ -11,12 +11,11 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.LocalPalette
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableColumn
 import com.tritiumgaming.core.ui.widgets.expandable.ExpandableRow
-import com.tritiumgaming.data.map.R
-import com.tritiumgaming.data.map.mappers.toStringResource
-import com.tritiumgaming.data.map.modifier.mappers.toFloat
+import com.tritiumgaming.data.map.mappers.toFloat
+import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.components.tool.analysis.TextDataRow
-import com.tritiumgaming.core.resources.R as Res
+import com.tritiumgaming.core.resources.R
 
 @Composable
 internal fun MapModifierDetails(
@@ -34,7 +33,7 @@ internal fun MapModifierDetails(
             ) { rowModifier ->
                 TextDataRow(
                     modifier = rowModifier,
-                    title = "${stringResource(Res.string.investigation_timer_maplabel)}:",
+                    title = "${stringResource(R.string.investigation_timer_maplabel)}:",
                     data = stringResource(state.name.toStringResource())
                 )
             }
@@ -49,12 +48,12 @@ internal fun MapModifierDetails(
                 data = stringResource(state.size.toStringResource())
             )
             TextDataRow(
-                title = "${stringResource(Res.string.investigation_phase_label_setup)} " +
+                title = "${stringResource(R.string.investigation_phase_label_setup)} " +
                         "${stringResource(R.string.map_setting_label_drainrate)}:",
                 data = "${String.format(LocalLocale.current.platformLocale, "%.2f", state.modifiers.setup.toFloat())}%/s"
             )
             TextDataRow(
-                title = "${stringResource(Res.string.investigation_phase_label_action)} " +
+                title = "${stringResource(R.string.investigation_phase_label_action)} " +
                         "${stringResource(R.string.map_setting_label_drainrate)}:",
                 data = "${String.format(LocalLocale.current.platformLocale, "%.2f", state.modifiers.action.toFloat())}%/s"
             )

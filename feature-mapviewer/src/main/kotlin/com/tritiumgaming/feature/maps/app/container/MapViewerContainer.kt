@@ -1,79 +1,55 @@
 package com.tritiumgaming.feature.maps.app.container
 
 import android.content.Context
-import com.tritiumgaming.data.map.complex.repository.ComplexMapRepository
-import com.tritiumgaming.data.map.complex.repository.ComplexMapRepositoryImpl
+import com.tritiumgaming.data.map.combined.dto.repository.MapRepositoryImpl
 import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.data.map.complex.source.local.ComplexMapLocalDataSource
 import com.tritiumgaming.data.map.complex.source.service.ComplexMapLocalService
-import com.tritiumgaming.data.map.complex.usecase.FetchComplexMapsUseCase
-import com.tritiumgaming.data.map.simple.repository.SimpleMapRepository
-import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
-import com.tritiumgaming.data.map.simple.source.local.SimpleMapDataSource
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
-import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
-import com.tritiumgaming.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
-import com.tritiumgaming.data.map.simple.usecase.FetchMapThumbnailsUseCase
-import com.tritiumgaming.data.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapIdUseCase
-import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapNameUseCase
-import com.tritiumgaming.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
-import com.tritiumgaming.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
+import com.tritiumgaming.data.map.source.simple.local.SimpleMapDataSource
+import com.tritiumgaming.data.map.usecase.GetMapsFlowUseCase
+import com.tritiumgaming.feature.maps.R
 
 class MapViewerContainer(
     applicationContext: Context
 ) {
 
-    // Simple Map
-    private val simpleMapRepository: SimpleMapRepository by lazy {
+    private val mapRepository: MapRepositoryImpl by lazy {
+        fun getString(id: Int): String = applicationContext.getString(id)
         val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
-            applicationContext = applicationContext
+            mapIdentifiers = SimpleMapLocalDataSource.MapIdentifiers(
+                pairs = mapOf(
+                    MapId.SUNNY_MEADOWS to getString(R.string.map_id_meadows),
+                    MapId.SUNNY_MEADOWS_RESTRICTED to getString(R.string.map_id_meadows_r),
+                    MapId.POINT_HOPE to getString(R.string.map_id_pointhope),
+                    MapId.CAMP_MAPLE to getString(R.string.map_id_campmaple),
+                    MapId.CAMP_WOODWIND to getString(R.string.map_id_campwoodwind),
+                    MapId.DINER to getString(R.string.map_id_diner),
+                    MapId.BLEASDALE_FARMHOUSE to getString(R.string.map_id_bleasdale),
+                    MapId.GRAFTON_FARMHOUSE to getString(R.string.map_id_grafton),
+                    MapId.BROWNSTONE_HIGHSCHOOL to getString(R.string.map_id_brownstone),
+                    MapId.EDGEFIELD to getString(R.string.map_id_edgefield),
+                    MapId.TANGLEWOOD to getString(R.string.map_id_tanglewood),
+                    MapId.WILLOW to getString(R.string.map_id_willow),
+                    MapId.RIDGEVIEW to getString(R.string.map_id_ridgeview),
+                    MapId.PRISON to getString(R.string.map_id_prison)
+                )
+            )
         )
-        SimpleMapRepositoryImpl(
-            localSource = simpleMapLocalDataSource
-        )
-    }
-    internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val incrementSimpleMapIndexUseCase = IncrementSimpleMapIndexUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val decrementSimpleMapIndexUseCase = DecrementSimpleMapIndexUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val incrementSimpleMapFloorIndexUseCase = IncrementSimpleMapFloorIndexUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val decrementSimpleMapFloorIndexUseCase = DecrementSimpleMapFloorIndexUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val getSimpleMapIdUseCase = GetSimpleMapIdUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-    internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(
-        simpleMapRepository = simpleMapRepository
-    )
-
-    // Complex Map
-    private val complexMapRepository: ComplexMapRepository by lazy {
         val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
             applicationContext = applicationContext,
             service = ComplexMapLocalService()
         )
-        ComplexMapRepositoryImpl(
-            localSource = complexMapLocalDataSource
+
+        MapRepositoryImpl(
+            localSource = simpleMapLocalDataSource,
+            assetSource = complexMapLocalDataSource
         )
     }
-    internal val fetchComplexMapsUseCase = FetchComplexMapsUseCase(
-        complexMapRepository = complexMapRepository
+
+    internal val fetchMapsFlowUseCase = GetMapsFlowUseCase(
+        repository = mapRepository
     )
 
 }

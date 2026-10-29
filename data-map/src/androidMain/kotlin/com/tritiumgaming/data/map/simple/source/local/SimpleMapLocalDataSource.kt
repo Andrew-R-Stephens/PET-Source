@@ -1,13 +1,14 @@
 package com.tritiumgaming.data.map.simple.source.local
 
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapDto
-import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapFloorDto
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorImage
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapId
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapThumbnail
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.dto.simple.SimpleWorldMapDto
+import com.tritiumgaming.data.map.dto.simple.SimpleWorldMapFloorDto
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapFloorImage
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapId
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapThumbnail
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.source.simple.local.SimpleMapDataSource
 
 class SimpleMapLocalDataSource(
     private val mapIdentifiers: MapIdentifiers

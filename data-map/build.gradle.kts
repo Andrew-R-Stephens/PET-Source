@@ -64,9 +64,9 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.androidx.annotation)
-
             implementation(libs.google.gson)
 
+            api(project(":core-resources"))
         }
 
         getByName("androidDeviceTest") {

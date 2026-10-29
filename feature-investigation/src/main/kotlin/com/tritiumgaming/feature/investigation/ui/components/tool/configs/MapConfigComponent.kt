@@ -11,18 +11,19 @@ import androidx.compose.ui.res.stringResource
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.LocalTypography
 import com.tritiumgaming.core.ui.widgets.tooltip.CommonTooltip
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.model.worldmap.WorldMap
+import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.components.common.operationconfig.OperationConfigUiColors
 import com.tritiumgaming.feature.investigation.ui.components.common.operationconfig.dropdown.OperationConfigDropdown
 
 @Composable
 internal fun MapConfigControl(
     modifier: Modifier = Modifier,
-    dropdownOptions: List<Int>,
+    dropdownOptions: List<WorldMap>,
     isDropdownEnabled: Boolean,
     dropdownLabel: Int,
     colors: OperationConfigUiColors,
-    onDropdownSelect: (Int) -> Unit
+    onDropdownSelect: (String) -> Unit
 ) {
     val textStyle = LocalTypography.current.quaternary.regular
 
@@ -46,10 +47,15 @@ internal fun MapConfigControl(
     OperationConfigDropdown(
         modifier = modifier,
         icon = { icon(it) },
-        options = dropdownOptions,
+        options = dropdownOptions.map { it.simpleMap.mapName.toStringResource() },
         enabled = isDropdownEnabled,
         label = dropdownLabel,
-        onSelect = onDropdownSelect,
+        onSelect = { index ->
+            dropdownOptions.getOrNull(index)?.let { selectedMap ->
+                val id = selectedMap.id.ifEmpty { selectedMap.simpleMap.mapId }
+                onDropdownSelect(id)
+            }
+        },
         textStyle = textStyle,
         onColor = colors.onColor,
         expandedColor = colors.color,
@@ -57,7 +63,7 @@ internal fun MapConfigControl(
 }
 
 internal data class MapConfigUiState(
-    internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
+    internal val map: WorldMap,
     internal val enabled: Boolean = true,
-    internal val allMaps: List<MapTitle> = emptyList()
+    internal val allMaps: List<WorldMap> = emptyList()
 )

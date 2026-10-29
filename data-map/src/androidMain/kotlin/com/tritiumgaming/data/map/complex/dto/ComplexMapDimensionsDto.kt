@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.map.complex.dto
 
 import android.util.Log
-import com.tritiumgaming.data.map.complex.model.ComplexWorldMapDimensions
+import com.tritiumgaming.data.map.model.complex.ComplexWorldMapDimensions
 
 data class ComplexMapDimensionsDto(
     val w: Int,
@@ -13,8 +13,9 @@ data class ComplexMapDimensionsDto(
     }
 }
 
-fun ComplexMapDimensionsDto.toDomain() = ComplexWorldMapDimensions(
-    w = w,
-    h = h
-)
+fun ComplexMapDimensionsDto.toDomain() =
+    ComplexWorldMapDimensions(
+        w = w,
+        h = h
+    )
 

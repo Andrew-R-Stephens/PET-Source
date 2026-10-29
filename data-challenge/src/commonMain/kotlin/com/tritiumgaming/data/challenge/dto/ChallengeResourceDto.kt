@@ -3,13 +3,13 @@ package com.tritiumgaming.data.challenge.dto
 import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeDescription
 import com.tritiumgaming.data.challenge.mapper.ChallengeResources.ChallengeTitle
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.mappers.SimpleMapResources
 import com.tritiumstudios.data.difficultysetting.dto.DifficultySettingsModelDto
 
 internal data class ChallengeResourceDto(
     val name: ChallengeTitle = ChallengeTitle.LIGHTS_OUT,
     val description: ChallengeDescription = ChallengeDescription.LIGHTS_OUT,
-    val map: SimpleMapResources.MapTitle = SimpleMapResources.MapTitle.TANGLEWOOD,
+    val map: SimpleMapResources.MapId = SimpleMapResources.MapId.TANGLEWOOD,
     val responseType: GhostResponsePresentation = GhostResponsePresentation.UNKNOWN,
     val settingsModelDto: DifficultySettingsModelDto = DifficultySettingsModelDto()
 ) {

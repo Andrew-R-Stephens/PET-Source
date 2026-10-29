@@ -258,7 +258,8 @@ class PETApplication : Application(),
             investigationUseCaseBundle = coreContainer.investigationUseCaseBundle,
             initFlowUserPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
             getCurrentChallengeUseCase = coreContainer.getCurrentChallengeUseCase,
-            getCustomDifficultiesUseCase = coreContainer.getCustomDifficultiesUseCase
+            getCustomDifficultiesUseCase = coreContainer.getCustomDifficultiesUseCase,
+            getMapsFlowUseCase = coreContainer.getMapsFlowUseCase
         )
 
         codexContainer = CodexContainer()
@@ -268,14 +269,14 @@ class PETApplication : Application(),
             missionsUseCaseBundle = coreContainer.missionsUseCaseBundle
         )
 
-        mapViewerContainer = MapViewerContainer(
-            applicationContext = applicationContext
-        )
-
         customDifficultyContainer = CustomDifficultyContainer(
             applicationContext = applicationContext,
             getCustomDifficultiesUseCase = coreContainer.getCustomDifficultiesUseCase,
             updateCustomDifficultyUseCase = coreContainer.updateCustomDifficultyUseCase,
+        )
+
+        mapViewerContainer = MapViewerContainer(
+            applicationContext = applicationContext
         )
 
         initWearableSync()
@@ -303,7 +304,7 @@ class PETApplication : Application(),
                 }
 
                 val investigationData = WearableInvestigationData(
-                    mapName = data.map.name,
+                    mapTitle = data.map.name,
                     difficultyName = data.difficulty.type,
                     setupTimeRemaining = data.phase.maxFlashTime - data.phase.elapsedFlashTime,
                     sanityLevel = data.sanity.sanityLevel,

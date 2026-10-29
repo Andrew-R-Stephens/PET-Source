@@ -3,7 +3,7 @@ package com.tritiumstudios.data.wearable.model
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.data.evidence.model.EvidenceType
 import com.tritiumgaming.data.journal.model.EvidenceValidationType
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.mappers.SimpleMapResources
 import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType
 import kotlinx.serialization.Serializable
@@ -17,7 +17,7 @@ data class WearableOperationData(
 
 @Serializable
 data class WearableInvestigationData(
-    val mapName: SimpleMapResources.MapTitle,
+    val mapTitle: SimpleMapResources.MapTitle,
     val difficultyName: DifficultyResources.DifficultyType,
     val setupTimeRemaining: Long,
     val sanityLevel: Float,

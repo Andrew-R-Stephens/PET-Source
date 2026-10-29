@@ -58,6 +58,14 @@ import com.tritiumgaming.data.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.data.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.data.language.usecase.SetDefaultLanguageUseCase
+import com.tritiumgaming.data.map.combined.dto.repository.MapRepositoryImpl
+import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
+import com.tritiumgaming.data.map.complex.source.local.ComplexMapLocalDataSource
+import com.tritiumgaming.data.map.complex.source.service.ComplexMapLocalService
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapId
+import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
+import com.tritiumgaming.data.map.source.simple.local.SimpleMapDataSource
+import com.tritiumgaming.data.map.usecase.GetMapsFlowUseCase
 import com.tritiumgaming.data.marketplace.bundle.repository.MarketCatalogBundleRepository
 import com.tritiumgaming.data.marketplace.bundle.repository.MarketCatalogBundleRepositoryImpl
 import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
@@ -168,6 +176,9 @@ class CoreContainer(
     val googleMobileAdsConsentManager =
         GoogleMobileAdsConsentManager.getInstance(applicationContext)
 
+    /**
+     * Custom Difficulties 
+     */
     private val customDifficultyRepository: CustomDifficultyRepository by lazy {
         CustomDifficultyRepositoryImpl(
             customDifficultyDao = localDatabase.customDifficultyDao(),
@@ -182,9 +193,33 @@ class CoreContainer(
     val updateCustomDifficultyUseCase = UpdateCustomDifficultyUseCase(
         repository = customDifficultyRepository
     )
-    // Challenges
+
+    val mapData = mapOf(
+        MapId.SUNNY_MEADOWS to applicationContext.getString(R.string.map_id_meadows),
+        MapId.SUNNY_MEADOWS_RESTRICTED to applicationContext.getString(R.string.map_id_meadows_r),
+        MapId.POINT_HOPE to applicationContext.getString(R.string.map_id_pointhope),
+        MapId.CAMP_MAPLE to applicationContext.getString(R.string.map_id_campmaple),
+        MapId.CAMP_WOODWIND to applicationContext.getString(R.string.map_id_campwoodwind),
+        MapId.DINER to applicationContext.getString(R.string.map_id_diner),
+        MapId.BLEASDALE_FARMHOUSE to applicationContext.getString(R.string.map_id_bleasdale),
+        MapId.GRAFTON_FARMHOUSE to applicationContext.getString(R.string.map_id_grafton),
+        MapId.BROWNSTONE_HIGHSCHOOL to applicationContext.getString(R.string.map_id_brownstone),
+        MapId.EDGEFIELD to applicationContext.getString(R.string.map_id_edgefield),
+        MapId.TANGLEWOOD to applicationContext.getString(R.string.map_id_tanglewood),
+        MapId.WILLOW to applicationContext.getString(R.string.map_id_willow),
+        MapId.RIDGEVIEW to applicationContext.getString(R.string.map_id_ridgeview),
+        MapId.PRISON to applicationContext.getString(R.string.map_id_prison)
+    )
+
+    /**
+     * Challenges
+     */
     private val challengeRepository: ChallengeRepository by lazy {
-        val challengeLocalDataSource: ChallengeDataSource = ChallengeLocalDataSource()
+        val challengeLocalDataSource: ChallengeDataSource = ChallengeLocalDataSource(
+            mapIdentifiers = ChallengeLocalDataSource.MapIdentifiers(
+                pairs = mapData
+            )
+        )
 
         ChallengeRepositoryImpl(
             localSource = challengeLocalDataSource
@@ -197,7 +232,35 @@ class CoreContainer(
         useCase = getChallengesUseCase
     )
 
-    // Newsletter
+    /**
+     * Maps 
+     */
+    private val mapRepository: MapRepositoryImpl by lazy {
+
+        val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
+            mapIdentifiers = SimpleMapLocalDataSource.MapIdentifiers(
+                pairs = mapData
+            )
+        )
+
+        val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
+            applicationContext = applicationContext,
+            service = ComplexMapLocalService()
+        )
+
+        MapRepositoryImpl(
+            localSource = simpleMapLocalDataSource,
+            assetSource = complexMapLocalDataSource
+        )
+    }
+
+    val getMapsFlowUseCase = GetMapsFlowUseCase(
+        repository = mapRepository
+    )
+
+    /** 
+     * Newsletter
+     */
     private val newsletterRepository: NewsletterRepository by lazy {
         val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSourceImpl(
             applicationContext = applicationContext
@@ -443,10 +506,7 @@ class CoreContainer(
             dataStoreSource = reviewTrackerDataSource
         )
     }
-
-    /*val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
-        repository = reviewTrackerRepository
-    )*/
+    
     val initializeReviewTrackerUseCase = InitFlowReviewTrackerUseCase(
         repository = reviewTrackerRepository
     )
@@ -570,10 +630,18 @@ class CoreContainer(
     val saveCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
         repository = languageRepository
     )
+    
+    /**
+     * Operation 
+     */
 
     private val operationRepository: OperationRepository by lazy {
         OperationRepositoryImpl()
     }
+    
+    /**
+     * Misions 
+     */
 
     private val missionRepository: MissionRepository by lazy {
         val missionLocalDataSource = MissionLocalDataSource(
@@ -584,6 +652,10 @@ class CoreContainer(
         )
     }
 
+    /**
+     * Wearable 
+     */
+    
     private val wearableRepository: WearableRepository by lazy {
         WearableRepositoryImpl(applicationContext)
     }
@@ -598,6 +670,10 @@ class CoreContainer(
         repository = wearableRepository
     )
 
+    
+    /**
+     * Bundles 
+     */
     val investigationUseCaseBundle = InvestigationUseCaseBundle(
         getOperationStateUseCase = GetOperationStateUseCase(
             repository = operationRepository
@@ -655,5 +731,5 @@ class CoreContainer(
             repository = operationRepository
         ),
     )
-
+    
 }

@@ -1,6 +1,6 @@
 package com.tritiumstudios.data.difficultysetting.mappers
 
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSize
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.CursedPossessionsQuantity
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.EvidenceGiven
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.FingerprintChance

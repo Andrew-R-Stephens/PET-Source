@@ -1,17 +1,13 @@
 package com.tritiumstudios.data.operation.model
 
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize.SMALL
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier.ACTION_SMALL
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier.SETUP_SMALL
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSizePhaseModifier
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapTitle
 
 data class MapData(
-    val index: Int = 0,
-    val name: MapTitle = BLEASDALE_FARMHOUSE,
-    val size: MapSize = SMALL,
-    val setupModifier: MapSizePhaseModifier = SETUP_SMALL,
-    val actionModifier: MapSizePhaseModifier = ACTION_SMALL,
+    val mapId: String = "",
+    val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
+    val size: MapSize = MapSize.SMALL,
+    val setupModifier: MapSizePhaseModifier = MapSizePhaseModifier.SETUP_SMALL,
+    val actionModifier: MapSizePhaseModifier = MapSizePhaseModifier.ACTION_SMALL,
 )

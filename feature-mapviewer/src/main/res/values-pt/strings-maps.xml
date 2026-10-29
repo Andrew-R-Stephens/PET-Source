@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Page Details -->
+
+    <string name="mapview_instruction_zoom">Zoom: aperte dois dedos</string>
+    <string name="mapview_instruction_pan">Pan: arraste um dedo</string>
+
+    <!-- Building Floor Names -->
+
+    <string name="map_floor_name_ground">o Rés-do-chão</string>
+    <string name="map_floor_name_first">Primeiro andar</string>
+    <string name="map_floor_name_second">Segundo andar</string>
+    <string name="map_floor_name_third">Terceiro andar</string>
+    <string name="map_floor_name_fourth">Quarto Andar</string>
+    <string name="map_floor_name_fifth">Quinto andar</string>
+    <string name="map_floor_name_sixth">Sexto andar</string>
+    <string name="map_floor_name_seventh">Sétimo andar</string>
+    <string name="map_floor_name_eighth">Oito andares</string>
+    <string name="map_floor_name_ninth">Nono andar</string>
+    <string name="map_floor_name_tenth">Décimo andar</string>
+    <string name="map_floor_name_attic">Sótão</string>
+    <string name="map_floor_name_basement">Porão</string>
+
+    <!-- Page Details -->
+
+    <string name="map_setting_label_size">Tamanho</string>
+    <string name="map_setting_label_modifier">Modificador</string>
+    <string name="map_setting_label_multiplier">Multiplicador</string>
+    <string name="map_setting_state_small">Pequeno</string>
+    <string name="map_setting_state_medium">Médio</string>
+    <string name="map_setting_state_large">Grande</string>
+    <string name="map_setting_state_setup">Configuração</string>
+    <string name="map_setting_state_action">Ação</string>
+    <string name="map_setting_label_drainrate">Taxa de drenagem</string>
+    <string name="map_info_help_title">Ajuda do mapa interativo</string>
+    <string name="map_info_help_pan">Desloque um mapa com um dedo.</string>
+    <string name="map_info_help_zoom">Aumente e diminua o zoom de um mapa apertando ou afastando dois dedos.</string>
+    <string name="map_info_help_click">Toque com um dedo em qualquer mapa para obter o nome e o limite de qualquer sala.</string>
+    <string name="map_info_help_rooms">Selecione uma sala no menu suspenso Salas para mostrar a localização e os limites dessa sala.</string>
+    <string name="map_info_help_floors">Itere entre andares para visualizar e interagir com ele.</string>
+    <string name="map_info_help_pois">As posições das caixas de fusíveis e dos itens amaldiçoados são indicadas por ícones relevantes.</string>
+</resources>

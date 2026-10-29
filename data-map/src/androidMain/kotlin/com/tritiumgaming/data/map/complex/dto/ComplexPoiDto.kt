@@ -2,9 +2,9 @@ package com.tritiumgaming.data.map.complex.dto
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.data.map.complex.model.ComplexWorldPoi
-import com.tritiumgaming.data.map.complex.model.ComplexWorldPoint
-import com.tritiumgaming.data.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.data.map.mappers.MapPoiResources
+import com.tritiumgaming.data.map.model.complex.ComplexWorldPoi
+import com.tritiumgaming.data.map.model.complex.ComplexWorldPoint
 
 data class ComplexPoiDto(
     var id: Int,

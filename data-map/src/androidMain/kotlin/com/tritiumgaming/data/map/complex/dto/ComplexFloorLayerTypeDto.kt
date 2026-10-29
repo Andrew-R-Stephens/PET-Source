@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.map.complex.dto
 
-import com.tritiumgaming.data.map.complex.model.ComplexWorldMapFloorLayerType
+import com.tritiumgaming.data.map.model.complex.ComplexWorldMapFloorLayerType
 
 
 enum class ComplexFloorLayerTypeDto {

@@ -1,23 +1,25 @@
 package com.tritiumgaming.data.map.combined.dto.repository
 
 import android.util.Log
-import com.tritiumgaming.data.map.combined.model.WorldMap
-import com.tritiumgaming.data.map.combined.model.WorldMaps
-import com.tritiumgaming.data.map.combined.repository.MapRepository
 import com.tritiumgaming.data.map.complex.dto.toDomain
 import com.tritiumgaming.data.map.complex.mappers.toMapList
-import com.tritiumgaming.data.map.complex.model.ComplexWorldMap
-import com.tritiumgaming.data.map.complex.model.ComplexWorldMaps
 import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
-import com.tritiumgaming.data.map.simple.dto.toDomain
-import com.tritiumgaming.data.map.simple.model.SimpleWorldMap
-import com.tritiumgaming.data.map.simple.model.SimpleWorldMaps
-import com.tritiumgaming.data.map.simple.source.local.SimpleMapDataSource
-import kotlinx.coroutines.Dispatchers
+import com.tritiumgaming.data.map.dto.simple.toDomain
+import com.tritiumgaming.data.map.model.complex.ComplexWorldMap
+import com.tritiumgaming.data.map.model.complex.ComplexWorldMaps
+import com.tritiumgaming.data.map.model.simple.SimpleWorldMap
+import com.tritiumgaming.data.map.model.simple.SimpleWorldMaps
+import com.tritiumgaming.data.map.model.worldmap.WorldMap
+import com.tritiumgaming.data.map.model.worldmap.WorldMaps
+import com.tritiumgaming.data.map.repository.map.MapRepository
+import com.tritiumgaming.data.map.source.simple.local.SimpleMapDataSource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MapRepositoryImpl(
@@ -31,26 +33,29 @@ class MapRepositoryImpl(
     override val mapFlow: Flow<WorldMaps> = combine(
         simpleMaps,
         complexMaps
-    ) { simpleList, complexList ->
+    ) { simples, complexes ->
 
-        // Map assets by ID for O(1) lookup speed
-        val assetMap = complexList.associateBy { it.mapId }
+        val simpleMapById = simples.associateBy { it.mapId }
+        val complexMapById = complexes.associateBy { it.mapId }
 
-        // Fold asset properties into each local item
-        val worldMapsList = simpleList.mapNotNull { simple ->
-            val asset = assetMap[simple.mapId] ?: return@mapNotNull null
+        val allIds = (simples.map { it.mapId } + complexes.map { it.mapId })
+            .distinct()
+            .filter { it.isNotEmpty() }
 
+        val worldMapsList: Map<String, WorldMap> = allIds.associateWith { id ->
             WorldMap(
-                simpleMap = simple,
-                complexMap = asset
+                id = id,
+                simpleMap = simpleMapById[id] ?: WorldMap.simpleDefault,
+                complexMap = complexMapById[id] ?: WorldMap.complexDefault
             )
         }
 
-        WorldMaps(worldMaps = worldMapsList)
-    }
+        Log.d(
+            "MapRepositoryImpl",
+            "worldMapsList: ${worldMapsList.map { "${it.value.id} ${it.value.simpleMap.mapId} && ${it.value.complexMap.mapId}" }}"
+        )
 
-    override suspend fun fetchMaps(): Result<WorldMaps> {
-        TODO("Not yet implemented")
+        WorldMaps(worldMaps = worldMapsList)
     }
 
     override suspend fun fetchSimpleMaps(): Result<SimpleWorldMaps> {
@@ -58,21 +63,23 @@ class MapRepositoryImpl(
             syncLocal()
         }
 
-        return Result.success(SimpleWorldMaps(simpleMaps.value))
+        return Result.success(
+            SimpleWorldMaps(
+                simpleMaps.value
+            )
+        )
     }
 
-    override suspend fun fetchComplexMaps(): Result<ComplexWorldMaps> = withContext(Dispatchers.IO) {
+    override suspend fun fetchComplexMaps(): Result<ComplexWorldMaps> = withContext(IO) {
 
         try {
             val result = assetSource.fetchWorldMaps()
-            Log.d("Maps", "Complex Maps:\n${result.getOrNull()?.maps?.size}")
 
             result.map { it.toMapList().toDomain() }
         } catch (e: Exception) {
             e.printStackTrace()
             Result.failure(Exception("Failed to fetch World Maps in Repository", e))
         }
-
     }
 
     private fun syncLocal() {
@@ -81,7 +88,22 @@ class MapRepositoryImpl(
             data
         }
 
-        Log.d("SimpleMapRepositoryImpl", "simpleMaps: $simpleMaps")
+        Log.d("MapRepositoryImpl",
+            "SimpleMaps:\n${simpleMaps.value.map { "${ it.mapId }, " }}")
+    }
+
+    init {
+        CoroutineScope(IO).launch {
+            val simple = fetchSimpleMaps()
+            simpleMaps.update {
+                simple.getOrDefault(SimpleWorldMaps(emptyList())).maps
+            }
+
+            val complex = fetchComplexMaps()
+            complexMaps.update {
+                complex.getOrDefault(ComplexWorldMaps(emptyList())).maps
+            }
+        }
     }
 
 }

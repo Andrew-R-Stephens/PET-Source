@@ -8,7 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.data.evidence.model.EvidenceType
 import com.tritiumgaming.data.journal.model.EvidenceValidationType
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.MapId
 import com.tritiumgaming.data.palette.mappers.PaletteResources.PaletteType
 import com.tritiumgaming.data.typography.mappers.TypographyResources.TypographyType
 import com.tritiumgaming.phasmophobiaevidencepicker.wear.WearContainerProvider
@@ -34,7 +34,7 @@ class WearableViewModel(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = WearableOperationData(
                 investigationData = WearableInvestigationData(
-                    mapName = MapTitle.BLEASDALE_FARMHOUSE,
+                    mapTitle = MapId.BLEASDALE_FARMHOUSE,
                     difficultyName = DifficultyType.AMATEUR,
                     setupTimeRemaining = 0L,
                     sanityLevel = 1f,

@@ -20,7 +20,7 @@ import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMa
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto.RoomPointSerializerDto
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.WorldDimensionsSerializerDto
-import com.tritiumgaming.data.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.data.map.mappers.MapPoiResources.Poi
 
 @Keep
 class WorldMapsSerializerDto {
@@ -135,7 +135,7 @@ fun List<POISerializerDto>.toPoiDto() = map {
 fun POISerializerDto.toPoiDto() = ComplexPoiDto(
     id = poiId,
     name = poiName,
-    type = MapPoiResources.Poi.entries[poiType],
+    type = Poi.entries[poiType],
     point = PointF(x, y)
 )
 

@@ -5,9 +5,10 @@ import com.tritiumgaming.data.customdifficulty.model.CustomDifficultyModel
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.data.difficulty.mapper.DifficultyResources.GhostResponsePresentation
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
-import com.tritiumgaming.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.data.map.mappers.MapModifierResources.MapSizePhaseModifier
+import com.tritiumgaming.data.map.mappers.SimpleMapResources
+import com.tritiumgaming.data.map.mappers.SimpleMapResources.*
 import com.tritiumstudios.data.difficultysetting.mappers.DifficultySettingResources.Weather
 import com.tritiumstudios.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumstudios.data.operation.model.GhostState
@@ -39,6 +40,7 @@ internal data class OperationDetailsUiState(
     )
 
     internal data class MapDetails(
+        val id: String = "",
         internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
         internal val size: MapSize = MapSize.SMALL,
         internal val modifiers: MapModifiers = MapModifiers()
