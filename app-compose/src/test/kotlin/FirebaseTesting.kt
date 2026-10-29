@@ -1,4 +1,3 @@
-import android.util.Log
 import org.jetbrains.annotations.TestOnly
 import org.junit.Test
 
@@ -55,7 +54,7 @@ class FirebaseTesting {
         for(userName in userNames) {
             val result = getCurrentFirebaseUserDisplayNameInitials(userName)
             assert(result.length <= 2)
-            Log.d("Test", result)
+            println("Initials for $userName: $result")
         }
 
     }

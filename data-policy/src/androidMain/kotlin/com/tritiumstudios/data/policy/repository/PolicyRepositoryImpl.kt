@@ -103,11 +103,10 @@ class PolicyRepositoryImpl(
         }
 
         try {
-            // To support Advanced Consent Mode (GCMv2), we keep collection enabled.
-            // When consent is DENIED, Firebase will send cookieless pings.
-            // However, to ensure a strict "deny" equivalent until affirmed,
-            // we follow the user's explicit preference for analytics collection.
-            Firebase.analytics.setAnalyticsCollectionEnabled(policy.allowAnalytics)
+            // To support Advanced Consent Mode (GCMv2), analytics collection MUST remain enabled.
+            // When consent is DENIED, Firebase Analytics sends anonymized cookieless pings for user modeling.
+            // When consent is GRANTED, Firebase Analytics collects full analytics data.
+            Firebase.analytics.setAnalyticsCollectionEnabled(true)
             Log.d("PrivacyControl", "Policy applied: Analytics=$analyticsStatus, Ads=$adsStatus")
 
             if (policy.allowAnalytics) {

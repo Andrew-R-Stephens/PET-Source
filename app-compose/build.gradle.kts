@@ -54,6 +54,12 @@ configure<ApplicationExtension> {
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        testOptions {
+            unitTests {
+                isReturnDefaultValues = true
+            }
+        }
+
         vectorDrawables.useSupportLibrary = true
 
         buildConfigField("boolean", "USE_NEWSLETTER", "true")
