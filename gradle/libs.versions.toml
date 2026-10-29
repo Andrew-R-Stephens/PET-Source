@@ -4,19 +4,19 @@ android-play-core-review = "2.0.2"
 android-play-core-update = "2.1.0"
 android-gif-drawable = "1.2.32" # Latest: 1.2.31
 android-play-services-ads = "25.5.0" # Latest: 25.5.0
-android-play-services-ads-legacy = "24.9.0" # Latest: 25.5.0 Dropped to 24.9.0 for older devices
+#android-play-services-ads-legacy = "24.9.0" # Latest: 25.5.0 Dropped to 24.9.0 for older devices
 android-play-services-auth = "22.0.0" # Latest: 22.0.0
-android-play-services-auth-legacy = "21.6.0" # Latest: 22.0.0 Dropped to 21.6.0 for older devices
+#android-play-services-auth-legacy = "21.6.0" # Latest: 22.0.0 Dropped to 21.6.0 for older devices
 androidx-activity-compose = "1.13.0" # Latest 1.12.4
 androidx-composeUi = "1.12.1" # Latest: 1.11.4
 androidx-compose-bom = "2026.09.00" # Latest 2026.06.01
 androidx-compose-material3 = "1.4.0" # Latest: 1.4.0-rc01
 androidx-compose-material3-adaptive = "1.3.0" # Latest: 1.2.0
-androidx-compose-material3-window-size = "1.4.0-alpha16" # Latest: 1.4.0-alpha15
+#androidx-compose-material3-window-size = "1.4.0-alpha16" # Latest: 1.4.0-alpha15
 androidx-core = "1.19.1" # Latest 1.19.0
-androidx-concurrent-futures = "1.3.0"
+#androidx-concurrent-futures = "1.3.0"
 androidx-credentials-play-services-auth = "1.6.0" # Latest 1.5.0
-androidx-datastore = "1.2.1" # Latest 1.2.0
+androidx-datastore = "1.3.0" # Latest 1.2.1
 androidx-junit = "1.3.0" # Latest 1.2.1
 androidx-legacy-support-v4 = "1.0.0"
 androidx-leanback-core = "1.2.0" # Latest 1.2.0
@@ -24,7 +24,7 @@ androidx-leanback-paging = "1.1.0" # Latest 1.1.0-rc01
 androidx-leanback-tab = "1.1.0" # Latest 1.1.0-rc01
 androidx-lifecycle = "2.11.0" # Latest: 2.10.0
 androidx-navigation-fragment-ktx = "2.10.2" # Latest: 2.10.2
-androidx-navigation-fragment-ktx-legacy = "2.10.0-alpha01" # Latest: 2.10.2 Dropped to 1.10.0-alpha01 for older devices
+#androidx-navigation-fragment-ktx-legacy = "2.10.0-alpha01" # Latest: 2.10.2 Dropped to 1.10.0-alpha01 for older devices
 androidx-room = "2.8.5" # Latest: 2.8.4
 androidxComposeAnimation-animation = "1.12.1"
 appcompat = "1.8.0" # Latest 1.7.1
@@ -33,50 +33,50 @@ coil3 = "3.6.3" # Latest: 3.5.0
 constraintlayout = "2.2.2" # Latest 2.2.1
 kotlin-coroutines = "1.11.0" # Latest: 1.10.2
 kotlinx-coroutines-test = "1.11.0" # 1.10.2
-kotlinx-serialization = "1.11.0" # 1.8.0
+kotlinx-serialization = "1.12.0" # 1.11.0
 kotlinx-coroutines-play-services = "1.11.0"
 androidx-compose-foundation = "1.12.1" # Latest 1.11.4
 androidx-compose-foundation-layout = "1.12.1" # 1.11.4
 espresso-core = "3.7.0" # Latest: 3.6.1
-firebase-bom = "35.0.0" # Latest: 35.0.0
-firebase-bom-legacy = "33.10.0" # Latest: 35.0.0 Dropped to 34.19.0 for older devices
+firebase-bom = "35.1.0" # Latest: 35.0.0
+#firebase-bom-legacy = "33.10.0" # Latest: 35.0.0 Dropped to 34.19.0 for older devices
 firebase-crashlytics-gradle = "3.0.8" # Latest 3.0.7
-firebaseUi-auth = "8.0.2"
+#firebaseUi-auth = "8.0.2"
 firebase-perf-plugin = "2.0.2" # Latest 2.0.1
 fragment-ktx = "1.9.1" # Latest 1.9.0
 google-services = "4.5.0" # Latest 4.4.4
-gson = "2.14.0" # Latest 2.13.2
-jetpack-compose = "1.12.1" # Latest 1.12.0
+gson = "2.15.0" # Latest 2.14.0
+jetpack-compose = "1.12.2" # Latest 1.12.1
 jetpack-compose-material3 = "1.9.0"
 junit = "4.13.2"
-kotlin-stdlib = "2.4.20" # Latest 2.4.10
+kotlin-stdlib = "2.4.21" # Latest 2.4.10
 ktor = "3.6.0" # Latest 3.5.1
 material = "1.14.0" # Latest 1.13.0
 mockito-kotlin = "6.4.0" # Latest 6.3.0
-multidex = "1.0.3"
+#multidex = "1.0.3"
 user-messaging-platform = "4.0.0" # Latest: 4.0.0
-user-messaging-platform-legacy = "3.2.0" # Latest: 4.0.0 ( MAJOR UPDATE ) Dropped to 3.2.0 for older devices
+#user-messaging-platform-legacy = "3.2.0" # Latest: 4.0.0 ( MAJOR UPDATE ) Dropped to 3.2.0 for older devices
 work-runtime = "2.12.0" # Latest: 2.12.0
-work-runtime-legacy = "2.11.0" # Latest: 2.12.0 Dropped to 2.11.0 for older devices
+#work-runtime-legacy = "2.11.0" # Latest: 2.12.0 Dropped to 2.11.0 for older devices
 realm-kotlin = "3.0.0" # Latest: 1.16.0
-realm-kotlin-base = "3.0.0"
+#realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
 
 nav3Core = "1.2.0" # Latest: 1.2.0
-nav3Core-legacy = "1.0.0" # Latest: 1.2.0 Dropped to 3.2.0 for older devices
-lifecycleViewmodelNav3 = "2.11.0" # Latest: 2.11.0
-lifecycleViewmodelNav3-legacy = "2.11.0" # Latest: 2.11.0 Dropped to 2.10.0 for older devices
+#nav3Core-legacy = "1.0.0" # Latest: 1.2.0 Dropped to 3.2.0 for older devices
+#lifecycleViewmodelNav3 = "2.11.0" # Latest: 2.11.0
+#lifecycleViewmodelNav3-legacy = "2.11.0" # Latest: 2.11.0 Dropped to 2.10.0 for older devices
 
 wear-compose = "1.7.1" # 1.7.0
 wear-tooling-preview = "1.0.0"
 play-services-wearable = "20.0.1"
 
-agp = "9.4.1" # Latest: 8.12.0
-kotlin = "2.4.20" # Latest: 2.4.10
+agp = "9.5.0" # Latest: 8.12.0
+kotlin = "2.4.21" # Latest: 2.4.20
 ksp = "2.3.6" # Latest: 2.2.10-2.0.2 -> 2.2.21-2.0.4
-composeMP = "1.12.1" # Latest: 1.12.0
+composeMP = "1.12.2" # Latest: 1.12.1
 googleid = "1.2.1" # Latest: 1.2.0
-kotlinTest = "2.3.0" # Latest 2.2.20
+kotlinTest = "2.4.20" # Latest 2.3.0
 androidx-test-runner = "1.7.0" # 1.6.2
 androidx-test-core = "1.7.0"
 
@@ -124,10 +124,10 @@ androidx-activityCompose = { group = "androidx.activity", name = "activity-compo
 androidx-compose-bom = { group="androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom"}
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidx-compose-foundation" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "androidx-compose-foundation-layout" }
-androidx-compose-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
+#androidx-compose-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidx-compose-material3" }
-androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "androidx-compose-material3-window-size-class", version.ref="androidx-compose-material3-window-size" }
+#androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "androidx-compose-material3-window-size-class", version.ref="androidx-compose-material3-window-size" }
 androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref="androidx-compose-material3-adaptive" }
 androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-runtime-rxJava2 = { group = "androidx.compose.runtime", name = "runtime-rxjava2" }
@@ -137,7 +137,7 @@ androidx-compose-ui-testJunit4 = { group = "androidx.compose.ui", name = "ui-tes
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-composeUi" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidx-composeUi" }
 androidx-compose-ui-toolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidx-composeUi" }# AndroidX: Concurrent
-androidx-concurrent-futures-ktx = { group = "androidx.concurrent", name = "concurrent-futures-ktx", version.ref = "androidx-concurrent-futures" }
+#androidx-concurrent-futures-ktx = { group = "androidx.concurrent", name = "concurrent-futures-ktx", version.ref = "androidx-concurrent-futures" }
 # AndroidX: Auth Credentials / Play Services
 androidx-credentials-core = { group = "androidx.credentials", name = "credentials", version.ref = "androidx-credentials-play-services-auth" }
 androidx-credentials-playServicesAuth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "androidx-credentials-play-services-auth" }
@@ -167,20 +167,20 @@ androidx-navigation-uiKtx = { group = "androidx.navigation", name = "navigation-
 # Navigation 3
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 #androidx-navigation3-runtime-legacy = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core-legacy" }
-androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+#androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
 #androidx-navigation3-ui-legacy = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core-legacy" }
-androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
+#androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
 #androidx-lifecycle-viewmodel-navigation3-legacy = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3-legacy" }
 
 # AndroidX: Room
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
-androidx-room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "androidx-room" }
-androidx-room-rxjava3 = { group = "androidx.room", name = "room-rxjava3", version.ref = "androidx-room" }
-androidx-room-guava = { group = "androidx.room", name = "room-guava", version.ref = "androidx-room" }
-androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "androidx-room" }
-androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
+#androidx-room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "androidx-room" }
+#androidx-room-rxjava3 = { group = "androidx.room", name = "room-rxjava3", version.ref = "androidx-room" }
+#androidx-room-guava = { group = "androidx.room", name = "room-guava", version.ref = "androidx-room" }
+#androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "androidx-room" }
+#androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
 # Firebase: BOM
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 #firebase-bom-legacy = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom-legacy" }
@@ -206,7 +206,7 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 ktor-serialization-kotlinx-protobuf = { module = "io.ktor:ktor-serialization-kotlinx-protobuf", version.ref = "ktor" }
 ktor-serialization-kotlinx-xml = { module = "io.ktor:ktor-serialization-kotlinx-xml", version.ref = "ktor" }
 # Realm
-realm-kotlin-library-base = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm-kotlin-base" }
+#realm-kotlin-library-base = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm-kotlin-base" }
 realm-kotlin-library-sync = { group = "io.realm.kotlin", name = "library-sync", version.ref = "realm-kotlin-sync" }
 # Views
 androidx-cardview-core = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
@@ -239,9 +239,9 @@ androidx-test-core = { group = "androidx.test", name = "core", version.ref = "an
 # Wear OS
 androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wear-compose" }
 androidx-wear-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wear-compose" }
-androidx-wear-compose-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wear-compose" }
-androidx-wear-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "wear-compose" }
-androidx-wear-compose-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling", version.ref = "wear-compose" }
+#androidx-wear-compose-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wear-compose" }
+#androidx-wear-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "wear-compose" }
+#androidx-wear-compose-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling", version.ref = "wear-compose" }
 androidx-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version.ref = "wear-tooling-preview" }
 android-playServices-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "play-services-wearable" }
 

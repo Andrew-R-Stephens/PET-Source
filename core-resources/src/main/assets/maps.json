@@ -12047,7 +12047,7 @@
             ]
           },
           {
-            "floor_id": 0,
+            "floor_id": "1",
             "floor_number": 1,
             "floor_name": "First Floor",
             "image_file": "map_tanglewood_firstfloor.png",

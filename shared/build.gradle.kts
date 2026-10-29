@@ -87,14 +87,12 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(libs.androidx.lifecycle.viewmodelCompose)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.jetbrains.compose.components)
                 implementation(libs.jetbrains.compose.runtime)
                 implementation(libs.jetbrains.compose.foundation)
                 implementation(libs.jetbrains.compose.material3)
-                implementation(libs.androidx.compose.ui.core)
-                implementation(libs.jetbrains.compose.components)
-                implementation(libs.androidx.compose.ui.tooling)
-                implementation(libs.androidx.lifecycle.viewmodelCompose)
-                implementation(libs.androidx.lifecycle.runtime.compose)
             }
         }
 
