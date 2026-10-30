@@ -448,7 +448,7 @@ fun WearAppPreviewRect() {
 fun WearAppPreviewContent() {
     val sampleData = WearableOperationData(
         investigationData = WearableInvestigationData(
-            mapId = MapId.BLEASDALE_FARMHOUSE,
+            mapId = "",
             difficultyName = DifficultyType.AMATEUR,
             setupTimeRemaining = 0L,
             sanityLevel = 0.75f,
