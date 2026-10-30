@@ -32,16 +32,28 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		494CFE932DD80A2A006EC784 /* iosApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
 			path = iosApp;
 			sourceTree = "<group>";
 		};
 		494CFEA62DD80A2D006EC784 /* iosAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
 			path = iosAppTests;
 			sourceTree = "<group>";
 		};
 		494CFEB02DD80A2D006EC784 /* iosAppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
 			path = iosAppUITests;
 			sourceTree = "<group>";
 		};
@@ -175,7 +187,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					494CFE902DD80A2A006EC784 = {
 						CreatedOnToolsVersion = 16.3;
@@ -251,7 +263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -352,6 +364,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -409,6 +422,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -442,7 +456,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					"sharedKit",
+					sharedKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tritiumgaming.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -480,7 +494,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					"sharedKit",
+					sharedKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tritiumgaming.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
