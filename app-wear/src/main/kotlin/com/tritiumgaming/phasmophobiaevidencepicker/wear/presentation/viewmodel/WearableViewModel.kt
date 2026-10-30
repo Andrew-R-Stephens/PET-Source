@@ -34,7 +34,7 @@ class WearableViewModel(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = WearableOperationData(
                 investigationData = WearableInvestigationData(
-                    mapTitle = MapId.BLEASDALE_FARMHOUSE,
+                    mapId = MapId.BLEASDALE_FARMHOUSE,
                     difficultyName = DifficultyType.AMATEUR,
                     setupTimeRemaining = 0L,
                     sanityLevel = 1f,

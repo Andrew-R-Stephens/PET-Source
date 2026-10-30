@@ -17,7 +17,7 @@ data class WearableOperationData(
 
 @Serializable
 data class WearableInvestigationData(
-    val mapTitle: SimpleMapResources.MapTitle,
+    val mapId: String,
     val difficultyName: DifficultyResources.DifficultyType,
     val setupTimeRemaining: Long,
     val sanityLevel: Float,

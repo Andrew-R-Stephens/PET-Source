@@ -304,7 +304,7 @@ class PETApplication : Application(),
                 }
 
                 val investigationData = WearableInvestigationData(
-                    mapTitle = data.map.name,
+                    mapId = data.map.mapId,
                     difficultyName = data.difficulty.type,
                     setupTimeRemaining = data.phase.maxFlashTime - data.phase.elapsedFlashTime,
                     sanityLevel = data.sanity.sanityLevel,
